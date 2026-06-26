@@ -1,0 +1,124 @@
+/* ===========================================================
+   REVO — "Studios" page (el local físico · Turó Park)
+   Carga DESPUÉS de revo-amanecer.css + revo-studio.css y
+   reutiliza .st-hero / .st-head / footer-on-dark. Añade: el
+   bloque sobre el studio, la galería del espacio, las tres
+   formas de entrar (con desplegable de terapias) y la info
+   de visita (reserva o ven directamente · horarios · llegar).
+   =========================================================== */
+
+/* ---------- hero: ubicación + CTAs ---------- */
+.st-hero .st-eyebrow-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:30px; }
+.st-hero .st-here{ display:inline-flex; align-items:center; gap:9px; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.74); }
+.st-hero .st-here .blip{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 11px rgba(104,129,252,.85); }
+.st-hero-cta{ display:flex; gap:13px; margin-top:38px; flex-wrap:wrap; }
+
+/* ---------- sobre el studio (hoja blanca · texto + foto) ---------- */
+.about-split{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(40px,5vw,84px); align-items:center; }
+.about-copy .st-head{ margin:0; max-width:none; }
+.about-copy .st-head .intro{ max-width:48ch; }
+.about-copy .intro + .intro{ margin-top:18px; }
+.about-facts{ display:flex; flex-wrap:wrap; gap:10px; margin-top:32px; }
+.about-facts span{ font-size:12.5px; color:var(--ink-dark); padding:9px 16px; border:1px solid rgba(17,19,24,.2); border-radius:100px; background:rgba(104,129,252,.05); }
+.about-photo{ position:relative; border-radius:18px; overflow:hidden; aspect-ratio:4/5; box-shadow:0 44px 84px -44px rgba(6,9,32,.5); }
+.about-photo img{ width:100%; height:100%; object-fit:cover; }
+@media (max-width:900px){ .about-split{ grid-template-columns:1fr; gap:36px; } .about-photo{ aspect-ratio:16/11; } }
+
+/* ---------- galería del espacio ---------- */
+.gallery{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:clamp(180px,22vw,250px); gap:14px; margin-top:clamp(40px,5vh,60px); }
+.gphoto{ position:relative; overflow:hidden; border-radius:16px; isolation:isolate; }
+.gphoto img{ width:100%; height:100%; object-fit:cover; transition:transform 1.2s var(--ease); }
+.gphoto:hover img{ transform:scale(1.05); }
+.gphoto::after{ content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(0deg, rgba(7,10,30,.62) 0%, rgba(7,10,30,0) 48%); }
+.gcap{ position:absolute; left:18px; bottom:15px; z-index:2; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#fff; }
+.gphoto--a{ grid-column:1 / 3; grid-row:1; }
+.gphoto--b{ grid-column:3;     grid-row:1 / 3; }
+.gphoto--c{ grid-column:4;     grid-row:1 / 3; }
+.gphoto--d{ grid-column:1 / 3; grid-row:2; }
+@media (max-width:760px){
+  /* galería móvil con ritmo: ancha · dos verticales · ancha (alturas por aspect-ratio, sin recortes raros) */
+  .gallery{ grid-template-columns:1fr 1fr; grid-auto-rows:auto; gap:10px; }
+  .gphoto{ grid-column:auto; grid-row:auto; height:auto; }
+  .gphoto--a{ grid-column:1 / 3; aspect-ratio:16 / 10; }
+  .gphoto--b{ aspect-ratio:3 / 4; }
+  .gphoto--c{ aspect-ratio:3 / 4; }
+  .gphoto--d{ grid-column:1 / 3; aspect-ratio:16 / 10; }
+  .gcap{ left:14px; bottom:12px; }
+}
+
+/* ---------- tres formas de entrar (glass cards sobre el azul) ---------- */
+.access-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; }
+.access{ position:relative; display:flex; flex-direction:column; border-radius:22px; padding:34px 30px; overflow:visible; isolation:isolate;
+  background:rgba(255,255,255,.06); backdrop-filter:blur(15px) saturate(1.3); -webkit-backdrop-filter:blur(15px) saturate(1.3);
+  box-shadow:0 34px 70px -28px rgba(6,9,32,.6), 0 10px 24px -12px rgba(6,9,32,.45),
+    inset 1px 1px 0 rgba(255,255,255,.24), inset -1px -1px 0 rgba(255,255,255,.1); }
+.access::after{ content:""; position:absolute; inset:0; border-radius:inherit; border:1px solid rgba(255,255,255,.18); pointer-events:none; z-index:0; }
+.access > *{ position:relative; z-index:1; }
+.access--feature{ background:rgba(104,129,252,.15); box-shadow:0 44px 96px -40px rgba(104,129,252,.6), 0 12px 28px -14px rgba(6,9,32,.5),
+    inset 1px 1px 0 rgba(255,255,255,.28), inset -1px -1px 0 rgba(255,255,255,.12); }
+.access--feature::after{ border-color:rgba(140,160,255,.5); }
+.access-tag{ display:inline-flex; align-items:center; gap:9px; font-size:10.5px; font-weight:700; letter-spacing:.04em; color:var(--teal); margin-bottom:18px; }
+.access-tag .blip{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 10px rgba(104,129,252,.85); }
+.access h3{ font-family:var(--display); font-weight:500; font-size:clamp(25px,2.5vw,33px); line-height:1; letter-spacing:-.018em; margin:0; color:#fff; }
+.access p{ margin:15px 0 0; font-size:14.5px; line-height:1.62; color:rgba(255,255,255,.74); }
+.access-foot{ margin-top:auto; padding-top:26px; }
+.access-foot > .btn{ width:100%; }
+
+/* desplegable de terapias dentro de la card */
+.ther-menu{ position:relative; }
+.ther-menu summary{ list-style:none; width:100%; }
+.ther-menu summary::-webkit-details-marker{ display:none; }
+.ther-menu summary{ cursor:pointer; }
+.ther-caret{ width:7px; height:7px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor;
+  transform:translateY(-2px) rotate(45deg); transition:transform .4s var(--ease); }
+.ther-menu[open] summary .ther-caret{ transform:translateY(1px) rotate(225deg); }
+.ther-list{ position:absolute; left:0; right:0; bottom:calc(100% + 12px); z-index:8; padding:9px;
+  border-radius:15px; background:rgba(11,15,34,.78); backdrop-filter:blur(26px) saturate(1.7); -webkit-backdrop-filter:blur(26px) saturate(1.7);
+  border:1px solid rgba(255,255,255,.16); box-shadow:0 32px 64px -26px rgba(0,0,0,.78); }
+.ther-list a{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:11px 13px; border-radius:9px;
+  font-size:13.5px; color:rgba(255,255,255,.84); transition:background .3s, color .3s; }
+.ther-list a:hover{ background:rgba(255,255,255,.08); color:#fff; }
+.ther-list a .ta{ color:var(--teal); font-size:13px; }
+
+@media (max-width:880px){ .access-grid{ grid-template-columns:1fr; } }
+
+/* ---------- tu visita (hoja blanca · reserva/walk-in · horarios · llegar) ---------- */
+.visit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.visit-card{ display:flex; flex-direction:column; padding:32px 34px; border:1px solid rgba(17,19,24,.14); border-radius:20px; background:#fff; }
+.visit-card .vk{ display:block; font-size:10.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--indigo); margin-bottom:16px; }
+.visit-card h3{ font-family:var(--display); font-weight:500; font-size:clamp(21px,1.9vw,26px); line-height:1.08; letter-spacing:-.012em; margin:0 0 12px; color:var(--ink-dark); }
+.visit-card p{ font-size:14.5px; line-height:1.62; color:rgba(17,19,24,.64); margin:0; }
+.visit-card .btn{ align-self:flex-start; margin-top:auto; border-radius:3px; }
+.visit-card .visit-cta-gap{ margin-top:24px; }
+.hours{ display:flex; flex-direction:column; margin-top:2px; }
+.hours div{ display:flex; align-items:baseline; justify-content:space-between; gap:18px; padding:12px 0; border-bottom:1px solid rgba(17,19,24,.1); }
+.hours div:last-child{ border-bottom:0; }
+.hours .hd{ font-family:var(--display); font-weight:500; font-size:15px; color:var(--ink-dark); letter-spacing:-.005em; }
+.hours .hh{ font-size:14px; color:rgba(17,19,24,.6); }
+.hours .hd.closed{ color:rgba(17,19,24,.4); }
+.addr{ font-size:15.5px; line-height:1.7; color:var(--ink-dark); margin:0 0 4px; }
+.addr-sub{ font-size:13.5px; line-height:1.6; color:rgba(17,19,24,.56); margin:8px 0 0; }
+@media (max-width:760px){ .visit-grid{ grid-template-columns:1fr; } }
+
+/* ---------- cierre ---------- */
+.st-screen{ min-height:100vh; display:flex; flex-direction:column; }
+.st-close{ flex:1 1 auto; text-align:center; padding-block:clamp(36px,6vh,72px); display:flex; flex-direction:column; justify-content:center; }
+.st-close .eyebrow{ justify-content:center; margin-bottom:18px; }
+.st-close h2{ font-family:var(--display); font-weight:400; font-size:clamp(28px,3.6vw,56px); line-height:1.04; letter-spacing:-.02em; margin:0 auto; max-width:18ch; color:#fff; }
+.st-close .cta-btns{ display:flex; gap:14px; justify-content:center; margin-top:30px; flex-wrap:wrap; }
+.st-screen .site-footer{ padding-block:clamp(28px,4vh,44px); }
+
+/* ---------- cierre con fondo shader "Fluid" (igual que las terapias) ---------- */
+.st-screen.footer--fluid{ position:relative; overflow:hidden; color:#fff; background:#070810; isolation:isolate; }
+.st-screen.footer--fluid .footer-gl{ position:absolute; inset:0; width:100%; height:100%; z-index:0; display:block; pointer-events:none; }
+.st-screen.footer--fluid .footer-fluid-scrim{ position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(180deg, rgba(7,8,16,.42) 0%, rgba(7,8,16,.18) 36%, rgba(7,8,16,.5) 100%); }
+.st-screen.footer--fluid > .st-close,
+.st-screen.footer--fluid > .site-footer{ position:relative; z-index:2; }
+.st-screen.footer--fluid .footer-inner{ border-top-color:rgba(255,255,255,.2); }
+.st-screen.footer--fluid .logo-img{ filter:none; }
+.st-screen.footer--fluid .footer-tag{ color:rgba(255,255,255,.74); }
+.st-screen.footer--fluid .footer-col h4{ color:#9fb0ff; }
+.st-screen.footer--fluid .footer-col a{ color:rgba(255,255,255,.66); }
+.st-screen.footer--fluid .footer-col a:hover{ color:#fff; }
+.st-screen.footer--fluid .footer-bottom{ color:rgba(255,255,255,.55); border-top-color:rgba(255,255,255,.16); }

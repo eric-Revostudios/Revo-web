@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0d1e" />
+<title>REVO — Longevity Club · Barcelona</title>
+<meta name="description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
+<link rel="canonical" href="https://revostudios.eu/index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="REVO" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:title" content="REVO — Longevity Club · Barcelona" />
+<meta property="og:description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
+<meta property="og:url" content="https://revostudios.eu/index.html" />
+<meta property="og:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="REVO — Longevity Club · Barcelona" />
+<meta name="twitter:description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
+<meta name="twitter:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
+<link rel="alternate" hreflang="es" href="index.html" />
+<link rel="alternate" hreflang="en" href="en/index.html" />
+<link rel="alternate" hreflang="x-default" href="index.html" />
+<link rel="stylesheet" href="revo-amanecer.css?v=mobile24" />
+<link rel="stylesheet" href="revo-reservar.css" />
+<style id="home-extra">
+  .exp-head{ max-width:880px; margin:0 0 clamp(34px,4.5vh,56px); }
+  .exp-body{ display:grid; grid-template-columns:.6fr 1.4fr; gap:clamp(36px,4.5vw,72px); align-items:start; }
+  .exp-media-col, .exp-right{ display:flex; flex-direction:column; }
+  .exp.section{ padding-block:clamp(48px,7vh,88px); }
+  .exp-head .eyebrow{ margin-bottom:14px; }
+  .revo-wm{ height:.66em; width:auto; display:inline-block; vertical-align:baseline; position:relative; top:.04em; margin-left:.06em; }
+  .exp-head h2{ font-size:clamp(32px,4.4vw,62px); line-height:1.04; letter-spacing:-.016em; margin:0; }
+  .exp-lead{ margin:16px 0 0; color:rgba(17,19,24,.66); font-size:clamp(16px,1.2vw,18px); line-height:1.55; max-width:60ch; }
+  .exp-chips{ display:flex; flex-wrap:wrap; gap:10px; margin:30px 0 0; }
+  .exp-chips li{ font-size:12px; letter-spacing:.04em; color:var(--indigo); border:1px solid rgba(104,129,252,.34); border-radius:100px; padding:8px 16px; }
+  /* experiences → interactive combos list (hover reveals the ordered therapy sequence) */
+  .exp-combos{ list-style:none; margin:0; padding:0; border-top:1px solid rgba(17,19,24,.12); }
+  .combo-row{ border-bottom:1px solid rgba(17,19,24,.12); padding:10px 4px; cursor:pointer; transition:padding-left .3s ease, background .3s ease; }
+  .combo-row:hover{ padding-left:12px; }
+  .combo-row-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; }
+  .combo-row-name{ font-family:var(--display); font-weight:500; font-size:clamp(17px,1.4vw,21px); letter-spacing:-.012em; color:#111; transition:color .2s ease; }
+  .combo-row:hover .combo-row-name{ color:var(--indigo); }
+  .combo-row-dur{ font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:rgba(17,19,24,.46); white-space:nowrap; }
+  .combo-row-flow{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 9px; max-height:0; opacity:0; overflow:hidden;
+    transition:max-height .45s ease, opacity .35s ease, margin-top .45s ease; margin-top:0; }
+  .combo-row:hover .combo-row-flow{ max-height:200px; opacity:1; margin-top:15px; }
+  .flow-step{ display:inline-flex; align-items:center; gap:8px; font-size:12.5px; color:#1b2a4d; background:rgba(104,129,252,.07);
+    border:1px solid rgba(104,129,252,.26); border-radius:100px; padding:6px 14px 6px 7px; white-space:nowrap; }
+  .flow-i{ display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; background:var(--indigo); color:#fff; font-size:10px; font-weight:700; }
+  .flow-arr{ color:rgba(104,129,252,.5); font-size:14px; line-height:1; }
+  @media(max-width:900px){
+    /* móvil: cada experiencia colapsada; al tocar se abre su combinación de terapias */
+    .combo-row{ padding:18px 2px; }
+    .combo-row-head{ gap:12px; }
+    .combo-row-dur{ font-size:11px; display:inline-flex; align-items:center; gap:11px; }
+    .combo-row-dur::after{ content:""; width:8px; height:8px; flex:none;
+      border-right:1.6px solid rgba(17,19,24,.42); border-bottom:1.6px solid rgba(17,19,24,.42);
+      transform:translateY(-2px) rotate(45deg); transition:transform .32s ease, border-color .32s ease; }
+    .combo-row.open .combo-row-dur::after{ transform:translateY(1px) rotate(-135deg); border-color:var(--indigo); }
+    .combo-row.open .combo-row-name{ color:var(--indigo); }
+    .combo-row-flow{ max-height:0; opacity:0; flex-direction:row; flex-wrap:wrap; align-items:center;
+      gap:7px 7px; margin-top:0;
+      transition:max-height .42s ease, opacity .3s ease, margin-top .42s ease; }
+    .combo-row.open .combo-row-flow{ max-height:360px; opacity:1; margin-top:14px; }
+    .combo-row-flow .flow-arr{ display:none; }
+    .flow-step{ width:auto; white-space:nowrap; font-size:12px; letter-spacing:.01em; gap:7px;
+      padding:5px 13px 5px 5px; background:rgba(104,129,252,.05); border-color:rgba(104,129,252,.2); border-radius:100px; }
+    .flow-i{ width:17px; height:17px; font-size:9.5px; font-weight:600; }
+  }
+  .exp-cta{ display:flex; gap:13px; margin-top:clamp(36px,5vh,60px); flex-wrap:wrap; justify-content:center; }
+  .exp-media{ position:relative; margin:0; border-radius:16px; overflow:hidden; aspect-ratio:4/5; width:100%; max-width:240px; box-shadow:0 30px 60px -34px rgba(20,30,80,.4); }
+  .exp-media img{ width:100%; height:100%; object-fit:cover; }
+  .exp-media-cap{ position:absolute; left:clamp(22px,2.4vw,34px); bottom:clamp(20px,2.6vw,32px); margin:0;
+    font-family:var(--display); font-weight:500; color:#111; line-height:1.1; letter-spacing:-.012em;
+    font-size:clamp(36px,4.2vw,66px); }
+  .club-kicker{ font-family:var(--sans); font-size:clamp(13px,1.05vw,16px); font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--teal); margin:0 0 16px; }
+  /* club: headline left + includes list right (comfortable height) */
+  .club{ position:relative; overflow:hidden; }
+  .club-panel{ inset:0; }
+  .club-inner{ box-sizing:border-box; margin:0; max-width:none; display:grid; grid-template-columns:1.12fr .88fr;
+    align-items:center; column-gap:clamp(40px,5.5vw,100px); text-align:left; padding:clamp(96px,13vh,170px) var(--edge); }
+  .club-inner > *{ max-width:none; margin:0; }
+  .club-main{ display:flex; flex-direction:column; gap:clamp(30px,4.5vh,52px); }
+  .club-head .eyebrow{ color:#fff; margin:0 0 22px; }
+  .club-big{ margin:0; text-align:left; text-transform:none; font-family:var(--display); font-weight:400; color:#fff;
+    font-size:clamp(72px,9.5vw,156px); line-height:.9; letter-spacing:-.028em; }
+  .club-place{ margin:22px 0 0; display:inline-flex; align-items:center; gap:11px; font-size:12px; font-weight:600;
+    letter-spacing:.18em; text-transform:uppercase; color:#fff; }
+  .club-place span{ color:rgba(255,255,255,.62); }
+  .club-aside{ display:flex; flex-direction:column; align-items:flex-start; }
+  .club-limit{ position:absolute; top:clamp(28px,4.5vh,56px); right:var(--edge); margin:0; z-index:4; }
+  .club-list{ display:flex; flex-direction:column; margin:0; max-width:none; width:100%; }
+  .club-list li{ display:flex; align-items:center; gap:14px; justify-content:flex-start; padding:15px 0;
+    border-bottom:1px solid rgba(255,255,255,.16); font-size:clamp(15px,1.05vw,18px); color:rgba(255,255,255,.92); }
+  .club-list li:first-child{ border-top:1px solid rgba(255,255,255,.16); }
+  .club-list li .arr{ color:var(--teal); }
+  .club-cta{ justify-content:flex-start; margin:0; }
+  @media(max-width:900px){
+    .club-inner{ grid-template-columns:1fr; row-gap:clamp(32px,5vh,56px); }
+    .club-big{ font-size:13vw; }
+    .club-limit{ position:static; margin:0 0 16px; }
+  }
+  @media(max-width:600px){
+    /* single flex column; reorder so CTAs sit at the very bottom */
+    .club-inner{ display:flex; flex-direction:column; gap:34px;
+      padding:58px var(--edge) 52px; align-items:stretch; }
+    .club-main, .club-aside{ display:contents; }
+    .club-head{ order:1; }
+    .club-list{ order:2; }
+    .club-cta{ order:3; }
+    .club-head .eyebrow{ margin:0; font-size:12px; letter-spacing:.22em; max-width:62%; }
+    .club-big{ margin-top:18px; font-size:clamp(66px,21vw,108px); line-height:.92; letter-spacing:-.03em; }
+    /* "Limitado a 175 miembros" — small, top right, no dot */
+    .club-limit{ position:absolute; top:clamp(26px,4vh,42px); right:var(--edge); margin:0; max-width:46%;
+      justify-content:flex-end; text-align:right; font-size:9.5px; letter-spacing:.16em; color:rgba(255,255,255,.78); }
+    .club-limit .blip{ display:none; }
+    /* includes list: refined rows with arrow badge */
+    .club-list li{ gap:15px; padding:16px 0; font-size:16px; line-height:1.3; font-weight:500; color:#fff;
+      align-items:center; border-bottom-color:rgba(255,255,255,.18); }
+    .club-list li:first-child{ border-top-color:rgba(255,255,255,.18); }
+    .club-list li .arr{ flex:none; width:27px; height:27px; display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,.32); border-radius:50%; font-size:12px; line-height:1; color:#fff; }
+    /* CTAs: full-width, clear primary/secondary hierarchy, pinned to the bottom */
+    .club-cta{ flex-direction:column; gap:12px; width:100%; margin:6px 0 0; }
+    .club-cta .btn{ width:100%; justify-content:center; padding:19px 28px; font-size:12px; letter-spacing:.16em; }
+  }
+  @media(max-width:900px){ .exp-body{ grid-template-columns:1fr; gap:36px; } .exp-media{ aspect-ratio:16/10; max-width:none; } }
+  /* hero tweaks */
+  .hero h1{ font-size:clamp(40px,6.2vw,100px); }
+  /* eyebrows: formato único = EL MÉTODO (17px / 5px / 600 + punto), heredado del base */
+  .hero .eyebrow{ font-size:11px; letter-spacing:.2em; }
+  /* desktop/tablet: las terapias (oscuro) + "en tu rutina" mantienen tamaño grande, blanco y punto */
+  .therapies-head .eyebrow{ color:#fff; font-size:17px; font-weight:600; letter-spacing:5px; }
+  .joy-inner .joy-eyebrow{ font-size:17px; letter-spacing:5px; }
+  .joy-inner .joy-eyebrow::before{ display:inline-block; }
+  @media (max-width:600px){
+    .hero h1{ font-size:clamp(30px,8.4vw,44px); }
+    .hero .hl-line{ white-space:normal; width:auto; max-width:100%; }
+    .hero .eyebrow{ max-width:100%; align-items:flex-start; margin-bottom:22px; }
+    .hero .hero-sub{ margin-top:20px; font-size:16px; line-height:1.5; }
+    .hero .hero-cta{ margin-top:16px; width:100%; }
+    .hero .hero-cta .btn{ width:100%; justify-content:center; padding:18px 30px; }
+    .hero .hero-benefits{ position:static; display:flex; flex-direction:row; flex-wrap:wrap; gap:7px; margin-top:auto; padding-top:24px; align-items:flex-start; }
+    .hero .hero-benefits .ben-row{ display:contents; }
+    .hero .hero-benefits .chip{ flex:0 1 auto; white-space:nowrap; font-size:clamp(10.5px,3vw,13px); font-weight:500; letter-spacing:.01em; padding:8px clamp(11px,3.2vw,15px); background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.3); }
+    .hero .hero-benefits .chip::after{ display:none; }
+    /* móvil: todos los eyebrows de sección al tamaño del hero "Science-backed" */
+    .eyebrow{ font-size:11px; letter-spacing:.2em; }
+    .therapies-head .eyebrow{ font-size:11px; letter-spacing:.2em; }
+    .joy-inner .joy-eyebrow{ font-size:11px; letter-spacing:.2em; }
+  }
+  /* el aire superior lo da .t-screen; sin padding-top extra para no duplicarlo en móvil */
+  .therapies-pin:not(.pinned) .therapies-head{ padding-top:0; }
+  /* pinned (desktop) therapies: keep head + cards within 100vh so cards aren't clipped at the bottom */
+  .therapies-pin.pinned .therapies-head{ padding-top:0; margin-bottom:0; max-width:none; }
+  .therapies-pin.pinned .t-screen{ gap:clamp(18px,3vh,40px); }
+  .therapies-pin.pinned .therapies-head h2{ font-size:clamp(36px,5.4vw,78px); max-width:20ch; }
+  /* títulos de sección unificados al tamaño de "El método" (.method-head h2) */
+  .therapies-head h2{ font-size:clamp(36px,5.4vw,78px); }
+  .joy-inner h2{ font-size:clamp(36px,5.4vw,78px); }
+  /* móvil: títulos de sección de la home al tamaño canónico del resto de la web (= .method-head h2) */
+  @media (max-width:600px){
+    .therapies-head h2, .joy-inner h2, .exp-head h2{ font-size:clamp(28px,8.2vw,40px); }
+  }
+  /* "Nuestros miembros": título alineado a la izquierda */
+  .members .eyebrow{ justify-content:flex-start; text-align:left; }
+  .therapies-pin.pinned .therapies-head p{ margin-top:clamp(10px,1.4vh,22px); }
+  .therapies-pin.pinned .cards{ padding-block:6px clamp(10px,2vh,26px); }
+  .therapies-pin.pinned .card{ min-height:clamp(360px,52vh,420px); }
+  /* compact duration label (was a big pill) */
+  .therapies-pin .card-tag{ margin-bottom:14px; padding:0; background:none; border:0; border-radius:0; font-size:10px; font-weight:600; letter-spacing:.16em; color:rgba(255,255,255,.72); }
+  .therapies-pin .card-tag .blip{ width:5px; height:5px; }
+  /* per-card actions: discreet info link + solid reservar button */
+  .card-actions{ margin-top:18px; display:flex; align-items:center; gap:14px; }
+  .card-actions--single{ justify-content:center; }
+  .card-info{ font-size:11px; font-weight:600; letter-spacing:.03em; color:rgba(255,255,255,.82);
+    text-decoration:none; white-space:nowrap; border-bottom:1px solid rgba(255,255,255,.38); padding-bottom:2px;
+    transition:color .2s ease, border-color .2s ease; }
+  .card-info:hover{ color:#fff; border-color:#fff; }
+  .card-book{ margin-left:auto; display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700;
+    letter-spacing:.09em; text-transform:uppercase; color:#1b2a6e; background:#fff; padding:11px 20px;
+    border-radius:100px; text-decoration:none; white-space:nowrap;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
+  .card-actions--single .card-book{ margin-left:0; }
+  .card-book:hover{ background:#eaf0ff; transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.28); }
+  .hero-benefits .chip{ text-transform:none; letter-spacing:-.005em; font-size:17px; font-weight:600; padding:15px 26px; background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.62); color:#fff; position:relative; overflow:hidden; }
+  .hero-benefits .chip::after{ content:""; position:absolute; top:0; bottom:0; left:-65%; width:55%; pointer-events:none;
+    background:linear-gradient(105deg, transparent, rgba(255,255,255,.5), transparent); transform:skewX(-14deg); }
+  @media(prefers-reduced-motion:no-preference){
+    .hero-benefits .chip::after{ animation:chipShine 4s cubic-bezier(.5,0,.2,1) infinite; }
+    .hero-benefits .ben-row:nth-child(1) .chip::after{ animation-delay:.30s; }
+    .hero-benefits .ben-row:nth-child(2) .chip:nth-child(1)::after{ animation-delay:0s; }
+    .hero-benefits .ben-row:nth-child(2) .chip:nth-child(2)::after{ animation-delay:.42s; }
+    .hero-benefits .ben-row:nth-child(3) .chip:nth-child(1)::after{ animation-delay:.06s; }
+    .hero-benefits .ben-row:nth-child(3) .chip:nth-child(2)::after{ animation-delay:.50s; }
+  }
+  @keyframes chipShine{ 0%{left:-65%;} 18%{left:150%;} 100%{left:150%;} }
+</style>
+<style id="rl-style">
+  @property --rl-fill{ syntax:'<number>'; inherits:false; initial-value:0; }
+  #rl{ position:fixed; inset:0; z-index:99999; display:grid; place-items:center;
+    background:radial-gradient(120% 120% at 50% 46%, #16205a 0%, #0b1024 52%, #070a18 100%);
+    transition:opacity .5s cubic-bezier(.22,.61,.25,1); }
+  #rl.rl-done{ opacity:0; pointer-events:none; }
+  #rl::after{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .rl-logo{ position:relative; width:min(58vw,600px); aspect-ratio:2253/819; opacity:0; }
+  #rl.rl-play .rl-logo{ animation:rl-logoIn .28s cubic-bezier(.16,.84,.3,1) both; }
+  @keyframes rl-logoIn{ from{opacity:0;} to{opacity:1;} }
+  .rl-pc{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+  .rl-bars{ transform-origin:32% 50%; transform:scaleX(.30); }
+  .rl-vo{ transform:translateX(-19%); }
+  .rl-studios{ opacity:0; }
+  #rl.rl-play .rl-bars{ animation:rl-bars .55s cubic-bezier(.16,.84,.3,1) .1s both; }
+  #rl.rl-play .rl-vo{ animation:rl-vo .55s cubic-bezier(.16,.84,.3,1) .1s both; }
+  #rl.rl-play .rl-studios{ animation:rl-fade .32s cubic-bezier(.16,.84,.3,1) .3s both; }
+  @keyframes rl-bars{ from{transform:scaleX(.30);} to{transform:scaleX(1);} }
+  @keyframes rl-vo{ from{transform:translateX(-19%);} to{transform:translateX(0);} }
+  @keyframes rl-fade{ from{opacity:0;} to{opacity:1;} }
+  .rl-fill{ position:absolute; inset:0; --rl-fill:0; opacity:0;
+    -webkit-mask:url("assets/revo-studios.png") center/contain no-repeat; mask:url("assets/revo-studios.png") center/contain no-repeat;
+    background:linear-gradient(90deg, #6881fc 0 calc(var(--rl-fill)*108% - 7px), #cfe0ff calc(var(--rl-fill)*108% - 7px) calc(var(--rl-fill)*108%), rgba(255,255,255,0) calc(var(--rl-fill)*108%) 100%); }
+  #rl.rl-play .rl-fill{ animation:rl-fillIn .15s linear .58s both, rl-fillSweep .5s cubic-bezier(.16,.84,.3,1) .62s both, rl-glow .6s cubic-bezier(.16,.84,.3,1) .62s both; }
+  @keyframes rl-fillIn{ from{opacity:0;} to{opacity:1;} }
+  @keyframes rl-fillSweep{ from{--rl-fill:0;} to{--rl-fill:1;} }
+  @keyframes rl-glow{ 0%{filter:none;} 45%{filter:drop-shadow(0 0 7px rgba(104,129,252,.35));} 100%{filter:none;} }
+  .rl-sheen{ position:absolute; inset:0; pointer-events:none; overflow:hidden;
+    -webkit-mask:url("assets/revo-studios.png") center/contain no-repeat; mask:url("assets/revo-studios.png") center/contain no-repeat; }
+  .rl-band{ position:absolute; inset:0; opacity:0; mix-blend-mode:screen; transform:translateX(-52%);
+    background:linear-gradient(105deg, transparent 38%, rgba(255,255,255,.5) 50%, transparent 62%); }
+  #rl.rl-play .rl-band{ animation:rl-club .55s cubic-bezier(.22,.61,.25,1) .66s both; }
+  @keyframes rl-club{ 0%{transform:translateX(-52%); opacity:0;} 22%{opacity:1;} 78%{opacity:1;} 100%{transform:translateX(52%); opacity:0;} }
+  @media(prefers-reduced-motion:reduce){
+    #rl .rl-bars{ transform:none; } #rl .rl-vo{ transform:none; } #rl .rl-studios{ opacity:1; } #rl .rl-fill{ --rl-fill:1; opacity:1; }
+  }
+</style>
+<style id="gift-pop">
+  #gift{ position:fixed; inset:0; z-index:9000; display:grid; place-items:center; padding:24px;
+    background:rgba(7,10,24,.52); backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px);
+    opacity:0; pointer-events:none; transition:opacity .55s var(--ease); }
+  #gift.open{ opacity:1; pointer-events:auto; }
+  .gift-card{ position:relative; width:min(444px,100%); background:#fff; border-radius:22px; overflow:hidden;
+    box-shadow:0 60px 130px -44px rgba(8,14,40,.65); transform:translateY(20px) scale(.975); opacity:0;
+    transition:transform .65s var(--ease), opacity .65s var(--ease); }
+  #gift.open .gift-card{ transform:none; opacity:1; }
+  .gift-media{ position:relative; aspect-ratio:16/10; overflow:hidden; }
+  .gift-media img{ width:100%; height:100%; object-fit:cover; }
+  .gift-media::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,10,24,.16) 0%, rgba(7,10,24,0) 46%); }
+  .gift-close{ position:absolute; top:14px; right:14px; z-index:3; width:38px; height:38px; border-radius:50%; border:0; cursor:pointer;
+    display:grid; place-items:center; background:rgba(255,255,255,.86); color:#14161c; backdrop-filter:blur(6px);
+    transition:transform .35s var(--ease), background .3s; }
+  .gift-close:hover{ transform:scale(1.08); background:#fff; }
+  .gift-close svg{ width:16px; height:16px; }
+  .gift-body{ padding:28px clamp(26px,4vw,38px) clamp(26px,4vw,34px); }
+  .gift-body .eyebrow{ margin-bottom:16px; }
+  .gift-body h3{ font-family:var(--display); font-weight:400; font-size:clamp(29px,4.4vw,40px); line-height:1.04;
+    letter-spacing:-.02em; color:var(--ink-dark); margin:0; text-wrap:balance; }
+  .gift-sub{ margin:15px 0 0; color:rgba(17,19,24,.66); font-size:15.5px; line-height:1.56; text-wrap:pretty; }
+  .gift-cta{ display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:26px; }
+  .gift-cta .btn{ width:100%; }
+  .gift-dismiss{ background:none; border:0; cursor:pointer; font-family:var(--sans); font-weight:600;
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(17,19,24,.5); padding:4px 6px; transition:color .3s; }
+  .gift-dismiss:hover{ color:var(--ink-dark); }
+  @media(prefers-reduced-motion:reduce){
+    #gift{ transition:opacity .25s; } .gift-card{ transition:opacity .25s; transform:none; }
+  }
+</style>
+<style id="voices-css">
+  /* ===== Nuestros miembros · voces en movimiento ===== */
+  .voices-head{ max-width:1000px; margin:0 auto; text-align:center; }
+  .voices-head .eyebrow{ justify-content:center; }
+  .voices-title{ font-family:var(--display); font-weight:400; font-size:clamp(28px,4vw,54px); line-height:1.1; letter-spacing:-.016em; margin:26px auto 0; max-width:20ch; text-wrap:balance; color:var(--ink-dark); }
+  .voices-title .ser{ color:var(--indigo); }
+  /* efecto "se escribe al bajar" + subrayado índigo en la palabra clave (reutiliza el motor [data-quote]) */
+  .voices-title .qw{ opacity:.14; transition:opacity .14s linear; }
+  .voices-title .qw-hl{ transition:opacity .14s linear, background .16s var(--ease), color .16s var(--ease); padding:.04em .02em; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+  .voices-title .qw-hl.hl{ background:var(--indigo); color:#fff; }
+  @media (prefers-reduced-motion:reduce){ .voices-title .qw{ opacity:1 !important; } .voices-title .qw-hl{ background:var(--indigo); color:#fff; } }
+  .voices-seal{ display:inline-flex; align-items:center; gap:11px; margin:30px auto 0; padding:11px 22px;
+    border:1px solid rgba(17,19,24,.16); border-radius:100px; font-size:13px; letter-spacing:.01em; color:rgba(20,22,28,.7); }
+  .voices-seal b{ color:var(--ink-dark); font-weight:600; }
+  .voices-seal .vs-dot{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 10px rgba(104,129,252,.6); flex:none; }
+  .voices-rail{ width:100vw; margin-left:calc(50% - 50vw); margin-top:54px; overflow:hidden;
+    -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+  .voices-track{ display:flex; gap:18px; width:max-content; padding:26px 9px 46px; animation:voicesDrift 46s linear infinite; }
+  .voices-rail:hover .voices-track{ animation-play-state:paused; }
+  @keyframes voicesDrift{ from{ transform:translateX(0); } to{ transform:translateX(calc(-50% - 9px)); } }
+  .vcard{ flex:none; width:min(82vw,380px); box-sizing:border-box; border:1px solid rgba(17,19,24,.12); border-radius:18px;
+    padding:28px 30px; background:#fff; box-shadow:0 24px 50px -46px rgba(22,36,95,.4); }
+  .vcard.hi{ background:linear-gradient(180deg,#fff,#f2f5ff); border-color:rgba(104,129,252,.4); }
+  .vcard .vq{ font-family:var(--display); font-weight:400; font-size:clamp(17px,1.5vw,20px); line-height:1.36; letter-spacing:-.008em; margin:0; color:var(--ink-dark); text-wrap:pretty; }
+  .vcard .vby{ display:flex; align-items:center; gap:9px; margin-top:20px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--indigo); }
+  .vcard .vby::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--teal); }
+  @media (prefers-reduced-motion:reduce){
+    .voices-rail{ overflow-x:auto; }
+    .voices-track{ animation:none; }
+  }
+  @media (max-width:600px){
+    .voices-seal{ font-size:11.5px; padding:10px 16px; }
+    .voices-rail{ margin-top:34px; }
+  }
+  /* ===== WhatsApp flotante (abajo derecha) — vidrio esmerilado como el header ===== */
+  .wa-fab{ position:fixed; right:40px; bottom:38px; z-index:85; width:56px; height:56px; border-radius:50%;
+    display:grid; place-items:center; color:#fff; text-decoration:none;
+    background:rgba(15,19,40,.5); border:1px solid rgba(255,255,255,.22);
+    backdrop-filter:blur(22px) saturate(1.8); -webkit-backdrop-filter:blur(22px) saturate(1.8);
+    box-shadow:0 16px 40px -16px rgba(9,13,32,.6);
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease), background .4s, border-color .4s; }
+  .wa-fab:hover{ transform:translateY(-3px) scale(1.04); background:rgba(15,19,40,.62); border-color:rgba(255,255,255,.4); box-shadow:0 26px 54px -16px rgba(9,13,32,.7); }
+  .wa-fab svg{ width:27px; height:27px; fill:#fff; }
+  .scroll-top{ bottom:108px; }
+  @media (max-width:600px){
+    .wa-fab{ right:18px; bottom:18px; width:52px; height:52px; }
+    .wa-fab svg{ width:25px; height:25px; }
+    .scroll-top{ right:18px; bottom:82px; }
+  }
+</style>
+<script>
+/* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
+(function(){try{
+var P=location.pathname, inEn=/\/en\//.test(P), S=null;
+try{S=localStorage.getItem('revo_lang');}catch(e){}
+var be=(navigator.language||'').toLowerCase().indexOf('en')===0;
+var f=P.substring(P.lastIndexOf('/')+1)||'index.html';
+if(!inEn){ if((S||(be?'en':'es'))==='en') location.replace('en/'+f); }
+else if(S==='es'){ location.replace('../'+f); }
+}catch(e){}
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.lang-switch');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('hreflang'));}catch(e){}}},true);
+})();
+</script>
+<link rel="icon" type="image/png" href="assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="assets/revo-icon.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "REVO",
+  "alternateName": "REVO Studios",
+  "description": "Club de longevidad y terapias avanzadas en Barcelona.",
+  "url": "https://revostudios.eu/",
+  "telephone": "+34613505881",
+  "email": "hello@revostudios.eu",
+  "image": "https://revostudios.eu/assets/hero-poster-v3.jpg",
+  "priceRange": "€€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Carrer de Ferran Agulló, 24",
+    "addressLocality": "Barcelona",
+    "postalCode": "08021",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.3953,
+    "longitude": 2.1419
+  },
+  "areaServed": "Barcelona",
+  "sameAs": [
+    "https://instagram.com/revo_studios"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "07:00",
+      "closes": "21:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "14:00"
+    }
+  ]
+}
+</script>
+<style id="ther-arrow-css">
+.therapies-pin:not(.pinned) .therapies-sticky{ position:relative; }
+.ther-arrow{ position:absolute; right:clamp(12px,2vw,30px); top:50%; transform:translateY(-50%); z-index:6;
+  width:44px; height:44px; border-radius:50%; cursor:pointer; display:grid; place-items:center;
+  font-size:20px; line-height:1; color:#fff; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.26);
+  opacity:.22; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+  transition:opacity .35s, background .3s, border-color .3s, transform .3s; }
+.ther-arrow:hover, .ther-arrow:focus-visible{ opacity:1; background:rgba(255,255,255,.16); border-color:#fff; transform:translateY(-50%) scale(1.06); }
+@media (max-width:1000px){ .ther-arrow{ right:10px; width:40px; height:40px; opacity:.3; } }
+</style>
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+
+  <!-- ============ LOADER (solo Home, 1ª vez por sesión) ============ -->
+  <div id="rl" aria-hidden="true">
+    <div class="rl-logo">
+      <img class="rl-pc rl-r" src="assets/logo-r.png" alt="" />
+      <img class="rl-pc rl-bars" src="assets/logo-bars.png" alt="" />
+      <img class="rl-pc rl-vo" src="assets/logo-vo.png" alt="" />
+      <img class="rl-pc rl-studios" src="assets/logo-studios.png" alt="REVO Studios" />
+      <div class="rl-fill"></div>
+      <div class="rl-sheen"><div class="rl-band"></div></div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var rl=document.getElementById('rl'); if(!rl) return;
+    try{ if(sessionStorage.getItem('rl_seen')){ rl.parentNode.removeChild(rl); return; } }catch(e){}
+    var html=document.documentElement; html.style.overflow='hidden';
+    rl.classList.add('rl-play');
+    // El loader se va cuando termina la animación (~1,2 s), SIN esperar al vídeo.
+    // El vídeo del hero sigue cargando detrás del póster.
+    var MIN=1200;
+    setTimeout(function(){
+      rl.classList.add('rl-done'); html.style.overflow='';
+      try{ sessionStorage.setItem('rl_seen','1'); }catch(e){}
+      setTimeout(function(){ if(rl.parentNode) rl.parentNode.removeChild(rl); }, 550);
+    }, MIN);
+  })();
+  </script>
+
+  <script>
+  /* Vídeo del hero diferido: no compite con la carga inicial. Muestra el póster y
+     carga el MP4 (18,5 MB) en cuanto la página está lista, luego reproduce. */
+  (function(){
+    function loadHeroVideo(){
+      var v=document.querySelector('.hero-media video[data-src]');
+      if(!v||v.src) return;
+      v.src=v.dataset.src; v.load();
+      var p=v.play(); if(p&&p.catch) p.catch(function(){});
+    }
+    if(document.readyState==='complete') setTimeout(loadHeroVideo,300);
+    else window.addEventListener('load', function(){ setTimeout(loadHeroVideo,300); });
+  })();
+  </script>
+
+  <!-- ============ LIVING CANVAS ============ -->
+  <div class="bg" id="bg" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+  <svg class="thread" id="thread" viewBox="0 0 240 2000" preserveAspectRatio="none" aria-hidden="true">
+    <path pathLength="1" d="M120 0 C120 280 48 420 120 640 C192 860 192 1000 120 1220 C48 1440 48 1600 120 2000" />
+  </svg>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a class="logo" href="#top"><img class="logo-img" src="assets/revo-icon.png" alt="REVO" /></a>
+      <nav class="nav">
+        <a href="metodo.html" data-hot>El método</a>
+        <div class="nav-drop" id="navTerapias">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Las terapias</button>
+          <div class="nav-menu nav-menu--list" role="menu">
+            <a class="nav-loc" href="crioterapia.html" role="menuitem" data-hot><span class="nav-loc-name">Crioterapia</span></a>
+            <a class="nav-loc" href="luz-roja.html" role="menuitem" data-hot><span class="nav-loc-name">Cama de luz roja</span></a>
+            <a class="nav-loc" href="camara-hiperbarica.html" role="menuitem" data-hot><span class="nav-loc-name">Cámara hiperbárica</span></a>
+            <a class="nav-loc" href="pemf.html" role="menuitem" data-hot><span class="nav-loc-name">Campo electromagnético</span></a>
+            <a class="nav-loc" href="neuroestimulacion.html" role="menuitem" data-hot><span class="nav-loc-name">Neuroestimulación</span></a>
+            <a class="nav-loc" href="presoterapia.html" role="menuitem" data-hot><span class="nav-loc-name">Presoterapia</span></a>
+            <a class="nav-loc" href="respark.html" role="menuitem" data-hot><span class="nav-loc-name">Respark®</span></a>
+            <a class="nav-loc" href="masajes.html" role="menuitem" data-hot><span class="nav-loc-name">Masajes</span></a>
+          </div>
+        </div>
+        <div class="nav-drop" id="navStudios">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Studios</button>
+          <div class="nav-menu" role="menu">
+            <a class="nav-loc" href="studios.html" role="menuitem" data-hot><span class="nav-loc-name">Turó Park</span><span class="nav-loc-city">Barcelona</span></a>
+          </div>
+        </div>
+        <a href="membresias.html" data-hot>Membresías</a>
+      </nav>
+      <a class="header-tel" href="tel:+34613505881" aria-label="Llamar al +34 613 505 881" data-hot><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.8 4H4.5C3.7 4 3 4.7 3 5.5 3 14 10 21 18.5 21c.8 0 1.5-.7 1.5-1.5v-2.3c0-.7-.5-1.3-1.2-1.5l-2.5-.5c-.6-.1-1.2.1-1.5.6l-.8 1.1a13 13 0 0 1-5.7-5.7l1.1-.8c.5-.3.7-.9.6-1.5l-.5-2.5C8.1 4.5 7.5 4 6.8 4z"/></svg><span class="tel-num">+34 613 505 881</span></a>
+      <a class="btn btn--hero" href="#reset" data-hot data-reservar data-board="146948">Mi Primer Reset</a>
+      <a class="lang-switch" href="en/index.html" hreflang="en" data-hot>EN</a>
+    
+      <button class="nav-toggle" type="button" aria-label="Menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" data-screen-label="Hero" data-c1="#16245f" data-c2="#3650cf" data-c3="#6881fc" data-deg="144deg" data-theme="dark">
+      <div class="hero-media">
+        <video muted loop playsinline preload="none" poster="assets/hero-poster-v3.jpg" data-src="assets/hero-video.mp4"></video>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-lead">
+          <p class="eyebrow reveal">Science-backed high-tech performance and longevity</p>
+          <h1 class="display anim-lines reveal"><span class="hl-line">Feel <span class="ser">better</span>, look <span class="ser">better</span>,</span><span class="hl-line">live <span class="ser">better</span>.</span></h1>
+          <p class="hero-sub reveal" style="--d:.2s">Terapias de precisión, hechas rutina.<br>Expertos que cuidan de ti.<br>Un protocolo a medida.</p>
+        </div>
+        <div class="hero-benefits reveal" style="--d:.4s">
+          <div class="ben-row"><span class="chip">Más energía</span></div>
+          <div class="ben-row"><span class="chip">Dormir mejor</span><span class="chip">Menos inflamación</span></div>
+          <div class="ben-row"><span class="chip">Mente en calma</span><span class="chip">Salud a largo plazo</span></div>
+        </div>
+        <div class="hero-cta reveal" style="--d:.3s">
+          <a class="btn btn--lg btn--hero" href="#reset" data-hot data-reservar data-board="146948">Mi Primer Reset</a>
+        </div>
+      </div>
+      <div class="hero-foot">
+        Desliza para explorar
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <!-- ============ METHOD ============ -->
+    <section class="wrap section on-light" id="metodo" data-screen-label="El método" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+      <div class="method-head reveal">
+        <p class="eyebrow">El método</p>
+        <h2 class="display">Tecnología avanzada, hecha rutina para <span class="ser">resultados a largo plazo</span>.</h2>
+      </div>
+      <div class="steps">
+        <div class="steps-rail" aria-hidden="true"><span class="steps-rail-fill"></span></div>
+        <div class="step reveal">
+          <h3><span class="step-num">00</span>Házte miembro</h3>
+          <div class="step-body">Únete al Studio y empieza a maximizar tu salud.</div>
+        </div>
+        <div class="step reveal" style="--d:.1s">
+          <h3><span class="step-num">01</span>Diagnóstico</h3>
+          <div class="step-body">
+            Valoración médica completa:
+            <ul>
+              <li>Historia clínica</li>
+              <li>Biomarcadores</li>
+              <li>Hábitos</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step reveal" style="--d:.2s">
+          <h3><span class="step-num">02</span>Tu protocolo</h3>
+          <div class="step-body">Un plan de terapias diseñado a partir del diagnóstico: qué terapias, en qué orden y con qué frecuencia.</div>
+        </div>
+        <div class="step reveal" style="--d:.3s">
+          <h3><span class="step-num">03</span>Rutina</h3>
+          <div class="step-body">Las terapias se integran en tu semana hasta volverse un hábito.</div>
+        </div>
+        <div class="step reveal" style="--d:.4s">
+          <h3><span class="step-num">04</span>Acompañamiento</h3>
+          <div class="step-body">Seguimiento continuo con supervisión médica y tu Wellness Coach personal.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THERAPIES ============ -->
+    <section class="therapies-pin" id="terapias" data-screen-label="Las terapias" data-enter="0.04" data-c1="#1b2a6e" data-c2="#4459d9" data-c3="#8094ff" data-deg="150deg" data-theme="dark">
+      <div class="therapies-sticky">
+        <button class="ther-arrow" type="button" data-dir="1" aria-label="Ver siguiente">›</button>
+        <div class="therapies-pan">
+        <div class="t-screen">
+        <div class="therapies-head reveal">
+          <p class="eyebrow">Las terapias</p>
+          <h2 class="display">Terapias respaldadas por <span class="ser">la ciencia</span>.</h2>
+          <p>Antes reservadas a las élites. Ahora, a tu alcance.</p>
+          <span class="scroll-hint">Desliza para verlas todas →</span>
+        </div>
+        <div class="cards-track">
+          <div class="cards reveal">
+        <div class="card">
+          <span class="card-tag"><span class="blip"></span>1.5–3 min</span>
+          <div class="card-body">
+            <h3>Crioterapia cuerpo entero</h3>
+            <p class="card-desc">3 minutos a –130 °C que reactivan tus mecanismos naturales de defensa, regeneración y energía mental.</p>
+            <ul class="card-list">
+              <li>Energía, foco y claridad mental</li>
+              <li>Circulación y oxigenación celular</li>
+              <li>Menos inflamación y dolor</li>
+              <li>Sueño profundo y equilibrio hormonal</li>
+            </ul>
+                      <div class="card-actions">
+              <a class="card-info" href="crioterapia.html" data-hot>Más información</a>
+              <a class="card-book" href="crioterapia.html#reservar" data-hot data-reservar data-board="146813">Reservar</a>
+            </div>
+</div>
+        </div>
+        <div class="card">
+          <span class="card-tag"><span class="blip"></span>10–15 min</span>
+          <div class="card-body">
+            <h3>Cama de luz roja</h3>
+            <p class="card-desc">Luz roja e infrarroja (630–940 nm) que penetra hasta tus células: produce energía intracelular, reduce inflamación y activa colágeno.</p>
+            <ul class="card-list">
+              <li>Producción de colágeno y firmeza</li>
+              <li>Recuperación y reparación celular</li>
+              <li>Menos inflamación y estrés oxidativo</li>
+            </ul>
+                      <div class="card-actions">
+              <a class="card-info" href="luz-roja.html" data-hot>Más información</a>
+              <a class="card-book" href="luz-roja.html#reservar" data-hot data-reservar data-board="160831">Reservar</a>
+            </div>
+</div>
+        </div>
+        <div class="card">
+          <span class="card-tag"><span class="blip"></span>60 min</span>
+          <div class="card-body">
+            <h3>Oxigenoterapia hiperbárica</h3>
+            <p class="card-desc">Oxígeno puro al 98% a 1.5 ATA que se disuelve en el plasma y alcanza cada tejido: regenera, oxigena y agudiza tu mente.</p>
+            <ul class="card-list">
+              <li>Oxigenación profunda de tejidos y cerebro</li>
+              <li>Regeneración celular acelerada</li>
+              <li>Claridad mental y rendimiento</li>
+            </ul>
+                      <div class="card-actions">
+              <a class="card-info" href="camara-hiperbarica.html" data-hot>Más información</a>
+              <a class="card-book" href="camara-hiperbarica.html#reservar" data-hot data-reservar data-board="139737">Reservar</a>
+            </div>
+</div>
+        </div>
+        <div class="card">
+          <span class="card-tag"><span class="blip"></span>20–40 min</span>
+          <div class="card-body">
+            <h3>Campo electromagnético pulsado</h3>
+            <p class="card-desc">Campos electromagnéticos pulsados de baja frecuencia que restablecen tu energía celular, calman el dolor y reequilibran el sistema nervioso.</p>
+            <ul class="card-list">
+              <li>Recuperación deportiva rápida</li>
+              <li>Menos dolor crónico y fatiga</li>
+              <li>Más movilidad y energía</li>
+            </ul>
+                      <div class="card-actions">
+              <a class="card-info" href="pemf.html" data-hot>Más información</a>
+              <a class="card-book" href="pemf.html#reservar" data-hot data-reservar data-board="141837">Reservar</a>
+            </div>
+</div>
+        </div>
+        <div class="card">
+          <span class="card-tag"><span class="blip"></span>60 min</span>
+          <div class="card-body">
+            <h3>Respark®</h3>
+            <p class="card-desc">Crioterapia de cuerpo entero a –130 °C seguida de un masaje drenante moldeador: esculpe, drena la retención y te deja completamente ligero.</p>
+            <ul class="card-list">
+              <li>Drenaje y desinflamación visible</li>
+              <li>Contornos más definidos</li>
+              <li>Firmeza y ligereza corporal</li>
+            </ul>
+                      <div class="card-actions">
+              <a class="card-info" href="masajes.html" data-hot>Más información</a>
+              <a class="card-book" href="masajes.html#reservar" data-hot data-reservar data-board="137297">Reservar</a>
+            </div>
+</div>
+        </div>
+        <div class="card">
+          <span class="card-tag"><span class="blip"></span>20–30 min</span>
+          <div class="card-body">
+            <h3>Neuroestimulación cerebral</h3>
+            <p class="card-desc">Beats binaurales y fotoestimulación sincronizados que activan tu sistema parasimpático: el estrés se transforma en calma y claridad.</p>
+            <ul class="card-list">
+              <li>Calma mental y menos estrés</li>
+              <li>Sueño más profundo</li>
+              <li>Foco, memoria y rendimiento</li>
+            </ul>
+                      <div class="card-actions">
+              <a class="card-info" href="neuroestimulacion.html" data-hot>Más información</a>
+              <a class="card-book" href="neuroestimulacion.html#reservar" data-hot data-reservar data-board="141837">Reservar</a>
+            </div>
+</div>
+        </div>
+        <div class="card">
+          <span class="card-tag"><span class="blip"></span>30–60 min</span>
+          <div class="card-body">
+            <h3>Presoterapia</h3>
+            <p class="card-desc">Compresión neumática secuencial de pies a caderas que activa el sistema venoso y linfático: reduce edema, oxigena y descarga las piernas.</p>
+            <ul class="card-list">
+              <li>Piernas ligeras y menos hinchazón</li>
+              <li>Recuperación deportiva rápida</li>
+              <li>Mejor circulación</li>
+            </ul>
+                      <div class="card-actions">
+              <a class="card-info" href="presoterapia.html" data-hot>Más información</a>
+              <a class="card-book" href="presoterapia.html#reservar" data-hot data-reservar data-board="141837">Reservar</a>
+            </div>
+</div>
+        </div>
+        <div class="card">
+          <span class="card-tag"><span class="blip"></span>50 min</span>
+          <div class="card-body">
+            <h3>Masaje facial y corporal</h3>
+            <p class="card-desc">Trabajo manual profundo de cuerpo y rostro para liberar tensión, recuperar movilidad y dejar el cuerpo completamente en cero.</p>
+            <ul class="card-list">
+              <li>Libera tensión</li>
+              <li>Relax profundo</li>
+              <li>Mejor circulación</li>
+            </ul>
+                      <div class="card-actions">
+              <a class="card-info" href="masajes.html" data-hot>Más información</a>
+              <a class="card-book" href="masajes.html#reservar" data-hot data-reservar data-board="137297">Reservar</a>
+            </div>
+</div>
+        </div>
+          </div>
+        </div>
+        </div>
+        <div class="joy-panel" aria-label="Optimiza tu salud">
+          <img src="assets/optimiza-salud.png" alt="" />
+          <div class="joy-inner">
+            <p class="eyebrow joy-eyebrow">En tu rutina</p>
+            <h2>para maximizar tu salud física, mental y <span class="ser">estética</span></h2>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MEDICAL DIRECTION ============ -->
+    <section class="wrap section on-light" data-screen-label="Dirección médica" data-enter="0.98" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+      <div class="med">
+        <div class="med-head reveal">
+          <p class="eyebrow">Dirección médica</p>
+          <h2 class="display" style="max-width: 940px">Cada protocolo diseñado y supervisado por nuestro <span class="ser">equipo médico</span>.</h2>
+        </div>
+        <div class="med-director reveal" style="--d:.12s">
+          <div class="dir-person">
+            <div class="dir-avatar" style="overflow:hidden;background:none;">
+              <img src="assets/dra-miriam-rivera.jpeg" alt="Dra. Miriam Rivera" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            </div>
+            <div class="dir-id">
+              <div class="doc-name">Dra. Miriam Rivera</div>
+              <div class="doc-role">Directora Médica</div>
+            </div>
+          </div>
+          <div class="dir-detail">
+            <p class="doc-bio">Especialista en medicina de la longevidad y oxigenoterapia hiperbárica. Responsable del diseño de los protocolos, de la valoración inicial de cada miembro y de la supervisión continua de los resultados.</p>
+            <div class="dir-creds">
+              <span>Diseño de protocolos</span>
+              <span>Valoración inicial</span>
+              <span>Supervisión continua</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MEMBERS / TESTIMONIAL ============ -->
+    <section class="wrap section on-light" data-screen-label="Nuestros miembros" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="150deg" data-theme="light">
+      <div class="voices-head reveal">
+        <p class="eyebrow">Nuestros miembros</p>
+        <h2 class="voices-title" data-quote><span class="seg">El 98 % de quienes viven REVO con constancia nota un </span><span class="seg ser">cambio real.</span></h2>
+      </div>
+      <div class="voices-rail reveal" style="--d:.12s" aria-label="Testimonios de miembros">
+        <div class="voices-track">
+          <div class="vcard hi"><p class="vq">"El cambio ha sido brutal. Más energía, mejor sueño, otra persona."</p><div class="vby">Miembro REVO · Global</div></div>
+          <div class="vcard"><p class="vq">"Tengo una energía increíble que jamás había tenido."</p><div class="vby">Miembro REVO · Energía</div></div>
+          <div class="vcard"><p class="vq">"Ya no tomo mis pastillas para dormir, he conseguido dejarlas."</p><div class="vby">Miembro REVO · Sueño</div></div>
+          <div class="vcard hi"><p class="vq">"Los médicos no se creen que no se me haya hinchado el brazo. La recuperación está siendo cómo nunca. Estoy feliz."</p><div class="vby">Miembro REVO · Recuperación</div></div>
+          <div class="vcard hi" aria-hidden="true"><p class="vq">"El cambio ha sido brutal. Más energía, mejor sueño, otra persona."</p><div class="vby">Miembro REVO · Global</div></div>
+          <div class="vcard" aria-hidden="true"><p class="vq">"Tengo una energía increíble que jamás había tenido."</p><div class="vby">Miembro REVO · Energía</div></div>
+          <div class="vcard" aria-hidden="true"><p class="vq">"Ya no tomo mis pastillas para dormir, he conseguido dejarlas."</p><div class="vby">Miembro REVO · Sueño</div></div>
+          <div class="vcard hi" aria-hidden="true"><p class="vq">"Los médicos no se creen que no se me haya hinchado el brazo. La recuperación está siendo cómo nunca. Estoy feliz."</p><div class="vby">Miembro REVO · Recuperación</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EL CLUB ============ -->
+    <section class="club" id="club" data-screen-label="El club" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="dark">
+      <div class="club-panel" aria-hidden="true"></div>
+      <div class="club-inner">
+        <div class="club-main">
+          <div class="club-head">
+            <p class="eyebrow">Forma parte del</p>
+            <h2 class="club-big">Studio</h2>
+            <p class="club-place"><span class="blip"></span>REVO Turó Park · <span>Barcelona</span></p>
+          </div>
+          <div class="club-cta">
+            <a class="btn btn--lg btn--hero" href="membresias.html#solicita" data-hot>Reserva tu plaza</a>
+            <a class="btn btn--lg btn--hero" href="#reset" data-hot data-reservar data-board="146948">Mi Primer Reset</a>
+          </div>
+        </div>
+        <div class="club-aside">
+          <div class="club-limit"><span class="blip"></span>Limitado a 175 miembros</div>
+          <ul class="club-list">
+            <li><span class="arr">→</span> Acceso ilimitado a todas las terapias</li>
+            <li><span class="arr">→</span> Una doctora que te conoce</li>
+            <li><span class="arr">→</span> Un coach que te acompaña</li>
+            <li><span class="arr">→</span> Un protocolo personalizado</li>
+            <li><span class="arr">→</span> Acceso a nuestros partner clubs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="club-sheen" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============ EXPERIENCIAS / REGALA ============ -->
+    <section class="wrap section on-light exp" id="experiencias" data-screen-label="Experiencias" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+      <div class="exp-head reveal">
+        <p class="eyebrow">Una experiencia con propósito</p>
+        <h2 class="display"><span style="white-space:nowrap">Regala o regálate</span> una experiencia REVO.</h2>
+        <p class="exp-lead">Combinamos varias terapias en una sola sesión, diseñada por nuestro equipo médico para un objetivo concreto: recuperar, dormir mejor, brillar o rendir.</p>
+      </div>
+      <div class="exp-body">
+        <div class="exp-media-col reveal">
+          <div class="exp-media"><img src="assets/two-women.jpg" alt="" /></div>
+        </div>
+        <div class="exp-right reveal">
+          <ul class="exp-combos">
+            <li class="combo-row" data-hot>
+              <div class="combo-row-head"><span class="combo-row-name">Glow</span><span class="combo-row-dur">1h 50min</span></div>
+              <div class="combo-row-flow">
+                <span class="flow-step"><span class="flow-i">1</span>Campo electromagnético</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">2</span>Crioterapia</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">3</span>Masaje drenante</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">4</span>Luz roja</span>
+              </div>
+            </li>
+            <li class="combo-row" data-hot>
+              <div class="combo-row-head"><span class="combo-row-name">Sports Performance</span><span class="combo-row-dur">1h 30min</span></div>
+              <div class="combo-row-flow">
+                <span class="flow-step"><span class="flow-i">1</span>Cámara hiperbárica</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">2</span>Crioterapia</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">3</span>Presoterapia</span>
+              </div>
+            </li>
+            <li class="combo-row" data-hot>
+              <div class="combo-row-head"><span class="combo-row-name">Longevity</span><span class="combo-row-dur">1h 50min</span></div>
+              <div class="combo-row-flow">
+                <span class="flow-step"><span class="flow-i">1</span>Luz roja</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">2</span>Cámara hiperbárica</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">3</span>Campo electromagnético</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">4</span>BrainTap</span>
+              </div>
+            </li>
+            <li class="combo-row" data-hot>
+              <div class="combo-row-head"><span class="combo-row-name">Sleep &amp; Stress</span><span class="combo-row-dur">1h</span></div>
+              <div class="combo-row-flow">
+                <span class="flow-step"><span class="flow-i">1</span>Crioterapia</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">2</span>Campo electromagnético</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">3</span>Luz roja</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">4</span>BrainTap</span>
+              </div>
+            </li>
+            <li class="combo-row" data-hot>
+              <div class="combo-row-head"><span class="combo-row-name">Performance Cognitiva</span><span class="combo-row-dur">1h 40min</span></div>
+              <div class="combo-row-flow">
+                <span class="flow-step"><span class="flow-i">1</span>Cámara hiperbárica</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">2</span>Luz roja</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">3</span>BrainTap</span>
+              </div>
+            </li>
+            <li class="combo-row" data-hot>
+              <div class="combo-row-head"><span class="combo-row-name">Massage +</span><span class="combo-row-dur">1h 30min</span></div>
+              <div class="combo-row-flow">
+                <span class="flow-step"><span class="flow-i">1</span>Masaje a elegir</span><span class="flow-arr">→</span>
+                <span class="flow-step"><span class="flow-i">2</span>+1 terapia de biohacking</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-cta">
+        <a class="btn btn--lg btn--primary" href="experiencias.html" data-hot>Ver las experiencias</a>
+        <a class="btn btn--lg" href="experiencias.html#regalo" data-hot>Regalar</a>
+      </div>
+    </section>
+
+    <!-- ============ FAQs ============ -->
+    <section class="wrap section faqs on-light" data-screen-label="FAQs" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+      <h2 class="display reveal">FAQs</h2>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q" data-hot>¿Es REVO una clínica?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">No. REVO es un club de terapias avanzadas con supervisión médica. No tratamos enfermedades: optimizamos tu energía, recuperación y longevidad.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>¿Necesito una consulta médica para empezar?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sí. Todo empieza con una valoración médica que define tu protocolo personalizado a partir de tus objetivos, tu historia clínica y tus biomarcadores.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>¿Puedo venir a REVO si tengo una condición médica?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">En la mayoría de casos sí. Nuestra dirección médica revisa tu historia y adapta o ajusta las terapias a tu situación.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>¿Puedo usar las terapias de forma puntual?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">El club está pensado como rutina semanal, pero puedes probarlo con Mi Primer Reset antes de hacerte miembro.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>¿Qué lo diferencia de otros espacios de bienestar?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Un protocolo diseñado por médicos, acompañamiento continuo y tecnología que antes era solo para élites — todo en una rutina hecha a tu medida.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>¿Qué incluye la sesión con el Wellness Coach?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Seguimiento de tus marcadores, ajustes de hábitos y un plan que evoluciona contigo sesión a sesión.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>¿Qué tipo de resultados puedo esperar?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Más energía, mejor sueño, menos inflamación y salud a largo plazo, medidos con tus biomarcadores.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>¿Las terapias son seguras? ¿Están avaladas por evidencia?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sí. Cada terapia está respaldada por evidencia científica y supervisada por nuestro equipo médico.</div></div>
+        </div>
+      </div>
+      <div class="faq-cta reveal">
+        <a class="btn btn--lg btn--hero" href="#reset" id="reset" data-hot data-reservar data-board="146948">Mi Primer Reset</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer section--tight on-light">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo" href="#top"><img class="logo-img" src="assets/revo-logo-white.png" alt="REVO" /></a>
+          <p class="footer-tag">Club de longevidad y terapias avanzadas. Barcelona.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Explora</h4>
+            <a href="metodo.html" data-hot>El método</a>
+            <a href="index.html#terapias" data-hot>Las terapias</a>
+            <a href="studios.html" data-hot>Studios</a>
+            <a href="membresias.html" data-hot>Membresías</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener" data-hot>Carrer de Ferran Agulló, 24</a>
+            <a href="tel:+34613505881" data-hot>+34 613 505 881</a>
+            <a href="mailto:hello@revostudios.eu" data-hot>hello@revostudios.eu</a>
+            <a href="https://instagram.com/revo_studios" target="_blank" rel="noopener" data-hot>Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 REVO · Longevity Club · Barcelona</span>
+        <span>Aviso legal · Privacidad · Cookies</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ POP-UP: REGALA REVO (1ª vez por sesión, tras engagement) ============ -->
+  <div id="gift" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gift-title">
+    <div class="gift-card on-light">
+      <button class="gift-close" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="gift-media"><img src="assets/gift-bag.png" alt="Bolsa de regalo REVO" /></div>
+      <div class="gift-body">
+        <p class="eyebrow">Regala REVO</p>
+        <h3 id="gift-title">El mejor regalo: <span class="ser">sentirse mejor</span>.</h3>
+        <p class="gift-sub">Una experiencia con propósito: <span class="ser">reducir estrés, dormir mejor, brillar por fuera o rendir más física y mentalmente</span>. Diseñada por nuestro equipo médico.</p>
+        <div class="gift-cta">
+          <a class="btn btn--lg btn--primary" href="experiencias.html#combos" data-hot>Regalar una experiencia</a>
+          <button class="gift-dismiss" type="button">Quizás más tarde</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var g=document.getElementById('gift'); if(!g) return;
+    var KEY='gift_seen_v2';
+    try{ if(sessionStorage.getItem(KEY)){ g.parentNode.removeChild(g); return; } }catch(e){}
+    var shown=false, io=null;
+    function cleanup(){ if(io) io.disconnect(); }
+    function open(){ if(shown) return; shown=true; cleanup();
+      try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
+      g.setAttribute('aria-hidden','false'); g.classList.add('open');
+    }
+    function close(){ g.classList.remove('open'); g.setAttribute('aria-hidden','true');
+      setTimeout(function(){ if(g.parentNode) g.parentNode.removeChild(g); }, 650); cleanup(); }
+    // único disparador: al llegar a "Dirección médica"
+    var anchor=document.querySelector('[data-screen-label="Dirección médica"]')
+            || document.getElementById('club')
+            || document.querySelector('.exp');
+    if(anchor && 'IntersectionObserver' in window){
+      io=new IntersectionObserver(function(ents){ if(ents[0].isIntersecting) open(); }, {threshold:0, rootMargin:'0px 0px -28% 0px'});
+      io.observe(anchor);
+    }
+    g.addEventListener('click',function(e){ if(e.target===g) close(); });
+    g.querySelector('.gift-close').addEventListener('click',close);
+    g.querySelector('.gift-dismiss').addEventListener('click',close);
+    addEventListener('keydown',function(e){ if(e.key==='Escape' && g.classList.contains('open')) close(); });
+  })();
+  </script>
+
+  <!-- floating scroll-to-top -->
+  <a class="wa-fab" href="https://wa.me/34613505881" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp · +34 613 50 58 81" data-hot>
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3.2c-7.06 0-12.8 5.73-12.8 12.79 0 2.25.59 4.45 1.71 6.39L3.2 28.8l6.6-1.71a12.74 12.74 0 0 0 6.2 1.58h.01c7.05 0 12.79-5.74 12.79-12.79 0-3.42-1.33-6.63-3.75-9.05a12.7 12.7 0 0 0-9.04-3.63zm0 23.32h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-3.92 1.03 1.05-3.82-.25-.4a10.56 10.56 0 0 1-1.62-5.63c0-5.87 4.78-10.65 10.66-10.65 2.84 0 5.52 1.11 7.53 3.12a10.58 10.58 0 0 1 3.12 7.54c0 5.88-4.78 10.66-10.66 10.66zm5.85-7.98c-.32-.16-1.9-.94-2.19-1.04-.29-.11-.5-.16-.72.16-.21.32-.82 1.04-1.01 1.25-.18.21-.37.24-.69.08-.32-.16-1.35-.5-2.58-1.59-.95-.85-1.6-1.9-1.79-2.22-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.54-.72-.55l-.61-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.66 0 1.57 1.14 3.08 1.3 3.29.16.21 2.25 3.43 5.45 4.81.76.33 1.35.52 1.82.67.76.24 1.46.21 2.01.13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
+  </a>
+
+  <button class="round-btn scroll-top" id="scrollTop" aria-label="Volver arriba" data-hot>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V4M6 10l6-6 6 6"/></svg>
+  </button>
+
+  <script>
+    const header = document.getElementById('header');
+    const bg = document.getElementById('bg');
+    const cursor = document.getElementById('cursor');
+    const scrollTop = document.getElementById('scrollTop');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---- header hide/show ---- */
+    let lastY = window.scrollY;
+    window.addEventListener('scroll',()=>{
+      const y = window.scrollY;
+      header.classList.toggle('scrolled', y > 30);
+      if(y > lastY && y > 200){ header.classList.add('is-hidden'); }
+      else { header.classList.remove('is-hidden'); }
+      scrollTop.classList.toggle('show', y > window.innerHeight * 0.8);
+      lastY = y;
+    }, {passive:true});
+
+    /* ---- gradient morph: apply palette of the section nearest viewport centre ---- */
+    const sections = [...document.querySelectorAll('[data-c1]')];
+    let activeSec = null;
+    function applyPalette(sec){
+      if(!sec || sec === activeSec) return;
+      activeSec = sec;
+      bg.style.setProperty('--c1', sec.dataset.c1);
+      bg.style.setProperty('--c2', sec.dataset.c2);
+      bg.style.setProperty('--c3', sec.dataset.c3);
+      bg.style.setProperty('--deg', sec.dataset.deg || '144deg');
+      document.body.style.backgroundColor = sec.dataset.c2;
+      const light = sec.dataset.theme === 'light';
+      header.classList.toggle('over-light', light);
+    }
+    function pickSection(){
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const y = window.scrollY;
+      let best = sections[0];
+      for(const s of sections){
+        const top = s.offsetTop - y;                 // viewport-relative top
+        // light sections kick in early; dark a touch before centre; data-enter overrides per section
+        const f = s.dataset.enter ? parseFloat(s.dataset.enter) : (s.dataset.theme === 'light' ? 0.82 : 0.6);
+        if(top <= f * vh) best = s;                   // last section past its trigger line wins
+      }
+      applyPalette(best);
+    }
+    window.addEventListener('scroll', pickSection, {passive:true});
+    window.addEventListener('resize', pickSection);
+    pickSection();
+
+    /* ---- reveal on scroll ---- */
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((ents)=>{
+      ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold:0.12, rootMargin:"0px 0px -8% 0px" });
+    reveals.forEach(el=>io.observe(el));
+    const revealInView = ()=>{
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      reveals.forEach(el=>{ if(el.classList.contains('in')) return;
+        const r = el.getBoundingClientRect();
+        if(r.top < vh * 0.92 && r.bottom > 0){ el.classList.add('in'); io.unobserve(el); } });
+    };
+    requestAnimationFrame(()=>requestAnimationFrame(revealInView));
+    window.addEventListener('load', revealInView);
+    setTimeout(()=>reveals.forEach(el=>el.classList.add('in')), 2600);
+
+    /* ---- therapies: pin section + drive cards horizontally with vertical scroll ---- */
+    (function(){
+      const pin = document.querySelector('.therapies-pin');
+      if(!pin) return;
+      const sticky = pin.querySelector('.therapies-sticky');
+      const track = pin.querySelector('.cards-track');
+      const cards = pin.querySelector('.cards');
+      const panEl = pin.querySelector('.therapies-pan');
+      let maxX = 0, panRange = 0, enabled = false;
+      const canPin = ()=> matchMedia('(min-width:1001px)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches;
+      function setup(){
+        if(canPin()){
+          pin.classList.add('pinned');
+          track.style.setProperty('--tx','0px'); panEl.style.setProperty('--pan','0px');
+          maxX = Math.max(0, cards.scrollWidth - sticky.clientWidth);
+          if(maxX <= 4){ pin.classList.remove('pinned'); pin.style.height=''; enabled=false; return; }
+          const gap = Math.round(sticky.clientWidth * 0.1);   // breathing room between therapies and joy
+          panEl.style.setProperty('--pan-gap', gap + 'px');
+          panRange = sticky.clientWidth + gap;               // one screen + gap to bring the joy panel in
+          pin.style.height = (window.innerHeight + maxX + panRange) + 'px';
+          enabled = true;
+          apply();
+        } else {
+          pin.classList.remove('pinned'); pin.style.height=''; track.style.setProperty('--tx','0px'); panEl.style.setProperty('--pan','0px'); panEl.style.removeProperty('--pan-gap'); enabled=false;
+        }
+      }
+      function apply(){
+        if(!enabled) return;
+        const s = Math.max(0, window.scrollY - pin.offsetTop);
+        const cardScroll = Math.min(maxX, s);
+        track.style.setProperty('--tx', (-cardScroll) + 'px');
+        const pan = Math.max(0, Math.min(panRange, s - maxX));   // after cards finish, pan the whole block left
+        panEl.style.setProperty('--pan', (-pan) + 'px');
+      }
+      let ticking = false;
+      window.addEventListener('scroll', ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(()=>{ ticking = false; apply(); }); } }, {passive:true});
+      let rt; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(setup, 150); });
+      window.addEventListener('load', setup);
+      setup();
+    })();
+
+    /* ---- members quote: writes itself word-by-word with scroll ---- */
+    (function(){
+      const q = document.querySelector('[data-quote]');
+      if(!q) return;
+      const words = [];
+      q.querySelectorAll('.seg').forEach(seg=>{
+        const isHl = seg.classList.contains('ser');
+        const text = seg.textContent;
+        seg.textContent = '';
+        for(const ch of text){
+          const s = document.createElement('span');
+          s.className = 'qw' + (isHl?' qw-hl':'');
+          s.textContent = ch;
+          seg.appendChild(s);
+          words.push(s);
+        }
+      });
+      if(matchMedia('(prefers-reduced-motion:reduce)').matches){ words.forEach(w=>w.style.opacity='1'); return; }
+      const n = words.length;
+      let ticking = false;
+      function update(){
+        ticking = false;
+        const r = q.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const start = vh * 0.82, end = vh * 0.34;        // writes as the quote rises through the viewport
+        let p = (start - r.top) / (start - end);
+        p = Math.max(0, Math.min(1, p));
+        const lit = p * n;
+        for(let i=0;i<n;i++){ const o = Math.max(0, Math.min(1, lit - i)); words[i].style.opacity = (0.12 + o*0.88).toFixed(3); if(words[i].classList.contains('qw-hl')){ words[i].classList.toggle('hl', o >= 0.6); } }
+      }
+      const onScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } };
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+
+    /* ---- therapies: aurora WebGL backdrop ---- */
+    (function(){
+      const canvas = document.querySelector('.ther-aurora');
+      if(!canvas) return;
+      const gl = canvas.getContext('webgl', {antialias:true, premultipliedAlpha:false, powerPreference:'high-performance'});
+      if(!gl) return;
+      const FRAG = `
+precision highp float;
+uniform float uTime; uniform vec2 uRes; uniform vec2 uMouse;
+uniform vec3 uRipple[6]; uniform int uRippleN;
+float hash(vec2 p){ p=fract(p*vec2(123.34,345.45)); p+=dot(p,p+34.345); return fract(p.x*p.y); }
+float noise(vec2 p){ vec2 i=floor(p),f=fract(p); float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.)); vec2 u=f*f*(3.-2.*f); return mix(mix(a,b,u.x),mix(c,d,u.x),u.y); }
+float fbm(vec2 p){ float v=0.,a=.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.02; a*=.5; } return v; }
+vec3 pal(float t){
+  vec3 c0=vec3(0.035,0.060,0.180); vec3 c1=vec3(0.086,0.141,0.373);
+  vec3 c2=vec3(0.211,0.314,0.812); vec3 c3=vec3(0.408,0.506,0.988); vec3 c4=vec3(0.557,0.627,1.000);
+  t=clamp(t,0.,1.);
+  if(t<0.25) return mix(c0,c1,t/0.25);
+  if(t<0.5)  return mix(c1,c2,(t-0.25)/0.25);
+  if(t<0.75) return mix(c2,c3,(t-0.5)/0.25);
+  return mix(c3,c4,(t-0.75)/0.25);
+}
+float aspect(){ return uRes.x/uRes.y; }
+float ripples(vec2 uv){
+  float s=0.;
+  for(int i=0;i<6;i++){
+    if(i>=uRippleN) break;
+    vec3 r=uRipple[i]; float age=uTime-r.z;
+    if(age<0.0||age>2.6) continue;
+    vec2 d=uv-r.xy; d.x*=aspect(); float dist=length(d);
+    float radius=age*0.5;
+    s+=exp(-pow((dist-radius)*10.0,2.0))*(1.0-age/2.6);
+  }
+  return s;
+}
+void main(){
+  vec2 uv=gl_FragCoord.xy/uRes;
+  vec2 p=uv; p.x*=aspect();
+  vec2 m=uMouse; m.x*=aspect();
+  float t=uTime*0.045;                          // slow, continuous
+
+  // fluid domain warp
+  vec2 q=vec2(fbm(p*1.5 + vec2(0.0,t)), fbm(p*1.5 + vec2(5.2,-t)));
+  float md=length(p-m);
+  q += (p-m)*0.7*exp(-md*2.0);                  // mouse distortion
+  vec2 warp = p*1.35 + q*1.15;
+  float flow  = fbm(warp + vec2(t*0.6,-t*0.4));
+  float flow2 = fbm(warp*1.9 + vec2(-t*0.5,t*0.7));
+
+  // base = Revo blue, dominant everywhere
+  vec3 revo = vec3(0.408,0.506,0.988);          // #6881fc
+  vec3 col = mix(revo, vec3(0.34,0.44,0.95), flow2*0.4);
+
+  // darker-navy auroras weaving through
+  vec3 navy = mix(vec3(0.055,0.090,0.27), vec3(0.090,0.150,0.40), flow2);
+  float darkMask = smoothstep(0.50,0.88, flow);
+  col = mix(col, navy, darkMask*0.95);
+
+  // gentle highlight on the Revo crests + click ripples
+  col += pow(max(flow2-0.62,0.0),2.0)*0.18*vec3(0.55,0.66,1.0);
+  col += ripples(uv)*vec3(0.2,0.28,0.5);
+  col += (fbm(p*3.0+t)*0.025-0.0125);
+  gl_FragColor=vec4(col,1.0);
+}`;
+      const VERT = `attribute vec2 aPos; void main(){ gl_Position=vec4(aPos,0.0,1.0); }`;
+      function sh(ty,s){ const o=gl.createShader(ty); gl.shaderSource(o,s); gl.compileShader(o); if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(o)); return o; }
+      const prog=gl.createProgram(); gl.attachShader(prog,sh(gl.VERTEX_SHADER,VERT)); gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FRAG)); gl.linkProgram(prog);
+      if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){ console.error(gl.getProgramInfoLog(prog)); return; }
+      gl.useProgram(prog);
+      const vbo=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,vbo); gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+      const ap=gl.getAttribLocation(prog,'aPos'); gl.enableVertexAttribArray(ap); gl.vertexAttribPointer(ap,2,gl.FLOAT,false,0,0);
+      const L={ uTime:gl.getUniformLocation(prog,'uTime'), uRes:gl.getUniformLocation(prog,'uRes'), uMouse:gl.getUniformLocation(prog,'uMouse'), uRipple:gl.getUniformLocation(prog,'uRipple[0]'), uRippleN:gl.getUniformLocation(prog,'uRippleN') };
+      const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+      let DPR=Math.min(window.devicePixelRatio||1,1.6);
+      function resize(){ DPR=Math.min(window.devicePixelRatio||1,1.6); const w=canvas.clientWidth||window.innerWidth, h=canvas.clientHeight||window.innerHeight; canvas.width=Math.max(2,Math.floor(w*DPR)); canvas.height=Math.max(2,Math.floor(h*DPR)); gl.viewport(0,0,canvas.width,canvas.height); }
+      window.addEventListener('resize',resize);
+      if(window.ResizeObserver){ new ResizeObserver(resize).observe(canvas); }
+      let mx=0.5,my=0.5,tmx=0.5,tmy=0.5;
+      const sec=document.getElementById('terapias');
+      sec.addEventListener('pointermove',e=>{ const r=canvas.getBoundingClientRect(); tmx=(e.clientX-r.left)/r.width; tmy=1.0-(e.clientY-r.top)/r.height; });
+      const rip=[];
+      sec.addEventListener('pointerdown',e=>{ if(e.target.closest('a,button')) return; const r=canvas.getBoundingClientRect(); rip.push({x:(e.clientX-r.left)/r.width, y:1.0-(e.clientY-r.top)/r.height, t:tNow}); while(rip.length>6) rip.shift(); });
+      let visible=true;
+      if(window.IntersectionObserver){ new IntersectionObserver(es=>{ visible=es[0].isIntersecting; },{threshold:0.01}).observe(sec); }
+      let tNow=0; const start=performance.now(); const rbuf=new Float32Array(18);
+      resize();
+      function frame(){
+        requestAnimationFrame(frame);
+        if(!visible) return;
+        tNow=(performance.now()-start)/1000;
+        if(reduce){ tNow=6.0; }
+        mx+=(tmx-mx)*0.06; my+=(tmy-my)*0.06;
+        for(let i=rip.length-1;i>=0;i--){ if(tNow-rip[i].t>2.6) rip.splice(i,1); }
+        gl.uniform1f(L.uTime,tNow); gl.uniform2f(L.uRes,canvas.width,canvas.height); gl.uniform2f(L.uMouse,mx,my);
+        const n=Math.min(rip.length,6);
+        for(let i=0;i<6;i++){ const r=rip[i]; rbuf[i*3]=r?r.x:0; rbuf[i*3+1]=r?r.y:0; rbuf[i*3+2]=r?r.t:-99; }
+        gl.uniform3fv(L.uRipple,rbuf); gl.uniform1i(L.uRippleN,n);
+        gl.drawArrays(gl.TRIANGLES,0,3);
+        if(reduce){ return; }
+      }
+      requestAnimationFrame(frame);
+    })();
+
+    /* ---- therapies cards: liquid glass (per-card SVG refraction map) ---- */
+    (function(){
+      const cards = [...document.querySelectorAll('.therapies-pin .card')];
+      if(!cards.length) return;
+      const ua = navigator.userAgent;
+      const isSafari = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(ua);
+      const isFirefox = /firefox|fxios/i.test(ua);
+      if(isSafari || isFirefox) return;                 // CSS frost fallback already in place
+      const SVGNS='http://www.w3.org/2000/svg';
+      const clamp=(v,a,b)=>Math.min(Math.max(v,a),b);
+      let defs=document.getElementById('lg-filters');
+      if(!defs){ const svg=document.createElementNS(SVGNS,'svg'); svg.setAttribute('width','0'); svg.setAttribute('height','0');
+        svg.style.position='absolute'; svg.setAttribute('aria-hidden','true');
+        defs=document.createElementNS(SVGNS,'defs'); defs.id='lg-filters'; svg.appendChild(defs); document.body.appendChild(svg); }
+      function sd(px,py,hw,hh,r){ const qx=Math.abs(px)-(hw-r), qy=Math.abs(py)-(hh-r); const ax=Math.max(qx,0),ay=Math.max(qy,0); return Math.min(Math.max(qx,qy),0)+Math.hypot(ax,ay)-r; }
+      function dmap(w,h,radius,bevel){
+        const SS=2, cw=Math.round(w*SS), ch=Math.round(h*SS), hw=cw/2, hh=ch/2;
+        const r=clamp(radius*SS,0,Math.min(hw,hh)), bev=clamp(bevel*SS,4,Math.min(hw,hh)*0.9);
+        const cv=document.createElement('canvas'); cv.width=cw; cv.height=ch; const ctx=cv.getContext('2d');
+        const im=ctx.createImageData(cw,ch), d=im.data, e=1.0;
+        for(let y=0;y<ch;y++) for(let x=0;x<cw;x++){
+          const px=x-hw+0.5, py=y-hh+0.5; const dist=sd(px,py,hw,hh,r);
+          const gx=sd(px+e,py,hw,hh,r)-sd(px-e,py,hw,hh,r), gy=sd(px,py+e,hw,hh,r)-sd(px,py-e,hw,hh,r);
+          const L=Math.hypot(gx,gy)||1, nx=gx/L, ny=gy/L;
+          let t=1-clamp(-dist/bev,0,1); if(dist>0) t=0; t=t*t*(3-2*t);
+          const i=(y*cw+x)*4; d[i]=clamp(128+nx*t*127,0,255); d[i+1]=clamp(128+ny*t*127,0,255); d[i+2]=128; d[i+3]=255;
+        }
+        ctx.putImageData(im,0,0); return cv.toDataURL();
+      }
+      let n=0;
+      function build(w,h,radius,bevel,scale){
+        const f=document.createElementNS(SVGNS,'filter'); const id='lgf-'+(n++);
+        f.id=id; f.setAttribute('color-interpolation-filters','sRGB');
+        f.setAttribute('filterUnits','userSpaceOnUse'); f.setAttribute('primitiveUnits','userSpaceOnUse');
+        f.setAttribute('x','0'); f.setAttribute('y','0'); f.setAttribute('width',String(w)); f.setAttribute('height',String(h));
+        const im=document.createElementNS(SVGNS,'feImage');
+        im.setAttribute('x','0'); im.setAttribute('y','0'); im.setAttribute('width',String(w)); im.setAttribute('height',String(h));
+        im.setAttribute('preserveAspectRatio','none'); im.setAttribute('result','dmap'); im.setAttribute('href',dmap(w,h,radius,bevel));
+        f.appendChild(im);
+        const dm=document.createElementNS(SVGNS,'feDisplacementMap');
+        dm.setAttribute('in','SourceGraphic'); dm.setAttribute('in2','dmap'); dm.setAttribute('xChannelSelector','R'); dm.setAttribute('yChannelSelector','G'); dm.setAttribute('scale',String(scale));
+        f.appendChild(dm); defs.appendChild(f); return id;
+      }
+      function apply(el){
+        const r=el.getBoundingClientRect(); const w=Math.round(r.width), h=Math.round(r.height);
+        if(!w||!h) return;
+        const cs=getComputedStyle(el);
+        const radius=parseFloat(cs.borderTopLeftRadius)||0;
+        const bevel=clamp(Math.min(w,h)*0.36,18,110);
+        const scale=parseFloat(cs.getPropertyValue('--lg-scale'))||90;
+        el.style.setProperty('--lg-refract', `url(#${build(w,h,radius,bevel,scale)})`);
+      }
+      function initAll(){ cards.forEach(apply); }
+      window.addEventListener('load', initAll);
+      initAll();
+      let rt; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(()=>{
+        defs.innerHTML=''; n=0; cards.forEach(el=>el.style.removeProperty('--lg-refract')); initAll();
+      },180); });
+    })();
+
+    /* ---- club: curtain rise + one light sweep, driven by scroll ---- */
+    (function(){
+      const club = document.getElementById('club');
+      if(!club) return;
+      const panel = club.querySelector('.club-panel');
+      const inner = club.querySelector('.club-inner');
+      const sheen = club.querySelector('.club-sheen');
+      const h2 = inner.querySelector('h2');
+      const hdr = document.querySelector('.site-header');
+      if(matchMedia('(prefers-reduced-motion:reduce)').matches){ panel.style.clipPath='inset(0)'; inner.style.opacity='1'; return; }
+      const easeOut = t => 1 - Math.pow(1 - t, 3);
+      let ticking = false;
+      function update(){
+        ticking = false;
+        const r = club.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const start = vh * 1.02, end = vh * 0.56;
+        let p = (start - r.top) / (start - end);
+        p = Math.max(0, Math.min(1, p));
+        panel.style.clipPath = `inset(${((1-p)*100).toFixed(2)}% 0 0 0)`;
+        const t = Math.max(0, Math.min(1, (p - 0.45) / 0.55));
+        const te = easeOut(t);
+        inner.style.opacity = te.toFixed(3);
+        inner.style.filter = `blur(${((1-te)*12).toFixed(2)}px)`;
+        h2.style.letterSpacing = `${((1-te)*0.16 - 0.02).toFixed(3)}em`;
+        const s = Math.max(0, Math.min(1, (p - 0.62) / 0.33));
+        // light sweep — overlaps the tail of the curtain and finishes as it settles
+        const sStart = vh * 0.56, sEnd = -vh * 0.04;
+        let q = (sStart - r.top) / (sStart - sEnd);
+        q = Math.max(0, Math.min(1, q));
+        sheen.style.opacity = (q > 0.02 && q < 0.98) ? '1' : '0';
+        sheen.style.transform = `translateX(${(-120 + q*240).toFixed(1)}%)`;
+        // header stays dark-on-white until the navy has risen over it
+        if(hdr && r.bottom > 90){ hdr.classList.toggle('over-light', r.top > 80); }
+      }
+      const onScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } };
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+
+    /* ---- med-director: scroll-driven premium sheen sweep ---- */
+    (function(){
+      const el = document.querySelector('.med-director');
+      if(!el) return;
+      let ticking = false;
+      function update(){
+        ticking = false;
+        const r = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        let p = (vh - r.top) / (vh + r.height);   // 0 entering bottom → 1 leaving top
+        p = Math.max(0, Math.min(1, p));
+        el.style.setProperty('--ang', (p * 360) + 'deg');
+      }
+      window.addEventListener('scroll', ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+      window.addEventListener('resize', update);
+      update();
+    })();
+
+    /* ---- draw the connector thread ---- */
+    window.addEventListener('load', ()=>{ requestAnimationFrame(()=>document.getElementById('thread').classList.add('drawn')); });
+
+    /* ---- method steps: progressive left→right scroll illumination ---- */
+    (function(){
+      const steps = document.querySelector('.steps');
+      if(!steps) return;
+      const items = [...steps.querySelectorAll('.step')];
+      const n = items.length;
+      if(!n) return;
+      steps.classList.add('flow');
+      let ticking = false;
+      function update(){
+        ticking = false;
+        const r = steps.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const denom = vh*0.45 + r.height*0.4;
+        let p = (vh*0.8 - r.top) / denom;
+        p = Math.max(0, Math.min(1, p));
+        steps.style.setProperty('--p', p.toFixed(4));
+        for(let i=0;i<n;i++){ items[i].classList.toggle('lit', p >= (i+0.5)/n); }
+      }
+      const onScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } };
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+
+    /* ---- custom cursor ---- */
+    if(!reduce && matchMedia('(hover:hover)').matches){
+      window.addEventListener('mousemove', e=>{
+        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%,-50%)`;
+      }, {passive:true});
+      const setHot = v => cursor.classList.toggle('hot', v);
+      document.querySelectorAll('a, button, [data-hot]').forEach(el=>{
+        el.addEventListener('mouseenter',()=>setHot(true));
+        el.addEventListener('mouseleave',()=>setHot(false));
+      });
+      window.addEventListener('mousedown',()=>cursor.classList.add('hot'));
+      window.addEventListener('mouseup',()=>cursor.classList.remove('hot'));
+      // cursor colour adapts to light sections
+      const obs = ()=>cursor.classList.toggle('dark', header.classList.contains('over-light'));
+      window.addEventListener('scroll', obs, {passive:true}); obs();
+    } else { cursor.style.display='none'; document.body.style.cursor='auto'; }
+
+    /* ---- scroll to top ---- */
+    scrollTop.addEventListener('click',()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+    /* ---- hero video ---- */
+    (function(){ const v = document.querySelector('.hero-media video'); if(!v) return;
+      const tryPlay = ()=>v.play().catch(()=>{});
+      v.addEventListener('canplay', tryPlay, {once:true}); tryPlay(); })();
+
+    /* ---- faq accordion ---- */
+    document.querySelectorAll('.faq-q').forEach(q=>{
+      q.addEventListener('click',()=>{
+        const item = q.closest('.faq-item');
+        const open = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+        if(!open) item.classList.add('open');
+      });
+    });
+  </script>
+
+
+  <script>
+  /* cerrar el desplegable del nav al hacer clic en una opción (evita que quede abierto por :focus-within) */
+  document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest(".nav-menu a, .nav-trigger");if(!t)return;requestAnimationFrame(function(){if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();});},true);
+  </script>
+
+  <script>
+  /* desplegable nav por JS con margen de gracia (sin parpadeo del hover-gap) */
+  (function(){
+    document.querySelectorAll(".nav-drop").forEach(function(d){
+      var t;
+      d.addEventListener("mouseenter",function(){clearTimeout(t);d.classList.add("open");});
+      d.addEventListener("mouseleave",function(){clearTimeout(t);t=setTimeout(function(){d.classList.remove("open");},160);});
+      d.addEventListener("focusin",function(){clearTimeout(t);d.classList.add("open");});
+      d.addEventListener("focusout",function(){if(!d.contains(document.activeElement))d.classList.remove("open");});
+    });
+  })();
+  </script>
+
+    <script>
+  /* nav móvil v2: botón hamburguesa en HTML + panel construido desde el nav */
+  (function(){
+    function build(){
+      if(document.querySelector('.mobile-nav'))return;
+      var inner=document.querySelector('.site-header .header-inner')||document.querySelector('.header-inner');
+      var nav=document.querySelector('.site-header .nav')||document.querySelector('.nav');
+      if(!inner||!nav)return;
+      var btn=inner.querySelector('.nav-toggle');
+      if(!btn){ btn=document.createElement('button'); btn.className='nav-toggle'; btn.type='button'; btn.setAttribute('aria-label','Menú'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>'; inner.appendChild(btn); }
+      var panel=document.createElement('nav'); panel.className='mobile-nav';
+      var h='<button class="mobile-nav-close" aria-label="Cerrar menú"></button>';
+      Array.prototype.forEach.call(nav.children,function(el){
+        if(el.tagName==='A'){ h+='<a class="mnav-link" href="'+el.getAttribute('href')+'">'+el.textContent.trim()+'</a>'; }
+        else if(el.classList.contains('nav-drop')){
+          var trg=el.querySelector('.nav-trigger'); var label=trg?trg.textContent.trim():'';
+          h+='<div class="mnav-group"><p class="mnav-group-label">'+label+'</p><div class="mnav-sub">';
+          Array.prototype.forEach.call(el.querySelectorAll('.nav-loc'),function(a){ var nm=a.querySelector('.nav-loc-name'); var tx=(nm?nm.textContent:a.textContent).trim(); h+='<a href="'+a.getAttribute('href')+'">'+tx+'</a>'; });
+          h+='</div></div>';
+        }
+      });
+      var resv=inner.querySelector('.btn--hero'); var tel=inner.querySelector('.header-tel');
+      h+='<div class="mobile-nav-foot">';
+      if(resv) h+='<a class="btn btn--lg btn--primary" href="'+resv.getAttribute('href')+'">'+resv.textContent.trim()+'</a>';
+      var telnum=(tel&&tel.textContent.trim())||'+34 613 505 881'; var telhref=(tel&&tel.getAttribute('href'))||'tel:+34613505881';
+      h+='<a class="mnav-tel" href="'+telhref+'">'+telnum+'</a></div>';
+      panel.innerHTML=h; document.body.appendChild(panel);
+      function op(){panel.classList.add('open');document.body.classList.add('menu-open');}
+      function cl(){panel.classList.remove('open');document.body.classList.remove('menu-open');}
+      btn.addEventListener('click',op);
+      panel.querySelector('.mobile-nav-close').addEventListener('click',cl);
+      panel.addEventListener('click',function(e){var g=e.target.closest('.mnav-group-label');if(g){g.parentElement.classList.toggle('open');return;}if(e.target.closest('a'))cl();});
+      addEventListener('keydown',function(e){if(e.key==='Escape')cl();});
+    }
+    if(document.readyState!=='loading')build(); else document.addEventListener('DOMContentLoaded',build);
+  })();
+  </script>
+  <script src="revo-reservar.js" defer></script>
+<script>
+(function(){
+  var sec=document.getElementById('terapias'); if(!sec) return;
+  var cards=sec.querySelector('.cards');
+  sec.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.ther-arrow'); if(!b) return;
+    if(sec.classList.contains('pinned')){
+      window.scrollBy({top:Math.round(window.innerHeight*0.6),behavior:'smooth'});
+    } else if(cards){
+      cards.scrollBy({left:Math.max(240,Math.round(cards.clientWidth*0.8)),behavior:'smooth'});
+    }
+  });
+})();
+</script>
+<script>
+/* Experiencias (móvil): combinaciones colapsadas; tocar una fila abre/cierra su flujo. */
+(function(){
+  var list=document.querySelector('.exp-combos'); if(!list) return;
+  var mq=window.matchMedia('(max-width:900px)');
+  list.addEventListener('click',function(e){
+    if(!mq.matches) return;            // en desktop manda el hover
+    var row=e.target.closest('.combo-row'); if(!row||e.target.closest('a')) return;
+    var wasOpen=row.classList.contains('open');
+    list.querySelectorAll('.combo-row.open').forEach(function(r){ r.classList.remove('open'); });
+    if(!wasOpen) row.classList.add('open');
+  });
+})();
+</script>
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>REVO — Página no encontrada</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="revo-amanecer.css" />
+<link rel="icon" type="image/png" href="assets/revo-icon.png" />
+<style>
+  body{ min-height:100svh; display:flex; align-items:center; justify-content:center; }
+  .nf{ position:relative; z-index:2; text-align:center; padding:0 24px; max-width:640px; }
+  .nf .eyebrow{ justify-content:center; margin-bottom:30px; }
+  .nf h1{ font-family:var(--display); font-weight:400; font-size:clamp(96px,22vw,200px); line-height:.9;
+    letter-spacing:-.03em; color:#fff; margin:0; }
+  .nf p{ margin:22px auto 0; font-size:clamp(16px,1.6vw,20px); line-height:1.55; color:rgba(255,255,255,.8); max-width:42ch; }
+  .nf .nf-cta{ display:flex; gap:13px; justify-content:center; flex-wrap:wrap; margin-top:38px; }
+  @media(max-width:600px){ .nf .nf-cta{ flex-direction:column; } .nf .nf-cta .btn{ width:100%; } }
+</style>
+</head>
+<body data-theme="dark">
+  <div class="bg" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <main class="nf">
+    <p class="eyebrow">Error 404</p>
+    <h1>404</h1>
+    <p>La página que buscas no existe o se ha movido. Volvamos a un lugar conocido.</p>
+    <div class="nf-cta">
+      <a class="btn btn--lg btn--primary" href="index.html" data-hot>Ir al inicio</a>
+      <a class="btn btn--lg btn--hero" href="index.html#terapias" data-hot>Ver las terapias</a>
+    </div>
+  </main>
+</body>
+</html>

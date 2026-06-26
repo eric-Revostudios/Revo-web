@@ -1,0 +1,40 @@
+/* ===========================================================
+   REVO — Luz Roja: recolor ROJO (scoped a esta página)
+   Sobrescribe variables y los azules hardcodeados de
+   revo-amanecer.css + revo-terapia.css. Se enlaza el último.
+   =========================================================== */
+:root{
+  --teal:#f2554d;
+  --indigo:#f2554d;
+  --indigo-2:#e0463e;
+}
+::selection{ background:#f2554d; color:#fff; }
+::-moz-selection{ background:#f2554d; color:#fff; }
+
+/* rails / números / glows del componente .steps */
+.step-num{ color:#f2554d; }
+.steps-rail-fill{ background:linear-gradient(90deg, rgba(242,85,77,.2), #f2554d); box-shadow:0 0 16px rgba(242,85,77,.55); }
+.steps-rail-fill::after{ box-shadow:0 0 14px 4px rgba(242,85,77,.8), 0 0 22px 6px rgba(242,85,77,.4); }
+.steps.flow .step.lit{ background:linear-gradient(180deg, rgba(242,85,77,.08) 0%, rgba(242,85,77,0) 62%); border-right-color:rgba(242,85,77,.22); }
+.steps.flow .step.lit .step-num{ text-shadow:0 0 28px rgba(242,85,77,.5); }
+.step-body li::before{ background:#f2554d; }
+
+/* beats verticales */
+.beats-rail-fill{ background:linear-gradient(180deg, rgba(242,85,77,.35) 0%, #f2554d 100%); box-shadow:0 0 14px rgba(242,85,77,.6); }
+.beat-n{ color:#f2554d; }
+.beat.lit .beat-dot{ background:#f2554d; border-color:#f2554d; box-shadow:0 0 0 5px rgba(242,85,77,.16), 0 0 18px rgba(242,85,77,.7); }
+
+/* acentos varios */
+.evid-item .ei-n{ color:#f2554d; }
+a.evid-item:hover .ei-claim,
+a.evid-item:hover .ei-src{ color:#f2554d; }
+.first-total,
+.first-total b{ color:#f2554d; }
+.clin-rail .clin-index a.active,
+.clin-index a.active .ix{ color:#f2554d; }
+
+/* máquina full-bleed: gradiente rojo */
+.hpanel--machine{ background:linear-gradient(150deg,#4a0d10 0%,#b3302b 55%,#f2554d 100%); }
+
+/* footer fluid: encabezados de columna */
+.footer--fluid .footer-col h4{ color:#ffb0a6; }

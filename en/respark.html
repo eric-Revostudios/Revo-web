@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>REVO — Respark®</title>
+<meta name="description" content="Respark® at REVO Barcelona: our exclusive method. Whole-body cryotherapy + sculpting drainage massage with technology (Lilium Method) to drain, sculpt and redefine the silhouette." />
+<link rel="canonical" href="https://revostudios.eu/en/respark.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="REVO" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="es_ES" />
+<meta property="og:title" content="REVO — Respark®" />
+<meta property="og:description" content="Respark®: cryotherapy + sculpting drainage massage with technology (Lilium Method). Drains, activates microcirculation and redefines the silhouette." />
+<meta property="og:url" content="https://revostudios.eu/en/respark.html" />
+<meta property="og:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="REVO — Respark®" />
+<meta name="twitter:description" content="Respark®: cryotherapy + sculpting drainage massage with technology (Lilium Method). Drains, activates microcirculation and redefines the silhouette." />
+<meta name="twitter:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
+<link rel="alternate" hreflang="es" href="../respark.html" />
+<link rel="alternate" hreflang="en" href="respark.html" />
+<link rel="alternate" hreflang="x-default" href="../respark.html" />
+<link rel="stylesheet" href="../revo-amanecer.css?v=mobile24" />
+<link rel="stylesheet" href="../revo-terapia.css?v=mobile22" />
+<link rel="stylesheet" href="../revo-reservar.css" />
+<style>
+  /* scrim reforzado: la sala de masaje es clara, el texto blanco necesita más contraste */
+  .ter-hero-media::after{ background:
+    linear-gradient(105deg, rgba(9,13,32,.86) 0%, rgba(9,13,32,.6) 34%, rgba(9,13,32,.22) 60%, rgba(9,13,32,.12) 100%),
+    linear-gradient(180deg, rgba(9,13,32,.34) 0%, rgba(9,13,32,0) 30%, rgba(9,13,32,.18) 70%, rgba(9,13,32,.72) 100%); }
+  .ter-hero-media img{ filter:contrast(1.03) saturate(1.05) brightness(.92); }
+  @media(max-width:600px){
+    .ter-hero-media::after{ background:linear-gradient(180deg, rgba(9,13,32,.78) 0%, rgba(9,13,32,.45) 42%, rgba(9,13,32,.55) 70%, rgba(9,13,32,.85) 100%); }
+  }
+</style>
+<script>
+/* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
+(function(){try{
+var P=location.pathname, inEn=/\/en\//.test(P), S=null;
+try{S=localStorage.getItem('revo_lang');}catch(e){}
+var be=(navigator.language||'').toLowerCase().indexOf('en')===0;
+var f=P.substring(P.lastIndexOf('/')+1)||'index.html';
+if(!inEn){ if((S||(be?'en':'es'))==='en') location.replace('en/'+f); }
+else if(S==='es'){ location.replace('../'+f); }
+}catch(e){}
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.lang-switch');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('hreflang'));}catch(e){}}},true);
+})();
+</script>
+<link rel="icon" type="image/png" href="../assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="../assets/revo-icon.png" />
+</head>
+<body style="background-color:#16245f">
+
+  <div class="bg" id="bg" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a class="logo" href="index.html#top"><img class="logo-img" src="../assets/revo-icon.png" alt="REVO" /></a>
+      <nav class="nav">
+        <a href="metodo.html" data-hot>The method</a>
+        <div class="nav-drop" id="navTerapias">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Therapies</button>
+          <div class="nav-menu nav-menu--list" role="menu">
+            <a class="nav-loc" href="crioterapia.html" role="menuitem" data-hot><span class="nav-loc-name">Cryotherapy</span></a>
+            <a class="nav-loc" href="luz-roja.html" role="menuitem" data-hot><span class="nav-loc-name">Red light bed</span></a>
+            <a class="nav-loc" href="camara-hiperbarica.html" role="menuitem" data-hot><span class="nav-loc-name">Hyperbaric chamber</span></a>
+            <a class="nav-loc" href="pemf.html" role="menuitem" data-hot><span class="nav-loc-name">Electromagnetic field</span></a>
+            <a class="nav-loc" href="neuroestimulacion.html" role="menuitem" data-hot><span class="nav-loc-name">Neurostimulation</span></a>
+            <a class="nav-loc" href="presoterapia.html" role="menuitem" data-hot><span class="nav-loc-name">Pressotherapy</span></a>
+            <a class="nav-loc" href="respark.html" role="menuitem" data-hot><span class="nav-loc-name">Respark®</span></a>
+            <a class="nav-loc" href="masajes.html" role="menuitem" data-hot><span class="nav-loc-name">Massage</span></a>
+          </div>
+        </div>
+        <div class="nav-drop" id="navStudios">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Studios</button>
+          <div class="nav-menu" role="menu">
+            <a class="nav-loc" href="studios.html" role="menuitem" data-hot><span class="nav-loc-name">Turó Park</span><span class="nav-loc-city">Barcelona</span></a>
+          </div>
+        </div>
+        <a href="membresias.html" data-hot>Membership</a>
+      </nav>
+      <a class="header-tel" href="tel:+34613505881" aria-label="Call +34 613 505 881" data-hot><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.8 4H4.5C3.7 4 3 4.7 3 5.5 3 14 10 21 18.5 21c.8 0 1.5-.7 1.5-1.5v-2.3c0-.7-.5-1.3-1.2-1.5l-2.5-.5c-.6-.1-1.2.1-1.5.6l-.8 1.1a13 13 0 0 1-5.7-5.7l1.1-.8c.5-.3.7-.9.6-1.5l-.5-2.5C8.1 4.5 7.5 4 6.8 4z"/></svg><span class="tel-num">+34 613 505 881</span></a>
+      <a class="btn btn--hero" href="#reservar" data-hot data-reservar data-board="137297">Book</a>
+    
+      <a class="lang-switch" href="../respark.html" hreflang="es" data-hot>ES</a>
+      <button class="nav-toggle" type="button" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="ter-hero" data-screen-label="Respark · Hero" data-c1="#16245f" data-c2="#3650cf" data-c3="#6881fc" data-deg="144deg" data-theme="dark">
+      <div class="ter-hero-media"><img src="../assets/therapy.jpg" alt="REVO Studios Respark massage room" /></div>
+      <div class="ter-hero-inner">
+        <p class="eyebrow reveal">Respark® · REVO Studios</p>
+        <h1 class="reveal" style="--d:.06s">Respark®</h1>
+        <p class="ter-hero-sub reveal" style="--d:.14s">Cold that <span class="ser">sculpts</span>.</p>
+        <p class="ter-hero-lead reveal" style="--d:.2s">Our exclusive method: whole-body cryotherapy followed by a sculpting drainage massage with technology (Lilium Method). Drains, activates microcirculation and redefines the silhouette.</p>
+        <div class="ter-hero-cta reveal" style="--d:.28s">
+          <a class="btn btn--lg btn--hero" href="#reservar" data-hot data-reservar data-board="137297">Book a session</a>
+        </div>
+      </div>
+      <div class="ter-hero-facts reveal" style="--d:.34s">
+        <div class="f"><span class="fn">–130°C</span><span class="fl">Cryotherapy first</span></div>
+        <div class="f"><span class="fn">60 min</span><span class="fl">Per session</span></div>
+        <div class="f"><span class="fn">Lilium</span><span class="fl">REVO Beauty Method</span></div>
+      </div>
+    </section>
+
+    <!-- ============ QUÉ LE PASA A TU CUERPO + BENEFICIOS ============ -->
+    <section class="wrap section on-light body-sec" data-screen-label="Respark · Qué le pasa" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+      <div class="body-grid">
+        <div class="reveal">
+          <p class="eyebrow">What happens to your body</p>
+          <h2>Cold first, hands after: the body responds <span class="ser">differently</span>.</h2>
+          <p class="body-copy" style="margin-top:24px">The prior cryotherapy constricts the vessels and lowers inflammation; as you leave the cold, oxygenated blood returns and the tissue is left receptive. On that response we work the sculpting drainage massage with technology: we mobilise the lymph, activate microcirculation and redefine contours. Results are cumulative and improve with consistency.</p>
+        </div>
+        <div class="body-beats reveal" style="--d:.12s" data-beatflow>
+          <span class="beats-rail" aria-hidden="true"><span class="beats-rail-fill"></span></span>
+          <div class="beat"><span class="beat-dot" aria-hidden="true"></span><span class="beat-n">01</span><div><h4>Primes</h4><p>Whole-body cold at –130 °C constricts the vessels and reduces inflammation.</p></div></div>
+          <div class="beat"><span class="beat-dot" aria-hidden="true"></span><span class="beat-n">02</span><div><h4>Drains</h4><p>The sculpting massage mobilises the lymphatic system and reduces fluid retention.</p></div></div>
+          <div class="beat"><span class="beat-dot" aria-hidden="true"></span><span class="beat-n">03</span><div><h4>Sculpts</h4><p>Microcirculation and technology (Lilium Method) redefine the silhouette.</p></div></div>
+        </div>
+      </div>
+
+      <div class="benefits reveal">
+        <p class="eyebrow">Benefits</p>
+        <div class="benefits-grid">
+          <div class="brow"><span class="ar up">↑</span><p>Lymphatic drainage and volume reduction</p></div>
+          <div class="brow"><span class="ar up">↑</span><p>Microcirculation and tissue oxygenation</p></div>
+          <div class="brow"><span class="ar up">↑</span><p>Firmness, tone and silhouette definition</p></div>
+          <div class="brow"><span class="ar dn">↓</span><p>Fluid retention and inflammation</p></div>
+          <div class="brow"><span class="ar up">↑</span><p>Muscle recovery and wellbeing</p></div>
+          <div class="brow"><span class="ar up">↑</span><p>Real calm after the session</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MÉTODO → EVIDENCIA · scroll horizontal anclado ============ -->
+    <section class="hpin" id="maqEvid" data-screen-label="Respark · Método y evidencia">
+      <div class="hpin-sticky">
+        <div class="hpin-track">
+
+          <!-- panel: evidencia -->
+          <div class="hpanel hpanel--evid on-light" data-screen-label="Respark · Evidencia">
+            <div class="hpanel-inner">
+              <div class="evid evid--cards">
+                <p class="eyebrow">Evidence</p>
+                <h2>What the <span class="ser">science</span> says.</h2>
+                <div class="evid-grid">
+                  <a class="evid-card" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5932411/" target="_blank" rel="noopener" data-hot>
+                    <div class="ec-top"><span class="ec-n">01</span><p class="ec-claim">Massage, the most effective technique for recovering from fatigue and muscle soreness (meta-analysis of 99 studies)</p></div>
+                    <div class="ec-foot"><span class="ec-src">Frontiers in Physiology · 2018</span><span class="ec-go">↗</span></div>
+                  </a>
+                  <a class="evid-card" href="https://pubmed.ncbi.nlm.nih.gov/36170581/" target="_blank" rel="noopener" data-hot>
+                    <div class="ec-top"><span class="ec-n">02</span><p class="ec-claim">Prior cold boosts drainage: greater reduction of oedema and volume</p></div>
+                    <div class="ec-foot"><span class="ec-src">Koseoglu et al., Compl. Ther. Clin. Practice · 2022</span><span class="ec-go">↗</span></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- panel: the method -->
+          <div class="hpanel hpanel--machine" data-screen-label="Respark · El método">
+            <div class="hpanel-inner">
+              <div class="machine-inner">
+                <div>
+                  <p class="eyebrow">The method</p>
+                  <h2>Respark®: cold science + <span class="ser">manual</span> technique.</h2>
+                  <p>Our exclusive method. Whole-body cryotherapy at –130 °C for 2–3 minutes, followed by a sculpting drainage massage with technology (Lilium Beauty Method). Cumulative results that improve with consistency.</p>
+                </div>
+                <div class="machine-specs">
+                  <div class="mspec"><span class="v">–130°C</span><span class="l">Cryotherapy first</span></div>
+                  <div class="mspec"><span class="v">Manual</span><span class="l">Sculpting drainage</span></div>
+                  <div class="mspec"><span class="v">Lilium</span><span class="l">REVO Beauty Method</span></div>
+                </div>
+              </div>
+              <span class="hpin-cue" aria-hidden="true">Keep scrolling
+                <svg viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 7h26M23 2l5 5-5 5"/></svg>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ YOUR SESSION ============ -->
+    <section class="wrap section on-light first" data-screen-label="Respark · Tu sesión" data-enter="0.42" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+      <div class="first-head reveal">
+        <div>
+          <p class="eyebrow">Your session</p>
+          <h2>Two phases in a single <span class="ser">session</span>.</h2>
+        </div>
+        <span class="first-total">The whole process · <b>60 min</b></span>
+      </div>
+      <div class="steps first-steps reveal" style="--d:.1s">
+        <div class="steps-rail" aria-hidden="true"><span class="steps-rail-fill"></span></div>
+        <div class="step">
+          <h3><span class="step-num">01</span>Cryotherapy</h3>
+          <div class="step-body">2–3 minutes at –130 °C in the cabin, always accompanied by your coach.</div>
+        </div>
+        <div class="step">
+          <h3><span class="step-num">02</span>Sculpting massage</h3>
+          <div class="step-body">Manual drainage with technology (Lilium Method) over tissue already activated by the cold.</div>
+        </div>
+        <div class="step">
+          <h3><span class="step-num">03</span>Result</h3>
+          <div class="step-body">A more defined silhouette, lightness and wellbeing. Back to your day right away.</div>
+        </div>
+      </div>
+    
+      <div class="first-cta reveal" style="--d:.2s">
+        <a class="btn btn--lg btn--primary" href="#reservar" data-hot data-reservar data-board="137297">Book your Respark®</a>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="wrap section faqs on-light" data-screen-label="Respark · FAQ" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+      <h2 class="display reveal">FAQ</h2>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q" data-hot>What is Respark®?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Our exclusive method: prior cryotherapy + sculpting drainage massage with technology (Lilium Method), to reduce volume, drain fluids and redefine contours.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>Who is it for?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">For anyone who wants to drain, reduce volume and redefine the silhouette, or add a boost of recovery and wellbeing to their routine.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>How long does it take?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">60 minutes in total: the prior cryotherapy plus the sculpting drainage massage.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-hot>How often?<span class="ico"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Results are cumulative: they improve with consistency and the right frequency.</div></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ CIERRE: CTA + FOOTER sobre wallpaper a pantalla completa ============ -->
+  <footer class="closing footer--fluid" id="reservar" data-screen-label="Respark · Cierre">
+    <canvas class="footer-gl fluid-gl" id="footerGL" aria-hidden="true"></canvas>
+    <div class="footer-fluid-scrim" aria-hidden="true"></div>
+
+    <div class="closing-inner">
+      <div class="closing-cta">
+        <p class="eyebrow reveal">Start today</p>
+        <h2 class="reveal" style="--d:.08s">Book your <span class="ser">Respark®</span>.</h2>
+        <div class="cta-btns reveal" style="--d:.18s">
+          <a class="btn btn--lg btn--hero" href="#" data-hot data-reservar data-board="137297">Book a session</a>
+        </div>
+      </div>
+
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a class="logo" href="index.html#top"><img class="logo-img" src="../assets/revo-logo-white.png" alt="REVO" /></a>
+            <p class="footer-tag">Longevity and advanced therapy club. Barcelona.</p>
+          </div>
+          <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="metodo.html" data-hot>The method</a>
+            <a href="index.html#terapias" data-hot>Therapies</a>
+            <a href="studios.html" data-hot>Studios</a>
+            <a href="membresias.html" data-hot>Membership</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener" data-hot>Carrer de Ferran Agulló, 24</a>
+            <a href="tel:+34613505881" data-hot>+34 613 505 881</a>
+            <a href="mailto:hello@revostudios.eu" data-hot>hello@revostudios.eu</a>
+            <a href="https://instagram.com/revo_studios" target="_blank" rel="noopener" data-hot>Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+          <span>© 2026 REVO · Longevity Club · Barcelona</span>
+          <span>Legal notice · Privacy · Cookies</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="round-btn scroll-top" id="scrollTop" aria-label="Back to top" data-hot>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V4M6 10l6-6 6 6"/></svg>
+  </button>
+
+  <script src="../revo-terapia.js?v=mobile22"></script>
+  <script src="../revo-footer-fluid.js"></script>
+
+  <script>
+  /* cerrar el desplegable del nav al hacer clic en una opción (evita que quede abierto por :focus-within) */
+  document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest(".nav-menu a, .nav-trigger");if(!t)return;requestAnimationFrame(function(){if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();});},true);
+  </script>
+
+  <script>
+  /* desplegable nav por JS con margen de gracia (sin parpadeo del hover-gap) */
+  (function(){
+    document.querySelectorAll(".nav-drop").forEach(function(d){
+      var t;
+      d.addEventListener("mouseenter",function(){clearTimeout(t);d.classList.add("open");});
+      d.addEventListener("mouseleave",function(){clearTimeout(t);t=setTimeout(function(){d.classList.remove("open");},160);});
+      d.addEventListener("focusin",function(){clearTimeout(t);d.classList.add("open");});
+      d.addEventListener("focusout",function(){if(!d.contains(document.activeElement))d.classList.remove("open");});
+    });
+  })();
+  </script>
+
+    <script>
+  /* nav móvil v2: botón hamburguesa en HTML + panel construido desde el nav */
+  (function(){
+    function build(){
+      if(document.querySelector('.mobile-nav'))return;
+      var inner=document.querySelector('.site-header .header-inner')||document.querySelector('.header-inner');
+      var nav=document.querySelector('.site-header .nav')||document.querySelector('.nav');
+      if(!inner||!nav)return;
+      var btn=inner.querySelector('.nav-toggle');
+      if(!btn){ btn=document.createElement('button'); btn.className='nav-toggle'; btn.type='button'; btn.setAttribute('aria-label','Menu'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>'; inner.appendChild(btn); }
+      var panel=document.createElement('nav'); panel.className='mobile-nav';
+      var h='<button class="mobile-nav-close" aria-label="Close menu"></button>';
+      Array.prototype.forEach.call(nav.children,function(el){
+        if(el.tagName==='A'){ h+='<a class="mnav-link" href="'+el.getAttribute('href')+'">'+el.textContent.trim()+'</a>'; }
+        else if(el.classList.contains('nav-drop')){
+          var trg=el.querySelector('.nav-trigger'); var label=trg?trg.textContent.trim():'';
+          h+='<div class="mnav-group"><p class="mnav-group-label">'+label+'</p><div class="mnav-sub">';
+          Array.prototype.forEach.call(el.querySelectorAll('.nav-loc'),function(a){ var nm=a.querySelector('.nav-loc-name'); var tx=(nm?nm.textContent:a.textContent).trim(); h+='<a href="'+a.getAttribute('href')+'">'+tx+'</a>'; });
+          h+='</div></div>';
+        }
+      });
+      var resv=inner.querySelector('.btn--hero'); var tel=inner.querySelector('.header-tel');
+      h+='<div class="mobile-nav-foot">';
+      if(resv) h+='<a class="btn btn--lg btn--primary" href="'+resv.getAttribute('href')+'">'+resv.textContent.trim()+'</a>';
+      var telnum=(tel&&tel.textContent.trim())||'+34 613 505 881'; var telhref=(tel&&tel.getAttribute('href'))||'tel:+34613505881';
+      h+='<a class="mnav-tel" href="'+telhref+'">'+telnum+'</a></div>';
+      panel.innerHTML=h; document.body.appendChild(panel);
+      function op(){panel.classList.add('open');document.body.classList.add('menu-open');}
+      function cl(){panel.classList.remove('open');document.body.classList.remove('menu-open');}
+      btn.addEventListener('click',op);
+      panel.querySelector('.mobile-nav-close').addEventListener('click',cl);
+      panel.addEventListener('click',function(e){var g=e.target.closest('.mnav-group-label');if(g){g.parentElement.classList.toggle('open');return;}if(e.target.closest('a'))cl();});
+      addEventListener('keydown',function(e){if(e.key==='Escape')cl();});
+    }
+    if(document.readyState!=='loading')build(); else document.addEventListener('DOMContentLoaded',build);
+  })();
+  </script>
+  <script src="../revo-reservar.js" defer></script>
+</body>
+</html>

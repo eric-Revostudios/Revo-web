@@ -1,0 +1,43 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/luzroja-barcelona", "destination": "/luz-roja.html", "permanent": true },
+    { "source": "/presoterapia-barcelona", "destination": "/presoterapia.html", "permanent": true },
+    { "source": "/neuroestimulacioncerebral-barcelona", "destination": "/neuroestimulacion.html", "permanent": true },
+    { "source": "/crioterapia-barcelona", "destination": "/crioterapia.html", "permanent": true },
+    { "source": "/camara-hiperbarica-barcelona", "destination": "/camara-hiperbarica.html", "permanent": true },
+    { "source": "/campoelectromagneticopulsado-barcelona", "destination": "/pemf.html", "permanent": true },
+    { "source": "/masajes-barcelona", "destination": "/masajes.html", "permanent": true },
+    { "source": "/biohacking-barcelona", "destination": "/experiencias.html", "permanent": true },
+    { "source": "/memberships", "destination": "/membresias.html", "permanent": true },
+    { "source": "/reservation-page", "destination": "/", "permanent": true },
+    { "source": "/shop/p/:path*", "destination": "https://tienda.revostudios.eu/shop/p/:path*", "permanent": true },
+    { "source": "/shop", "destination": "/experiencias.html", "permanent": true },
+    { "source": "/cart", "destination": "https://tienda.revostudios.eu/cart", "permanent": false },
+    { "source": "/checkout", "destination": "https://tienda.revostudios.eu/checkout", "permanent": false }
+  ]
+}

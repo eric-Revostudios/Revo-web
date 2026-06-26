@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>REVO — El método · Cinema</title>
+<meta name="description" content="El método REVO: cinco pasos para convertir la ciencia en un hábito — diagnóstico, protocolo a medida, rutina y acompañamiento médico." />
+<link rel="canonical" href="https://revostudios.eu/metodo.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="REVO" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:title" content="REVO — El método · Cinema" />
+<meta property="og:description" content="El método REVO: cinco pasos para convertir la ciencia en un hábito — diagnóstico, protocolo a medida, rutina y acompañamiento médico." />
+<meta property="og:url" content="https://revostudios.eu/metodo.html" />
+<meta property="og:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="REVO — El método · Cinema" />
+<meta name="twitter:description" content="El método REVO: cinco pasos para convertir la ciencia en un hábito — diagnóstico, protocolo a medida, rutina y acompañamiento médico." />
+<meta name="twitter:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
+<link rel="alternate" hreflang="es" href="metodo.html" />
+<link rel="alternate" hreflang="en" href="en/metodo.html" />
+<link rel="alternate" hreflang="x-default" href="metodo.html" />
+<link rel="stylesheet" href="revo-amanecer.css?v=mobile24" />
+<link rel="stylesheet" href="revo-metodo.css?v=mobile22" />
+<link rel="stylesheet" href="revo-reservar.css" />
+<style>
+  /* "Diagnóstico": la foto del pasillo azul es muy luminosa; reforzamos el oscurecido para que el texto se lea muy bien */
+  .cine-layer[data-i="1"]::after{ background:
+    linear-gradient(90deg, rgba(8,11,30,.9) 0%, rgba(8,11,30,.74) 38%, rgba(8,11,30,.5) 70%, rgba(8,11,30,.32) 100%),
+    linear-gradient(180deg, rgba(8,11,30,.55) 0%, rgba(8,11,30,.3) 30%, rgba(8,11,30,.5) 64%, rgba(8,11,30,.9) 100%); }
+  /* "Tu protocolo": la foto de la cámara es muy luminosa; reforzamos el oscurecido para que el texto se lea muy bien */
+  .cine-layer[data-i="2"]::after{ background:
+    linear-gradient(90deg, rgba(8,11,30,.88) 0%, rgba(8,11,30,.62) 34%, rgba(8,11,30,.24) 62%, rgba(8,11,30,.1) 100%),
+    linear-gradient(180deg, rgba(8,11,30,.5) 0%, rgba(8,11,30,.2) 32%, rgba(8,11,30,.5) 66%, rgba(8,11,30,.9) 100%); }
+  /* "Acompañamiento": la foto del studio es luminosa en la zona del texto; reforzamos el oscurecido para que el texto se lea muy bien */
+  .cine-layer[data-i="4"]::after{ background:
+    linear-gradient(90deg, rgba(8,11,30,.9) 0%, rgba(8,11,30,.72) 38%, rgba(8,11,30,.46) 70%, rgba(8,11,30,.28) 100%),
+    linear-gradient(180deg, rgba(8,11,30,.55) 0%, rgba(8,11,30,.3) 30%, rgba(8,11,30,.5) 64%, rgba(8,11,30,.9) 100%); }
+</style>
+<script>
+/* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
+(function(){try{
+var P=location.pathname, inEn=/\/en\//.test(P), S=null;
+try{S=localStorage.getItem('revo_lang');}catch(e){}
+var be=(navigator.language||'').toLowerCase().indexOf('en')===0;
+var f=P.substring(P.lastIndexOf('/')+1)||'index.html';
+if(!inEn){ if((S||(be?'en':'es'))==='en') location.replace('en/'+f); }
+else if(S==='es'){ location.replace('../'+f); }
+}catch(e){}
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.lang-switch');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('hreflang'));}catch(e){}}},true);
+})();
+</script>
+<link rel="icon" type="image/png" href="assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="assets/revo-icon.png" />
+</head>
+<body style="background-color:#16245f">
+
+  <div class="bg" id="bg" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a class="logo" href="index.html#top"><img class="logo-img" src="assets/revo-icon.png" alt="REVO" /></a>
+      <nav class="nav">
+        <a href="metodo.html" data-hot>El método</a>
+        <div class="nav-drop" id="navTerapias">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Las terapias</button>
+          <div class="nav-menu nav-menu--list" role="menu">
+            <a class="nav-loc" href="crioterapia.html" role="menuitem" data-hot><span class="nav-loc-name">Crioterapia</span></a>
+            <a class="nav-loc" href="luz-roja.html" role="menuitem" data-hot><span class="nav-loc-name">Cama de luz roja</span></a>
+            <a class="nav-loc" href="camara-hiperbarica.html" role="menuitem" data-hot><span class="nav-loc-name">Cámara hiperbárica</span></a>
+            <a class="nav-loc" href="pemf.html" role="menuitem" data-hot><span class="nav-loc-name">Campo electromagnético</span></a>
+            <a class="nav-loc" href="neuroestimulacion.html" role="menuitem" data-hot><span class="nav-loc-name">Neuroestimulación</span></a>
+            <a class="nav-loc" href="presoterapia.html" role="menuitem" data-hot><span class="nav-loc-name">Presoterapia</span></a>
+            <a class="nav-loc" href="respark.html" role="menuitem" data-hot><span class="nav-loc-name">Respark®</span></a>
+            <a class="nav-loc" href="masajes.html" role="menuitem" data-hot><span class="nav-loc-name">Masajes</span></a>
+          </div>
+        </div>
+        <div class="nav-drop" id="navStudios">
+          <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Studios</button>
+          <div class="nav-menu" role="menu">
+            <a class="nav-loc" href="studios.html" role="menuitem" data-hot><span class="nav-loc-name">Turó Park</span><span class="nav-loc-city">Barcelona</span></a>
+          </div>
+        </div>
+        <a href="membresias.html" data-hot>Membresías</a>
+      </nav>
+      <a class="header-tel" href="tel:+34613505881" aria-label="Llamar al +34 613 505 881" data-hot><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.8 4H4.5C3.7 4 3 4.7 3 5.5 3 14 10 21 18.5 21c.8 0 1.5-.7 1.5-1.5v-2.3c0-.7-.5-1.3-1.2-1.5l-2.5-.5c-.6-.1-1.2.1-1.5.6l-.8 1.1a13 13 0 0 1-5.7-5.7l1.1-.8c.5-.3.7-.9.6-1.5l-.5-2.5C8.1 4.5 7.5 4 6.8 4z"/></svg><span class="tel-num">+34 613 505 881</span></a>
+      <a class="btn btn--hero" href="index.html#reset" data-hot data-reservar data-board="146948">Mi Primer Reset</a>
+    
+      <a class="lang-switch" href="en/metodo.html" hreflang="en" data-hot>EN</a>
+      <button class="nav-toggle" type="button" aria-label="Menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="metodo-hero" data-screen-label="Método · intro">
+      <div class="wrap">
+        <p class="eyebrow reveal">AIM4BETTER method</p>
+        <h1 class="reveal" style="--d:.08s; font-size: clamp(40px,9vw,90px)">Despierta tu <span class="ser">mejor versión</span>.</h1>
+        <p class="lede reveal" style="--d:.18s">Cinco pasos para convertir la ciencia en un hábito que cuida de ti a largo plazo.</p>
+      </div>
+      <div class="scroll-cue reveal" style="--d:.3s">
+        Desliza
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <!-- ============ CINEMA STAGE ============ -->
+    <section class="cine" id="cine" style="height:420vh" data-screen-label="Método · pasos">
+      <div class="cine-stage">
+
+        <div class="cine-layer" data-i="0"><img src="assets/storefront.png" alt="" /></div>
+        <div class="cine-layer" data-i="1"><img src="assets/metodo-diagnostico.jpg" alt="" /></div>
+        <div class="cine-layer" data-i="2"><img src="assets/metodo-protocolo.jpg" alt="" /></div>
+        <div class="cine-layer" data-i="3"><img src="assets/metodo-rutina.jpg" alt="" /></div>
+        <div class="cine-layer" data-i="4"><img src="assets/metodo-acompanamiento.jpg" alt="" /></div>
+
+        <div class="cine-copy">
+          <div class="cine-anchor">
+
+            <div class="cine-block" data-i="0">
+              <p class="cine-num">00</p>
+              <span class="cine-tag"><span class="blip"></span>El primer paso</span>
+              <h2>Házte miembro</h2>
+              <p class="lead" style="max-width: 600px">Únete al Studio y maximiza tu salud.</p>
+              <p class="body">Reservas tu plaza en el club y desbloqueas el espacio entero: todas las terapias, el equipo médico y un entorno diseñado para que cuidarte sea lo más fácil del día.</p>
+              <div class="cine-chips"><span>Plazas limitadas</span><span>Acceso completo</span><span>Barcelona</span></div>
+            </div>
+
+            <div class="cine-block cine-block--wide" data-i="1">
+              <p class="cine-num">01</p>
+              <span class="cine-tag"><span class="blip"></span>Valoración médica</span>
+              <h2>Diagnóstico</h2>
+              <p class="lead">Empezamos por entenderte de verdad.</p>
+              <div class="diag-flow">
+                <div class="diag-rail" aria-hidden="true"><span class="diag-rail-fill"></span></div>
+                <div class="diag-cols">
+                  <div class="diag-col"><span class="dc-n">01</span><h4>Tu objetivo</h4><p>Qué quieres conseguir y por qué. Dormir mejor, recuperar energía, verte mejor al espejo, mejorar el estado de ánimo, cuidarte a largo plazo.</p></div>
+                  <div class="diag-col"><span class="dc-n">02</span><h4>Tu historia clínica</h4><p>Revisamos tu salud y tu pasado médico para diseñar un plan seguro y adaptado a ti, sin riesgos.</p></div>
+                  <div class="diag-col"><span class="dc-n">03</span><h4>Análisis de biomarcadores</h4><p>Un mapa completo de tu estado físico: desde tu composición corporal hasta cómo responde tu cuerpo al estrés, tu edad biológica o tus niveles de vitalidad.</p></div>
+                  <div class="diag-col"><span class="dc-n">04</span><h4>Tus hábitos, a fondo</h4><p>Cómo vives, cómo duermes, cómo te mueves. Qué has probado, qué te funciona y qué no.</p></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cine-block" data-i="2">
+              <p class="cine-num">02</p>
+              <span class="cine-tag"><span class="blip"></span>Plan a medida</span>
+              <h2>Tu protocolo</h2>
+              <p class="lead">Un plan diseñado solo para ti.</p>
+              <p class="body">A partir del diagnóstico, tu médico construye un protocolo a medida: qué terapias necesitas, en qué orden las combinas y con qué frecuencia. Y no se queda en el Studio: también pautas de sueño, nutrición y movimiento para sostener tu progreso fuera de REVO.</p>
+              <div class="cine-chips"><span>Qué terapias</span><span>En qué orden</span><span>Con qué frecuencia</span><span>Hábitos fuera de REVO</span></div>
+            </div>
+
+            <div class="cine-block" data-i="3">
+              <p class="cine-num">03</p>
+              <span class="cine-tag"><span class="blip"></span>En tu semana</span>
+              <h2>Rutina</h2>
+              <p class="lead">La ciencia, hecha hábito.</p>
+              <p class="body">Diseñado para encajar en tu vida, no al revés. Abrimos de 7 a 21 h, con o sin reserva, y hay terapias desde 3 minutos. Entras, te cuidas y sigues con tu día.</p>
+              <div class="cine-chips"><span>De 7 a 21 h</span><span>Reserva o sin cita</span><span>Desde 3 min</span></div>
+            </div>
+
+            <div class="cine-block" data-i="4">
+              <p class="cine-num">04</p>
+              <span class="cine-tag"><span class="blip"></span>Contigo siempre</span>
+              <h2>Acompañamiento</h2>
+              <p class="lead">Nunca lo haces solo.</p>
+              <p class="body">Seguimiento continuo con supervisión médica y un Wellness Coach personal que revisa tus marcadores y ajusta el protocolo a medida que tu cuerpo evoluciona.</p>
+              <div class="cine-chips"><span>Supervisión médica</span><span>Wellness Coach</span><span>Ajuste continuo</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="cine-rail" data-screen-label="Método · progreso">
+          <div class="rail-track">
+            <span class="rail-line" aria-hidden="true"></span>
+            <span class="rail-fill" aria-hidden="true"></span>
+            <button class="tick" type="button" data-i="0"><span class="num">00</span></button>
+            <button class="tick" type="button" data-i="1"><span class="num">01</span></button>
+            <button class="tick" type="button" data-i="2"><span class="num">02</span></button>
+            <button class="tick" type="button" data-i="3"><span class="num">03</span></button>
+            <button class="tick" type="button" data-i="4"><span class="num">04</span></button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ CLOSING CTA ============ -->
+  </main>
+
+  <!-- ============ CIERRE: CTA + FOOTER EN UNA PANTALLA ============ -->
+  <div class="metodo-close footer--fluid">
+    <canvas class="footer-gl fluid-gl" id="footerGL" aria-hidden="true"></canvas>
+    <div class="footer-fluid-scrim" aria-hidden="true"></div>
+    <section class="metodo-cta" data-screen-label="Método · CTA">
+      <div class="wrap">
+        <p class="eyebrow reveal">Empieza hoy</p>
+        <h2 class="reveal" style="--d:.08s">Conoce el Studio, habla con el equipo y prueba tu <span class="ser">primera terapia</span>.</h2>
+        <div class="cta-btns reveal" style="--d:.18s">
+          <a class="btn btn--lg btn--hero" href="index.html#reset" data-hot data-reservar data-board="146948">Mi Primer Reset</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer section--tight">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo" href="index.html#top"><img class="logo-img" src="assets/revo-logo-white.png" alt="REVO" /></a>
+          <p class="footer-tag">Club de longevidad y terapias avanzadas. Barcelona.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Explora</h4>
+            <a href="metodo.html" data-hot>El método</a>
+            <a href="index.html#terapias" data-hot>Las terapias</a>
+            <a href="studios.html" data-hot>Studios</a>
+            <a href="membresias.html" data-hot>Membresías</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener" data-hot>Carrer de Ferran Agulló, 24</a>
+            <a href="tel:+34613505881" data-hot>+34 613 505 881</a>
+            <a href="mailto:hello@revostudios.eu" data-hot>hello@revostudios.eu</a>
+            <a href="https://instagram.com/revo_studios" target="_blank" rel="noopener" data-hot>Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 REVO · Longevity Club · Barcelona</span>
+        <span>Aviso legal · Privacidad · Cookies</span>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <script>
+    const header = document.getElementById('header');
+    const bg = document.getElementById('bg');
+    const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    /* header hide/show */
+    let lastY = scrollY;
+    addEventListener('scroll', ()=>{
+      const y = scrollY;
+      header.classList.toggle('scrolled', y > 30);
+      header.classList.toggle('is-hidden', y > lastY && y > 200);
+      lastY = y;
+    }, {passive:true});
+
+    /* reveals */
+    const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')), 2600);
+
+    /* CINEMA pinned crossfade */
+    (function(){
+      const cine = document.getElementById('cine');
+      const layers = [...cine.querySelectorAll('.cine-layer')];
+      const blocks = [...cine.querySelectorAll('.cine-block')];
+      const ticks  = [...cine.querySelectorAll('.cine-rail .tick')];
+      const n = layers.length;
+      const diagFlow = cine.querySelector('.diag-flow');
+      const diagFill = diagFlow ? diagFlow.querySelector('.diag-rail-fill') : null;
+      const diagCols = diagFlow ? [...diagFlow.querySelectorAll('.diag-col')] : [];
+      const cineRail = cine.querySelector('.cine-rail');
+      const palettes = [
+        ['#16245f','#2f47c4','#6881fc'],
+        ['#122a66','#2d4fd0','#6f88ff'],
+        ['#0f2b72','#2b53dc','#6076ff'],
+        ['#0c2461','#244ad6','#5876fb'],
+        ['#16245f','#3650cf','#6881fc'],
+      ];
+      let cur = -1;
+      function setActive(idx){
+        if(idx === cur) return; cur = idx;
+        layers.forEach((l,i)=>l.classList.toggle('show', i===idx));
+        blocks.forEach((b,i)=>b.classList.toggle('show', i===idx));
+        ticks.forEach((t,i)=>{ t.classList.toggle('active', i===idx); t.classList.toggle('done', i<idx); });
+        const p = palettes[idx];
+        bg.style.setProperty('--c1', p[0]); bg.style.setProperty('--c2', p[1]); bg.style.setProperty('--c3', p[2]);
+        document.body.style.backgroundColor = p[0];
+      }
+      let ticking = false;
+      function update(){
+        ticking = false;
+        const rect = cine.getBoundingClientRect();
+        const total = cine.offsetHeight - innerHeight;
+        const p = Math.min(1, Math.max(0, (-rect.top) / total));
+        const idx = Math.min(n-1, Math.floor(p * n + 0.0001));
+        setActive(idx);
+        if(cineRail) cineRail.style.setProperty('--railp', p.toFixed(4));
+        /* Diagnóstico flow: map step 01's scroll range to 0..1 and fill left→right */
+        if(diagFlow){
+          const sp = Math.max(0, Math.min(1, p * n - 1));
+          if(diagFlow) diagFlow.style.setProperty('--diagp', sp.toFixed(4));
+          const m = diagCols.length;
+          diagCols.forEach((c,i)=>c.classList.toggle('lit', sp >= (i + 0.5)/m));
+        }
+      }
+      addEventListener('scroll', ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+      addEventListener('resize', update);
+      ticks.forEach((t,i)=>t.addEventListener('click', ()=>{
+        const total = cine.offsetHeight - innerHeight;
+        const y = cine.offsetTop + (i + 0.5)/n * total;
+        scrollTo({top:y, behavior:'smooth'});
+      }));
+      update();
+    })();
+  </script>
+
+
+  <script>
+  /* cerrar el desplegable del nav al hacer clic en una opción (evita que quede abierto por :focus-within) */
+  document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest(".nav-menu a, .nav-trigger");if(!t)return;requestAnimationFrame(function(){if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();});},true);
+  </script>
+
+  <script>
+  /* desplegable nav por JS con margen de gracia (sin parpadeo del hover-gap) */
+  (function(){
+    document.querySelectorAll(".nav-drop").forEach(function(d){
+      var t;
+      d.addEventListener("mouseenter",function(){clearTimeout(t);d.classList.add("open");});
+      d.addEventListener("mouseleave",function(){clearTimeout(t);t=setTimeout(function(){d.classList.remove("open");},160);});
+      d.addEventListener("focusin",function(){clearTimeout(t);d.classList.add("open");});
+      d.addEventListener("focusout",function(){if(!d.contains(document.activeElement))d.classList.remove("open");});
+    });
+  })();
+  </script>
+
+    <script>
+  /* nav móvil v2: botón hamburguesa en HTML + panel construido desde el nav */
+  (function(){
+    function build(){
+      if(document.querySelector('.mobile-nav'))return;
+      var inner=document.querySelector('.site-header .header-inner')||document.querySelector('.header-inner');
+      var nav=document.querySelector('.site-header .nav')||document.querySelector('.nav');
+      if(!inner||!nav)return;
+      var btn=inner.querySelector('.nav-toggle');
+      if(!btn){ btn=document.createElement('button'); btn.className='nav-toggle'; btn.type='button'; btn.setAttribute('aria-label','Menú'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>'; inner.appendChild(btn); }
+      var panel=document.createElement('nav'); panel.className='mobile-nav';
+      var h='<button class="mobile-nav-close" aria-label="Cerrar menú"></button>';
+      Array.prototype.forEach.call(nav.children,function(el){
+        if(el.tagName==='A'){ h+='<a class="mnav-link" href="'+el.getAttribute('href')+'">'+el.textContent.trim()+'</a>'; }
+        else if(el.classList.contains('nav-drop')){
+          var trg=el.querySelector('.nav-trigger'); var label=trg?trg.textContent.trim():'';
+          h+='<div class="mnav-group"><p class="mnav-group-label">'+label+'</p><div class="mnav-sub">';
+          Array.prototype.forEach.call(el.querySelectorAll('.nav-loc'),function(a){ var nm=a.querySelector('.nav-loc-name'); var tx=(nm?nm.textContent:a.textContent).trim(); h+='<a href="'+a.getAttribute('href')+'">'+tx+'</a>'; });
+          h+='</div></div>';
+        }
+      });
+      var resv=inner.querySelector('.btn--hero'); var tel=inner.querySelector('.header-tel');
+      h+='<div class="mobile-nav-foot">';
+      if(resv) h+='<a class="btn btn--lg btn--primary" href="'+resv.getAttribute('href')+'">'+resv.textContent.trim()+'</a>';
+      var telnum=(tel&&tel.textContent.trim())||'+34 613 505 881'; var telhref=(tel&&tel.getAttribute('href'))||'tel:+34613505881';
+      h+='<a class="mnav-tel" href="'+telhref+'">'+telnum+'</a></div>';
+      panel.innerHTML=h; document.body.appendChild(panel);
+      function op(){panel.classList.add('open');document.body.classList.add('menu-open');}
+      function cl(){panel.classList.remove('open');document.body.classList.remove('menu-open');}
+      btn.addEventListener('click',op);
+      panel.querySelector('.mobile-nav-close').addEventListener('click',cl);
+      panel.addEventListener('click',function(e){var g=e.target.closest('.mnav-group-label');if(g){g.parentElement.classList.toggle('open');return;}if(e.target.closest('a'))cl();});
+      addEventListener('keydown',function(e){if(e.key==='Escape')cl();});
+    }
+    if(document.readyState!=='loading')build(); else document.addEventListener('DOMContentLoaded',build);
+  })();
+  </script>
+  <script src="revo-footer-fluid.js"></script>
+  <script src="revo-reservar.js" defer></script>
+</body>
+</html>
