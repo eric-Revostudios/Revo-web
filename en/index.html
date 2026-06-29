@@ -155,7 +155,8 @@
   .therapies-pin:not(.pinned) .therapies-head{ padding-top:0; }
   /* pinned (desktop) therapies: keep head + cards within 100vh so cards aren't clipped at the bottom */
   .therapies-pin.pinned .therapies-head{ padding-top:0; margin-bottom:0; max-width:none; }
-  .therapies-pin.pinned .t-screen{ gap:clamp(18px,3vh,40px); }
+  .therapies-pin.pinned .t-screen{ gap:clamp(4px,0.8vh,10px); justify-content:center; transform:translateY(clamp(10px,2vh,28px)); }
+  .therapies-pin.pinned .therapies-head .eyebrow{ margin-bottom:clamp(10px,1.4vh,18px); }
   .therapies-pin.pinned .therapies-head h2{ font-size:clamp(36px,5.4vw,78px); max-width:20ch; }
   /* títulos de sección unificados al tamaño de "The method" (.method-head h2) */
   .therapies-head h2{ font-size:clamp(36px,5.4vw,78px); }
@@ -166,7 +167,7 @@
   }
   /* "Our members": título alineado a la izquierda */
   .members .eyebrow{ justify-content:flex-start; text-align:left; }
-  .therapies-pin.pinned .therapies-head p{ margin-top:clamp(10px,1.4vh,22px); }
+  .therapies-pin.pinned .therapies-head p{ margin-top:clamp(8px,1.1vh,16px); }
   .therapies-pin.pinned .cards{ padding-block:6px clamp(10px,2vh,26px); }
   .therapies-pin.pinned .card{ min-height:clamp(360px,52vh,420px); }
   /* compact duration label (was a big pill) */
@@ -185,6 +186,16 @@
     transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
   .card-actions--single .card-book{ margin-left:0; }
   .card-book:hover{ background:#eaf0ff; transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.28); }
+  /* PRUEBA estética: tarjetas de terapias sin contornos ni borde 3D */
+  .therapies-pin .card{ --lg-rim:0;
+    background:rgba(104,129,252,.22);
+    backdrop-filter:blur(26px) saturate(1.2); -webkit-backdrop-filter:blur(26px) saturate(1.2);
+    box-shadow:0 34px 70px -28px rgba(6,9,32,.6), 0 10px 24px -12px rgba(6,9,32,.45); }
+  .therapies-pin .card::before{ display:none; }
+  .therapies-pin .card{ cursor:pointer; }
+  .therapies-pin .card::after{ display:none; }
+  .therapies-pin .card:hover{ transform:translateY(-10px);
+    box-shadow:0 54px 96px -30px rgba(6,9,32,.62), 0 14px 28px -12px rgba(6,9,32,.5); }
   .hero-benefits .chip{ text-transform:none; letter-spacing:-.005em; font-size:17px; font-weight:600; padding:15px 26px; background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.62); color:#fff; position:relative; overflow:hidden; }
   .hero-benefits .chip::after{ content:""; position:absolute; top:0; bottom:0; left:-65%; width:55%; pointer-events:none;
     background:linear-gradient(105deg, transparent, rgba(255,255,255,.5), transparent); transform:skewX(-14deg); }
@@ -398,10 +409,10 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
   <!-- ============ LOADER (solo Home, 1ª vez por sesión) ============ -->
   <div id="rl" aria-hidden="true">
     <div class="rl-logo">
-      <img class="rl-pc rl-r" src="../assets/logo-r.png" alt="" />
-      <img class="rl-pc rl-bars" src="../assets/logo-bars.png" alt="" />
-      <img class="rl-pc rl-vo" src="../assets/logo-vo.png" alt="" />
-      <img class="rl-pc rl-studios" src="../assets/logo-studios.png" alt="REVO Studios" />
+      <img loading="lazy" decoding="async" class="rl-pc rl-r" src="../assets/logo-r.png" alt="" />
+      <img loading="lazy" decoding="async" class="rl-pc rl-bars" src="../assets/logo-bars.png" alt="" />
+      <img loading="lazy" decoding="async" class="rl-pc rl-vo" src="../assets/logo-vo.png" alt="" />
+      <img loading="lazy" decoding="async" class="rl-pc rl-studios" src="../assets/logo-studios.png" alt="REVO Studios" />
       <div class="rl-fill"></div>
       <div class="rl-sheen"><div class="rl-band"></div></div>
     </div>
@@ -449,7 +460,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="header">
     <div class="header-inner">
-      <a class="logo" href="#top"><img class="logo-img" src="../assets/revo-icon.png" alt="REVO" /></a>
+      <a class="logo" href="#top"><img loading="lazy" decoding="async" class="logo-img" src="../assets/revo-icon.png" alt="REVO" /></a>
       <nav class="nav">
         <a href="metodo.html" data-hot>The method</a>
         <div class="nav-drop" id="navTerapias">
@@ -694,7 +705,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         </div>
         </div>
         <div class="joy-panel" aria-label="Optimise your health">
-          <img src="../assets/optimiza-salud.png" alt="" />
+          <img loading="lazy" decoding="async" src="../assets/optimiza-salud.jpg" alt="" />
           <div class="joy-inner">
             <p class="eyebrow joy-eyebrow">En tu rutina</p>
             <h2>to maximise your physical, mental and <span class="ser">aesthetic</span> health</h2>
@@ -714,7 +725,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         <div class="med-director reveal" style="--d:.12s">
           <div class="dir-person">
             <div class="dir-avatar" style="overflow:hidden;background:none;">
-              <img src="../assets/dra-miriam-rivera.jpeg" alt="Dra. Miriam Rivera" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <img loading="lazy" decoding="async" src="../assets/dra-miriam-rivera.jpeg" alt="Dra. Miriam Rivera" style="width:100%;height:100%;object-fit:cover;display:block;" />
             </div>
             <div class="dir-id">
               <div class="doc-name">Dra. Miriam Rivera</div>
@@ -791,7 +802,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       </div>
       <div class="exp-body">
         <div class="exp-media-col reveal">
-          <div class="exp-media"><img src="../assets/two-women.jpg" alt="" /></div>
+          <div class="exp-media"><img loading="lazy" decoding="async" src="../assets/two-women.jpg" alt="" /></div>
         </div>
         <div class="exp-right reveal">
           <ul class="exp-combos">
@@ -903,7 +914,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a class="logo" href="#top"><img class="logo-img" src="../assets/revo-logo-white.png" alt="REVO" /></a>
+          <a class="logo" href="#top"><img loading="lazy" decoding="async" class="logo-img" src="../assets/revo-logo-white.png" alt="REVO" /></a>
           <p class="footer-tag">Longevity club and advanced therapies. Barcelona.</p>
         </div>
         <div class="footer-cols">
@@ -934,7 +945,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
   <div id="gift" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gift-title">
     <div class="gift-card on-light">
       <button class="gift-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-      <div class="gift-media"><img src="../assets/gift-bag.jpg" alt="REVO gift bag" /></div>
+      <div class="gift-media"><img loading="lazy" decoding="async" src="../assets/gift-bag.jpg" alt="REVO gift bag" /></div>
       <div class="gift-body">
         <p class="eyebrow">Gift REVO</p>
         <h3 id="gift-title">The best gift: <span class="ser">feeling better</span>.</h3>
@@ -1236,6 +1247,21 @@ void main(){
         if(reduce){ return; }
       }
       requestAnimationFrame(frame);
+    })();
+
+    /* ---- therapies cards: whole card navigates to its therapy page ---- */
+    (function(){
+      const cards = [...document.querySelectorAll('.therapies-pin .card')];
+      cards.forEach(card=>{
+        const info = card.querySelector('.card-info');
+        const url = info && info.getAttribute('href');
+        if(!url) return;
+        card.addEventListener('click', e=>{
+          if(e.target.closest('a')) return;
+          if(window.getSelection && String(window.getSelection())) return;
+          window.location.href = url;
+        });
+      });
     })();
 
     /* ---- therapies cards: liquid glass (per-card SVG refraction map) ---- */

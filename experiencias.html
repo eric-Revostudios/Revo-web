@@ -87,6 +87,9 @@
   .exp-done h4{ font-family:var(--display); font-weight:400; font-size:25px; letter-spacing:-.01em; color:#14161c; margin:0; }
   .exp-done p{ font-family:var(--sans); font-size:14px; color:rgba(20,22,28,.6); margin:0; max-width:30ch; }
   @media (max-width:520px){ .exp-row{ grid-template-columns:1fr; } .exp-seg{ grid-template-columns:1fr; } }
+  .combo-note{ font-family:var(--sans); font-size:12px; line-height:1.45; color:rgba(20,22,28,.5); margin:11px 0 0; }
+  .combo-note .wa-link{ color:var(--indigo); text-decoration:none; border-bottom:1px solid rgba(54,80,207,.32); white-space:nowrap; }
+  .combo-note .wa-link:hover{ border-bottom-color:var(--indigo); }
 </style>
 <script>
 /* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
@@ -112,7 +115,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
   <header class="site-header" id="header">
     <div class="header-inner">
-      <a class="logo" href="index.html"><img class="logo-img" src="assets/revo-icon.png" alt="REVO" /></a>
+      <a class="logo" href="index.html"><img loading="lazy" decoding="async" class="logo-img" src="assets/revo-icon.png" alt="REVO" /></a>
       <nav class="nav">
         <a href="metodo.html" data-hot>El método</a>
         <div class="nav-drop" id="navTerapias">
@@ -148,7 +151,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
     <!-- ============ HERO ============ -->
     <section class="ter-hero" data-screen-label="Hero" data-c1="#16245f" data-c2="#3650cf" data-c3="#6881fc" data-deg="144deg" data-theme="dark">
-      <div class="ter-hero-media"><img src="assets/lounge.jpg" alt="" /></div>
+      <div class="ter-hero-media"><img loading="eager" fetchpriority="high" decoding="async" src="assets/lounge.jpg" alt="" /></div>
       <div class="ter-hero-inner">
         <p class="eyebrow reveal">Las experiencias</p>
         <h1 class="reveal" style="--d:.06s">Una experiencia con <span class="ser">propósito</span>.</h1>
@@ -175,7 +178,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       <div class="combos-grid">
 
         <article class="combo reveal">
-          <div class="combo-media"><img src="assets/glow.jpg" alt="Glow" /></div>
+          <div class="combo-media"><img loading="lazy" decoding="async" src="assets/glow.jpg" alt="Glow" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Glow</h3>
             <p class="combo-tagline">Piel luminosa, silueta definida.</p>
@@ -184,14 +187,15 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <div class="combo-flow"><span class="fstep"><span class="fn">1</span>Campo electromagnético</span><span class="farr">→</span><span class="fstep"><span class="fn">2</span>Crioterapia</span><span class="farr">→</span><span class="fstep"><span class="fn">3</span>Masaje drenante</span><span class="farr">→</span><span class="fstep"><span class="fn">4</span>Luz roja</span></div>
             <div class="combo-meta"><span class="combo-dur">1h 50min</span><span class="combo-price">120€</span></div>
             <div class="combo-cta">
-              <button class="btn btn--hero" type="button" data-exp-book data-exp="Glow" data-price="120€" data-url="https://www.revostudios.eu/shop/p/glow-experience" data-hot>Reservar</button>
-              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Glow" data-price="120€" data-url="https://www.revostudios.eu/shop/p/glow-experience" data-hot>Regalar</button>
+              <a class="btn btn--hero" href="https://momence.com/REVO-Studios/product/Glow-Experience/498606" target="_blank" rel="noopener" data-hot>Reservar</a>
+              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Glow" data-price="120€" data-url="https://momence.com/REVO-Studios/product/Glow-Experience/498606" data-hot>Regalar</button>
             </div>
+            <p class="combo-note">Pagas online y coordinamos contigo las sesiones. <a class="wa-link" href="https://wa.me/34613505881?text=Hola%2C%20quiero%20reservar%20la%20experiencia%20Glow" target="_blank" rel="noopener">¿Prefieres cuadrar fecha antes? WhatsApp</a></p>
           </div>
         </article>
 
         <article class="combo reveal" style="--d:.08s">
-          <div class="combo-media"><img src="assets/jump-man.jpg" alt="Sports Performance" /></div>
+          <div class="combo-media"><img loading="lazy" decoding="async" src="assets/jump-man.jpg" alt="Sports Performance" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Sports Performance</h3>
             <p class="combo-tagline">Recupérate más rápido. Rinde mejor.</p>
@@ -200,14 +204,15 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <div class="combo-flow"><span class="fstep"><span class="fn">1</span>Cámara hiperbárica</span><span class="farr">→</span><span class="fstep"><span class="fn">2</span>Crioterapia</span><span class="farr">→</span><span class="fstep"><span class="fn">3</span>Presoterapia</span></div>
             <div class="combo-meta"><span class="combo-dur">1h 30min</span><span class="combo-price">120€</span></div>
             <div class="combo-cta">
-              <button class="btn btn--hero" type="button" data-exp-book data-exp="Sports Performance" data-price="120€" data-url="https://www.revostudios.eu/shop/p/sports-experience-39wzx-n4tyk" data-hot>Reservar</button>
-              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Sports Performance" data-price="120€" data-url="https://www.revostudios.eu/shop/p/sports-experience-39wzx-n4tyk" data-hot>Regalar</button>
+              <a class="btn btn--hero" href="https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608" target="_blank" rel="noopener" data-hot>Reservar</a>
+              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Sports Performance" data-price="120€" data-url="https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608" data-hot>Regalar</button>
             </div>
+            <p class="combo-note">Pagas online y coordinamos contigo las sesiones. <a class="wa-link" href="https://wa.me/34613505881?text=Hola%2C%20quiero%20reservar%20la%20experiencia%20Sports%20Performance" target="_blank" rel="noopener">¿Prefieres cuadrar fecha antes? WhatsApp</a></p>
           </div>
         </article>
 
         <article class="combo reveal" style="--d:.16s">
-          <div class="combo-media"><img src="assets/space-hero.jpg" alt="Longevity" /></div>
+          <div class="combo-media"><img loading="lazy" decoding="async" src="assets/space-hero.jpg" alt="Longevity" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Longevity</h3>
             <p class="combo-tagline">Más energía. Un cuerpo que se siente más joven.</p>
@@ -216,14 +221,15 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <div class="combo-flow"><span class="fstep"><span class="fn">1</span>Luz roja</span><span class="farr">→</span><span class="fstep"><span class="fn">2</span>Cámara hiperbárica</span><span class="farr">→</span><span class="fstep"><span class="fn">3</span>Campo electromagnético</span><span class="farr">→</span><span class="fstep"><span class="fn">4</span>BrainTap</span></div>
             <div class="combo-meta"><span class="combo-dur">1h 50min</span><span class="combo-price">160€</span></div>
             <div class="combo-cta">
-              <button class="btn btn--hero" type="button" data-exp-book data-exp="Longevity" data-price="160€" data-url="https://www.revostudios.eu/shop/p/sports-experience-39wzx-n4tyk-z3lz5" data-hot>Reservar</button>
-              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Longevity" data-price="160€" data-url="https://www.revostudios.eu/shop/p/sports-experience-39wzx-n4tyk-z3lz5" data-hot>Regalar</button>
+              <a class="btn btn--hero" href="https://momence.com/REVO-Studios/product/Longevity-Experience/498612" target="_blank" rel="noopener" data-hot>Reservar</a>
+              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Longevity" data-price="160€" data-url="https://momence.com/REVO-Studios/product/Longevity-Experience/498612" data-hot>Regalar</button>
             </div>
+            <p class="combo-note">Pagas online y coordinamos contigo las sesiones. <a class="wa-link" href="https://wa.me/34613505881?text=Hola%2C%20quiero%20reservar%20la%20experiencia%20Longevity" target="_blank" rel="noopener">¿Prefieres cuadrar fecha antes? WhatsApp</a></p>
           </div>
         </article>
 
         <article class="combo reveal">
-          <div class="combo-media"><img src="assets/redbed.png" alt="Sleep & Stress" /></div>
+          <div class="combo-media"><img loading="lazy" decoding="async" src="assets/redbed.jpg" alt="Sleep & Stress" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Sleep &amp; Stress</h3>
             <p class="combo-tagline">Baja el ritmo. Descansa de verdad.</p>
@@ -232,14 +238,15 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <div class="combo-flow"><span class="fstep"><span class="fn">1</span>Crioterapia</span><span class="farr">→</span><span class="fstep"><span class="fn">2</span>Campo electromagnético</span><span class="farr">→</span><span class="fstep"><span class="fn">3</span>Luz roja</span><span class="farr">→</span><span class="fstep"><span class="fn">4</span>BrainTap</span></div>
             <div class="combo-meta"><span class="combo-dur">1h</span><span class="combo-price">120€</span></div>
             <div class="combo-cta">
-              <button class="btn btn--hero" type="button" data-exp-book data-exp="Sleep &amp; Stress" data-price="120€" data-url="https://www.revostudios.eu/shop/p/sleepandstress-experience-39wzx" data-hot>Reservar</button>
-              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Sleep &amp; Stress" data-price="120€" data-url="https://www.revostudios.eu/shop/p/sleepandstress-experience-39wzx" data-hot>Regalar</button>
+              <a class="btn btn--hero" href="https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614" target="_blank" rel="noopener" data-hot>Reservar</a>
+              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Sleep &amp; Stress" data-price="120€" data-url="https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614" data-hot>Regalar</button>
             </div>
+            <p class="combo-note">Pagas online y coordinamos contigo las sesiones. <a class="wa-link" href="https://wa.me/34613505881?text=Hola%2C%20quiero%20reservar%20la%20experiencia%20Sleep%20%26%20Stress" target="_blank" rel="noopener">¿Prefieres cuadrar fecha antes? WhatsApp</a></p>
           </div>
         </article>
 
         <article class="combo reveal" style="--d:.08s">
-          <div class="combo-media"><img src="assets/tech.jpg" alt="Performance Cognitiva" /></div>
+          <div class="combo-media"><img loading="lazy" decoding="async" src="assets/tech.jpg" alt="Performance Cognitiva" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Performance Cognitiva</h3>
             <p class="combo-tagline">Piensa con claridad. Mantén el foco.</p>
@@ -248,14 +255,15 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <div class="combo-flow"><span class="fstep"><span class="fn">1</span>Cámara hiperbárica</span><span class="farr">→</span><span class="fstep"><span class="fn">2</span>Luz roja</span><span class="farr">→</span><span class="fstep"><span class="fn">3</span>BrainTap</span></div>
             <div class="combo-meta"><span class="combo-dur">1h 40min</span><span class="combo-price">160€</span></div>
             <div class="combo-cta">
-              <button class="btn btn--hero" type="button" data-exp-book data-exp="Performance Cognitiva" data-price="160€" data-url="https://www.revostudios.eu/shop/p/performancecognitive-experience-gwjd7" data-hot>Reservar</button>
-              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Performance Cognitiva" data-price="160€" data-url="https://www.revostudios.eu/shop/p/performancecognitive-experience-gwjd7" data-hot>Regalar</button>
+              <a class="btn btn--hero" href="https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616" target="_blank" rel="noopener" data-hot>Reservar</a>
+              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Performance Cognitiva" data-price="160€" data-url="https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616" data-hot>Regalar</button>
             </div>
+            <p class="combo-note">Pagas online y coordinamos contigo las sesiones. <a class="wa-link" href="https://wa.me/34613505881?text=Hola%2C%20quiero%20reservar%20la%20experiencia%20Performance%20Cognitiva" target="_blank" rel="noopener">¿Prefieres cuadrar fecha antes? WhatsApp</a></p>
           </div>
         </article>
 
         <article class="combo reveal" style="--d:.16s">
-          <div class="combo-media"><img src="assets/therapy.jpg" alt="Massage +" /></div>
+          <div class="combo-media"><img loading="lazy" decoding="async" src="assets/therapy.jpg" alt="Massage +" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Massage +</h3>
             <p class="combo-tagline">Tu masaje, potenciado.</p>
@@ -264,9 +272,10 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <div class="combo-flow"><span class="fstep"><span class="fn">1</span>Masaje a elegir</span><span class="farr">→</span><span class="fstep"><span class="fn">2</span>+ 1 terapia de biohacking</span></div>
             <div class="combo-meta"><span class="combo-dur">1h 30min</span><span class="combo-price">95€</span></div>
             <div class="combo-cta">
-              <button class="btn btn--hero" type="button" data-exp-book data-exp="Massage +" data-price="95€" data-url="https://www.revostudios.eu/shop/p/massage-experience-njbke" data-hot>Reservar</button>
-              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Massage +" data-price="95€" data-url="https://www.revostudios.eu/shop/p/massage-experience-njbke" data-hot>Regalar</button>
+              <a class="btn btn--hero" href="https://momence.com/REVO-Studios/product/Massage-Experience/498613" target="_blank" rel="noopener" data-hot>Reservar</a>
+              <button class="btn btn--hero" type="button" data-exp-gift data-exp="Massage +" data-price="95€" data-url="https://momence.com/REVO-Studios/product/Massage-Experience/498613" data-hot>Regalar</button>
             </div>
+            <p class="combo-note">Pagas online y coordinamos contigo las sesiones. <a class="wa-link" href="https://wa.me/34613505881?text=Hola%2C%20quiero%20reservar%20la%20experiencia%20Massage%20%2B" target="_blank" rel="noopener">¿Prefieres cuadrar fecha antes? WhatsApp</a></p>
           </div>
         </article>
 
@@ -292,7 +301,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a class="logo" href="#top"><img class="logo-img" src="assets/revo-logo-white.png" alt="REVO" /></a>
+          <a class="logo" href="#top"><img loading="lazy" decoding="async" class="logo-img" src="assets/revo-logo-white.png" alt="REVO" /></a>
           <p class="footer-tag">Club de longevidad y terapias avanzadas. Barcelona.</p>
         </div>
         <div class="footer-cols">
@@ -330,9 +339,9 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       <button class="exp-close" type="button" data-close aria-label="Cerrar">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
-      <p class="exp-kicker" id="expKicker">Reservar</p>
-      <h3 class="exp-title" id="expTitle"><span id="expTitlePrefix">Reserva tu experiencia </span><span class="ser" id="expName">Glow</span></h3>
-      <p class="exp-sub" id="expSub">Déjanos tus datos y te llevamos al pago.</p>
+      <p class="exp-kicker" id="expKicker">Regalar</p>
+      <h3 class="exp-title" id="expTitle"><span id="expTitlePrefix">Regala la experiencia </span><span class="ser" id="expName">Glow</span></h3>
+      <p class="exp-sub" id="expSub">Completa el regalo y te llevamos al pago. Te enviamos el comprobante por correo.</p>
 
       <form class="exp-form" id="expForm">
         <input type="hidden" name="access_key" value="5eeca49e-c92c-4d3b-9cff-e4ad55ed3991" />
@@ -343,29 +352,8 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         <input type="hidden" name="Precio" id="expPriceField" value="" />
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
 
-        <!-- ===== RESERVAR ===== -->
-        <fieldset class="exp-fields" data-fields="book">
-          <div class="exp-row">
-            <div class="exp-field"><label for="bk-nombre">Nombre <span class="req">*</span></label><input class="exp-input" id="bk-nombre" name="Nombre" type="text" autocomplete="given-name" required /></div>
-            <div class="exp-field"><label for="bk-apellido">Apellido <span class="req">*</span></label><input class="exp-input" id="bk-apellido" name="Apellido" type="text" autocomplete="family-name" required /></div>
-          </div>
-          <div class="exp-field"><label for="bk-email">Email <span class="req">*</span></label><input class="exp-input" id="bk-email" name="email" type="email" autocomplete="email" required /></div>
-          <div class="exp-field"><label for="bk-tel">Teléfono <span class="req">*</span></label><input class="exp-input" id="bk-tel" name="Teléfono" type="tel" autocomplete="tel" placeholder="Para confirmarte la cita" required /></div>
-          <div class="exp-row">
-            <div class="exp-field"><label for="bk-fecha">Fecha preferida</label><input class="exp-input" id="bk-fecha" name="Fecha preferida" type="date" /></div>
-            <div class="exp-field"><label for="bk-franja">Franja</label>
-              <select class="exp-input" id="bk-franja" name="Franja">
-                <option value="Indiferente">Indiferente</option>
-                <option value="Mañana">Mañana</option>
-                <option value="Tarde">Tarde</option>
-              </select>
-            </div>
-          </div>
-          <div class="exp-field"><label for="bk-notas">¿Algo que debamos saber?</label><textarea class="exp-input" id="bk-notas" name="Notas" placeholder="Opcional"></textarea></div>
-        </fieldset>
-
         <!-- ===== REGALAR ===== -->
-        <fieldset class="exp-fields" data-fields="gift" disabled>
+        <fieldset class="exp-fields" data-fields="gift">
           <div class="exp-field">
             <span class="exp-legend">¿En qué formato lo quieres? <span class="req">*</span></span>
             <div class="exp-seg">
@@ -374,14 +362,10 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             </div>
           </div>
           <div class="exp-row">
-            <div class="exp-field"><label for="gf-nombre">Nombre de quien lo recibe <span class="req">*</span></label><input class="exp-input" id="gf-nombre" name="Destinatario (nombre)" type="text" required /></div>
-            <div class="exp-field"><label for="gf-apellido">Apellido <span class="req">*</span></label><input class="exp-input" id="gf-apellido" name="Destinatario (apellido)" type="text" required /></div>
-          </div>
-          <div class="exp-field"><label for="gf-remail">Email de quien lo recibe <span class="req">*</span></label><input class="exp-input" id="gf-remail" name="Email destinatario" type="email" placeholder="A dónde enviamos el regalo" required /></div>
-          <div class="exp-row">
+            <div class="exp-field"><label for="gf-nombre">Para <span class="req">*</span></label><input class="exp-input" id="gf-nombre" name="Para (nombre)" type="text" placeholder="Quien lo recibe" required /></div>
             <div class="exp-field"><label for="gf-de">De parte de <span class="req">*</span></label><input class="exp-input" id="gf-de" name="De parte de" type="text" required /></div>
-            <div class="exp-field"><label for="gf-email">Tu email <span class="req">*</span></label><input class="exp-input" id="gf-email" name="email" type="email" autocomplete="email" placeholder="Para tu comprobante" required /></div>
           </div>
+          <div class="exp-field"><label for="gf-email">Tu email <span class="req">*</span></label><input class="exp-input" id="gf-email" name="email" type="email" autocomplete="email" placeholder="Para enviarte el regalo y el comprobante" required /></div>
           <div class="exp-field"><label for="gf-ded">Dedicatoria</label><textarea class="exp-input" id="gf-ded" name="Dedicatoria" placeholder="Opcional — la incluimos en el regalo"></textarea></div>
         </fieldset>
 
@@ -676,7 +660,6 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     var elPrefix = document.getElementById('expTitlePrefix');
     var elName = document.getElementById('expName');
     var elSub = document.getElementById('expSub');
-    var fsBook = modal.querySelector('[data-fields="book"]');
     var fsGift = modal.querySelector('[data-fields="gift"]');
     var submitBtn = document.getElementById('expSubmit');
     var doneText = document.getElementById('expDoneText');
@@ -684,28 +667,23 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     var redirectUrl = '', lastFocus = null;
 
     function open(mode, d){
-      var isGift = mode === 'gift';
       lastFocus = document.activeElement;
-      elKicker.textContent = isGift ? 'Regalar' : 'Reservar';
-      elPrefix.textContent = isGift ? 'Regala la experiencia ' : 'Reserva tu experiencia ';
+      elKicker.textContent = 'Regalar';
+      elPrefix.textContent = 'Regala la experiencia ';
       elName.textContent = d.exp || '';
-      elSub.textContent = isGift
-        ? 'Completa el regalo y te llevamos al pago seguro. Te enviamos el comprobante por correo.'
-        : 'Déjanos tus datos y te llevamos al pago. Después te confirmamos la cita.';
+      elSub.textContent = 'Completa el regalo y te llevamos al pago. Te enviamos el comprobante por correo.';
       form.reset();
-      fsGift.disabled = !isGift;
-      fsBook.disabled = isGift;
-      f['Tipo'].value = isGift ? 'Regalo' : 'Reserva';
+      f['Tipo'].value = 'Regalo';
       f['Experiencia'].value = d.exp || '';
       f['Precio'].value = d.price || '';
-      f['subject'].value = (isGift ? 'Nuevo regalo' : 'Nueva reserva') + ' · ' + (d.exp||'') + (d.price ? ' · ' + d.price : '');
+      f['subject'].value = 'Nuevo regalo · ' + (d.exp||'') + (d.price ? ' · ' + d.price : '');
       redirectUrl = d.url || '';
       submitBtn.disabled = false; submitBtn.textContent = 'Continuar al pago';
       modal.classList.remove('is-done');
       modal.classList.add('open');
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
-      setTimeout(function(){ var el = (isGift?fsGift:fsBook).querySelector('input,select'); if(el) el.focus(); }, 90);
+      setTimeout(function(){ var el = fsGift.querySelector('input,select'); if(el) el.focus(); }, 90);
     }
     function close(){
       modal.classList.remove('open');
@@ -723,9 +701,6 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       }
     }
 
-    document.querySelectorAll('[data-exp-book]').forEach(function(b){
-      b.addEventListener('click', function(){ open('book', b.dataset); });
-    });
     document.querySelectorAll('[data-exp-gift]').forEach(function(b){
       b.addEventListener('click', function(){ open('gift', b.dataset); });
     });
