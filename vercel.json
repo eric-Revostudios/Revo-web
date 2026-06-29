@@ -35,9 +35,7 @@
     { "source": "/biohacking-barcelona", "destination": "/experiencias.html", "permanent": true },
     { "source": "/memberships", "destination": "/membresias.html", "permanent": true },
     { "source": "/reservation-page", "destination": "/", "permanent": true },
-    { "source": "/shop/p/:path*", "destination": "https://tienda.revostudios.eu/shop/p/:path*", "permanent": true },
-    { "source": "/shop", "destination": "/experiencias.html", "permanent": true },
-    { "source": "/cart", "destination": "https://tienda.revostudios.eu/cart", "permanent": false },
-    { "source": "/checkout", "destination": "https://tienda.revostudios.eu/checkout", "permanent": false }
+    { "source": "/shop/p/:path*", "destination": "/experiencias.html", "permanent": true },
+    { "source": "/shop", "destination": "/experiencias.html", "permanent": true }
   ]
 }
