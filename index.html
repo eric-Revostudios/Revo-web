@@ -1025,11 +1025,13 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       bg.style.setProperty('--c2', sec.dataset.c2);
       bg.style.setProperty('--c3', sec.dataset.c3);
       bg.style.setProperty('--deg', sec.dataset.deg || '144deg');
-      document.body.style.backgroundColor = sec.dataset.c2;
       const light = sec.dataset.theme === 'light';
+      /* CLAVE iOS Safari: las barras (notch + barra inferior) toman el background-color REAL
+         del <body>, NO la meta theme-color. Por eso el body va en el tono de barra deseado
+         (oscuro o blanco); el degradado visible sigue en el elemento .bg (--c1/--c2/--c3 intactos). */
+      document.body.style.backgroundColor = light ? '#ffffff' : '#0a0d1e';
       header.classList.toggle('over-light', light);
-      /* theme-color dinámico: la barra de estado (notch) y la barra inferior de Safari
-         toman SIEMPRE el tono de la sección activa → se funden con el contenido (sin azul ni blanco a destiempo) */
+      /* theme-color (para Android/Chrome y PWA; iOS usa el body bg de arriba) */
       const themeMeta = document.querySelector('meta[name="theme-color"]');
       if(themeMeta) themeMeta.setAttribute('content', light ? '#ffffff' : '#0a0d1e');
     }
