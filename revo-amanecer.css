@@ -599,13 +599,14 @@ body.menu-open{ overflow:hidden; }
   .step-num{ font-size:30px; }
   .step-body{ font-size:15.5px; }
   .card{ flex-basis:82vw; }
-  /* móvil (no pinned): terapias = pantalla completa, bloque centrado
-     (ni demasiado aire arriba ni pegado abajo) */
-  .therapies-pin:not(.pinned) .therapies-sticky{ min-height:100lvh; display:flex; flex-direction:column; }
+  /* móvil (no pinned): terapias = al menos pantalla completa (área visible real),
+     contenido desde arriba; si la tarjeta es alta, la sección crece y se hace scroll
+     (así el botón Reservar NUNCA queda detrás de la barra de Safari) */
+  .therapies-pin:not(.pinned) .therapies-sticky{ min-height:100svh; display:flex; flex-direction:column; }
   .therapies-pin:not(.pinned) .therapies-pan{ flex:1; display:flex; flex-direction:column; }
-  .t-screen{ flex:1; justify-content:center;
-    padding:calc(78px + env(safe-area-inset-top,0px)) 0 calc(40px + env(safe-area-inset-bottom,0px));
-    gap:20px; }
+  .t-screen{ flex:1; justify-content:flex-start;
+    padding:calc(72px + env(safe-area-inset-top,0px)) 0 calc(26px + env(safe-area-inset-bottom,0px));
+    gap:14px; }
   /* la sombra inferior de las tarjetas se cortaba con overflow-y:hidden;
      alineamos el margen lateral con el del título (24px) y ampliamos el padding
      vertical del carril para que la sombra quepa dentro del recorte */

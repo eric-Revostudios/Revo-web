@@ -22,7 +22,7 @@
 <link rel="alternate" hreflang="es" href="index.html" />
 <link rel="alternate" hreflang="en" href="en/index.html" />
 <link rel="alternate" hreflang="x-default" href="index.html" />
-<link rel="stylesheet" href="revo-amanecer.css?v=mobile30" />
+<link rel="stylesheet" href="revo-amanecer.css?v=mobile31" />
 <link rel="stylesheet" href="revo-reservar.css" />
 <style id="home-extra">
   .exp-head{ max-width:880px; margin:0 0 clamp(34px,4.5vh,56px); }
@@ -161,6 +161,8 @@
   /* títulos de sección unificados al tamaño de "El método" (.method-head h2) */
   .therapies-head h2{ font-size:clamp(36px,5.4vw,78px); }
   .joy-inner h2{ font-size:clamp(36px,5.4vw,78px); }
+  /* escritorio: cada mitad del titular nunca se parte → SIEMPRE 2 líneas (la fuente ya escala con el ancho) */
+  @media (min-width:1001px){ .joy-inner h2{ white-space:nowrap; } }
   /* móvil: títulos de sección de la home al tamaño canónico del resto de la web (= .method-head h2) */
   @media (max-width:600px){
     .therapies-head h2, .joy-inner h2, .exp-head h2{ font-size:clamp(28px,8.2vw,40px); }
@@ -283,12 +285,13 @@
   .voices-head{ max-width:1000px; margin:0 auto; text-align:center; }
   .voices-head .eyebrow{ justify-content:center; }
   .voices-title{ font-family:var(--display); font-weight:400; font-size:clamp(28px,4vw,54px); line-height:1.1; letter-spacing:-.016em; margin:26px auto 0; max-width:20ch; text-wrap:balance; color:var(--ink-dark); }
-  /* resaltado: UNA sola caja continua en el segmento (antes era una caja por carácter → líneas blancas por subpíxel en algunas pantallas) */
-  .voices-title .ser{ color:#fff; background:var(--indigo); padding:.02em .14em; border-radius:3px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
-  /* efecto "se escribe al bajar": los caracteres solo animan su opacidad */
+  /* resaltado continuo que se "pinta" de izquierda a derecha con el scroll (--hp 0→1). Una sola caja → sin líneas blancas */
+  .voices-title .ser{ color:#fff; border-radius:3px; padding:.02em .14em;
+    background:linear-gradient(90deg, var(--indigo) 0 calc(var(--hp,0) * 100%), transparent calc(var(--hp,0) * 100%));
+    box-decoration-break:clone; -webkit-box-decoration-break:clone; }
   .voices-title .qw{ opacity:.14; transition:opacity .14s linear; }
   .voices-title .qw-hl{ transition:opacity .14s linear; }
-  @media (prefers-reduced-motion:reduce){ .voices-title .qw{ opacity:1 !important; } }
+  @media (prefers-reduced-motion:reduce){ .voices-title .qw{ opacity:1 !important; } .voices-title .ser{ --hp:1; } }
   .voices-seal{ display:inline-flex; align-items:center; gap:11px; margin:30px auto 0; padding:11px 22px;
     border:1px solid rgba(17,19,24,.16); border-radius:100px; font-size:13px; letter-spacing:.01em; color:rgba(20,22,28,.7); }
   .voices-seal b{ color:var(--ink-dark); font-weight:600; }
@@ -402,6 +405,8 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
   transition:opacity .35s, background .3s, border-color .3s, transform .3s; }
 .ther-arrow:hover, .ther-arrow:focus-visible{ opacity:1; background:rgba(255,255,255,.16); border-color:#fff; transform:translateY(-50%) scale(1.06); }
 @media (max-width:1000px){ .ther-arrow{ right:10px; width:40px; height:40px; opacity:.3; } }
+/* móvil: en táctil se desliza con el dedo → la flecha estorba y choca con los botones flotantes */
+@media (max-width:600px){ .ther-arrow{ display:none; } }
 </style>
 </head>
 <body style="background-color: rgb(255, 255, 255)">
@@ -1023,6 +1028,10 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       document.body.style.backgroundColor = sec.dataset.c2;
       const light = sec.dataset.theme === 'light';
       header.classList.toggle('over-light', light);
+      /* theme-color dinámico: la barra de estado (notch) y la barra inferior de Safari
+         toman SIEMPRE el tono de la sección activa → se funden con el contenido (sin azul ni blanco a destiempo) */
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      if(themeMeta) themeMeta.setAttribute('content', light ? '#ffffff' : '#0a0d1e');
     }
     function pickSection(){
       const vh = window.innerHeight || document.documentElement.clientHeight;
@@ -1035,6 +1044,15 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         if(top <= f * vh) best = s;                   // last section past its trigger line wins
       }
       applyPalette(best);
+      /* override del footer: cuando entra en viewport, fondo base y barras de Safari oscuros
+         (si no, el body queda con el color claro de las FAQ y asoma blanco en el rebote/abajo) */
+      const footer = document.querySelector('.site-footer');
+      if(footer && footer.getBoundingClientRect().top <= vh * 0.6){
+        document.body.style.backgroundColor = '#0a0d1e';
+        header.classList.remove('over-light');
+        const tm = document.querySelector('meta[name="theme-color"]');
+        if(tm) tm.setAttribute('content', '#0a0d1e');
+      }
     }
     window.addEventListener('scroll', pickSection, {passive:true});
     window.addEventListener('resize', pickSection);
@@ -1114,7 +1132,10 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
           words.push(s);
         }
       });
-      if(matchMedia('(prefers-reduced-motion:reduce)').matches){ words.forEach(w=>w.style.opacity='1'); return; }
+      const serEl = q.querySelector('.seg.ser');
+      const hlStart = words.findIndex(w=>w.classList.contains('qw-hl'));
+      const hlCount = words.filter(w=>w.classList.contains('qw-hl')).length;
+      if(matchMedia('(prefers-reduced-motion:reduce)').matches){ words.forEach(w=>w.style.opacity='1'); if(serEl) serEl.style.setProperty('--hp','1'); return; }
       const n = words.length;
       let ticking = false;
       function update(){
@@ -1125,7 +1146,8 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         let p = (start - r.top) / (start - end);
         p = Math.max(0, Math.min(1, p));
         const lit = p * n;
-        for(let i=0;i<n;i++){ const o = Math.max(0, Math.min(1, lit - i)); words[i].style.opacity = (0.12 + o*0.88).toFixed(3); if(words[i].classList.contains('qw-hl')){ words[i].classList.toggle('hl', o >= 0.6); } }
+        for(let i=0;i<n;i++){ const o = Math.max(0, Math.min(1, lit - i)); words[i].style.opacity = (0.12 + o*0.88).toFixed(3); }
+        if(serEl && hlCount){ let hp = (lit - hlStart) / hlCount; hp = Math.max(0, Math.min(1, hp)); serEl.style.setProperty('--hp', hp.toFixed(4)); }
       }
       const onScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } };
       window.addEventListener('scroll', onScroll, {passive:true});
