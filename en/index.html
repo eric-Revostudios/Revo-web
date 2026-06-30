@@ -4,25 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0d1e" />
-<title>REVO — Longevity Club · Barcelona</title>
+<title>REVO Longevity Club · Barcelona</title>
 <meta name="description" content="Longevity club and advanced therapies in Barcelona. Cryotherapy, red light, hyperbaric chamber and more, with a personalised medical protocol." />
 <link rel="canonical" href="https://revostudios.eu/en/index.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="REVO" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="es_ES" />
-<meta property="og:title" content="REVO — Longevity Club · Barcelona" />
+<meta property="og:title" content="REVO Longevity Club · Barcelona" />
 <meta property="og:description" content="Longevity club and advanced therapies in Barcelona. Cryotherapy, red light, hyperbaric chamber and more, with a personalised medical protocol." />
 <meta property="og:url" content="https://revostudios.eu/en/index.html" />
 <meta property="og:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="REVO — Longevity Club · Barcelona" />
+<meta name="twitter:title" content="REVO Longevity Club · Barcelona" />
 <meta name="twitter:description" content="Longevity club and advanced therapies in Barcelona. Cryotherapy, red light, hyperbaric chamber and more, with a personalised medical protocol." />
 <meta name="twitter:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
 <link rel="alternate" hreflang="es" href="../index.html" />
 <link rel="alternate" hreflang="en" href="index.html" />
 <link rel="alternate" hreflang="x-default" href="../index.html" />
-<link rel="stylesheet" href="../revo-amanecer.css?v=mobile24" />
+<link rel="stylesheet" href="../revo-amanecer.css?v=mobile30" />
 <link rel="stylesheet" href="../revo-reservar.css" />
 <style id="home-extra">
   .exp-head{ max-width:880px; margin:0 0 clamp(34px,4.5vh,56px); }
@@ -283,12 +283,12 @@
   .voices-head{ max-width:1000px; margin:0 auto; text-align:center; }
   .voices-head .eyebrow{ justify-content:center; }
   .voices-title{ font-family:var(--display); font-weight:400; font-size:clamp(28px,4vw,54px); line-height:1.1; letter-spacing:-.016em; margin:26px auto 0; max-width:20ch; text-wrap:balance; color:var(--ink-dark); }
-  .voices-title .ser{ color:var(--indigo); }
-  /* efecto "se escribe al bajar" + subrayado índigo en la palabra clave (reutiliza el motor [data-quote]) */
+  /* resaltado: UNA sola caja continua en el segmento (antes era una caja por carácter → líneas blancas por subpíxel en algunas pantallas) */
+  .voices-title .ser{ color:#fff; background:var(--indigo); padding:.02em .14em; border-radius:3px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+  /* efecto "se escribe al bajar": los caracteres solo animan su opacidad */
   .voices-title .qw{ opacity:.14; transition:opacity .14s linear; }
-  .voices-title .qw-hl{ transition:opacity .14s linear, background .16s var(--ease), color .16s var(--ease); padding:.04em .02em; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
-  .voices-title .qw-hl.hl{ background:var(--indigo); color:#fff; }
-  @media (prefers-reduced-motion:reduce){ .voices-title .qw{ opacity:1 !important; } .voices-title .qw-hl{ background:var(--indigo); color:#fff; } }
+  .voices-title .qw-hl{ transition:opacity .14s linear; }
+  @media (prefers-reduced-motion:reduce){ .voices-title .qw{ opacity:1 !important; } }
   .voices-seal{ display:inline-flex; align-items:center; gap:11px; margin:30px auto 0; padding:11px 22px;
     border:1px solid rgba(17,19,24,.16); border-radius:100px; font-size:13px; letter-spacing:.01em; color:rgba(20,22,28,.7); }
   .voices-seal b{ color:var(--ink-dark); font-weight:600; }
@@ -707,8 +707,8 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         <div class="joy-panel" aria-label="Optimise your health">
           <img loading="lazy" decoding="async" src="../assets/optimiza-salud.jpg" alt="" />
           <div class="joy-inner">
-            <p class="eyebrow joy-eyebrow">En tu rutina</p>
-            <h2>to maximise your physical, mental and <span class="ser">aesthetic</span> health</h2>
+            <p class="eyebrow joy-eyebrow">In your routine</p>
+            <h2>to maximise your physical,<br>mental and <span class="ser">aesthetic</span> health</h2>
           </div>
         </div>
         </div>
@@ -962,33 +962,20 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     var g=document.getElementById('gift'); if(!g) return;
     var KEY='gift_seen_v2';
     try{ if(sessionStorage.getItem(KEY)){ g.parentNode.removeChild(g); return; } }catch(e){}
-    var shown=false, armed=false, timer=null, io=null;
-    function cleanup(){ window.removeEventListener('scroll',onScroll); document.removeEventListener('mouseout',onOut); if(timer) clearTimeout(timer); if(io) io.disconnect(); }
+    var shown=false;
+    var medEl=document.querySelector('.med');
+    var anchor=(medEl && medEl.closest('section')) || document.querySelector('[data-screen-label="Medical direction"], [data-screen-label="Dirección médica"]') || document.getElementById('club') || document.querySelector('.exp');
+    function cleanup(){ window.removeEventListener('scroll',onScroll); }
     function open(){ if(shown) return; shown=true; cleanup();
       try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
       g.setAttribute('aria-hidden','false'); g.classList.add('open');
     }
     function close(){ g.classList.remove('open'); g.setAttribute('aria-hidden','true');
       setTimeout(function(){ if(g.parentNode) g.parentNode.removeChild(g); }, 650); cleanup(); }
-    // se arma ~2,5 s después de cargar (deja pasar el loader, no pelea con la llegada)
-    setTimeout(function(){ armed=true; onScroll(); }, 2500);
-    // 1) cuando el usuario llega a "Medical direction" (ya pasó hero + método + terapias = interés ganado)
-    var anchor=document.querySelector('[data-screen-label="Medical direction"]')
-            || document.getElementById('club')
-            || document.querySelector('.exp');
-    if(anchor && 'IntersectionObserver' in window){
-      io=new IntersectionObserver(function(ents){ if(armed && ents[0].isIntersecting) open(); }, {threshold:0, rootMargin:'0px 0px -28% 0px'});
-      io.observe(anchor);
-    }
-    // 2) exit-intent en desktop (el cursor sale por arriba)
-    function onOut(e){ if(armed && e.clientY<=0 && !e.relatedTarget) open(); }
-    if(matchMedia('(hover:hover)').matches) document.addEventListener('mouseout',onOut);
-    // 3) respaldo: por si el ancla aún no entró, dispara cuando se pasa media página visible
-    function onScroll(){ if(!armed) return; var a=anchor&&anchor.getBoundingClientRect();
-      if(a && a.top < (window.innerHeight||0)*0.85) open(); }
-    window.addEventListener('scroll',onScroll,{passive:true});
-    // 4) respaldo por tiempo
-    timer=setTimeout(function(){ if(armed) open(); }, 15000);
+    /* se abre cuando el usuario ha terminado de leer la sección del equipo médico */
+    function onScroll(){ if(!anchor) return; var r=anchor.getBoundingClientRect();
+      if(r.bottom <= (window.innerHeight||0)*0.9) open(); }
+    if(anchor){ window.addEventListener('scroll',onScroll,{passive:true}); onScroll(); }
     g.addEventListener('click',function(e){ if(e.target===g) close(); });
     g.querySelector('.gift-close').addEventListener('click',close);
     g.querySelector('.gift-dismiss').addEventListener('click',close);

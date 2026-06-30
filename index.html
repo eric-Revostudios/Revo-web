@@ -4,25 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0d1e" />
-<title>REVO — Longevity Club · Barcelona</title>
+<title>REVO Longevity Club · Barcelona</title>
 <meta name="description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
 <link rel="canonical" href="https://revostudios.eu/index.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="REVO" />
 <meta property="og:locale" content="es_ES" />
 <meta property="og:locale:alternate" content="en_US" />
-<meta property="og:title" content="REVO — Longevity Club · Barcelona" />
+<meta property="og:title" content="REVO Longevity Club · Barcelona" />
 <meta property="og:description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
 <meta property="og:url" content="https://revostudios.eu/index.html" />
 <meta property="og:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="REVO — Longevity Club · Barcelona" />
+<meta name="twitter:title" content="REVO Longevity Club · Barcelona" />
 <meta name="twitter:description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
 <meta name="twitter:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
 <link rel="alternate" hreflang="es" href="index.html" />
 <link rel="alternate" hreflang="en" href="en/index.html" />
 <link rel="alternate" hreflang="x-default" href="index.html" />
-<link rel="stylesheet" href="revo-amanecer.css?v=mobile24" />
+<link rel="stylesheet" href="revo-amanecer.css?v=mobile30" />
 <link rel="stylesheet" href="revo-reservar.css" />
 <style id="home-extra">
   .exp-head{ max-width:880px; margin:0 0 clamp(34px,4.5vh,56px); }
@@ -283,12 +283,12 @@
   .voices-head{ max-width:1000px; margin:0 auto; text-align:center; }
   .voices-head .eyebrow{ justify-content:center; }
   .voices-title{ font-family:var(--display); font-weight:400; font-size:clamp(28px,4vw,54px); line-height:1.1; letter-spacing:-.016em; margin:26px auto 0; max-width:20ch; text-wrap:balance; color:var(--ink-dark); }
-  .voices-title .ser{ color:var(--indigo); }
-  /* efecto "se escribe al bajar" + subrayado índigo en la palabra clave (reutiliza el motor [data-quote]) */
+  /* resaltado: UNA sola caja continua en el segmento (antes era una caja por carácter → líneas blancas por subpíxel en algunas pantallas) */
+  .voices-title .ser{ color:#fff; background:var(--indigo); padding:.02em .14em; border-radius:3px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+  /* efecto "se escribe al bajar": los caracteres solo animan su opacidad */
   .voices-title .qw{ opacity:.14; transition:opacity .14s linear; }
-  .voices-title .qw-hl{ transition:opacity .14s linear, background .16s var(--ease), color .16s var(--ease); padding:.04em .02em; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
-  .voices-title .qw-hl.hl{ background:var(--indigo); color:#fff; }
-  @media (prefers-reduced-motion:reduce){ .voices-title .qw{ opacity:1 !important; } .voices-title .qw-hl{ background:var(--indigo); color:#fff; } }
+  .voices-title .qw-hl{ transition:opacity .14s linear; }
+  @media (prefers-reduced-motion:reduce){ .voices-title .qw{ opacity:1 !important; } }
   .voices-seal{ display:inline-flex; align-items:center; gap:11px; margin:30px auto 0; padding:11px 22px;
     border:1px solid rgba(17,19,24,.16); border-radius:100px; font-size:13px; letter-spacing:.01em; color:rgba(20,22,28,.7); }
   .voices-seal b{ color:var(--ink-dark); font-weight:600; }
@@ -708,7 +708,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
           <img loading="lazy" decoding="async" src="assets/optimiza-salud.jpg" alt="" />
           <div class="joy-inner">
             <p class="eyebrow joy-eyebrow">En tu rutina</p>
-            <h2>para maximizar tu salud física, mental y <span class="ser">estética</span></h2>
+            <h2>para maximizar tu salud<br>física, mental y <span class="ser">estética</span></h2>
           </div>
         </div>
         </div>
@@ -962,22 +962,20 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     var g=document.getElementById('gift'); if(!g) return;
     var KEY='gift_seen_v2';
     try{ if(sessionStorage.getItem(KEY)){ g.parentNode.removeChild(g); return; } }catch(e){}
-    var shown=false, io=null;
-    function cleanup(){ if(io) io.disconnect(); }
+    var shown=false;
+    var medEl=document.querySelector('.med');
+    var anchor=(medEl && medEl.closest('section')) || document.querySelector('[data-screen-label="Medical direction"], [data-screen-label="Dirección médica"]') || document.getElementById('club') || document.querySelector('.exp');
+    function cleanup(){ window.removeEventListener('scroll',onScroll); }
     function open(){ if(shown) return; shown=true; cleanup();
       try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
       g.setAttribute('aria-hidden','false'); g.classList.add('open');
     }
     function close(){ g.classList.remove('open'); g.setAttribute('aria-hidden','true');
       setTimeout(function(){ if(g.parentNode) g.parentNode.removeChild(g); }, 650); cleanup(); }
-    // único disparador: al llegar a "Dirección médica"
-    var anchor=document.querySelector('[data-screen-label="Dirección médica"]')
-            || document.getElementById('club')
-            || document.querySelector('.exp');
-    if(anchor && 'IntersectionObserver' in window){
-      io=new IntersectionObserver(function(ents){ if(ents[0].isIntersecting) open(); }, {threshold:0, rootMargin:'0px 0px -28% 0px'});
-      io.observe(anchor);
-    }
+    /* se abre cuando el usuario ha terminado de leer la sección del equipo médico */
+    function onScroll(){ if(!anchor) return; var r=anchor.getBoundingClientRect();
+      if(r.bottom <= (window.innerHeight||0)*0.9) open(); }
+    if(anchor){ window.addEventListener('scroll',onScroll,{passive:true}); onScroll(); }
     g.addEventListener('click',function(e){ if(e.target===g) close(); });
     g.querySelector('.gift-close').addEventListener('click',close);
     g.querySelector('.gift-dismiss').addEventListener('click',close);
@@ -1246,8 +1244,8 @@ void main(){
         const url = info && info.getAttribute('href');
         if(!url) return;
         card.addEventListener('click', e=>{
-          if(e.target.closest('a')) return;        // dejar pasar enlaces/botones reales
-          if(window.getSelection && String(window.getSelection())) return; // no romper selección de texto
+          if(e.target.closest('a')) return;
+          if(window.getSelection && String(window.getSelection())) return;
           window.location.href = url;
         });
       });

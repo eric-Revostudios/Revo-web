@@ -21,9 +21,18 @@
 <link rel="alternate" hreflang="es" href="../crioterapia.html" />
 <link rel="alternate" hreflang="en" href="crioterapia.html" />
 <link rel="alternate" hreflang="x-default" href="../crioterapia.html" />
-<link rel="stylesheet" href="../revo-amanecer.css?v=mobile24" />
+<link rel="stylesheet" href="../revo-amanecer.css?v=mobile30" />
 <link rel="stylesheet" href="../revo-terapia.css?v=mobile22" />
 <link rel="stylesheet" href="../revo-reservar.css" />
+<style>
+  /* la cabina de crio es clara en la zona del texto; reforzamos el oscurecido para que el texto se lea bien */
+  .ter-hero-media::after{ background:
+    linear-gradient(100deg, rgba(9,13,32,.9) 0%, rgba(9,13,32,.66) 32%, rgba(9,13,32,.34) 58%, rgba(9,13,32,.14) 100%),
+    linear-gradient(180deg, rgba(9,13,32,.42) 0%, rgba(9,13,32,0) 28%, rgba(9,13,32,.3) 62%, rgba(9,13,32,.85) 100%); }
+  @media(max-width:600px){
+    .ter-hero-media::after{ background:linear-gradient(180deg, rgba(9,13,32,.8) 0%, rgba(9,13,32,.45) 42%, rgba(9,13,32,.55) 70%, rgba(9,13,32,.88) 100%); }
+  }
+</style>
 <script>
 /* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
 (function(){try{
