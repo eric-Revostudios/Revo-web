@@ -105,7 +105,7 @@ main,.site-header,.site-footer{ position:relative; z-index:2; }
   .reveal{ opacity:0; transform:translateY(40px); filter:blur(10px);
     transition:opacity 1.1s var(--ease), transform 1.1s var(--ease), filter 1.1s var(--ease);
     transition-delay:var(--d,0s); will-change:opacity,transform,filter; }
-  .reveal.in{ opacity:1; transform:none; filter:blur(0); }
+  .reveal.in{ opacity:1; transform:none; filter:none; will-change:auto; }
   .anim-lines .hl-line{ display:block; clip-path:inset(-50% -8% 150% -8%); transform:translateY(.42em);
     transition:clip-path 1.25s var(--ease), transform 1.25s var(--ease); transition-delay:var(--d,0s); }
   .anim-lines.in .hl-line{ clip-path:inset(-50% -8% -50% -8%); transform:none; }
@@ -140,7 +140,7 @@ main,.site-header,.site-footer{ position:relative; z-index:2; }
 /* desplegable compacto pegado al header: del ancho del contenido, misma materia, parece que cuelga de la barra */
 .nav-menu{ position:absolute; top:calc(100% + 27px); left:50%; transform:translate(-50%,0); min-width:max-content;
   display:flex; flex-direction:column; gap:2px; padding:8px;
-  background:rgba(13,17,38,.3); backdrop-filter:blur(7px) saturate(1.4); -webkit-backdrop-filter:blur(7px) saturate(1.4); box-shadow:none;
+  background:rgba(12,16,36,.9); box-shadow:none;
   border:0; border-bottom:1px solid rgba(255,255,255,.16); border-radius:0 0 13px 13px;
   opacity:0; visibility:hidden; pointer-events:none;
   transition:opacity .26s var(--ease), visibility .26s; }
@@ -171,7 +171,7 @@ main,.site-header,.site-footer{ position:relative; z-index:2; }
 .nav-drop.open .nav-menu{ opacity:1; visibility:visible; pointer-events:auto; }
 .nav-drop.open .nav-loc{ opacity:.9; transform:none; }
 .site-header:has(.nav-drop.open){ border-bottom-color:transparent; }
-.site-header.over-light .nav-menu{ background:rgba(13,17,38,.3); box-shadow:none; border-bottom-color:rgba(255,255,255,.16); }
+.site-header.over-light .nav-menu{ background:rgba(12,16,36,.9); box-shadow:none; border-bottom-color:rgba(255,255,255,.16); }
 .site-header.over-light .nav .nav-loc:hover{ background:transparent; }
 /* premium scrolled state: glass appears + condenses */
 .site-header.scrolled{ border-bottom-color:transparent; box-shadow:none; }
