@@ -5,6 +5,7 @@
 <!-- Meta Pixel -->
 <script src="../revo-pixel.js" defer></script>
 <script src="../revo-cookies.js" defer></script>
+<script src="../revo-analytics.js" defer></script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=837759925366480&ev=PageView&noscript=1" alt="" /></noscript>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0d1e" />
@@ -26,6 +27,8 @@
 <link rel="alternate" hreflang="es" href="../index.html" />
 <link rel="alternate" hreflang="en" href="index.html" />
 <link rel="alternate" hreflang="x-default" href="../index.html" />
+<link rel="preload" href="../fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
+<link rel="preload" href="../fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
 <link rel="stylesheet" href="../revo-amanecer.css?v=mobile31" />
 <link rel="stylesheet" href="../revo-reservar.css" />
 <style id="home-extra">
@@ -195,7 +198,10 @@
   /* PRUEBA estética: tarjetas de terapias sin contornos ni borde 3D */
   .therapies-pin .card{ --lg-rim:0;
     background:rgba(104,129,252,.22);
-    backdrop-filter:blur(26px) saturate(1.2); -webkit-backdrop-filter:blur(26px) saturate(1.2);
+    /* no blur on backdrop: the background is a flat gradient, so the blur added nothing
+       and instead produced a faint white vertical fringe on the cards' edge (Chrome).
+       Keep only saturate → same look, without the white shadow. */
+    backdrop-filter:saturate(1.2); -webkit-backdrop-filter:saturate(1.2);
     box-shadow:0 34px 70px -28px rgba(6,9,32,.6), 0 10px 24px -12px rgba(6,9,32,.45); }
   .therapies-pin .card::before{ display:none; }
   .therapies-pin .card{ cursor:pointer; }
@@ -302,8 +308,7 @@
   .voices-seal .vs-dot{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 10px rgba(104,129,252,.6); flex:none; }
   .voices-rail{ width:100vw; margin-left:calc(50% - 50vw); margin-top:54px; overflow:hidden;
     -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
-  .voices-track{ display:flex; gap:18px; width:max-content; padding:26px 9px 46px; animation:voicesDrift 46s linear infinite; }
-  .voices-rail:hover .voices-track{ animation-play-state:paused; }
+  .voices-track{ display:flex; gap:18px; width:max-content; padding:26px 9px 46px; will-change:transform; }
   @keyframes voicesDrift{ from{ transform:translateX(0); } to{ transform:translateX(calc(-50% - 9px)); } }
   .vcard{ flex:none; width:min(82vw,380px); box-sizing:border-box; border:1px solid rgba(17,19,24,.12); border-radius:18px;
     padding:28px 30px; background:#fff; box-shadow:0 24px 50px -46px rgba(22,36,95,.4); }
@@ -400,17 +405,18 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
   ]
 }
 </script>
-<style id="ther-arrow-css">
-.therapies-pin:not(.pinned) .therapies-sticky{ position:relative; }
-.ther-arrow{ position:absolute; right:clamp(12px,2vw,30px); top:50%; transform:translateY(-50%); z-index:6;
-  width:44px; height:44px; border-radius:50%; cursor:pointer; display:grid; place-items:center;
-  font-size:20px; line-height:1; color:#fff; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.26);
-  opacity:.22; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
-  transition:opacity .35s, background .3s, border-color .3s, transform .3s; }
-.ther-arrow:hover, .ther-arrow:focus-visible{ opacity:1; background:rgba(255,255,255,.16); border-color:#fff; transform:translateY(-50%) scale(1.06); }
-@media (max-width:1000px){ .ther-arrow{ right:10px; width:40px; height:40px; opacity:.3; } }
-/* móvil: en táctil se desliza con el dedo → la flecha estorba y choca con los botones flotantes */
-@media (max-width:600px){ .ther-arrow{ display:none; } }
+<style id="ther-nav-css">
+/* carousel arrows: small and discreet, one on each side, centered at the cards' mid-height */
+.ther-nav{ position:absolute; top:var(--nav-y,54%); transform:translateY(-50%); z-index:7;
+  width:36px; height:36px; border-radius:50%; padding:0; cursor:pointer; display:grid; place-items:center;
+  color:rgba(255,255,255,.82); background:rgba(10,13,30,.3); border:1px solid rgba(255,255,255,.35);
+  transition:background .25s, color .25s, border-color .25s, opacity .25s; }
+.ther-nav svg{ width:15px; height:15px; display:block; }
+.ther-nav.prev{ left:clamp(10px,1.6vw,26px); }
+.ther-nav.next{ right:clamp(10px,1.6vw,26px); }
+.ther-nav:not([disabled]):hover, .ther-nav:focus-visible{ color:#fff; border-color:rgba(255,255,255,.85); background:rgba(10,13,30,.52); }
+.ther-nav[disabled]{ opacity:.22; pointer-events:none; }
+@media (max-width:600px){ .ther-nav{ display:none; } }
 </style>
 </head>
 <body style="background-color: rgb(255, 255, 255)">
@@ -485,6 +491,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <a class="nav-loc" href="masajes.html" role="menuitem" data-hot><span class="nav-loc-name">Massage</span></a>
           </div>
         </div>
+        <a href="experiencias.html" data-hot>Experiences</a>
         <div class="nav-drop" id="navStudios">
           <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Studios</button>
           <div class="nav-menu" role="menu">
@@ -514,10 +521,15 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
           <h1 class="display anim-lines reveal"><span class="hl-line">Feel <span class="ser">better</span>, look <span class="ser">better</span>,</span><span class="hl-line">live <span class="ser">better</span>.</span></h1>
           <p class="hero-sub reveal" style="--d:.2s">Precision therapies, made routine.<br>Experts who look after you.<br>A protocol tailored to you.</p>
         </div>
-        <div class="hero-benefits reveal" style="--d:.4s">
-          <div class="ben-row"><span class="chip">More energy</span></div>
-          <div class="ben-row"><span class="chip">Better sleep</span><span class="chip">Less inflammation</span></div>
-          <div class="ben-row"><span class="chip">A calm mind</span><span class="chip">Long-term health</span></div>
+        <div class="hero-benefits rot-d reveal" style="--d:.4s">
+          <div class="roll"><div class="roll-track">
+            <span class="rw2">More <span class="ser">energy</span></span>
+            <span class="rw2">Less <span class="ser">inflammation</span></span>
+            <span class="rw2">Better <span class="ser">sleep</span></span>
+            <span class="rw2">A calm <span class="ser">mind</span></span>
+            <span class="rw2">Long-term <span class="ser">health</span></span>
+            <span class="rw2">More <span class="ser">energy</span></span>
+          </div></div>
         </div>
         <div class="hero-cta reveal" style="--d:.3s">
           <a class="btn btn--lg btn--hero" href="#reset" data-hot data-reservar data-board="146948">My First Reset</a>
@@ -570,14 +582,18 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     <!-- ============ THERAPIES ============ -->
     <section class="therapies-pin" id="terapias" data-screen-label="Therapies" data-enter="0.04" data-c1="#1b2a6e" data-c2="#4459d9" data-c3="#8094ff" data-deg="150deg" data-theme="dark">
       <div class="therapies-sticky">
-        <button class="ther-arrow" type="button" data-dir="1" aria-label="See next">›</button>
+        <button class="ther-nav prev" type="button" aria-label="Previous therapy" disabled>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+        <button class="ther-nav next" type="button" aria-label="Next therapy">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
         <div class="therapies-pan">
         <div class="t-screen">
         <div class="therapies-head reveal">
           <p class="eyebrow">Therapies</p>
           <h2 class="display">Therapies backed by <span class="ser">science</span>.</h2>
           <p>Once reserved for the elite. Now within your reach.</p>
-          <span class="scroll-hint">Swipe to see them all →</span>
         </div>
         <div class="cards-track">
           <div class="cards reveal">
@@ -761,14 +777,14 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       </div>
       <div class="voices-rail reveal" style="--d:.12s" aria-label="Member testimonials">
         <div class="voices-track">
-          <div class="vcard hi"><p class="vq">"The change has been incredible. More energy, better sleep, a different person."</p><div class="vby">REVO member · Overall</div></div>
-          <div class="vcard"><p class="vq">"I have incredible energy I’d never had before."</p><div class="vby">REVO member · Energy</div></div>
-          <div class="vcard"><p class="vq">"I no longer take my sleeping pills, I managed to stop."</p><div class="vby">REVO member · Sleep</div></div>
-          <div class="vcard hi"><p class="vq">"The doctors can’t believe my arm didn’t swell. My recovery has been like never before. I’m happy."</p><div class="vby">REVO member · Recovery</div></div>
-          <div class="vcard hi" aria-hidden="true"><p class="vq">"The change has been incredible. More energy, better sleep, a different person."</p><div class="vby">REVO member · Overall</div></div>
-          <div class="vcard" aria-hidden="true"><p class="vq">"I have incredible energy I’d never had before."</p><div class="vby">REVO member · Energy</div></div>
-          <div class="vcard" aria-hidden="true"><p class="vq">"I no longer take my sleeping pills, I managed to stop."</p><div class="vby">REVO member · Sleep</div></div>
-          <div class="vcard hi" aria-hidden="true"><p class="vq">"The doctors can’t believe my arm didn’t swell. My recovery has been like never before. I’m happy."</p><div class="vby">REVO member · Recovery</div></div>
+          <div class="vcard hi"><p class="vq">"The change has been incredible. More energy, better sleep, a different person."</p><div class="vby">Overall</div></div>
+          <div class="vcard"><p class="vq">"I have incredible energy I’d never had before."</p><div class="vby">Energy</div></div>
+          <div class="vcard"><p class="vq">"I no longer take my sleeping pills, I managed to stop."</p><div class="vby">Sleep</div></div>
+          <div class="vcard hi"><p class="vq">"The doctors can’t believe my arm didn’t swell. My recovery has been like never before. I’m happy."</p><div class="vby">Recovery</div></div>
+          <div class="vcard hi" aria-hidden="true"><p class="vq">"The change has been incredible. More energy, better sleep, a different person."</p><div class="vby">Overall</div></div>
+          <div class="vcard" aria-hidden="true"><p class="vq">"I have incredible energy I’d never had before."</p><div class="vby">Energy</div></div>
+          <div class="vcard" aria-hidden="true"><p class="vq">"I no longer take my sleeping pills, I managed to stop."</p><div class="vby">Sleep</div></div>
+          <div class="vcard hi" aria-hidden="true"><p class="vq">"The doctors can’t believe my arm didn’t swell. My recovery has been like never before. I’m happy."</p><div class="vby">Recovery</div></div>
         </div>
       </div>
     </section>
@@ -1401,7 +1417,7 @@ void main(){
     /* ---- draw the connector thread ---- */
     window.addEventListener('load', ()=>{ requestAnimationFrame(()=>document.getElementById('thread').classList.add('drawn')); });
 
-    /* ---- method steps: progressive left→right scroll illumination ---- */
+    /* ---- method steps: illuminate each step exactly when the marker reaches its number/node ---- */
     (function(){
       const steps = document.querySelector('.steps');
       if(!steps) return;
@@ -1409,6 +1425,21 @@ void main(){
       const n = items.length;
       if(!n) return;
       steps.classList.add('flow');
+      const rail = steps.querySelector('.steps-rail');
+      let thresholds = items.map((_,i)=>(i+0.5)/n);
+      function measure(){
+        if(!rail) return;
+        const isMobile = window.matchMedia('(max-width:600px)').matches;
+        const rb = rail.getBoundingClientRect();
+        thresholds = items.map(step=>{
+          const num = step.querySelector('.step-num') || step;
+          const b = num.getBoundingClientRect();
+          const frac = isMobile
+            ? (b.top + b.height / 2 - rb.top) / (rb.height || 1)
+            : (b.left - rb.left) / (rb.width || 1);
+          return Math.max(0, Math.min(1, frac));
+        });
+      }
       let ticking = false;
       function update(){
         ticking = false;
@@ -1418,12 +1449,14 @@ void main(){
         let p = (vh*0.8 - r.top) / denom;
         p = Math.max(0, Math.min(1, p));
         steps.style.setProperty('--p', p.toFixed(4));
-        for(let i=0;i<n;i++){ items[i].classList.toggle('lit', p >= (i+0.5)/n); }
+        for(let i=0;i<n;i++){ items[i].classList.toggle('lit', p >= thresholds[i]); }
       }
       const onScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } };
       window.addEventListener('scroll', onScroll, {passive:true});
-      window.addEventListener('resize', onScroll);
-      update();
+      window.addEventListener('resize', ()=>{ measure(); onScroll(); });
+      measure(); update();
+      window.addEventListener('load', ()=>{ measure(); update(); });
+      if(document.fonts && document.fonts.ready){ document.fonts.ready.then(()=>{ measure(); update(); }); }
     })();
 
     /* ---- custom cursor ---- */
@@ -1520,17 +1553,102 @@ void main(){
   </script>
   <script src="../revo-reservar.js" defer></script>
 <script>
+/* Therapies — per-card navigation: the ‹ › buttons in the header advance ONE card.
+   Kept in sync with the scroll (which still works exactly the same). */
 (function(){
-  var sec=document.getElementById('terapias'); if(!sec) return;
-  var cards=sec.querySelector('.cards');
-  sec.addEventListener('click',function(e){
-    var b=e.target.closest&&e.target.closest('.ther-arrow'); if(!b) return;
-    if(sec.classList.contains('pinned')){
-      window.scrollBy({top:Math.round(window.innerHeight*0.6),behavior:'smooth'});
-    } else if(cards){
-      cards.scrollBy({left:Math.max(240,Math.round(cards.clientWidth*0.8)),behavior:'smooth'});
-    }
-  });
+  var pin=document.querySelector('.therapies-pin'); if(!pin) return;
+  var sticky=pin.querySelector('.therapies-sticky');
+  var cardsEl=pin.querySelector('.cards'); if(!cardsEl) return;
+  var cards=[].slice.call(cardsEl.querySelectorAll('.card')); if(!cards.length) return;
+  var prevBtn=pin.querySelector('.ther-nav.prev');
+  var nextBtn=pin.querySelector('.ther-nav.next');
+
+  function pinned(){ return pin.classList.contains('pinned'); }
+  function step(){
+    if(cards.length>1){ var d=cards[1].offsetLeft-cards[0].offsetLeft; if(d>0) return d; }
+    return cards[0].getBoundingClientRect().width + 22;
+  }
+  function maxScroll(){
+    return pinned() ? Math.max(0, cardsEl.scrollWidth - sticky.clientWidth)
+                    : Math.max(0, cardsEl.scrollWidth - cardsEl.clientWidth);
+  }
+  function curScroll(){
+    return pinned() ? Math.max(0, Math.min(maxScroll(), window.scrollY - pin.offsetTop))
+                    : cardsEl.scrollLeft;
+  }
+  function goToScroll(x){
+    x=Math.max(0, Math.min(maxScroll(), Math.round(x)));
+    if(pinned()) window.scrollTo({top: pin.offsetTop + x, behavior:'smooth'});
+    else cardsEl.scrollTo({left:x, behavior:'smooth'});
+  }
+  function idxNow(){ var s=step(); return s>0 ? Math.round(curScroll()/s) : 0; }
+  function move(dir){ goToScroll((idxNow()+dir)*step()); }
+
+  var raf=false;
+  function update(){
+    raf=false;
+    var sc=sticky.getBoundingClientRect(), cc=cards[0].getBoundingClientRect();
+    sticky.style.setProperty('--nav-y', Math.round(cc.top - sc.top + cc.height/2) + 'px');
+    if(prevBtn) prevBtn.disabled = curScroll()<=1;
+    if(nextBtn) nextBtn.disabled = curScroll()>=maxScroll()-1;
+  }
+  function onScroll(){ if(!raf){ raf=true; requestAnimationFrame(update); } }
+
+  if(prevBtn) prevBtn.addEventListener('click', function(){ move(-1); });
+  if(nextBtn) nextBtn.addEventListener('click', function(){ move(1); });
+
+  /* trackpad / horizontal gesture over the pinned section → folds into the page scroll:
+     it moves the cards and, once they run out, the page keeps going down naturally (no "back" nav) */
+  sticky.addEventListener('wheel', function(e){
+    if(!pinned()) return;                                 // tablet/mobile: the rail already scrolls/swipes natively
+    if(Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;  // vertical gesture → normal scroll
+    e.preventDefault();
+    window.scrollBy({top:e.deltaX * 1.5, behavior:'instant'});
+  }, {passive:false});
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  cardsEl.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', update);
+  update(); setTimeout(update,300); setTimeout(update,900);
+})();
+</script>
+<script>
+/* Testimonials — auto-drifting rail + horizontal-gesture (trackpad) control,
+   same as the therapies: both feed the same offset so they blend without jumps. */
+(function(){
+  var rail=document.querySelector('.voices-rail'); if(!rail) return;
+  var track=rail.querySelector('.voices-track'); if(!track) return;
+  var cards=track.children; if(cards.length<2) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // reduce-motion: native scroll (CSS)
+
+  var period=0;
+  function measure(){
+    var half=cards.length>>1;                          // the second half duplicates the first
+    period = cards[half].offsetLeft - cards[0].offsetLeft;   // one full cycle
+    if(period<=0) period = track.scrollWidth/2;
+  }
+  var x=0, SPEED=32, paused=false, last=0;             // SPEED px/sec of automatic drift
+  function wrap(){ if(period>0){ x=((x%period)+period)%period; } }
+  function render(){ track.style.transform='translateX('+(-x).toFixed(2)+'px)'; }
+  function frame(t){
+    if(!last) last=t;
+    var dt=Math.min(0.05,(t-last)/1000); last=t;
+    if(!paused) x+=SPEED*dt;
+    wrap(); render();
+    requestAnimationFrame(frame);
+  }
+  rail.addEventListener('mouseenter', function(){ paused=true; });   // pause to read, as before
+  rail.addEventListener('mouseleave', function(){ paused=false; });
+  rail.addEventListener('wheel', function(e){                        // horizontal gesture → moves the rail
+    if(Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;             // vertical → normal page scroll
+    e.preventDefault();
+    x += e.deltaX * 1.5; wrap(); render();
+  }, {passive:false});
+  measure();
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+  requestAnimationFrame(frame);
 })();
 </script>
 <script>
@@ -1545,6 +1663,33 @@ void main(){
     list.querySelectorAll('.combo-row.open').forEach(function(r){ r.classList.remove('open'); });
     if(!wasOpen) row.classList.add('open');
   });
+})();
+</script>
+<script>
+/* hero benefits — vertical roll (one promise at a time) */
+(function(){
+  var track=document.querySelector('.hero-benefits.rot-d .roll-track');
+  if(!track) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var n=track.children.length-1;      // the last duplicates the first → seamless loop
+  if(n<1) return;
+  var i=0, STEP=1.32, DUR=520, HOLD=430;
+  function step(){
+    i++;
+    track.style.transition='transform '+DUR+'ms cubic-bezier(.76,0,.24,1)';
+    track.style.transform='translateY(-'+(i*STEP)+'em)';
+  }
+  track.addEventListener('transitionend', function(e){
+    if(e.propertyName!=='transform') return;
+    if(i>=n){                          // reached the duplicated first item
+      track.style.transition='none';
+      track.style.transform='translateY(0)';
+      void track.offsetHeight;         // flush so the reset never animates (no rewind)
+      i=0;
+    }
+    setTimeout(step, HOLD);
+  });
+  setTimeout(step, HOLD+DUR);
 })();
 </script>
 </body>

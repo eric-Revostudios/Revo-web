@@ -5,6 +5,7 @@
 <!-- Meta Pixel -->
 <script src="revo-pixel.js" defer></script>
 <script src="revo-cookies.js" defer></script>
+<script src="revo-analytics.js" defer></script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=837759925366480&ev=PageView&noscript=1" alt="" /></noscript>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>REVO — Studios · Turó Park Barcelona</title>
@@ -25,9 +26,11 @@
 <link rel="alternate" hreflang="es" href="studios.html" />
 <link rel="alternate" hreflang="en" href="en/studios.html" />
 <link rel="alternate" hreflang="x-default" href="studios.html" />
+<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
+<link rel="preload" href="fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
 <link rel="stylesheet" href="revo-amanecer.css?v=mobile31" />
 <link rel="stylesheet" href="revo-studio.css?v=mobile23" />
-<link rel="stylesheet" href="revo-studios.css?v=mobile22" />
+<link rel="stylesheet" href="revo-studios.css?v=mobile24" />
 <link rel="stylesheet" href="revo-reservar.css" />
 <script>
 /* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
@@ -69,6 +72,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <a class="nav-loc" href="masajes.html" role="menuitem" data-hot><span class="nav-loc-name">Masajes</span></a>
           </div>
         </div>
+        <a href="experiencias.html" data-hot>Experiencias</a>
         <div class="nav-drop" id="navStudios">
           <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Studios</button>
           <div class="nav-menu" role="menu">
@@ -89,7 +93,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
     <!-- ============ HERO ============ -->
     <section class="st-hero" data-screen-label="Studios · Turó Park" data-c1="#16245f" data-c2="#3650cf" data-c3="#6881fc" data-deg="144deg" data-theme="dark">
-      <div class="st-hero-media" aria-hidden="true"><img loading="eager" fetchpriority="high" decoding="async" src="assets/storefront.jpg" alt="" /></div>
+      <div class="st-hero-media" aria-hidden="true"><img loading="eager" fetchpriority="high" decoding="async" src="assets/lounge.jpg" alt="" /></div>
       <div class="wrap">
         <div class="st-eyebrow-row reveal">
           <p class="eyebrow">Studio</p>
@@ -105,25 +109,18 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
     <!-- ============ SOBRE EL STUDIO ============ -->
     <section class="wrap section on-light st-sheet" data-screen-label="Studios · el espacio" data-c1="#1b2a6e" data-c2="#4459d9" data-c3="#8094ff" data-deg="150deg" data-theme="light">
-      <div class="about-split">
-        <div class="about-copy reveal">
-          <div class="st-head">
-            <p class="eyebrow">El espacio</p>
-            <h2>Tu sitio para <span class="ser">cuidarte</span>.</h2>
-            <p class="intro">Un espacio sereno, de luz suave y materiales nobles, donde la longevidad se vuelve rutina.</p>
-          </div>
-        </div>
-        <div class="about-photo reveal" style="--d:.12s">
-          <img loading="lazy" decoding="async" src="assets/lounge.jpg" alt="Lounge y recepción del Studio de Turó Park" />
-        </div>
+      <div class="st-head reveal">
+        <p class="eyebrow">El espacio</p>
+        <h2>Tu sitio para <span class="ser">cuidarte</span>.</h2>
+        <p class="intro">Un espacio sereno, de luz suave y materiales nobles, donde la longevidad se vuelve rutina.</p>
       </div>
 
-      <!-- galería del espacio -->
-      <div class="gallery">
-        <div class="gphoto gphoto--a reveal"><img loading="lazy" decoding="async" src="assets/studio-fachada.jpg" alt="Sala con sillón y patio interior del Studio" /></div>
-        <div class="gphoto gphoto--b reveal" style="--d:.06s"><img loading="lazy" decoding="async" src="assets/recharge.jpg" alt="Sala Recharge" /></div>
-        <div class="gphoto gphoto--c reveal" style="--d:.12s"><img loading="lazy" decoding="async" src="assets/studio-salas.jpg" alt="Salas del Studio" /></div>
-        <div class="gphoto gphoto--d reveal" style="--d:.18s"><img loading="lazy" decoding="async" src="assets/studio-lounge.jpg" alt="Lounge y recepción del Studio" /></div>
+      <!-- galería del espacio: encabezado + mosaico -->
+      <div class="esp-grid">
+        <div class="ph e-feat reveal"><img loading="lazy" decoding="async" src="assets/studio-fachada.jpg" alt="Sala con sillón y patio interior del Studio" /></div>
+        <div class="ph e-b reveal" style="--d:.06s"><img loading="lazy" decoding="async" src="assets/studio-lounge.jpg" alt="Lounge y recepción del Studio" /></div>
+        <div class="ph e-c reveal" style="--d:.12s"><img loading="lazy" decoding="async" src="assets/studio-salas.jpg" alt="Salas del Studio" /></div>
+        <div class="ph e-d reveal" style="--d:.16s"><img loading="lazy" decoding="async" src="assets/recharge.jpg" alt="Sala Recharge" /></div>
       </div>
     </section>
 
@@ -139,7 +136,6 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
         <!-- 01 · Terapias sueltas (con desplegable) -->
         <article class="access reveal">
-          <span class="access-tag"><span class="blip"></span>01 · Suelto</span>
           <h3>Terapias individuales</h3>
           <p>Reserva una sola terapia, cuando la necesites. Sin compromiso y supervisada por el equipo médico.</p>
           <div class="access-foot">
@@ -160,7 +156,6 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
         <!-- 02 · Experiencias -->
         <article class="access reveal" style="--d:.08s">
-          <span class="access-tag"><span class="blip"></span>02 · A medida</span>
           <h3>Experiencias</h3>
           <p>Varias terapias encadenadas en una sola sesión, diseñadas por el equipo médico para un objetivo concreto. Para ti o para regalar.</p>
           <div class="access-foot">
@@ -170,7 +165,6 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
         <!-- 03 · Hazte miembro -->
         <article class="access access--feature reveal" style="--d:.16s">
-          <span class="access-tag"><span class="blip"></span>03 · Ilimitado</span>
           <h3>Hazte miembro</h3>
           <p>Acceso ilimitado a todas las terapias, tu doctora, tu coach y un protocolo a medida. El Studio como rutina. Limitado a 175 miembros.</p>
           <div class="access-foot">

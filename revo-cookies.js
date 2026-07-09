@@ -115,8 +115,7 @@
   function apply(o) {
     window.revoConsent = o;
     if (o.marketing && window.revoPixel && window.revoPixel.enable) window.revoPixel.enable();
-    // Analítica (Google Analytics) se activaría aquí cuando se instale:
-    // if (o.analytics && window.revoAnalytics) window.revoAnalytics.enable();
+    if (o.analytics && window.revoAnalytics && window.revoAnalytics.enable) window.revoAnalytics.enable();
     document.dispatchEvent(new CustomEvent("revo:consent", { detail: o }));
   }
 

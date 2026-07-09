@@ -5,6 +5,7 @@
 <!-- Meta Pixel -->
 <script src="revo-pixel.js" defer></script>
 <script src="revo-cookies.js" defer></script>
+<script src="revo-analytics.js" defer></script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=837759925366480&ev=PageView&noscript=1" alt="" /></noscript>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>REVO — Las experiencias</title>
@@ -25,9 +26,13 @@
 <link rel="alternate" hreflang="es" href="experiencias.html" />
 <link rel="alternate" hreflang="en" href="en/experiencias.html" />
 <link rel="alternate" hreflang="x-default" href="experiencias.html" />
+<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
+<link rel="preload" href="fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
 <link rel="stylesheet" href="revo-amanecer.css?v=mobile31" />
 <link rel="stylesheet" href="revo-verano.css?v=mobile22" />
 <link rel="stylesheet" href="revo-terapia.css?v=mobile22" />
+<link rel="stylesheet" href="revo-reservar.css?v=exp3" />
+<script src="revo-reservar.js?v=exp3" defer></script>
 <style>
   .combo-seq-label{ font-size:9.5px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:rgba(20,22,28,.4); margin:20px 0 10px; }
   .combo-flow{ position:relative; display:flex; flex-direction:column; margin:0; border-top:1px solid rgba(20,22,28,.1); }
@@ -91,6 +96,27 @@
   .exp-done h4{ font-family:var(--display); font-weight:400; font-size:25px; letter-spacing:-.01em; color:#14161c; margin:0; }
   .exp-done p{ font-family:var(--sans); font-size:14px; color:rgba(20,22,28,.6); margin:0; max-width:30ch; }
   @media (max-width:520px){ .exp-row{ grid-template-columns:1fr; } .exp-seg{ grid-template-columns:1fr; } }
+  @media (max-width:600px){
+    .exp-form{ gap:15px; }
+    .exp-fields{ gap:15px; }
+    .exp-submit{ position:sticky; bottom:10px; z-index:3; box-shadow:0 0 0 10px #fff, 0 16px 30px -12px rgba(54,80,207,.55); }
+    /* HERO móvil estilo póster: imagen de fondo, texto arriba bajo la cabecera */
+    .ter-hero{ flex-direction:column; align-items:stretch; justify-content:flex-start; }
+    .ter-hero-media::after{ background:linear-gradient(180deg, rgba(9,13,32,.74) 0%, rgba(9,13,32,.44) 38%, rgba(9,13,32,.12) 70%, rgba(9,13,32,.28) 100%); }
+    .ter-hero-inner{ flex:0 0 auto; justify-content:flex-start; padding:100px 24px 0; }
+    .ter-hero .eyebrow{ margin-bottom:16px; }
+    .ter-hero h1{ max-width:16ch; }
+    .ter-hero-sub{ margin-top:14px; }
+    .ter-hero-lead{ display:none; }
+    .ter-hero-cta{ margin-top:26px; width:100%; }
+    .ter-hero-cta .btn{ width:100%; justify-content:center; padding:18px 30px; }
+    /* cifras como fila de stats elegante al pie (inspirado en los chips del hero de la home) */
+    .ter-hero-facts{ position:static; display:flex; gap:0; z-index:2; margin-top:24px; padding:16px 24px 0; border-top:1px solid rgba(255,255,255,.16); }
+    .ter-hero-facts .f{ flex:1; padding:0 14px; border-left:1px solid rgba(255,255,255,.22); }
+    .ter-hero-facts .f:first-child{ padding-left:0; border-left:0; }
+    .ter-hero-facts .fn{ font-size:18px; }
+    .ter-hero-facts .fl{ margin-top:5px; font-size:8px; letter-spacing:.12em; }
+  }
   .combo-note{ font-family:var(--sans); font-size:12px; line-height:1.45; color:rgba(20,22,28,.5); margin:11px 0 0; }
   .combo-note .wa-link{ color:var(--indigo); text-decoration:none; border-bottom:1px solid rgba(54,80,207,.32); white-space:nowrap; }
   .combo-note .wa-link:hover{ border-bottom-color:var(--indigo); }
@@ -135,6 +161,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <a class="nav-loc" href="masajes.html" role="menuitem" data-hot><span class="nav-loc-name">Masajes</span></a>
           </div>
         </div>
+        <a href="experiencias.html" data-hot>Experiencias</a>
         <div class="nav-drop" id="navStudios">
           <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-hot>Studios</button>
           <div class="nav-menu" role="menu">
@@ -377,7 +404,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         <fieldset class="exp-fields" data-fields="book" disabled>
           <div class="exp-row">
             <div class="exp-field"><label for="bf-nombre">Nombre <span class="req">*</span></label><input class="exp-input" id="bf-nombre" name="Nombre" type="text" autocomplete="name" required /></div>
-            <div class="exp-field"><label for="bf-tel">Teléfono <span class="req">*</span></label><input class="exp-input" id="bf-tel" name="Teléfono" type="tel" autocomplete="tel" placeholder="Para coordinar por WhatsApp" required /></div>
+            <div class="exp-field"><label for="bf-tel">Teléfono <span class="req">*</span></label><input class="exp-input" id="bf-tel" name="Telefono" type="tel" autocomplete="tel" placeholder="Para coordinar las sesiones" required /></div>
           </div>
           <div class="exp-row">
             <div class="exp-field"><label for="bf-email">Email <span class="req">*</span></label><input class="exp-input" id="bf-email" name="email" type="email" autocomplete="email" required /></div>
@@ -398,10 +425,13 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         <span class="chk"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
         <h4 id="expDoneTitle">¡Gracias!</h4>
         <p id="expDoneText">Te llevamos al pago seguro…</p>
-        <a class="btn btn--lg btn--primary exp-wa" id="expWaBtn" href="#" target="_blank" rel="noopener" hidden>
+        <div class="exp-done-cta">
+        <a class="btn btn--lg btn--primary exp-pay" id="expPayBtn" href="#" target="_blank" rel="noopener" hidden>Pagar y reservar</a>
+        <a class="btn btn--lg exp-wa" id="expWaBtn" href="#" target="_blank" rel="noopener" hidden>
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.9 14.1c-.25.7-1.45 1.34-2 1.4-.53.05-1.05.24-3.5-.73-2.95-1.16-4.83-4.2-4.98-4.4-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.58-.37.78-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.6.84 2.06.91 2.2.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.35.07.12.07.72-.18 1.42Z"/></svg>
-          Abrir WhatsApp
+          Cuadrar fecha por WhatsApp
         </a>
+        </div>
       </div>
     </div>
   </div>
@@ -682,8 +712,10 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     .exp-error::before{ content:"!"; flex:none; width:17px; height:17px; margin-top:1px; border-radius:50%;
       background:rgba(255,120,120,.16); color:#ff9a9a; font-weight:700; font-size:11px; display:flex; align-items:center; justify-content:center; }
     .exp-fields[disabled]{ display:none; border:0; padding:0; margin:0; opacity:1; }
-    .exp-wa{ margin-top:18px; display:inline-flex; align-items:center; gap:10px; }
+    .exp-wa{ display:inline-flex; align-items:center; justify-content:center; gap:10px; }
     .exp-wa svg{ flex:none; }
+    .exp-done-cta{ display:flex; flex-direction:column; gap:10px; width:100%; margin-top:8px; }
+    .exp-done-cta .btn{ width:100%; margin-top:0; }
   </style>
   <script>
   /* ===== Modal Reservar / Regalar ===== */
@@ -701,13 +733,14 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     var errBox = document.getElementById('expError');
     var elFootNote = document.getElementById('expFootNote');
     var waBtn = document.getElementById('expWaBtn');
+    var payBtn = document.getElementById('expPayBtn');
     var doneTitle = document.getElementById('expDoneTitle');
     var doneText = document.getElementById('expDoneText');
     var f = form.elements;
     var redirectUrl = '', lastFocus = null, mode = 'gift';
     var WA = '34613505881';
     var NOTE_GIFT = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Pago seguro · lo gestiona REVO Studios</span>';
-    var NOTE_BOOK = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><span>Sin pago ahora · coordinamos disponibilidad por WhatsApp</span>';
+    var NOTE_BOOK = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><span>Paga ahora o cuadra la fecha por WhatsApp antes de pagar</span>';
 
     function open(m, d){
       lastFocus = document.activeElement;
@@ -718,6 +751,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       f['Precio'].value = d.price || '';
       elName.textContent = d.exp || '';
       waBtn.hidden = true;
+      if(payBtn) payBtn.hidden = true;
       modal.classList.remove('is-done');
       submitBtn.disabled = false; submitBtn.classList.remove('is-loading');
 
@@ -725,12 +759,12 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         fsGift.disabled = true; fsBook.disabled = false;
         elKicker.textContent = 'Reservar';
         elPrefix.textContent = 'Reserva la experiencia ';
-        elSub.textContent = 'Cuéntanos tus preferencias y coordinamos la disponibilidad por WhatsApp. Sin pago ahora.';
+        elSub.textContent = 'Déjanos tus datos y te llevamos al pago seguro. Después coordinamos contigo las sesiones.';
         f['Tipo'].value = 'Reserva';
         f['subject'].value = 'Nueva reserva · ' + (d.exp||'') + (d.price ? ' · ' + d.price : '');
-        redirectUrl = '';
-        submitBtn.textContent = 'Solicitar por WhatsApp';
-        elFootNote.innerHTML = NOTE_BOOK;
+        redirectUrl = d.url || '';
+        submitBtn.textContent = 'Continuar al pago';
+        elFootNote.innerHTML = NOTE_GIFT;
       } else {
         fsBook.disabled = true; fsGift.disabled = false;
         elKicker.textContent = 'Regalar';
@@ -756,15 +790,19 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       if(lastFocus && lastFocus.focus) lastFocus.focus();
     }
     function finish(){
-      waBtn.hidden = true;
-      doneTitle.textContent = '¡Gracias!';
-      modal.classList.add('is-done');
-      if(redirectUrl && redirectUrl !== '#'){
-        doneText.textContent = 'Te llevamos al pago seguro…';
-        setTimeout(function(){ window.location.href = redirectUrl; }, 1500);
-      } else {
-        doneText.textContent = 'Hemos recibido tu solicitud. Te escribimos muy pronto.';
+      var url = redirectUrl;
+      var title = (f['Experiencia'] && f['Experiencia'].value) || 'REVO Studios';
+      var wa = 'https://wa.me/34613505881?text=' + encodeURIComponent('Hola, quiero reservar la experiencia ' + title + '. ¿Me confirmáis disponibilidad de fechas antes de pagar?');
+      if(url && url !== '#'){
+        close();
+        if(window.REVO && window.REVO.reservar){ window.REVO.reservar({ url: url, title: title, whatsapp: wa, whatsappLabel: 'Confirmar fecha por WhatsApp' }); }
+        else { window.location.href = url; }
+        return;
       }
+      waBtn.hidden = true; if(payBtn) payBtn.hidden = true;
+      doneTitle.textContent = '¡Gracias!';
+      doneText.textContent = 'Hemos recibido tu solicitud. Te escribimos muy pronto.';
+      modal.classList.add('is-done');
     }
     function finishBook(){
       var nombre = (f['Nombre'].value||'').trim();
@@ -779,8 +817,9 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         + '¿Me confirmáis disponibilidad?';
       waBtn.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
       waBtn.hidden = false;
-      doneTitle.textContent = 'Casi listo';
-      doneText.textContent = 'Hemos guardado tu solicitud. Ábrela por WhatsApp para que te confirmemos disponibilidad y cerremos las fechas.';
+      if(payBtn){ var canPay = redirectUrl && redirectUrl !== '#'; payBtn.href = canPay ? redirectUrl : '#'; payBtn.hidden = !canPay; }
+      doneTitle.textContent = 'Ya casi está';
+      doneText.textContent = 'Reserva pagando ahora, o escríbenos por WhatsApp si prefieres confirmar la fecha antes de pagar.';
       modal.classList.add('is-done');
     }
 
@@ -788,7 +827,10 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       b.addEventListener('click', function(){ open('gift', b.dataset); });
     });
     document.querySelectorAll('[data-exp-book]').forEach(function(b){
-      b.addEventListener('click', function(){ open('book', b.dataset); });
+      b.addEventListener('click', function(){
+        var g = b.parentNode.querySelector('[data-exp-gift]');
+        open('book', { exp: b.dataset.exp, price: b.dataset.price, url: b.dataset.url || (g && g.dataset.url) || '' });
+      });
     });
     modal.querySelectorAll('[data-close]').forEach(function(x){ x.addEventListener('click', close); });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) close(); });
@@ -800,14 +842,14 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       submitBtn.disabled = true; submitBtn.classList.add('is-loading'); submitBtn.textContent = 'Enviando…';
       var key = f['access_key'].value;
       var fd = new FormData(form);
-      var done = (mode === 'book') ? finishBook : finish;
+      var done = finish;
       if(!key || key.indexOf('TU_ACCESS_KEY') !== -1){ setTimeout(done, 650); return; } /* modo demo: sin clave real no se envía */
       fetch('https://api.web3forms.com/submit', { method:'POST', body:fd })
         .then(function(r){ return r.json(); })
         .then(function(j){ if(j.success){ done(); } else { throw new Error(j.message||'err'); } })
         .catch(function(){
           submitBtn.disabled = false; submitBtn.classList.remove('is-loading');
-          submitBtn.textContent = (mode === 'book') ? 'Solicitar por WhatsApp' : 'Continuar al pago';
+          submitBtn.textContent = 'Continuar al pago';
           if(errBox){ errBox.hidden = false; errBox.textContent = 'No hemos podido enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos a hello@revostudios.eu.'; }
         });
     });

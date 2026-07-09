@@ -144,4 +144,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://revostudios.eu/en/presoterapia.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://revostudios.eu/presoterapia.html"/>
   </url>
+  <url>
+    <loc>https://revostudios.eu/respark.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://revostudios.eu/respark.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://revostudios.eu/en/respark.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://revostudios.eu/respark.html"/>
+  </url>
+  <url>
+    <loc>https://revostudios.eu/en/respark.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://revostudios.eu/respark.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://revostudios.eu/en/respark.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://revostudios.eu/respark.html"/>
+  </url>
 </urlset>
