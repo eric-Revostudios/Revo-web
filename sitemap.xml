@@ -61,6 +61,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://revostudios.eu/experiencias.html"/>
   </url>
   <url>
+    <loc>https://revostudios.eu/terapias.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://revostudios.eu/terapias.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://revostudios.eu/en/terapias.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://revostudios.eu/terapias.html"/>
+  </url>
+  <url>
+    <loc>https://revostudios.eu/en/terapias.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://revostudios.eu/terapias.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://revostudios.eu/en/terapias.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://revostudios.eu/terapias.html"/>
+  </url>
+  <url>
     <loc>https://revostudios.eu/crioterapia.html</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://revostudios.eu/crioterapia.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://revostudios.eu/en/crioterapia.html"/>
