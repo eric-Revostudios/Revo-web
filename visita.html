@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<script src="revo-pixel.js" defer></script>
+<script src="revo-cookies.js" defer></script>
+<script src="revo-analytics.js" defer></script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=837759925366480&ev=PageView&noscript=1" alt="" /></noscript>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0d1e" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Visita REVO — 30 minutos para saber si es para ti</title>
+<meta name="description" content="Descubre si REVO es para ti en una visita gratuita de 30 minutos. Club de longevidad en Barcelona (Turó Park)." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="REVO" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:title" content="Visita REVO — gratuita, 30 minutos" />
+<meta property="og:description" content="Conoce el estudio, las 8 terapias y qué te iría bien según tu objetivo. Sin compromiso." />
+<meta property="og:image" content="https://revostudios.eu/assets/hero-poster-v3.jpg" />
+<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
+<link rel="preload" href="fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
+<link rel="stylesheet" href="revo-amanecer.css" />
+<link rel="stylesheet" href="revo-reservar.css" />
+<script src="revo-reservar.js" defer></script>
+<link rel="icon" type="image/png" href="assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="assets/revo-icon.png" />
+<!-- ÚNICO punto de sustitución: link del servicio "Visita REVO" de Momence -->
+<script>window.REVO_VISITA_URL="{URL_RESERVA_VISITA}";</script>
+<style id="visita-css">
+  body{ background:#fff; }
+  .vw{ max-width:720px; margin:0 auto; padding:0 24px; }
+  .vs{ padding-block:clamp(64px,10vh,130px); position:relative; }
+  .vs-navy{ background:#0a0d1e; color:#fff; }
+  .vs-blue{ background:linear-gradient(180deg,#1a2666 0%,#3f53d6 52%,#6881fc 100%); color:#fff; }
+  .vh2{ font-family:var(--display); font-weight:400; font-size:clamp(30px,5vw,64px); line-height:1.04; letter-spacing:-.018em; margin:0; text-wrap:balance; }
+  .vlead{ font-size:clamp(15.5px,1.25vw,18px); line-height:1.62; margin:18px 0 0; }
+  .on-light .vlead{ color:rgba(17,19,24,.64); }
+  .vs .eyebrow, .vband .eyebrow{ margin-bottom:20px; font-size:11px; letter-spacing:.2em; }
+  a.flink:hover{ color:#fff; }
+  .caps{ font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
+  /* CTA sólido (lenguaje del hero de la home: rectángulo blanco / índigo en claro) */
+  .vbtn{ background:#fff; border:1px solid #fff; border-radius:3px; color:var(--ink-dark);
+    backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:0 16px 44px -16px rgba(0,0,0,.45); }
+  .vbtn:hover{ transform:translateY(-3px) scale(1.03); background:var(--indigo); color:#fff; border-color:var(--indigo); letter-spacing:.2em; box-shadow:0 24px 56px -14px rgba(104,129,252,.9); }
+  .on-light .vbtn{ background:var(--indigo); border-color:var(--indigo); color:#fff; box-shadow:0 14px 38px -14px rgba(104,129,252,.85); }
+  .on-light .vbtn:hover{ background:var(--indigo-2); border-color:var(--indigo-2); color:#fff; box-shadow:0 24px 56px -12px rgba(104,129,252,.95); }
+  /* ---- header propio de la landing: logo + contactos + CTA (base visual de la home) ---- */
+  .hactions{ margin-left:auto; display:flex; align-items:center; gap:26px; }
+  .site-header .header-tel{ display:inline-flex; }
+  .header-wa svg{ width:15px; height:15px; }
+  @media(max-width:600px){
+    .hactions{ gap:15px; }
+    .hactions .tel-num{ display:none; }
+    .hactions .header-tel svg{ width:18px; height:18px; }
+    .hactions .btn--hero{ padding:10px 15px; font-size:10px; }
+  }
+  /* ---- 1 · hero (tal cual la home: base en revo-amanecer.css + tweaks de index.html) ---- */
+  .hero h1{ font-size:clamp(40px,6.2vw,100px); }
+  .hero .eyebrow{ font-size:11px; letter-spacing:.2em; }
+  @media (max-width:600px){
+    .hero h1{ font-size:clamp(30px,8.4vw,44px); }
+    .hero .hl-line{ white-space:normal; width:auto; max-width:100%; }
+    .hero .eyebrow{ max-width:100%; align-items:flex-start; margin-bottom:22px; }
+    .hero .hero-sub{ margin-top:20px; font-size:16px; line-height:1.5; }
+    .hero .hero-cta{ margin-top:16px; width:100%; }
+    .hero .hero-cta .btn{ width:100%; justify-content:center; padding:18px 30px; }
+    .hero .hero-benefits{ position:static; display:flex; margin-top:auto; padding-top:24px; align-items:flex-start; }
+  }
+  /* ---- 2 · el club (blanco) — una pantalla ---- */
+  .vclub{ min-height:100svh; box-sizing:border-box; display:flex; align-items:center; padding-block:clamp(72px,10vh,110px) clamp(40px,6vh,72px); }
+  .vclub .vw{ width:100%; }
+  .qgrid{ margin-top:clamp(28px,4.5vh,44px); display:grid; gap:10px; }
+  .qgrid figure{ margin:0; border-radius:16px; overflow:hidden; box-shadow:0 30px 60px -34px rgba(20,30,80,.4); height:clamp(240px,42svh,470px); }
+  .qgrid figure img{ width:100%; height:100%; object-fit:cover; }
+  @media(max-width:899px){
+    /* móvil: fachada arriba + dos fotos del interior debajo, todas en su proporción real */
+    .vclub{ padding-block:calc(58px + env(safe-area-inset-top,0px)) clamp(28px,5vh,56px); }
+    .vclub .qgrid{ grid-template-columns:1fr 1fr; margin-top:clamp(20px,3vh,34px); }
+    .vclub .qgrid figure{ height:auto; aspect-ratio:2/3; }
+    .vclub .qgrid figure:first-child{ grid-column:1 / -1; aspect-ratio:3/2; }
+  }
+  @media(min-width:900px){
+    .vclub .vw{ max-width:1120px; display:grid; grid-template-columns:1fr 1.05fr; column-gap:clamp(48px,5.5vw,84px); align-items:center; }
+    .vclub .vh2{ font-size:clamp(30px,3.4vw,48px); }
+    .vclub .qgrid{ margin-top:0; }
+    .vclub .qgrid figure{ height:min(64svh,580px); }
+    .vclub .qgrid figure+figure{ display:none; }
+  }
+  /* ---- 3 · terapias (azul, tarjetas de la home con foto) ---- */
+  .vther{ padding-bottom:clamp(26px,4vh,44px); }
+  .vther .vh2{ max-width:18ch; }
+  .vther .head-pad{ padding:0 var(--edge); }
+  .vther .eyebrow{ margin-bottom:28px; }
+  .vther .tsub{ font-size:clamp(16px,1.4vw,20px); color:rgba(255,255,255,.72); margin:18px 0 0; max-width:44ch; font-weight:400; }
+  .vther .cards{ margin-top:38px; padding:14px var(--edge) 58px; }
+  .vther .card{ flex:0 0 300px; min-height:460px; padding:0; border-radius:18px; overflow:hidden; cursor:default; display:flex; flex-direction:column; justify-content:flex-end;
+    background:#10173a; backdrop-filter:none; -webkit-backdrop-filter:none;
+    box-shadow:0 24px 48px -26px rgba(6,9,32,.6), 0 8px 18px -10px rgba(6,9,32,.45); }
+  .vther .card::after{ display:none; }
+  .vther .card::before{ content:""; display:block; position:absolute; inset:0; z-index:1; pointer-events:none; mix-blend-mode:normal; border-radius:inherit;
+    background:linear-gradient(180deg, rgba(8,11,34,.16) 0%, rgba(8,11,34,0) 22%, rgba(8,11,34,.3) 50%, rgba(8,11,34,.78) 74%, rgba(8,11,34,.94) 100%); }
+  .vther .card:hover{ transform:translateY(-8px); box-shadow:0 34px 64px -28px rgba(6,9,32,.62), 0 12px 24px -12px rgba(6,9,32,.5); }
+  .vther .card img{ position:absolute; inset:0; z-index:0; width:100%; height:100%; object-fit:cover; }
+  .vther .card .cb{ position:relative; z-index:2; padding:18px 20px 22px; }
+  .vther .card .card-tag{ margin:0 0 10px; padding:0; background:none; border:0; border-radius:0; font-size:10px; font-weight:600; letter-spacing:.16em; color:rgba(255,255,255,.72); }
+  .vther .card .card-tag .blip{ width:5px; height:5px; }
+  .vther .card h3{ font-family:var(--display); font-weight:500; font-size:19px; line-height:1.12; letter-spacing:-.01em; color:#fff; margin:0; }
+  .vther .card p{ margin:8px 0 0; font-size:12.5px; line-height:1.55; color:rgba(255,255,255,.78); }
+  .vther .card .card-list{ margin-top:14px; display:flex; flex-wrap:wrap; gap:7px; }
+  .vther .card .card-list li{ white-space:normal; max-width:100%; line-height:1.3; text-wrap:balance; }
+  @media(max-width:600px){
+    .vther{ min-height:100svh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; padding-block:calc(58px + env(safe-area-inset-top,0px)) 14px; }
+    .vther .eyebrow{ margin-bottom:14px; }
+    .vther .tsub{ margin-top:10px; font-size:15px; }
+    .vther .cards{ margin-top:16px; padding:10px var(--edge) 46px; }
+    .vther .card{ box-shadow:0 16px 36px -20px rgba(6,9,32,.62), 0 5px 12px -7px rgba(6,9,32,.45); }
+    .vther .scroll-hint{ margin-top:-12px; }
+    .vther .card{ flex-basis:74vw; min-height:0; height:min(56svh,440px); }
+  }
+  .vther .scroll-hint{ color:rgba(255,255,255,.85); margin:2px var(--edge) 0; }
+  /* ---- 4 · medicina (blanco) ---- */
+  .dra{ margin-top:34px; display:flex; align-items:center; gap:20px; padding:24px 26px; border:1px solid rgba(104,129,252,.28); border-radius:18px;
+    background:linear-gradient(118deg, rgba(104,129,252,.08), rgba(104,129,252,.02)); }
+  .dra img{ flex:none; width:84px; height:84px; border-radius:50%; object-fit:cover; border:1px solid rgba(104,129,252,.34); }
+  .dra .dname{ font-family:var(--display); font-weight:500; font-size:clamp(20px,2vw,24px); letter-spacing:-.01em; color:var(--ink-dark); }
+  .dra .drole{ font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--indigo); margin-top:4px; }
+  .dra .dbio{ font-size:13.5px; line-height:1.5; color:rgba(17,19,24,.62); margin-top:7px; }
+  .msteps{ margin-top:28px; display:flex; flex-direction:column; }
+  .mstep{ display:flex; gap:16px; padding:16px 0; border-bottom:1px solid rgba(17,19,24,.1); }
+  .mstep:first-child{ border-top:1px solid rgba(17,19,24,.14); }
+  .mstep .mn{ flex:none; font-family:var(--display); font-weight:400; font-size:22px; color:var(--indigo); width:34px; }
+  .mstep h3{ margin:0; font-size:16px; font-weight:600; letter-spacing:-.01em; color:var(--ink-dark); }
+  .mstep p{ margin:4px 0 0; font-size:14px; line-height:1.5; color:rgba(17,19,24,.6); }
+  @media(min-width:900px){
+    .msteps{ display:grid; grid-template-columns:1fr 1fr; gap:0 48px; }
+    .mstep:nth-child(2){ border-top:1px solid rgba(17,19,24,.14); }
+  }
+  /* ---- 5 · resultados (blanco) — marquesina de voces de la home ---- */
+  .res-title .pct{ color:var(--indigo); }
+  .voices-rail{ width:100vw; margin-left:calc(50% - 50vw); margin-top:40px; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+    -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+  .voices-rail::-webkit-scrollbar{ display:none; }
+  .voices-track{ display:flex; gap:18px; width:max-content; padding:20px 9px 34px; }
+  .vcard{ flex:none; width:min(78vw,370px); box-sizing:border-box; border:1px solid rgba(17,19,24,.12); border-radius:18px;
+    padding:26px 28px; background:#fff; box-shadow:0 24px 50px -46px rgba(22,36,95,.4); }
+  .vcard.hi{ background:linear-gradient(180deg,#fff,#f2f5ff); border-color:rgba(104,129,252,.4); }
+  .vcard .vq{ font-family:var(--display); font-weight:400; font-size:clamp(17px,1.5vw,20px); line-height:1.36; letter-spacing:-.008em; margin:0; color:var(--ink-dark); text-wrap:pretty; }
+  .vcard .vby{ display:flex; align-items:center; gap:9px; margin-top:18px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--indigo); }
+  .vcard .vby::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--teal); }
+  /* ---- 6 · faq (blanco) ---- */
+  .vfaq h2{ font-family:var(--display); font-weight:400; font-size:clamp(28px,4vw,52px); letter-spacing:-.014em; margin:0 0 26px; }
+  .vfaq .faq-list{ border-top-color:rgba(17,19,24,.18); }
+  /* FAQ sobre navy: coda del bloque final, misma familia visual */
+  .vfaq.vs-navy .vw{ border-top:1px solid rgba(255,255,255,.12); padding-top:clamp(34px,5vh,58px); }
+  .vfaq.vs-navy h2{ color:#fff; }
+  .vfaq.vs-navy .faq-list{ border-top-color:rgba(255,255,255,.2); }
+  .vfaq.vs-navy .faq-item{ border-bottom-color:rgba(255,255,255,.12); }
+  .vfaq.vs-navy .faq-q{ color:#fff; }
+  .vfaq.vs-navy .faq-q .ico::before, .vfaq.vs-navy .faq-q .ico::after{ background:#fff; }
+  .vfaq.vs-navy .faq-q:hover, .vfaq.vs-navy .faq-item.open .faq-q{ color:var(--teal); }
+  .vfaq.vs-navy .faq-item.open .faq-q .ico::before{ background:var(--teal); }
+  .vfaq.vs-navy .faq-a-inner{ color:rgba(255,255,255,.72); }
+  .vfaq.vs-navy .faq-wa{ color:rgba(255,255,255,.6); }
+  .vfaq.vs-navy .faq-wa a{ color:#fff; border-bottom-color:rgba(255,255,255,.42); }
+  .vfaq.vs-navy .faq-wa a:hover{ border-color:#fff; }
+  .vfaq .faq-q{ font-size:15.5px; padding:17px 2px; line-height:1.35; gap:12px; }
+  .vfaq .faq-a-inner{ font-size:14.5px; line-height:1.65; padding-bottom:20px; }
+  .faq-wa{ margin-top:30px; font-size:15px; color:rgba(17,19,24,.66); }
+  .faq-wa a{ color:var(--indigo); font-weight:600; border-bottom:1px solid rgba(104,129,252,.4); padding-bottom:1px; transition:border-color .3s; }
+  .faq-wa a:hover{ border-color:var(--indigo); }
+  /* ---- 7 · finale navy: la visita + dos caminos ---- */
+  .vsteps{ margin-top:34px; }
+  .vstep{ display:flex; gap:18px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.14); }
+  .vstep:first-child{ border-top:1px solid rgba(255,255,255,.14); }
+  .vstep .vn{ flex:none; font-family:var(--display); font-weight:400; font-size:32px; line-height:1; color:var(--teal); width:38px; }
+  .vstep h3{ margin:0; font-size:16.5px; font-weight:600; letter-spacing:-.01em; color:#fff; }
+  .vstep p{ margin:5px 0 0; font-size:14.5px; line-height:1.55; color:rgba(255,255,255,.72); }
+  .vcta{ margin-top:38px; display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
+  .vcta .btn{ width:100%; justify-content:center; }
+  @media(min-width:821px){ .vcta .btn{ width:auto; padding:19px 46px; } }
+  .vcta .caps{ color:rgba(255,255,255,.6); }
+  .taster{ margin-top:20px; padding:12px 16px; border:1px solid rgba(255,255,255,.16); border-radius:12px; background:rgba(255,255,255,.04); display:flex; align-items:center; justify-content:space-between; gap:10px 18px; flex-wrap:wrap; }
+  .taster h3{ margin:0; font-size:13.5px; font-weight:600; letter-spacing:-.01em; color:#fff; }
+  .taster p{ margin:2px 0 0; font-size:12px; line-height:1.45; color:rgba(255,255,255,.62); }
+  .taster .tlink{ flex:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:9px 14px; border:1px solid rgba(255,255,255,.45); border-radius:3px; color:#fff; font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; transition:background .3s,color .3s,border-color .3s,transform .3s; }
+  .taster .tlink:hover{ background:#fff; color:var(--ink-dark); border-color:#fff; transform:translateY(-2px); }
+  @media(max-width:600px){ .taster .tlink{ width:100%; } }
+  @media(min-width:900px){
+    .ctarow{ display:flex; align-items:center; gap:24px; margin-top:38px; }
+    .ctarow .vcta{ margin-top:0; flex:none; }
+    .ctarow .taster{ margin-top:0; flex:1; align-self:stretch; }
+  }
+  /* pie mínimo (dentro del bloque navy) */
+  .vfoot{ background:#0a0d1e; color:rgba(255,255,255,.62); padding:clamp(36px,5vh,54px) 24px calc(30px + env(safe-area-inset-bottom,0px)); text-align:center; border-top:1px solid rgba(255,255,255,.1); }
+  .vfoot .logo-img{ height:20px; margin:0 auto 16px; filter:none; }
+  .vfoot p{ margin:4px 0; font-size:12.5px; line-height:1.6; }
+  .vfoot a{ color:inherit; }
+  .vfoot .legal{ margin-top:14px; display:flex; justify-content:center; gap:18px; flex-wrap:wrap; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.4); }
+  /* ---- sticky CTA móvil ---- */
+  #sbar{ position:fixed; left:0; right:0; bottom:0; z-index:80; display:none; padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:rgba(10,13,30,.74); backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4);
+    border-top:1px solid rgba(255,255,255,.14); transform:translateY(110%); transition:transform .45s var(--ease); }
+  #sbar.show{ transform:none; }
+  #sbar .btn{ width:100%; padding:16px 24px; }
+  @media(max-width:820px){
+    #sbar{ display:block; }
+    .vfoot{ padding-bottom:calc(96px + env(safe-area-inset-bottom,0px)); }
+  }
+</style>
+</head>
+<body id="top">
+
+<header class="site-header" id="header">
+  <div class="header-inner">
+    <a class="logo" href="#top"><img loading="lazy" decoding="async" class="logo-img" src="assets/revo-icon.png" alt="REVO" /></a>
+    <div class="hactions">
+      <a class="header-tel" href="tel:+34613505881" aria-label="Llamar al +34 613 505 881"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.8 4H4.5C3.7 4 3 4.7 3 5.5 3 14 10 21 18.5 21c.8 0 1.5-.7 1.5-1.5v-2.3c0-.7-.5-1.3-1.2-1.5l-2.5-.5c-.6-.1-1.2.1-1.5.6l-.8 1.1a13 13 0 0 1-5.7-5.7l1.1-.8c.5-.3.7-.9.6-1.5l-.5-2.5C8.1 4.5 7.5 4 6.8 4z"/></svg><span class="tel-num">+34 613 505 881</span></a>
+      <a class="header-tel header-wa" href="https://wa.me/34613505881" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.2-.8-.7-1.3-1.5-1.4-1.8-.2-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.8.1.2 1.9 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.4-.3z"/></svg><span class="tel-num">WhatsApp</span></a>
+      <a class="btn btn--hero" href="#reserva">Reservar visita</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- 1 · HERO (el de la home) -->
+  <section class="hero" id="hero" data-screen-label="Hero">
+    <div class="hero-media"><video muted loop playsinline preload="none" poster="assets/hero-poster-v3.jpg" data-src="assets/hero-video.mp4"></video></div>
+    <div class="hero-inner">
+      <div class="hero-lead">
+        <p class="eyebrow reveal">Science-backed high-tech performance <br class="eb-br">and longevity</p>
+        <h1 class="display anim-lines reveal"><span class="hl-line">Feel <span class="ser">better</span>, look <span class="ser">better</span>,</span><span class="hl-line">live <span class="ser">better</span>.</span></h1>
+        <p class="hero-sub reveal" style="--d:.2s">Terapias de precisión, hechas rutina.<br>Expertos que cuidan de ti.<br>Un protocolo a medida.</p>
+      </div>
+      <div class="hero-benefits rot-d reveal" style="--d:.4s">
+        <div class="roll"><div class="roll-track">
+          <span class="rw2">Más <span class="ser">energía</span></span>
+          <span class="rw2">Mejor <span class="ser">sueño</span></span>
+          <span class="rw2">Menos <span class="ser">inflamación</span></span>
+          <span class="rw2">Mejor <span class="ser">piel</span></span>
+          <span class="rw2">Menos <span class="ser">estrés</span></span>
+          <span class="rw2">Más <span class="ser">energía</span></span>
+        </div></div>
+      </div>
+      <div class="hero-cta reveal" style="--d:.3s">
+        <a class="btn btn--lg btn--hero" href="#reserva">Reservar visita</a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      Desliza para explorar
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+    </div>
+  </section>
+
+  <!-- 2 · EL CLUB -->
+  <section class="vs on-light vclub" data-screen-label="El club">
+    <div class="vw">
+      <div class="club-copy">
+        <p class="eyebrow reveal">El club</p>
+        <h2 class="vh2 reveal" style="--d:.06s">Tecnología avanzada para ayudarte a mejorar tu salud <em class="ser">física, mental y estética</em>.</h2>
+        <p class="vlead reveal" style="--d:.12s">Un equipo médico diseña tu protocolo personal: qué terapias, en qué orden y con qué frecuencia.</p>
+      </div>
+      <div class="qgrid reveal" style="--d:.18s">
+        <figure><img loading="lazy" decoding="async" src="assets/visita-fachada.jpg" alt="Fachada de REVO Turó Park de noche" /></figure>
+        <figure><img loading="lazy" decoding="async" src="assets/visita-salas.jpg" alt="Pasillo interior con las salas ReO₂ y Revive" /></figure>
+        <figure><img loading="lazy" decoding="async" src="assets/visita-rotulo.jpg" alt="Rótulo luminoso de REVO Studios" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · LAS TERAPIAS (tarjetas de la home, con foto) -->
+  <section class="vs vs-blue vther" data-screen-label="Las terapias">
+    <div class="head-pad">
+      <p class="eyebrow reveal">Las terapias</p>
+      <h2 class="vh2 reveal" style="--d:.06s">Terapias respaldadas por <em class="ser">la ciencia</em>.</h2>
+      <p class="tsub reveal" style="--d:.1s">Antes reservadas a las élites. Ahora, a tu alcance.</p>
+    </div>
+    <div class="cards reveal" style="--d:.14s">
+      <article class="card"><img loading="lazy" decoding="async" src="assets/cryo-chamber.jpg" alt="Crioterapia cuerpo entero" /><div class="cb"><span class="card-tag"><span class="blip"></span>1.5–3 min</span><h3>Crioterapia cuerpo entero</h3><p>3 minutos a –130 °C que reactivan tus mecanismos naturales de defensa, regeneración y energía mental.</p><ul class="card-list"><li>Energía, foco y claridad mental</li><li>Circulación y oxigenación celular</li><li>Menos inflamación y dolor</li><li>Sueño profundo y equilibrio hormonal</li></ul></div></article>
+      <article class="card"><img loading="lazy" decoding="async" src="assets/redlight-chamber.jpg" alt="Cama de luz roja" /><div class="cb"><span class="card-tag"><span class="blip"></span>10–15 min</span><h3>Cama de luz roja</h3><p>Luz roja e infrarroja (630–940 nm) que penetra hasta tus células: produce energía intracelular, reduce inflamación y activa colágeno.</p><ul class="card-list"><li>Producción de colágeno y firmeza</li><li>Recuperación y reparación celular</li><li>Menos inflamación y estrés oxidativo</li></ul></div></article>
+      <article class="card"><img loading="lazy" decoding="async" src="assets/hbot-chamber.jpg" alt="Oxigenoterapia hiperbárica" /><div class="cb"><span class="card-tag"><span class="blip"></span>60 min</span><h3>Oxigenoterapia hiperbárica</h3><p>Oxígeno puro al 98% a 1.5 ATA que se disuelve en el plasma y alcanza cada tejido: regenera, oxigena y agudiza tu mente.</p><ul class="card-list"><li>Oxigenación profunda de tejidos y cerebro</li><li>Regeneración celular acelerada</li><li>Claridad mental y rendimiento</li></ul></div></article>
+      <article class="card"><img loading="lazy" decoding="async" src="assets/pemf-hero.jpg" alt="Campo electromagnético pulsado" /><div class="cb"><span class="card-tag"><span class="blip"></span>20–40 min</span><h3>Campo electromagnético pulsado</h3><p>Campos electromagnéticos pulsados de baja frecuencia que restablecen tu energía celular, calman el dolor y reequilibran el sistema nervioso.</p><ul class="card-list"><li>Recuperación deportiva rápida</li><li>Menos dolor crónico y fatiga</li><li>Más movilidad y energía</li></ul></div></article>
+      <article class="card"><img loading="lazy" decoding="async" src="assets/massage-glow.jpg" alt="Respark" /><div class="cb"><span class="card-tag"><span class="blip"></span>60 min</span><h3>Respark®</h3><p>Crioterapia de cuerpo entero a –130 °C seguida de un masaje drenante moldeador: esculpe, drena la retención y te deja completamente ligero.</p><ul class="card-list"><li>Drenaje y desinflamación visible</li><li>Contornos más definidos</li><li>Firmeza y ligereza corporal</li></ul></div></article>
+      <article class="card"><img loading="lazy" decoding="async" src="assets/braintap-hero.jpg" alt="Neuroestimulación cerebral" /><div class="cb"><span class="card-tag"><span class="blip"></span>20–30 min</span><h3>Neuroestimulación cerebral</h3><p>Beats binaurales y fotoestimulación sincronizados que activan tu sistema parasimpático: el estrés se transforma en calma y claridad.</p><ul class="card-list"><li>Calma mental y menos estrés</li><li>Sueño más profundo</li><li>Foco, memoria y rendimiento</li></ul></div></article>
+      <article class="card"><img loading="lazy" decoding="async" src="assets/presoterapia-hero.jpg" alt="Presoterapia" /><div class="cb"><span class="card-tag"><span class="blip"></span>30–60 min</span><h3>Presoterapia</h3><p>Compresión neumática secuencial de pies a caderas que activa el sistema venoso y linfático: reduce edema, oxigena y descarga las piernas.</p><ul class="card-list"><li>Piernas ligeras y menos hinchazón</li><li>Recuperación deportiva rápida</li><li>Mejor circulación</li></ul></div></article>
+      <article class="card"><img loading="lazy" decoding="async" src="assets/massage-room.jpg" alt="Masaje facial y corporal" /><div class="cb"><span class="card-tag"><span class="blip"></span>50 min</span><h3>Masaje facial y corporal</h3><p>Trabajo manual profundo de cuerpo y rostro para liberar tensión, recuperar movilidad y dejar el cuerpo completamente en cero.</p><ul class="card-list"><li>Libera tensión</li><li>Relax profundo</li><li>Mejor circulación</li></ul></div></article>
+    </div>
+    <span class="scroll-hint reveal" style="--d:.18s">Desliza →</span>
+  </section>
+
+  <!-- 4 · LA MEDICINA DETRÁS -->
+  <section class="vs on-light" data-screen-label="La medicina detrás">
+    <div class="vw">
+      <p class="eyebrow reveal">La medicina detrás</p>
+      <h2 class="vh2 reveal" style="--d:.06s">Cada protocolo, diseñado por médicos</h2>
+      <div class="dra reveal" style="--d:.12s">
+        <img loading="lazy" decoding="async" src="assets/dra-miriam-rivera.jpeg" alt="Dra. Miriam Rivera" />
+        <div><div class="dname">Dra. Miriam Rivera</div><div class="drole">Directora Médica</div><div class="dbio">Especialista en medicina de la longevidad y oxigenoterapia hiperbárica.</div></div>
+      </div>
+      <div class="msteps reveal" style="--d:.18s">
+        <div class="mstep"><span class="mn">01</span><div><h3>Diagnóstico</h3><p>Valoración médica: historia clínica, biomarcadores, hábitos</p></div></div>
+        <div class="mstep"><span class="mn">02</span><div><h3>Tu protocolo</h3><p>Qué terapias, en qué orden, con qué frecuencia</p></div></div>
+        <div class="mstep"><span class="mn">03</span><div><h3>Rutina</h3><p>Integradas en tu semana hasta volverse hábito</p></div></div>
+        <div class="mstep"><span class="mn">04</span><div><h3>Acompañamiento</h3><p>Supervisión médica y tu Wellness Coach</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · RESULTADOS REALES -->
+  <section class="vs on-light" style="padding-top:0" data-screen-label="Resultados reales">
+    <div class="vw">
+      <p class="eyebrow reveal">Resultados reales</p>
+      <h2 class="vh2 res-title reveal" style="--d:.06s">El <span class="pct">98&nbsp;%</span> de quienes viven REVO con constancia nota un cambio real.</h2>
+    </div>
+    <div class="voices-rail reveal" style="--d:.12s" aria-label="Testimonios de miembros">
+      <div class="voices-track">
+        <div class="vcard hi"><p class="vq">"El cambio ha sido brutal. Más energía, mejor sueño, otra persona."</p><div class="vby">Global</div></div>
+        <div class="vcard"><p class="vq">"Tengo una energía increíble que jamás había tenido."</p><div class="vby">Energía</div></div>
+        <div class="vcard"><p class="vq">"Ya no tomo mis pastillas para dormir, he conseguido dejarlas."</p><div class="vby">Sueño</div></div>
+        <div class="vcard hi"><p class="vq">"Los médicos no se creen que no se me haya hinchado el brazo. La recuperación está siendo como nunca."</p><div class="vby">Recuperación</div></div>
+        <div class="vcard hi" aria-hidden="true"><p class="vq">"El cambio ha sido brutal. Más energía, mejor sueño, otra persona."</p><div class="vby">Global</div></div>
+        <div class="vcard" aria-hidden="true"><p class="vq">"Tengo una energía increíble que jamás había tenido."</p><div class="vby">Energía</div></div>
+        <div class="vcard" aria-hidden="true"><p class="vq">"Ya no tomo mis pastillas para dormir, he conseguido dejarlas."</p><div class="vby">Sueño</div></div>
+        <div class="vcard hi" aria-hidden="true"><p class="vq">"Los médicos no se creen que no se me haya hinchado el brazo. La recuperación está siendo como nunca."</p><div class="vby">Recuperación</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · FINALE: LA VISITA + DOS CAMINOS -->
+  <section class="vs vs-navy" id="reserva" data-screen-label="La visita y reserva">
+    <div class="vw">
+      <p class="eyebrow reveal">La visita</p>
+      <h2 class="vh2 reveal" style="--d:.06s">30 minutos para saber si esto es <em class="ser">para ti</em></h2>
+      <div class="vsteps reveal" style="--d:.12s">
+        <div class="vstep"><span class="vn">1</span><div><h3>Conoces el estudio</h3><p>Las instalaciones y las 8 terapias, por dentro</p></div></div>
+        <div class="vstep"><span class="vn">2</span><div><h3>Nos cuentas tu objetivo</h3><p>Energía, sueño, estrés, recuperación, piel</p></div></div>
+        <div class="vstep"><span class="vn">3</span><div><h3>Te decimos qué te iría bien y por qué</h3><p>Honestamente. Si REVO no es para ti, también te lo decimos.</p></div></div>
+      </div>
+      <div class="ctarow">
+      <div class="vcta reveal" style="--d:.08s">
+        <a class="btn vbtn" id="bkVisita" href="#reserva">Reservar mi visita</a>
+        <span class="caps">Gratuita · 30 min · Sin compromiso</span>
+      </div>
+      <div class="taster reveal" style="--d:.14s">
+        <div>
+          <h3>¿Quieres probar una terapia ese mismo día?</h3>
+          <p>La visita completa + tu primera terapia, elegida según tu objetivo.</p>
+        </div>
+        <a class="tlink" href="#reserva" data-reservar data-board="146948" data-title="Visita + primera terapia">Probar por 40&nbsp;€</a>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7b · FAQ (coda del bloque navy) -->
+  <section class="vs vs-navy vfaq" style="padding-top:0" data-screen-label="Preguntas frecuentes">
+    <div class="vw">
+      <h2 class="reveal">Preguntas frecuentes</h2>
+      <div class="faq-list reveal" style="--d:.08s">
+        <div class="faq-item"><button class="faq-q" type="button">¿Qué incluye exactamente la visita gratuita?<span class="ico"></span></button><div class="faq-a"><div class="faq-a-inner">Un recorrido por el estudio, las 8 terapias explicadas por dentro y una orientación según tu objetivo: te decimos qué te iría bien y por qué. 30 minutos, gratis, sin compromiso.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">¿Dónde estáis?<span class="ico"></span></button><div class="faq-a"><div class="faq-a-inner">REVO Turó Park — Carrer de Ferran Agulló, 24, Barcelona.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">¿Cuánto cuesta REVO?<span class="ico"></span></button><div class="faq-a"><div class="faq-a-inner">REVO funciona por suscripción mensual. En la visita te contamos las opciones, sin compromiso.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">¿Puedo venir si tengo una condición médica?<span class="ico"></span></button><div class="faq-a"><div class="faq-a-inner">En la mayoría de casos, sí. Nuestra dirección médica revisa cada caso y adapta las terapias a tu situación.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">¿Tengo que preparar algo para la visita?<span class="ico"></span></button><div class="faq-a"><div class="faq-a-inner">Nada. Ven como estés — es una visita, no una sesión.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">¿La visita me compromete a algo?<span class="ico"></span></button><div class="faq-a"><div class="faq-a-inner">A nada. Está pensada justo para eso: saber si REVO es para ti antes de decidir.</div></div></div>
+      </div>
+      <p class="faq-wa reveal" style="--d:.12s">¿Otra duda? <a href="https://wa.me/34613505881" target="_blank" rel="noopener">Escríbenos</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="vfoot" data-screen-label="Pie">
+  <img class="logo-img" src="assets/revo-logo-white.png" alt="REVO" />
+  <p>REVO Turó Park — Carrer de Ferran Agulló, 24 · Barcelona</p>
+  <p><a href="tel:+34613505881">+34 613 505 881</a></p>
+  <div class="legal"><a class="flink" href="aviso-legal.html">Aviso legal</a><a class="flink" href="privacidad.html">Privacidad</a><a class="flink" href="cookies.html">Cookies</a></div>
+</footer>
+
+<div id="sbar" aria-hidden="true"><a class="btn vbtn" href="#reserva">Reservar visita</a></div>
+
+<script>
+(function(){
+  /* reveals */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -10% 0px',threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  /* faq */
+  document.querySelectorAll('.faq-item').forEach(function(it){
+    it.querySelector('.faq-q').addEventListener('click',function(){
+      var open=it.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){o.classList.remove('open');});
+      if(!open) it.classList.add('open');
+    });
+  });
+  /* reserva de la visita: la URL de Momence vive en window.REVO_VISITA_URL (head).
+     Con URL válida abre el cajón de reserva del sitio (revo-reservar); si no, nueva pestaña. */
+  var u=window.REVO_VISITA_URL||'', ok=/^https?:\/\//.test(u)&&u.indexOf('{')<0;
+  if(ok){
+    var l=document.createElement('link');l.rel='preconnect';l.href='https://momence.com';document.head.appendChild(l);
+    var vb=document.getElementById('bkVisita');
+    vb.href=u; vb.target='_blank'; vb.rel='noopener';
+    vb.addEventListener('click',function(e){
+      if(window.REVO&&window.REVO.reservar){ e.preventDefault(); window.REVO.reservar({url:u, title:'Visita REVO', whatsapp:'https://wa.me/34613505881'}); }
+    });
+  }
+  /* vídeo del hero — exactamente como la home: póster instantáneo, MP4 en cuanto la página está lista */
+  (function(){
+    function loadHeroVideo(){
+      var v=document.querySelector('.hero-media video[data-src]');
+      if(!v||v.src) return;
+      v.src=v.dataset.src; v.load();
+      var p=v.play(); if(p&&p.catch) p.catch(function(){});
+    }
+    if(document.readyState==='complete') setTimeout(loadHeroVideo,300);
+    else window.addEventListener('load', function(){ setTimeout(loadHeroVideo,300); });
+    var v=document.querySelector('.hero-media video');
+    if(v){ var tryPlay=function(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }; v.addEventListener('canplay', tryPlay, {once:true}); }
+  })();
+  /* rodillo de beneficios — cadencia de la home, con temporizador (robusto aunque la pestaña pierda foco) */
+  (function(){
+    var track=document.querySelector('.hero-benefits.rot-d .roll-track');
+    if(!track) return;
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var n=track.children.length-1;      /* el último duplica al primero → bucle sin costura */
+    if(n<1) return;
+    var i=0, STEP=1.32, DUR=520, HOLD=430;
+    setInterval(function(){
+      i++;
+      if(i>n){ track.style.transition='none'; track.style.transform='translateY(0)'; void track.offsetHeight; i=1; }
+      track.style.transition='transform '+DUR+'ms cubic-bezier(.76,0,.24,1)';
+      track.style.transform='translateY(-'+(i*STEP)+'em)';
+    }, DUR+HOLD);
+  })();
+  /* sticky CTA: visible desde la sección 2, oculto sobre la reserva */
+  var sb=document.getElementById('sbar'),hv=true,rv=false;
+  function up(){var s=!hv&&!rv;sb.classList.toggle('show',s);sb.setAttribute('aria-hidden',String(!s));}
+  new IntersectionObserver(function(e){hv=e[0].isIntersecting;up();},{threshold:.02}).observe(document.getElementById('hero'));
+  new IntersectionObserver(function(e){rv=e[0].isIntersecting;up();},{threshold:.05}).observe(document.getElementById('reserva'));
+  /* testimonios: deriva automática por scrollLeft + scroll horizontal manual (se pausa al tocar) */
+  (function(){
+    var rail=document.querySelector('.voices-rail'), track=rail&&rail.querySelector('.voices-track');
+    if(!rail||!track) return;
+    var half=0, pauseUntil=0;
+    function measure(){ half=track.scrollWidth/2; }
+    window.addEventListener('resize',measure); measure(); setTimeout(measure,600);
+    ['touchstart','wheel','pointerdown'].forEach(function(ev){ rail.addEventListener(ev,function(){ pauseUntil=performance.now()+2800; },{passive:true}); });
+    rail.addEventListener('scroll',function(){ if(half>0&&rail.scrollLeft>=half) rail.scrollLeft-=half; },{passive:true});
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var last=performance.now();
+    (function tick(now){
+      now=now||performance.now(); var dt=Math.min(now-last,80); last=now;
+      if(now>pauseUntil&&half>0) rail.scrollLeft+=dt*.042;
+      requestAnimationFrame(tick);
+    })();
+  })();
+  /* header de la home: glass al hacer scroll + se esconde al bajar + over-light sobre secciones claras */
+  var header=document.getElementById('header');
+  if(header){
+    var lastY=0, darkEls=[].slice.call(document.querySelectorAll('#hero, .vs-blue, #reserva, .vfoot'));
+    var hup=function(){
+      var y=window.scrollY;
+      header.classList.toggle('scrolled', y>30);
+      if(y>lastY && y>200) header.classList.add('is-hidden'); else header.classList.remove('is-hidden');
+      lastY=y;
+      var light=true;
+      for(var k=0;k<darkEls.length;k++){ var r=darkEls[k].getBoundingClientRect(); if(r.top<=80&&r.bottom>=80){ light=false; break; } }
+      header.classList.toggle('over-light', light);
+    };
+    window.addEventListener('scroll', hup, {passive:true}); hup();
+  }
+})();
+</script>
+</body>
+</html>

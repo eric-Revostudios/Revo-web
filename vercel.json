@@ -24,6 +24,9 @@
       ]
     }
   ],
+  "rewrites": [
+    { "source": "/visita", "destination": "/visita.html" }
+  ],
   "redirects": [
     { "source": "/luzroja-barcelona", "destination": "/luz-roja.html", "permanent": true },
     { "source": "/presoterapia-barcelona", "destination": "/presoterapia.html", "permanent": true },
