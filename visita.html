@@ -25,7 +25,7 @@
 <link rel="icon" type="image/png" href="assets/revo-icon.png" />
 <link rel="apple-touch-icon" href="assets/revo-icon.png" />
 <!-- ÚNICO punto de sustitución: link del servicio "Visita REVO" de Momence -->
-<script>window.REVO_VISITA_URL="{URL_RESERVA_VISITA}";</script>
+<script>window.REVO_VISITA_URL="https://momence.com/REVO-Studios/appointment-reservation/52479?boardId=146913&serviceId=313085";</script>
 <style id="visita-css">
   body{ background:#fff; }
   .vw{ max-width:720px; margin:0 auto; padding:0 24px; }
@@ -383,6 +383,11 @@
   /* reveals */
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -10% 0px',threshold:.08});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  /* el hero se revela entero al cargar: la CTA queda pegada al borde inferior del viewport
+     y el rootMargin de -10% la dejaba sin disparar hasta hacer scroll */
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    document.querySelectorAll('#hero .reveal').forEach(function(el){el.classList.add('in');io.unobserve(el);});
+  });});
   /* faq */
   document.querySelectorAll('.faq-item').forEach(function(it){
     it.querySelector('.faq-q').addEventListener('click',function(){
