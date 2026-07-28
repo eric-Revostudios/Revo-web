@@ -28,10 +28,11 @@
 <link rel="alternate" hreflang="x-default" href="../experiencias.html" />
 <link rel="preload" href="../fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
 <link rel="preload" href="../fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
-<link rel="stylesheet" href="../revo-amanecer.css?v=mobile31" />
+<link rel="stylesheet" href="../revo-amanecer.css?v=mobile32" />
 <link rel="stylesheet" href="../revo-verano.css?v=mobile22" />
 <link rel="stylesheet" href="../revo-terapia.css?v=mobile22" />
 <link rel="stylesheet" href="../revo-reservar.css?v=exp3" />
+<link rel="stylesheet" href="../revo-exp-movil.css?v=1" />
 <script src="../revo-reservar.js?v=exp3" defer></script>
 <style>
   .combo-seq-label{ font-size:9.5px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:rgba(20,22,28,.4); margin:20px 0 10px; }
@@ -200,15 +201,32 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     </section>
 
     <!-- ============ LOS COMBOS ============ -->
-    <section class="wrap section on-light" id="combos" data-screen-label="Los combos" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="150deg" data-theme="light">
+    <section class="wrap section on-light" id="combos" data-screen-label="Los combos" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="150deg" data-theme="light" data-theme-mobile="dark">
+      <!-- índice móvil de las 6 (oculto en escritorio) -->
+      <div class="mexp" id="mexp">
+        <div class="mexp-head">
+          <p class="eyebrow">The experiences</p>
+          <h2>Six experiences with <span class="ser">purpose</span>.</h2>
+        </div>
+        <div class="mexp-bands">
+        <a class="mexp-band" href="#exp-1" data-hot><img loading="lazy" decoding="async" src="../assets/laugh-blonde.jpg" alt="" /><span class="mexp-in"><span class="bi">01</span><span class="bt"><span class="bn">Glow</span><span class="bg2">Glowing skin, defined silhouette.</span></span><span class="bs"><span class="bp">120€</span><span class="bd">1h 50min</span></span><span class="ba"></span></span></a>
+        <a class="mexp-band" href="#exp-2" data-hot><img loading="lazy" decoding="async" src="../assets/jump-man.jpg" alt="" /><span class="mexp-in"><span class="bi">02</span><span class="bt"><span class="bn">Sports Performance</span><span class="bg2">Recover faster. Perform better.</span></span><span class="bs"><span class="bp">120€</span><span class="bd">1h 30min</span></span><span class="ba"></span></span></a>
+        <a class="mexp-band" href="#exp-3" data-hot><img loading="lazy" decoding="async" src="../assets/massage-glow.jpg" alt="" /><span class="mexp-in"><span class="bi">03</span><span class="bt"><span class="bn">Sleep &amp; Stress</span><span class="bg2">Slow down. Truly rest.</span></span><span class="bs"><span class="bp">120€</span><span class="bd">1h</span></span><span class="ba"></span></span></a>
+        <a class="mexp-band" href="#exp-4" data-hot><img loading="lazy" decoding="async" src="../assets/two-women.jpg" alt="" /><span class="mexp-in"><span class="bi">04</span><span class="bt"><span class="bn">Longevity</span><span class="bg2">More energy. A body that feels younger.</span></span><span class="bs"><span class="bp">160€</span><span class="bd">1h 50min</span></span><span class="ba"></span></span></a>
+        <a class="mexp-band" href="#exp-5" data-hot><img loading="lazy" decoding="async" src="../assets/focus-man.jpg" alt="" /><span class="mexp-in"><span class="bi">05</span><span class="bt"><span class="bn">Cognitive Performance</span><span class="bg2">Think clearly. Stay focused.</span></span><span class="bs"><span class="bp">160€</span><span class="bd">1h 40min</span></span><span class="ba"></span></span></a>
+        <a class="mexp-band" href="#exp-6" data-hot><img loading="lazy" decoding="async" src="../assets/massage-room.jpg" alt="" /><span class="mexp-in"><span class="bi">06</span><span class="bt"><span class="bn">Massage +</span><span class="bg2">Your massage, boosted.</span></span><span class="bs"><span class="bp">95€</span><span class="bd">1h 30min</span></span><span class="ba"></span></span></a>
+        </div>
+        <p class="mexp-hint">Tap one · or keep scrolling</p>
+      </div>
       <div class="combos-head reveal">
         <p class="eyebrow">The experiences</p>
         <h2>Choose your <span class="ser">experience</span>.</h2>
       </div>
 
       <div class="combos-grid">
+        <div class="mexp-back-wrap"><a class="mexp-back" href="#mexp" data-hot>See all 6</a></div>
 
-        <article class="combo reveal">
+        <article id="exp-1" class="combo reveal">
           <div class="combo-media"><img loading="lazy" decoding="async" src="../assets/laugh-blonde.jpg" alt="Glow" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Glow</h3>
@@ -225,7 +243,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
           </div>
         </article>
 
-        <article class="combo reveal" style="--d:.08s">
+        <article id="exp-2" class="combo reveal" style="--d:.08s">
           <div class="combo-media"><img loading="lazy" decoding="async" src="../assets/jump-man.jpg" alt="Sports Performance" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Sports Performance</h3>
@@ -242,7 +260,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
           </div>
         </article>
 
-        <article class="combo reveal" style="--d:.16s">
+        <article id="exp-3" class="combo reveal" style="--d:.16s">
           <div class="combo-media"><img loading="lazy" decoding="async" src="../assets/massage-glow.jpg" alt="Sleep & Stress" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Sleep &amp; Stress</h3>
@@ -259,7 +277,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
           </div>
         </article>
 
-        <article class="combo reveal">
+        <article id="exp-4" class="combo reveal">
           <div class="combo-media"><img loading="lazy" decoding="async" src="../assets/two-women.jpg" alt="Longevity" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Longevity</h3>
@@ -276,7 +294,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
           </div>
         </article>
 
-        <article class="combo reveal" style="--d:.08s">
+        <article id="exp-5" class="combo reveal" style="--d:.08s">
           <div class="combo-media"><img loading="lazy" decoding="async" src="../assets/focus-man.jpg" alt="Cognitive Performance" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Cognitive Performance</h3>
@@ -293,7 +311,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
           </div>
         </article>
 
-        <article class="combo reveal" style="--d:.16s">
+        <article id="exp-6" class="combo reveal" style="--d:.16s">
           <div class="combo-media"><img loading="lazy" decoding="async" src="../assets/massage-room.jpg" alt="Massage +" /></div>
           <div class="combo-body">
             <h3 class="combo-name">Massage +</h3>
@@ -394,7 +412,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       bg.style.setProperty('--c3', sec.dataset.c3);
       bg.style.setProperty('--deg', sec.dataset.deg || '144deg');
       document.body.style.backgroundColor = sec.dataset.c2;
-      header.classList.toggle('over-light', sec.dataset.theme === 'light');
+      header.classList.toggle('over-light', ((window.innerWidth<=600 && sec.dataset.themeMobile) ? sec.dataset.themeMobile : sec.dataset.theme) === 'light');
     }
     function pickSection(){
       const vh = window.innerHeight || document.documentElement.clientHeight;
