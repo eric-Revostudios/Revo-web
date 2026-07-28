@@ -43,18 +43,12 @@
   .combos-foot{ margin-top:clamp(40px,5vw,72px); padding-top:clamp(32px,4vw,52px); border-top:1px solid rgba(20,22,28,.12); display:flex; flex-direction:column; align-items:center; text-align:center; gap:26px; }
   .combos-foot-text{ font-family:var(--display); font-weight:400; font-size:clamp(26px,3vw,42px); line-height:1.12; letter-spacing:-.018em; color:#14161c; margin:0; max-width:20ch; }
   #combos{ padding-bottom:clamp(28px,4vh,52px); }
-  /* merged closing: CTA + footer on one blue screen */
-  .cierre.cierre-merged{ min-height:100vh; display:flex; flex-direction:column; padding:0; }
-  .cierre-merged .cierre-cta{ flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding-top:clamp(40px,6vh,80px); padding-bottom:clamp(26px,4vh,48px); }
-  .cierre-merged .cierre-cta h2{ font-size:clamp(32px,4.6vw,68px); line-height:1.0; margin:0 auto; max-width:16ch; }
-  .cierre-merged .site-footer{ color:#fff; background:transparent; }
-  .cierre-merged .footer-inner{ border-top-color:rgba(255,255,255,.22); padding-top:clamp(28px,4vh,44px); padding-bottom:clamp(28px,4vh,44px); }
-  .cierre-merged .footer-tag{ color:rgba(255,255,255,.78); }
-  .cierre-merged .footer-col h4{ color:rgba(255,255,255,.9); }
-  .cierre-merged .footer-col a{ color:rgba(255,255,255,.78); }
-  .cierre-merged .footer-col a:hover{ color:#fff; }
-  .cierre-merged .footer-bottom{ color:rgba(255,255,255,.6); border-top-color:rgba(255,255,255,.18); margin-top:clamp(30px,4vh,46px); }
-  .cierre-merged .site-footer .logo-img{ filter:none; }
+  /* cierre: banda azul con el CTA de regalo; el footer va aparte, como en la home */
+  .cierre-foot{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:28px; }
+  /* revo-verano.css deja el footer sobre blanco; aquí lo queremos oscuro (como en la home) */
+  main > .site-footer{ background:#0a0d1e; }
+  main > .site-footer .footer-inner{ border-top-color:rgba(255,255,255,.12); }
+  .cierre-foot .combos-foot-text{ color:#fff; font-size:clamp(30px,4.2vw,60px); max-width:20ch; }
 
   /* ===== Modal Reservar / Regalar ===== */
   .exp-modal{ position:fixed; inset:0; z-index:1200; display:flex; align-items:flex-start; justify-content:center; padding:max(20px,4vh) 16px; overflow-y:auto; opacity:0; visibility:hidden; transition:opacity .32s var(--ease), visibility 0s linear .32s; }
@@ -104,96 +98,39 @@
   .combo-note{ font-family:var(--sans); font-size:12px; line-height:1.45; color:rgba(20,22,28,.5); margin:11px 0 0; }
   .combo-note .wa-link{ color:var(--indigo); text-decoration:none; border-bottom:1px solid rgba(54,80,207,.32); white-space:nowrap; }
   .combo-note .wa-link:hover{ border-bottom-color:var(--indigo); }
+  .ter-hero-lead-m{ display:none; }
 
-  /* ===== Experiencias · versión móvil (≤600px): hero + índice de las 6 + pósters =====
+  /* ===== Experiencias · móvil (≤600px): hero a media pantalla + tarjetas más cortas =====
      Escritorio: sin cambios. Compartido ES/EN. */
-  .mexp,.mexp-back-wrap{display:none}
   @media (max-width:600px){
-  html{scroll-snap-type:y mandatory;scroll-padding-top:0}
-  :root{--barpad:54px}
-  /* --- hero: textos arriba, CTA a ancho completo y cifras abajo --- */
-  .ter-hero{height:100vh;min-height:100vh;overflow:hidden;flex-direction:column;align-items:stretch;justify-content:flex-start;scroll-snap-align:start;scroll-snap-stop:always}
-  .ter-hero-media::after{background:linear-gradient(180deg,rgba(9,13,32,.72) 0%,rgba(9,13,32,.3) 42%,rgba(9,13,32,.46) 72%,rgba(9,13,32,.84) 100%)}
-  .ter-hero-inner{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;max-width:none;padding:calc(clamp(78px,11vh,96px) + env(safe-area-inset-top,0px)) 24px 0}
-  .ter-hero .eyebrow{margin-bottom:clamp(10px,1.7vh,14px)}
-  .ter-hero h1{max-width:14ch;font-size:clamp(29px,min(10.2vw,5.1vh),42px)}
-  .ter-hero-sub{margin-top:clamp(9px,1.7vh,14px);font-size:clamp(15.5px,min(4.6vw,2.3vh),19px)}
-  .ter-hero-lead{display:none}
-  .ter-hero-cta{margin-top:auto;padding-top:clamp(14px,2.4vh,22px);width:100%}
-  .ter-hero-cta .btn{width:100%;justify-content:center;padding:18px 30px}
-  .ter-hero-facts{position:static;z-index:2;display:flex;gap:0;margin:clamp(12px,2vh,16px) 24px 0;padding:clamp(11px,1.9vh,16px) 0 calc(clamp(16px,2.6vh,22px) + env(safe-area-inset-bottom,0px) + var(--barpad));border-top:1px solid rgba(255,255,255,.2)}
-  .ter-hero-facts .f{flex:1;min-width:0;padding:0 12px;border-left:1px solid rgba(255,255,255,.22)}
+  /* --- hero a media pantalla: titular y cifras al pie --- */
+  .ter-hero{min-height:min(58vh,430px);height:auto;flex-direction:column;justify-content:flex-end;align-items:stretch}
+  .ter-hero-media img{object-position:50% 34%}
+  .ter-hero-media::after{background:linear-gradient(180deg,rgba(9,13,32,.68) 0%,rgba(9,13,32,.2) 40%,rgba(9,13,32,.6) 100%)}
+  .ter-hero-inner{padding:0 24px}
+  .ter-hero .eyebrow{margin-bottom:10px}
+  .ter-hero h1{font-size:clamp(29px,8.6vw,38px);line-height:1.02;max-width:13ch}
+  .ter-hero-sub{margin-top:10px;font-size:16px}
+  .ter-hero-lead,.ter-hero-cta{display:none}
+  .ter-hero-lead-m{display:block;margin-top:12px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.86);max-width:34ch}
+  .ter-hero-facts{display:flex;position:static;z-index:2;margin:15px 24px calc(18px + env(safe-area-inset-bottom,0px));padding-top:13px;border-top:1px solid rgba(255,255,255,.22)}
+  .ter-hero-facts .f{flex:1;min-width:0;padding:0 12px;border-left:1px solid rgba(255,255,255,.24)}
   .ter-hero-facts .f:first-child{padding-left:0;border-left:0}
   .ter-hero-facts .fn{font-size:18px;white-space:nowrap}
-  .ter-hero-facts .fl{margin-top:5px;font-size:8.5px;letter-spacing:.14em}
-  /* --- bloque de experiencias --- */
-  body #combos{padding:0}
-  .combos-head{display:none}
-  .combos-grid{display:block;gap:0;counter-reset:mexp}
-  .combo.reveal,.mexp .reveal{opacity:1;transform:none;filter:none}
-  /* --- índice de las 6 --- */
-  .mexp{display:flex;flex-direction:column;height:100vh;min-height:100vh;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;color:#fff;background:linear-gradient(168deg,#101733 0%,#16245f 54%,#2b3f96 100%);padding-top:calc(clamp(76px,10.5vh,92px) + env(safe-area-inset-top,0px))}
-  .mexp-head{padding:0 24px}
-  .mexp-head .eyebrow{color:#fff;margin-bottom:0}
-  .mexp-head h2{font-family:var(--display);font-weight:400;font-size:clamp(25px,min(8vw,4.1vh),34px);line-height:1.03;letter-spacing:-.015em;color:#fff;margin:clamp(9px,1.5vh,12px) 0 0;max-width:14ch}
-  .mexp-bands{flex:1;display:flex;flex-direction:column;gap:5px;padding:clamp(12px,2vh,16px) 14px 0;min-height:0}
-  .mexp-band{position:relative;flex:1;min-height:60px;border-radius:11px;overflow:hidden;display:block;color:#fff}
-  .mexp-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%}
-  .mexp-band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,13,32,.85) 0%,rgba(9,13,32,.55) 52%,rgba(9,13,32,.34) 100%)}
-  .mexp-in{position:absolute;inset:0;z-index:2;display:flex;align-items:center;gap:12px;padding:0 15px}
-  .mexp-in .bi{flex:none;width:20px;font-family:var(--serif);font-style:italic;font-size:12px;color:rgba(255,255,255,.6)}
-  .mexp-in .bt{flex:1;min-width:0}
-  .mexp-in .bn{display:block;font-family:var(--display);font-weight:500;font-size:clamp(14px,4.4vw,17px);line-height:1.1;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .mexp-in .bg2{display:block;font-size:clamp(10px,2.9vw,11px);color:rgba(255,255,255,.72);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .mexp-in .bs{flex:none;text-align:right}
-  .mexp-in .bp{display:block;font-family:var(--display);font-weight:500;font-size:clamp(14px,4vw,15.5px);white-space:nowrap}
-  .mexp-in .bd{display:block;font-size:9.5px;color:rgba(255,255,255,.6);margin-top:3px;white-space:nowrap}
-  .mexp-in .ba{flex:none;width:7px;height:7px;border-right:1.5px solid rgba(255,255,255,.55);border-bottom:1.5px solid rgba(255,255,255,.55);transform:rotate(-45deg)}
-  .mexp-hint{margin:0;padding:clamp(10px,1.8vh,14px) 0 calc(clamp(14px,2.2vh,18px) + env(safe-area-inset-bottom,0px) + var(--barpad));text-align:center;font-size:8.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-  /* --- píldora "ver las 6" mientras estás en los pósters --- */
-  .mexp-back-wrap{display:flex;position:sticky;top:calc(84px + env(safe-area-inset-top,0px));height:0;z-index:12;justify-content:flex-end;padding-right:20px;transition:top .4s var(--ease)}
-  #header.is-hidden ~ main .mexp-back-wrap{top:calc(16px + env(safe-area-inset-top,0px))}
-  .mexp-back{display:inline-flex;align-items:center;padding:9px 14px;border:1px solid rgba(255,255,255,.4);border-radius:100px;background:rgba(13,17,38,.42);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
-  .mexp-back:hover{color:#fff}
-  /* --- cada experiencia, un póster a pantalla completa --- */
-  .combo{height:100vh;min-height:100vh;overflow:hidden;flex-direction:column;border-radius:0;background:#0a0d1e;color:#fff;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;counter-increment:mexp;scroll-snap-align:start;scroll-snap-stop:always}
-  .combo:hover{transform:none;box-shadow:none}
-  .combo-media{position:absolute;inset:0;aspect-ratio:auto;border-radius:0;background:#0a0d1e}
-  .combo-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,13,32,.6) 0%,rgba(9,13,32,.1) 34%,rgba(9,13,32,.5) 62%,rgba(9,13,32,.93) 100%)}
-  .combo-body{position:relative;z-index:2;flex:none;margin-top:auto;padding:0 24px calc(clamp(22px,3.4vh,30px) + env(safe-area-inset-bottom,0px) + var(--barpad))}
-  .combo-body::before{content:counter(mexp,decimal-leading-zero) " / 06";display:block;font-family:var(--serif);font-style:italic;font-size:13.5px;color:rgba(255,255,255,.85);margin-bottom:6px}
-  .combo-name{color:#fff;font-weight:400;font-size:clamp(29px,min(9.5vw,4.9vh),40px);line-height:1;letter-spacing:-.015em}
-  .combo-tagline{color:rgba(255,255,255,.88);font-size:13.5px;line-height:1.35;margin-top:8px}
-  #combos .combo-desc,#combos .combo-seq-label{display:none}
-  /* terapias numeradas: mismo formato que el póster (sin cero delante, línea fina) */
-  #combos .combo-flow{margin-top:clamp(10px,1.8vh,13px);border-top:1px solid rgba(255,255,255,.22)}
-  #combos .combo-flow .fstep{display:flex;align-items:center;gap:12px;padding:clamp(5px,.9vh,7px) 0;border-bottom:1px solid rgba(255,255,255,.18);font-family:var(--display);font-weight:500;font-size:13.5px;letter-spacing:-.01em;color:#fff}
-  #combos .combo-flow .fn{flex:none;width:20px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:12.5px;letter-spacing:0;color:#aebcff}
-  #combos .combo-flow .fn::before{content:none}
-  .combo-meta{margin-top:clamp(9px,1.6vh,12px);padding-top:0}
-  .combo-dur{color:rgba(255,255,255,.78);font-size:12px}
-  .combo-price{color:#fff;font-size:21px}
-  .combo-cta{margin-top:clamp(10px,1.8vh,13px);gap:9px}
-  .combo-cta .btn{flex:1;width:auto;padding:15px 8px;font-size:9.5px;letter-spacing:.12em;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.72);color:#fff}
-  .combo-cta .btn:hover{background:#fff;color:var(--ink-dark)}
-  #combos .combo-note{margin-top:clamp(8px,1.5vh,11px);font-size:11.5px;line-height:1.45;color:rgba(255,255,255,.84)}
-  #combos .combo-note .wa-link{color:#cbd6ff;border-bottom-color:rgba(203,214,255,.5)}
-  /* --- pie del bloque --- */
-  #combos .combos-foot{margin-top:0;padding:44px 24px calc(40px + env(safe-area-inset-bottom,0px) + var(--barpad));border-top:0;scroll-snap-align:start}
-  /* --- en móvil se quita el cierre "Empieza hoy"; el footer sigue en azul oscuro --- */
-  body .cierre.cierre-merged{min-height:0;background:linear-gradient(168deg,#101733 0%,#16245f 58%,#22337f 100%)}
-  body .cierre-merged .cierre-cta{display:none}
-  .cierre-merged .site-footer{background:transparent;color:#fff;scroll-snap-align:start}
-  .cierre-merged .footer-inner{border-top-color:rgba(255,255,255,.2)}
-  .cierre-merged .footer-inner::before{filter:none;opacity:.07}
-  .cierre-merged .site-footer .logo-img{filter:none;height:22px}
-  .cierre-merged .footer-tag{color:rgba(255,255,255,.72)}
-  .cierre-merged .footer-cols{border-top-color:rgba(255,255,255,.18)}
-  .cierre-merged .footer-col h4{color:rgba(255,255,255,.6)}
-  .cierre-merged .footer-col a{color:rgba(255,255,255,.8)}
-  .cierre-merged .footer-col a:hover{color:#fff}
-  .cierre-merged .footer-bottom{color:rgba(255,255,255,.62);border-top-color:rgba(255,255,255,.18)}
+  .ter-hero-facts .fl{margin-top:5px;font-size:8px;letter-spacing:.14em}
+  /* --- tarjetas: mismas de siempre, un poco más cortas --- */
+  .combos-grid{gap:16px}
+  .combo-media{aspect-ratio:16/10}
+  .combo-body{padding:19px 20px 21px}
+  #combos .combo-desc{margin-top:10px;font-size:13px;line-height:1.5}
+  #combos .combo-seq-label{margin:14px 0 8px}
+  #combos .combo-flow .fstep{padding:6.5px 2px;font-size:13.5px}
+  .combo-meta{padding-top:6px}
+  .combo-cta{margin-top:14px;gap:9px}
+  #combos .combo-cta .btn{padding:14px 10px}
+  #combos .combo-note{margin-top:9px;font-size:11.5px}
   }
+
 </style>
 <script>
 /* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
@@ -261,6 +198,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         <p class="eyebrow reveal">Las experiencias</p>
         <h1 class="reveal" style="--d:.06s">Una experiencia con <span class="ser">propósito</span>.</h1>
         <p class="ter-hero-sub reveal" style="--d:.14s">Diseñadas por nuestro <span class="ser">equipo médico</span>.</p>
+        <p class="ter-hero-lead-m reveal" style="--d:.2s">Combinamos nuestras terapias avanzadas en circuitos pensados para un objetivo concreto</p>
         <p class="ter-hero-lead reveal" style="--d:.2s">Combinamos nuestras terapias avanzadas en circuitos pensados para un objetivo concreto: recuperar, dormir mejor, brillar o rendir. Para ti, o para regalar.</p>
         <div class="ter-hero-cta reveal" style="--d:.28s">
           <a class="btn btn--lg btn--hero" href="#combos" data-hot>Ver las experiencias</a>
@@ -274,30 +212,13 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     </section>
 
     <!-- ============ LOS COMBOS ============ -->
-    <section class="wrap section on-light" id="combos" data-screen-label="Los combos" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="150deg" data-theme="light" data-theme-mobile="dark">
-      <!-- índice móvil de las 6 (oculto en escritorio) -->
-      <div class="mexp" id="mexp">
-        <div class="mexp-head">
-          <p class="eyebrow">Las experiencias</p>
-          <h2>Seis experiencias con <span class="ser">propósito</span>.</h2>
-        </div>
-        <div class="mexp-bands">
-        <a class="mexp-band" href="#exp-1" data-hot><img loading="lazy" decoding="async" src="assets/laugh-blonde.jpg" alt="" /><span class="mexp-in"><span class="bi">01</span><span class="bt"><span class="bn">Glow</span><span class="bg2">Piel luminosa, silueta definida.</span></span><span class="bs"><span class="bp">120€</span><span class="bd">1h 50min</span></span><span class="ba"></span></span></a>
-        <a class="mexp-band" href="#exp-2" data-hot><img loading="lazy" decoding="async" src="assets/jump-man.jpg" alt="" /><span class="mexp-in"><span class="bi">02</span><span class="bt"><span class="bn">Sports Performance</span><span class="bg2">Recupérate más rápido. Rinde mejor.</span></span><span class="bs"><span class="bp">120€</span><span class="bd">1h 30min</span></span><span class="ba"></span></span></a>
-        <a class="mexp-band" href="#exp-3" data-hot><img loading="lazy" decoding="async" src="assets/massage-glow.jpg" alt="" /><span class="mexp-in"><span class="bi">03</span><span class="bt"><span class="bn">Sleep &amp; Stress</span><span class="bg2">Baja el ritmo. Descansa de verdad.</span></span><span class="bs"><span class="bp">120€</span><span class="bd">1h</span></span><span class="ba"></span></span></a>
-        <a class="mexp-band" href="#exp-4" data-hot><img loading="lazy" decoding="async" src="assets/two-women.jpg" alt="" /><span class="mexp-in"><span class="bi">04</span><span class="bt"><span class="bn">Longevity</span><span class="bg2">Más energía. Un cuerpo más joven.</span></span><span class="bs"><span class="bp">160€</span><span class="bd">1h 50min</span></span><span class="ba"></span></span></a>
-        <a class="mexp-band" href="#exp-5" data-hot><img loading="lazy" decoding="async" src="assets/focus-man.jpg" alt="" /><span class="mexp-in"><span class="bi">05</span><span class="bt"><span class="bn">Performance Cognitiva</span><span class="bg2">Piensa con claridad. Mantén el foco.</span></span><span class="bs"><span class="bp">160€</span><span class="bd">1h 40min</span></span><span class="ba"></span></span></a>
-        <a class="mexp-band" href="#exp-6" data-hot><img loading="lazy" decoding="async" src="assets/massage-room.jpg" alt="" /><span class="mexp-in"><span class="bi">06</span><span class="bt"><span class="bn">Massage +</span><span class="bg2">Tu masaje, potenciado.</span></span><span class="bs"><span class="bp">95€</span><span class="bd">1h 30min</span></span><span class="ba"></span></span></a>
-        </div>
-        <p class="mexp-hint">Toca una · o sigue deslizando</p>
-      </div>
+    <section class="wrap section on-light" id="combos" data-screen-label="Los combos" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="150deg" data-theme="light">
       <div class="combos-head reveal">
         <p class="eyebrow">Las experiencias</p>
         <h2>Elige tu <span class="ser">experiencia</span>.</h2>
       </div>
 
       <div class="combos-grid">
-        <div class="mexp-back-wrap"><a class="mexp-back" href="#mexp" data-hot>Ver las 6</a></div>
 
         <article id="exp-1" class="combo reveal">
           <div class="combo-media"><img loading="lazy" decoding="async" src="assets/laugh-blonde.jpg" alt="Glow" /></div>
@@ -402,24 +323,18 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         </article>
 
       </div>
-      <div class="combos-foot reveal">
-        <p class="combos-foot-text">¿Quieres regalar una experiencia <span class="ser">personalizada</span>?</p>
-        <a class="btn btn--lg btn--primary" href="mailto:hello@revostudios.eu?subject=Experiencia%20personalizada&body=Hola%20REVO%2C%0D%0A%0D%0AMe%20gustar%C3%ADa%20regalar%20una%20experiencia%20personalizada.%20Os%20cuento%20lo%20que%20tengo%20en%20mente%3A%0D%0A%0D%0A-%20Para%20qui%C3%A9n%3A%20%0D%0A-%20Ocasi%C3%B3n%3A%20%0D%0A-%20Presupuesto%20aproximado%3A%20%0D%0A%0D%0A%C2%A1Gracias!" data-hot>Escríbenos</a>
-      </div>
     </section>
 
     <!-- ============ CIERRE / CTA ============ -->
     <section class="cierre cierre-merged" data-screen-label="Cierre" data-enter="0.75" data-c1="#16245f" data-c2="#3650cf" data-c3="#6881fc" data-deg="144deg" data-theme="dark">
-      <div class="wrap cierre-cta">
-        <p class="eyebrow reveal">Empieza hoy</p>
-        <h2 class="reveal" style="--d:.08s">Tu cuerpo te lo va a <span class="ser">agradecer</span>.</h2>
-        <div class="cta-btns reveal" style="--d:.18s">
-          <a class="btn btn--lg btn--hero" href="#combos" data-hot>Reservar</a>
-          <a class="btn btn--lg btn--hero" href="#combos" data-hot>Regalar</a>
-        </div>
+      <div class="wrap cierre-foot">
+        <p class="combos-foot-text">¿Quieres regalar una experiencia <span class="ser">personalizada</span>?</p>
+        <a class="btn btn--lg btn--hero" href="mailto:hello@revostudios.eu?subject=Experiencia%20personalizada&body=Hola%20REVO%2C%0D%0A%0D%0AMe%20gustar%C3%ADa%20regalar%20una%20experiencia%20personalizada.%20Os%20cuento%20lo%20que%20tengo%20en%20mente%3A%0D%0A%0D%0A-%20Para%20qui%C3%A9n%3A%20%0D%0A-%20Ocasi%C3%B3n%3A%20%0D%0A-%20Presupuesto%20aproximado%3A%20%0D%0A%0D%0A%C2%A1Gracias!" data-hot>Escríbenos</a>
       </div>
+    </section>
 
-      <footer class="site-footer">
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer section--tight on-light">
         <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
@@ -449,7 +364,6 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       </div>
     </div>
       </footer>
-    </section>
 
   </main>
 
@@ -946,9 +860,5 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
     });
   })();
   </script>
-<script>
-(function(){if(!matchMedia("(max-width:600px)").matches)return;
-document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest(".mexp-band,.mexp-back");if(!a)return;var t=document.querySelector(a.getAttribute("href"));if(!t)return;e.preventDefault();window.scrollTo({top:t.offsetTop,behavior:"smooth"});},true);})();
-</script>
 </body>
 </html>
