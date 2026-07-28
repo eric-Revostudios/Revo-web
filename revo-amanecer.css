@@ -664,13 +664,18 @@ body.menu-open{ overflow:hidden; }
   .club-inner{ padding:58px 24px; } /* nota: el padding móvil real lo fija la regla inline de #club en index.html */
   .hero-foot{ display:none; }
   .hero .eyebrow .eb-br{ display:inline; }
+  /* móvil: el eyebrow del hero SIEMPRE en dos líneas (corta en .eb-br). La primera línea
+     nunca se parte (nowrap) y el cuerpo se escala con el ancho del móvil para que siempre quepa. */
+  .hero .hero-lead .eyebrow{ white-space:nowrap; font-size:clamp(7.5px, 3.5vw - 2.5px, 11px); }
   .hl-line{ white-space:normal; }
   .hero-benefits{ position:static; align-items:flex-start; margin-top:20px; }
   .ben-row{ flex-wrap:wrap; justify-content:flex-start; }
   /* móvil: el hero llena SIEMPRE la pantalla completa (también bajo la barra de Safari),
      así el notch muestra el hero y no asoma el azul de la sección siguiente por abajo */
-  .hero{ min-height:100svh; min-height:100lvh; }
-  .hero-inner{ padding:calc(96px + env(safe-area-inset-top,0px)) 24px calc(72px + env(safe-area-inset-bottom,0px)); justify-content:flex-start; }
+  .hero{ min-height:100svh; min-height:100lvh; align-items:flex-start; }
+  /* el CONTENIDO (incluido el CTA) cabe siempre en la pantalla visible (svh), aunque el
+     fondo siga hasta 100lvh por debajo de la barra del navegador */
+  .hero-inner{ padding:calc(96px + env(safe-area-inset-top,0px)) 24px calc(72px + env(safe-area-inset-bottom,0px)); justify-content:flex-start; min-height:100svh; }
   .hero-media::after{ background:linear-gradient(180deg, rgba(10,12,20,.6) 0%, rgba(10,12,20,.22) 42%, rgba(10,12,20,.34) 72%, rgba(10,12,20,.6) 100%); }
   .scroll-top{ right:20px; bottom:20px; }
   /* ---- footer móvil: editorial, centrado, con aire (lujo) ---- */
