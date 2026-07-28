@@ -45,9 +45,16 @@
   #combos{ padding-bottom:clamp(28px,4vh,52px); }
   /* cierre: banda azul con el CTA de regalo; el footer va aparte, como en la home */
   .cierre-foot{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:28px; }
-  /* revo-verano.css deja el footer sobre blanco; aquí lo queremos oscuro (como en la home) */
-  main > .site-footer{ background:#0a0d1e; }
-  main > .site-footer .footer-inner{ border-top-color:rgba(255,255,255,.12); }
+  /* el pie continúa el azul del cierre (revo-verano.css lo pondría sobre blanco) */
+  main > .site-footer{ background:transparent; }
+  main > .site-footer .footer-inner{ border-top-color:rgba(255,255,255,.2); }
+  main > .site-footer .footer-tag{ color:rgba(255,255,255,.78); }
+  main > .site-footer .footer-col h4{ color:rgba(255,255,255,.9); }
+  main > .site-footer .footer-col a{ color:rgba(255,255,255,.82); }
+  main > .site-footer .footer-col a:hover{ color:#fff; }
+  main > .site-footer .footer-bottom{ color:rgba(255,255,255,.68); border-top-color:rgba(255,255,255,.18); }
+  main > .site-footer .footer-bottom a{ color:rgba(255,255,255,.82); }
+  main > .site-footer .footer-bottom a:hover{ color:#fff; }
   .cierre-foot .combos-foot-text{ color:#fff; font-size:clamp(30px,4.2vw,60px); max-width:20ch; }
 
   /* ===== Modal Reservar / Regalar ===== */
@@ -129,6 +136,10 @@
   .combo-cta{margin-top:14px;gap:9px}
   #combos .combo-cta .btn{padding:14px 10px}
   #combos .combo-note{margin-top:9px;font-size:11.5px}
+  /* la aparición de las tarjetas, más rápida y sin desenfoque (en móvil se notaba lenta) */
+  .combo.reveal{transform:translateY(16px);filter:none;transition:opacity .45s var(--ease),transform .45s var(--ease);transition-delay:0s}
+  .combo.reveal.in{transform:none;filter:none}
+
   }
 
 </style>
