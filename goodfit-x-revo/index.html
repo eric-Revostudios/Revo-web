@@ -144,6 +144,29 @@ input,button{font-family:inherit}
 #gr-hero-lock .gr-gf{position:absolute;left:0;top:0;width:1em;height:.125043em;overflow:hidden}
 #gr-hero-lock .gr-revo{position:absolute;left:0;top:.138557em}
 #gr-hero-lock .gr-studios{position:absolute;left:.265em;top:.381529em}
+/* portada en movil: corte diagonal entre las dos mitades y logos sobre el corte */
+@keyframes gr-pulse{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.55);opacity:.1}}
+@keyframes gr-dash{to{stroke-dashoffset:-22}}
+@keyframes gr-travel{0%{offset-distance:0%;opacity:0}10%{opacity:1}82%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.gr-runner{offset-path:path("M40 190 C 70 205, 92 250, 130 252 C 190 254, 250 226, 300 190 C 350 154, 392 132, 440 130");offset-rotate:0deg;opacity:0;animation:gr-travel 5.6s 2s cubic-bezier(.45,0,.55,1) infinite}
+#gr-chart:not([data-in]) *{animation-play-state:paused!important}
+@media (max-width:699px){
+  #gr-split{grid-template-columns:1fr!important;grid-template-rows:calc(50% + 39vw) calc(50% - 39vw)!important;min-height:760px}
+  #gr-pa{width:100%!important;min-height:0!important;justify-content:flex-start!important;clip-path:polygon(0 0,100% 0,100% calc(100% - 78vw),0 100%);padding:clamp(26px,4svh,40px) clamp(20px,5vw,28px) 0!important}
+  #gr-pb{margin-left:0!important;width:100%!important;min-height:0!important;margin-top:-78vw!important;height:calc(100% + 78vw)!important;clip-path:polygon(0 78vw,100% 0,100% 100%,0 100%);padding:78vw clamp(20px,5vw,28px) clamp(28px,4svh,42px)!important}
+  #gr-pa > div:last-of-type{max-width:90%}
+  #gr-pb > div:last-of-type{max-width:92%}
+  #gr-pa p + p,#gr-pb p + p{display:none!important}
+  #gr-pa p,#gr-pb p{min-height:0!important;max-width:100%!important;font-size:4.4vw!important;font-weight:500!important;line-height:1.36!important}
+  #gr-pa > div:last-of-type > div:first-child,#gr-pb > div:last-of-type > div:first-child{font-size:11px!important;letter-spacing:.26em!important}
+  #gr-pa > div:last-of-type > div:nth-child(2),#gr-pb > div:last-of-type > div:nth-child(2){font-size:10.5vw!important}
+  #gr-lock2{top:50%!important;transform:translateY(-50%);padding-top:0!important}
+  #gr-lock2 > div{gap:4vw!important}
+  #gr-lock2 img:first-of-type{height:6vw!important;transform:translateY(-20px)}
+  #gr-lock2 img:last-of-type{height:16vw!important;transform:translateY(18px)}
+  #gr-lock2 span{font-size:4vw!important}
+}
+
 .hv1:hover{background:#2A2A2E;opacity:1}
 .hv2:hover{background:#FFFFFF;opacity:1}
 </style>
@@ -186,7 +209,7 @@ addEventListener('error', function (e) {
 
 <div style="scroll-snap-align:start;position:relative;min-height:100svh;display:grid;place-items:center;background:#08080a;overflow:hidden">
   <img src="/goodfit-x-revo/media/intro.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:.55;transform:scale(1.05)">
-  <video id="gr-intro-video" src="/goodfit-x-revo/media/intro.mp4" poster="/goodfit-x-revo/media/intro.jpg" autoplay muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92;transform:scale(1.05)"></video>
+  <video id="gr-intro-video" src="/goodfit-x-revo/media/intro.mp4" poster="/goodfit-x-revo/media/intro.jpg" autoplay muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92;transform:scale(1.2) translateY(3%)"></video>
   <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(8,8,10,.3) 0%,rgba(8,8,10,.62) 62%,rgba(8,8,10,.85) 100%)"></div>
   <div id="gr-hero-lock" style="position:relative">
     <div class="gr-gf"><div class="gr-gf-art"></div></div>
@@ -197,33 +220,37 @@ addEventListener('error', function (e) {
 </div>
 
 <div style="scroll-snap-align:start;position:relative;min-height:100svh;display:flex;flex-direction:column;background:#101114;overflow:hidden">
-  <div style="position:relative;flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));grid-auto-rows:1fr;gap:1px;background:rgba(243,241,236,.18)">
-    <div style="position:relative;overflow:hidden;min-height:226px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(26px,5svh,64px) clamp(20px,3.4vw,48px) clamp(26px,4.6svh,58px);box-sizing:border-box">
+  <div id="gr-split" style="position:relative;flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));grid-auto-rows:1fr">
+    <div id="gr-lock2" style="position:absolute;left:0;right:0;top:0;z-index:3;display:flex;flex-direction:column;align-items:center;gap:clamp(9px,1.3svh,14px);padding:clamp(24px,4svh,48px) clamp(20px,3vw,24px) 0;pointer-events:none">
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(14px,1.8vw,26px);width:min(100%,560px)">
+        <img src="/goodfit-x-revo/media/goodfit-white.svg" alt="GoodFit" style="justify-self:end;height:clamp(15px,1.7vw,24px);width:auto;display:block">
+        <span aria-hidden="true" style="font-size:clamp(13px,1.3vw,17px);line-height:1;color:rgba(243,241,236,.65)">×</span>
+        <img src="/goodfit-x-revo/media/revo-studios-white.png" alt="REVO Studios" style="justify-self:start;height:clamp(38px,4.1vw,58px);width:auto;display:block">
+      </div>
+      
+    </div>
+    <div id="gr-pa" style="position:relative;overflow:hidden;min-height:390px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(104px,15svh,150px) clamp(20px,3.4vw,48px) clamp(26px,4.6svh,58px);box-sizing:border-box">
       <img src="/goodfit-x-revo/media/entrenas.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;transform:scale(1.05)">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,15,.6) 0%,rgba(12,12,15,.22) 42%,rgba(12,12,15,.84) 100%)"></div>
-      <div style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(10px,1.5svh,16px)">
-        <img src="/goodfit-x-revo/media/goodfit-white.svg" alt="GoodFit" style="width:clamp(96px,11vw,152px);height:auto;display:block;opacity:.94">
-        <div style="font-size:clamp(32px,4.8vw,58px);line-height:1;font-weight:700;color:#F3F1EC;letter-spacing:-.02em">Entrenas.</div>
-        <p style="margin:0;font-size:clamp(14px,1.5vw,17px);line-height:1.5;color:rgba(243,241,236,.82);max-width:32ch;min-height:clamp(0px,calc(100vw - 700px),4.5em);text-wrap:pretty">Fuerza y ciclo con método propio, a intensidad alta. Coaches que te corrigen y un grupo que hace que vuelvas.</p>
-        <div style="font-size:10px;letter-spacing:.16em;color:rgba(243,241,236,.55)">FUERZA · COMPOSICIÓN CORPORAL · TECHO FÍSICO</div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,15,.66) 0%,rgba(12,12,15,.2) 38%,rgba(12,12,15,.86) 100%)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(8px,1.2svh,14px)">
+        <div style="font-size:11px;letter-spacing:.24em;color:rgba(243,241,236,.62)">GOODFIT</div>
+        <div style="font-size:clamp(34px,5vw,62px);line-height:1;font-weight:700;color:#F3F1EC;letter-spacing:-.025em">Entrenas.</div>
+        <p style="margin:0;font-size:clamp(16px,1.9vw,23px);line-height:1.34;font-weight:500;letter-spacing:-.01em;color:#F3F1EC;max-width:36ch;min-height:clamp(0px,calc(100vw - 700px),4.02em);text-wrap:pretty">Entrenamiento personalizado adaptado a tus objetivos, nivel físico y estilo de vida.</p>
+        <p style="margin:0;font-size:clamp(14px,1.4vw,16px);line-height:1.5;color:rgba(243,241,236,.66);max-width:40ch;min-height:clamp(0px,calc(100vw - 700px),3em);text-wrap:pretty">Método propio a intensidad alta: fuerza, composición corporal y techo físico.</p>
       </div>
     </div>
-    <div style="position:relative;overflow:hidden;min-height:226px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(26px,5svh,64px) clamp(20px,3.4vw,48px) clamp(26px,4.6svh,58px);box-sizing:border-box">
+    <div id="gr-pb" style="position:relative;overflow:hidden;min-height:390px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(104px,15svh,150px) clamp(20px,3.4vw,48px) clamp(26px,4.6svh,58px);box-sizing:border-box">
       <img src="/goodfit-x-revo/media/recuperas.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;transform:scale(1.05)">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,15,.6) 0%,rgba(12,12,15,.22) 42%,rgba(12,12,15,.84) 100%)"></div>
-      <div style="position:relative;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:clamp(10px,1.5svh,16px)">
-        <img src="/goodfit-x-revo/media/revo-studios-white.png" alt="REVO Studios" style="width:clamp(78px,9vw,124px);height:auto;display:block;opacity:.94">
-        <div style="font-size:clamp(32px,4.8vw,58px);line-height:1;font-weight:700;color:#F3F1EC;letter-spacing:-.02em">Recuperas.</div>
-        <p style="margin:0;font-size:clamp(14px,1.5vw,17px);line-height:1.5;color:rgba(243,241,236,.82);max-width:32ch;min-height:clamp(0px,calc(100vw - 700px),4.5em);text-wrap:pretty">Ocho tecnologías aplicadas con criterio médico, elegidas para tu objetivo: entrenas cinco días en vez de tres.</p>
-        <div style="font-size:10px;letter-spacing:.16em;color:rgba(243,241,236,.55)">ENERGÍA · SUEÑO · ESTRÉS · MÚSCULO RECUPERADO</div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,15,.66) 0%,rgba(12,12,15,.2) 38%,rgba(12,12,15,.86) 100%)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:clamp(8px,1.2svh,14px)">
+        <div style="font-size:11px;letter-spacing:.24em;color:rgba(243,241,236,.62)">REVO STUDIOS</div>
+        <div style="font-size:clamp(34px,5vw,62px);line-height:1;font-weight:700;color:#F3F1EC;letter-spacing:-.025em">Recuperas.</div>
+        <p style="margin:0;font-size:clamp(16px,1.9vw,23px);line-height:1.34;font-weight:500;letter-spacing:-.01em;color:#F3F1EC;max-width:36ch;min-height:clamp(0px,calc(100vw - 700px),4.02em);text-wrap:pretty">Recovery avanzado para mejorar energía, rendimiento, descanso y recuperación muscular.</p>
+        <p style="margin:0;font-size:clamp(14px,1.4vw,16px);line-height:1.5;color:rgba(243,241,236,.66);max-width:40ch;min-height:clamp(0px,calc(100vw - 700px),3em);text-wrap:pretty">Elegidas para tu objetivo: energía, sueño, estrés y músculo recuperado.</p>
       </div>
     </div>
-    <div aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:clamp(44px,4vw,58px);height:clamp(44px,4vw,58px);border-radius:999px;background:rgba(10,10,13,.7);backdrop-filter:blur(6px);border:1px solid rgba(243,241,236,.32);display:grid;place-items:center;color:rgba(243,241,236,.92);font-size:clamp(15px,1.4vw,19px);line-height:1">×</div>
   </div>
-  <div style="position:relative;background:#F3F1EC;display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2.2svh,22px);padding:clamp(22px,3.4svh,38px) clamp(20px,3vw,24px) clamp(24px,4svh,42px)">
-    <p style="margin:0;text-align:center;font-size:clamp(19px,2.4vw,30px);line-height:1.16;font-weight:700;letter-spacing:-.02em;color:#121212;max-width:26ch;text-wrap:balance">Entrenar es la mitad del trabajo.</p>
-    <a href="#reserva" style="display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:min(420px,100%);background:#121212;color:#F3F1EC;border-radius:999px;padding:18px 34px;font-size:clamp(15px,1.5vw,17px);font-weight:600;letter-spacing:.01em;text-decoration:none;white-space:nowrap" class="hv1">Reserva tu día de prueba</a>
-  </div>
+  
 </div>
 
 <div style="scroll-snap-align:start;position:relative;min-height:100svh;display:flex;align-items:center;background:#0C0C0F;overflow:hidden">
@@ -238,15 +265,16 @@ addEventListener('error', function (e) {
       </div>
       <div style="position:relative">
         <div style="font-size:10px;letter-spacing:.2em;color:rgba(243,241,236,.45);margin-bottom:14px">CAPACIDAD DE RENDIMIENTO</div>
-        <div style="position:relative;height:clamp(210px,30svh,272px)">
+        <div id="gr-chart" style="position:relative;height:clamp(210px,30svh,272px)">
           <svg viewBox="0 0 620 300" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible">
-            <line x1="0" y1="190" x2="620" y2="190" stroke="rgba(243,241,236,.3)" stroke-width="1" stroke-dasharray="5 6" vector-effect="non-scaling-stroke"></line>
+            <line x1="0" y1="190" x2="620" y2="190" stroke="rgba(243,241,236,.3)" stroke-width="1" stroke-dasharray="5 6" vector-effect="non-scaling-stroke" style="animation:gr-dash 3.2s linear infinite"></line>
             <line x1="40" y1="30" x2="40" y2="276" stroke="rgba(243,241,236,.2)" stroke-width="1" vector-effect="non-scaling-stroke"></line>
             <path d="M40 190 C 70 205, 92 250, 130 252 C 190 254, 250 226, 300 190 C 350 154, 392 132, 440 130 C 510 128, 560 140, 620 146 L 620 190 L 40 190 Z" fill="oklch(0.82 0.07 265 / .16)" style="opacity:0;animation:gr-fade .9s 1.35s ease-out forwards"></path>
             <path d="M40 190 C 70 210, 96 258, 140 264 C 200 270, 250 258, 310 246 C 400 230, 500 218, 620 212" fill="none" stroke="rgba(243,241,236,.4)" stroke-width="2.5" stroke-linecap="round" vector-effect="non-scaling-stroke" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:gr-draw 1.5s .9s cubic-bezier(.3,.9,.3,1) forwards"></path>
             <path d="M40 190 C 70 205, 92 250, 130 252 C 190 254, 250 226, 300 190 C 350 154, 392 132, 440 130 C 510 128, 560 140, 620 146" fill="none" stroke="#F3F1EC" stroke-width="3.5" stroke-linecap="round" vector-effect="non-scaling-stroke" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:gr-draw 1.6s .25s cubic-bezier(.3,.9,.3,1) forwards"></path>
-            <circle cx="440" cy="130" r="15" fill="oklch(0.82 0.07 265 / .3)" style="opacity:0;animation:gr-fade .6s 1.6s ease-out forwards"></circle>
+            <circle cx="440" cy="130" r="15" fill="oklch(0.82 0.07 265 / .3)" style="opacity:0;transform-box:fill-box;transform-origin:center;animation:gr-fade .6s 1.6s ease-out forwards,gr-pulse 3.6s 2.2s ease-in-out infinite"></circle>
             <circle cx="440" cy="130" r="6" fill="#F3F1EC" style="opacity:0;animation:gr-fade .5s 1.6s ease-out forwards"></circle>
+            <circle class="gr-runner" r="5" fill="#F3F1EC"></circle>
           </svg>
           <span style="position:absolute;left:66%;top:2%;font-size:12px;font-weight:600;letter-spacing:.02em;color:#F3F1EC">con recovery</span>
           <span style="position:absolute;left:60%;top:81%;font-size:12px;letter-spacing:.02em;color:rgba(243,241,236,.55)">sin recovery</span>
@@ -323,6 +351,15 @@ addEventListener('error', function (e) {
     if (p && p.catch) p.catch(function () {});
   } else ready();
   setTimeout(finish, MAX);
+  var chart = document.getElementById('gr-chart');
+  if (chart && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) chart.setAttribute('data-in', '');
+        else chart.removeAttribute('data-in');
+      });
+    }, { threshold: .3 }).observe(chart);
+  } else if (chart) chart.setAttribute('data-in', '');
 })();
 </script>
 </body>
