@@ -8,18 +8,18 @@
 <script>
 /* language: same soft detection as the rest of the site (keeps the QR anchor) */
 (function(){try{var S=null;try{S=localStorage.getItem('revo_lang');}catch(e){}
-if(S==='es'){location.replace('../'+location.hash);}}catch(e){}
+if(S==='es'){location.replace('/partners/'+location.hash);}}catch(e){}
 document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('data-lang'));}catch(e){}}},true);})();
 </script>
-<link rel="preload" href="../fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
-<link rel="preload" href="../fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
-<link rel="stylesheet" href="../revo-partners.css?v=2" />
-<script src="../partners.config.js?v=1" defer></script>
-<script src="../revo-partners.js?v=2" defer></script>
-<script src="../revo-cookies.js" defer></script>
-<script src="../revo-analytics.js" defer></script>
-<link rel="icon" type="image/png" href="../assets/revo-icon.png" />
-<link rel="apple-touch-icon" href="../assets/revo-icon.png" />
+<link rel="preload" href="/partners/fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
+<link rel="preload" href="/partners/fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
+<link rel="stylesheet" href="/partners/revo-partners.css?v=2" />
+<script src="/partners/partners.config.js?v=1" defer></script>
+<script src="/partners/revo-partners.js?v=2" defer></script>
+<script src="/partners/revo-cookies.js" defer></script>
+<script src="/partners/revo-analytics.js" defer></script>
+<link rel="icon" type="image/png" href="/partners/assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="/partners/assets/revo-icon.png" />
 </head>
 <body>
 
@@ -27,8 +27,8 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
 <header class="ph">
   <div class="pw ph-bar">
-    <span class="ph-logo"><img src="../assets/revo-logo-white.png" alt="REVO Studios" /></span>
-    <a class="ph-lang" href="../" hreflang="es" data-lang="es">ES</a>
+    <span class="ph-logo"><img src="/partners/assets/revo-logo-white.png" alt="REVO Studios" /></span>
+    <a class="ph-lang" href="/partners/" hreflang="es" data-lang="es">ES</a>
   </div>
 </header>
 
@@ -65,7 +65,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
   <section class="pe">
     <h2>Something not working? Tell the team at reception.</h2>
     <nav class="pe-idx" id="indice" aria-label="Partner studios"></nav>
-    <p class="pe-foot"><img src="../assets/revo-logo-white.png" alt="" />Partner studios · Barcelona</p>
+    <p class="pe-foot"><img src="/partners/assets/revo-logo-white.png" alt="" />Partner studios · Barcelona</p>
   </section>
 </main>
 
