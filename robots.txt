@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Landing privada de miembros (por si se aloja en este dominio)
+Disallow: /partners/
+
 Sitemap: https://revostudios.eu/sitemap.xml

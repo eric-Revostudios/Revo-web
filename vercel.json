@@ -18,6 +18,12 @@
       ]
     },
     {
+      "source": "/partners/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive, nosnippet" }
+      ]
+    },
+    {
       "source": "/fonts/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
@@ -25,7 +31,9 @@
     }
   ],
   "rewrites": [
-    { "source": "/visita", "destination": "/visita.html" }
+    { "source": "/visita", "destination": "/visita.html" },
+    { "source": "/partners", "destination": "/partners/index.html" },
+    { "source": "/partners/en", "destination": "/partners/en/index.html" }
   ],
   "redirects": [
     { "source": "/luzroja-barcelona", "destination": "/luz-roja.html", "permanent": true },
