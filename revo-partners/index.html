@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+<title>REVO — Centros asociados</title>
+<script>
+/* idioma: misma detección suave que el resto del sitio (conserva el ancla del QR) */
+(function(){try{var S=null;try{S=localStorage.getItem('revo_lang');}catch(e){}
+var en=(navigator.language||'').toLowerCase().indexOf('en')===0;
+if((S||(en?'en':'es'))==='en'){location.replace('en/'+location.hash);}}catch(e){}
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('data-lang'));}catch(e){}}},true);})();
+</script>
+<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
+<link rel="preload" href="fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
+<link rel="stylesheet" href="revo-partners.css?v=2" />
+<script src="partners.config.js?v=1" defer></script>
+<script src="revo-partners.js?v=2" defer></script>
+<script src="revo-cookies.js" defer></script>
+<script src="revo-analytics.js" defer></script>
+<link rel="icon" type="image/png" href="assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="assets/revo-icon.png" />
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="ph">
+  <div class="pw ph-bar">
+    <span class="ph-logo"><img src="assets/revo-logo-white.png" alt="REVO Studios" /></span>
+    <a class="ph-lang" href="en/" hreflang="en" data-lang="en">EN</a>
+  </div>
+</header>
+
+<!-- ============ PUERTA ============ -->
+<div class="pg" id="gate" data-screen-label="Puerta">
+  <div class="pw pg-in">
+    <p class="eyebrow">Miembros REVO</p>
+    <h1>Centros asociados</h1>
+    <p class="pg-lead">Cuatro centros de Barcelona incluidos en tu membresía. Escribe la palabra que te dieron en el estudio y verás el código y los pasos de cada uno.</p>
+    <form class="pg-form" id="gateForm" novalidate>
+      <div class="pg-field">
+        <label class="lab" for="gateInput">La palabra</label>
+        <input class="pg-input" id="gateInput" name="palabra" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" />
+      </div>
+      <p class="pg-msg" id="gateMsg" aria-live="polite"></p>
+      <button class="pg-btn" type="submit">Entrar</button>
+      <p class="pg-note">Se queda recordada en este móvil 90 días. La escribes una vez.</p>
+    </form>
+    <div class="pg-list">
+      <p class="lab h">Incluido en tu membresía</p>
+      <ul id="gateList"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PÁGINA ============ -->
+<main class="pw" id="page" data-screen-label="Centros" hidden>
+  <div class="pt">
+    <p class="eyebrow">Miembros REVO</p>
+    <h1>Centros asociados</h1>
+    <p>Tus sesiones incluidas en cuatro centros de Barcelona, con el código y los pasos de cada uno.</p>
+  </div>
+  <div id="centros"></div>
+  <section class="pe">
+    <h2>¿Algo no funciona? Díselo al equipo en recepción.</h2>
+    <nav class="pe-idx" id="indice" aria-label="Centros asociados"></nav>
+    <p class="pe-foot"><img src="assets/revo-logo-white.png" alt="" />Centros asociados · Barcelona</p>
+  </section>
+</main>
+
+<noscript>
+  <div class="pw pns">Esta página necesita JavaScript para mostrar los códigos. Actívalo, o pídele el código al equipo en recepción.</div>
+</noscript>
+
+</body>
+</html>

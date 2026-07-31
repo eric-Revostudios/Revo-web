@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+<title>REVO — Partner studios</title>
+<script>
+/* language: same soft detection as the rest of the site (keeps the QR anchor) */
+(function(){try{var S=null;try{S=localStorage.getItem('revo_lang');}catch(e){}
+if(S==='es'){location.replace('../'+location.hash);}}catch(e){}
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('data-lang'));}catch(e){}}},true);})();
+</script>
+<link rel="preload" href="../fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
+<link rel="preload" href="../fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
+<link rel="stylesheet" href="../revo-partners.css?v=2" />
+<script src="../partners.config.js?v=1" defer></script>
+<script src="../revo-partners.js?v=2" defer></script>
+<script src="../revo-cookies.js" defer></script>
+<script src="../revo-analytics.js" defer></script>
+<link rel="icon" type="image/png" href="../assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="../assets/revo-icon.png" />
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="ph">
+  <div class="pw ph-bar">
+    <span class="ph-logo"><img src="../assets/revo-logo-white.png" alt="REVO Studios" /></span>
+    <a class="ph-lang" href="../" hreflang="es" data-lang="es">ES</a>
+  </div>
+</header>
+
+<!-- ============ GATE ============ -->
+<div class="pg" id="gate" data-screen-label="Gate">
+  <div class="pw pg-in">
+    <p class="eyebrow">REVO members</p>
+    <h1>Partner studios</h1>
+    <p class="pg-lead">Four Barcelona studios included in your membership. Type the word you were given at the studio and you'll see each one's code and steps.</p>
+    <form class="pg-form" id="gateForm" novalidate>
+      <div class="pg-field">
+        <label class="lab" for="gateInput">The word</label>
+        <input class="pg-input" id="gateInput" name="palabra" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" />
+      </div>
+      <p class="pg-msg" id="gateMsg" aria-live="polite"></p>
+      <button class="pg-btn" type="submit">Enter</button>
+      <p class="pg-note">Remembered on this phone for 90 days. You type it once.</p>
+    </form>
+    <div class="pg-list">
+      <p class="lab h">Included in your membership</p>
+      <ul id="gateList"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE ============ -->
+<main class="pw" id="page" data-screen-label="Studios" hidden>
+  <div class="pt">
+    <p class="eyebrow">REVO members</p>
+    <h1>Partner studios</h1>
+    <p>Your included sessions at four Barcelona studios, with the code and the steps for each one.</p>
+  </div>
+  <div id="centros"></div>
+  <section class="pe">
+    <h2>Something not working? Tell the team at reception.</h2>
+    <nav class="pe-idx" id="indice" aria-label="Partner studios"></nav>
+    <p class="pe-foot"><img src="../assets/revo-logo-white.png" alt="" />Partner studios · Barcelona</p>
+  </section>
+</main>
+
+<noscript>
+  <div class="pw pns">This page needs JavaScript to show the codes. Enable it, or ask the team at reception for your code.</div>
+</noscript>
+
+</body>
+</html>
