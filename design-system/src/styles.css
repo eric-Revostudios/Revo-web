@@ -1,0 +1,117 @@
+/* ===========================================================
+   REVO · Design System — estilos de componentes
+   Consume las variables de tokens/tokens.css.
+   Cada clase es la versión digital de un gesto; su traducción
+   impresa está en docs/marca.md y docs/impresion.md.
+   =========================================================== */
+
+@import url("../tokens/tokens.css");
+
+/* ---------- contexto de superficie ---------- */
+/* Oscuro es el default de la marca; .rv-on-light es el "momento claro". */
+.rv-surface{ background:var(--navy-900); color:var(--text-on-dark);
+  font-family:var(--font-sans); font-weight:500; font-size:var(--type-body); line-height:1.6; }
+.rv-surface--gradient{ background:var(--gradient-brand); }
+.rv-surface--night{ background:var(--gradient-night); }
+.rv-on-light{ background:var(--white); color:var(--text-on-light); }
+
+/* ---------- micro-etiqueta (eyebrow) ---------- */
+.rv-eyebrow{ display:inline-flex; align-items:center; gap:10px; margin:0;
+  font-family:var(--font-sans); font-weight:600; font-size:var(--type-micro);
+  letter-spacing:var(--tracking-micro); text-transform:uppercase; line-height:1.2; }
+.rv-eyebrow__dot{ width:7px; height:7px; border-radius:50%; background:var(--revo-blue);
+  box-shadow:0 0 10px rgba(104,129,252,.6); flex:none; } /* papel: punto pleno, sin halo */
+
+/* ---------- titulares display ---------- */
+.rv-display{ font-family:var(--font-display); font-weight:400; margin:0;
+  letter-spacing:var(--tracking-display); text-wrap:balance; }
+.rv-display--xl{ font-size:var(--type-display-xl); line-height:.96; }
+.rv-display--lg{ font-size:var(--type-display-lg); line-height:1.02; }
+.rv-display--md{ font-size:var(--type-display-md); line-height:1.08; font-weight:500; }
+/* la palabra acentuada: UNA por titular */
+.rv-ser{ font-family:var(--font-serif); font-style:italic; font-weight:500;
+  letter-spacing:var(--tracking-serif); }
+
+/* ---------- texto ---------- */
+.rv-lede{ font-size:var(--type-lede); line-height:1.5; font-weight:400; margin:0; }
+.rv-body-soft{ color:var(--text-on-dark-soft); }
+.rv-on-light .rv-body-soft{ color:var(--text-on-light-soft); }
+
+/* ---------- botones ---------- */
+.rv-btn{ display:inline-flex; align-items:center; justify-content:center; gap:.7em;
+  font-family:var(--font-sans); font-weight:600; font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; padding:17px 30px; border-radius:var(--radius-pill);
+  border:1px solid rgba(255,255,255,.45); background:transparent; color:var(--white);
+  cursor:pointer; white-space:nowrap; text-decoration:none;
+  transition:transform .4s var(--ease), background .4s, color .4s, border-color .4s; }
+.rv-btn:hover{ transform:translateY(-3px); background:var(--white); color:var(--ink); border-color:var(--white); }
+.rv-btn--primary{ background:var(--revo-blue); border-color:var(--revo-blue); }
+.rv-btn--primary:hover{ background:var(--revo-blue-press); border-color:var(--revo-blue-press); color:var(--white); }
+/* variante rectangular (héroe): casi recta, presencia máxima */
+.rv-btn--rect{ border-radius:var(--radius-rect); border-color:rgba(255,255,255,.7); background:rgba(255,255,255,.04); }
+.rv-btn--lg{ padding:20px 38px; }
+.rv-on-light .rv-btn{ color:var(--ink); border-color:rgba(20,22,28,.3); }
+.rv-on-light .rv-btn:hover{ background:var(--ink); color:var(--white); border-color:var(--ink); }
+.rv-on-light .rv-btn--primary{ color:var(--white); border-color:var(--revo-blue); }
+
+/* ---------- chip ---------- */
+.rv-chip{ display:inline-flex; align-items:center; gap:8px; padding:8px 14px;
+  border:1px solid rgba(255,255,255,.26); border-radius:var(--radius-pill);
+  font-size:11px; letter-spacing:.07em; text-transform:uppercase; white-space:nowrap; }
+.rv-on-light .rv-chip{ border-color:rgba(20,22,28,.2); }
+
+/* ---------- tarjeta ---------- */
+/* Digital: cristal sobre el azul. Papel: panel navy-850 con filo claro de 0,3pt. */
+.rv-card{ position:relative; border-radius:var(--radius-card); padding:24px;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(15px) saturate(1.3); -webkit-backdrop-filter:blur(15px) saturate(1.3);
+  box-shadow:0 34px 70px -28px rgba(6,9,32,.6), inset 1px 1px 0 rgba(255,255,255,.28); }
+.rv-card::after{ content:""; position:absolute; inset:0; border-radius:inherit;
+  border:1px solid rgba(255,255,255,.18); pointer-events:none; }
+.rv-card--solid{ background:var(--navy-850); backdrop-filter:none; -webkit-backdrop-filter:none; }
+.rv-on-light .rv-card{ background:var(--white); backdrop-filter:none; -webkit-backdrop-filter:none;
+  box-shadow:none; }
+.rv-on-light .rv-card::after{ border-color:rgba(20,22,28,.14); }
+
+/* ---------- filo divisor ---------- */
+.rv-hairline{ border:0; height:var(--hairline); background:var(--hairline-on-dark); margin:0; }
+.rv-on-light .rv-hairline{ background:var(--hairline-on-light); }
+
+/* ---------- marcas de visor ---------- */
+.rv-frame{ position:relative; }
+.rv-frame__tick{ position:absolute; width:14px; height:14px; border:1px solid rgba(159,176,255,.7); }
+.rv-frame__tick--tl{ top:-1px; left:-1px; border-width:1px 0 0 1px; }
+.rv-frame__tick--tr{ top:-1px; right:-1px; border-width:1px 1px 0 0; }
+.rv-frame__tick--bl{ bottom:-1px; left:-1px; border-width:0 0 1px 1px; }
+.rv-frame__tick--br{ bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
+
+/* ---------- pasos numerados ---------- */
+.rv-steps{ display:grid; grid-auto-flow:column; grid-auto-columns:1fr; }
+.rv-step{ padding:42px 34px 46px 0; border-right:var(--hairline) solid var(--hairline-on-dark); }
+.rv-step:last-child{ border-right:0; }
+.rv-step + .rv-step{ padding-left:34px; }
+.rv-step__num{ font-family:var(--font-display); font-weight:400; font-size:52px; line-height:1;
+  letter-spacing:-.02em; }
+.rv-step__num--active{ color:var(--revo-blue); }
+.rv-step__title{ font-size:23px; font-weight:500; letter-spacing:-.014em; margin:16px 0 15px; }
+.rv-step__body{ font-size:var(--type-body); line-height:1.62; }
+.rv-on-light .rv-step{ border-color:var(--hairline-on-light); }
+@media (max-width:700px){ .rv-steps{ grid-auto-flow:row; }
+  .rv-step{ border-right:0; border-bottom:var(--hairline) solid var(--hairline-on-dark); padding:24px 0; } }
+
+/* ---------- banda de datos ---------- */
+.rv-facts{ display:flex; gap:28px; flex-wrap:wrap; }
+.rv-fact{ display:inline-flex; align-items:center; gap:8px; margin:0;
+  font-size:var(--type-micro); font-weight:600; letter-spacing:.14em; text-transform:uppercase; }
+.rv-fact__blip{ width:6px; height:6px; border-radius:50%; background:var(--revo-blue);
+  box-shadow:0 0 9px rgba(104,129,252,.8); flex:none; }
+
+/* ---------- precio ---------- */
+.rv-price{ font-family:var(--font-display); font-weight:500; font-size:clamp(32px,4vw,60px);
+  line-height:1; letter-spacing:-.02em; margin:0; }
+.rv-price small{ font-family:var(--font-sans); font-size:.32em; font-weight:500;
+  color:var(--text-on-dark-soft); letter-spacing:-.01em; }
+.rv-on-light .rv-price small{ color:var(--text-on-light-soft); }
+.rv-price-note{ margin:10px 0 0; font-size:var(--type-micro); font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--text-on-dark-soft); }
+.rv-on-light .rv-price-note{ color:var(--text-on-light-soft); }

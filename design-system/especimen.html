@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>REVO · Design System · Espécimen</title>
+<link rel="stylesheet" href="src/styles.css">
+<style>
+  body{ margin:0; }
+  .demo-block{ padding:56px; display:flex; flex-direction:column; gap:28px; align-items:flex-start; }
+  .demo-row{ display:flex; gap:13px; flex-wrap:wrap; align-items:center; }
+  .demo-note{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; opacity:.45; margin:0; }
+</style>
+</head>
+<body>
+
+  <!-- superficie oscura: el default de la marca -->
+  <section class="rv-surface rv-surface--night demo-block">
+    <p class="demo-note">Superficie oscura · degradado nocturno</p>
+    <p class="rv-eyebrow"><span class="rv-eyebrow__dot"></span>Programa anual</p>
+    <h1 class="rv-display rv-display--xl">REVO <span class="rv-ser">Peak</span></h1>
+    <p class="rv-lede rv-body-soft" style="max-width:52ch">El máximo nivel de optimización física, mental y estética: un plan médico a tu medida, ajustado con tus datos, cada mes.</p>
+    <div class="demo-row">
+      <a class="rv-btn rv-btn--primary rv-btn--lg" href="#">Lista de espera</a>
+      <a class="rv-btn" href="#">El método</a>
+      <a class="rv-btn rv-btn--rect" href="#">Reservar visita</a>
+    </div>
+    <div class="rv-facts">
+      <p class="rv-fact"><span class="rv-fact__blip"></span>Diez plazas</p>
+      <p class="rv-fact"><span class="rv-fact__blip"></span>Inicio en octubre</p>
+      <p class="rv-fact"><span class="rv-fact__blip"></span>Barcelona · Turó Park</p>
+    </div>
+  </section>
+
+  <!-- superficie con degradado de marca: tarjetas y chips -->
+  <section class="rv-surface rv-surface--gradient demo-block">
+    <p class="demo-note">Degradado de marca · tarjetas y chips</p>
+    <h2 class="rv-display rv-display--lg">Las <span class="rv-ser">terapias.</span></h2>
+    <div class="demo-row" style="align-items:stretch">
+      <div class="rv-card" style="max-width:300px">
+        <p class="rv-eyebrow" style="margin-bottom:16px"><span class="rv-eyebrow__dot"></span>Frío extremo</p>
+        <h3 class="rv-display rv-display--md">Crioterapia</h3>
+        <p class="rv-body-soft" style="font-size:13px">Tres minutos a -85°C que reinician la inflamación y aceleran la recuperación.</p>
+        <div class="demo-row" style="gap:7px">
+          <span class="rv-chip">Recuperación</span>
+          <span class="rv-chip">Energía</span>
+        </div>
+      </div>
+      <div class="rv-card rv-card--solid" style="max-width:300px">
+        <p class="rv-eyebrow" style="margin-bottom:16px"><span class="rv-eyebrow__dot"></span>Variante sólida</p>
+        <h3 class="rv-display rv-display--md">Panel opaco</h3>
+        <p class="rv-body-soft" style="font-size:13px">La traducción del cristal para papel: navy-850 pleno con filo claro de 0,3pt.</p>
+      </div>
+    </div>
+    <div class="rv-frame" style="padding:26px 30px">
+      <span class="rv-frame__tick rv-frame__tick--tl"></span>
+      <span class="rv-frame__tick rv-frame__tick--tr"></span>
+      <span class="rv-frame__tick rv-frame__tick--bl"></span>
+      <span class="rv-frame__tick rv-frame__tick--br"></span>
+      <p class="rv-eyebrow"><span class="rv-eyebrow__dot"></span>Marcas de visor</p>
+      <p class="rv-body-soft" style="margin:12px 0 0; max-width:48ch">El gesto técnico-médico: escuadras finas que encuadran una ficha, una foto o un dato.</p>
+    </div>
+  </section>
+
+  <!-- momento claro -->
+  <section class="rv-surface rv-on-light demo-block">
+    <p class="demo-note">Momento claro · pasos numerados y precio</p>
+    <p class="rv-eyebrow"><span class="rv-eyebrow__dot"></span>El primer mes</p>
+    <h2 class="rv-display rv-display--lg">Del diagnóstico al primer <span class="rv-ser">check.</span></h2>
+    <div class="rv-steps">
+      <div class="rv-step">
+        <div class="rv-step__num rv-step__num--active">01</div>
+        <h3 class="rv-step__title">Diagnóstico</h3>
+        <div class="rv-step__body rv-body-soft">Día 1 en el studio; día 2 en Teknon: todas las pruebas, el mismo día.</div>
+      </div>
+      <div class="rv-step">
+        <div class="rv-step__num">02</div>
+        <h3 class="rv-step__title">El plan</h3>
+        <div class="rv-step__body rv-body-soft">Tu hoja de ruta: nutrición, suplementación, skincare y terapias.</div>
+      </div>
+      <div class="rv-step">
+        <div class="rv-step__num">03</div>
+        <h3 class="rv-step__title">Terapias</h3>
+        <div class="rv-step__body rv-body-soft">Empiezan las sesiones en el studio, según tu protocolo.</div>
+      </div>
+      <div class="rv-step">
+        <div class="rv-step__num">04</div>
+        <h3 class="rv-step__title">Primer check</h3>
+        <div class="rv-step__body rv-body-soft">Tus datos se contrastan con el punto de partida y el plan se ajusta.</div>
+      </div>
+    </div>
+    <hr class="rv-hairline" style="width:100%">
+    <div>
+      <p class="rv-price">12.000€ <small>/ año · 1.000€ al mes</small></p>
+      <p class="rv-price-note">Programa anual · Diez plazas · Inicio en octubre</p>
+    </div>
+    <div class="demo-row">
+      <a class="rv-btn rv-btn--primary" href="#">Lista de espera</a>
+      <a class="rv-btn" href="#">Más información</a>
+    </div>
+  </section>
+
+</body>
+</html>

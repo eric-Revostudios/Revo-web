@@ -1,0 +1,80 @@
+/* ===========================================================
+   REVO · Design System — tokens (CSS)
+   Fuente de verdad legible por máquina: tokens/tokens.json
+   (allí están las equivalencias CMYK/Pantone para imprenta).
+   =========================================================== */
+
+@font-face{
+  font-family:"NHaas Display";
+  src:url("../fonts/NHaasGroteskDSPro-65Md.otf") format("opentype");
+  font-weight:400 600; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Neue Haas";
+  src:url("../fonts/NeueHaasGrotesk-Medium.otf") format("opentype");
+  font-weight:400 700; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Noto Serif";
+  src:url("../fonts/NotoSerif-Italic.ttf") format("truetype");
+  font-weight:100 900; font-style:italic; font-display:swap;
+}
+
+:root{
+  /* ---- color ---- */
+  --revo-blue:#6881FC;        /* el único acento */
+  --revo-blue-press:#5269F3;  /* solo digital: hover/pressed */
+
+  --navy-950:#05070F;
+  --navy-900:#0A0D1E;         /* fondo de marca por defecto */
+  --navy-850:#0B1128;
+  --navy-800:#0D1531;
+  --navy-700:#141D42;
+  --navy-600:#16245F;
+  --navy-500:#22307C;
+  --navy-400:#2B3A85;
+  --blue-500:#3F53D6;
+
+  --peri-300:#9FB0FF;
+  --peri-200:#CFD8FF;
+  --peri-100:#DFE5FF;
+
+  --ink:#14161C;
+  --white:#FFFFFF;
+
+  --text-on-dark:#FFFFFF;
+  --text-on-dark-soft:rgba(255,255,255,.70);
+  --text-on-light:var(--ink);
+  --text-on-light-soft:rgba(20,22,28,.62);
+  --hairline-on-dark:rgba(255,255,255,.16);
+  --hairline-on-light:rgba(20,22,28,.12);
+
+  --gradient-brand:linear-gradient(144deg,#16245F 0%,#3F53D6 50%,#6881FC 100%);
+  --gradient-night:linear-gradient(160deg,#05070F 0%,#0D1531 50%,#22307C 100%);
+
+  /* ---- tipografía ---- */
+  --font-display:"NHaas Display","Neue Haas Grotesk Display","Helvetica Neue",Arial,sans-serif;
+  --font-sans:"Neue Haas","Helvetica Neue",Arial,sans-serif;
+  --font-serif:"Noto Serif",Georgia,serif;   /* solo itálica, solo una palabra */
+
+  --type-display-xl:clamp(50px,8.7vw,140px);  /* lh .96  ls -.022em  peso 400 */
+  --type-display-lg:clamp(36px,5.4vw,92px);   /* lh 1.02 ls -.02em   peso 400 */
+  --type-display-md:clamp(23px,2.5vw,40px);   /* lh 1.08 ls -.018em  peso 500 */
+  --type-lede:clamp(17px,1.55vw,23px);        /* lh 1.5              peso 400 */
+  --type-body:16px;                           /* lh 1.6              peso 500 */
+  --type-small:13px;
+  --type-micro:10.5px;                        /* MAYÚSCULAS ls .18em peso 600 */
+  --tracking-micro:.18em;
+  --tracking-display:-.02em;
+  --tracking-serif:-.05em;
+
+  /* ---- espacio y forma ---- */
+  --space-unit:8px;
+  --space-section:clamp(96px,14vh,200px);
+  --radius-pill:100px;
+  --radius-card:18px;
+  --radius-rect:3px;   /* CTA rectangular del héroe */
+  --hairline:1px;      /* imprenta: 0.3pt */
+
+  --ease:cubic-bezier(.22,.61,.25,1);  /* la curva de TODA transición digital */
+}

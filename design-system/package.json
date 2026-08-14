@@ -1,0 +1,12 @@
+{
+  "name": "@revo/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sistema de diseño de REVO Studios — club de longevidad y terapias avanzadas (Barcelona). Para web y piezas físicas (folletos, carteles, tarjetas). Destilado de la dirección de arte del programa REVO Peak.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "sideEffects": ["*.css"],
+  "peerDependencies": {
+    "react": ">=18"
+  }
+}
