@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Plazas · RESET 90</title>
+<meta name="theme-color" content="#0E4444">
+<link rel="icon" href="https://revostudios.eu/assets/revo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#0E4444;font-family:Jost,sans-serif;color:#F5F3EE;-webkit-font-smoothing:antialiased;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:28px 20px calc(28px + env(safe-area-inset-bottom))}
+button{font:inherit;cursor:pointer;transition:filter .25s ease,border-color .25s ease,transform .15s ease,background .25s ease,color .25s ease}
+button:active{transform:scale(.97)}
+button:focus-visible{outline:2px solid #C6AE4C;outline-offset:3px}
+.paso:hover{border-color:rgba(245,243,238,.55)}
+.rapido:hover{border-color:rgba(245,243,238,.45);color:#F5F3EE}
+.rapido[data-on="1"]{background:rgba(168,145,50,.2);border-color:#A89132;color:#F5F3EE}
+.guardar:hover{filter:brightness(1.1)}
+.guardar[disabled]{opacity:.4;cursor:default;filter:none;transform:none}
+a{color:#A89132}
+</style>
+</head>
+<body>
+<nav style="position:fixed;top:14px;right:14px;z-index:60;display:flex;gap:2px;background:rgba(9,47,45,.78);backdrop-filter:blur(10px);border:1px solid rgba(168,145,50,.45);border-radius:999px;padding:4px">
+  <a href="index.html" style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,243,238,.75);border-radius:999px;padding:8px 14px;text-decoration:none">Landing</a>
+  <a href="plazas.html" style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#073030;background:#A89132;border-radius:999px;padding:8px 14px;text-decoration:none">Plazas</a>
+</nav>
+<main style="width:100%;max-width:460px">
+
+  <div style="text-align:center">
+    <div style="font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#A89132;line-height:1.8">RESET 90 · Panel de plazas</div>
+    <h1 style="margin:14px 0 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,7vw,34px);line-height:1.18;color:#F5F3EE">¿Cuántas plazas quedan?</h1>
+  </div>
+
+  <div style="margin-top:26px;background:rgba(245,243,238,.045);border:1px solid rgba(245,243,238,.14);border-radius:24px;padding:28px 24px">
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:22px">
+      <button class="paso" data-paso="-1" aria-label="Una plaza menos" style="width:60px;height:60px;flex:0 0 auto;border-radius:50%;background:none;border:1px solid rgba(245,243,238,.24);color:#F5F3EE;font-size:26px;font-weight:300;line-height:1">−</button>
+      <div style="min-width:120px;text-align:center">
+        <div id="num" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:96px;line-height:.9;color:#F5F3EE">15</div>
+        <div id="deTotal" style="margin-top:8px;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,243,238,.5);line-height:1.7">de 15</div>
+      </div>
+      <button class="paso" data-paso="1" aria-label="Una plaza más" style="width:60px;height:60px;flex:0 0 auto;border-radius:50%;background:none;border:1px solid rgba(245,243,238,.24);color:#F5F3EE;font-size:26px;font-weight:300;line-height:1">+</button>
+    </div>
+
+    <div id="rapidos" style="margin-top:26px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center"></div>
+
+    <div style="margin-top:26px;padding-top:22px;border-top:1px solid rgba(245,243,238,.14)">
+      <div style="font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,243,238,.45);line-height:1.8">Así se leerá la landing</div>
+      <p id="vistaHero" style="margin:12px 0 0;font-size:15px;font-weight:300;line-height:1.6;color:rgba(245,243,238,.8)"></p>
+      <p id="vistaBoton" style="margin:10px 0 0;font-size:13.5px;font-weight:400;line-height:1.6;color:#A89132"></p>
+    </div>
+
+    <button id="guardar" class="guardar" style="margin-top:26px;width:100%;font-size:16.5px;font-weight:500;letter-spacing:.03em;color:#073030;background:#A89132;border:1px solid #A89132;border-radius:999px;padding:17px 24px">Publicar el cambio</button>
+    <div id="estado" style="margin-top:14px;min-height:20px;text-align:center;font-size:13.5px;font-weight:300;line-height:1.6;color:rgba(245,243,238,.6)">Cargando…</div>
+  </div>
+
+  <p style="margin:22px 0 0;text-align:center;font-size:12.5px;font-weight:300;line-height:1.7;color:rgba(245,243,238,.42)">El cambio tarda un par de minutos en verse en la web.<br>No compartas esta dirección: desde aquí se cambian las plazas.</p>
+
+</main>
+
+<script>
+(function(){
+  /* ------------------------------------------------------------------
+     Pega aquí los dos datos que te da la instalación (ver README).
+     ENDPOINT · la URL que termina en /exec
+     CLAVE    · la misma palabra secreta que pusiste en el script
+  -------------------------------------------------------------------*/
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbx9VkWQJpNR0yolDhAqEwLhiq4SIUBU-eB5fqWnHZeDeFl7wcnuS63gijP6Jv1M1U8Lag/exec';
+  var CLAVE = 'plazas';
+
+  var TOTAL = 15;
+  var RAPIDOS = [15, 10, 5, 3, 1, 0];
+
+  var num = document.getElementById('num');
+  var deTotal = document.getElementById('deTotal');
+  var vistaHero = document.getElementById('vistaHero');
+  var vistaBoton = document.getElementById('vistaBoton');
+  var estado = document.getElementById('estado');
+  var guardar = document.getElementById('guardar');
+  var rapidos = document.getElementById('rapidos');
+
+  var valor = TOTAL;
+  var guardado = null;
+
+  RAPIDOS.forEach(function(n){
+    var b = document.createElement('button');
+    b.className = 'rapido';
+    b.setAttribute('data-n', n);
+    b.textContent = n === 0 ? 'Cerrar edición' : n;
+    b.style.cssText = 'background:none;border:1px solid rgba(245,243,238,.2);border-radius:999px;padding:10px 18px;font-size:14px;font-weight:400;color:rgba(245,243,238,.7);min-height:44px';
+    b.addEventListener('click', function(){ fijar(n); });
+    rapidos.appendChild(b);
+  });
+
+  function frase(n){
+    if(n === 0) return 'Las ' + TOTAL + ' plazas de septiembre están cubiertas. La próxima edición es en enero.';
+    if(n === TOTAL) return 'Solo ' + TOTAL + ' plazas disponibles · la cuenta atrás (X de ' + TOTAL + ' y barra) aparece al bajar de ' + TOTAL + '.';
+    return (n === 1 ? '1 plaza libre de ' + TOTAL : n + ' plazas libres de ' + TOTAL) + ' · el contador y las barras se actualizan en toda la página.';
+  }
+
+  function pintar(){
+    num.textContent = valor;
+    deTotal.textContent = valor === 0 ? 'edición cerrada' : 'de ' + TOTAL;
+    vistaHero.textContent = frase(valor);
+    vistaBoton.textContent = valor === 0
+      ? 'Botones: «Únete a la lista de espera de enero»'
+      : 'Botones: «Reservar mi plaza»';
+    document.querySelectorAll('.rapido').forEach(function(b){
+      b.setAttribute('data-on', parseInt(b.getAttribute('data-n'), 10) === valor ? '1' : '0');
+    });
+    var sinCambios = (guardado !== null && guardado === valor);
+    guardar.disabled = sinCambios;
+    guardar.textContent = sinCambios ? 'Ya está publicado' : 'Publicar el cambio';
+  }
+
+  function fijar(n){
+    valor = Math.max(0, Math.min(TOTAL, n));
+    pintar();
+  }
+
+  document.querySelectorAll('.paso').forEach(function(b){
+    b.addEventListener('click', function(){
+      fijar(valor + parseInt(b.getAttribute('data-paso'), 10));
+    });
+  });
+
+  function pedir(params){
+    var url = ENDPOINT + (ENDPOINT.indexOf('?') > -1 ? '&' : '?') + params + '&t=' + Date.now();
+    return fetch(url, { cache: 'no-store' }).then(function(r){
+      if(!r.ok) throw new Error('http');
+      return r.json();
+    });
+  }
+
+  function haceCuanto(iso){
+    if(!iso) return '';
+    var s = Math.round((Date.now() - new Date(iso).getTime()) / 1000);
+    if(s < 90) return 'hace un momento';
+    if(s < 5400) return 'hace ' + Math.round(s / 60) + ' min';
+    if(s < 172800) return 'hace ' + Math.round(s / 3600) + ' h';
+    return 'hace ' + Math.round(s / 86400) + ' días';
+  }
+
+  function fallo(msg){
+    estado.innerHTML = '';
+    estado.appendChild(document.createTextNode(msg + ' '));
+    if(ENDPOINT){
+      var a = document.createElement('a');
+      a.href = ENDPOINT + '?set=' + valor + '&clave=' + encodeURIComponent(CLAVE);
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = 'Hacerlo en una pestaña nueva';
+      estado.appendChild(a);
+    }
+  }
+
+  if(!ENDPOINT){
+    estado.textContent = 'Falta configurar el panel: mira el README.';
+    guardar.disabled = true;
+    pintar();
+    return;
+  }
+
+  pedir('').then(function(d){
+    guardado = Math.max(0, Math.min(TOTAL, parseInt(d.plazas, 10)));
+    valor = guardado;
+    pintar();
+    estado.textContent = 'En la web ahora: ' + guardado + (d.fecha ? ' · actualizado ' + haceCuanto(d.fecha) : '');
+  }).catch(function(){
+    pintar();
+    fallo('No he podido leer el valor actual.');
+  });
+
+  guardar.addEventListener('click', function(){
+    var n = valor;
+    guardar.disabled = true;
+    estado.textContent = 'Publicando…';
+    pedir('set=' + n + '&clave=' + encodeURIComponent(CLAVE)).then(function(d){
+      guardado = Math.max(0, Math.min(TOTAL, parseInt(d.plazas, 10)));
+      valor = guardado;
+      pintar();
+      estado.textContent = guardado === n
+        ? 'Publicado. En la web ahora: ' + guardado
+        : 'Guardado, pero devolvió ' + guardado + '. Revisa la clave.';
+    }).catch(function(){
+      pintar();
+      fallo('No se ha podido publicar.');
+    });
+  });
+})();
+</script>
+</body>
+</html>
