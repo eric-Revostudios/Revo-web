@@ -86,6 +86,13 @@ Y ya no hace falta más. El panel queda en **revostudios.eu/reset-90/plazas.html
 
 Si prefieres no instalar nada, la landing también lee una **hoja de cálculo de Google** publicada como CSV: número en A1, Archivo → Compartir → Publicar en la web → formato CSV, y esa URL en `PLAZAS_URL`. Menos bonito, cero instalación.
 
+## Pendientes de confirmar en el texto
+Estos cuatro datos están escritos con un valor provisional o genérico; si alguno no es correcto, búscalo en `index.html` y cámbialo:
+- **Dra. Miriam Rivera**: falta su especialidad y el nº de colegiada en la ficha de dirección médica.
+- **Precios de casa**: miembros de REVO 997€ y alumnas/os de un programa de Bea 300€.
+- **Mediciones**: no se nombra el equipo ni el método de cada una (edad biológica, índice de estrés, composición corporal).
+- **Reseñas**: cuatro testimonios con nombre y foto. Conviene tener el permiso por escrito de cada persona.
+
 ## Antes de publicar
 - Confirma las URLs de los legales.
 - Si tienes `sitemap.xml`, añade `https://revostudios.eu/reset-90/`.
