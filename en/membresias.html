@@ -29,7 +29,7 @@
 <link rel="preload" href="../fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
 <link rel="preload" href="../fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
 <link rel="stylesheet" href="../revo-amanecer.css?v=mobile31" />
-<link rel="stylesheet" href="../revo-studio.css?v=planes24" />
+<link rel="stylesheet" href="../revo-studio.css?v=planes25" />
 <link rel="stylesheet" href="../revo-reservar.css" />
 <style>
   /* hero membresías: el neón REVO como fondo discreto y lujoso, sin restar legibilidad al texto */
@@ -178,9 +178,9 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
 
       <div class="plan-grid">
 
-        <!-- Elevate -->
+        <!-- Core -->
         <article class="plan reveal" data-billing="mensual">
-          <h3 class="plan-name">REVO Elevate</h3>
+          <h3 class="plan-name">REVO Core</h3>
           <div class="plan-toggle" data-plan-toggle>
             <button type="button" class="is-on" data-billing-opt="mensual" aria-pressed="true">Monthly</button>
             <button type="button" data-billing-opt="anual" aria-pressed="false">Annual</button>
@@ -380,7 +380,7 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
   })();
   </script>
   <script>
-  /* toggle mensual/anual en la tarjeta Elevate */
+  /* toggle mensual/anual en la tarjeta Core */
   (function(){
     document.querySelectorAll('[data-plan-toggle]').forEach(function(t){
       var plan=t.closest('.plan');
