@@ -29,7 +29,7 @@
 <link rel="preload" href="fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
 <link rel="preload" href="fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
 <link rel="stylesheet" href="revo-amanecer.css?v=mobile31" />
-<link rel="stylesheet" href="revo-studio.css?v=mobile23" />
+<link rel="stylesheet" href="revo-studio.css?v=planes24" />
 <link rel="stylesheet" href="revo-reservar.css" />
 <style>
   /* hero membresías: el neón REVO como fondo discreto y lujoso, sin restar legibilidad al texto */
@@ -179,9 +179,16 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       <div class="plan-grid">
 
         <!-- Elevate -->
-        <article class="plan reveal">
+        <article class="plan reveal" data-billing="mensual">
           <h3 class="plan-name">REVO Elevate</h3>
-          <p class="plan-price">300€<small> / mes</small></p>
+          <div class="plan-toggle" data-plan-toggle>
+            <button type="button" class="is-on" data-billing-opt="mensual" aria-pressed="true">Mensual</button>
+            <button type="button" data-billing-opt="anual" aria-pressed="false">Anual</button>
+          </div>
+          <p class="plan-price plan-price--mensual">300€<small> / mes</small></p>
+          <p class="plan-price plan-price--anual">3.000€<small> / año</small></p>
+          <p class="plan-price-note plan-price-note--mensual">Compromiso mínimo de 3 meses.</p>
+          <p class="plan-price-note plan-price-note--anual"><span class="plan-save">Ahorras 2 meses</span></p>
           <div class="plan-div"></div>
           <span class="plan-glabel">Incluye</span>
           <ul class="plan-ul">
@@ -194,20 +201,12 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
         </article>
 
         <!-- Peak -->
-        <article class="plan plan--feature reveal" style="--d:.1s">
+        <article class="plan plan--feature plan--soon reveal" style="--d:.1s">
           <h3 class="plan-name">REVO Peak</h3>
-          <p class="plan-price">700€<small> / mes</small></p>
+          <p class="plan-soon">Próximamente</p>
           <div class="plan-badge">Solo 10 miembros</div>
           <div class="plan-div"></div>
-          <p class="plan-sub">Todo lo de Elevate, y además:</p>
-          <ul class="plan-ul">
-            <li>Diagnóstico avanzado completo (analítica, DEXA, VO₂ máx. y ritmo de envejecimiento), adaptado a tu edad biológica y con seguimiento periódico.</li>
-            <li>Masajes ilimitados.</li>
-            <li>Plan de dieta y suplementación personalizado, con la suplementación incluida.</li>
-            <li>Medición en tiempo real para un seguimiento objetivo y personalizado. Wearable incluido.</li>
-            <li>Una invitación para un acompañante cada mes.</li>
-          </ul>
-          <a class="btn btn--hero plan-cta-gap" href="#solicita" data-hot>Reserva tu plaza</a>
+          <p class="plan-soon-desc">El máximo nivel de optimización física, mental y estética: un plan médico a tu medida, ejecutado contigo en el studio y ajustado con tus datos, cada mes.</p>
         </article>
 
       </div>
@@ -378,6 +377,20 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
       addEventListener('keydown',function(e){if(e.key==='Escape')cl();});
     }
     if(document.readyState!=='loading')build(); else document.addEventListener('DOMContentLoaded',build);
+  })();
+  </script>
+  <script>
+  /* toggle mensual/anual en la tarjeta Elevate */
+  (function(){
+    document.querySelectorAll('[data-plan-toggle]').forEach(function(t){
+      var plan=t.closest('.plan');
+      t.querySelectorAll('button').forEach(function(b){
+        b.addEventListener('click',function(){
+          plan.setAttribute('data-billing',b.getAttribute('data-billing-opt'));
+          t.querySelectorAll('button').forEach(function(x){ x.classList.toggle('is-on',x===b); x.setAttribute('aria-pressed',x===b?'true':'false'); });
+        });
+      });
+    });
   })();
   </script>
   <script src="revo-reservar.js" defer></script>
