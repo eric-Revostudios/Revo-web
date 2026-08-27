@@ -57,3 +57,28 @@ Los textos del propio formulario se editan en Tally, no aquí.
 - **Textos**: están en el HTML, sin plantillas ni build.
 - **Imagen para redes** (`og:image`): apunta a
   `https://revostudios.eu/goodfit-x-revo/media/intro.jpg` — ajústala si cambias la URL.
+
+## Importante: las rutas son absolutas
+
+Los archivos de `media/` se piden como `/goodfit-x-revo/media/...` (con barra
+inicial), no como `media/...`. Motivo: el servidor sirve la página sin la barra
+final (`/goodfit-x-revo`), y con rutas relativas el navegador las buscaba en la
+raíz del dominio (`revostudios.eu/media/...` → 404: ni fotos, ni logos, ni vídeo).
+
+**Consecuencia: la carpeta tiene que llamarse `goodfit-x-revo` y estar en la raíz
+del repo.** Si la renombras o la mueves, busca `/goodfit-x-revo/media/` en
+`index.html` (7 apariciones) y cambia el prefijo por la ruta nueva.
+
+## Si aun así no se ven
+
+Abre la web, clic derecho → Inspeccionar → pestaña Network, y recarga. Las líneas
+en rojo te dicen exactamente qué URL está pidiendo y fallando. Compárala con donde
+están de verdad los archivos. Los dos culpables habituales:
+
+1. La carpeta `media/` no ha subido (el `.gitignore` del repo se la come) →
+   añade `!goodfit-x-revo/media/**`.
+2. La carpeta está en otra ruta de la que dicen las rutas absolutas de arriba.
+
+Alternativa a prueba de bombas: el archivo único `GoodFit x REVO.html`, que lleva
+las fotos y los logos incrustados dentro y no depende de ninguna carpeta (no lleva
+vídeo).
