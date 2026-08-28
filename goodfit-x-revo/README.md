@@ -40,17 +40,11 @@ su `opacity` de `.55` a `.92`.
 El corte del clip se controla con la variable `FIN` (18,5 s) al final del HTML, para
 no llegar al rótulo del final.
 
-## Formulario
+## Precios (sección final)
 
-El CTA («Solicita tu prueba») abre el formulario de **Tally en popup**, sin salir de
-la página. Se apoya en dos cosas dentro de `index.html`:
-
-- el script del widget en el `<head>`: `https://tally.so/widgets/embed.js`
-- los enlaces con `data-tally-open="J9bLJo"` (2 apariciones)
-
-Para cambiar de formulario, sustituye `J9bLJo` por el ID del nuevo (aparece también
-en el `href="#tally-open=..."`, que actúa de respaldo).
-Los textos del propio formulario se editan en Tally, no aquí.
+La landing ya no tiene CTA de prueba: la sección final informa de los precios de
+la membresía (los importes están a mano en `index.html`, busca `€/mes`).
+El popup de Tally se ha retirado del todo (ni script en el `<head>` ni enlaces).
 
 ## Cosas que se cambian a mano
 
@@ -58,16 +52,12 @@ Los textos del propio formulario se editan en Tally, no aquí.
 - **Imagen para redes** (`og:image`): apunta a
   `https://revostudios.eu/goodfit-x-revo/media/intro.jpg` — ajústala si cambias la URL.
 
-## Importante: las rutas son absolutas
+## Rutas y barra final
 
-Los archivos de `media/` se piden como `/goodfit-x-revo/media/...` (con barra
-inicial), no como `media/...`. Motivo: el servidor sirve la página sin la barra
-final (`/goodfit-x-revo`), y con rutas relativas el navegador las buscaba en la
-raíz del dominio (`revostudios.eu/media/...` → 404: ni fotos, ni logos, ni vídeo).
-
-**Consecuencia: la carpeta tiene que llamarse `goodfit-x-revo` y estar en la raíz
-del repo.** Si la renombras o la mueves, busca `/goodfit-x-revo/media/` en
-`index.html` (7 apariciones) y cambia el prefijo por la ruta nueva.
+Las rutas de `media/` son relativas, y un pequeño script en el `<head>` añade la
+barra final si el servidor sirve la página como `/goodfit-x-revo` (sin barra) —
+sin eso, el navegador buscaba las fotos en la raíz del dominio y daba 404.
+Ventaja: puedes renombrar o mover la carpeta sin tocar nada.
 
 ## Si aun así no se ven
 
