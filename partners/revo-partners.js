@@ -84,6 +84,9 @@
 
   /* ---------- piezas de un bloque ---------- */
   function codigoHTML(c) {
+    /* Centros que no usan código (se reserva por WhatsApp, por teléfono...):
+       no se pinta el bloque del código. Ver "sinCodigo" en partners.config.js. */
+    if (c.sinCodigo) return "";
     var code = (c.codigo || "").trim();
     if (!code) {
       return '<div class="pc-code pc-code--empty"><span class="lab">' + STR.codigo + '</span><p>' + esc(STR.sinCodigo) + "</p></div>";

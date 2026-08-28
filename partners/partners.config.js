@@ -15,6 +15,11 @@
    · Si un código todavía no está, déjalo vacío ("") y la página avisará
      al miembro de que lo pida en recepción. Nunca se rompe.
 
+   UN CENTRO QUE NO USA CÓDIGO (se reserva por WhatsApp, teléfono, en recepción…)
+   · En vez de la línea "codigo", pon:  sinCodigo: true
+   · Así no aparece el recuadro del código. Si dejas  codigo: ""  en su lugar, la
+     página diría "código en actualización", que no es el caso.
+
    PAUSAR UN CENTRO (vacaciones, cierre, acuerdo en revisión)
    · estado: "pausado"  +  mensajePausa: "Texto que verá el miembro."
    · El bloque sigue visible y su ancla sigue funcionando (los QR de la
@@ -143,8 +148,8 @@ window.REVO_PARTNERS = {
       id: "yogaone",
       nombre: "YogaOne Aragó-Eixample",
       sesionesMes: 2,
-      codigo: "REVOAUG26YOGA1",                /* ← CÓDIGO */
-      enlace: "",                              /* no hay checkout: se reserva por WhatsApp */
+      sinCodigo: true,                         /* ← SIN CÓDIGO: no hay checkout donde aplicarlo */
+      enlace: "",                              /* se reserva por WhatsApp con el centro */
       estado: "activo",
       es: {
         descripcion: "Movilidad y regulación. Yoga, pilates y meditación.",
