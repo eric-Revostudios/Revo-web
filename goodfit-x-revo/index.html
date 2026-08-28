@@ -170,7 +170,7 @@ input,button{font-family:inherit}
 
 .hv1:hover{background:#2A2A2E;opacity:1}
 .hv2:hover{background:#FFFFFF;opacity:1}
-</style>
+#gr-info input:focus{border-bottom-color:#F3F1EC}#gr-info ::placeholder{color:rgba(243,241,236,.4)}#gr-info input:-webkit-autofill{-webkit-text-fill-color:#F3F1EC;transition:background-color 99999s}</style>
 <template id="__bundler_thumbnail" data-bg-color="#0C0C0F">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0C0C0F"/><text x="100" y="118" font-family="Helvetica, Arial, sans-serif" font-size="64" font-weight="700" fill="#F3F1EC" text-anchor="middle">G×R</text></svg>
 </template>
@@ -336,6 +336,7 @@ input,button{font-family:inherit}
   </div>
       <div style="border-top:1px solid rgba(243,241,236,.22)"></div>
     </div>
+    <button type="button" data-info-open class="hv2" style="display:inline-flex;align-items:center;background:#F3F1EC;color:#121212;border:0;border-radius:999px;padding:19px 36px;font-size:16px;font-weight:600;letter-spacing:.01em;cursor:pointer;align-self:flex-start;margin-top:clamp(20px,3.4svh,36px)">Más información</button>
   </div>
   <footer style="position:relative;border-top:1px solid rgba(243,241,236,.14)">
     <div style="max-width:1160px;margin:0 auto;padding:28px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;box-sizing:border-box">
@@ -348,6 +349,59 @@ input,button{font-family:inherit}
     </div>
   </footer>
 </div>
+<div id="gr-info" style="position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;box-sizing:border-box">
+  <div data-info-close style="position:absolute;inset:0;background:rgba(8,8,10,.72);backdrop-filter:blur(6px)"></div>
+  <div role="dialog" aria-modal="true" aria-label="Más información" style="position:relative;background:#101114;border:1px solid rgba(243,241,236,.16);border-radius:20px;padding:clamp(26px,5vw,40px);max-width:440px;width:100%;box-sizing:border-box">
+    <button type="button" data-info-close aria-label="Cerrar" style="position:absolute;top:14px;right:14px;background:none;border:0;color:rgba(243,241,236,.6);font-size:22px;line-height:1;cursor:pointer;padding:8px">×</button>
+    <h3 style="margin:0;color:#F3F1EC;font-size:24px;letter-spacing:-.01em;font-weight:700">Más información</h3>
+    <p style="margin:10px 0 0;color:rgba(243,241,236,.7);font-size:15px;line-height:1.55">Déjanos tus datos y te contactamos con todos los detalles de la membresía.</p>
+    <form id="gr-info-form" style="display:flex;flex-direction:column;gap:18px;margin-top:26px">
+      <input type="hidden" name="access_key" value="82f02911-70ad-44a6-abc5-c062eb9d235b">
+      <input type="hidden" name="subject" value="Nueva solicitud de información — GoodFit × REVO">
+      <input type="hidden" name="from_name" value="Landing GoodFit × REVO">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+      <input name="nombre" required autocomplete="name" placeholder="Nombre" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid rgba(243,241,236,.28);border-radius:0;color:#F3F1EC;padding:12px 0;font-size:16px;line-height:1.4;outline:none;font-family:inherit">
+      <input name="email" type="email" required autocomplete="email" placeholder="Email" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid rgba(243,241,236,.28);border-radius:0;color:#F3F1EC;padding:12px 0;font-size:16px;line-height:1.4;outline:none;font-family:inherit">
+      <input name="telefono" type="tel" required autocomplete="tel" placeholder="Teléfono" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid rgba(243,241,236,.28);border-radius:0;color:#F3F1EC;padding:12px 0;font-size:16px;line-height:1.4;outline:none;font-family:inherit">
+      <p id="gr-info-err" hidden style="margin:0;color:#e08585;font-size:14px">No se ha podido enviar. Inténtalo de nuevo en un momento.</p>
+      <button type="submit" class="hv2" style="display:inline-flex;align-items:center;justify-content:center;background:#F3F1EC;color:#121212;border:0;border-radius:999px;padding:17px 32px;font-size:16px;font-weight:600;cursor:pointer;margin-top:6px">Enviar</button>
+      <p style="margin:0;color:rgba(243,241,236,.45);font-size:12px;line-height:1.5">Solo usaremos tus datos para responderte.</p>
+    </form>
+    <div id="gr-info-ok" hidden style="margin-top:26px">
+      <p style="margin:0;color:#F3F1EC;font-size:17px;line-height:1.55;font-weight:600">Gracias, recibido.</p>
+      <p style="margin:8px 0 0;color:rgba(243,241,236,.7);font-size:15px;line-height:1.55">Te contactamos muy pronto.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var m = document.getElementById('gr-info'), form = document.getElementById('gr-info-form');
+  var err = document.getElementById('gr-info-err'), ok = document.getElementById('gr-info-ok');
+  function open() { m.style.display = 'flex'; var i = form.querySelector('input'); if (form.style.display !== 'none' && i) setTimeout(function(){ i.focus(); }, 50); }
+  function close() { m.style.display = 'none'; }
+  document.querySelectorAll('[data-info-open]').forEach(function (b) { b.addEventListener('click', open); });
+  m.querySelectorAll('[data-info-close]').forEach(function (b) { b.addEventListener('click', close); });
+  addEventListener('keydown', function (e) { if (e.key === 'Escape' && m.style.display === 'flex') close(); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    var btn = form.querySelector('[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    var fd = new FormData(form);
+    fd.append('pagina', location.href);
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd }).then(function (r) {
+      return r.json();
+    }).then(function (j) {
+      if (!j.success) throw new Error('web3forms');
+      form.style.display = 'none'; ok.hidden = false;
+    }).catch(function () {
+      err.hidden = false;
+    }).finally(function () {
+      btn.disabled = false; btn.textContent = 'Enviar';
+    });
+  });
+})();
+</script>
 <script>
 (function () {
   var MIN = 1400, MAX = 8000, t0 = Date.now(), h = document.documentElement;

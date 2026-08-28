@@ -40,6 +40,19 @@ su `opacity` de `.55` a `.92`.
 El corte del clip se controla con la variable `FIN` (18,5 s) al final del HTML, para
 no llegar al rótulo del final.
 
+## CTA «Más información» (Web3Forms)
+
+Bajo los precios hay un botón que abre un formulario (nombre, email, teléfono).
+Envía por **Web3Forms** (igual que el formulario de experiencias): sin backend,
+el lead llega por correo. Para activarlo:
+
+La access key del formulario «GoodFit» ya está puesta en `index.html`
+(`82f02911-70ad-44a6-abc5-c062eb9d235b`). Es pública, no pasa nada por que se vea.
+Los leads llegan al email configurado en Settings de ese formulario en Web3Forms.
+Ya incluye: asunto propio para filtrar en el buzón («Nueva solicitud de
+información — GoodFit × REVO»), honeypot anti-spam (`botcheck`), botón
+«Enviando…» mientras va, y la URL de la página en cada envío.
+
 ## Precios (sección final)
 
 La landing ya no tiene CTA de prueba: la sección final informa de los precios de
