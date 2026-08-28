@@ -54,10 +54,11 @@ El popup de Tally se ha retirado del todo (ni script en el `<head>` ni enlaces).
 
 ## Rutas y barra final
 
-Las rutas de `media/` son relativas, y un pequeño script en el `<head>` añade la
-barra final si el servidor sirve la página como `/goodfit-x-revo` (sin barra) —
-sin eso, el navegador buscaba las fotos en la raíz del dominio y daba 404.
-Ventaja: puedes renombrar o mover la carpeta sin tocar nada.
+Las rutas de `media/` son relativas. Un script de una línea en el `<head>` añade
+una etiqueta `<base>` cuando el servidor sirve la página sin barra final
+(`/goodfit-x-revo`), para que el navegador no busque las fotos en la raíz del
+dominio. Sin redirecciones (evita bucles con hostings que quitan la barra), y
+puedes renombrar o mover la carpeta sin tocar nada.
 
 ## Si aun así no se ven
 
