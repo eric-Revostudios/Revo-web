@@ -55,7 +55,7 @@ window.REVO_PARTNERS = {
       id: "barrys",
       nombre: "Barry's Barcelona",
       sesionesMes: 2,
-      codigo: "1001CLASSREVOIB0108",           /* ← CÓDIGO */
+      codigo: "1001CLASSREVOIB0109",           /* ← CÓDIGO */
       enlace: "https://www.barrys.com/pricing/barcelona?_mt=%2Fbuy%2F10273",
       estado: "activo",
       es: {
@@ -88,9 +88,9 @@ window.REVO_PARTNERS = {
       id: "corehaus",
       nombre: "Corehaus",
       sesionesMes: 2,
-      codigo: "",                              /* ← CÓDIGO */
+      codigo: "REVOSEP26",                     /* ← CÓDIGO */
       enlace: "https://corehaus.es/schedule",
-      estado: "pausado",
+      estado: "activo",
       es: {
         descripcion: "Fuerza sin impacto. 50 minutos de resistencia sobre el Coreformer.",
         mensajePausa: "Cerrado por vacaciones durante agosto. Vuelve en septiembre.",
@@ -117,7 +117,7 @@ window.REVO_PARTNERS = {
       id: "casabarre",
       nombre: "Casa Barré",
       sesionesMes: 1,
-      codigo: "CASAREVOAGOSTO",                /* ← CÓDIGO */
+      codigo: "CASAREVOSEPTIEMBRE",            /* ← CÓDIGO */
       enlace: "https://casabarre.com/barcelona/horarios",
       estado: "activo",
       es: {
