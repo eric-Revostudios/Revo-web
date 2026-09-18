@@ -20,6 +20,11 @@
    · Así no aparece el recuadro del código. Si dejas  codigo: ""  en su lugar, la
      página diría "código en actualización", que no es el caso.
 
+   CONDICIONES DE UN CENTRO (horas excluidas, salas, antelación…)
+   · Añade  condiciones: ["Primera condición", "Segunda condición"]  dentro
+     de "es" y de "en". Se muestran en un recuadro justo debajo del código.
+   · Si un centro deja de tener condiciones, borra la lista entera.
+
    PAUSAR UN CENTRO (vacaciones, cierre, acuerdo en revisión)
    · estado: "pausado"  +  mensajePausa: "Texto que verá el miembro."
    · El bloque sigue visible y su ancla sigue funcionando (los QR de la
@@ -94,6 +99,14 @@ window.REVO_PARTNERS = {
       es: {
         descripcion: "Fuerza sin impacto. 50 minutos de resistencia sobre el Coreformer.",
         mensajePausa: "Cerrado por vacaciones durante agosto. Vuelve en septiembre.",
+        /* Horas punta en las que el código NO funciona. Si Corehaus cambia
+           las horas, edita solo los textos entre comillas.                 */
+        condiciones: [
+          "El código no es válido en las clases de hora punta.",
+          "De lunes a viernes: 17:15, 18:15 y 19:15.",
+          "Sábados y domingos: 09:30 y 10:30.",
+          "En el resto de horarios funciona con normalidad."
+        ],
         resumen: "Reserva tu clase en la plataforma de Corehaus y aplica el código en el pago.",
         cta: "Reservar en Corehaus",
         pasos: {
@@ -104,6 +117,12 @@ window.REVO_PARTNERS = {
       en: {
         descripcion: "Strength without impact. 50 minutes of resistance on the Coreformer.",
         mensajePausa: "Closed for holidays throughout August. Back in September.",
+        condiciones: [
+          "The code is not valid for peak-time classes.",
+          "Monday to Friday: 17:15, 18:15 and 19:15.",
+          "Saturday and Sunday: 09:30 and 10:30.",
+          "It works as usual at every other time."
+        ],
         resumen: "Book your class on the Corehaus platform and apply the code at checkout.",
         cta: "Book at Corehaus",
         pasos: {
