@@ -40,24 +40,21 @@ su `opacity` de `.55` a `.92`.
 El corte del clip se controla con la variable `FIN` (18,5 s) al final del HTML, para
 no llegar al rótulo del final.
 
-## CTA «Más información» (Web3Forms)
+## Sección final: beneficios cruzados para miembros
 
-Bajo los precios hay un botón que abre un formulario (nombre, email, teléfono).
-Envía por **Web3Forms** (igual que el formulario de experiencias): sin backend,
-el lead llega por correo. Para activarlo:
+La landing no vende una membresía cruzada: la sección final explica qué tiene cada
+miembro en el otro centro (textos a mano en `index.html`, busca `beneficios para miembros`):
 
-La access key del formulario «GoodFit» ya está puesta en `index.html`
-(`82f02911-70ad-44a6-abc5-c062eb9d235b`). Es pública, no pasa nada por que se vea.
-Los leads llegan al email configurado en Settings de ese formulario en Web3Forms.
-Ya incluye: asunto propio para filtrar en el buzón («Nueva solicitud de
-información — GoodFit × REVO»), honeypot anti-spam (`botcheck`), botón
-«Enviando…» mientras va, y la URL de la página en cada envío.
+- **Miembro de GoodFit** → Ilimitada: 2 crioterapias/mes · Prime: 2 combinaciones/mes
+  (PEMF + crioterapia + botas de compresión). Botón «Reservar en REVO Studios» →
+  `https://www.revostudios.eu/crioterapia.html`.
+- **Miembro de REVO** → 2 sesiones/mes en GoodFit. Botón «Reservar en GoodFit» →
+  `https://goodfitbarcelona.com/horarios/`.
 
-## Precios (sección final)
-
-La landing ya no tiene CTA de prueba: la sección final informa de los precios de
-la membresía (los importes están a mano en `index.html`, busca `€/mes`).
-El popup de Tally se ha retirado del todo (ni script en el `<head>` ni enlaces).
+El formulario «Más información» (Web3Forms, access key `82f02911-70ad-44a6-abc5-c062eb9d235b`,
+pública) sigue en el HTML pero ya no tiene botón que lo abra. Para recuperarlo basta con
+añadir un botón con el atributo `data-info-open` y cambiar el texto del formulario, que
+habla de «la membresía». El popup de Tally se retiró del todo hace tiempo.
 
 ## Cosas que se cambian a mano
 
