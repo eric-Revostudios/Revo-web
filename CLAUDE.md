@@ -16,7 +16,7 @@ La **web pública** de REVO Studios. Es un sitio **HTML estático** — no hay f
 - **CSS:** un fichero por área (`revo-studios.css`, `revo-terapia.css`, `revo-metodo.css`, `revo-amanecer.css`, `revo-verano.css`…)
 - **JS:** `revo-reservar.js` (reservas), `revo-cookies.js` (consentimiento), `revo-analytics.js` + `revo-pixel.js` (medición), `revo-footer-fluid.js`
 - **SEO:** `sitemap.xml` y `robots.txt` — si añades o renombras una página, actualiza el sitemap.
-- **Funciones de servidor (`api/`):** la única excepción al "todo estático". `api/peak-lead.js` es una función Edge de Vercel: recibe el webhook de Tally del formulario REVO Peak (`A7eMNo`) y manda un SMS por Twilio a los números de `SMS_TO`. Sin dependencias (usa `fetch`). Configuración por variables de entorno en Vercel: `TALLY_SIGNING_SECRET`, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM`, `SMS_TO`. Webhook en Tally → Integrations → Webhooks → `https://revostudios.eu/api/peak-lead` con signing secret activado. Vale para cualquier formulario de Tally con campos Nombre / Apellidos / Email / Teléfono.
+- **Funciones de servidor (`api/`):** la única excepción al "todo estático". `api/peak-lead.js` es una función Edge de Vercel: recibe el webhook de Tally del formulario REVO Peak (`A7eMNo`) y manda un SMS por Twilio a los números de `SMS_TO`. Sin dependencias (usa `fetch`). Configuración por variables de entorno en Vercel: `TALLY_SIGNING_SECRET`, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM`, `SMS_TO`. Webhook en Tally → Integrations → Webhooks → `https://www.revostudios.eu/api/peak-lead` con signing secret activado. Vale para cualquier formulario de Tally con campos Nombre / Apellidos / Email / Teléfono.
 
 ## Al trabajar aquí
 
