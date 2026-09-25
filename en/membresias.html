@@ -39,17 +39,21 @@
     linear-gradient(90deg, rgba(7,10,30,.66) 0%, rgba(7,10,30,.2) 52%, rgba(7,10,30,0) 100%); }
 
   /* ===== logos de estudios partner (negros, sin fondo) ===== */
-  .incl-partners{ display:flex; flex-wrap:wrap; gap:26px 48px; margin-top:22px; align-items:flex-start; }
+  .incl-partners{ display:flex; flex-wrap:wrap; gap:26px 48px; margin-top:22px; align-items:flex-end; }
   .ipart{ display:flex; flex-direction:column; align-items:flex-start; gap:13px; }
   .ipart-logo{ height:26px; display:flex; align-items:center; }
   .ipart-logo img{ height:26px; width:auto; max-width:180px; object-fit:contain; display:block; }
+  .ipart-logo--tall{ height:40px; }
+  .ipart-logo--tall img{ height:40px; max-width:170px; }
   .ipart-acc{ font-family:var(--sans); font-size:12.5px; letter-spacing:.02em; color:rgba(17,19,24,.58); }
   .ipart-acc b{ color:var(--ink-dark); font-weight:600; }
   @media (max-width:600px){
-    .incl-partners{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px 10px; align-items:start; }
+    .incl-partners{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px 10px; align-items:end; }
     .ipart{ align-items:center; text-align:center; gap:10px; }
     .ipart-logo{ height:20px; width:100%; justify-content:center; }
     .ipart-logo img{ height:auto; max-height:20px; max-width:100%; }
+    .ipart-logo--tall{ height:30px; }
+    .ipart-logo--tall img{ max-height:30px; }
     .ipart-acc{ font-size:10.5px; }
   }
 </style>
@@ -160,8 +164,10 @@ document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&
             <p>Because your wellbeing isn’t sustained inside REVO alone: it rests on movement, nutrition, sleep and resting your mind. REVO is the hub that coordinates it all.</p>
             <div class="incl-partners">
               <div class="ipart"><div class="ipart-logo"><img loading="lazy" decoding="async" src="../assets/partner-barrys.png" alt="Barry's" /></div><span class="ipart-acc"><b>2</b> classes / mo</span></div>
+              <div class="ipart"><div class="ipart-logo"><img loading="lazy" decoding="async" src="../assets/partner-goodfit.png" alt="GoodFit" /></div><span class="ipart-acc"><b>2</b> classes / mo</span></div>
               <div class="ipart"><div class="ipart-logo"><img loading="lazy" decoding="async" src="../assets/partner-corehaus.png" alt="Corehaus" /></div><span class="ipart-acc"><b>2</b> classes / mo</span></div>
               <div class="ipart"><div class="ipart-logo"><img loading="lazy" decoding="async" src="../assets/partner-casabarre.png" alt="Casa Barré" /></div><span class="ipart-acc"><b>1</b> class / mo</span></div>
+              <div class="ipart"><div class="ipart-logo ipart-logo--tall"><img loading="lazy" decoding="async" src="../assets/partner-yogaone.png" alt="YogaOne Eixample by DiR" /></div><span class="ipart-acc"><b>2</b> classes / mo</span></div>
             </div>
           </div>
         </div>
