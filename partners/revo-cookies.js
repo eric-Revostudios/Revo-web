@@ -130,7 +130,7 @@
     banner.innerHTML =
       '<button class="rc-decline rc-reject" data-rc="reject">' + T.reject + "</button>" +
       '<div class="rc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5Z"/><path d="M8.5 9.5h.01M15 9h.01M9 15h.01M14 14.5h.01"/></svg><h2>' + T.title + "</h2></div>" +
-      "<p>" + T.body + ' <a class="rc-link" href="https://revostudios.eu/cookies.html" target="_blank" rel="noopener">' + T.more + "</a></p>" +
+      "<p>" + T.body + ' <a class="rc-link" href="https://www.revostudios.eu/cookies.html" target="_blank" rel="noopener">' + T.more + "</a></p>" +
       '<div class="rc-actions">' +
         '<button class="rc-btn rc-btn--primary" data-rc="accept">' + T.accept + "</button>" +
       "</div>" +
