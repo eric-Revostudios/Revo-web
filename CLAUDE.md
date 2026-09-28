@@ -14,7 +14,7 @@ La **web pública** de REVO Studios. Es un sitio **HTML estático** — no hay f
 - **Legales:** `aviso-legal.html`, `privacidad.html`, `cookies.html`
 - **Inglés:** todo duplicado dentro de `en/` — **si cambias una página en español, mira si toca replicar en `en/`**
 - **CSS:** un fichero por área (`revo-studios.css`, `revo-terapia.css`, `revo-metodo.css`, `revo-amanecer.css`, `revo-verano.css`…)
-- **JS:** `revo-reservar.js` (reservas), `revo-cookies.js` (consentimiento), `revo-analytics.js` + `revo-pixel.js` (medición), `revo-footer-fluid.js`
+- **JS:** `revo-reservar.js` (reservas), `revo-cookies.js` (consentimiento), `revo-analytics.js` + `revo-pixel.js` (medición), `revo-footer-fluid.js`, `revo-lang.js` (aviso de idioma, sin redirecciones)
 - **SEO:** `sitemap.xml` y `robots.txt` — si añades o renombras una página, actualiza el sitemap.
 - **Funciones de servidor (`api/`):** la única excepción al "todo estático". `api/peak-lead.js` es una función Edge de Vercel preparada para avisar al instante de cada solicitud del formulario REVO Peak (Tally `A7eMNo`) por push gratuito (ntfy) o SMS (Twilio). **No está activada** (decisión de Eric, 25-sep-2026: con el email basta). Los avisos de leads van por email de Tally a luca@ y hello@revostudios.eu. Si algún día se quiere activar: webhook en Tally → Integrations → Webhooks → `https://www.revostudios.eu/api/peak-lead` con signing secret, y en Vercel las variables `TALLY_SIGNING_SECRET` + `NTFY_TOPIC` (push) o `TWILIO_*`/`SMS_TO` (SMS). Sin dependencias (usa `fetch`).
 
@@ -22,4 +22,6 @@ La **web pública** de REVO Studios. Es un sitio **HTML estático** — no hay f
 
 - Es la **cara pública** del negocio: un fallo se ve. Comprueba el cambio en el navegador antes de dar nada por bueno.
 - Respeta el estilo del HTML/CSS que ya existe; no introduzcas frameworks ni dependencias.
+- **Idioma: nunca redirigir según el idioma del navegador.** Googlebot navega en inglés y veía las páginas en español como redirecciones, así que no las indexaba (arreglado el 28-sep-2026). Las etiquetas hreflang van siempre con la URL completa.
+- **Peso:** imágenes nuevas en WebP (los og:image pueden seguir en JPG) y fuentes en WOFF2. El vídeo de portada tiene versión de ordenador y vertical para móvil (`hero-video-1080.mp4`, `hero-video-mobile.mp4`), en H.264 estándar 4:2:0.
 - Publicar = commit + push a `origin/main` (Vercel despliega solo). Confirma con Eric antes de publicar.
