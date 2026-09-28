@@ -8,19 +8,22 @@
    and slow fade+rise reveals. Same REVO content & layout.
    =========================================================== */
 
+/* Fuentes en WOFF2 (sep-2026). Las dos grotescas eran el mismo archivo: ahora comparten
+   NeueHaasGrotesk-Medium.woff2 (29 KB). La cursiva va recortada a peso 500 y caracteres
+   latinos (27 KB en vez de 2,4 MB). Los OTF/TTF quedan como respaldo. */
 @font-face{
   font-family:"NHaas Display";
-  src:url("fonts/NHaasGroteskDSPro-65Md.otf") format("opentype");
+  src:url("fonts/NeueHaasGrotesk-Medium.woff2") format("woff2"), url("fonts/NHaasGroteskDSPro-65Md.otf") format("opentype");
   font-weight:400 600; font-style:normal; font-display:swap;
 }
 @font-face{
   font-family:"Neue Haas";
-  src:url("fonts/NeueHaasGrotesk-Medium.otf") format("opentype");
+  src:url("fonts/NeueHaasGrotesk-Medium.woff2") format("woff2"), url("fonts/NeueHaasGrotesk-Medium.otf") format("opentype");
   font-weight:400 700; font-style:normal; font-display:swap;
 }
 @font-face{
   font-family:"Noto Serif Hi";
-  src:url("fonts/NotoSerif-Italic.ttf") format("truetype");
+  src:url("fonts/NotoSerif-Italic-500.woff2") format("woff2"), url("fonts/NotoSerif-Italic.ttf") format("truetype");
   font-weight:100 900; font-style:italic; font-display:swap;
 }
 
@@ -97,6 +100,8 @@ main,.site-header,.site-footer{ position:relative; z-index:2; }
 .eyebrow{ font-family:var(--sans); font-weight:600; font-size:17px; letter-spacing:5px; text-transform:uppercase;
   color:var(--ink-light); margin:0; display:inline-flex; align-items:flex-start; gap:11px; line-height:1.2; }
 .eyebrow::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 10px rgba(104,129,252,.6); flex:none; margin-top:calc((1.2em - 7px) / 2 - 1px); }
+/* texto solo para lectores de pantalla y buscadores */
+.vh{ position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
 .ser{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing:-.05em; }
 
 /* ---------- reveal engine ---------- */
@@ -569,14 +574,14 @@ body.menu-open{ overflow:hidden; }
 .footer-inner > *{ position:relative; z-index:1; }
 /* marca de agua: logo REVO (recortado) a sangre, súper translúcido */
 .footer-inner::before{ content:""; position:absolute; z-index:0; inset:0; pointer-events:none; user-select:none;
-  background:url('assets/revo-wordmark.png') center/cover no-repeat; opacity:.05; }
+  background:url('assets/revo-wordmark.webp') center/cover no-repeat; opacity:.05; }
 .site-footer.on-light .footer-inner::before{ filter:invert(1); opacity:.05; }
 .footer-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:clamp(30px,5vw,80px); flex-wrap:wrap; }
 .footer-brand{ max-width:30ch; }
 .site-footer .logo-img{ height:21px; filter:invert(1); }
 .footer-tag{ margin-top:13px; color:rgba(17,19,24,.48); max-width:28ch; font-size:12.5px; line-height:1.5; }
 .footer-cols{ display:flex; gap:clamp(34px,4vw,68px); flex-wrap:wrap; }
-.footer-col h4{ font-family:var(--sans); font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:rgba(17,19,24,.36); margin:0 0 12px; font-weight:600; }
+.footer-col .fc-title{ font-family:var(--sans); font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:rgba(17,19,24,.36); margin:0 0 12px; font-weight:600; }
 .footer-col a{ display:block; width:fit-content; color:rgba(17,19,24,.62); font-size:13px; padding:4px 0; transition:color .3s var(--ease); }
 .footer-col a:hover{ color:var(--ink-dark); }
 .footer-bottom{ display:flex; justify-content:space-between; gap:16px; margin-top:clamp(24px,2.8vw,38px); padding-top:16px; border-top:1px solid rgba(17,19,24,.1); color:rgba(17,19,24,.36); font-size:10px; letter-spacing:.1em; text-transform:uppercase; flex-wrap:wrap; }
@@ -588,7 +593,7 @@ body.menu-open{ overflow:hidden; }
 .site-footer .footer-inner::before,
 .site-footer.on-light .footer-inner::before{ filter:none; opacity:.06; }
 .site-footer .footer-tag{ color:rgba(255,255,255,.55); }
-.site-footer .footer-col h4{ color:rgba(255,255,255,.42); }
+.site-footer .footer-col .fc-title{ color:rgba(255,255,255,.42); }
 .site-footer .footer-col a{ color:rgba(255,255,255,.66); }
 .site-footer .footer-col a:hover{ color:#fff; }
 .site-footer .footer-bottom{ color:rgba(255,255,255,.42); border-top-color:rgba(255,255,255,.12); }
@@ -688,8 +693,8 @@ body.menu-open{ overflow:hidden; }
   .footer-cols{ width:100%; display:grid; grid-template-columns:1fr 1fr; gap:13px 14px; text-align:left;
     padding-top:16px; padding-bottom:10px; border-top:1px solid rgba(17,19,24,.08); }
   .footer-col{ width:auto; display:block; padding:0; border-top:0; }
-  .footer-col h4{ margin:0 0 6px; font-size:7.5px; letter-spacing:.2em; color:rgba(17,19,24,.38); }
-  .footer-col a{ font-size:10px; line-height:1.2; padding:1.5px 0; color:rgba(17,19,24,.62); }
+  .footer-col .fc-title{ margin:0 0 6px; font-size:7.5px; letter-spacing:.2em; color:rgba(17,19,24,.38); }
+  .footer-col a{ font-size:10px; line-height:1.2; padding:6px 0; /* 24px de zona táctil */ color:rgba(17,19,24,.62); }
   .footer-bottom{ flex-direction:column; align-items:center; text-align:center; gap:4px;
     margin-top:0; padding-top:14px; font-size:9.5px; letter-spacing:.04em; }
   /* ---- todos los CTA en móvil con el lenguaje del hero: rectángulo outline a ancho completo ---- */

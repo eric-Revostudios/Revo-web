@@ -116,7 +116,7 @@
 .hiw-flow{ margin-top:clamp(46px,7vh,84px); }
 /* este bloque no lleva reveal: la capa compuesta de la animación dejaba de pintar conectores y flechas al deshacerse */
 .hiw .st{ position:relative; max-width:960px; margin:0 auto; background:linear-gradient(180deg,rgba(23,32,74,.6),rgba(11,17,40,.75)); border:1px solid rgba(159,176,255,.32); box-shadow:inset 0 1px 0 rgba(223,229,255,.14),0 24px 60px -26px rgba(4,7,22,.95),0 0 48px -22px rgba(104,129,252,.5); --stpx:clamp(28px,3vw,40px); --stpy:clamp(28px,2.7vw,38px); padding:var(--stpy) var(--stpx); }
-.hiw .st h4{ font-family:var(--display); font-weight:500; font-size:clamp(26px,2.8vw,36px); line-height:1.08; letter-spacing:-.018em; margin:0; color:#fff; }
+.hiw .st h3{ font-family:var(--display); font-weight:500; font-size:clamp(26px,2.8vw,36px); line-height:1.08; letter-spacing:-.018em; margin:0; color:#fff; }
 .hiw .st .p{ margin:12px 0 0; font-size:16px; line-height:1.6; color:rgba(255,255,255,.68); max-width:58ch; }
 .hiw .st-chips{ display:flex; flex-wrap:wrap; gap:8px; margin:28px 0 0; }
 .hiw .st-chips span{ font-size:13px; line-height:1.35; padding:9px 14px; white-space:nowrap; border:1px solid rgba(159,176,255,.28); background:rgba(104,129,252,.08); color:rgba(223,229,255,.85); }
@@ -155,7 +155,7 @@
 @keyframes hiwArc3{ 0%,76%{ offset-distance:0%; opacity:0; } 79%{ opacity:1; } 96%{ opacity:1; } 99%{ offset-distance:100%; opacity:0; } 100%{ offset-distance:100%; opacity:0; } }
 .hiw .cy-n{ position:absolute; transform:translate(-50%,-50%); z-index:4; width:390px; text-align:center; background:linear-gradient(180deg,rgba(23,32,74,.72),rgba(11,17,40,.86)); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(159,176,255,.4); padding:30px 32px; box-shadow:0 24px 60px -24px rgba(4,7,22,.95),0 0 54px -18px rgba(104,129,252,.6),inset 0 1px 0 rgba(223,229,255,.14); }
 .hiw .cy-n .cad{ margin:0; font-size:11px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:#9fb0ff; }
-.hiw .cy-n h4{ font-family:var(--display); font-weight:500; font-size:27px; line-height:1.1; letter-spacing:-.018em; margin:10px 0 0; color:#fff; }
+.hiw .cy-n h3{ font-family:var(--display); font-weight:500; font-size:27px; line-height:1.1; letter-spacing:-.018em; margin:10px 0 0; color:#fff; }
 .hiw .cy-n .p{ margin:10px 0 0; font-size:15px; line-height:1.55; color:rgba(223,229,255,.74); }
 .hiw .cy-flash{ position:absolute; inset:-1px; border:1px solid rgba(207,216,255,.95); box-shadow:0 0 44px -6px rgba(104,129,252,1); opacity:0; pointer-events:none; animation:var(--k) var(--T) linear infinite; }
 @keyframes hiwFlashMed{ 0%,33%{ opacity:0; } 37%{ opacity:1; } 46%{ opacity:0; } 100%{ opacity:0; } }
@@ -204,7 +204,7 @@
   .hiw .cy-n ~ .cy-n ~ .cy-n{ left:0!important; right:auto; }
   .hiw .cy-n::before{ content:none; }
   .hiw .cy-n .cad{ font-size:8.5px; letter-spacing:.2em; }
-  .hiw .cy-n h4{ font-size:16.5px; margin-top:7px; }
+  .hiw .cy-n h3{ font-size:16.5px; margin-top:7px; }
   .hiw .cy-n .p{ font-size:11px; line-height:1.5; margin-top:7px; }
   .hiw .proc{ margin-top:12px; }
   .hiw .cy-tags{ margin-top:12px; gap:4px; }
@@ -237,7 +237,7 @@
   .hiw-head h2{ font-size:29px; }
   .hiw-head .hiw-sub{ margin-top:12px; font-size:16.5px; }
   .hiw .hiw-flow{ margin-top:34px; }
-  .hiw .st h4{ font-size:21px; }
+  .hiw .st h3{ font-size:21px; }
   .hiw .st .p{ margin-top:9px; font-size:14px; }
   .hiw .st-chips{ margin-top:18px; gap:6px; }
   .hiw .st-chips span{ font-size:11.5px; padding:7px 10px; }
@@ -289,7 +289,7 @@
   .pk-hero .pk-facts-in{ gap:4px; }
 }
 /* footer peak: un solo footer con la marca de agua grande anclada abajo (en vez del recorte a sangre) */
-.site-footer .footer-inner::before{ inset:auto 24px -4% 24px; aspect-ratio:1570/322; background:url("assets/revo-wordmark.png") center bottom/contain no-repeat; opacity:.06; }
+.site-footer .footer-inner::before{ inset:auto 24px -4% 24px; aspect-ratio:1570/322; background:url("assets/revo-wordmark.webp") center bottom/contain no-repeat; opacity:.06; }
 
 /* ===== FX premium: aparición, casillas, flechas, whoop (ES/EN) ===== */
 .hiw .st{ transition:border-color .5s var(--ease), box-shadow .5s var(--ease); }

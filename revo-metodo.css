@@ -41,7 +41,7 @@
 .metodo-close.footer--fluid .footer-inner{ border-top-color:rgba(255,255,255,.2); }
 .metodo-close.footer--fluid .logo-img{ filter:none; }
 .metodo-close.footer--fluid .footer-tag{ color:rgba(255,255,255,.74); }
-.metodo-close.footer--fluid .footer-col h4{ color:#9fb0ff; }
+.metodo-close.footer--fluid .footer-col .fc-title{ color:#9fb0ff; }
 .metodo-close.footer--fluid .footer-col a{ color:rgba(255,255,255,.66); }
 .metodo-close.footer--fluid .footer-col a:hover{ color:#fff; }
 .metodo-close.footer--fluid .footer-bottom{ color:rgba(255,255,255,.55); border-top-color:rgba(255,255,255,.16); }
@@ -115,7 +115,7 @@
   transition:opacity .55s var(--ease); }
 .diag-col.lit{ opacity:1; }
 .diag-col .dc-n{ display:block; font-family:var(--display); font-weight:700; font-size:12px; letter-spacing:.02em; color:var(--teal); margin-bottom:13px; }
-.diag-col h4{ font-family:var(--display); font-weight:700; font-size:17px; line-height:1.12; margin:0 0 9px; color:#fff; letter-spacing:-.01em; }
+.diag-col h3{ font-family:var(--display); font-weight:700; font-size:17px; line-height:1.12; margin:0 0 9px; color:#fff; letter-spacing:-.01em; }
 .diag-col p{ margin:0; font-size:13px; line-height:1.56; color:rgba(255,255,255,.66); }
 @media (max-width:1080px){ .diag-cols{ grid-template-columns:1fr 1fr; gap:24px 30px; } }
 @media (max-width:560px){
@@ -139,7 +139,7 @@
   .diag-col.lit::before{ background:#6881fc; border-color:#6881fc;
     box-shadow:0 0 0 4px rgba(104,129,252,.18), 0 0 14px rgba(104,129,252,.75); }
   .diag-col .dc-n{ grid-column:1; grid-row:1; margin:0; font-size:12px; }
-  .diag-col h4{ grid-column:2; grid-row:1; font-size:15.5px; margin:0; }
+  .diag-col h3{ grid-column:2; grid-row:1; font-size:15.5px; margin:0; }
   .diag-col p{ grid-column:2; grid-row:2; margin:0; font-size:12.5px; line-height:1.46; }
   /* el bloque de Diagnóstico lleva 4 pasos: solo compactamos el flujo, el número y el título quedan como los demás */
   .cine-block.cine-block--wide .cine-num{ margin-bottom:-.14em; }

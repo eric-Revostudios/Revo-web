@@ -42,17 +42,17 @@
   background:#fff; border:1.5px solid rgba(17,19,24,.22); box-shadow:none;
   transition:background .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease), transform .45s var(--ease); }
 .beat-n{ font-family:var(--display); font-weight:400; font-size:22px; color:var(--indigo); letter-spacing:-.01em; transition:color .5s var(--ease); }
-.beat h4{ font-size:19px; font-weight:600; letter-spacing:-.01em; margin:0 0 6px; color:var(--ink-dark); transition:color .5s var(--ease); }
+.beat h3{ font-size:19px; font-weight:600; letter-spacing:-.01em; margin:0 0 6px; color:var(--ink-dark); transition:color .5s var(--ease); }
 .beat p{ margin:0; color:rgba(17,19,24,.62); font-size:15.5px; line-height:1.6; transition:opacity .5s var(--ease), color .5s var(--ease); }
 /* flow: atenuado hasta que el raíl alcanza el paso, luego se enciende */
 .body-beats.flow .beat:not(.lit) .beat-n{ color:rgba(20,22,28,.26); }
-.body-beats.flow .beat:not(.lit) h4{ color:rgba(20,22,28,.4); }
+.body-beats.flow .beat:not(.lit) h3{ color:rgba(20,22,28,.4); }
 .body-beats.flow .beat:not(.lit) p{ opacity:.42; }
 .beat.lit .beat-dot{ background:#6881fc; border-color:#6881fc; transform:scale(1.06);
   box-shadow:0 0 0 5px rgba(104,129,252,.16), 0 0 18px rgba(104,129,252,.7); }
 @media(prefers-reduced-motion:reduce){
   .body-beats.flow .beat .beat-n{ color:var(--indigo); }
-  .body-beats.flow .beat h4{ color:var(--ink-dark); }
+  .body-beats.flow .beat h3{ color:var(--ink-dark); }
   .body-beats.flow .beat p{ opacity:1; }
   .beats-rail-fill{ height:100%; }
   .beat-dot{ background:#6881fc; border-color:#6881fc; }
@@ -190,7 +190,7 @@ a.evid-item:hover .ei-src{ color:var(--indigo); }
 .footer--fluid .footer-inner{ position:relative; z-index:2; border-top-color:rgba(255,255,255,.2); }
 .footer--fluid .logo-img{ filter:none; }
 .footer--fluid .footer-tag{ color:rgba(255,255,255,.74); }
-.footer--fluid .footer-col h4{ color:#9fb0ff; }
+.footer--fluid .footer-col .fc-title{ color:#9fb0ff; }
 .footer--fluid .footer-col a{ color:rgba(255,255,255,.66); }
 .footer--fluid .footer-col a:hover{ color:#fff; }
 .footer--fluid .footer-bottom{ color:rgba(255,255,255,.55); border-top-color:rgba(255,255,255,.16); }

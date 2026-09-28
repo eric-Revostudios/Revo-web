@@ -37,4 +37,4 @@ a.evid-item:hover .ei-src{ color:#f2554d; }
 .hpanel--machine{ background:linear-gradient(150deg,#4a0d10 0%,#b3302b 55%,#f2554d 100%); }
 
 /* footer fluid: encabezados de columna */
-.footer--fluid .footer-col h4{ color:#ffb0a6; }
+.footer--fluid .footer-col .fc-title{ color:#ffb0a6; }

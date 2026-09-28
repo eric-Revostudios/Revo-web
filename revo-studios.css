@@ -135,7 +135,7 @@
 .st-screen.footer--fluid .footer-inner{ border-top-color:rgba(255,255,255,.2); }
 .st-screen.footer--fluid .logo-img{ filter:none; }
 .st-screen.footer--fluid .footer-tag{ color:rgba(255,255,255,.74); }
-.st-screen.footer--fluid .footer-col h4{ color:#9fb0ff; }
+.st-screen.footer--fluid .footer-col .fc-title{ color:#9fb0ff; }
 .st-screen.footer--fluid .footer-col a{ color:rgba(255,255,255,.66); }
 .st-screen.footer--fluid .footer-col a:hover{ color:#fff; }
 .st-screen.footer--fluid .footer-bottom{ color:rgba(255,255,255,.55); border-top-color:rgba(255,255,255,.16); }

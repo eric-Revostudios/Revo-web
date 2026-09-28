@@ -6,7 +6,6 @@
 <script src="revo-pixel.js" defer></script>
 <script src="revo-cookies.js" defer></script>
 <script src="revo-analytics.js" defer></script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=837759925366480&ev=PageView&noscript=1" alt="" /></noscript>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0d1e" />
 <title>REVO Longevity Club · Barcelona</title>
@@ -27,9 +26,9 @@
 <link rel="alternate" hreflang="es" href="https://www.revostudios.eu/" />
 <link rel="alternate" hreflang="en" href="https://www.revostudios.eu/en/index.html" />
 <link rel="alternate" hreflang="x-default" href="https://www.revostudios.eu/" />
-<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
-<link rel="preload" href="fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
-<link rel="stylesheet" href="revo-amanecer.css?v=mobile31" />
+<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/NotoSerif-Italic-500.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="revo-amanecer.css?v=perf1" />
 <link rel="stylesheet" href="revo-reservar.css" />
 <style id="home-extra">
   .exp-head{ max-width:880px; margin:0 0 clamp(34px,4.5vh,56px); }
@@ -243,14 +242,14 @@
   @keyframes rl-vo{ from{transform:translateX(-19%);} to{transform:translateX(0);} }
   @keyframes rl-fade{ from{opacity:0;} to{opacity:1;} }
   .rl-fill{ position:absolute; inset:0; --rl-fill:0; opacity:0;
-    -webkit-mask:url("assets/revo-studios.png") center/contain no-repeat; mask:url("assets/revo-studios.png") center/contain no-repeat;
+    -webkit-mask:url("assets/revo-studios.webp") center/contain no-repeat; mask:url("assets/revo-studios.webp") center/contain no-repeat;
     background:linear-gradient(90deg, #6881fc 0 calc(var(--rl-fill)*108% - 7px), #cfe0ff calc(var(--rl-fill)*108% - 7px) calc(var(--rl-fill)*108%), rgba(255,255,255,0) calc(var(--rl-fill)*108%) 100%); }
   #rl.rl-play .rl-fill{ animation:rl-fillIn .15s linear .58s both, rl-fillSweep .5s cubic-bezier(.16,.84,.3,1) .62s both, rl-glow .6s cubic-bezier(.16,.84,.3,1) .62s both; }
   @keyframes rl-fillIn{ from{opacity:0;} to{opacity:1;} }
   @keyframes rl-fillSweep{ from{--rl-fill:0;} to{--rl-fill:1;} }
   @keyframes rl-glow{ 0%{filter:none;} 45%{filter:drop-shadow(0 0 7px rgba(104,129,252,.35));} 100%{filter:none;} }
   .rl-sheen{ position:absolute; inset:0; pointer-events:none; overflow:hidden;
-    -webkit-mask:url("assets/revo-studios.png") center/contain no-repeat; mask:url("assets/revo-studios.png") center/contain no-repeat; }
+    -webkit-mask:url("assets/revo-studios.webp") center/contain no-repeat; mask:url("assets/revo-studios.webp") center/contain no-repeat; }
   .rl-band{ position:absolute; inset:0; opacity:0; mix-blend-mode:screen; transform:translateX(-52%);
     background:linear-gradient(105deg, transparent 38%, rgba(255,255,255,.5) 50%, transparent 62%); }
   #rl.rl-play .rl-band{ animation:rl-club .55s cubic-bezier(.22,.61,.25,1) .66s both; }
@@ -412,10 +411,10 @@
   <!-- ============ LOADER (solo Home, 1ª vez por sesión) ============ -->
   <div id="rl" aria-hidden="true">
     <div class="rl-logo">
-      <img loading="lazy" decoding="async" class="rl-pc rl-r" src="assets/logo-r.png" alt="" />
-      <img loading="lazy" decoding="async" class="rl-pc rl-bars" src="assets/logo-bars.png" alt="" />
-      <img loading="lazy" decoding="async" class="rl-pc rl-vo" src="assets/logo-vo.png" alt="" />
-      <img loading="lazy" decoding="async" class="rl-pc rl-studios" src="assets/logo-studios.png" alt="REVO Studios" />
+      <img loading="lazy" decoding="async" class="rl-pc rl-r" src="assets/logo-r.webp" alt="" />
+      <img loading="lazy" decoding="async" class="rl-pc rl-bars" src="assets/logo-bars.webp" alt="" />
+      <img loading="lazy" decoding="async" class="rl-pc rl-vo" src="assets/logo-vo.webp" alt="" />
+      <img loading="lazy" decoding="async" class="rl-pc rl-studios" src="assets/logo-studios.webp" alt="REVO Studios" />
       <div class="rl-fill"></div>
       <div class="rl-sheen"><div class="rl-band"></div></div>
     </div>
@@ -439,12 +438,16 @@
 
   <script>
   /* Vídeo del hero diferido: no compite con la carga inicial. Muestra el póster y
-     carga el MP4 (18,5 MB) en cuanto la página está lista, luego reproduce. */
+     carga el MP4 en cuanto la página está lista: 1080p (6 MB) en ordenador, vertical 720p (1,7 MB)
+     en móvil. Ambos en H.264 estándar: el original 4K 4:2:2 de 10 bits no se reproduce en iPhone. */
   (function(){
     function loadHeroVideo(){
       var v=document.querySelector('.hero-media video[data-src]');
       if(!v||v.src) return;
-      v.src=v.dataset.src; v.load();
+      var c=navigator.connection||{};
+      if(c.saveData || /2g$/.test(c.effectiveType||'')) return; /* ahorro de datos: se queda el póster */
+      var vertical=window.matchMedia('(max-width: 820px) and (orientation: portrait)').matches;
+      v.src=(vertical && v.dataset.srcMobile) || v.dataset.src; v.load();
       var p=v.play(); if(p&&p.catch) p.catch(function(){});
     }
     if(document.readyState==='complete') setTimeout(loadHeroVideo,300);
@@ -501,7 +504,7 @@
     <!-- ============ HERO ============ -->
     <section class="hero" data-screen-label="Hero" data-c1="#16245f" data-c2="#3650cf" data-c3="#6881fc" data-deg="144deg" data-theme="dark">
       <div class="hero-media">
-        <video muted loop playsinline preload="none" poster="assets/hero-poster-v3.jpg" data-src="assets/hero-video.mp4"></video>
+        <video muted loop playsinline preload="none" poster="assets/hero-poster-v3.webp" data-src="assets/hero-video-1080.mp4" data-src-mobile="assets/hero-video-mobile.mp4"></video>
       </div>
       <div class="hero-inner">
         <div class="hero-lead">
@@ -597,7 +600,7 @@
               <li>Sueño profundo y equilibrio hormonal</li>
             </ul>
                       <div class="card-actions">
-              <a class="card-info" href="crioterapia.html" data-hot>Más información</a>
+              <a class="card-info" href="crioterapia.html" data-hot>Más información<span class="vh"> sobre Crioterapia cuerpo entero</span></a>
               <a class="card-book" href="crioterapia.html#reservar" data-hot data-reservar data-board="146813">Reservar</a>
             </div>
 </div>
@@ -613,7 +616,7 @@
               <li>Menos inflamación y estrés oxidativo</li>
             </ul>
                       <div class="card-actions">
-              <a class="card-info" href="luz-roja.html" data-hot>Más información</a>
+              <a class="card-info" href="luz-roja.html" data-hot>Más información<span class="vh"> sobre Cama de luz roja</span></a>
               <a class="card-book" href="luz-roja.html#reservar" data-hot data-reservar data-board="160831">Reservar</a>
             </div>
 </div>
@@ -629,7 +632,7 @@
               <li>Claridad mental y rendimiento</li>
             </ul>
                       <div class="card-actions">
-              <a class="card-info" href="camara-hiperbarica.html" data-hot>Más información</a>
+              <a class="card-info" href="camara-hiperbarica.html" data-hot>Más información<span class="vh"> sobre Oxigenoterapia hiperbárica</span></a>
               <a class="card-book" href="camara-hiperbarica.html#reservar" data-hot data-reservar data-board="139737">Reservar</a>
             </div>
 </div>
@@ -645,7 +648,7 @@
               <li>Más movilidad y energía</li>
             </ul>
                       <div class="card-actions">
-              <a class="card-info" href="pemf.html" data-hot>Más información</a>
+              <a class="card-info" href="pemf.html" data-hot>Más información<span class="vh"> sobre Campo electromagnético pulsado</span></a>
               <a class="card-book" href="pemf.html#reservar" data-hot data-reservar data-board="141837">Reservar</a>
             </div>
 </div>
@@ -661,7 +664,7 @@
               <li>Firmeza y ligereza corporal</li>
             </ul>
                       <div class="card-actions">
-              <a class="card-info" href="masajes.html" data-hot>Más información</a>
+              <a class="card-info" href="masajes.html" data-hot>Más información<span class="vh"> sobre Respark®</span></a>
               <a class="card-book" href="masajes.html#reservar" data-hot data-reservar data-board="137297">Reservar</a>
             </div>
 </div>
@@ -677,7 +680,7 @@
               <li>Foco, memoria y rendimiento</li>
             </ul>
                       <div class="card-actions">
-              <a class="card-info" href="neuroestimulacion.html" data-hot>Más información</a>
+              <a class="card-info" href="neuroestimulacion.html" data-hot>Más información<span class="vh"> sobre Neuroestimulación cerebral</span></a>
               <a class="card-book" href="neuroestimulacion.html#reservar" data-hot data-reservar data-board="141837">Reservar</a>
             </div>
 </div>
@@ -693,7 +696,7 @@
               <li>Mejor circulación</li>
             </ul>
                       <div class="card-actions">
-              <a class="card-info" href="presoterapia.html" data-hot>Más información</a>
+              <a class="card-info" href="presoterapia.html" data-hot>Más información<span class="vh"> sobre Presoterapia</span></a>
               <a class="card-book" href="presoterapia.html#reservar" data-hot data-reservar data-board="141837">Reservar</a>
             </div>
 </div>
@@ -709,7 +712,7 @@
               <li>Mejor circulación</li>
             </ul>
                       <div class="card-actions">
-              <a class="card-info" href="masajes.html" data-hot>Más información</a>
+              <a class="card-info" href="masajes.html" data-hot>Más información<span class="vh"> sobre Masaje facial y corporal</span></a>
               <a class="card-book" href="masajes.html#reservar" data-hot data-reservar data-board="137297">Reservar</a>
             </div>
 </div>
@@ -815,7 +818,7 @@
       </div>
       <div class="exp-body">
         <div class="exp-media-col reveal">
-          <div class="exp-media"><img loading="lazy" decoding="async" src="assets/two-women.jpg" alt="" /></div>
+          <div class="exp-media"><img loading="lazy" decoding="async" src="assets/two-women.webp" alt="" /></div>
         </div>
         <div class="exp-right reveal">
           <ul class="exp-combos">
@@ -927,19 +930,19 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a class="logo" href="#top"><img loading="lazy" decoding="async" class="logo-img" src="assets/revo-logo-white.png" alt="REVO" /></a>
+          <a class="logo" href="#top"><img loading="lazy" decoding="async" class="logo-img" src="assets/revo-logo-white.webp" alt="REVO" /></a>
           <p class="footer-tag">Club de longevidad y terapias avanzadas. Barcelona.</p>
         </div>
         <div class="footer-cols">
           <div class="footer-col">
-            <h4>Explora</h4>
+            <p class="fc-title">Explora</p>
             <a href="metodo.html" data-hot>El método</a>
             <a href="index.html#terapias" data-hot>Las terapias</a>
             <a href="studios.html" data-hot>Studios</a>
             <a href="membresias.html" data-hot>Membresías</a>
           </div>
           <div class="footer-col">
-            <h4>Contacto</h4>
+            <p class="fc-title">Contacto</p>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener" data-hot>Carrer de Ferran Agulló, 24</a>
             <a href="tel:+34613505881" data-hot>+34 613 505 881</a>
             <a href="mailto:hello@revostudios.eu" data-hot>hello@revostudios.eu</a>
@@ -958,7 +961,7 @@
   <div id="gift" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gift-title">
     <div class="gift-card on-light">
       <button class="gift-close" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-      <div class="gift-media"><img loading="lazy" decoding="async" src="assets/gift-bag.jpg" alt="Bolsa de regalo REVO" /></div>
+      <div class="gift-media"><img loading="lazy" decoding="async" src="assets/gift-bag.webp" alt="Bolsa de regalo REVO" /></div>
       <div class="gift-body">
         <p class="eyebrow">Regala REVO</p>
         <h3 id="gift-title">El mejor regalo: <span class="ser">sentirse mejor</span>.</h3>
