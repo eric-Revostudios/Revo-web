@@ -352,3 +352,6 @@ section.pk-faq{ padding-block:clamp(56px,9vh,110px); }
   .pk-faq-item summary h3{ font-size:16.5px; }
   .pk-faq-item p{ font-size:14px; padding-bottom:20px; }
 }
+.hiw .st-pl .st-pl-logo{ display:block; flex:none; margin:14px 0 2px; width:fit-content; }
+.hiw .st-pl .st-pl-logo img{ display:block; width:auto; height:22px; filter:brightness(0) invert(1); opacity:.8; transition:opacity .3s; }
+.hiw .st-pl .st-pl-logo:hover img{ opacity:1; }
