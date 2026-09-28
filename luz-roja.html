@@ -23,9 +23,9 @@
 <meta name="twitter:title" content="REVO — Luz Roja" />
 <meta name="twitter:description" content="Cama de luz roja en Barcelona: fotobiomodulación 630–940 nm que regenera la célula, activa colágeno y mejora piel y descanso." />
 <meta name="twitter:image" content="https://www.revostudios.eu/assets/hero-poster-v3.jpg" />
-<link rel="alternate" hreflang="es" href="luz-roja.html" />
-<link rel="alternate" hreflang="en" href="en/luz-roja.html" />
-<link rel="alternate" hreflang="x-default" href="luz-roja.html" />
+<link rel="alternate" hreflang="es" href="https://www.revostudios.eu/luz-roja.html" />
+<link rel="alternate" hreflang="en" href="https://www.revostudios.eu/en/luz-roja.html" />
+<link rel="alternate" hreflang="x-default" href="https://www.revostudios.eu/luz-roja.html" />
 <link rel="preload" href="fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
 <link rel="preload" href="fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
 <link rel="stylesheet" href="revo-amanecer.css?v=mobile31" />
@@ -42,19 +42,7 @@
     .ter-hero-media::after{ background:linear-gradient(180deg, rgba(40,6,8,.78) 0%, rgba(40,6,8,.45) 40%, rgba(40,6,8,.55) 70%, rgba(40,6,8,.85) 100%); }
   }
 </style>
-<script>
-/* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
-(function(){try{
-var P=location.pathname, inEn=/\/en\//.test(P), S=null;
-try{S=localStorage.getItem('revo_lang');}catch(e){}
-var be=(navigator.language||'').toLowerCase().indexOf('en')===0;
-var f=P.substring(P.lastIndexOf('/')+1)||'index.html';
-if(!inEn){ if((S||(be?'en':'es'))==='en') location.replace('en/'+f); }
-else if(S==='es'){ location.replace('../'+f); }
-}catch(e){}
-document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.lang-switch');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('hreflang'));}catch(e){}}},true);
-})();
-</script>
+<script src="revo-lang.js" defer></script>
 <link rel="icon" type="image/png" href="assets/revo-icon.png" />
 <link rel="apple-touch-icon" href="assets/revo-icon.png" />
 <style>

@@ -23,9 +23,9 @@
 <meta name="twitter:title" content="REVO Peak · Longevity program in Barcelona" />
 <meta name="twitter:description" content="Annual longevity program in Barcelona: diagnostic at Centro Médico Teknon, 1:1 medical plan and unlimited therapies. Ten places, starting in October." />
 <meta name="twitter:image" content="https://www.revostudios.eu/assets/focus-man.jpg" />
-<link rel="alternate" hreflang="es" href="../peak.html" />
-<link rel="alternate" hreflang="en" href="peak.html" />
-<link rel="alternate" hreflang="x-default" href="../peak.html" />
+<link rel="alternate" hreflang="es" href="https://www.revostudios.eu/peak.html" />
+<link rel="alternate" hreflang="en" href="https://www.revostudios.eu/en/peak.html" />
+<link rel="alternate" hreflang="x-default" href="https://www.revostudios.eu/peak.html" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -373,19 +373,7 @@
     .pk-tick.bl,.pk-tick.br,.pk-line.bottom{ bottom:24px; }
   }
 </style>
-<script>
-/* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
-(function(){try{
-var P=location.pathname, inEn=/\/en\//.test(P), S=null;
-try{S=localStorage.getItem('revo_lang');}catch(e){}
-var be=(navigator.language||'').toLowerCase().indexOf('en')===0;
-var f=P.substring(P.lastIndexOf('/')+1)||'index.html';
-if(!inEn){ if((S||(be?'en':'es'))==='en') location.replace('en/'+f); }
-else if(S==='es'){ location.replace('../'+f); }
-}catch(e){}
-document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.lang-switch');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('hreflang'));}catch(e){}}},true);
-})();
-</script>
+<script src="../revo-lang.js" defer></script>
 <link rel="icon" type="image/png" href="../assets/revo-icon.png" />
 <link rel="apple-touch-icon" href="../assets/revo-icon.png" />
 </head>

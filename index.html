@@ -11,22 +11,22 @@
 <meta name="theme-color" content="#0a0d1e" />
 <title>REVO Longevity Club · Barcelona</title>
 <meta name="description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
-<link rel="canonical" href="https://www.revostudios.eu/index.html" />
+<link rel="canonical" href="https://www.revostudios.eu/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="REVO" />
 <meta property="og:locale" content="es_ES" />
 <meta property="og:locale:alternate" content="en_US" />
 <meta property="og:title" content="REVO Longevity Club · Barcelona" />
 <meta property="og:description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
-<meta property="og:url" content="https://www.revostudios.eu/index.html" />
+<meta property="og:url" content="https://www.revostudios.eu/" />
 <meta property="og:image" content="https://www.revostudios.eu/assets/hero-poster-v3.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="REVO Longevity Club · Barcelona" />
 <meta name="twitter:description" content="Club de longevidad y terapias avanzadas en Barcelona. Crioterapia, luz roja, cámara hiperbárica y más, con protocolo médico personalizado." />
 <meta name="twitter:image" content="https://www.revostudios.eu/assets/hero-poster-v3.jpg" />
-<link rel="alternate" hreflang="es" href="index.html" />
-<link rel="alternate" hreflang="en" href="en/index.html" />
-<link rel="alternate" hreflang="x-default" href="index.html" />
+<link rel="alternate" hreflang="es" href="https://www.revostudios.eu/" />
+<link rel="alternate" hreflang="en" href="https://www.revostudios.eu/en/index.html" />
+<link rel="alternate" hreflang="x-default" href="https://www.revostudios.eu/" />
 <link rel="preload" href="fonts/NeueHaasGrotesk-Medium.otf" as="font" type="font/otf" crossorigin />
 <link rel="preload" href="fonts/NHaasGroteskDSPro-65Md.otf" as="font" type="font/otf" crossorigin />
 <link rel="stylesheet" href="revo-amanecer.css?v=mobile31" />
@@ -340,19 +340,7 @@
     .scroll-top{ right:18px; bottom:82px; }
   }
 </style>
-<script>
-/* idioma: detección suave en 1ª visita + memoria de elección (no rompe SEO; hreflang manda) */
-(function(){try{
-var P=location.pathname, inEn=/\/en\//.test(P), S=null;
-try{S=localStorage.getItem('revo_lang');}catch(e){}
-var be=(navigator.language||'').toLowerCase().indexOf('en')===0;
-var f=P.substring(P.lastIndexOf('/')+1)||'index.html';
-if(!inEn){ if((S||(be?'en':'es'))==='en') location.replace('en/'+f); }
-else if(S==='es'){ location.replace('../'+f); }
-}catch(e){}
-document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('.lang-switch');if(a){try{localStorage.setItem('revo_lang',a.getAttribute('hreflang'));}catch(e){}}},true);
-})();
-</script>
+<script src="revo-lang.js" defer></script>
 <link rel="icon" type="image/png" href="assets/revo-icon.png" />
 <link rel="apple-touch-icon" href="assets/revo-icon.png" />
 <script type="application/ld+json">
