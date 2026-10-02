@@ -56,6 +56,20 @@ pública) sigue en el HTML pero ya no tiene botón que lo abra. Para recuperarlo
 añadir un botón con el atributo `data-info-open` y cambiar el texto del formulario, que
 habla de «la membresía». El popup de Tally se retiró del todo hace tiempo.
 
+## Lista de espera de la membresía conjunta (Tally)
+
+Debajo de los beneficios hay una tarjeta «Membresía conjunta · próximamente» con el
+botón «Apuntarme a la lista de espera». Abre el formulario de Tally **`QKPYZ7`**
+(«Membresía conjunta GoodFit × REVO») en una ventana sobre la página, igual que en
+`peak.html` (script `https://tally.so/widgets/embed.js` al final del HTML). Si el
+script no carga, el botón abre el formulario en una pestaña nueva.
+
+- Pide nombre y email (obligatorios) y teléfono (opcional).
+- Las respuestas quedan en Tally y además llega un email a `hello@revostudios.eu`
+  por cada alta (Tally → formulario → Settings → Self email notifications).
+- Cuando la membresía abra: quitar la tarjeta (busca `QKPYZ7` en `index.html`) y
+  cerrar el formulario en Tally.
+
 ## Cosas que se cambian a mano
 
 - **Textos**: están en el HTML, sin plantillas ni build.
