@@ -75,6 +75,8 @@
     .mz-meta{ align-items:flex-start; flex-direction:row; align-items:baseline; gap:14px; }
     .mz-side .btn{ flex:none; }
   }
+  /* en móvil los botones ocupan todo el ancho (revo-amanecer.css): bajan a su propia línea */
+  @media(max-width:600px){ .mz-side{ flex-wrap:wrap; } }
 </style>
 <script src="../revo-lang.js" defer></script>
 <link rel="icon" type="image/png" href="../assets/revo-icon.png" />
