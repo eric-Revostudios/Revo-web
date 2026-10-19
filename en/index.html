@@ -315,6 +315,14 @@
   .vcard .vq{ font-family:var(--display); font-weight:400; font-size:clamp(17px,1.5vw,20px); line-height:1.36; letter-spacing:-.008em; margin:0; color:var(--ink-dark); text-wrap:pretty; }
   .vcard .vby{ display:flex; align-items:center; gap:9px; margin-top:20px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--indigo); }
   .vcard .vby::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--teal); }
+  .voices-head .voices-seal{ transition:border-color .3s, color .3s; }
+  .voices-head .voices-seal:hover{ border-color:var(--indigo); color:var(--ink-dark); }
+  .voices-seal .vs-star{ color:#e8a317; }
+  .vcard{ margin:0; display:flex; flex-direction:column; }
+  .vcard .vstars{ color:#e8a317; font-size:14px; letter-spacing:.14em; margin:0 0 14px; }
+  .vcard .vq{ flex:1; }
+  .vcard .vsrc{ color:rgba(20,22,28,.45); }
+  .vcard .vtr{ margin:8px 0 0 15px; font-size:11.5px; color:rgba(20,22,28,.45); }
   @media (prefers-reduced-motion:reduce){
     .voices-rail{ overflow-x:auto; }
     .voices-track{ animation:none; }
@@ -811,17 +819,26 @@
       <div class="voices-head reveal">
         <p class="eyebrow">Our members</p>
         <h2 class="voices-title" data-quote><span class="seg">98% of those who live REVO consistently notice a </span><span class="seg ser">real change.</span></h2>
+        <a class="voices-seal" href="https://www.google.com/maps?cid=2834766380652028908" target="_blank" rel="noopener" data-hot><span class="vs-dot"></span><span><b>4.9</b> <span class="vs-star">★</span> · 48 Google reviews</span></a>
       </div>
-      <div class="voices-rail reveal" style="--d:.12s" aria-label="Member testimonials">
+      <div class="voices-rail reveal" style="--d:.12s" aria-label="Google reviews">
         <div class="voices-track">
-          <div class="vcard hi"><p class="vq">"The change has been incredible. More energy, better sleep, a different person."</p><div class="vby">Overall</div></div>
-          <div class="vcard"><p class="vq">"I have incredible energy I’d never had before."</p><div class="vby">Energy</div></div>
-          <div class="vcard"><p class="vq">"I no longer take my sleeping pills, I managed to stop."</p><div class="vby">Sleep</div></div>
-          <div class="vcard hi"><p class="vq">"The doctors can’t believe my arm didn’t swell. My recovery has been like never before. I’m happy."</p><div class="vby">Recovery</div></div>
-          <div class="vcard hi" aria-hidden="true"><p class="vq">"The change has been incredible. More energy, better sleep, a different person."</p><div class="vby">Overall</div></div>
-          <div class="vcard" aria-hidden="true"><p class="vq">"I have incredible energy I’d never had before."</p><div class="vby">Energy</div></div>
-          <div class="vcard" aria-hidden="true"><p class="vq">"I no longer take my sleeping pills, I managed to stop."</p><div class="vby">Sleep</div></div>
-          <div class="vcard hi" aria-hidden="true"><p class="vq">"The doctors can’t believe my arm didn’t swell. My recovery has been like never before. I’m happy."</p><div class="vby">Recovery</div></div>
+          <figure class="vcard hi"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“REVO is one of those places Barcelona does exceptionally well: beautiful, slightly futuristic, and pleasant enough to make taking care of yourself feel less like another task on your calendar.”</blockquote><figcaption class="vby">Kristina R. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“There is a doctor who follows up with you regularly to see how you’re progressing and whether your protocol needs adjusting, so everything feels very personalised.”</blockquote><figcaption class="vby">Anella A. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“A great initiative! 100% recommended: we went in to ask for information and the service was so good that we ended up signing up.”</blockquote><figcaption class="vby">Alfons P. <span class="vsrc">· Google review</span></figcaption><p class="vtr">Translated from Catalan</p></figure>
+          <figure class="vcard hi"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“I honestly didn’t have high expectations for the experience, but it far exceeded them. I’ve already been back 3 times…”</blockquote><figcaption class="vby">Mariona D. <span class="vsrc">· Google review</span></figcaption><p class="vtr">Translated from Spanish</p></figure>
+          <figure class="vcard hi"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“I’ve chosen a monthly membership and couldn’t be happier! It’s one of those places you can’t get enough of!”</blockquote><figcaption class="vby">Magda P. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“I like the fact that therapies which usually cost an absurd amount of money —such as cryotherapy, red light therapy, or the hyperbaric chamber— are offered in a way that makes them affordable for everyone.”</blockquote><figcaption class="vby">Lorenzo P. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“Revo provides highly professional medical consultation combined with science-backed, leading edge therapies and equipment, all at a very fair price.”</blockquote><figcaption class="vby">Yves S. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard hi"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“From the very first moment they were attentive and friendly on WhatsApp, and at the studio it was even better.”</blockquote><figcaption class="vby">Irene N. <span class="vsrc">· Google review</span></figcaption><p class="vtr">Translated from Spanish</p></figure>
+          <figure class="vcard hi" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“REVO is one of those places Barcelona does exceptionally well: beautiful, slightly futuristic, and pleasant enough to make taking care of yourself feel less like another task on your calendar.”</blockquote><figcaption class="vby">Kristina R. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“There is a doctor who follows up with you regularly to see how you’re progressing and whether your protocol needs adjusting, so everything feels very personalised.”</blockquote><figcaption class="vby">Anella A. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“A great initiative! 100% recommended: we went in to ask for information and the service was so good that we ended up signing up.”</blockquote><figcaption class="vby">Alfons P. <span class="vsrc">· Google review</span></figcaption><p class="vtr">Translated from Catalan</p></figure>
+          <figure class="vcard hi" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“I honestly didn’t have high expectations for the experience, but it far exceeded them. I’ve already been back 3 times…”</blockquote><figcaption class="vby">Mariona D. <span class="vsrc">· Google review</span></figcaption><p class="vtr">Translated from Spanish</p></figure>
+          <figure class="vcard hi" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“I’ve chosen a monthly membership and couldn’t be happier! It’s one of those places you can’t get enough of!”</blockquote><figcaption class="vby">Magda P. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“I like the fact that therapies which usually cost an absurd amount of money —such as cryotherapy, red light therapy, or the hyperbaric chamber— are offered in a way that makes them affordable for everyone.”</blockquote><figcaption class="vby">Lorenzo P. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“Revo provides highly professional medical consultation combined with science-backed, leading edge therapies and equipment, all at a very fair price.”</blockquote><figcaption class="vby">Yves S. <span class="vsrc">· Google review</span></figcaption></figure>
+          <figure class="vcard hi" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“From the very first moment they were attentive and friendly on WhatsApp, and at the studio it was even better.”</blockquote><figcaption class="vby">Irene N. <span class="vsrc">· Google review</span></figcaption><p class="vtr">Translated from Spanish</p></figure>
         </div>
       </div>
     </section>
