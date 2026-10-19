@@ -345,6 +345,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@id": "https://www.revostudios.eu/#business",
   "@type": "HealthAndBeautyBusiness",
   "name": "REVO",
   "alternateName": "REVO Studios",
@@ -369,6 +370,32 @@
   "areaServed": "Barcelona",
   "sameAs": [
     "https://instagram.com/revo_studios"
+  ],
+  "subjectOf": [
+    {
+      "@type": "Article",
+      "headline": "El club de Barcelona que convierte el bienestar en una rutina semanal: “Hemos normalizado vivir cansados”",
+      "url": "https://www.lavanguardia.com/empresas-de-vanguardia/historias-de-exito/20260918/11624855/club-barcelona-convierte-bienestar-rutina-semanal-hemos-normalizado-vivir-cansados.html",
+      "datePublished": "2026-09-18",
+      "inLanguage": "es",
+      "publisher": { "@type": "NewsMediaOrganization", "name": "La Vanguardia", "url": "https://www.lavanguardia.com/" }
+    },
+    {
+      "@type": "Article",
+      "headline": "No estar malalt no vol dir estar bé",
+      "url": "https://www.elperiodico.cat/comunicacio-empresarial/20260914/no-estar-malalt-no-vol-134268209",
+      "datePublished": "2026-09-14",
+      "inLanguage": "ca",
+      "publisher": { "@type": "NewsMediaOrganization", "name": "El Periódico", "url": "https://www.elperiodico.cat/" }
+    },
+    {
+      "@type": "Article",
+      "headline": "El bienestar deja de ser un lujo para convertirse en un hábito",
+      "url": "https://www.eleconomista.es/branded-content/noticias/14011512/09/26/el-bienestar-deja-de-ser-un-lujo-para-convertirse-en-un-habito.html",
+      "datePublished": "2026-09-08",
+      "inLanguage": "es",
+      "publisher": { "@type": "NewsMediaOrganization", "name": "elEconomista.es", "url": "https://www.eleconomista.es/" }
+    }
   ],
   "openingHoursSpecification": [
     {
@@ -404,6 +431,25 @@
 .ther-nav:not([disabled]):hover, .ther-nav:focus-visible{ color:#fff; border-color:rgba(255,255,255,.85); background:rgba(10,13,30,.52); }
 .ther-nav[disabled]{ opacity:.22; pointer-events:none; }
 @media (max-width:600px){ .ther-nav{ display:none; } }
+</style>
+<style id="press-css">
+/* En los medios: franja de logos de prensa (enlaza a la página de prensa) */
+.press{ padding-block:0 clamp(72px,11vh,130px); }
+.press-row{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:clamp(24px,3.4vh,34px) 40px; border-top:1px solid rgba(17,19,24,.12); padding-top:clamp(30px,4.5vh,48px); }
+.press-row .eyebrow{ grid-column:1 / -1; }
+.press-logos{ list-style:none; margin:0; padding:0; display:flex; align-items:center; flex-wrap:wrap; gap:20px clamp(36px,5.5vw,92px); }
+.press-logos a{ display:block; opacity:.6; transition:opacity .3s ease; }
+.press-logos a:hover, .press-logos a:focus-visible{ opacity:1; }
+.press-logos img{ display:block; width:auto; height:var(--h); }
+.press-more{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.04em; color:var(--indigo); white-space:nowrap; }
+.press-more svg{ width:15px; height:15px; transition:transform .3s ease; }
+.press-more:hover svg{ transform:translateX(3px); }
+@media (max-width:900px){
+  .press{ padding-bottom:48px; }
+  .press-row{ grid-template-columns:1fr; gap:24px; }
+  .press-logos{ gap:18px 34px; }
+  .press-logos img{ height:calc(var(--h) * .8); }
+}
 </style>
 </head>
 <body style="background-color: rgb(255, 255, 255)">
@@ -780,6 +826,19 @@
       </div>
     </section>
 
+    <!-- ============ EN LOS MEDIOS ============ -->
+    <section class="wrap press on-light" data-screen-label="En los medios" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="150deg" data-theme="light">
+      <div class="press-row reveal">
+        <p class="eyebrow">En los medios</p>
+        <ul class="press-logos">
+          <li><a href="prensa.html#la-vanguardia" data-hot><img loading="lazy" decoding="async" src="assets/prensa/la-vanguardia.svg" alt="La Vanguardia" width="190" height="20" style="--h:20px" /></a></li>
+          <li><a href="prensa.html#el-periodico" data-hot><img loading="lazy" decoding="async" src="assets/prensa/el-periodico.svg" alt="El Periódico" width="142" height="23" style="--h:23px" /></a></li>
+          <li><a href="prensa.html#el-economista" data-hot><img loading="lazy" decoding="async" src="assets/prensa/el-economista.svg" alt="elEconomista.es" width="194" height="22" style="--h:22px" /></a></li>
+        </ul>
+        <a class="press-more" href="prensa.html" data-hot>Leer los artículos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </section>
+
     <!-- ============ EL CLUB ============ -->
     <section class="club" id="club" data-screen-label="El club" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="dark">
       <div class="club-panel" aria-hidden="true"></div>
@@ -940,6 +999,7 @@
             <a href="index.html#terapias" data-hot>Las terapias</a>
             <a href="studios.html" data-hot>Studios</a>
             <a href="membresias.html" data-hot>Membresías</a>
+            <a href="prensa.html" data-hot>Prensa</a>
           </div>
           <div class="footer-col">
             <p class="fc-title">Contacto</p>
