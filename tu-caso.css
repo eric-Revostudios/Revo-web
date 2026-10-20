@@ -153,8 +153,8 @@ h1.preg em, .prop h2 em{ font-family:var(--serif); font-style:italic; font-weigh
 .wa a{ display:inline-block; padding:6px 0; color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
 
 /* ---------- pie: dirección y enlace a privacidad ---------- */
-.pie{ margin-top:auto; padding:24px 20px calc(28px + env(safe-area-inset-bottom, 0px)); font-size:16px; line-height:1.5; color:var(--ink-2); text-align:center; }
-.pie a{ color:var(--ink-2); text-decoration:underline; text-underline-offset:3px; }
+.pie{ margin-top:auto; padding:20px 20px calc(22px + env(safe-area-inset-bottom, 0px)); font-size:12px; line-height:1.5; color:#6f727d; text-align:center; letter-spacing:.01em; }
+.pie a{ color:inherit; text-decoration:underline; text-underline-offset:3px; }
 .resultado .pie{ padding-top:0; }
 
 /* ---------- botón fijo abajo (resultado) ---------- */

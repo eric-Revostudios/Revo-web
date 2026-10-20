@@ -65,7 +65,7 @@
       (extra || '<b>' + T.marca + '</b>') + '</header>';
   }
   function pie() {
-    return '<p class="pie">' + T.pie + '<br><a href="privacidad.html">' + T.privacidad + '</a></p>';
+    return '<p class="pie">' + T.pie + ' · <a href="privacidad.html">' + T.privacidad + '</a></p>';
   }
   function pintar(html, clase) {
     app.innerHTML = '<div class="pantalla fade ' + (clase || '') + '">' + html + '</div>';
