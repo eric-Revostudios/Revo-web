@@ -1,0 +1,172 @@
+/* Landing «Tu caso» (/tu-caso): dos preguntas y tu resultado.
+   Mismos tokens y fuentes que revo-amanecer.css, pero sin cargar esa hoja: esta página no tiene
+   header, menú, degradados ni animaciones. Pensada para leerse en un móvil por gente de 45 a 65 años:
+   texto de 18 px mínimo, pregunta a 28 px, botones de 60 px a todo el ancho, contraste alto. */
+
+@font-face{
+  font-family:"NHaas Display";
+  src:url("fonts/NeueHaasGrotesk-Medium.woff2") format("woff2"), url("fonts/NHaasGroteskDSPro-65Md.otf") format("opentype");
+  font-weight:400 600; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Neue Haas";
+  src:url("fonts/NeueHaasGrotesk-Medium.woff2") format("woff2"), url("fonts/NeueHaasGrotesk-Medium.otf") format("opentype");
+  font-weight:400 700; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Noto Serif Hi";
+  src:url("fonts/NotoSerif-Italic-500.woff2") format("woff2"), url("fonts/NotoSerif-Italic.ttf") format("truetype");
+  font-weight:100 900; font-style:italic; font-display:swap;
+}
+
+:root{
+  --ink:#14161c;
+  --ink-2:#4b4e58;            /* texto secundario: 7,6:1 sobre blanco */
+  --line:rgba(20,22,28,.14);
+  --paper:#ffffff;
+  --soft:#eef1ff;
+  --indigo:#6881fc;
+  --indigo-2:#5269f3;
+  --indigo-cta:#4a60ec;       /* botón de reservar: blanco encima da 5:1 (con #6881fc se queda en 3,4:1) */
+  --indigo-texto:#3d53d9;     /* índigo oscurecido para rótulos sobre blanco: 5,6:1 */
+  --navy:#0a0d1e;
+  --sans:"Neue Haas","Helvetica Neue",Arial,sans-serif;
+  --display:"NHaas Display","Neue Haas","Helvetica Neue",Arial,sans-serif;
+  --serif:"Noto Serif Hi",Georgia,serif;
+  --ancho:480px;
+}
+
+*{ box-sizing:border-box; }
+html{ background:var(--paper); -webkit-text-size-adjust:100%; }
+html, body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:500; font-size:18px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  min-height:100svh;
+}
+img{ max-width:100%; }
+a{ color:inherit; }
+button{ font-family:inherit; }
+
+/* La página se centra en ordenador con un ancho máximo de 480 px, sin marco de teléfono. */
+.app{ max-width:var(--ancho); margin:0 auto; min-height:100svh; display:flex; flex-direction:column; }
+.pantalla{ flex:1; display:flex; flex-direction:column; }
+.pad{ padding:0 20px; }
+
+/* ---------- cabecera: solo la marca y, según la pantalla, «atrás» o «Cambiar» ---------- */
+.marca{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:calc(16px + env(safe-area-inset-top, 0px)) 20px 0;
+  min-height:24px;
+}
+.marca b{ font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
+.marca a, .marca button{
+  font-family:var(--sans); font-size:17px; font-weight:500; color:var(--ink);
+  background:none; border:0; padding:8px 0; margin:-8px 0; cursor:pointer;
+  text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px;
+}
+.atras::before{ content:"←  "; text-decoration:none; }
+
+/* ---------- pantallas 1 y 2: la pregunta ---------- */
+.paso{ font-size:14px; color:var(--ink-2); letter-spacing:.08em; margin:22px 0 8px; }
+.porque{ font-size:18px; line-height:1.5; color:var(--ink-2); margin:0 0 12px; }
+h1.preg{
+  font-family:var(--display); font-weight:500; font-size:28px; line-height:1.2; letter-spacing:-.012em;
+  margin:0 0 22px; text-wrap:balance;
+}
+.btns{ display:grid; gap:10px; }
+.opt{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  width:100%; min-height:60px; padding:14px 18px;
+  border:1.5px solid var(--ink); border-radius:14px; background:var(--paper); color:var(--ink);
+  font:500 18px/1.25 var(--sans); text-align:left; text-decoration:none; cursor:pointer;
+  -webkit-tap-highlight-color:transparent; transition:background .12s, color .12s;
+}
+.opt:active, .opt.hot{ background:var(--ink); color:#fff; }
+.opt svg{ flex:none; width:18px; height:18px; opacity:.5; }
+.link{
+  display:inline-block; margin:20px 0 28px; padding:6px 0;
+  font-family:var(--sans); font-size:18px; font-weight:500; color:var(--ink);
+  text-decoration:underline; text-underline-offset:4px; background:none; border:0; cursor:pointer;
+}
+
+/* ---------- resultado ---------- */
+.etq{ font-family:var(--serif); font-style:italic; font-size:16px; color:var(--indigo-texto); margin:0 0 10px; }
+.leccion{ background:var(--soft); margin:14px 20px 0; padding:22px 20px 20px; border-radius:18px; }
+.leccion .etq{ margin-bottom:8px; }
+.leccion p{ font-size:20px; line-height:1.5; margin:0; }
+
+.bloque{ padding:30px 20px 10px; }
+.tarjetas{ display:grid; gap:14px; margin-top:4px; }
+.tar{ border:1px solid var(--line); border-radius:18px; overflow:hidden; background:var(--paper); }
+.tar img{ display:block; width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; background:#dfe3f3; }
+.tar .tx{ padding:14px 16px 16px; }
+.tar h3{ font-family:var(--display); font-weight:500; font-size:21px; line-height:1.2; margin:0 0 6px; }
+.tar .dato{ font-size:18px; line-height:1.5; color:var(--ink-2); margin:0 0 8px; }
+.tar .efecto{ font-size:18px; line-height:1.5; margin:0; }
+
+.prop{ background:var(--navy); color:#fff; margin:24px 0 0; padding:34px 20px 30px; }
+.prop .etq{ color:#aab7ff; }
+.prop h2{ font-family:var(--display); font-weight:500; font-size:26px; line-height:1.15; letter-spacing:-.01em; margin:0 0 12px; text-wrap:balance; }
+.prop p{ font-size:18px; line-height:1.5; margin:0 0 12px; color:rgba(255,255,255,.9); }
+.prop ul{ margin:16px 0 18px; padding:0; list-style:none; display:grid; gap:10px; }
+.prop li{ display:flex; gap:12px; font-size:18px; line-height:1.45; color:rgba(255,255,255,.92); }
+.prop li::before{ content:""; flex:none; width:7px; height:7px; border-radius:50%; background:var(--indigo); margin-top:10px; }
+.prop .miedo{ font-family:var(--serif); font-style:italic; font-size:19px; color:#fff; margin:6px 0 20px; }
+.prop .sub{ font-size:18px; line-height:1.45; color:rgba(255,255,255,.86); margin:12px 0 0; text-align:center; }
+.prop .prueba{ margin:26px 0 0; padding-top:18px; border-top:1px solid rgba(255,255,255,.18); font-size:18px; line-height:1.5; color:rgba(255,255,255,.86); }
+
+.cta{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; min-height:60px; padding:14px 18px;
+  border-radius:14px; border:0; background:var(--indigo-cta); color:#fff;
+  font:600 18px/1.2 var(--sans); letter-spacing:.01em; text-decoration:none; cursor:pointer;
+  box-shadow:0 18px 40px -16px rgba(104,129,252,.9);
+  -webkit-tap-highlight-color:transparent; transition:background .12s;
+}
+.cta:active{ background:var(--indigo-texto); }
+
+.dudas{ padding:30px 20px 10px; }
+.dudas details{ border-top:1px solid var(--line); }
+.dudas details:last-of-type{ border-bottom:1px solid var(--line); }
+.dudas summary{
+  list-style:none; cursor:pointer; padding:16px 0; min-height:60px;
+  font-size:18px; font-weight:500; line-height:1.4;
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+}
+.dudas summary::-webkit-details-marker{ display:none; }
+.dudas summary::after{ content:"+"; font-size:24px; color:var(--ink-2); flex:none; }
+.dudas details[open] summary::after{ content:"–"; }
+.dudas details p{ margin:0 0 18px; font-size:18px; line-height:1.5; color:var(--ink-2); }
+
+.wa{ padding:28px 20px 110px; text-align:center; font-size:18px; color:var(--ink-2); line-height:1.5; }
+.wa a{ display:inline-block; padding:6px 0; color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
+
+/* ---------- pie: dirección y enlace a privacidad ---------- */
+.pie{ margin-top:auto; padding:24px 20px calc(28px + env(safe-area-inset-bottom, 0px)); font-size:16px; line-height:1.5; color:var(--ink-2); text-align:center; }
+.pie a{ color:var(--ink-2); text-decoration:underline; text-underline-offset:3px; }
+.resultado .pie{ padding-top:0; }
+
+/* ---------- botón fijo abajo (resultado) ---------- */
+.fijo{
+  position:sticky; bottom:0; z-index:5;
+  padding:12px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  background:linear-gradient(180deg, rgba(255,255,255,0) 0%, #fff 28%);
+  transform:translateY(110%); transition:transform .25s ease; pointer-events:none;
+}
+.fijo.on{ transform:none; pointer-events:auto; }
+.fijo .cta{ box-shadow:0 18px 40px -14px rgba(10,13,30,.45); }
+
+/* ---------- el único movimiento: fundido de 0,2 s al cambiar de pantalla ---------- */
+.fade{ animation:fade .2s ease; }
+@keyframes fade{ from{ opacity:0; } to{ opacity:1; } }
+@media (prefers-reduced-motion:reduce){
+  .fade{ animation:none; }
+  .fijo{ transition:none; }
+}
+
+/* Foco visible con teclado, sin cambiar el aspecto al tocar. */
+.opt:focus-visible, .cta:focus-visible, .link:focus-visible, .marca a:focus-visible, .marca button:focus-visible, .dudas summary:focus-visible, .wa a:focus-visible{
+  outline:3px solid var(--indigo); outline-offset:3px;
+}
