@@ -61,7 +61,8 @@
   var navegado = false; // true en cuanto ha habido un cambio de hash dentro de la página
 
   function marca(extra) {
-    return '<div class="marca"><b>' + T.marca + '</b>' + (extra || '') + '</div>';
+    return '<header class="marca"><img class="logo" src="assets/revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819">' +
+      (extra || '<b>' + T.marca + '</b>') + '</header>';
   }
   function pie() {
     return '<p class="pie">' + T.pie + '<br><a href="privacidad.html">' + T.privacidad + '</a></p>';
@@ -146,7 +147,8 @@
         '<p class="miedo">' + T.miedo + '</p>' +
         '<a class="cta" href="' + MOMENCE + '" data-reservar="propuesta">' + V.cta + '</a>' +
         '<p class="sub">' + T.sub + '</p>' +
-        '<p class="prueba">' + T.prueba + '</p>' +
+        '<div class="prueba"><p>' + T.prueba + '</p>' +
+          '<a class="cta cta--2" href="' + MOMENCE + '" data-reservar="prueba">' + T.pruebaBoton + '</a></div>' +
       '</section>' +
       '<section class="dudas">' +
         '<p class="etq">' + T.tituloDudas + '</p>' + dudas +

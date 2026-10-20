@@ -54,32 +54,35 @@ button{ font-family:inherit; }
 .pantalla{ flex:1; display:flex; flex-direction:column; }
 .pad{ padding:0 20px; }
 
-/* ---------- cabecera: solo la marca y, según la pantalla, «atrás» o «Cambiar» ---------- */
+/* ---------- cabecera: banda azul marino con el logo, como el header de la web; a la derecha, el barrio o «atrás»/«Cambiar» ---------- */
 .marca{
   display:flex; align-items:center; justify-content:space-between; gap:12px;
-  padding:calc(16px + env(safe-area-inset-top, 0px)) 20px 0;
-  min-height:24px;
+  padding:calc(14px + env(safe-area-inset-top, 0px)) 20px 14px;
+  background:var(--navy); color:#fff;
+  box-shadow:0 0 0 100vmax var(--navy); clip-path:inset(0 -100vmax);   /* la banda llena todo el ancho aunque la columna mida 480 px */
 }
-.marca b{ font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
+.marca .logo{ display:block; height:26px; width:auto; }
+.marca b{ font-weight:600; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.78); }
 .marca a, .marca button{
-  font-family:var(--sans); font-size:17px; font-weight:500; color:var(--ink);
+  font-family:var(--sans); font-size:17px; font-weight:500; color:#fff;
   background:none; border:0; padding:8px 0; margin:-8px 0; cursor:pointer;
   text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px;
 }
 .atras::before{ content:"←  "; text-decoration:none; }
 
 /* ---------- pantallas 1 y 2: la pregunta ---------- */
-.paso{ font-size:14px; color:var(--ink-2); letter-spacing:.08em; margin:22px 0 8px; }
+.paso{ font-size:14px; color:var(--ink-2); letter-spacing:.08em; margin:18px 0 8px; }
 .porque{ font-size:18px; line-height:1.5; color:var(--ink-2); margin:0 0 12px; }
 h1.preg{
   font-family:var(--display); font-weight:500; font-size:28px; line-height:1.2; letter-spacing:-.012em;
-  margin:0 0 22px; text-wrap:balance;
+  margin:0 0 20px; text-wrap:balance;
 }
+h1.preg em, .prop h2 em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing:-.03em; }
 .btns{ display:grid; gap:10px; }
 .opt{
   display:flex; align-items:center; justify-content:space-between; gap:12px;
-  width:100%; min-height:60px; padding:14px 18px;
-  border:1.5px solid var(--ink); border-radius:14px; background:var(--paper); color:var(--ink);
+  width:100%; min-height:60px; padding:14px 18px 14px 24px;
+  border:1.5px solid var(--ink); border-radius:999px; background:var(--paper); color:var(--ink);
   font:500 18px/1.25 var(--sans); text-align:left; text-decoration:none; cursor:pointer;
   -webkit-tap-highlight-color:transparent; transition:background .12s, color .12s;
 }
@@ -92,7 +95,8 @@ h1.preg{
 }
 
 /* ---------- resultado ---------- */
-.etq{ font-family:var(--serif); font-style:italic; font-size:16px; color:var(--indigo-texto); margin:0 0 10px; }
+.etq{ display:flex; align-items:center; gap:9px; font-family:var(--serif); font-style:italic; font-size:16px; color:var(--indigo-texto); margin:0 0 10px; }
+.etq::before{ content:""; flex:none; width:7px; height:7px; border-radius:50%; background:var(--indigo); box-shadow:0 0 10px rgba(104,129,252,.6); }
 .leccion{ background:var(--soft); margin:14px 20px 0; padding:22px 20px 20px; border-radius:18px; }
 .leccion .etq{ margin-bottom:8px; }
 .leccion p{ font-size:20px; line-height:1.5; margin:0; }
@@ -106,7 +110,7 @@ h1.preg{
 .tar .dato{ font-size:18px; line-height:1.5; color:var(--ink-2); margin:0 0 8px; }
 .tar .efecto{ font-size:18px; line-height:1.5; margin:0; }
 
-.prop{ background:var(--navy); color:#fff; margin:24px 0 0; padding:34px 20px 30px; }
+.prop{ background:linear-gradient(180deg, var(--navy) 0%, #16245f 48%, #3650cf 100%); color:#fff; margin:24px 0 0; padding:34px 20px 30px; }
 .prop .etq{ color:#aab7ff; }
 .prop h2{ font-family:var(--display); font-weight:500; font-size:26px; line-height:1.15; letter-spacing:-.01em; margin:0 0 12px; text-wrap:balance; }
 .prop p{ font-size:18px; line-height:1.5; margin:0 0 12px; color:rgba(255,255,255,.9); }
@@ -115,12 +119,17 @@ h1.preg{
 .prop li::before{ content:""; flex:none; width:7px; height:7px; border-radius:50%; background:var(--indigo); margin-top:10px; }
 .prop .miedo{ font-family:var(--serif); font-style:italic; font-size:19px; color:#fff; margin:6px 0 20px; }
 .prop .sub{ font-size:18px; line-height:1.45; color:rgba(255,255,255,.86); margin:12px 0 0; text-align:center; }
-.prop .prueba{ margin:26px 0 0; padding-top:18px; border-top:1px solid rgba(255,255,255,.18); font-size:18px; line-height:1.5; color:rgba(255,255,255,.86); }
+.prop .prueba{ margin:26px 0 0; padding-top:22px; border-top:1px solid rgba(255,255,255,.22); }
+.prop .prueba p{ font-size:18px; line-height:1.5; color:#fff; margin:0 0 14px; }
+.prop .cta{ background:#fff; color:var(--navy); box-shadow:0 18px 44px -16px rgba(0,0,0,.55); }
+.prop .cta:active{ background:#e6e9ff; }
+.prop .cta--2{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.75); box-shadow:none; font-weight:500; }
+.prop .cta--2:active{ background:rgba(255,255,255,.14); }
 
 .cta{
   display:flex; align-items:center; justify-content:center;
   width:100%; min-height:60px; padding:14px 18px;
-  border-radius:14px; border:0; background:var(--indigo-cta); color:#fff;
+  border-radius:999px; border:0; background:var(--indigo-cta); color:#fff;
   font:600 18px/1.2 var(--sans); letter-spacing:.01em; text-decoration:none; cursor:pointer;
   box-shadow:0 18px 40px -16px rgba(104,129,252,.9);
   -webkit-tap-highlight-color:transparent; transition:background .12s;

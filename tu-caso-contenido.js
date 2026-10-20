@@ -138,11 +138,12 @@ window.TU_CASO = {
 
   /* Textos fijos de las pantallas y del resultado. */
   TEXTOS: {
-    marca: 'REVO Studios · Turó Park',
+    marca: 'Turó Park · Barcelona',   /* va a la derecha del logo en la cabecera */
+    logoAlt: 'REVO Studios',
     paso1: '1 de 2',
     paso2: '2 de 2',
     porque1: 'Dos preguntas y te decimos qué te pasa y cómo lo trabajamos.',
-    pregunta1: '¿Qué es lo que más te pesa ahora mismo?',
+    pregunta1: '¿Qué es lo que más te pesa <em>ahora mismo</em>?',   /* <em> = cursiva de marca, mismas palabras */
     todo: 'Un poco de todo',
     porqueTodo: 'Tiene sentido: todo va junto. El estrés estropea el sueño, si no descansas te falta energía, y al final se nota también por fuera.',
     preguntaTodo: '¿Por cuál empezamos?',
@@ -155,11 +156,12 @@ window.TU_CASO = {
     etqVisita: 'La visita',
     propuesta: 'Te enseñamos todas las terapias y vemos si realmente esto es para ti. Es totalmente gratuito.',
     propuestaMetodo: 'Aquí se empieza midiendo, sangre y sistema nervioso, y con un plan personalizado.',
-    tituloPropMetodoA: 'Lo mejor es que vengas a verlo',
+    tituloPropMetodoA: 'Lo mejor es que <em>vengas a verlo</em>',
     visita: ['30 minutos, cuando te vaya bien.', 'Un wellness coach te enseña el centro y las terapias y te orienta.', 'Sin compromiso.'],
     miedo: 'Nadie te va a vender nada: lo ves y decides.',
     sub: 'Eliges día y hora. Te pedirá nombre y teléfono.',
     prueba: 'Si quieres, ese mismo día pruebas una o dos terapias: 40 € una, 60 € dos. Lo eliges al reservar.',
+    pruebaBoton: 'Probar una terapia ese mismo día',   /* segundo botón: mismo enlace de Momence, allí se elige una o dos */
     tituloDudas: 'Si te lo estás preguntando',
     wa: '¿Prefieres preguntarnos?',
     waEnlace: 'Escríbenos por WhatsApp',
@@ -183,6 +185,6 @@ window.TU_CASO = {
      Solo hay una versión: Eric decidió el 20-oct-2026 no hacer A/B de texto aquí (ya hay bastantes tests).
      El parámetro ?v= del enlace sigue admitiéndose y viaja en los eventos, pero cualquier valor cae en «a». */
   VARIANTES: {
-    a:{ cta:'Reservar visita gratuita', fijoDesde:'leccion', tituloProp:'Lo mejor es que vengas' },
+    a:{ cta:'Reservar visita gratuita', fijoDesde:'leccion', tituloProp:'Lo mejor es que <em>vengas</em>' },
   },
 };
