@@ -10,6 +10,7 @@
   if (!C) return;
   var T = C.TEXTOS;
   var MOMENCE = window.REVO_TU_CASO_URL || 'https://www.revostudios.eu/visita';
+  var MOMENCE_PRUEBA = window.REVO_TU_CASO_PRUEBA_URL || MOMENCE; // la visita con 1 o 2 terapias: allí se elige
 
   /* ---------- parámetros del enlace (v se admite por el contrato de eventos; hoy solo existe «a») ---------- */
   var params = new URLSearchParams(location.search);
@@ -129,16 +130,23 @@
       : '<p>' + T.propuesta + '</p>';
     var tituloProp = a.metodo ? T.tituloPropMetodoA : V.tituloProp;
     var visita = T.visita.map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var intro = r.tema ? '<p class="intro">' + T.introTerapias.replace('{tema}', r.tema) + '</p>' : '';
+    var aviso = a.aviso ? '<p class="aviso">' + a.aviso + '</p>' : '';
+    var testi = a.testimonio || r.testimonio;
+    var testimonio = testi
+      ? '<section class="testi"><p class="etq">' + T.tituloTestimonio + '</p><blockquote><p>«' + testi.texto + '»</p><footer>' + testi.quien + '</footer></blockquote></section>'
+      : '';
 
     pintar(marca('<a href="#" data-cambiar>' + T.cambiar + '</a>') +
       '<section class="leccion" id="leccion">' +
         '<p class="etq">' + (r.tituloLeccion || T.tituloLeccion) + '</p>' +
-        '<p>' + a.leccion + '</p>' +
+        '<p>' + a.leccion + '</p>' + aviso +
       '</section>' +
       '<section class="bloque">' +
-        '<p class="etq">' + T.tituloTerapias + '</p>' +
+        '<p class="etq">' + T.tituloTerapias + '</p>' + intro +
         '<div class="tarjetas">' + tarjetas + '</div>' +
       '</section>' +
+      testimonio +
       '<section class="prop" id="propuesta">' +
         '<p class="etq">' + T.etqVisita + '</p>' +
         '<h2>' + tituloProp + '</h2>' +
@@ -148,7 +156,7 @@
         '<a class="cta" href="' + MOMENCE + '" data-reservar="propuesta">' + V.cta + '</a>' +
         '<p class="sub">' + T.sub + '</p>' +
         '<div class="prueba"><p>' + T.prueba + '</p>' +
-          '<a class="cta cta--2" href="' + MOMENCE + '" data-reservar="prueba">' + T.pruebaBoton + '</a></div>' +
+          '<a class="cta cta--2" href="' + MOMENCE_PRUEBA + '" data-reservar="prueba">' + T.pruebaBoton + '</a></div>' +
       '</section>' +
       '<section class="dudas">' +
         '<p class="etq">' + T.tituloDudas + '</p>' + dudas +

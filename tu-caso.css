@@ -102,6 +102,12 @@ h1.preg em, .prop h2 em{ font-family:var(--serif); font-style:italic; font-weigh
 .leccion p{ font-size:20px; line-height:1.5; margin:0; }
 
 .bloque{ padding:30px 20px 10px; }
+.leccion .aviso{ font-size:16px; line-height:1.5; color:var(--ink-2); margin:12px 0 0; }
+.bloque .intro{ font-size:17px; line-height:1.5; color:var(--ink-2); margin:0 0 16px; }
+.testi{ padding:26px 20px 6px; }
+.testi blockquote{ margin:0; padding:20px 20px 18px; border-left:3px solid var(--indigo); background:var(--soft); border-radius:0 18px 18px 0; }
+.testi blockquote p{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.45; margin:0 0 10px; }
+.testi footer{ font-size:14px; letter-spacing:.04em; color:var(--ink-2); }
 .tarjetas{ display:grid; gap:14px; margin-top:4px; }
 .tar{ border:1px solid var(--line); border-radius:18px; overflow:hidden; background:var(--paper); }
 .tar img{ display:block; width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; background:#dfe3f3; }
