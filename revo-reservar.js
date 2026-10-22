@@ -2,6 +2,7 @@
    REVO — Reservar · motor de reserva Momence (compartido)
    Uso: añade  data-reservar  a cualquier botón/enlace, con
         data-board="146813"   (boardId de Momence)
+        data-service="163394" (opcional; serviceId para abrir directamente un servicio del tablero)
         data-title="Crioterapia"  (opcional; si no, usa el texto)
         data-mode="auto|drawer|sheet|modal" (opcional; auto por defecto)
    Carga:  <link rel="stylesheet" href="revo-reservar.css">
@@ -11,7 +12,7 @@
   "use strict";
   var APPT = "52479";                 // id de la página de citas (constante)
   var DEFAULT_BOARD = "146948";       // Mi Primer Reset
-  function urlFor(board){ return "https://momence.com/appointments/" + APPT + "?boardId=" + (board || DEFAULT_BOARD); }
+  function urlFor(board, service){ return "https://momence.com/appointments/" + APPT + "?boardId=" + (board || DEFAULT_BOARD) + (service ? "&serviceId=" + service : ""); }
 
   // ---- inyecta el overlay una sola vez ----
   var scrim, panel, body, titleEl, extEl, waAside, waTxt, lastFocus = null;
@@ -62,7 +63,7 @@
   function open(opts){
     build();
     opts = opts || {};
-    var url = opts.url || urlFor(opts.board || DEFAULT_BOARD);
+    var url = opts.url || urlFor(opts.board || DEFAULT_BOARD, opts.service);
     panel.dataset.mode = resolveMode(opts.mode);
     titleEl.textContent = opts.title || 'Reservar';
     extEl.href = url;
@@ -108,7 +109,7 @@
     el.addEventListener('mouseenter', preload, {once:true});
     el.addEventListener('click', function(e){
       e.preventDefault();
-      open({ board: el.dataset.board, title: el.dataset.title || el.textContent.trim(), mode: el.dataset.mode });
+      open({ board: el.dataset.board, service: el.dataset.service, title: el.dataset.title || el.textContent.trim(), mode: el.dataset.mode });
     });
   }
   function scan(root){ (root || document).querySelectorAll('[data-reservar]').forEach(bind); }

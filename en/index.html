@@ -446,7 +446,7 @@
 .press-row{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:clamp(24px,3.4vh,34px) 40px; border-top:1px solid rgba(17,19,24,.12); padding-top:clamp(30px,4.5vh,48px); }
 .press-row .eyebrow{ grid-column:1 / -1; }
 .press-logos{ list-style:none; margin:0; padding:0; display:flex; align-items:center; flex-wrap:wrap; gap:20px clamp(36px,5.5vw,92px); }
-.press-logos a{ display:block; opacity:.6; transition:opacity .3s ease; }
+.press-logos a{ display:block; opacity:.92; transition:opacity .3s ease; }
 .press-logos a:hover, .press-logos a:focus-visible{ opacity:1; }
 .press-logos img{ display:block; width:auto; height:var(--h); }
 .press-more{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.04em; color:var(--indigo); white-space:nowrap; }
@@ -655,7 +655,7 @@
             </ul>
                       <div class="card-actions">
               <a class="card-info" href="crioterapia.html" data-hot>Learn more<span class="vh"> about Whole-body cryotherapy</span></a>
-              <a class="card-book" href="crioterapia.html#reservar" data-hot data-reservar data-board="146813">Book</a>
+              <a class="card-book" href="crioterapia.html#reservar" data-hot data-reservar data-title="Cryotherapy" data-board="146813">Book</a>
             </div>
 </div>
         </div>
@@ -671,7 +671,7 @@
             </ul>
                       <div class="card-actions">
               <a class="card-info" href="luz-roja.html" data-hot>Learn more<span class="vh"> about Red light bed</span></a>
-              <a class="card-book" href="luz-roja.html#reservar" data-hot data-reservar data-board="160831">Book</a>
+              <a class="card-book" href="luz-roja.html#reservar" data-hot data-reservar data-title="Red light bed" data-board="160831">Book</a>
             </div>
 </div>
         </div>
@@ -687,7 +687,7 @@
             </ul>
                       <div class="card-actions">
               <a class="card-info" href="camara-hiperbarica.html" data-hot>Learn more<span class="vh"> about Hyperbaric oxygen therapy</span></a>
-              <a class="card-book" href="camara-hiperbarica.html#reservar" data-hot data-reservar data-board="139737">Book</a>
+              <a class="card-book" href="camara-hiperbarica.html#reservar" data-hot data-reservar data-title="Hyperbaric chamber" data-board="139737">Book</a>
             </div>
 </div>
         </div>
@@ -703,7 +703,7 @@
             </ul>
                       <div class="card-actions">
               <a class="card-info" href="pemf.html" data-hot>Learn more<span class="vh"> about Pulsed electromagnetic field</span></a>
-              <a class="card-book" href="pemf.html#reservar" data-hot data-reservar data-board="141837">Book</a>
+              <a class="card-book" href="pemf.html#reservar" data-hot data-reservar data-title="PEMF" data-board="257413">Book</a>
             </div>
 </div>
         </div>
@@ -719,7 +719,7 @@
             </ul>
                       <div class="card-actions">
               <a class="card-info" href="masajes.html" data-hot>Learn more<span class="vh"> about Respark®</span></a>
-              <a class="card-book" href="masajes.html#reservar" data-hot data-reservar data-board="137297">Book</a>
+              <a class="card-book" href="respark.html#reservar" data-hot data-reservar data-title="Respark®" data-board="137297" data-service="163394">Book</a>
             </div>
 </div>
         </div>
@@ -735,7 +735,7 @@
             </ul>
                       <div class="card-actions">
               <a class="card-info" href="neuroestimulacion.html" data-hot>Learn more<span class="vh"> about Brain neurostimulation</span></a>
-              <a class="card-book" href="neuroestimulacion.html#reservar" data-hot data-reservar data-board="141837">Book</a>
+              <a class="card-book" href="neuroestimulacion.html#reservar" data-hot data-reservar data-title="Neurostimulation" data-board="257414">Book</a>
             </div>
 </div>
         </div>
@@ -751,7 +751,7 @@
             </ul>
                       <div class="card-actions">
               <a class="card-info" href="presoterapia.html" data-hot>Learn more<span class="vh"> about Pressotherapy</span></a>
-              <a class="card-book" href="presoterapia.html#reservar" data-hot data-reservar data-board="141837">Book</a>
+              <a class="card-book" href="presoterapia.html#reservar" data-hot data-reservar data-title="Pressotherapy" data-board="257380">Book</a>
             </div>
 </div>
         </div>
@@ -767,19 +767,12 @@
             </ul>
                       <div class="card-actions">
               <a class="card-info" href="masajes.html" data-hot>Learn more<span class="vh"> about Facial and body massage</span></a>
-              <a class="card-book" href="masajes.html#reservar" data-hot data-reservar data-board="137297">Book</a>
+              <a class="card-book" href="masajes.html#reservar" data-hot data-reservar data-title="Massage" data-board="137297">Book</a>
             </div>
 </div>
         </div>
           </div>
         </div>
-        </div>
-        <div class="joy-panel" aria-label="Optimise your health">
-          <img loading="lazy" decoding="async" src="../assets/optimiza-salud.jpg" alt="" />
-          <div class="joy-inner">
-            <p class="eyebrow joy-eyebrow">In your routine</p>
-            <h2>to maximise your physical,<br>mental and <span class="ser">aesthetic</span> health</h2>
-          </div>
         </div>
         </div>
       </div>
@@ -848,9 +841,9 @@
       <div class="press-row reveal">
         <p class="eyebrow">In the press</p>
         <ul class="press-logos">
-          <li><a href="press.html#la-vanguardia" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/la-vanguardia.svg" alt="La Vanguardia" width="190" height="20" style="--h:20px" /></a></li>
-          <li><a href="press.html#el-periodico" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/el-periodico.svg" alt="El Periódico" width="142" height="23" style="--h:23px" /></a></li>
-          <li><a href="press.html#el-economista" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/el-economista.svg" alt="elEconomista.es" width="194" height="22" style="--h:22px" /></a></li>
+          <li><a href="press.html#la-vanguardia" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/la-vanguardia.svg?v=2" alt="La Vanguardia" width="218" height="23" style="--h:23px" /></a></li>
+          <li><a href="press.html#el-periodico" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/el-periodico.svg?v=2" alt="El Periódico" width="175" height="28" style="--h:28px" /></a></li>
+          <li><a href="press.html#el-economista" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/el-economista.svg?v=2" alt="elEconomista.es" width="230" height="25" style="--h:25px" /></a></li>
         </ul>
         <a class="press-more" href="press.html" data-hot>Read the articles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
@@ -953,7 +946,7 @@
       </div>
       <div class="exp-cta">
         <a class="btn btn--lg btn--primary" href="experiencias.html" data-hot>See the experiences</a>
-        <a class="btn btn--lg" href="experiencias.html#regalo" data-hot>Gift it</a>
+        <a class="btn btn--lg" href="experiencias.html#combos" data-hot>Gift it</a>
       </div>
     </section>
 
@@ -1180,9 +1173,7 @@
           track.style.setProperty('--tx','0px'); panEl.style.setProperty('--pan','0px');
           maxX = Math.max(0, cards.scrollWidth - sticky.clientWidth);
           if(maxX <= 4){ pin.classList.remove('pinned'); pin.style.height=''; enabled=false; return; }
-          const gap = Math.round(sticky.clientWidth * 0.1);   // breathing room between therapies and joy
-          panEl.style.setProperty('--pan-gap', gap + 'px');
-          panRange = sticky.clientWidth + gap;               // one screen + gap to bring the joy panel in
+          panRange = 0;                                      // sin panel final: al acabar las tarjetas se sigue con la página
           pin.style.height = (window.innerHeight + maxX + panRange) + 'px';
           enabled = true;
           apply();
