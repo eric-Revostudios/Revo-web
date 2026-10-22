@@ -441,7 +441,7 @@
 @media (max-width:600px){ .ther-nav{ display:none; } }
 </style>
 <style id="press-css">
-/* Prensa y colaboraciones: cinta de logos en bucle justo después del hero.
+/* Aparecemos en: cinta de logos en bucle justo después del hero.
    Logos oficiales en su color. Los de prensa enlazan a su ficha en la página de prensa.
    La pista lleva la serie dos veces (la segunda oculta a lectores de pantalla) para que el bucle no tenga corte. */
 .logos-band{ position:relative; z-index:2; background:#fff; padding-block:clamp(30px,4.6vh,52px) clamp(34px,5vh,58px); }
@@ -455,6 +455,8 @@
 .logos-track{ list-style:none; margin:0; padding:6px 0; display:flex; align-items:center; gap:var(--gap); width:max-content;
   animation:logosLoop 48s linear infinite; }
 .logos-rail:hover .logos-track, .logos-rail:focus-within .logos-track{ animation-play-state:paused; }
+.logos-word{ display:flex; align-items:baseline; gap:8px; font-family:var(--display); font-weight:500; font-size:22px; letter-spacing:-.02em; color:var(--ink-dark); white-space:nowrap; }
+.logos-word small{ font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:rgba(20,22,28,.5); }
 @keyframes logosLoop{ to{ transform:translateX(calc(-50% - var(--gap) / 2)); } }
 .logos-track li{ flex:none; display:flex; align-items:center; }
 .logos-track img{ display:block; width:auto; height:var(--h); }
@@ -600,31 +602,29 @@
     </section>
 
     <!-- ============ PRENSA Y COLABORACIONES · cinta de logos ============ -->
-    <section class="logos-band on-light" aria-label="Prensa y colaboraciones" data-screen-label="Prensa y colaboraciones" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+    <section class="logos-band on-light" aria-label="Aparecemos en" data-screen-label="Aparecemos en" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
       <div class="wrap logos-head">
-        <p class="eyebrow">Prensa y colaboraciones</p>
+        <p class="eyebrow">Aparecemos en</p>
         <a class="logos-more" href="prensa.html" data-hot>Ver prensa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="logos-rail">
         <ul class="logos-track">
           <li><a href="prensa.html#la-vanguardia" data-hot><img loading="lazy" decoding="async" src="assets/prensa/la-vanguardia.svg?v=2" alt="La Vanguardia" width="208" height="22" style="--h:22px" /></a></li>
-          <li><img loading="lazy" decoding="async" src="assets/colaboraciones/solgar.webp" alt="Solgar" width="65" height="46" style="--h:46px" /></li>
-          <li><img loading="lazy" decoding="async" src="assets/colaboraciones/goodfit.webp" alt="GoodFit" width="121" height="20" style="--h:20px" /></li>
+          <li><img loading="lazy" decoding="async" src="assets/prensa/xuan-lan.svg" alt="Xuan Lan Yoga" width="128" height="30" style="--h:30px" /></li>
           <li><a href="prensa.html#el-periodico" data-hot><img loading="lazy" decoding="async" src="assets/prensa/el-periodico.svg?v=2" alt="El Periódico" width="163" height="26" style="--h:26px" /></a></li>
-          <li><img loading="lazy" decoding="async" src="assets/colaboraciones/juno-house.webp" alt="Juno House" width="140" height="20" style="--h:20px" /></li>
-          <li><img loading="lazy" decoding="async" src="assets/colaboraciones/casa-barre.webp" alt="Casa Barré" width="118" height="30" style="--h:30px" /></li>
+          <li><img loading="lazy" decoding="async" src="assets/colaboraciones/solgar.webp" alt="Solgar" width="65" height="46" style="--h:46px" /></li>
           <li><a href="prensa.html#el-economista" data-hot><img loading="lazy" decoding="async" src="assets/prensa/el-economista.svg?v=2" alt="elEconomista.es" width="221" height="24" style="--h:24px" /></a></li>
-          <li><img loading="lazy" decoding="async" src="assets/colaboraciones/corehaus.webp" alt="Corehaus" width="111" height="26" style="--h:26px" /></li>
-          <li><img loading="lazy" decoding="async" src="assets/colaboraciones/yogaone.webp" alt="YogaOne" width="127" height="34" style="--h:34px" /></li>
+          <li><img loading="lazy" decoding="async" src="assets/prensa/msn.svg" alt="MSN" width="66" height="26" style="--h:26px" /></li>
+          <li><img loading="lazy" decoding="async" src="assets/colaboraciones/juno-house.webp" alt="Juno House" width="140" height="20" style="--h:20px" /></li>
+          <li><a class="logos-word" href="prensa.html#how-to-hyperbaric" data-hot>How to Hyperbaric <small>Podcast</small></a></li>
           <li aria-hidden="true"><a href="prensa.html#la-vanguardia" tabindex="-1" data-hot><img loading="lazy" decoding="async" src="assets/prensa/la-vanguardia.svg?v=2" alt="" width="208" height="22" style="--h:22px" /></a></li>
-          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/colaboraciones/solgar.webp" alt="" width="65" height="46" style="--h:46px" /></li>
-          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/colaboraciones/goodfit.webp" alt="" width="121" height="20" style="--h:20px" /></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/prensa/xuan-lan.svg" alt="" width="128" height="30" style="--h:30px" /></li>
           <li aria-hidden="true"><a href="prensa.html#el-periodico" tabindex="-1" data-hot><img loading="lazy" decoding="async" src="assets/prensa/el-periodico.svg?v=2" alt="" width="163" height="26" style="--h:26px" /></a></li>
-          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/colaboraciones/juno-house.webp" alt="" width="140" height="20" style="--h:20px" /></li>
-          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/colaboraciones/casa-barre.webp" alt="" width="118" height="30" style="--h:30px" /></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/colaboraciones/solgar.webp" alt="" width="65" height="46" style="--h:46px" /></li>
           <li aria-hidden="true"><a href="prensa.html#el-economista" tabindex="-1" data-hot><img loading="lazy" decoding="async" src="assets/prensa/el-economista.svg?v=2" alt="" width="221" height="24" style="--h:24px" /></a></li>
-          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/colaboraciones/corehaus.webp" alt="" width="111" height="26" style="--h:26px" /></li>
-          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/colaboraciones/yogaone.webp" alt="" width="127" height="34" style="--h:34px" /></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/prensa/msn.svg" alt="" width="66" height="26" style="--h:26px" /></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="assets/colaboraciones/juno-house.webp" alt="" width="140" height="20" style="--h:20px" /></li>
+          <li aria-hidden="true"><a class="logos-word" href="prensa.html#how-to-hyperbaric" tabindex="-1" data-hot>How to Hyperbaric <small>Podcast</small></a></li>
         </ul>
       </div>
     </section>
