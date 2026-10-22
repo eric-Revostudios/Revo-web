@@ -56,6 +56,34 @@
     } catch (e) {}
   }
 
+  /* ---------- tiempo en cada pantalla y hasta dónde baja (22-oct) ----------
+     Al salir de una pantalla (cambio de hash, cerrar o esconder la pestaña) se
+     manda UN evento `tiempo` con los segundos que estuvo y el % de la página
+     que llegó a ver (el punto más bajo del scroll). Sin cronómetro en vivo. */
+  var pant = null, pantDesde = 0, scrollMax = 0;
+  function medirScroll() {
+    var alto = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) || 1;
+    var visto = Math.round(((window.scrollY || window.pageYOffset || 0) + window.innerHeight) / alto * 100);
+    if (visto > scrollMax) scrollMax = Math.min(100, visto);
+  }
+  function cierraPantalla() {
+    if (!pant) return;
+    medirScroll();
+    var seg = Math.round((Date.now() - pantDesde) / 1000);
+    if (seg >= 1) evento('tiempo', { pantalla: pant, segundos: Math.min(seg, 3600), scroll: scrollMax });
+    pant = null;
+  }
+  function abrePantalla(nombre) {
+    cierraPantalla();
+    pant = nombre; pantDesde = Date.now(); scrollMax = 0;
+    setTimeout(medirScroll, 300);
+  }
+  window.addEventListener('scroll', medirScroll, { passive: true });
+  window.addEventListener('pagehide', cierraPantalla);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') { var p = pant; cierraPantalla(); pant = p; pantDesde = Date.now(); scrollMax = 0; }
+  });
+
   /* ---------- pantallas ---------- */
   var app = document.getElementById('app');
   var flecha = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
@@ -74,6 +102,7 @@
   }
 
   function pantalla1(todo) {
+    abrePantalla('inicio');
     var cab = todo
       ? '<p class="paso">' + T.paso1 + '</p><p class="porque">' + T.porqueTodo + '</p><h1 class="preg">' + T.preguntaTodo + '</h1>'
       : '<p class="paso">' + T.paso1 + '</p><p class="porque">' + T.porque1 + '</p><h1 class="preg">' + T.pregunta1 + '</h1>';
@@ -88,6 +117,7 @@
   }
 
   function pantalla2(tema) {
+    abrePantalla('q2');
     var r = C.RAMAS[tema];
     if (!r) { location.hash = ''; return; }
     var botones = ['a', 'b'].map(function (k) {
@@ -110,6 +140,7 @@
   }
 
   function resultado(tema, k) {
+    abrePantalla('resultado');
     var r = C.RAMAS[tema];
     var a = r && r.respuestas[k];
     if (!a) { location.hash = ''; return; }
@@ -158,7 +189,7 @@
         '<div class="prueba"><p>' + T.prueba + '</p>' +
           '<a class="cta cta--2" href="' + MOMENCE_PRUEBA + '" data-reservar="prueba">' + T.pruebaBoton + '</a></div>' +
       '</section>' +
-      '<section class="dudas">' +
+      '<section class="dudas" id="dudas">' +
         '<p class="etq">' + T.tituloDudas + '</p>' + dudas +
       '</section>' +
       '<section class="wa">' + T.wa + ' <a href="' + C.WHATSAPP + '" target="_blank" rel="noopener" data-wa>' + T.waEnlace + '</a></section>' +
@@ -198,6 +229,10 @@
         propVisible = e.isIntersecting; pinta();
         if (e.isIntersecting && !llego) { llego = true; evento('llego_propuesta', { tema: tema, rama: k }); }
       }, { threshold: 0.35 }).observe(document.getElementById('propuesta'));
+      var vioDudas = false;
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting && !vioDudas) { vioDudas = true; evento('vio_dudas', { tema: tema, rama: k }); }
+      }, { threshold: 0.2 }).observe(document.getElementById('dudas'));
     } else {
       pasoLeccion = true; pinta();
     }
