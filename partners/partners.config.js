@@ -144,8 +144,7 @@ window.REVO_PARTNERS = {
         cta: "Reservar en Casa Barré",
         pasos: [
           "Abre el enlace de Casa Barré.",
-          "Selecciona el estudio de Barcelona.",
-          "Compra el paquete “REVO Members”.",
+          "Selecciona «Clase suelta - 1 mes».",
           "Introduce el código en el pago, en mayúsculas y sin espacios.",
           "Reserva la clase que te encaje desde su plataforma."
         ]
@@ -155,8 +154,7 @@ window.REVO_PARTNERS = {
         cta: "Book at Casa Barré",
         pasos: [
           "Open the Casa Barré link.",
-          "Select the Barcelona studio.",
-          "Buy the “REVO Members” package.",
+          "Select «Clase suelta - 1 mes».",
           "Enter the code at checkout, in capitals and with no spaces.",
           "Book the class that suits you on their platform."
         ]
