@@ -142,27 +142,6 @@ window.TU_CASO = {
                       luz:'La infrarroja llega hasta la célula, desinflama y ayuda a la reparación de los tejidos.' } },
       },
     },
-    competir: {
-      boton:'Preparar una competición',
-      tema:'preparar una competición',
-      testimonio:{ texto:'Las botas de compresión puede que sean una de las mejores sensaciones después de un día largo: media hora después, vuelves a sentir las piernas como tuyas.', quien:'Kristina R., reseña de Google' },
-      pregunta:'¿Qué te cuesta más ahora: recuperar entre entrenos, o llegar al cien por cien el día de la prueba?',
-      ambas:'a',
-      respuestas:{
-        a:{ boton:'Recuperar entre entrenos',
-            leccion:'Cuando entrenas mucho, el músculo no llega a recuperarse de una sesión a la siguiente y la inflamación se va acumulando: las piernas pesan, cada entreno cuesta más y el riesgo de lesión sube.',
-            terapias:['crio','preso','pemf'],
-            efectos:{ crio:'Tres minutos de frío que bajan la inflamación y aceleran la recuperación muscular. Los deportistas de élite la usan desde hace años.',
-                      preso:'Drena las piernas y mejora la circulación: es lo que usan los deportistas para recuperar después de entrenar.',
-                      pemf:'Desinflama y activa el modo de reparación del cuerpo: el músculo recupera antes entre sesiones.' } },
-        b:{ boton:'Llegar al cien por cien',
-            leccion:'En las últimas semanas antes de competir lo que marca la diferencia no es entrenar más, sino llegar recuperado: con los tejidos bien oxigenados, sin inflamación acumulada y con la cabeza despejada.',
-            terapias:['hbot','crio','brain'],
-            efectos:{ hbot:'Con más oxígeno, los tejidos se reparan antes. Los equipos de fútbol la usan para recuperar el músculo entre partidos.',
-                      crio:'Baja la inflamación acumulada y libera dopamina y noradrenalina: sales despejado y con energía.',
-                      brain:'Lleva el cerebro a un estado de calma y foco. La cabeza también compite.' } },
-      },
-    },
     prevenir: {
       boton:'Cuidarme y prevenir',
       tema:'cuidarte y adelantarte',
@@ -190,7 +169,7 @@ window.TU_CASO = {
   },
 
   /* Orden de los cinco botones de la pregunta 1. */
-  ORDEN: ['energia','sueno','estres','verme','lesion','competir','prevenir'],
+  ORDEN: ['energia','sueno','estres','verme','lesion','prevenir'],
 
   /* Textos fijos de las pantallas y del resultado. */
   TEXTOS: {
