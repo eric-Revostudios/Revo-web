@@ -390,11 +390,11 @@
     },
     {
       "@type": "Article",
-      "headline": "No estar malalt no vol dir estar bé",
-      "url": "https://www.elperiodico.cat/comunicacio-empresarial/20260914/no-estar-malalt-no-vol-134268209",
+      "headline": "No estar enfermo no significa estar bien",
+      "url": "https://www.elperiodico.com/es/comunicacion-empresarial/20260914/enfermo-significa-134268209",
       "datePublished": "2026-09-14",
-      "inLanguage": "ca",
-      "publisher": { "@type": "NewsMediaOrganization", "name": "El Periódico", "url": "https://www.elperiodico.cat/" }
+      "inLanguage": "es",
+      "publisher": { "@type": "NewsMediaOrganization", "name": "El Periódico", "url": "https://www.elperiodico.com/" }
     },
     {
       "@type": "Article",
@@ -441,37 +441,36 @@
 @media (max-width:600px){ .ther-nav{ display:none; } }
 </style>
 <style id="press-css">
-/* En los medios: tres titulares de prensa en una banda editorial (enlaza a la página de prensa).
-   Logos oficiales en su color. En móvil, carrusel que se desliza con el dedo. */
-.press{ padding-block:0 clamp(72px,11vh,130px); }
-.press-inner{ border-top:1px solid rgba(17,19,24,.12); padding-top:clamp(30px,4.5vh,48px); }
-.press-head{ display:flex; justify-content:space-between; align-items:center; gap:16px 24px; flex-wrap:wrap; margin-bottom:clamp(22px,3vh,32px); }
-.press-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border:1px solid rgba(17,19,24,.1); border-radius:18px; overflow:hidden; background:#fff;
-  box-shadow:0 30px 60px -54px rgba(22,36,95,.45); }
-.press-card{ display:flex; flex-direction:column; gap:20px; padding:clamp(24px,2.4vw,34px); color:var(--ink-dark); text-decoration:none; transition:background .35s ease; }
-.press-card + .press-card{ border-left:1px solid rgba(17,19,24,.1); }
-.press-card:hover, .press-card:focus-visible{ background:#f5f7ff; }
-.press-logo{ height:30px; display:flex; align-items:center; }
-.press-logo img{ display:block; width:auto; height:var(--h); }
-.press-title{ margin:0; flex:1; font-family:var(--serif); font-style:italic; font-weight:500; font-size:clamp(18px,1.5vw,21px); line-height:1.34; letter-spacing:-.02em; color:var(--ink-dark); text-wrap:balance; }
-.press-meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:16px; border-top:1px solid rgba(17,19,24,.08);
-  font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(20,22,28,.5); }
-.press-read{ display:inline-flex; align-items:center; gap:7px; color:var(--indigo); font-weight:600; }
-.press-read svg, .press-more svg{ width:15px; height:15px; transition:transform .3s ease; }
-.press-card:hover .press-read svg, .press-more:hover svg{ transform:translateX(3px); }
-.press-more{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.04em; color:var(--indigo); white-space:nowrap; }
-@media (max-width:900px){
-  .press{ padding-bottom:48px; --bleed:56px; }
-  .press-grid{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; overscroll-behavior-x:contain;
-    margin-inline:calc(var(--bleed) * -1); padding:4px var(--bleed) 22px; scroll-padding-inline:var(--bleed);
-    border:0; border-radius:0; background:none; box-shadow:none; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
-  .press-grid::-webkit-scrollbar{ display:none; }
-  .press-card{ flex:0 0 min(80%,340px); scroll-snap-align:start; gap:16px; padding:24px 22px;
-    background:#fff; border:1px solid rgba(17,19,24,.1); border-radius:16px; box-shadow:0 24px 50px -46px rgba(22,36,95,.45); }
-  .press-card + .press-card{ border-left:1px solid rgba(17,19,24,.1); }
-  .press-title{ font-size:18px; }
+/* Prensa y colaboraciones: cinta de logos en bucle justo después del hero.
+   Logos oficiales en su color. Los de prensa enlazan a su ficha en la página de prensa.
+   La pista lleva la serie dos veces (la segunda oculta a lectores de pantalla) para que el bucle no tenga corte. */
+.logos-band{ position:relative; z-index:2; background:#fff; padding-block:clamp(30px,4.6vh,52px) clamp(34px,5vh,58px); }
+.logos-head{ display:flex; justify-content:space-between; align-items:center; gap:12px 24px; flex-wrap:wrap; margin-bottom:clamp(20px,3vh,30px); }
+.logos-head .eyebrow{ font-size:13px; letter-spacing:4px; }
+.logos-more{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.04em; color:var(--indigo); white-space:nowrap; }
+.logos-more svg{ width:15px; height:15px; transition:transform .3s ease; }
+.logos-more:hover svg{ transform:translateX(3px); }
+.logos-rail{ --gap:clamp(48px,6vw,96px); overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+.logos-track{ list-style:none; margin:0; padding:6px 0; display:flex; align-items:center; gap:var(--gap); width:max-content;
+  animation:logosLoop 48s linear infinite; }
+.logos-rail:hover .logos-track, .logos-rail:focus-within .logos-track{ animation-play-state:paused; }
+@keyframes logosLoop{ to{ transform:translateX(calc(-50% - var(--gap) / 2)); } }
+.logos-track li{ flex:none; display:flex; align-items:center; }
+.logos-track img{ display:block; width:auto; height:var(--h); }
+.logos-track a{ display:block; transition:transform .3s ease, opacity .3s ease; }
+.logos-track a:hover, .logos-track a:focus-visible{ transform:translateY(-2px); }
+@media (max-width:600px){
+  .logos-head .eyebrow{ font-size:11px; letter-spacing:.2em; }
+  .logos-head{ flex-wrap:nowrap; }
+  .logos-rail{ --gap:42px; }
+  .logos-track{ animation-duration:36s; }
+  .logos-track img{ height:calc(var(--h) * .78); }
 }
-@media (max-width:600px){ .press{ --bleed:24px; } }
+@media (prefers-reduced-motion:reduce){
+  .logos-rail{ overflow-x:auto; }
+  .logos-track{ animation:none; }
+}
 </style>
 </head>
 <body style="background-color: rgb(255, 255, 255)">
@@ -597,6 +596,36 @@
       <div class="hero-foot">
         Scroll to explore
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <!-- ============ PRENSA Y COLABORACIONES · cinta de logos ============ -->
+    <section class="logos-band on-light" aria-label="Press & collaborations" data-screen-label="Press & collaborations" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="144deg" data-theme="light">
+      <div class="wrap logos-head">
+        <p class="eyebrow">Press & collaborations</p>
+        <a class="logos-more" href="press.html" data-hot>See press <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="logos-rail">
+        <ul class="logos-track">
+          <li><a href="press.html#la-vanguardia" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/la-vanguardia.svg?v=2" alt="La Vanguardia" width="208" height="22" style="--h:22px" /></a></li>
+          <li><img loading="lazy" decoding="async" src="../assets/colaboraciones/solgar.webp" alt="Solgar" width="65" height="46" style="--h:46px" /></li>
+          <li><img loading="lazy" decoding="async" src="../assets/colaboraciones/goodfit.webp" alt="GoodFit" width="121" height="20" style="--h:20px" /></li>
+          <li><a href="press.html#el-periodico" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/el-periodico.svg?v=2" alt="El Periódico" width="163" height="26" style="--h:26px" /></a></li>
+          <li><img loading="lazy" decoding="async" src="../assets/colaboraciones/juno-house.webp" alt="Juno House" width="140" height="20" style="--h:20px" /></li>
+          <li><img loading="lazy" decoding="async" src="../assets/colaboraciones/casa-barre.webp" alt="Casa Barré" width="118" height="30" style="--h:30px" /></li>
+          <li><a href="press.html#el-economista" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/el-economista.svg?v=2" alt="elEconomista.es" width="221" height="24" style="--h:24px" /></a></li>
+          <li><img loading="lazy" decoding="async" src="../assets/colaboraciones/corehaus.webp" alt="Corehaus" width="111" height="26" style="--h:26px" /></li>
+          <li><img loading="lazy" decoding="async" src="../assets/colaboraciones/yogaone.webp" alt="YogaOne" width="127" height="34" style="--h:34px" /></li>
+          <li aria-hidden="true"><a href="press.html#la-vanguardia" tabindex="-1" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/la-vanguardia.svg?v=2" alt="" width="208" height="22" style="--h:22px" /></a></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="../assets/colaboraciones/solgar.webp" alt="" width="65" height="46" style="--h:46px" /></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="../assets/colaboraciones/goodfit.webp" alt="" width="121" height="20" style="--h:20px" /></li>
+          <li aria-hidden="true"><a href="press.html#el-periodico" tabindex="-1" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/el-periodico.svg?v=2" alt="" width="163" height="26" style="--h:26px" /></a></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="../assets/colaboraciones/juno-house.webp" alt="" width="140" height="20" style="--h:20px" /></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="../assets/colaboraciones/casa-barre.webp" alt="" width="118" height="30" style="--h:30px" /></li>
+          <li aria-hidden="true"><a href="press.html#el-economista" tabindex="-1" data-hot><img loading="lazy" decoding="async" src="../assets/prensa/el-economista.svg?v=2" alt="" width="221" height="24" style="--h:24px" /></a></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="../assets/colaboraciones/corehaus.webp" alt="" width="111" height="26" style="--h:26px" /></li>
+          <li aria-hidden="true"><img loading="lazy" decoding="async" src="../assets/colaboraciones/yogaone.webp" alt="" width="127" height="34" style="--h:34px" /></li>
+        </ul>
       </div>
     </section>
 
@@ -846,33 +875,6 @@
           <figure class="vcard" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“I like the fact that therapies which usually cost an absurd amount of money —such as cryotherapy, red light therapy, or the hyperbaric chamber— are offered in a way that makes them affordable for everyone.”</blockquote><figcaption class="vby">Lorenzo P. <span class="vsrc">· Google review</span></figcaption></figure>
           <figure class="vcard" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“Revo provides highly professional medical consultation combined with science-backed, leading edge therapies and equipment, all at a very fair price.”</blockquote><figcaption class="vby">Yves S. <span class="vsrc">· Google review</span></figcaption></figure>
           <figure class="vcard hi" aria-hidden="true"><div class="vstars" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="vq">“From the very first moment they were attentive and friendly on WhatsApp, and at the studio it was even better.”</blockquote><figcaption class="vby">Irene N. <span class="vsrc">· Google review</span></figcaption><p class="vtr">Translated from Spanish</p></figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ EN LOS MEDIOS ============ -->
-    <section class="wrap press on-light" data-screen-label="In the press" data-c1="#ffffff" data-c2="#ffffff" data-c3="#ffffff" data-deg="150deg" data-theme="light">
-      <div class="press-inner reveal">
-        <div class="press-head">
-          <p class="eyebrow">In the press</p>
-          <a class="press-more" href="press.html" data-hot>See all press <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-        <div class="press-grid">
-          <a class="press-card" href="press.html#la-vanguardia" data-hot>
-            <span class="press-logo"><img loading="lazy" decoding="async" src="../assets/prensa/la-vanguardia.svg?v=2" alt="La Vanguardia" width="197" height="21" style="--h:21px" /></span>
-            <p class="press-title">“We’ve normalised living tired”: the Barcelona club turning wellbeing into a weekly routine</p>
-            <span class="press-meta"><span>18 Sep 2026</span><span class="press-read">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
-          </a>
-          <a class="press-card" href="press.html#el-periodico" data-hot>
-            <span class="press-logo"><img loading="lazy" decoding="async" src="../assets/prensa/el-periodico.svg?v=2" alt="El Periódico" width="163" height="26" style="--h:26px" /></span>
-            <p class="press-title">Not being ill doesn’t mean being well</p>
-            <span class="press-meta"><span>14 Sep 2026</span><span class="press-read">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
-          </a>
-          <a class="press-card" href="press.html#el-economista" data-hot>
-            <span class="press-logo"><img loading="lazy" decoding="async" src="../assets/prensa/el-economista.svg?v=2" alt="elEconomista.es" width="212" height="23" style="--h:23px" /></span>
-            <p class="press-title">Wellbeing stops being a luxury and becomes a habit</p>
-            <span class="press-meta"><span>8 Sep 2026</span><span class="press-read">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
-          </a>
         </div>
       </div>
     </section>
