@@ -20,6 +20,8 @@ const EVENTOS = new Set([
   'eligio_tema',
   'eligio_rama',
   'vio_resultado',
+  'vio_dudas',
+  'tiempo',
   'llego_propuesta',
   'abrio_duda',
   'pulso_reservar',
