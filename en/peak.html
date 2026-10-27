@@ -205,12 +205,13 @@
   .pv-thesis--top{ margin-top:0; }
   .pv-why--c{ padding-bottom:clamp(36px,6vh,60px); }
   /* ===== si te encuentras bien: filas etiqueta + texto ===== */
-  .pv-why-list--k{ margin-top:clamp(36px,5vh,56px); }
+  .pv-why-list.pv-why-list--k{ margin-top:clamp(36px,5vh,56px); }
   .pv-wrow--k{ display:grid; grid-template-columns:minmax(0,13rem) minmax(0,1fr); gap:clamp(16px,3vw,48px); align-items:baseline; }
-  .pv-wrow--k .pv-k{ margin:0; font-size:9.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#9fb0ff; }
+  .pv-wrow--k .pv-k{ margin:0; font-size:14px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#c3cdff; }
+  .pv-why-cierre{ font-size:clamp(24px,2.6vw,34px); max-width:none; }
   .pv-wrow--k p{ max-width:46ch; color:rgba(255,255,255,.68); }
   .pv-wrow--k strong{ font-weight:500; color:#fff; }
-  @media (max-width:700px){ .pv-wrow--k{ grid-template-columns:minmax(0,1fr); gap:10px; } }
+  @media (max-width:700px){ .pv-wrow--k{ grid-template-columns:minmax(0,1fr); gap:10px; } .pv-wrow--k .pv-k{ font-size:12.5px; } }
   .pvc-band{ margin-top:clamp(44px,7vh,72px); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid rgba(255,255,255,.16); border-bottom:1px solid rgba(255,255,255,.16); }
   .pvc-band>div{ padding:clamp(26px,3.6vh,38px) clamp(22px,2.8vw,44px); }
   .pvc-band>div:first-child{ padding-left:0; }
@@ -480,25 +481,6 @@
       </div>
     </section>
 
-    <!-- ============ SI TE ENCUENTRAS BIEN ============ -->
-    <section class="pv-why" data-screen-label="Peak · si te encuentras bien" data-c1="#05070f" data-c2="#0a0f26" data-c3="#1d2865" data-deg="168deg" data-theme="dark">
-      <div class="wrap">
-        <div class="hiw-head reveal">
-          <p class="eyebrow">If you feel well</p>
-          <h2>So that ten years from now <span class="ser">it's still true</span>.</h2>
-          <p class="hiw-sub">What decides it can't be felt. It can be measured:</p>
-        </div>
-        <div class="pv-why-list pv-why-list--k reveal" style="--d:.06s">
-          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Metabolism</p><p><strong>Insulin goes off ten years before glucose does.</strong> Your blood test comes back normal.</p></div>
-          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Cardiovascular</p><p><strong>Arterial plaque builds up from your twenties.</strong> It gives no symptoms.</p></div>
-          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Body composition</p><p><strong>Muscle mass declines from 35.</strong> The scale doesn't notice.</p></div>
-          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Hormonal</p><p><strong>Thyroid antibodies rise years before TSH does.</strong> No one orders them.</p></div>
-          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Physical capacity</p><p><strong>VO₂ max drops 10% per decade.</strong> It's the marker that best predicts mortality, and no check-up measures it.</p></div>
-        </div>
-        <p class="pv-thesis reveal">Reversible today. <span class="ser">In ten years, it won't be.</span></p>
-      </div>
-    </section>
-
     <!-- ============ EL PRINCIPIO ============ -->
     <section class="pv-why pv-why--c" data-screen-label="Peak · el principio" data-c1="#05070f" data-c2="#0a0f26" data-c3="#1d2865" data-deg="168deg" data-theme="dark">
       <div class="wrap">
@@ -511,12 +493,30 @@
       </div>
     </section>
 
+    <!-- ============ SI TE ENCUENTRAS BIEN ============ -->
+    <section class="pv-why" data-screen-label="Peak · si te encuentras bien" data-c1="#05070f" data-c2="#0a0f26" data-c3="#1d2865" data-deg="168deg" data-theme="dark">
+      <div class="wrap">
+        <div class="hiw-head reveal">
+          <h2>What decides how you'll be in ten years <span class="ser">can't be felt today.</span></h2>
+          <p class="hiw-sub">But it can be measured, and corrected in time.</p>
+        </div>
+        <div class="pv-why-list pv-why-list--k reveal" style="--d:.06s">
+          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Metabolism</p><p><strong>Insulin goes off ten years before glucose does.</strong> Your blood test comes back normal.</p></div>
+          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Cardiovascular</p><p><strong>Arterial plaque builds up from your twenties.</strong> It gives no symptoms.</p></div>
+          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Body composition</p><p><strong>Muscle mass declines from 35.</strong> The scale doesn't notice.</p></div>
+          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Hormonal</p><p><strong>Thyroid antibodies rise years before TSH does.</strong> No one orders them.</p></div>
+          <div class="pv-wrow pv-wrow--k"><p class="pv-k">Physical capacity</p><p><strong>VO₂ max drops 10% per decade.</strong> It's the marker that best predicts mortality, and no check-up measures it.</p></div>
+        </div>
+        <p class="pv-thesis pv-why-cierre reveal">Reversible today. <span class="ser">In ten years, it won't be.</span></p>
+      </div>
+    </section>
+
     <!-- ============ EL PROGRAMA ============ -->
     <section class="hiw pv-parts" data-screen-label="Peak · el programa" data-c1="#0a0f26" data-c2="#141d42" data-c3="#2b3a85" data-deg="150deg" data-theme="dark">
       <div class="wrap">
         <div class="hiw-head reveal">
           <h2>The <span class="ser">program.</span></h2>
-          <p class="pk-def">REVO Peak is the most complete annual health program on the market: a 360 approach in Barcelona that brings together advanced diagnostics, a tailored plan, execution included and 1:1 medical support throughout the year. It starts with a diagnostic of 58 parameters at Centro Médico Teknon (Grupo Quirónsalud), from which Dr. Miriam Rivera builds your roadmap: nutrition, supplementation, skincare, therapies and training. Because the hard part is putting it into practice, everything is included: the supplementation, unlimited therapies at the studio, the start of your personal training with GoodFit, a clear weekly roadmap and real-time measurement with WHOOP. And Dr. Rivera is available 1:1 all year to adjust the plan with you until you reach your physical, mental and aesthetic health goals.</p>
+          <p class="pk-def">REVO Peak is an annual precision medicine program in Barcelona. It starts with a hospital diagnostic at Centro Médico Teknon, from which Dr. Miriam Rivera builds your roadmap. The hard part isn't knowing what to do: it's doing it. That's why everything is included in the program: nutrition and supplementation, unlimited therapies at the studio, skincare, the WHOOP, and Dr. Rivera reviewing the plan with you every month.</p>
         </div>
         <div class="hiw-flow">
           <div class="st pkfx">
