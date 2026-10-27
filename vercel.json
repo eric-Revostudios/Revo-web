@@ -48,6 +48,8 @@
     { "source": "/campoelectromagneticopulsado-barcelona", "destination": "/pemf.html", "permanent": true },
     { "source": "/masajes-barcelona", "destination": "/masajes.html", "permanent": true },
     { "source": "/biohacking-barcelona", "destination": "/experiencias.html", "permanent": true },
+    { "source": "/peak", "destination": "/peak.html", "permanent": true },
+    { "source": "/en/peak", "destination": "/en/peak.html", "permanent": true },
     { "source": "/memberships", "destination": "/membresias.html", "permanent": true },
     { "source": "/reservation-page", "destination": "/", "permanent": true },
     { "source": "/shop/p/:path*", "destination": "/experiencias.html", "permanent": true },
