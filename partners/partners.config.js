@@ -60,7 +60,7 @@ window.REVO_PARTNERS = {
       id: "barrys",
       nombre: "Barry's Barcelona",
       sesionesMes: 2,
-      codigo: "1001CLASSREVOIB0110",           /* ← CÓDIGO */
+      codigo: "1001CLASSREVOIB0111",           /* ← CÓDIGO */
       enlace: "https://www.barrys.com/pricing/barcelona?_mt=%2Fbuy%2F10273",
       estado: "activo",
       es: {
@@ -93,7 +93,7 @@ window.REVO_PARTNERS = {
       id: "corehaus",
       nombre: "Corehaus",
       sesionesMes: 2,
-      codigo: "REVOOCT26",                     /* ← CÓDIGO */
+      codigo: "REVONOV26",                     /* ← CÓDIGO */
       enlace: "https://corehaus.es/schedule",
       estado: "activo",
       es: {
@@ -136,7 +136,7 @@ window.REVO_PARTNERS = {
       id: "casabarre",
       nombre: "Casa Barré",
       sesionesMes: 1,
-      codigo: "CASAREVOCTUBRE",                /* ← CÓDIGO */
+      codigo: "CASAREVONOV",                   /* ← CÓDIGO */
       enlace: "https://casabarre.com/barcelona/horarios",
       estado: "activo",
       es: {
