@@ -99,7 +99,8 @@
   @media (max-width:600px){
     .exp-form{ gap:15px; }
     .exp-fields{ gap:15px; }
-    .exp-submit{ position:sticky; bottom:10px; z-index:3; box-shadow:0 0 0 10px #fff, 0 16px 30px -12px rgba(54,80,207,.55); }
+    /* en móvil .btn es transparente con letra blanca (pensado para fondo oscuro); la ventana es blanca */
+    .exp-submit{ position:sticky; bottom:10px; z-index:3; background:var(--indigo); border-color:var(--indigo); color:#fff; -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:0 0 0 10px #fff, 0 16px 30px -12px rgba(54,80,207,.55); }
   }
   .combo-note{ font-family:var(--sans); font-size:12px; line-height:1.45; color:rgba(20,22,28,.5); margin:11px 0 0; }
   .combo-note .wa-link{ color:var(--indigo); text-decoration:none; border-bottom:1px solid rgba(54,80,207,.32); white-space:nowrap; }
