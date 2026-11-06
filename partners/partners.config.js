@@ -32,7 +32,7 @@
      seguirán existiendo durante meses). No borres nunca un centro.
    · Para reactivarlo: estado: "activo".
 
-   AÑADIR UN QUINTO CENTRO
+   AÑADIR OTRO CENTRO
    · Copia un bloque entero { ... } de centros y cambia sus valores.
    · El "id" es el ancla del QR: id "nuevocentro" → revostudios.eu/partners#nuevocentro
    · "pasos" admite dos formatos:
@@ -55,6 +55,69 @@ window.REVO_PARTNERS = {
 
   /* ---- CENTROS ---------------------------------------------------------- */
   centros: [
+
+    {
+      id: "goodfit",
+      nombre: "GoodFit",
+      sesionesMes: 2,
+      codigo: "REVONOV26GOODFIT",              /* ← CÓDIGO */
+      enlace: "",                              /* los enlaces van dentro de cada fase */
+      estado: "activo",
+      es: {
+        descripcion: "Entrenamiento en grupo. Clases de bootcamp o de indoor cycling.",
+        pasos: [
+          {
+            titulo: "Solo la primera vez",
+            plegable: true,
+            pasos: [
+              "Escribe a GoodFit por WhatsApp (648 239 104). Diles que eres miembro de REVO y dales el código de este mes.",
+              "Facilítales tu nombre completo y tu correo. Crearán tu perfil y añadirán tus 2 sesiones."
+            ],
+            cta: "Activar mis sesiones por WhatsApp",
+            enlace: "https://wa.me/34648239104?text=Hola.%20Soy%20miembro%20de%20REVO%20y%20quiero%20activar%20mis%20sesiones.%20C%C3%B3digo%3A%20{codigo}"
+          },
+          {
+            titulo: "Los meses siguientes",
+            nota: "Tu cuenta ya está creada. Escríbeles cada mes con el código nuevo y añadirán tus 2 sesiones a tu perfil.",
+            cta: "Pedir las sesiones de este mes",
+            enlace: "https://wa.me/34648239104?text=Hola.%20Soy%20miembro%20de%20REVO%20y%20quiero%20mis%202%20sesiones%20de%20este%20mes.%20C%C3%B3digo%3A%20{codigo}"
+          },
+          {
+            titulo: "Reserva tu clase",
+            nota: "Con las sesiones en tu cuenta, entra en la app o en el calendario de GoodFit, inicia sesión y elige clase y horario.",
+            cta: "Reservar en GoodFit",
+            enlace: "https://goodfitbarcelona.com/horarios/"
+          }
+        ]
+      },
+      en: {
+        descripcion: "Group training. Bootcamp or indoor cycling classes.",
+        pasos: [
+          {
+            titulo: "First time only",
+            plegable: true,
+            pasos: [
+              "Message GoodFit on WhatsApp (+34 648 239 104). Tell them you're a REVO member and give them this month's code.",
+              "Give them your full name and email. They'll create your profile and add your 2 sessions."
+            ],
+            cta: "Activate my sessions on WhatsApp",
+            enlace: "https://wa.me/34648239104?text=Hi.%20I%27m%20a%20REVO%20member%20and%20I%27d%20like%20to%20activate%20my%20sessions.%20Code%3A%20{codigo}"
+          },
+          {
+            titulo: "The following months",
+            nota: "Your account is already set up. Message them each month with the new code and they'll add your 2 sessions to your profile.",
+            cta: "Request this month's sessions",
+            enlace: "https://wa.me/34648239104?text=Hi.%20I%27m%20a%20REVO%20member%20and%20I%27d%20like%20my%202%20sessions%20for%20this%20month.%20Code%3A%20{codigo}"
+          },
+          {
+            titulo: "Book your class",
+            nota: "Once the sessions are in your account, open the GoodFit app or booking calendar, log in, and pick your class and time.",
+            cta: "Book at GoodFit",
+            enlace: "https://goodfitbarcelona.com/horarios/"
+          }
+        ]
+      }
+    },
 
     {
       id: "barrys",

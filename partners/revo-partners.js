@@ -110,7 +110,8 @@
     h += '<div class="pf-body">';
     if (f.pasos && f.pasos.length) h += listaPasosHTML(f.pasos);
     if (f.nota) h += '<p class="pf-nota">' + esc(f.nota) + "</p>";
-    if (f.enlace) h += '<a class="pc-cta" href="' + esc(f.enlace) + '" target="_blank" rel="noopener noreferrer" data-cta="' + esc(c.id) + '">' + esc(f.cta || STR.abrir) + "</a>";
+    /* {codigo} en un enlace de fase: se rellena con el código del mes (mensaje de WhatsApp de GoodFit). */
+    if (f.enlace) h += '<a class="pc-cta" href="' + esc(f.enlace.replace("{codigo}", encodeURIComponent((c.codigo || "").trim()))) + '" target="_blank" rel="noopener noreferrer" data-cta="' + esc(c.id) + '">' + esc(f.cta || STR.abrir) + "</a>";
     if (f.plegable) h += '<button type="button" class="pf-done" data-fold="' + esc(c.id) + '">' + STR.altaHecha + "</button>";
     h += "</div>";
     if (f.plegable) h += '<div class="pf-folded"><span>' + STR.altaLista + '</span><button type="button" class="pf-undo" data-unfold="' + esc(c.id) + '">' + STR.verAlta + "</button></div>";
