@@ -846,6 +846,36 @@
         submitBtn.disabled = true; submitBtn.classList.add('is-loading'); submitBtn.textContent = 'Sending…';
         var key = f['access_key'].value;
         var fd = new FormData(form);
+      /* Además del correo, la solicitud queda apuntada en la Platform de REVO
+         (pestaña Regalos): cuando llega el pago de Momence se enlaza sola con
+         estos datos. No bloquea ni avisa: si fallara, el correo llega igual. */
+      try {
+        var esRegalo = f['Tipo'].value === 'Regalo';
+        var prod = (String(redirectUrl||'').match(/\/(\d+)\/?(?:[?#].*)?$/) || [])[1];
+        var fmt = String(fd.get('Formato') || '');
+        if(prod){
+          fetch('https://revo-platform.vercel.app/api/regalo', {
+            method:'POST', keepalive:true, headers:{ 'Content-Type':'application/json' },
+            body: JSON.stringify(esRegalo ? {
+              producto: prod, para: 'regalo',
+              nombre: String(fd.get('De parte de') || ''),
+              email: String(fd.get('email') || ''),
+              destinatario: String(fd.get('Para (nombre)') || ''),
+              dedicatoria: String(fd.get('Dedicatoria') || ''),
+              formato: /^digital/i.test(fmt) ? 'digital' : (fmt ? 'impreso' : ''),
+              ref: fd.get('botcheck') ? '1' : ''
+            } : {
+              producto: prod, para: 'mi',
+              nombre: String(fd.get('Nombre') || ''),
+              email: String(fd.get('email') || ''),
+              telefono: String(fd.get('Telefono') || ''),
+              personas: String(fd.get('Personas') || '1'),
+              preferenciaFechas: String(fd.get('Preferencia de fechas') || ''),
+              ref: fd.get('botcheck') ? '1' : ''
+            })
+          }).catch(function(){});
+        }
+      } catch(_e){}
         var done = finish;
         if(!key || key.indexOf('TU_ACCESS_KEY') !== -1){ setTimeout(done, 650); return; }
         fetch('https://api.web3forms.com/submit', { method:'POST', body:fd })

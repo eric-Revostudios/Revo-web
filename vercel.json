@@ -40,6 +40,7 @@
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/invita", "destination": "https://revo-platform.vercel.app/invita", "permanent": false },
+    { "source": "/regalo/:codigo", "destination": "https://revo-platform.vercel.app/regalo/:codigo", "permanent": false },
     { "source": "/luzroja-barcelona", "destination": "/luz-roja.html", "permanent": true },
     { "source": "/presoterapia-barcelona", "destination": "/presoterapia.html", "permanent": true },
     { "source": "/neuroestimulacioncerebral-barcelona", "destination": "/neuroestimulacion.html", "permanent": true },
