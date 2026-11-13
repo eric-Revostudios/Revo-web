@@ -19,8 +19,9 @@
 <meta name="twitter:card" content="summary_large_image" />
 <!--
   Landing «Tu punto de partida», versión con tres preguntas (/tu-punto), nov-2026.
-  Para quien ya se cuida y se encuentra bien: se pone nota (el porcentaje), dice qué hace ya y dónde notaría
-  lo que falta, ve su resultado con las terapias que solemos combinar y la invitación a su punto de partida.
+  Para quien ya se cuida y se encuentra bien. Entra para saber qué terapias pueden ayudarle a estar al 100 %:
+  se pone nota (el porcentaje), dice qué hace ya y dónde notaría lo que falta, ve su resultado con las terapias
+  que solemos combinar y, al final, la invitación a su punto de partida.
   Convive con /punto-de-partida (la versión sin preguntas de entrada): misma oferta, otra forma de contarla.
   Contenido: tu-punto-contenido.js · lógica: tu-punto.js · estilos: tu-punto.css
   Eventos: api/landing-evento.js (los mismos nombres que /tu-caso, con pagina: 'tu-punto').
@@ -52,11 +53,11 @@
         <div class="tramos" role="img" aria-label="Pregunta 1 de 3"><i class="on"></i><i></i><i></i></div>
         <div class="cuerpo">
           <div class="arriba">
-            <p class="ojo">Te invitamos a tu punto de partida</p>
-            <h1 class="t1"><span class="linea">Te encuentras bien.</span> <span class="linea">Y precisamente por eso es fácil acostumbrarse a estar <em class="n">al 80&nbsp;%</em>.</span></h1>
+            <p class="ojo">Tres preguntas · un minuto</p>
+            <h1 class="t1"><span class="linea">Descubre qué terapias</span> <span class="linea">pueden ayudarte a estar <em class="n">al 100&nbsp;%</em>.</span></h1>
           </div>
           <div class="medida">
-            <label for="porcentaje">Y tú, ¿a qué porcentaje dirías que estás hoy?</label>
+            <label for="porcentaje">¿A qué porcentaje dirías que estás hoy?</label>
             <div class="cifra" aria-hidden="true"><span id="cifra">80</span><small>%</small></div>
             <div class="regla" id="regla"><span class="hecho"></span><span class="resto"></span>
               <input type="range" id="porcentaje" min="50" max="100" step="5" value="80" aria-valuetext="80 por ciento"></div>
@@ -65,7 +66,7 @@
           </div>
           <div class="abajo">
             <noscript><a class="boton boton--luz" href="https://wa.me/34613505881?text=Hola%2C%20quiero%20reservar%20mi%20punto%20de%20partida%20en%20REVO.">Escríbenos por WhatsApp</a></noscript>
-            <p class="mini atajo">Tres preguntas. Un minuto.</p>
+            <p class="mini atajo">&nbsp;</p>
           </div>
         </div>
       </div>

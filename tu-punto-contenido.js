@@ -24,12 +24,14 @@ window.TU_PUNTO = {
     reservar: 'Elegir día y hora',
 
     /* 1 · el porcentaje */
-    ojo1: 'Te invitamos a tu punto de partida',
-    titular1a: 'Te encuentras bien.',
-    titular1b: 'Y precisamente por eso es fácil acostumbrarse a estar <em class="n">al 80&nbsp;%</em>.',
-    pregunta1: 'Y tú, ¿a qué porcentaje dirías que estás hoy?',
+    /* La entrada promete saber qué terapias pueden ayudarte (Eric, 13-nov-2026); la invitación al punto
+       de partida llega al final, después del resultado. */
+    ojo1: 'Tres preguntas · un minuto',
+    titular1a: 'Descubre qué terapias',
+    titular1b: 'pueden ayudarte a estar <em class="n">al 100&nbsp;%</em>.',
+    pregunta1: '¿A qué porcentaje dirías que estás hoy?',
     pista1: 'Mueve la línea hasta tu número.',
-    nota1: 'Tres preguntas. Un minuto.',
+    nota1: '',
     directo: 'O ve directamente a la invitación',
 
     /* 2 · lo que ya haces */
@@ -50,10 +52,10 @@ window.TU_PUNTO = {
     margen: 'Margen',
     ojoNotarias: 'Dónde lo notarías',
     ojoConservar: 'Lo que quieres conservar',
-    ojoCombinar: 'Lo que solemos combinar',
-    combinar: 'Cuando lo que se busca es {tema}, solemos combinar estas tres. Cada visita dura alrededor de una hora.',
+    ojoCombinar: 'Las terapias que pueden ayudarte',
+    combinar: 'Para {tema}, solemos combinar estas tres. Cada visita dura alrededor de una hora.',
     desliza: 'Desliza para ver las tres',
-    criterio: 'Qué te encaja a ti lo decidimos después de medirte, con criterio médico. En REVO no hay dos planes iguales.',
+    criterio: 'Cuáles tienen sentido para ti, y con qué frecuencia, lo decidimos después de medirte, con criterio médico. Eso es tu punto de partida.',
 
     hacesMucho: 'Haces mucho. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti.',
     hacesBase: 'Es una buena base. Lo siguiente es saber dónde merece la pena poner el esfuerzo.',
