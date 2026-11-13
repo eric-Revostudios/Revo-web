@@ -27,8 +27,8 @@ window.TU_PUNTO = {
     /* La entrada promete saber qué terapias pueden ayudarte (Eric, 13-nov-2026); la invitación al punto
        de partida llega al final, después del resultado. */
     ojo1: 'Tres preguntas · un minuto',
-    titular1a: 'Descubre qué terapias pueden ayudarte',
-    titular1b: 'a volver a sentirte <em class="n">al 100&nbsp;%</em>.',
+    titular1a: '¿Qué terapias te ayudarían',
+    titular1b: 'a volver a sentirte <em class="n">al 100&nbsp;%</em>?',
     pregunta1: '¿A qué porcentaje te sientes hoy?',
     pista1: 'Mueve la línea hasta tu número.',
     nota1: '',
