@@ -34,6 +34,7 @@
     { "source": "/visita", "destination": "/visita.html" },
     { "source": "/tu-caso", "destination": "/tu-caso.html" },
     { "source": "/punto-de-partida", "destination": "/punto-de-partida.html" },
+    { "source": "/tu-punto", "destination": "/tu-punto.html" },
     { "source": "/reset-for-you", "destination": "/reset-for-you.html" },
     { "source": "/partners", "destination": "/partners/index.html" },
     { "source": "/partners/en", "destination": "/partners/en/index.html" }

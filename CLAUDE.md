@@ -29,6 +29,17 @@ La página a la que llega quien pulsa el botón de un anuncio de Instagram (A/B 
 - **Medición:** cada toque manda un evento JSON (sin cookies, sin datos personales, con un id de sesión aleatorio que muere al cerrar la pestaña) a `POST /api/landing-evento`, que lo reenvía a la Platform. Necesita en Vercel (proyecto de la web) `LANDING_EVENTOS_URL` y `LANDING_EVENTOS_SECRET`; sin ellas la función responde 204 y la página sigue funcionando. El contrato de los eventos está en la sección 7 del documento de diseño y no se cambia sin tocar los dos lados. Añadido el 20-oct-2026: `pulso_reservar` lleva `desde: propuesta · fijo · prueba` (el tercero es el botón «Probar una terapia ese mismo día», mismo enlace de Momence).
 - **No carga** header, footer, `revo-cookies.js`, `revo-analytics.js`, `revo-pixel.js` ni `revo-lang.js`: sin cookies no hace falta banner. Si algún día se mete el píxel, hará falta el aviso.
 
+## Landing «Tu punto de partida» con tres preguntas (`/tu-punto`)
+
+Publicada el 13-nov-2026. Es la misma oferta que `/punto-de-partida` («Tu punto de partida»: conocer REVO, medir edad biológica, composición corporal e índice de estrés, y salir con un plan), contada de otra forma, para quien ya se cuida y se encuentra bien: la persona se pone nota («¿a qué porcentaje dirías que estás hoy?»), dice qué hace ya y dónde notaría lo que falta, y ve su resultado con las tres terapias que solemos combinar y la invitación. Las dos páginas conviven hasta que Eric decida cuál se queda con los anuncios.
+
+- **Ficheros:** `tu-punto.html` (rewrite `/tu-punto` en `vercel.json`; `noindex`, fuera del sitemap, solo en castellano), `tu-punto-contenido.js` (TODO el texto; la duración de la visita es `MINUTOS`, una sola línea), `tu-punto.js` (las tres preguntas, el resultado y los eventos), `tu-punto.css`. El titular y la primera pregunta están además escritos en `tu-punto.html` para que se vean antes de que cargue el JavaScript: si se cambian en el contenido, se cambian también ahí.
+- **Voz y aspecto:** las frases salen de los guiones de los vídeos (12-nov-2026) y del documento de la landing del equipo, casi literales; nada de explicar mecanismos del cuerpo ni masculinos genéricos. El aspecto es el de la web (degradado azul, secciones blancas, rótulos con punto de luz).
+- **Enlace de Momence:** un solo sitio, `window.REVO_TU_PUNTO_URL` en la cabecera de `tu-punto.html`. **Pendiente:** hoy es el de «Visita REVO»; cuando exista el servicio «Tu punto de partida» en Momence, se cambia ahí (y en `punto-de-partida.html`).
+- **Enlace para la agencia:** `https://www.revostudios.eu/tu-punto?utm_source=ig&utm_content=NOMBRE-DEL-ANUNCIO`.
+- **Medición:** los mismos eventos y la misma función que `/tu-caso` (`api/landing-evento.js`), con `pagina: 'tu-punto'`. `eligio_tema` lleva dónde lo notaría (`tema`), el porcentaje y lo que ya hace; quien salta directo a la invitación cuenta como tema `directo`. No se usa `eligio_rama`. Un evento con otro nombre se pierde sin avisar: hay que añadirlo en `tu-punto.js`, en `api/landing-evento.js` y en la Platform.
+- **Cookies y píxel:** carga `revo-cookies.js` y `revo-pixel.js` (el píxel de Meta solo arranca si la persona acepta, y marca «Lead» al pulsar un botón de reservar). En el móvil el aviso de cookies se dibuja más bajo y estrecho solo en esta página (final de `tu-punto.css`) para que no tape la pregunta.
+
 ## Al trabajar aquí
 
 - Es la **cara pública** del negocio: un fallo se ve. Comprueba el cambio en el navegador antes de dar nada por bueno.

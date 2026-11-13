@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<script src="revo-pixel.js" defer></script>
+<script src="revo-cookies.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0d1e" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Tu punto de partida · REVO Studios Barcelona</title>
+<meta name="description" content="Te invitamos a tu punto de partida en REVO, en Turó Park: medimos cómo estás y sales con un plan para ti." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="REVO" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:title" content="Tu punto de partida · REVO Studios Barcelona" />
+<meta property="og:description" content="Te invitamos a tu punto de partida en REVO, en Turó Park: medimos cómo estás y sales con un plan para ti." />
+<meta property="og:image" content="https://www.revostudios.eu/assets/visita-fachada.jpg" />
+<meta property="og:url" content="https://www.revostudios.eu/tu-punto" />
+<meta name="twitter:card" content="summary_large_image" />
+<!--
+  Landing «Tu punto de partida», versión con tres preguntas (/tu-punto), nov-2026.
+  Para quien ya se cuida y se encuentra bien: se pone nota (el porcentaje), dice qué hace ya y dónde notaría
+  lo que falta, ve su resultado con las terapias que solemos combinar y la invitación a su punto de partida.
+  Convive con /punto-de-partida (la versión sin preguntas de entrada): misma oferta, otra forma de contarla.
+  Contenido: tu-punto-contenido.js · lógica: tu-punto.js · estilos: tu-punto.css
+  Eventos: api/landing-evento.js (los mismos nombres que /tu-caso, con pagina: 'tu-punto').
+  Como /punto-de-partida, SÍ carga revo-cookies.js y revo-pixel.js: el píxel de Meta solo arranca si la persona acepta.
+-->
+<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/NotoSerif-Italic-500.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/visita-salas.webp" as="image" type="image/webp" media="(max-width: 959px)" fetchpriority="high" />
+<link rel="preload" href="assets/metodo-diagnostico.webp" as="image" type="image/webp" media="(min-width: 960px)" fetchpriority="high" />
+<link rel="stylesheet" href="tu-punto.css" />
+<link rel="icon" type="image/png" href="assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="assets/revo-icon.png" />
+<!-- ÚNICO punto de sustitución: enlace de Momence de TODOS los botones «Elegir día y hora».
+     PENDIENTE: hoy es el de «Visita REVO» (el mismo que tu-caso.html y punto-de-partida.html). Cuando exista
+     el servicio «Tu punto de partida» en Momence, se cambia aquí y en ningún otro sitio. -->
+<script>window.REVO_TU_PUNTO_URL="https://momence.com/REVO-Studios/appointment-reservation/52479?boardId=146913&serviceId=313085";</script>
+<script src="tu-punto-contenido.js" defer></script>
+<script src="tu-punto.js" defer></script>
+</head>
+<body>
+<main id="app">
+  <!-- Primera pantalla en HTML, para que se vea antes de que cargue el JavaScript. tu-punto.js la vuelve a pintar igual:
+       si se cambia el titular o la pregunta en tu-punto-contenido.js, se cambia también aquí. -->
+  <section class="escena grano" style="--f:.6">
+    <div class="foto"></div><div class="sombra"></div><div class="aurora"></div>
+    <header class="cab"><div class="w"><img src="assets/revo-logo-white.webp" alt="REVO Studios" width="2253" height="819"><span class="donde">Clínica de longevidad · Turó Park</span></div></header>
+    <div class="w escena-w">
+      <div class="lado-izq">
+        <div class="tramos" role="img" aria-label="Pregunta 1 de 3"><i class="on"></i><i></i><i></i></div>
+        <div class="cuerpo">
+          <div class="arriba">
+            <p class="ojo">Te invitamos a tu punto de partida</p>
+            <h1 class="t1"><span class="linea">Te encuentras bien.</span> <span class="linea">Y precisamente por eso es fácil acostumbrarse a estar <em class="n">al 80&nbsp;%</em>.</span></h1>
+          </div>
+          <div class="medida">
+            <label for="porcentaje">Y tú, ¿a qué porcentaje dirías que estás hoy?</label>
+            <div class="cifra" aria-hidden="true"><span id="cifra">80</span><small>%</small></div>
+            <div class="regla" id="regla"><span class="hecho"></span><span class="resto"></span>
+              <input type="range" id="porcentaje" min="50" max="100" step="5" value="80" aria-valuetext="80 por ciento"></div>
+            <div class="escala" aria-hidden="true"><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span><span>100</span></div>
+            <p class="eco" id="eco">Mueve la línea hasta tu número.</p>
+          </div>
+          <div class="abajo">
+            <noscript><a class="boton boton--luz" href="https://wa.me/34613505881?text=Hola%2C%20quiero%20reservar%20mi%20punto%20de%20partida%20en%20REVO.">Escríbenos por WhatsApp</a></noscript>
+            <p class="mini atajo">Tres preguntas. Un minuto.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vitrina" aria-hidden="true"><img src="assets/metodo-diagnostico.webp" alt="" width="2000" height="1334"></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
