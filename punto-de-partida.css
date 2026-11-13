@@ -188,6 +188,10 @@ h1 em, h2 em{ font-family:var(--serif); font-style:italic; font-weight:500; lett
 .bloque:last-child{ padding-bottom:0; }
 .bloque h3{ font-family:var(--display); font-weight:500; font-size:24px; line-height:1.2; letter-spacing:-.01em; margin:0 0 10px; text-wrap:balance; }
 .bloque p{ margin:0; color:var(--ink-2); }
+.bloque .cta{ margin-top:20px; }
+/* Botón secundario (probar una terapia): mismo tamaño, sin relleno, para que no compita con «Elegir día y hora». */
+.cta--linea{ background:transparent; color:var(--ink); border:1.5px solid rgba(20,22,28,.85); box-shadow:none; }
+.cta--linea:hover{ background:var(--soft-2); }
 .bloque .enlace{ margin-top:14px; }
 
 /* ---------- 9 · dónde estamos ---------- */

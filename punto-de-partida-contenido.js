@@ -123,6 +123,7 @@ window.PUNTO_PARTIDA = {
   PRUEBA: {
     titulo: 'Si quieres, prueba ese mismo día',
     texto: 'Ese mismo día puedes probar una o dos terapias: crioterapia, luz roja, PEMF, BrainTap, Pulsetto o presoterapia. Son 40 € una y 60 € dos.',
+    boton: 'Reservar con terapia',   /* abre REVO_PUNTO_PARTIDA_PRUEBA_URL (cabecera del HTML); su evento lleva desde: 'prueba' */
   },
 
   /* 8 · La membresía. */

@@ -14,6 +14,7 @@
   var TERAPIAS = TC.TERAPIAS || {};
   var FOTO = TC.FOTO || 'assets/';
   var MOMENCE = window.REVO_PUNTO_PARTIDA_URL || 'https://www.revostudios.eu/visita';
+  var MOMENCE_PRUEBA = window.REVO_PUNTO_PARTIDA_PRUEBA_URL || MOMENCE; // con una o dos terapias: allí se elige
   var MIN = C.MINUTOS || 60;
   var WA = C.WHATSAPP + '?text=' + encodeURIComponent(C.WHATSAPP_TEXTO);
   function conMin(s) { return String(s).replace(/\{min\}/g, MIN); }
@@ -182,7 +183,8 @@
   function seccionProbarYSeguir() {
     var P = C.PRUEBA, S = C.SEGUIR;
     return '<section class="sec" id="despues"><div class="in"><div class="bloques">' +
-      '<div class="bloque"><h3>' + P.titulo + '</h3><p>' + P.texto + '</p></div>' +
+      '<div class="bloque"><h3>' + P.titulo + '</h3><p>' + P.texto + '</p>' +
+        '<a class="cta cta--linea" href="' + MOMENCE_PRUEBA + '" data-reservar="prueba">' + P.boton + '</a></div>' +
       '<div class="bloque"><h3>' + S.titulo + '</h3><p>' + S.texto + '</p>' +
         '<a class="enlace" href="' + S.href + '">' + S.enlace + ' →</a></div>' +
     '</div></div></section>';
