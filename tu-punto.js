@@ -19,6 +19,9 @@
   var params = new URLSearchParams(location.search);
   var utmContent = (params.get('utm_content') || '').slice(0, 120);
   var utmSource = (params.get('utm_source') || '').slice(0, 60);
+  // Perfil del anuncio: «icp1», «icp2»… en cualquier parte de utm_content (la misma norma que /punto-de-partida).
+  var icp = utmContent.match(/icp(\d+)/i);
+  var paraAnuncio = (icp && C.PERFILES && C.PERFILES['icp' + parseInt(icp[1], 10)]) || '';
 
   /* ---------- sesión: id aleatorio que muere al cerrar la pestaña ---------- */
   function leer(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
@@ -280,7 +283,7 @@
     '</ul></div>';
   }
 
-  function secInvitacion(primera) {
+  function secInvitacion(primera, para) {
     var pasos = C.PASOS.map(function (p, i) {
       return '<li><span class="num">' + (i + 1) + '</span><div class="txt"><h3>' + p[0] + '</h3><p class="texto">' + p[1] + '</p>' + (i === 1 ? ficha() : '') + '</div></li>';
     }).join('');
@@ -291,7 +294,7 @@
         '<div class="resumen-visita">' +
           '<p class="ojo">' + T.ojoInvita + '</p>' +
           '<' + H + ' class="t2"' + (primera ? ' data-titulo' : '') + '>' + T.invita + '</' + H + '>' +
-          '<p class="entrada">' + T.oferta + '</p>' +
+          '<p class="entrada">' + (para ? '<em class="para">' + para + '</em> ' : '') + T.oferta + '</p>' +
           '<ul class="claves">' + claves + '</ul>' +
           botonReservar('propuesta', 'boton--luz') +
           whatsapp(T.waAntes, 'propuesta') +
@@ -310,11 +313,15 @@
           '<p class="ojo">' + T.ojoLugar + '</p>' +
           '<h2 class="t2"><span class="linea">' + T.lugarA + '</span> <span class="linea">' + T.lugarB + '</span></h2>' +
           '<p class="texto medio">' + T.lugar + '</p>' +
+          '<p class="mini llegar"><span>' + T.direccion + '</span><a href="' + T.mapa + '" target="_blank" rel="noopener">' + T.comoLlegar + '</a></p>' +
         '</div>' +
         '<div class="pila pila--l lugar-c">' +
           '<ul class="datos">' + C.DATOS.map(function (d) { return '<li><b>' + d[0] + '</b><span>' + d[1] + '</span></li>'; }).join('') + '</ul>' +
           '<div class="pila pila--s"><p class="ojo">' + T.ojoEquipo + '</p><ul class="equipo">' +
-            C.EQUIPO.map(function (p) { return '<li><b>' + p[0] + '</b><span>' + p[1] + '</span></li>'; }).join('') +
+            C.EQUIPO.map(function (p) {
+              return '<li' + (p[3] ? ' class="con-foto"' : '') + '>' + (p[3] ? '<img src="' + FOTO + p[3] + '" alt="" width="200" height="200" loading="lazy" decoding="async">' : '') +
+                '<div><b>' + p[0] + (p[1] ? ' <small>' + p[1] + '</small>' : '') + '</b><span>' + p[2] + '</span></div></li>';
+            }).join('') +
           '</ul></div>' +
         '</div>' +
       '</div>' +
@@ -342,7 +349,7 @@
       '</div>' +
       '<footer class="pie"><img src="' + FOTO + 'revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819">' +
         '<div class="lineas"><b>' + T.marca + '</b>' +
-          '<span>' + T.direccion + '</span>' +
+          '<span><a href="' + T.mapa + '" target="_blank" rel="noopener">' + T.direccion + '</a></span>' +
           '<span>' + T.horario + '</span>' +
           '<span>' + T.legal + '</span>' +
           '<span><a href="privacidad.html">' + T.privacidad + '</a> · <button type="button" data-cookies>' + T.cookies + '</button></span></div></footer>' +
@@ -395,13 +402,13 @@
     var a = C.AREAS[S.area];
     if (!a) { ir(''); return; }
     abrePantalla('resultado');
-    pinta(secResumen() + secCombinacion(a, S.p >= 100) + secInvitacion(false) + secLugar() + secDudas() + secFinal() + flota());
+    pinta(secResumen() + secCombinacion(a, S.p >= 100) + secInvitacion(false, a.para) + secLugar() + secDudas() + secFinal() + flota());
     evento('vio_resultado', { tema: S.area, porcentaje: S.p });
     activaResultado(S.area);
   }
   function invitacion() {
     abrePantalla('resultado');
-    pinta(secInvitacion(true) + secLugar() + secDudas() + secFinal() + flota());
+    pinta(secInvitacion(true, paraAnuncio) + secLugar() + secDudas() + secFinal() + flota());
     evento('eligio_tema', { tema: 'directo' });
     evento('vio_resultado', { tema: 'directo' });
     activaResultado('directo');

@@ -64,7 +64,7 @@ window.TU_PUNTO = {
     ojoInvita: 'Por invitación',
     invita: 'Te invitamos a tu <em>punto de partida</em>',
     oferta: 'Conoce REVO, descubre si es para ti, mide tu punto de partida y sal con un plan.',
-    claves: ['Corre de nuestra cuenta', 'Sin compromiso'],
+    claves: ['Corre de nuestra cuenta', 'Sin compromiso', 'De lunes a sábado'],
     waAntes: '¿Prefieres preguntarnos antes?',
     waEnlace: 'Escríbenos por WhatsApp',
     ojoPasos: 'Así son tus {m} minutos',
@@ -79,6 +79,8 @@ window.TU_PUNTO = {
     lugarB: '<em>hay que entrar</em>.',
     lugar: 'REVO es una clínica de longevidad en Turó Park, vivida como un club: crioterapia, luz roja, cámara hiperbárica y PEMF, con un equipo médico detrás.',
     ojoEquipo: 'Un equipo que te conoce',
+    comoLlegar: 'Cómo llegar',
+    mapa: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('REVO Studios, Carrer de Ferran Agulló 24, 08021 Barcelona'),
 
     /* dudas y cierre */
     ojoDudas: 'Si te lo estás preguntando',
@@ -143,36 +145,56 @@ window.TU_PUNTO = {
                que: 'Crioterapia a −130&nbsp;°C y, después, un masaje drenante y moldeador.' }
   },
 
-  /* Dónde lo notaría: botón, tema (para la frase de «lo que solemos combinar»), la escena y sus tres terapias.
+  /* Dónde lo notaría: botón, tema (para la frase de «lo que solemos combinar»), `para` (la frase que abre
+     la invitación, del documento de la landing del equipo), la escena y sus tres terapias.
      Las escenas salen de los guiones: 01A, 02A, 04A y 05A. `que` cambia lo que hace una terapia para ese caso. */
   AREAS: {
     energia:  { boton: 'En la energía con la que acabo el día', tema: 'llegar con energía al final del día',
+      para: 'Para seguir haciendo planes con energía.',
       apunte: 'El día empieza bien. A media tarde pesa un poco más, y el plan de la noche se piensa dos veces. Pasa tan poco a poco que se acaba dando por normal.',
       terapias: ['crio', 'luz', 'hbot'],
       que: { crio: 'Tres minutos de frío. Se sale con la cabeza despejada y con energía para el resto del día. Siempre con tu coach al lado.' } },
     descanso: { boton: 'En cómo me levanto', tema: 'descansar de verdad',
+      para: 'Para que dormir vuelva a ser descansar.',
       apunte: 'Duermes tus horas. Pero levantarse con la batería llena es otra cosa, y hace tiempo que no pasa todos los días. Dormir no siempre es descansar.',
       terapias: ['pemf', 'brain', 'luz'],
       que: { pemf: 'Campos electromagnéticos pulsados, en todo el cuerpo. Ayudan a pasar al modo descanso, que es lo que lleva al sueño profundo.',
              luz: 'Luz roja e infrarroja de cuerpo entero. Ayuda a regular el ritmo del sueño: el reloj interno que marca cuándo dormir.' } },
     cabeza:   { boton: 'En la cabeza: claridad y calma', tema: 'bajar el ritmo',
+      para: 'Para que la cabeza también termine la jornada.',
       apunte: 'El trabajo termina a las siete. La cabeza, a veces, bastante más tarde. Rindes igual, pero cuesta estar del todo en la cena.',
       terapias: ['brain', 'crio', 'pemf'],
       que: { crio: 'Tres minutos de frío que bajan las revoluciones. Se sale con la cabeza despejada. Siempre con tu coach al lado.',
              pemf: 'Campos electromagnéticos pulsados, en todo el cuerpo. Ayudan a pasar del modo alerta al modo descanso.' } },
     cuerpo:   { boton: 'En cómo me recupero del deporte', tema: 'recuperarse mejor',
+      para: 'Para que la recuperación también se entrene.',
       apunte: 'El siguiente entrenamiento también se prepara cuando termina el de hoy. Con los años el cuerpo tarda un poco más en volver, y eso se acaba dando por hecho.',
       terapias: ['crio', 'hbot', 'pemf'],
       que: { crio: 'Tres minutos de frío que ayudan a desinflamar y sueltan la musculatura. Siempre con tu coach al lado.',
              pemf: 'Campos electromagnéticos pulsados: la magnetoterapia de los fisioterapeutas, en todo el cuerpo. Ayuda a desinflamar y a reparar.' } },
     piel:     { boton: 'En la piel', tema: 'cuidar la piel',
+      para: 'Para que la piel también entre en el plan.',
       apunte: 'Con los años la piel produce menos colágeno y pierde firmeza. Es un cambio lento, de los que no se ven de un mes para otro. Por eso se da por normal.',
       terapias: ['luzpiel', 'facial', 'respark'] },
     todo:     { boton: 'En nada concreto. Quiero seguir así muchos años', boton100: 'En todo', tema: 'cuidarse a largo plazo',
+      para: 'Para saber desde dónde empiezas.',
       apunte: 'Te encuentras bien, y precisamente por eso es fácil dejarlo para más adelante. La longevidad no empieza cuando aparece un problema. Empieza por saber cómo estás hoy y cuidarlo con constancia.',
       terapias: ['hbot', 'luz', 'crio'] }
   },
   ORDEN: ['energia', 'descanso', 'cabeza', 'cuerpo', 'piel', 'todo'],
+
+  /* La frase que abre la invitación cuando la persona NO ha hecho las preguntas (va directa a la invitación)
+     y el anuncio dice de qué perfil viene: «icp1», «icp2»… en cualquier parte de utm_content, igual que en
+     /punto-de-partida. Son las del documento de la landing del equipo (13-nov-2026). Si ha contestado las
+     preguntas, manda su respuesta (`para` del área) y esto no se usa. */
+  PERFILES: {
+    icp1: 'Para seguir haciendo planes con energía.',
+    icp2: 'Para que la cabeza también termine la jornada.',
+    icp3: 'Para volver a lo que te gusta hacer.',
+    icp4: 'Para que la recuperación también se entrene.',
+    icp5: 'Para saber desde dónde empiezas.',
+    icp6: 'Para conocer REVO por dentro.'
+  },
 
   /* Los cuatro pasos de la visita. La ficha de las tres mediciones cuelga del segundo. */
   PASOS: [
@@ -196,9 +218,10 @@ window.TU_PUNTO = {
     ['175', 'plazas de miembro.']
   ],
 
+  /* Nombre, cargo, texto y foto (vacía = sin foto). El texto de la doctora es el de la portada de la web. */
   EQUIPO: [
-    ['Dra. Miriam Rivera', 'Especialista en medicina de la longevidad. Dirige los planes de REVO.'],
-    ['Tu Wellness Coach', 'Te acompaña en tu punto de partida y en tus primeras visitas.']
+    ['Dra. Miriam Rivera', 'Directora médica', 'Especialista en medicina de la longevidad y oxigenoterapia hiperbárica. Diseña el plan de cada miembro.', 'dra-miriam-rivera.jpeg'],
+    ['Tu Wellness Coach', '', 'Te acompaña en el recorrido y en tus primeras sesiones, para que cada visita se adapte a tu plan.', '']
   ],
 
   FOTOS: [
@@ -215,8 +238,10 @@ window.TU_PUNTO = {
     ['¿Me compromete a algo?', 'No. Sales con tu plan, te hagas miembro o no.'],
     ['Ya hago muchas cosas. ¿Qué me aporta?', 'Orden. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti, con constancia. Medir te dice cuáles.'],
     ['¿Puedo probar una terapia ese mismo día?', 'Sí. Puedes probar una o dos: crioterapia, luz roja, PEMF, BrainTap, Pulsetto o presoterapia. Son 40&nbsp;€ una y 60&nbsp;€ dos.'],
-    ['¿Y si decido seguir?', 'La membresía REVO Core incluye todas las terapias sin límite, hasta dos masajes al mes y tu plan personalizado con seguimiento médico. Son 350&nbsp;€ al mes, con un mínimo de tres meses, o 3.500&nbsp;€ al año.'],
+    ['¿Y si decido seguir?', 'La membresía REVO Core incluye todas las terapias sin límite, hasta dos masajes al mes y tu plan personalizado con seguimiento médico. Son 350&nbsp;€ al mes, con un mínimo de tres meses, o 3.500&nbsp;€ al año. <a href="membresias.html">Ver la membresía</a>'],
     ['¿Cuánto tiempo pide después?', 'La mayoría de miembros viene una o dos veces por semana, una hora cada vez, según su plan. Abrimos de lunes a viernes de 7:00 a 21:00 y los sábados de 9:00 a 14:00.'],
+    ['¿Puedo cambiar la fecha?', 'Sí. Desde el enlace de la confirmación o escribiéndonos por WhatsApp.'],
+    ['¿Y si vivo fuera de Barcelona?', 'La membresía tiene sentido viniendo cada semana. Si nos visitas de forma puntual o quieres regalarlo, tenemos experiencias de una o dos horas. <a href="experiencias.html">Ver las experiencias</a>'],
     ['¿Es un tratamiento médico?', 'REVO no diagnostica ni trata enfermedades. Si estás embarazada, llevas un marcapasos o tienes una condición médica, cuéntanoslo al llegar: revisamos contigo qué terapias son seguras para ti.']
   ]
 };
