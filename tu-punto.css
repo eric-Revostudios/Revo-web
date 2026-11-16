@@ -224,7 +224,21 @@ main{ position:relative; z-index:1; }
 .cuerpo-t{ display:grid; gap:12px; }
 .tfila .base{ font-size:17px; line-height:1.58; color:var(--tinta-2); text-wrap:pretty; }
 .tfila .ayuda{ font-size:17px; line-height:1.58; color:var(--tinta); text-wrap:pretty; }
-.otras-cab{ gap:12px; padding-top:20px; }
+/* «Otras terapias»: plegadas; se abren al tocar (Eric, 17-nov-2026) */
+.otras-mas{ margin-top:-28px; border-bottom:1px solid var(--raya); }
+.otras-mas[open]{ border-bottom:0; }
+.otras-mas summary{ list-style:none; cursor:pointer; min-height:76px; padding:20px 0; display:flex; justify-content:space-between; align-items:center; gap:18px; }
+.otras-mas summary::-webkit-details-marker{ display:none; }
+.otras-mas summary .t3{ display:block; font-size:21px; line-height:1.22; letter-spacing:-.012em; }
+.otras-mas summary i{ flex:none; position:relative; width:34px; height:34px; border-radius:50%; box-shadow:0 0 0 1px var(--raya) inset; transition:background-color .3s var(--ease), box-shadow .3s var(--ease); }
+.otras-mas summary i::before, .otras-mas summary i::after{ content:""; position:absolute; left:11px; right:11px; top:16.5px; height:1px; background:var(--tinta); transition:transform .35s var(--ease), background-color .3s var(--ease); }
+.otras-mas summary i::after{ transform:rotate(90deg); }
+.otras-mas[open] summary i{ background:var(--noche); box-shadow:none; }
+.otras-mas[open] summary i::before, .otras-mas[open] summary i::after{ background:var(--luz); }
+.otras-mas[open] summary i::after{ transform:rotate(0deg); }
+.otras-mas > .texto{ padding-bottom:22px; }
+.otras-mas .tlista{ border-bottom:0; }
+.otras-mas .tlista .tfila:last-child{ border-bottom:0; }
 /* las demás, un punto más discretas */
 .tlista--otras .tfila .cabeza{ grid-template-columns:72px minmax(0, 1fr); gap:16px; }
 .tlista--otras .tfila img{ width:72px; height:88px; border-radius:13px; }
@@ -470,7 +484,6 @@ main{ position:relative; z-index:1; }
   .tlista--otras .tfila .cabeza{ grid-template-columns:88px minmax(0, 1fr); }
   .tlista--otras .tfila img{ width:88px; height:108px; }
   .tlista--otras .tfila h3{ font-size:25px; }
-  .otras-cab{ padding-top:40px; }
   .carril.tuyas > *{ flex-basis:calc((100% - 40px) / 3); }
   .mas-ter ul{ display:grid; grid-template-columns:1fr 1fr; column-gap:40px; padding:0 28px 12px; }
   .mas-ter summary{ padding:24px 28px; }

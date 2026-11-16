@@ -309,8 +309,9 @@
       '<div class="pila medio">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.terapiasTuyas.replace('{deseo}', a.deseo) + '</h2>' +
         '<p class="texto grande">' + T.terapiasEntrada + '</p></div>' +
       '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul>' +
-      (demas.length ? '<div class="pila medio otras-cab"><h3 class="t3">' + T.otrasTitulo + '</h3><p class="texto">' + T.otrasEntrada + '</p></div>' +
-        '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul>' : '') +
+      (demas.length ? '<details class="otras-mas"><summary><span class="t3">' + T.otrasTitulo + '</span><i aria-hidden="true"></i></summary>' +
+        '<p class="texto">' + T.otrasEntrada + '</p>' +
+        '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul></details>' : '') +
     '</div>';
   }
   function secBloque(id) {
