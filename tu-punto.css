@@ -203,10 +203,21 @@ main{ position:relative; z-index:1; }
 .dicho{ padding-top:40px; }
 .dicho .texto{ color:var(--luz-3); }
 
+/* las cinco partes van numeradas: «01 Por qué pasa»… */
+.ojo .nn{ font-variant-numeric:tabular-nums; color:var(--azul-claro); margin-right:-2px; }
+.papel .ojo .nn{ color:var(--azul-texto); }
+/* 01 · por qué pasa: una línea pequeña con su respuesta y, directo, la explicación */
+.porque{ gap:20px; max-width:720px; }
+.tuya{ display:inline-flex; align-items:center; gap:10px; justify-self:start; margin-bottom:22px; padding:9px 16px; border-radius:999px; border:1px solid var(--raya-luz); background:rgba(246,244,239,.05); font-size:12.5px; letter-spacing:.02em; color:var(--luz-3); }
+.tuya b{ font-weight:500; color:var(--luz); }
+.tuya i{ width:3px; height:3px; border-radius:50%; background:var(--azul-claro); }
+.porque .entrada{ padding-top:6px; }
+/* 03 · el puente hacia la invitación */
+.puente{ max-width:760px; gap:18px; }
+.puente .t2 em{ display:block; }
 /* 2 · el bloque de la persona: qué le pasa y qué terapias ayudan */
 /* arriba, lo que hay detrás; debajo, sus terapias: foto, dato y los tres pasos (en tu cuerpo · lo que provoca · en qué te ayuda) */
 .detras{ display:grid; gap:26px; }
-.tcards{ display:grid; gap:16px; }
 .tcard{ display:grid; align-content:start; border-radius:var(--radio); overflow:hidden; background:var(--carta); box-shadow:0 0 0 1px var(--raya) inset, 0 30px 50px -40px rgba(20,22,28,.55); }
 .tcard .marco{ position:relative; aspect-ratio:16 / 10; background:var(--velo); overflow:hidden; }
 .tcard .marco::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,7,15,.4) 0%, rgba(6,7,15,0) 40%); pointer-events:none; }
@@ -254,7 +265,7 @@ main{ position:relative; z-index:1; }
 .cuales b{ display:block; font-weight:500; font-size:21px; letter-spacing:-.014em; color:var(--luz); }
 .cuales a{ display:inline-flex; align-items:center; gap:9px; justify-self:start; font-size:15.5px; color:var(--luz); text-decoration:underline; text-decoration-color:var(--azul); text-underline-offset:5px; text-decoration-thickness:1px; }
 .cuales a svg{ width:16px; height:16px; }
-.otras{ display:grid; gap:14px; margin-top:-8px; padding-top:28px; border-top:1px solid var(--raya); }
+.otras{ display:grid; gap:14px; padding-top:22px; }
 .otras .rot{ font-size:10.5px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--tinta-3); }
 .otras-fila{ display:flex; flex-wrap:wrap; gap:8px; }
 .ficha-otra{ min-height:44px; padding:10px 18px; border-radius:999px; border:1px solid rgba(20,22,28,.2); background:transparent; color:var(--tinta); cursor:pointer; font:500 15.5px/1.2 var(--sans); transition:background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
@@ -268,6 +279,8 @@ main{ position:relative; z-index:1; }
   padding-left:max(22px, env(safe-area-inset-left, 0px)); padding-right:max(22px, env(safe-area-inset-right, 0px)); padding-bottom:30px; margin-bottom:-30px; scroll-padding-left:max(22px, env(safe-area-inset-left, 0px)); }
 .carril::-webkit-scrollbar{ display:none; }
 .carril > *{ flex:0 0 76%; scroll-snap-align:start; min-width:0; }
+.carril.tuyas > *{ flex-basis:84%; }
+.carril.tuyas{ align-items:stretch; }
 .ter{ display:grid; gap:16px; align-content:start; }
 .ter .marco{ position:relative; border-radius:var(--radio); overflow:hidden; background:var(--papel); aspect-ratio:4 / 5; max-width:100%; box-shadow:0 30px 50px -36px rgba(20,22,28,.55); }
 .ter .marco::after{ content:""; position:absolute; inset:0; border-radius:inherit; box-shadow:0 0 0 1px rgba(255,255,255,.14) inset; background:linear-gradient(180deg, rgba(6,7,15,.38) 0%, rgba(6,7,15,0) 34%); pointer-events:none; }
@@ -310,7 +323,13 @@ main{ position:relative; z-index:1; }
 .voz figcaption::before{ content:""; flex:none; width:5px; height:5px; border-radius:50%; background:var(--azul-claro); box-shadow:0 0 10px 2px rgba(104,129,252,.9); }
 
 /* 4 · quién está detrás */
-.medico-rejilla{ display:grid; gap:40px; }
+.medico-rejilla{ display:grid; gap:28px; padding-top:52px; border-top:1px solid var(--raya); }
+.lugar-rejilla{ gap:28px; padding-top:52px; border-top:1px solid var(--raya); }
+/* los vídeos, sobre papel */
+.papel .voz{ background:var(--carta); border-color:var(--raya); -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:0 30px 50px -40px rgba(20,22,28,.5); }
+.papel .voz figcaption{ color:var(--tinta-3); }
+.papel .voz figcaption::before{ background:var(--azul); box-shadow:0 0 8px 1px rgba(104,129,252,.55); }
+.papel .voz .clip{ box-shadow:none; }
 
 /* la invitación: una tarjeta clara sobre la noche */
 .invita-rejilla{ display:grid; gap:56px; }
@@ -387,8 +406,7 @@ main{ position:relative; z-index:1; }
 .cita footer{ margin-top:16px; font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-3); }
 
 /* dudas */
-.dudas-sec{ padding-top:0; }
-.dudas-rejilla{ padding-top:84px; border-top:1px solid var(--raya); }
+.dudas-rejilla{ padding-top:0; }
 .dudas details{ border-top:1px solid var(--raya); }
 .dudas details:last-of-type{ border-bottom:1px solid var(--raya); }
 .dudas summary{ list-style:none; cursor:pointer; min-height:68px; padding:18px 0; display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:18.5px; line-height:1.3; letter-spacing:-.008em; transition:color .3s var(--ease); }
@@ -472,7 +490,7 @@ main{ position:relative; z-index:1; }
   .sec{ padding-block:140px; }
   .alba + .papel, .papel + .alba, .papel + .velado{ margin-top:-40px; border-radius:40px 40px 0 0; }
   .detras{ grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:96px; align-items:start; }
-  .tcards{ grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; }
+  .carril.tuyas > *{ flex-basis:calc((100% - 40px) / 3); }
   .mas-ter ul{ display:grid; grid-template-columns:1fr 1fr; column-gap:40px; padding:0 28px 12px; }
   .mas-ter summary{ padding:24px 28px; }
   .otras{ margin-top:0; }
@@ -482,7 +500,9 @@ main{ position:relative; z-index:1; }
   .desliza .pista{ display:none; }
   .flechas{ display:flex; margin-left:auto; }
   .voces + .desliza{ display:none; }
-  .medico-rejilla{ grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:96px; align-items:center; }
+  .medico-rejilla{ grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:96px; align-items:center; padding-top:80px; }
+  .lugar-rejilla{ padding-top:80px; align-items:center; }
+  .porque{ gap:26px; }
   .extras{ grid-template-columns:1fr 1fr; gap:20px; }
   .extra{ padding:32px 30px; }
   .t2{ font-size:50px; }
@@ -496,8 +516,7 @@ main{ position:relative; z-index:1; }
   .lugar-rejilla{ display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:96px; align-items:start; }
   .lugar-col{ display:grid; gap:48px; align-content:start; }
   .mosaico{ gap:14px; }
-  .dudas-sec{ padding-top:0; }
-  .dudas-rejilla{ display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 7fr); gap:96px; align-items:start; padding-top:140px; }
+  .dudas-rejilla{ display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 7fr); gap:96px; align-items:start; }
   .final{ padding-block:170px 0; }
   .final .t1{ font-size:64px; }
   .pie{ margin-top:130px; padding-block:30px 44px; grid-template-columns:auto 1fr; align-items:end; gap:40px; }

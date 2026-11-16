@@ -266,40 +266,40 @@
   }
 
   /* ---------- piezas de la página de resultado ---------- */
-  function fraseHaces() {
+  /* Lo que ya hace, dicho en una frase: se usa una sola vez, en el puente hacia la invitación (parte 03),
+     que es donde argumenta a favor de medir. Sin respuestas (o sin contestar), no se dice nada. */
+  var sinContestar = false;
+  function frasePuente() {
+    if (sinContestar) return '';
+    if (S.haces.indexOf('menos') > -1) return T.puenteMenos;
     var verbos = C.HACES.filter(function (h) { return S.haces.indexOf(h[0]) > -1; }).map(function (h) { return h[2]; });
-    if (!verbos.length) return T.hacesMenos;
+    if (!verbos.length) return '';
     var lista = verbos.length === 1 ? verbos[0] : verbos.slice(0, -1).join(', ') + ' y ' + verbos[verbos.length - 1];
-    lista = lista.charAt(0).toUpperCase() + lista.slice(1) + '. ';
-    var mide = S.haces.indexOf('reloj') > -1 || S.haces.indexOf('analiticas') > -1;
-    return lista + (verbos.length >= 3 ? T.hacesMucho : T.hacesBase) + (mide ? ' ' + T.hacesDatos : '');
+    return 'Ya ' + lista + '. ' + (verbos.length >= 3 ? T.puenteMucho : T.puenteBase);
   }
+  function rotulo(n, texto) { return '<p class="ojo"><span class="nn">0' + n + '</span>' + texto + '</p>'; }
 
-  function secResumen() {
-    var r = 100 - S.p, t = porTramo(C.TITULARES);
-    return '<section class="sec alba grano primera">' + cab('<button type="button" data-cambiar>' + T.cambiar + '</button>') +
-      '<div class="w resumen-rejilla entra">' +
-        '<div class="pila pila--l">' +
-          '<p class="ojo">' + T.ojoResultado + '</p>' +
-          '<div class="marcador" style="--p:' + S.p + '" role="img" aria-label="Has dicho ' + S.p + ' por ciento' + (r > 0 ? '. Margen: ' + r + ' por ciento' : '') + '">' +
-            '<div class="cifras"><div class="hoy"><span class="rot">' + T.hoy + '</span><b><span id="cuenta">' + S.p + '</span><small>%</small></b></div>' +
-              (r > 0 ? '<div class="queda"><span class="rot">' + T.margen + '</span><b>' + r + '&nbsp;%</b></div>' : '') + '</div>' +
-            '<div class="trazo"><i class="hecho"></i>' + (r > 0 ? '<i class="resto"></i>' : '') + '<i class="punto"></i></div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="pila dicho">' +
-          '<h1 class="t2" data-titulo>' + T.eco.replace('{deseo}', C.AREAS[S.area].deseo) + '</h1>' +
-          '<p class="entrada">' + t[1] + ' ' + t[2] + '</p>' +
-          '<p class="texto">' + fraseHaces() + '</p></div>' +
-      '</div></section>';
-  }
-
-  /* El bloque de la persona: qué le pasa, las terapias que ayudan con su dato y lo que hacen, una cita si la
-     hay, y «¿Buscas otra cosa?» para ver el de otro tema sin volver a las preguntas. */
   function fotoTerapia(nombre) {
     for (var i = 0; i < C.TERAPIAS.length; i++) if (C.TERAPIAS[i].nombre === nombre) return [C.TERAPIAS[i].foto, C.TERAPIAS[i].pos];
     return (C.FOTOS_TERAPIA && C.FOTOS_TERAPIA[nombre]) || ['', '50% 50%'];
   }
+
+  /* 01 · Por qué pasa. No se repite lo que la persona ha dicho: una línea pequeña con su respuesta y, directo,
+     el título de su tema y la explicación (es normal, y tiene un porqué). */
+  function htmlPorque(id, contestado) {
+    var a = C.AREAS[id];
+    return '<p class="tuya">' + (contestado ? T.tuRespuesta + ' <b>' + S.p + '&nbsp;%</b><i></i><b>' + a.corto + '</b>' : T.donde) + '</p>' +
+      rotulo(1, T.parte1) +
+      '<h1 class="t1" data-titulo>' + a.titulo + '</h1>' +
+      '<p class="entrada suave">' + a.texto + '</p>';
+  }
+  function secPorque(id, contestado) {
+    return '<section class="sec alba grano primera">' + cab('<button type="button" data-cambiar>' + (contestado ? T.cambiar : T.preguntas) + '</button>') +
+      '<div class="w"><div class="pila porque entra" id="porque" data-contestado="' + (contestado ? 1 : 0) + '">' + htmlPorque(id, contestado) + '</div></div></section>';
+  }
+
+  /* 02 · Qué puede ayudarte: sus terapias en carrusel (foto, qué es y los tres pasos), las demás plegadas
+     y «¿Buscas otra cosa?» para cambiar de tema sin volver a las preguntas. */
   function htmlBloque(id) {
     var a = C.AREAS[id], total = a.filas.length, suyas = {};
     var tarjetas = a.filas.map(function (x, i) {
@@ -318,14 +318,12 @@
       return '<button type="button" class="ficha-otra" data-otra="' + x + '">' + C.AREAS[x].corto + '</button>';
     }).join('');
     return '<div class="pila pila--l">' +
-      '<div class="detras"><div class="pila"><p class="ojo">' + T.ojoBloque + '</p><h2 class="t2">' + a.titulo + '</h2></div>' +
-        '<div class="pila"><p class="texto grande">' + a.texto + '</p>' +
-          (a.cita ? '<blockquote class="cita cita--raya"><p>«' + a.cita.texto + '»</p><footer>' + a.cita.quien + '</footer></blockquote>' : '') + '</div></div>' +
-      '<div class="pila"><p class="ojo">' + T.ojoTusTerapias + '</p><div class="tcards">' + tarjetas + '</div>' +
-        '<div class="cuales"><p><b>' + T.cuales + '</b> ' + T.cualesTexto + '</p><a href="#invitacion" data-bajar>' + T.cualesEnlace + I.abajo + '</a></div>' +
+      '<div class="pila medio">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.terapiasTuyas + '</h2></div>' +
+      carril('tuyas', tarjetas, total, T.deslizaTuyas) +
+      '<div class="pila pila--s">' +
         (resto ? '<details class="mas-ter"><summary><span><b>' + T.verOtras + '</b>' + T.otrasTexto + '</span><i aria-hidden="true"></i></summary><ul>' + resto + '</ul></details>' : '') +
+        '<div class="otras"><p class="rot">' + T.otra + '</p><div class="otras-fila">' + otras + '</div></div>' +
       '</div>' +
-      '<div class="otras"><p class="rot">' + T.otra + '</p><div class="otras-fila">' + otras + '</div></div>' +
     '</div>';
   }
   function secBloque(id) {
@@ -341,37 +339,35 @@
         '<span class="flechas"><button type="button" data-carril="-1" aria-label="Anteriores">' + I.atras + '</button><button type="button" data-carril="1" aria-label="Siguientes">' + I.flecha + '</button></span></p></div>';
   }
 
-  function secVoces() {
+  /* 04 · Quién lo vive y quién está detrás: los vídeos de miembros, la doctora y el equipo, y el estudio. */
+  function secConfianza() {
     var tarjetas = C.VOCES.map(function (v) {
       return '<figure class="voz">' +
         (v.video ? '<div class="clip"><video src="' + FOTO + v.video + '.mp4" poster="' + FOTO + v.video + '.webp" playsinline preload="none"></video>' +
           '<button type="button" class="play" data-play aria-label="' + C.verVideo + '">' + I.play + '</button></div>' : '') +
         '<blockquote><p>«' + v.texto + '»</p></blockquote><figcaption>' + v.quien + '</figcaption></figure>';
     }).join('');
-    return '<section class="sec alba grano" id="miembros"><div class="w pila pila--l">' +
-      '<div class="pila medio"><p class="ojo">' + T.ojoVoces + '</p><h2 class="t2">' + T.vocesTitulo + '</h2></div>' +
-      carril('voces', tarjetas, C.VOCES.length, '') +
-    '</div></section>';
-  }
-
-  function secMedico() {
     var personas = C.EQUIPO.map(function (p) {
       return '<li><img src="' + FOTO + p[3] + '" alt="" width="200" height="200" loading="lazy" decoding="async"' + (p[4] ? ' style="object-position:' + p[4] + '"' : '') + '>' +
         '<div><b>' + p[0] + '</b><small>' + p[1] + '</small><span>' + p[2] + '</span></div></li>';
     }).join('');
-    return '<section class="sec papel" id="equipo"><div class="w medico-rejilla">' +
-      '<div class="pila"><p class="ojo">' + T.ojoMedico + '</p><h2 class="t2">' + T.medicoTitulo + '</h2>' +
-        '<blockquote class="cita cita--raya grande"><p>«' + C.FRASE_DRA.texto + '»</p><footer>' + C.FRASE_DRA.quien + '</footer></blockquote></div>' +
-      '<ul class="equipo">' + personas + '</ul>' +
+    var fotos = C.FOTOS.map(function (x, i) {
+      return '<figure class="' + (i === 0 ? 'grande' : 'alta') + '"><img src="' + FOTO + x[0] + '" alt="' + x[1] + '" width="' + x[2] + '" height="' + x[3] + '" loading="lazy" decoding="async"' + (x[4] ? ' style="object-position:' + x[4] + '"' : '') + '></figure>';
+    }).join('');
+    return '<section class="sec papel" id="miembros"><div class="w pila pila--l">' +
+      '<div class="pila medio">' + rotulo(4, T.parte4) + '<h2 class="t2">' + T.vocesTitulo + '</h2></div>' +
+      carril('voces', tarjetas, C.VOCES.length, '') +
+      '<div class="medico-rejilla">' +
+        '<div class="pila"><h3 class="t3">' + T.medicoTitulo + '</h3>' +
+          '<blockquote class="cita cita--raya"><p>«' + C.FRASE_DRA.texto + '»</p><footer>' + C.FRASE_DRA.quien + '</footer></blockquote></div>' +
+        '<ul class="equipo">' + personas + '</ul>' +
+      '</div>' +
+      '<div class="lugar-rejilla">' +
+        '<div class="mosaico">' + fotos + '</div>' +
+        '<div class="pila"><h3 class="t3">' + T.lugarTitulo + '</h3><p class="texto grande">' + T.lugar + '</p>' +
+          '<blockquote class="cita"><p>«' + C.CITA.texto + '»</p><footer>' + C.CITA.quien + '</footer></blockquote></div>' +
+      '</div>' +
     '</div></section>';
-  }
-
-  /* quien no contesta las preguntas entra por aquí */
-  function secIntro() {
-    return '<section class="sec alba grano primera intro">' + cab('<button type="button" data-cambiar>' + T.preguntas + '</button>') +
-      '<div class="w pila medio entra"><p class="ojo">' + T.donde + '</p>' +
-        '<h1 class="t1" data-titulo>' + (perfil === 'icp5' ? T.titular1icp5 : T.titular1) + '</h1>' +
-        '<p class="entrada suave">' + T.introSub + '</p></div></section>';
   }
 
   function ficha() {
@@ -386,9 +382,13 @@
     }).join('');
     var claves = (C.MINUTOS ? [[T.claveDuracion, T.minutos.replace('{m}', C.MINUTOS)]] : []).concat(T.claves)
       .map(function (c) { return '<div><dt>' + c[0] + '</dt><dd>' + c[1] + '</dd></div>'; }).join('');
-    var H = 'h2';
+    var H = 'h2', hace = frasePuente();
     return '<section class="sec alba grano" id="invitacion">' +
-      '<div class="w invita-rejilla">' +
+      '<div class="w pila pila--l">' +
+      '<div class="pila puente">' + rotulo(3, T.parte3) +
+        '<p class="t2">' + T.cuales + ' <em>' + T.cualesTexto + '</em></p>' +
+        (hace ? '<p class="entrada suave">' + hace + '</p>' : '') + '</div>' +
+      '<div class="invita-rejilla">' +
         '<div class="resumen-visita"><div class="tarjeta">' +
           '<div class="tarjeta-cab"><img src="' + FOTO + 'revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819"><p class="ojo">' + T.ojoInvita + '</p></div>' +
           '<' + H + ' class="t2">' + T.invita + '</' + H + '>' +
@@ -398,41 +398,13 @@
           whatsapp(T.waAntes, 'propuesta') +
         '</div></div>' +
         '<div class="pila"><p class="ojo">' + (C.MINUTOS ? T.ojoPasos.replace('{m}', C.MINUTOS) : T.ojoPasosSinMinutos) + '</p><ol class="hilo">' + pasos + '</ol></div>' +
-      '</div></section>';
-  }
-
-  function secLugar() {
-    var fotos = C.FOTOS.map(function (x, i) {
-      return '<figure class="' + (i === 0 ? 'grande' : 'alta') + '"><img src="' + FOTO + x[0] + '" alt="' + x[1] + '" width="' + x[2] + '" height="' + x[3] + '" loading="lazy" decoding="async"' + (x[4] ? ' style="object-position:' + x[4] + '"' : '') + '></figure>';
-    }).join('');
-    var despues = T.despues.map(function (d) {
-      return '<div class="extra"><h3>' + d[0] + '</h3><p>' + d[1] + '</p>' + (d[2] ? '<a href="' + d[3] + '">' + d[2] + '</a>' : '') + '</div>';
-    }).join('');
-    return '<section class="sec papel" id="donde"><div class="w pila pila--l">' +
-      '<div class="extras">' + despues + '</div>' +
-      '<div class="lugar-rejilla">' +
-        '<div class="lugar-col">' +
-          '<div class="pila lugar-a">' +
-            '<p class="ojo">' + T.ojoLugar + '</p>' +
-            '<h2 class="t2">' + T.lugarTitulo + '</h2>' +
-            '<p class="texto grande">' + T.lugar + '</p>' +
-            '<p class="llegar"><span>' + T.direccion + '</span><span class="acciones"><button type="button" class="enlace-t" data-mapa>' + T.verMapa + '</button><a class="enlace-t" href="' + T.mapa + '" target="_blank" rel="noopener">' + T.comoLlegar + '</a></span></p>' +
-            '<div class="mapa" id="mapa" hidden></div>' +
-          '</div>' +
-          '<ul class="datos lugar-c">' + C.DATOS.map(function (d) { return '<li><b>' + d[0] + '</b><span>' + d[1] + '</span></li>'; }).join('') + '</ul>' +
-        '</div>' +
-        '<div class="lugar-col">' +
-          '<div class="mosaico lugar-b">' + fotos + '</div>' +
-          '<blockquote class="cita lugar-d"><p>«' + C.CITA.texto + '»</p><footer>' + C.CITA.quien + '</footer></blockquote>' +
-        '</div>' +
-      '</div>' +
-    '</div></section>';
+      '</div></div></section>';
   }
 
   function secDudas() {
     var dudas = C.DUDAS.map(function (d, i) { return '<details data-duda="' + i + '"><summary>' + d[0] + '<i aria-hidden="true"></i></summary><p>' + d[1] + '</p></details>'; }).join('');
-    return '<section class="sec papel dudas-sec" id="dudas"><div class="w"><div class="dudas-rejilla pila pila--l">' +
-      '<div class="pila"><p class="ojo">' + T.ojoDudas + '</p><h2 class="t2">' + T.dudas + '</h2></div>' +
+    return '<section class="sec papel velado" id="dudas"><div class="w"><div class="dudas-rejilla pila pila--l">' +
+      '<div class="pila">' + rotulo(5, T.parte5) + '<h2 class="t2">' + T.dudas + '</h2></div>' +
       '<div class="pila"><div class="dudas">' + dudas + '</div>' + whatsapp(T.waOtra, 'dudas') + '</div>' +
     '</div></div></section>';
   }
@@ -458,20 +430,8 @@
      · Los bloques aparecen al entrar en pantalla. Solo se esconden si el navegador sabe avisar de cuándo entran;
        si no, se quedan a la vista.
      · Los puntos de las terapias siguen al dedo en el móvil. */
-  function movimiento() {
-    var cuenta = document.getElementById('cuenta');
-    if (cuenta && !CALMA) {
-      var fin = S.p, ini = Math.max(50, fin - 14), paso = 0, pasos = 14;
-      cuenta.textContent = ini;
-      var reloj = setInterval(function () {
-        paso++;
-        var k = 1 - Math.pow(1 - paso / pasos, 3);
-        cuenta.textContent = Math.round(ini + (fin - ini) * k);
-        if (paso >= pasos) { clearInterval(reloj); cuenta.textContent = fin; }
-      }, 55);
-    }
-
-    [].forEach.call(app.querySelectorAll('.carril-caja'), function (marco) {
+  function activaCarriles(raiz) {
+    [].forEach.call(raiz.querySelectorAll('.carril-caja'), function (marco) {
       var caja = marco.querySelector('.carril'), puntos = marco.querySelectorAll('.puntos i');
       function ancho() { var t = caja.firstElementChild; return t ? t.getBoundingClientRect().width + 14 : 1; }
       caja.addEventListener('scroll', function () {
@@ -486,10 +446,26 @@
         });
       });
     });
+  }
+
+  function movimiento() {
+    var cuenta = document.getElementById('cuenta');
+    if (cuenta && !CALMA) {
+      var fin = S.p, ini = Math.max(50, fin - 14), paso = 0, pasos = 14;
+      cuenta.textContent = ini;
+      var reloj = setInterval(function () {
+        paso++;
+        var k = 1 - Math.pow(1 - paso / pasos, 3);
+        cuenta.textContent = Math.round(ini + (fin - ini) * k);
+        if (paso >= pasos) { clearInterval(reloj); cuenta.textContent = fin; }
+      }, 55);
+    }
+
+    activaCarriles(app);
 
     if (CALMA || !('IntersectionObserver' in window)) return;
     var piezas = [].slice.call(app.querySelectorAll(
-      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .tcard, .cuales, .mas-ter, .otras, .voz, .tarjeta, .hilo > li, ' +
+      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .puente .entrada, .tcard, .mas-ter, .otras, .voz, .tarjeta, .hilo > li, ' +
       '.extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
     var alto = window.innerHeight;
     var ojo = new IntersectionObserver(function (es) {
@@ -520,27 +496,22 @@
   function flota() { return '<div class="flota" id="flota"><div class="w">' + botonReservar('fijo', '') + '</div></div>'; }
 
   /* «¿Buscas otra cosa?»: cambia el bloque sin volver a las preguntas, y con él la frase de la invitación. */
-  function activaBloque() {
+  function activaBloque(rehecho) {
     var caja = document.getElementById('bloque');
+    if (rehecho) activaCarriles(caja);
     [].forEach.call(caja.querySelectorAll('[data-otra]'), function (b) {
       b.addEventListener('click', function () {
         var id = b.getAttribute('data-otra');
         S.area = id; guarda();
         evento('eligio_tema', { tema: id, porcentaje: S.p, haces: S.haces.join(',') });
+        var porque = document.getElementById('porque');
+        if (porque) { porque.classList.remove('entra'); porque.innerHTML = htmlPorque(id, porque.getAttribute('data-contestado') === '1'); }
         caja.innerHTML = htmlBloque(id);
         var para = document.getElementById('para');
         if (para) para.textContent = C.AREAS[id].para;
-        var eco = app.querySelector('.dicho [data-titulo]');
-        if (eco) eco.innerHTML = T.eco.replace('{deseo}', C.AREAS[id].deseo);
-        activaBloque();
-        var y = caja.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - 28;
-        window.scrollTo({ top: y, behavior: CALMA ? 'auto' : 'smooth' });
+        activaBloque(true);
+        window.scrollTo({ top: 0, behavior: CALMA ? 'auto' : 'smooth' });
       });
-    });
-    var bajar = caja.querySelector('[data-bajar]');
-    if (bajar) bajar.addEventListener('click', function (e) {
-      e.preventDefault();
-      document.getElementById('invitacion').scrollIntoView({ behavior: CALMA ? 'auto' : 'smooth', block: 'start' });
     });
   }
 
@@ -611,16 +582,17 @@
     if (!a) { ir(''); return; }
     abrePantalla('resultado');
     fondo(false);
-    pinta(secResumen() + secBloque(S.area) + secInvitacion(false, a.para) + secMedico() + secVoces() + secLugar() + secDudas() + secFinal() + flota());
+    sinContestar = false;
+    pinta(secPorque(S.area, true) + secBloque(S.area) + secInvitacion(false, a.para) + secConfianza() + secDudas() + secFinal() + flota());
     evento('vio_resultado', { tema: S.area, porcentaje: S.p });
     activaResultado(S.area);
   }
-  /* Sin contestar: la misma página, con el bloque del perfil del anuncio (o el de la cabeza si no lo dice). */
+  /* Sin contestar: la misma página, con el tema del perfil del anuncio (o el de la cabeza si no lo dice). */
   function invitacion() {
     abrePantalla('resultado');
     fondo(false);
-    S.area = null;
-    pinta(secIntro() + secBloque(areaAnuncio) + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secMedico() + secVoces() + secLugar() + secDudas() + secFinal() + flota());
+    S.area = null; sinContestar = true;
+    pinta(secPorque(areaAnuncio, false) + secBloque(areaAnuncio) + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secConfianza() + secDudas() + secFinal() + flota());
     evento('eligio_tema', { tema: 'directo' });
     evento('vio_resultado', { tema: 'directo' });
     activaResultado('directo');

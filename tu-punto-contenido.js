@@ -51,6 +51,22 @@ window.TU_PUNTO = {
     ojoResultado: 'Lo que nos has contado',
     hoy: 'Hoy',
     margen: 'Margen',
+    /* Las cinco partes del resultado (17-nov-2026). Cada una contesta la pregunta que la persona tiene en ese
+       momento y abre la siguiente: por qué pasa → qué puede ayudarte → tu punto de partida → quién lo vive y
+       quién está detrás → antes de venir. */
+    parte1: 'Por qué pasa',
+    parte2: 'Qué puede ayudarte',
+    parte3: 'Tu punto de partida',
+    parte4: 'Quién lo vive y quién está detrás',
+    parte5: 'Antes de venir',
+    tuRespuesta: 'Tu respuesta',
+    terapiasTuyas: 'Las terapias que <em>pueden ayudarte</em>',
+    deslizaTuyas: 'Desliza para verlas',
+    /* el puente hacia la invitación: lo que ya hace, y lo que falta */
+    puenteBase: 'Falta saber dónde poner el esfuerzo.',
+    puenteMucho: 'Haces mucho. Falta saber qué tiene más sentido para ti.',
+    puenteMenos: 'No hace falta saber por dónde empezar. Primero se mide.',
+
     /* el bloque de la persona y lo que hay alrededor */
     eco: 'Te gustaría <em>{deseo}</em>.',
     ojoBloque: 'Lo que hay detrás',
@@ -102,16 +118,10 @@ window.TU_PUNTO = {
     fichaEstado: 'Por medir',
     preguntas: 'Hacer las tres preguntas',
 
-    /* después de la visita */
-    despues: [
-      ['Si quieres, prueba ese mismo día', 'Puedes añadir una o dos terapias de tu plan: crioterapia, luz roja, PEMF, BrainTap, Pulsetto o presoterapia. Son 40&nbsp;€ una y 60&nbsp;€ dos.', '', ''],
-      ['Si decides seguir', 'La membresía REVO Core incluye todas las terapias, hasta dos masajes al mes y tu plan personalizado con seguimiento médico. Son 350&nbsp;€ al mes con un mínimo de tres meses, o 3.500&nbsp;€ al año. La mayoría de miembros viene una o dos veces por semana.', 'Ver la membresía', 'membresias.html']
-    ],
-
     /* el lugar */
     ojoLugar: 'Dónde estamos',
     lugarTitulo: 'En <em>Turó Park</em>',
-    lugar: 'REVO es una clínica de longevidad vivida como un club, a un paso del parque. Todo en un mismo sitio.',
+    lugar: 'Una clínica de longevidad vivida como un club, a un paso del parque. Todo en un mismo sitio.',
     verMapa: 'Ver el mapa',
     comoLlegar: 'Abrir en Google Maps',
     mapa: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('REVO Studios, Carrer de Ferran Agulló 24, 08021 Barcelona'),
@@ -222,8 +232,7 @@ window.TU_PUNTO = {
         ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío hace que el cuerpo libere dopamina y noradrenalina, y baja el cortisol, la hormona del estrés.', 'Sales con la cabeza despejada y el cuerpo despierto.', 'A tener energía para el resto del día.'],
         ['Luz roja', 'De 10 a 15 minutos', 'La luz llega hasta cinco centímetros de profundidad y activa la mitocondria, que es donde cada célula produce su energía.', 'Un cuerpo que produce mejor su propia energía.', 'A que la energía sea de fondo, y no cosa de un rato.'],
         ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Con la presión, llega a los tejidos hasta diez veces más oxígeno.', 'El cuerpo tiene con qué repararse.', 'A recuperarte mejor, para que el día pese menos.']
-      ],
-      cita: { texto: 'Duermo mejor, tengo más energía y REVO se ha convertido en parte natural de mi rutina.', quien: 'Gintare · Miembro de REVO' } },
+      ] },
     descanso: { boton: 'dormir mejor y levantarme con la sensación de haber descansado', deseo: 'dormir mejor y levantarte con la sensación de haber descansado', corto: 'Descanso',
       para: 'Para que dormir vuelva a ser descansar.',
       titulo: 'Cuando dormir <em>no es descansar</em>',
@@ -242,8 +251,7 @@ window.TU_PUNTO = {
         ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío baja el cortisol, la hormona del estrés, y libera dopamina.', 'Sales con la cabeza despejada, con una mezcla de energía y calma.', 'A pensar con más claridad el resto del día.'],
         ['BrainTap', '15 minutos', 'El sonido y la luz llevan al cerebro a un estado de relajación profunda, o de foco.', 'El ruido de fondo se apaga durante un rato.', 'A desconectar cuando la cabeza no para.'],
         ['PEMF', 'De 20 a 40 minutos', 'Hace pasar al sistema nervioso del modo alerta al modo «descanso y reparación».', 'Bajan las revoluciones.', 'A terminar de verdad la jornada.']
-      ],
-      cita: { texto: 'Por la tarde vengo aquí y hago una terapia o dos. Entre dos y tres veces a la semana voy sin ningún problema.', quien: 'Una miembro de REVO' } },
+      ] },
     cuerpo:   { boton: 'rendir más y sentir mi cuerpo fuerte y ágil', deseo: 'rendir más y sentir tu cuerpo fuerte y ágil', corto: 'Rendimiento',
       para: 'Para que el cuerpo responda como quieres.',
       titulo: 'Cuando el cuerpo <em>no responde igual</em>',
@@ -272,8 +280,7 @@ window.TU_PUNTO = {
         ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Con la presión, llega a los tejidos hasta diez veces más oxígeno.', 'Los tejidos se reparan mejor y baja la inflamación.', 'A cuidar el cuerpo por dentro, antes de que lo pida.'],
         ['Luz roja', 'De 10 a 15 minutos', 'Activa la mitocondria, de donde sale la energía de las células, y estimula el colágeno.', 'Energía en las células y firmeza en la piel: dos cosas que se van perdiendo con los años.', 'A conservar lo que hoy das por hecho.'],
         ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío desinflama y activa el metabolismo.', 'Un cuerpo menos inflamado y más despierto.', 'A mantenerte bien con constancia, año tras año.']
-      ],
-      cita: { texto: 'No se trata de llegar más lejos, sino de llegar mejor.', quien: 'Dra. Miriam Rivera' } }
+      ] }
   },
   ORDEN: ['energia', 'descanso', 'cabeza', 'cuerpo', 'piel', 'todo'],
 
@@ -309,13 +316,6 @@ window.TU_PUNTO = {
     ['Índice de estrés', '—', 'Un indicador de la carga que lleva tu sistema nervioso. Lo leemos junto con tus hábitos.']
   ],
 
-  /* El lugar, en tres datos. */
-  DATOS: [
-    ['1 o 2', 'visitas por semana, según tu plan.'],
-    ['7 – 21&nbsp;h', 'de lunes a viernes. Los sábados, de 9 a 14&nbsp;h.'],
-    ['150', 'plazas de miembro.']
-  ],
-
   /* Nombre, cargo, texto, foto y encuadre. */
   EQUIPO: [
     ['Dra. Miriam Rivera', 'Directora médica', 'Especialista en medicina de la longevidad y oxigenoterapia hiperbárica. Diseña tu plan y lo revisa contigo.', 'dra-miriam-rivera.jpeg', ''],
@@ -346,11 +346,12 @@ window.TU_PUNTO = {
   DUDAS: [
     ['¿Tiene algún coste?', 'Tu punto de partida corre de nuestra cuenta. Solo pagas si decides probar una terapia ese día o hacerte miembro.'],
     ['¿Me compromete a algo?', 'No. Sales con tu plan, te hagas miembro o no.'],
-    ['Ya hago muchas cosas. ¿Qué me aporta?', 'Orden. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti, con constancia. Medir te dice cuáles.'],
+    ['¿Dónde estáis y qué horario tenéis?', 'En Carrer de Ferran Agulló 24, junto a Turó Park (08021 Barcelona). Abrimos de lunes a viernes de 7:00 a 21:00 y los sábados de 9:00 a 14:00. <a href="https://www.google.com/maps/search/?api=1&query=REVO%20Studios%2C%20Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener">Abrir en Google Maps</a>'],
+    ['¿Puedo probar una terapia ese mismo día?', 'Sí. Puedes añadir una o dos: crioterapia, luz roja, PEMF, BrainTap, Pulsetto o presoterapia. Son 40&nbsp;€ una y 60&nbsp;€ dos.'],
     ['¿Puedo cambiar la fecha?', 'Sí, desde el enlace de la confirmación o contestándonos por WhatsApp.'],
+    ['Ya hago muchas cosas. ¿Qué me aporta?', 'Orden. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti, con constancia. Medir te dice cuáles.'],
     ['¿Es un tratamiento médico?', 'REVO no diagnostica ni trata enfermedades. Si estás embarazada, llevas un marcapasos o tienes una condición médica, cuéntanoslo al llegar: revisamos contigo qué terapias son seguras para ti.'],
-    ['¿Cuánto tiempo necesito después?', 'La mayoría de miembros viene una o dos veces por semana, una hora cada vez, según su plan.'],
-    ['¿Cuánto cuesta la membresía?', '350&nbsp;€ al mes con un mínimo de tres meses, o 3.500&nbsp;€ al año, con todas las terapias incluidas. También hay sesiones sueltas. <a href="membresias.html">Ver la membresía</a>'],
+    ['¿Y si decido seguir?', 'La membresía REVO Core incluye todas las terapias, hasta dos masajes al mes y tu plan personalizado con seguimiento médico. Son 350&nbsp;€ al mes con un mínimo de tres meses, o 3.500&nbsp;€ al año. La mayoría de miembros viene una o dos veces por semana, una hora cada vez. <a href="membresias.html">Ver la membresía</a>'],
     ['¿Y si vivo fuera de Barcelona?', 'La membresía tiene sentido viniendo cada semana. Si nos visitas de forma puntual o quieres regalarlo, tenemos experiencias de una o dos horas. <a href="experiencias.html">Ver las experiencias</a>']
   ]
 };
