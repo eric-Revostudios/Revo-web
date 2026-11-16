@@ -100,10 +100,11 @@ window.TU_PUNTO = {
     ojoPasosSinMinutos: 'Así es tu punto de partida',
     /* La tarjeta de la invitación (17-nov-2026, pensada para reservar). El valor se dice una vez, como un hecho y
        sin palabras de oferta: ni «gratis», ni «promoción», ni fecha límite (Eric: que no suene cutre). */
-    sales: 'Lo medimos en {m} minutos y sales con un plan para ti, te hagas miembro o no.',
-    valorRot: 'Valoración', valorPrecio: '100&nbsp;€',
-    paraTiRot: 'Para ti', paraTi: 'Corre de nuestra cuenta',
-    bajoBoton: 'Sin compromiso · Puedes cambiar la fecha cuando quieras',
+    /* La tarjeta, a lo mínimo (Eric, 17-nov-2026: «muchas menos cosas, solo lo importante»): título, su frase,
+       las tres lecturas, una línea de valor, el botón y una línea de garantías. */
+    valor: 'Una valoración de 100&nbsp;€. Corre de nuestra cuenta.',
+    bajoBoton: '{m} minutos · Sin compromiso',
+    waCorto: 'Pregúntanos por WhatsApp',
     prueba: '4,9 en Google · 48 reseñas',
     fichaTitulo: 'Tu punto de partida',
     fichaEstado: 'Por medir',
@@ -219,24 +220,24 @@ window.TU_PUNTO = {
           'Diez o quince minutos en una cama de luz roja e infrarroja. Activa la mitocondria, de donde sale la energía de las células, y estimula el colágeno y la elastina.',
           '» Es cuidar a tiempo dos cosas que se pierden despacio: la energía y la firmeza.',
           'Aquí la constancia importa más que la intensidad.' ] } },
-    { nombre: 'Cámara hiperbárica', specs: [['98', '%', 'Oxígeno'], ['1,9', 'atm', 'Presión'], ['60', 'min', 'Sesión']], dato: '60 minutos · oxígeno al 98&nbsp;%', foto: 'hbot-chamber.webp', pos: '46% 50%',
+    { nombre: 'Cámara hiperbárica', specs: [['98', '%', 'Oxígeno'], ['1,5', 'atm', 'Presión'], ['60', 'min', 'Sesión']], dato: '60 minutos · oxígeno al 98&nbsp;%', foto: 'hbot-chamber.webp', pos: '46% 50%',
       textos: {
         energia: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,9 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, que es lo que las células necesitan para producir energía y para repararse.',
+          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, que es lo que las células necesitan para producir energía y para repararse.',
           '» Ayuda al cuerpo a recuperarse a fondo, y eso se nota en la energía del día a día.',
           'Una hora que puedes dedicar a leer, a trabajar o, sencillamente, a descansar.' ],
         descanso: [
-          'El sueño profundo es cuando el cuerpo se repara. La cámara hiperbárica ayuda a esa reparación por otro camino: una hora respirando oxígeno al 98&nbsp;% a 1,9 atmósferas, con hasta diez veces más oxígeno en los tejidos. Una hora que puedes dedicar a leer o a dormir.' ],
+          'El sueño profundo es cuando el cuerpo se repara. La cámara hiperbárica ayuda a esa reparación por otro camino: una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas, con hasta diez veces más oxígeno en los tejidos. Una hora que puedes dedicar a leer o a dormir.' ],
         cabeza: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,9 atmósferas. Llega más oxígeno a todo el cuerpo, también al cerebro, y la mayoría sale con calma y con la cabeza despejada. Y es, además, una hora dedicada solo a ti.' ],
+          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. Llega más oxígeno a todo el cuerpo, también al cerebro, y la mayoría sale con calma y con la cabeza despejada. Y es, además, una hora dedicada solo a ti.' ],
         cuerpo: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,9 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
+          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
           '» Con más oxígeno, músculos y tejidos se reparan mejor. Por eso se usa antes y después de una operación.',
           'Un miembro la combinó con crioterapia y luz roja para recuperarse de una operación de rodilla.' ],
         piel: [
-          'Más oxígeno para que los tejidos se regeneren: una hora respirando oxígeno al 98&nbsp;% a 1,9 atmósferas. Es la tecnología que se usa antes y después de una operación, porque ayuda a los tejidos a repararse.' ],
+          'Más oxígeno para que los tejidos se regeneren: una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas. Es la tecnología que se usa antes y después de una operación, porque ayuda a los tejidos a repararse.' ],
         todo: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,9 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
+          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
           '» Ayuda al cuerpo a regenerarse y a repararse, y baja la inflamación.',
           'Es la especialidad de la Dra. Miriam Rivera, directora médica de REVO.' ] } },
     { nombre: 'PEMF', specs: [['20–40', 'min', 'Sesión']], dato: 'De 20 a 40 minutos', foto: 'pemf-hero.webp', pos: '62% 50%',

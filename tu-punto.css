@@ -352,6 +352,15 @@ main{ position:relative; z-index:1; }
 .lectura li i{ display:flex; align-items:baseline; gap:5px; font-family:"Helvetica Neue","HelveticaNeue-Thin",Roboto,system-ui,sans-serif; font-style:normal; font-weight:200; font-size:40px; line-height:1; color:#fff; }
 .lectura li i small{ font-size:13px; font-weight:400; letter-spacing:.04em; color:var(--azul-claro); }
 .lectura li b{ font-weight:500; font-size:12.5px; line-height:1.25; letter-spacing:.01em; color:var(--luz-2); text-wrap:balance; }
+.tarjeta{ gap:18px; }
+.tarjeta .t2{ font-size:clamp(25px, 6.6vw, 34px); }
+.tarjeta .entrada{ font-size:18px; line-height:1.3; }
+.tarjeta-cab{ padding-bottom:14px; }
+.lectura li{ min-height:0; padding:14px 10px 13px 14px; gap:8px; }
+.lectura li i{ font-size:32px; }
+.lectura-cab{ padding:10px 14px 9px; }
+.tarjeta .valor{ font-size:15.5px; line-height:1.4; color:var(--tinta-2); text-align:center; text-wrap:balance; }
+.tarjeta .bajo-boton a{ display:block; margin-top:4px; color:var(--tinta-2); text-underline-offset:4px; }
 .tarjeta .sales{ font-size:16.5px; line-height:1.45; color:var(--tinta-2); text-wrap:pretty; }
 .cuenta{ display:grid; border-top:1px solid var(--raya); }
 .cuenta > div{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:13px 0; border-bottom:1px solid var(--raya); }

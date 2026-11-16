@@ -405,13 +405,9 @@
           '<div class="pila medio"><' + H + ' class="t2">' + T.invita + '</' + H + '>' +
           '<p class="entrada"><em class="para" id="para">' + (para || '') + '</em></p></div>' +
           ficha() +
-          '<p class="sales">' + T.sales.replace('{m}', C.MINUTOS) + '</p>' +
-          '<dl class="cuenta"><div><dt>' + T.valorRot + '</dt><dd>' + T.valorPrecio + '</dd></div>' +
-            '<div><dt>' + T.paraTiRot + '</dt><dd><em>' + T.paraTi + '</em></dd></div></dl>' +
+          '<p class="valor">' + T.valor + '</p>' +
           '<div class="pila medio">' + botonReservar('propuesta', 'boton--tinta') +
-          '<p class="bajo-boton">' + T.bajoBoton + '</p></div>' +
-          '<div class="tarjeta-pie"><p class="prueba"><span aria-hidden="true">★★★★★</span> ' + T.prueba + '</p>' +
-          whatsapp(T.waAntes, 'propuesta') + '</div>' +
+          '<p class="bajo-boton">' + T.bajoBoton.replace('{m}', C.MINUTOS) + ' <a href="' + C.WHATSAPP + '" target="_blank" rel="noopener" data-wa="propuesta">' + T.waCorto + '</a></p></div>' +
         '</div></div>' +
         '<div class="pila"><p class="ojo">' + (C.MINUTOS ? T.ojoPasos.replace('{m}', C.MINUTOS) : T.ojoPasosSinMinutos) + '</p><ol class="hilo">' + pasos + '</ol>' +
           '<div class="tras-pasos">' + botonReservar('pasos', 'boton--luz') + '</div></div>' +
