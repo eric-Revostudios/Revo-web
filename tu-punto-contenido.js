@@ -171,10 +171,11 @@ window.TU_PUNTO = {
      mitocondria»), lo que se nota contado como experiencia («sales…», «muchos miembros cuentan…») y los
      resultados sin prometer («ayuda a», «con constancia»). De cada terapia se cuenta SOLO lo que le importa a esa
      persona, y cuando la terapia no tiene que ver con su objetivo, se dice lo que es y no se fuerza.
+     `specs` es la ficha técnica que sale bajo el nombre en las terapias principales: [cifra, unidad, qué es].
      Cifras: revo-tono (datos.md). Las terapias principales de cada objetivo están en AREAS.terapias y las
      demás, en AREAS.otras, en el orden en que salen. */
   TERAPIAS: [
-    { nombre: 'Crioterapia', dato: 'De 2 a 3 minutos · −130&nbsp;°C', foto: 'cryo-chamber.webp', pos: '50% 45%',
+    { nombre: 'Crioterapia', specs: [['−130', '°C', 'Frío seco'], ['2–3', 'min', 'Sesión']], dato: 'De 2 a 3 minutos · −130&nbsp;°C', foto: 'cryo-chamber.webp', pos: '50% 45%',
       textos: {
         energia: [
           '» Su efecto se percibe desde la primera sesión.',
@@ -197,7 +198,7 @@ window.TU_PUNTO = {
           'Tres minutos a −130&nbsp;°C, en una cabina de frío seco. El frío desinflama, activa el metabolismo y baja el cortisol, la hormona del estrés.',
           '» Tres aspectos que conviene cuidar mucho antes de que se hagan notar.',
           'En Polonia está integrada en la sanidad pública.' ] } },
-    { nombre: 'Luz roja', dato: 'De 10 a 15 minutos · 630–940&nbsp;nm', foto: 'redlight-chamber.webp', pos: '38% 50%',
+    { nombre: 'Luz roja', specs: [['630–940', 'nm', 'Roja e infrarroja'], ['10–15', 'min', 'Sesión']], dato: 'De 10 a 15 minutos · 630–940&nbsp;nm', foto: 'redlight-chamber.webp', pos: '38% 50%',
       textos: {
         energia: [
           'Diez o quince minutos en una cama de luz roja e infrarroja, cálida y silenciosa. La infrarroja llega hasta cinco centímetros bajo la piel y activa la mitocondria, que es donde cada célula produce su energía.',
@@ -218,7 +219,7 @@ window.TU_PUNTO = {
           'Diez o quince minutos en una cama de luz roja e infrarroja. Activa la mitocondria, de donde sale la energía de las células, y estimula el colágeno y la elastina.',
           '» Es cuidar a tiempo dos cosas que se pierden despacio: la energía y la firmeza.',
           'Aquí la constancia importa más que la intensidad.' ] } },
-    { nombre: 'Cámara hiperbárica', dato: '60 minutos · oxígeno al 98&nbsp;%', foto: 'hbot-chamber.webp', pos: '46% 50%',
+    { nombre: 'Cámara hiperbárica', specs: [['98', '%', 'Oxígeno'], ['1,9', 'atm', 'Presión'], ['60', 'min', 'Sesión']], dato: '60 minutos · oxígeno al 98&nbsp;%', foto: 'hbot-chamber.webp', pos: '46% 50%',
       textos: {
         energia: [
           'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,9 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, que es lo que las células necesitan para producir energía y para repararse.',
@@ -238,7 +239,7 @@ window.TU_PUNTO = {
           'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,9 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
           '» Ayuda al cuerpo a regenerarse y a repararse, y baja la inflamación.',
           'Es la especialidad de la Dra. Miriam Rivera, directora médica de REVO.' ] } },
-    { nombre: 'PEMF', dato: 'De 20 a 40 minutos', foto: 'pemf-hero.webp', pos: '62% 50%',
+    { nombre: 'PEMF', specs: [['20–40', 'min', 'Sesión']], dato: 'De 20 a 40 minutos', foto: 'pemf-hero.webp', pos: '62% 50%',
       textos: {
         energia: [
           'Muchas veces la falta de energía empieza por el descanso. El PEMF, campos electromagnéticos pulsados en todo el cuerpo, activa el modo de descanso y reparación y ayuda a llegar a un sueño más profundo. Sin ningún esfuerzo por tu parte.' ],
@@ -257,7 +258,7 @@ window.TU_PUNTO = {
           'El descanso también se ve por fuera. El PEMF, campos electromagnéticos pulsados en todo el cuerpo, activa el modo de descanso y reparación y mejora la circulación.' ],
         todo: [
           'Con los años, al cuerpo le cuesta más descansar y repararse. El PEMF, campos electromagnéticos pulsados en todo el cuerpo, activa justo ese modo, y además desinflama. Es la magnetoterapia de los fisioterapeutas.' ] } },
-    { nombre: 'BrainTap', dato: '15 minutos', foto: 'braintap-hero.webp', pos: '50% 30%',
+    { nombre: 'BrainTap', specs: [['15', 'min', 'Sesión'], ['2', 'modos', 'Calma o foco']], dato: '15 minutos', foto: 'braintap-hero.webp', pos: '50% 30%',
       textos: {
         energia: [
           'Quince minutos con unos auriculares de sonido binaural y unas gafas de luz, con los ojos cerrados. Tiene un modo de relajación profunda y otro de foco, para cuando la cabeza se queda sin energía antes que el cuerpo.' ],
@@ -274,7 +275,7 @@ window.TU_PUNTO = {
           'Quince minutos de sonido binaural y luz, con los ojos cerrados, que llevan al cerebro a la relajación profunda. Para los días en que lo que necesita descanso es la mente.' ],
         todo: [
           'Cuidarse a largo plazo también es cuidar la cabeza. Quince minutos de sonido binaural y luz que llevan al cerebro a la relajación profunda o al foco. Cuanto más se usa, más se entrena.' ] } },
-    { nombre: 'Presoterapia', dato: 'De 20 a 30 minutos', foto: 'presoterapia-hero.webp', pos: '50% 40%',
+    { nombre: 'Presoterapia', specs: [['20–30', 'min', 'Sesión']], dato: 'De 20 a 30 minutos', foto: 'presoterapia-hero.webp', pos: '50% 40%',
       textos: {
         energia: [
           'El cansancio también se nota en las piernas. Unas botas de aire las comprimen de los pies a la cadera, drenan la retención y activan la circulación. La sensación al terminar es de piernas ligeras.' ],
@@ -291,7 +292,7 @@ window.TU_PUNTO = {
           '» Ayudan a reducir la retención y dejan una sensación de ligereza.' ],
         todo: [
           'Unas botas de aire que comprimen las piernas de los pies a la cadera. Drenan la retención y activan la circulación, que también forma parte de cuidarse.' ] } },
-    { nombre: 'Respark®', dato: 'Una hora', foto: 'therapy.webp', pos: '40% 50%',
+    { nombre: 'Respark®', specs: [['−130', '°C', 'Crioterapia'], ['60', 'min', 'Sesión']], dato: 'Una hora', foto: 'therapy.webp', pos: '40% 50%',
       textos: {
         energia: [
           'Empieza con los mismos tres minutos de crioterapia y sigue con un masaje drenante y moldeador, el Método Lilium. Una hora pensada para la silueta y la retención, si también es algo que deseas cuidar.' ],
@@ -307,7 +308,7 @@ window.TU_PUNTO = {
           'Es un método propio de REVO, y dura una hora.' ],
         todo: [
           'Crioterapia seguida de un masaje drenante y moldeador, el Método Lilium. Es la terapia de la silueta y la retención, si cuidar tu imagen también forma parte de tu plan.' ] } },
-    { nombre: 'Masaje facial', dato: 'A mano', foto: 'massage-glow.webp', pos: '34% 40%',
+    { nombre: 'Masaje facial', specs: [], dato: 'A mano', foto: 'massage-glow.webp', pos: '34% 40%',
       textos: {
         piel: [
           'Un masaje a mano que trabaja los músculos de la cara, después de la luz roja. Reactiva la circulación y completa el trabajo de la luz.',

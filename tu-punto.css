@@ -225,6 +225,13 @@ main{ position:relative; z-index:1; }
 .tfila h3{ font-weight:500; font-size:27px; line-height:1.1; letter-spacing:-.02em; }
 .tfila .meta{ padding-top:8px; font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; line-height:1.5; color:var(--azul-texto); }
 .cuerpo-t{ display:grid; gap:12px; }
+/* la ficha técnica de cada terapia principal: sus cifras, en el mismo trazo fino que el número de la primera pregunta */
+.specs{ display:flex; border-top:1px solid var(--raya); border-bottom:1px solid var(--raya); }
+.specs > div{ flex:1 1 0; min-width:0; display:grid; gap:6px; padding:14px 12px 13px 14px; border-left:1px solid var(--raya); }
+.specs > div:first-child{ border-left:0; padding-left:0; }
+.specs dd{ display:flex; align-items:baseline; gap:4px; font-family:"Helvetica Neue","HelveticaNeue-Thin",Roboto,system-ui,sans-serif; font-weight:200; font-size:31px; line-height:1; letter-spacing:-.035em; color:var(--tinta); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.specs dd small{ font-size:12.5px; font-weight:400; letter-spacing:.02em; color:var(--azul-texto); }
+.specs dt{ font-size:9.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-3); }
 .tfila .base{ font-size:17px; line-height:1.58; color:var(--tinta-2); text-wrap:pretty; }
 .tfila .ayuda{ font-size:17px; line-height:1.58; color:var(--tinta); text-wrap:pretty; }
 /* «Otras terapias»: plegadas; se abren al tocar (Eric, 17-nov-2026) */
@@ -506,6 +513,9 @@ main{ position:relative; z-index:1; }
   .sec{ padding-block:140px; }
   .alba + .papel, .papel + .alba, .papel + .velado{ margin-top:-40px; border-radius:40px 40px 0 0; }
   .tfila{ grid-template-columns:minmax(0, 4fr) minmax(0, 7fr); gap:64px; padding:40px 0; align-items:start; }
+  .tfila .specs{ grid-column:1; grid-row:2; align-self:start; }
+  .tfila .cuerpo-t{ grid-column:2; grid-row:1 / span 2; }
+  .tfila{ row-gap:22px; }
   .tfila .cabeza{ grid-template-columns:120px minmax(0, 1fr); gap:24px; }
   .tfila img{ width:120px; height:148px; border-radius:18px; }
   .tfila h3{ font-size:32px; }

@@ -307,11 +307,13 @@
   /* 02 · Qué puede ayudarte. Dos listas con el mismo formato (foto pequeña y texto corrido): las terapias de
      su tema y, debajo, las demás. De cada una: qué es y qué hace en tu cuerpo, en qué te ayuda a ti, y con qué
      más ayuda. Las demás dicen su relación con el tema si la hay; si no, con qué otra cosa ayudan. */
-  function filaTerapia(t, id) {
+  function filaTerapia(t, id, ficha) {
     // cada texto es una lista de párrafos escrita para esa terapia y ese objetivo; «» » marca la frase que destaca
     var ps = (t.textos && t.textos[id]) || [];
     return '<li class="tfila"><div class="cabeza"><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
-        '<div><h3>' + t.nombre + '</h3><p class="meta">' + t.dato + '</p></div></div>' +
+        '<div><h3>' + t.nombre + '</h3>' + (ficha && t.specs && t.specs.length ? '' : '<p class="meta">' + t.dato + '</p>') + '</div></div>' +
+      (ficha && t.specs && t.specs.length ? '<dl class="specs">' + t.specs.map(function (x) {
+        return '<div><dd>' + x[0] + '<small>' + x[1] + '</small></dd><dt>' + x[2] + '</dt></div>'; }).join('') + '</dl>' : '') +
       '<div class="cuerpo-t">' + ps.map(function (x) {
         return x.indexOf('» ') === 0 ? '<p class="ayuda">' + x.slice(2) + '</p>' : '<p class="base">' + x + '</p>';
       }).join('') + '</div></li>';
@@ -324,7 +326,7 @@
     return '<div class="pila pila--l">' +
       '<div class="pila medio">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.terapiasTuyas.replace('{deseo}', a.deseo) + '</h2>' +
         '<p class="texto grande">' + T.terapiasEntrada + '</p></div>' +
-      '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul>' +
+      '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id, true); }).join('') + '</ul>' +
       (demas.length ? '<details class="otras-mas"><summary><span class="t3">' + T.otrasTitulo + '</span><i aria-hidden="true"></i></summary>' +
         '<p class="texto">' + T.otrasEntrada + '</p>' +
         '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul></details>' : '') +
