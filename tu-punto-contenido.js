@@ -27,24 +27,24 @@ window.TU_PUNTO = {
 
     /* 1 · el porcentaje */
     /* El titular es el del documento del equipo (v2). Con «icp5» en el anuncio dice «seguir sintiéndote». */
-    ojo1: 'Tres preguntas · un minuto',
+    ojo1: 'Un minuto para ti',
     titular1: 'Descubre qué terapias pueden ayudarte a volver a sentirte <em class="n">al 100&nbsp;%</em>.',
     titular1icp5: 'Descubre qué terapias pueden ayudarte a seguir sintiéndote <em class="n">al 100&nbsp;%</em>.',
     sub1: 'Crioterapia, luz roja, cámara hiperbárica, PEMF y más, con acompañamiento médico. Te contamos cuáles encajan con lo que buscas.',
-    pregunta1: '¿A qué porcentaje te sientes hoy?',
-    pista1: 'Mueve la línea hasta tu número.',
-    directo: 'Prefiero verlo sin contestar',
+    pregunta1: 'Hoy me siento al…',
+    pista1: 'Desliza hasta donde te reconozcas.',
+    directo: 'Ver las terapias directamente',
 
     /* 2 · lo que ya haces */
     paso2: '02 / 03',
-    pregunta2: '¿Qué haces ya <em>por cuidarte</em>?',
-    pista2: 'Marca todo lo que hagas.',
-    menos: 'Menos de lo que me gustaría',
+    pregunta2: 'Así <em>me cuido hoy</em>',
+    pista2: 'Elige lo que ya forma parte de tu vida.',
+    menos: 'Todavía menos de lo que querría',
 
     /* 3 · dónde lo notarías */
     paso3: '03 / 03 · Has dicho {p}&nbsp;%',
-    pregunta3: '¿Dónde notarías <em class="n">ese {r}&nbsp;%</em>?',
-    pregunta3cien: '¿Dónde quieres seguir así <em>dentro de veinte años</em>?',
+    pregunta3: 'Con <em class="n">ese {r}&nbsp;%</em>, me gustaría…',
+    pregunta3cien: 'Dentro de veinte años, <em>me gustaría…</em>',
 
     /* resultado */
     cambiar: 'Cambiar respuestas',
@@ -130,9 +130,9 @@ window.TU_PUNTO = {
   /* Lo que dice la línea según el número (de mayor a menor: gana el primero que se cumple). */
   ECO: [
     [100, 'Entonces se trata de cuidarlo.'],
-    [90, 'Muy bien. Y todavía queda margen.'],
+    [90, 'Muy bien. Siempre queda un poco más.'],
     [75, 'Bien. Y con margen.'],
-    [0, 'Es más habitual de lo que parece.']
+    [0, 'Más habitual de lo que parece.']
   ],
 
   /* Titular del resultado según el número: primera frase y segunda (esta va en cursiva). */
@@ -145,13 +145,13 @@ window.TU_PUNTO = {
 
   /* Lo que ya hace: id, botón y cómo se dice en el resultado («Entrenas, cuidas lo que comes y…»). */
   HACES: [
-    ['entreno', 'Entreno', 'entrenas'],
+    ['entreno', 'Me muevo o entreno', 'entrenas'],
     ['comida', 'Cuido lo que como', 'cuidas lo que comes'],
     ['descanso', 'Cuido mi descanso', 'cuidas tu descanso'],
     ['suplementos', 'Tomo suplementos', 'tomas suplementos'],
     ['reloj', 'Llevo reloj o anillo inteligente', 'llevas un reloj o un anillo que mide'],
     ['analiticas', 'Me hago analíticas', 'te haces analíticas'],
-    ['masaje', 'Masaje o fisio', 'vas al masaje o al fisio'],
+    ['masaje', 'Masaje o fisioterapia', 'vas al masaje o al fisio'],
     ['yoga', 'Yoga o meditación', 'haces yoga o meditas']
   ],
 
@@ -187,17 +187,17 @@ window.TU_PUNTO = {
      hacen, y una cita si la hay. «Cuando la cabeza no para» y «Vivir más no es vivir mejor» son los dos bloques
      del documento del equipo; los otros cuatro están escritos igual. */
   AREAS: {
-    energia:  { boton: 'En la energía con la que acabo el día', corto: 'Energía',
+    energia:  { boton: 'tener más energía en mi día a día', corto: 'Energía',
       para: 'Para seguir haciendo planes con energía.',
-      titulo: 'Cuando la energía <em>no llega a la noche</em>',
-      texto: 'El día empieza bien, a media tarde pesa y el plan de la noche se piensa dos veces. La energía se produce en las células, y cuando el descanso y la recuperación no acompañan, se nota. Pasa tan poco a poco que se acaba dando por normal.',
+      titulo: 'Cuando la energía <em>no acompaña</em>',
+      texto: 'Hay épocas en las que la energía no acompaña: cuesta arrancar, o se acaba antes que el día. La energía se produce en las células, y cuando el descanso y la recuperación no acompañan, se nota. Pasa tan poco a poco que se acaba dando por normal.',
       filas: [
         ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'Libera dopamina y noradrenalina: se sale con la cabeza despejada y con energía para el resto del día'],
         ['Luz roja', 'De 10 a 15 minutos', 'Activa la mitocondria, de donde sale la energía de las células'],
         ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Lleva hasta diez veces más oxígeno a los tejidos']
       ],
       cita: { texto: 'Duermo mejor, tengo más energía y REVO se ha convertido en parte natural de mi rutina.', quien: 'Gintare · Miembro de REVO' } },
-    descanso: { boton: 'En cómo me levanto', corto: 'Descanso',
+    descanso: { boton: 'dormir mejor y levantarme con la sensación de haber descansado', corto: 'Descanso',
       para: 'Para que dormir vuelva a ser descansar.',
       titulo: 'Cuando dormir <em>no es descansar</em>',
       texto: 'Duermes tus horas y te levantas igual. Si el sistema nervioso se queda en modo alerta, cuesta llegar al sueño profundo, que es cuando el cuerpo se repara.',
@@ -207,7 +207,7 @@ window.TU_PUNTO = {
         ['Luz roja', 'De 10 a 15 minutos', 'Ayuda a regular el reloj interno que le dice al cuerpo cuándo dormir'],
         ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'Baja el cortisol, la hormona del estrés. Muchos miembros cuentan que esa noche duermen mejor']
       ] },
-    cabeza:   { boton: 'En la cabeza: claridad y calma', corto: 'Estrés y calma',
+    cabeza:   { boton: 'tener la cabeza más clara y más tranquila', corto: 'Claridad y calma',
       para: 'Para que la cabeza también termine la jornada.',
       titulo: 'Cuando la cabeza <em>no para</em>',
       texto: 'Cuando el día no termina al cerrar el portátil, el sistema nervioso se queda en modo alerta y el cortisol, la hormona del estrés, no baja. Rindes igual, pero cuesta estar del todo en la cena.',
@@ -217,26 +217,27 @@ window.TU_PUNTO = {
         ['PEMF', 'De 20 a 40 minutos, en reposo', 'Ayuda a pasar del modo alerta al modo «descanso y reparación»']
       ],
       cita: { texto: 'Por la tarde vengo aquí y hago una terapia o dos. Entre dos y tres veces a la semana voy sin ningún problema.', quien: 'Una miembro de REVO' } },
-    cuerpo:   { boton: 'En cómo me recupero del deporte', corto: 'Recuperación',
-      para: 'Para que la recuperación también se entrene.',
-      titulo: 'Cuando el cuerpo <em>tarda más en volver</em>',
-      texto: 'El siguiente entrenamiento se prepara cuando termina el de hoy. Con los años, el cuerpo tarda más en recuperarse: la inflamación dura más y las molestias se quedan. Recuperar también se entrena.',
+    cuerpo:   { boton: 'rendir más y sentir mi cuerpo fuerte y ágil', corto: 'Rendimiento',
+      para: 'Para que el cuerpo responda como quieres.',
+      titulo: 'Cuando el cuerpo <em>no responde igual</em>',
+      texto: 'Con los años el cuerpo cambia: cuesta más mantener la fuerza y la agilidad, y tarda más en recuperarse después del esfuerzo. Rendir bien, en el deporte y en el día a día, depende tanto de lo que haces como de cómo te recuperas.',
       filas: [
         ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'Desinflama y suelta la musculatura'],
         ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Lleva hasta diez veces más oxígeno a los tejidos, y eso ayuda a que se reparen'],
         ['PEMF', 'De 20 a 40 minutos, en reposo', 'La magnetoterapia de los fisioterapeutas, en todo el cuerpo: desinflama y mejora la circulación'],
         ['Presoterapia', 'De 20 a 30 minutos', 'Drena y deja las piernas ligeras']
       ] },
-    piel:     { boton: 'En la piel', corto: 'Piel',
-      para: 'Para que la piel también entre en el plan.',
-      titulo: 'Cuando la piel <em>pide un plan</em>',
-      texto: 'La piel cambia despacio: de un año para otro, no de un mes para otro. Con los años se produce menos colágeno y elastina, que son lo que le da firmeza. Cuidarla también merece un plan.',
+    piel:     { boton: 'sentirme mejor con mi aspecto físico', corto: 'Aspecto físico',
+      para: 'Para verte tan bien como te sientes.',
+      titulo: 'Cuando quieres <em>verte como te sientes</em>',
+      texto: 'El aspecto cambia despacio: de un año para otro, no de un mes para otro. Con los años se produce menos colágeno y elastina, que dan firmeza a la piel, y al cuerpo le cuesta más drenar. Cuidarlo también merece un plan.',
       filas: [
         ['Luz roja', 'De 10 a 15 minutos', 'En la cama de cuerpo entero y en una máscara para la cara. Estimula el colágeno y la elastina'],
-        ['Masaje facial', 'A mano', 'Después de la luz. Suelta la tensión de la cara'],
-        ['Respark®', 'Una hora', 'Crioterapia seguida de un masaje drenante y moldeador']
+        ['Respark®', 'Una hora', 'Crioterapia seguida de un masaje drenante y moldeador, para la silueta y la retención'],
+        ['Presoterapia', 'De 20 a 30 minutos', 'Drena la retención y mejora la circulación'],
+        ['Masaje facial', 'A mano', 'Después de la luz. Suelta la tensión de la cara']
       ] },
-    todo:     { boton: 'En nada concreto. Quiero seguir así muchos años', boton100: 'En todo', corto: 'Longevidad',
+    todo:     { boton: 'seguir como estoy durante muchos años', corto: 'Longevidad',
       para: 'Para saber desde dónde empiezas.',
       titulo: 'Vivir más no es <em>vivir mejor</em>',
       texto: 'El envejecimiento no empieza con las primeras arrugas o las canas: empieza mucho antes, cuando el cansancio dura más, cuesta concentrarse o el cuerpo no se recupera como antes. Cuidarse a tiempo es lo que permite seguir haciendo lo que te gusta.',
