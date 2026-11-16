@@ -37,7 +37,7 @@ window.TU_PUNTO = {
     /* 2 · lo que ya haces */
     pregunta2: 'Así <em>me cuido hoy</em>',
     pista2: 'Elige lo que ya forma parte de tu vida.',
-    menos: 'Todavía menos de lo que querría',
+    menos: 'Menos de lo que querría',
 
     /* 3 · dónde lo notarías */
     pregunta3: 'Con <em class="n">ese {r}&nbsp;%</em>, me gustaría…',
