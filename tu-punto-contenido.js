@@ -30,7 +30,7 @@ window.TU_PUNTO = {
     ojo1: 'Un minuto para ti',
     titular1: 'Descubre qué terapias pueden ayudarte a volver a sentirte <em class="n">al 100&nbsp;%</em>.',
     titular1icp5: 'Descubre qué terapias pueden ayudarte a seguir sintiéndote <em class="n">al 100&nbsp;%</em>.',
-    sub1: 'Crioterapia, luz roja, cámara hiperbárica, PEMF y más, con acompañamiento médico. Te contamos cuáles encajan con lo que buscas.',
+    sub1: 'Crioterapia, luz roja, cámara hiperbárica, PEMF y más, con acompañamiento médico.',
     pregunta1: 'Hoy me siento al…',
     pista1: 'Desliza hasta donde te reconozcas.',
     directo: 'Ver las terapias directamente',
@@ -74,7 +74,7 @@ window.TU_PUNTO = {
     medicoTitulo: 'Con acompañamiento <em>médico</em>',
 
     /* introducción de quien no contesta las preguntas */
-    introSub: 'Tecnología de última generación (crioterapia, luz roja, cámara hiperbárica, PEMF y más) con acompañamiento médico continuo. Te contamos qué hace cada una y cuáles encajan con lo que buscas.',
+    introSub: 'Tecnología de última generación (crioterapia, luz roja, cámara hiperbárica, PEMF y más) con acompañamiento médico continuo.',
 
     hacesMucho: 'Haces mucho. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti.',
     hacesBase: 'Es una buena base. Lo siguiente es saber dónde merece la pena poner el esfuerzo.',
@@ -130,8 +130,8 @@ window.TU_PUNTO = {
   /* Lo que dice la línea según el número (de mayor a menor: gana el primero que se cumple). */
   ECO: [
     [100, 'Entonces se trata de cuidarlo.'],
-    [90, 'Muy bien. Siempre queda un poco más.'],
-    [75, 'Bien. Y con margen.'],
+    [90, 'Muy bien, siempre queda un poco más.'],
+    [75, 'Bien, con margen.'],
     [0, 'Más habitual de lo que parece.']
   ],
 
