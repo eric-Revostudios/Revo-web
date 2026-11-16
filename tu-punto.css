@@ -224,8 +224,7 @@ main{ position:relative; z-index:1; }
 .cuerpo-t{ display:grid; gap:12px; }
 .tfila .base{ font-size:17px; line-height:1.58; color:var(--tinta-2); text-wrap:pretty; }
 .tfila .ayuda{ padding-left:16px; border-left:2px solid var(--azul); font-size:19px; line-height:1.4; letter-spacing:-.008em; color:var(--tinta); text-wrap:pretty; }
-.tfila .mas{ font-size:14px; line-height:1.5; color:var(--tinta-3); }
-.tfila .mas span{ font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; margin-right:6px; }
+.tfila .mas{ font-size:15.5px; line-height:1.55; color:var(--tinta-2); text-wrap:pretty; }
 .otras-cab{ gap:12px; padding-top:20px; }
 /* las demás, un punto más discretas */
 .tlista--otras .tfila .cabeza{ grid-template-columns:72px minmax(0, 1fr); gap:16px; }
