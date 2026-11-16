@@ -327,6 +327,18 @@ main{ position:relative; z-index:1; }
 .tarjeta-cab img{ height:17px; width:auto; filter:brightness(0); opacity:.92; }
 .tarjeta .entrada{ color:var(--tinta-2); }
 .tarjeta .entrada .para{ color:var(--tinta); }
+/* la tarjeta, pensada para reservar: las tres mediciones con su casilla vacía, el valor y el botón */
+.tarjeta .mini-rot{ font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-3); }
+.medir{ display:grid; border-top:1px solid var(--raya); }
+.medir li{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:13px 0; border-bottom:1px solid var(--raya); }
+.medir b{ font-weight:500; font-size:18px; letter-spacing:-.008em; }
+.medir i{ font-family:var(--serif); font-style:italic; font-size:21px; color:var(--azul-texto); white-space:nowrap; }
+.tarjeta .sales{ font-size:16.5px; line-height:1.45; color:var(--tinta-2); text-wrap:pretty; }
+.tarjeta .valor{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.35; color:var(--tinta); text-wrap:balance; }
+.tarjeta .bajo-boton{ text-align:center; font-size:13px; line-height:1.5; color:var(--tinta-3); text-wrap:balance; }
+.tarjeta .prueba{ text-align:center; font-size:13.5px; color:var(--tinta-2); padding-top:14px; border-top:1px solid var(--raya); }
+.tarjeta .prueba span{ letter-spacing:.14em; color:var(--tinta); margin-right:6px; }
+.tras-pasos{ padding-top:14px; }
 .claves{ display:grid; border-top:1px solid var(--raya); }
 .claves > div{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:12px 0; border-bottom:1px solid var(--raya); }
 .claves dt{ font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-3); white-space:nowrap; }

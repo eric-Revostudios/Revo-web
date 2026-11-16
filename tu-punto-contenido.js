@@ -98,6 +98,13 @@ window.TU_PUNTO = {
     waEnlace: 'Escríbenos por WhatsApp',
     ojoPasos: 'Así son tus {m} minutos',
     ojoPasosSinMinutos: 'Así es tu punto de partida',
+    /* La tarjeta de la invitación (17-nov-2026, pensada para reservar). El valor se dice una vez, como un hecho y
+       sin palabras de oferta: ni «gratis», ni «promoción», ni fecha límite (Eric: que no suene cutre). */
+    medimos: 'En tu visita medimos',
+    sales: 'Y sales con un plan para ti, te hagas miembro o no.',
+    valor: 'Una valoración de 100&nbsp;€. Como invitación, corre de nuestra cuenta.',
+    bajoBoton: 'Sin compromiso · Puedes cambiar la fecha cuando quieras',
+    prueba: '4,9 en Google · 48 reseñas',
     fichaTitulo: 'Tu punto de partida',
     fichaEstado: 'Por medir',
     preguntas: 'Hacer las tres preguntas',
@@ -376,7 +383,7 @@ window.TU_PUNTO = {
   /* Los cuatro pasos de la visita. La ficha de las tres mediciones cuelga del segundo. */
   PASOS: [
     ['Te recibimos', 'Llegas al estudio de Turó Park, te enseñamos el espacio y las terapias, y nos cuentas qué te gustaría mejorar.'],
-    ['Medimos cómo estás', 'Tres mediciones sencillas. Lo que no se nota desde dentro.'],
+    ['Medimos cómo estás', 'Edad biológica, composición corporal e índice de estrés. Tres mediciones sencillas: lo que no se nota desde dentro.'],
     ['Hablamos de ti', 'Revisamos contigo los resultados, tu objetivo y tus hábitos: cómo descansas, cómo te recuperas, qué quieres seguir haciendo.'],
     ['Sales con un plan', 'Te explicamos qué terapias encajan contigo y con qué frecuencia. Te hagas miembro o no, el plan es tuyo.']
   ],

@@ -358,18 +358,22 @@
     '</div></section>';
   }
 
+  /* La ficha de las tres mediciones, con sus casillas vacías: es lo que la persona se lleva. Va DENTRO de la
+     tarjeta de la invitación, antes del botón (17-nov-2026: es lo más deseable de la oferta y estaba escondida
+     en el paso 2). */
   function ficha() {
-    return '<div class="ficha"><header><b>' + T.fichaTitulo + '</b><span>' + T.fichaEstado + '</span></header><ul>' +
-      C.FICHA.map(function (m) { return '<li><b>' + m[0] + '</b><i>' + m[1] + '</i><p>' + m[2] + '</p></li>'; }).join('') +
-    '</ul></div>';
+    return '<ul class="medir">' +
+      C.FICHA.map(function (m) { return '<li><b>' + m[0] + '</b><i>' + m[1] + '</i></li>'; }).join('') +
+    '</ul>';
   }
 
+  /* 03 · La invitación. Pensada para que se reserve: poco que leer antes del botón, lo que te llevas a la vista,
+     el valor dicho una vez y sin tono de oferta, una prueba junto al botón y qué pasa al pulsar. Debajo, los
+     pasos de la visita y el botón otra vez. */
   function secInvitacion(primera, para) {
     var pasos = C.PASOS.map(function (p, i) {
-      return '<li><span class="num">' + (i + 1) + '</span><div class="txt"><h3>' + p[0] + '</h3><p class="texto">' + p[1] + '</p>' + (i === 1 ? ficha() : '') + '</div></li>';
+      return '<li><span class="num">' + (i + 1) + '</span><div class="txt"><h3>' + p[0] + '</h3><p class="texto">' + p[1] + '</p></div></li>';
     }).join('');
-    var claves = (C.MINUTOS ? [[T.claveDuracion, T.minutos.replace('{m}', C.MINUTOS)]] : []).concat(T.claves)
-      .map(function (c) { return '<div><dt>' + c[0] + '</dt><dd>' + c[1] + '</dd></div>'; }).join('');
     var H = 'h2', hace = frasePuente();
     return '<section class="sec alba grano" id="invitacion">' +
       '<div class="w pila pila--l">' +
@@ -379,13 +383,18 @@
       '<div class="invita-rejilla">' +
         '<div class="resumen-visita"><div class="tarjeta">' +
           '<div class="tarjeta-cab"><img src="' + FOTO + 'revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819"><p class="ojo">' + T.ojoInvita + '</p></div>' +
-          '<' + H + ' class="t2">' + T.invita + '</' + H + '>' +
-          '<p class="entrada"><em class="para" id="para">' + (para || '') + '</em> ' + T.oferta + '</p>' +
-          '<dl class="claves">' + claves + '</dl>' +
-          botonReservar('propuesta', 'boton--tinta') +
+          '<div class="pila medio"><' + H + ' class="t2">' + T.invita + '</' + H + '>' +
+          '<p class="entrada"><em class="para" id="para">' + (para || '') + '</em></p></div>' +
+          '<div class="pila medio"><p class="mini-rot">' + T.medimos + '</p>' + ficha() +
+          '<p class="sales">' + T.sales + '</p></div>' +
+          '<p class="valor">' + T.valor + '</p>' +
+          '<div class="pila medio">' + botonReservar('propuesta', 'boton--tinta') +
+          '<p class="bajo-boton">' + (C.MINUTOS ? T.minutos.replace('{m}', C.MINUTOS) + ' · ' : '') + T.bajoBoton + '</p></div>' +
+          '<p class="prueba"><span aria-hidden="true">★★★★★</span> ' + T.prueba + '</p>' +
           whatsapp(T.waAntes, 'propuesta') +
         '</div></div>' +
-        '<div class="pila"><p class="ojo">' + (C.MINUTOS ? T.ojoPasos.replace('{m}', C.MINUTOS) : T.ojoPasosSinMinutos) + '</p><ol class="hilo">' + pasos + '</ol></div>' +
+        '<div class="pila"><p class="ojo">' + (C.MINUTOS ? T.ojoPasos.replace('{m}', C.MINUTOS) : T.ojoPasosSinMinutos) + '</p><ol class="hilo">' + pasos + '</ol>' +
+          '<div class="tras-pasos">' + botonReservar('pasos', 'boton--luz') + '</div></div>' +
       '</div></div></section>';
   }
 
