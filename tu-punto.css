@@ -216,11 +216,17 @@ main{ position:relative; z-index:1; }
 .tcard .txt{ display:grid; gap:6px; padding:20px 20px 8px; }
 .tcard h3{ font-weight:500; font-size:25px; line-height:1.12; letter-spacing:-.018em; }
 .tcard .meta{ font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--azul-texto); }
-.como{ margin-top:10px; }
-.como li{ display:grid; gap:4px; padding:14px 0; border-top:1px solid var(--raya); }
+.tcard .quees{ padding-top:6px; font-size:17px; line-height:1.5; color:var(--tinta); text-wrap:pretty; }
+/* los tres pasos, unidos por un hilo: el último (en qué te ayuda) es el que se enciende */
+.como{ position:relative; margin-top:14px; padding:18px 0 12px; border-top:1px solid var(--raya); display:grid; gap:18px; }
+.como::before{ content:""; position:absolute; left:3.5px; top:26px; bottom:34px; width:1px; background:linear-gradient(180deg, rgba(20,22,28,.16), rgba(104,129,252,.7)); }
+.como li{ position:relative; display:grid; gap:3px; padding-left:24px; }
+.como li::before{ content:""; position:absolute; left:0; top:4px; width:8px; height:8px; border-radius:50%; background:var(--carta); box-shadow:0 0 0 1px rgba(20,22,28,.3) inset; }
+.como li:last-child::before{ background:var(--azul); box-shadow:0 0 0 4px rgba(104,129,252,.18), 0 0 12px 1px rgba(104,129,252,.7); }
 .como span{ font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-3); }
+.como li:last-child span{ color:var(--azul-texto); }
 .como p{ font-size:16.5px; line-height:1.5; color:var(--tinta-2); text-wrap:pretty; }
-.como li:last-child p{ color:var(--tinta); }
+.como li:last-child p{ font-size:18px; line-height:1.4; letter-spacing:-.006em; color:var(--tinta); }
 /* las otras terapias, plegadas */
 .mas-ter{ margin-top:16px; border-radius:var(--radio); background:var(--carta); box-shadow:0 0 0 1px var(--raya) inset; }
 .mas-ter summary{ list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 20px; }
@@ -248,7 +254,7 @@ main{ position:relative; z-index:1; }
 .cuales b{ display:block; font-weight:500; font-size:21px; letter-spacing:-.014em; color:var(--luz); }
 .cuales a{ display:inline-flex; align-items:center; gap:9px; justify-self:start; font-size:15.5px; color:var(--luz); text-decoration:underline; text-decoration-color:var(--azul); text-underline-offset:5px; text-decoration-thickness:1px; }
 .cuales a svg{ width:16px; height:16px; }
-.otras{ display:grid; gap:14px; margin-top:44px; padding-top:28px; border-top:1px solid var(--raya); }
+.otras{ display:grid; gap:14px; margin-top:-8px; padding-top:28px; border-top:1px solid var(--raya); }
 .otras .rot{ font-size:10.5px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--tinta-3); }
 .otras-fila{ display:flex; flex-wrap:wrap; gap:8px; }
 .ficha-otra{ min-height:44px; padding:10px 18px; border-radius:999px; border:1px solid rgba(20,22,28,.2); background:transparent; color:var(--tinta); cursor:pointer; font:500 15.5px/1.2 var(--sans); transition:background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
@@ -326,6 +332,7 @@ main{ position:relative; z-index:1; }
 .papel .wa, .tarjeta .wa{ color:var(--tinta-2); }
 .papel .wa a, .tarjeta .wa a{ color:var(--tinta); text-decoration-color:var(--azul); }
 .tarjeta .wa{ text-align:center; font-size:14.5px; }
+.tarjeta .wa a{ display:block; }
 .hilo{ position:relative; display:grid; gap:36px; }
 .hilo::before{ content:""; position:absolute; left:18.5px; top:20px; bottom:20px; width:1px; background:linear-gradient(180deg, rgba(188,197,255,.6), rgba(246,244,239,.14)); }
 .hilo > li{ position:relative; display:grid; grid-template-columns:38px minmax(0, 1fr); gap:18px; align-items:start; }
@@ -468,7 +475,7 @@ main{ position:relative; z-index:1; }
   .tcards{ grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; }
   .mas-ter ul{ display:grid; grid-template-columns:1fr 1fr; column-gap:40px; padding:0 28px 12px; }
   .mas-ter summary{ padding:24px 28px; }
-  .otras{ margin-top:72px; }
+  .otras{ margin-top:0; }
   .carril{ margin-inline:0; padding-inline:0; scroll-padding-left:0; gap:20px; }
   .carril.terapias > *{ flex-basis:calc((100% - 60px) / 3.4); }
   .carril.voces > *{ flex:1 1 0; }

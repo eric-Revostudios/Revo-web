@@ -307,7 +307,8 @@
       var pasos = [x[2], x[3], x[4]].map(function (t, k) { return '<li><span>' + T.pasosTerapia[k] + '</span><p>' + t + '</p></li>'; }).join('');
       return '<article class="tcard"><div class="marco">' + (f[0] ? '<img src="' + FOTO + f[0] + '" alt="" loading="lazy" decoding="async" style="object-position:' + f[1] + '">' : '') +
         '<span class="idx" aria-hidden="true">0' + (i + 1) + ' / 0' + total + '</span></div>' +
-        '<div class="txt"><h3>' + x[0] + '</h3><p class="meta">' + x[1] + '</p><ol class="como">' + pasos + '</ol></div></article>';
+        '<div class="txt"><h3>' + x[0] + '</h3><p class="meta">' + x[1] + '</p>' +
+        '<p class="quees">' + (x[5] || (C.QUE_ES && C.QUE_ES[x[0]]) || '') + '</p><ol class="como">' + pasos + '</ol></div></article>';
     }).join('');
     var resto = C.TERAPIAS.filter(function (t) { return !suyas[t.nombre]; }).map(function (t) {
       return '<li><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
