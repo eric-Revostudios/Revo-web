@@ -103,8 +103,11 @@
     flecha: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
     atras: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>',
     visto: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
-    lado: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>'
+    lado: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>',
+    ir: '<svg class="ir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>'
   };
+  var CALMA = false;
+  try { CALMA = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
   var navegado = false;   // true en cuanto ha habido un cambio de hash dentro de la página
 
   function cab(derecha) {
@@ -119,7 +122,7 @@
   }
   function ir(nombre) { if (location.hash.replace('#', '') === nombre) render(); else location.hash = nombre; }
   function botonReservar(desde, clase) {
-    return '<a class="boton' + (clase ? ' ' + clase : '') + '" href="' + MOMENCE + '" data-reservar="' + desde + '" data-title="Tu punto de partida">' + T.reservar + '</a>';
+    return '<a class="boton' + (clase ? ' ' + clase : '') + '" href="' + MOMENCE + '" data-reservar="' + desde + '" data-title="Tu punto de partida"><span>' + T.reservar + '</span>' + I.ir + '</a>';
   }
   function whatsapp(pregunta, desde) {
     return '<p class="wa">' + pregunta + ' <a href="' + C.WHATSAPP + '" target="_blank" rel="noopener" data-wa="' + desde + '">' + T.waEnlace + '</a></p>';
@@ -132,7 +135,7 @@
       '<div class="w escena-w"><div class="lado-izq">' +
         '<div class="tramos" role="img" aria-label="Pregunta ' + n + ' de 3">' + tramos + '</div>' +
         '<div class="cuerpo entra">' + dentro + '</div></div>' +
-        '<div class="vitrina" aria-hidden="true"><img src="' + FOTO + 'metodo-diagnostico.webp" alt="" width="2000" height="1334"></div>' +
+        '<div class="vitrina" aria-hidden="true"><img src="' + FOTO + 'metodo-diagnostico.webp" alt="" width="2000" height="1334"><span class="pie-foto">' + T.pieFoto + '</span></div>' +
       '</div></section>';
   }
   function atras() { return '<button type="button" data-atras>' + I.atras + T.atras + '</button>'; }
@@ -159,8 +162,8 @@
         '<p class="eco" id="eco" aria-live="polite">' + (S.tocado ? porTramo(C.ECO)[1] : T.pista1) + '</p>' +
       '</div>' +
       '<div class="abajo">' +
-        '<button type="button" class="boton boton--luz" id="seguir">' + T.continuar + '</button>' +
-        '<p class="mini atajo">' + T.nota1 + ' <button type="button" class="enlace" id="directo">' + T.directo + '</button></p>' +
+        '<button type="button" class="boton boton--luz" id="seguir"><span>' + T.continuar + '</span>' + I.ir + '</button>' +
+        '<p class="mini atajo"><button type="button" class="enlace" id="directo">' + T.directo + '</button></p>' +
       '</div>'));
 
     var input = document.getElementById('porcentaje'), marco = app.querySelector('.escena');
@@ -189,7 +192,7 @@
         '<p class="texto">' + T.pista2 + '</p>' +
         '<div class="marcas">' + marcas + '</div>' +
       '</div>' +
-      '<div class="abajo"><button type="button" class="boton boton--luz" id="seguir">' + T.continuar + '</button></div>',
+      '<div class="abajo"><button type="button" class="boton boton--luz" id="seguir"><span>' + T.continuar + '</span>' + I.ir + '</button></div>',
       atras()));
     app.querySelectorAll('.marca').forEach(function (c) {
       c.addEventListener('click', function () {
@@ -249,7 +252,7 @@
         '<div class="pila pila--l">' +
           '<p class="ojo">' + T.ojoResultado + '</p>' +
           '<div class="marcador" style="--p:' + S.p + '" role="img" aria-label="Has dicho ' + S.p + ' por ciento' + (r > 0 ? '. Margen: ' + r + ' por ciento' : '') + '">' +
-            '<div class="cifras"><div class="hoy"><span class="rot">' + T.hoy + '</span><b>' + S.p + '<small>%</small></b></div>' +
+            '<div class="cifras"><div class="hoy"><span class="rot">' + T.hoy + '</span><b><span id="cuenta">' + S.p + '</span><small>%</small></b></div>' +
               (r > 0 ? '<div class="queda"><span class="rot">' + T.margen + '</span><b>' + r + '&nbsp;%</b></div>' : '') + '</div>' +
             '<div class="trazo"><i class="hecho"></i>' + (r > 0 ? '<i class="resto"></i>' : '') + '<i class="punto"></i></div>' +
           '</div>' +
@@ -261,18 +264,21 @@
   }
 
   function secCombinacion(a, cien) {
-    var tarjetas = a.terapias.map(function (id) {
+    var total = a.terapias.length;
+    var tarjetas = a.terapias.map(function (id, i) {
       var t = C.TERAPIAS[id], que = (a.que && a.que[id]) || t.que;
-      return '<article class="ter"><div class="marco"><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '"></div>' +
-        '<div class="txt"><p class="meta">' + t.meta + '</p><h3>' + t.nombre + '</h3><p class="que">' + que + '</p></div></article>';
+      return '<article class="ter"><div class="marco"><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
+        '<span class="idx" aria-hidden="true">0' + (i + 1) + ' / 0' + total + '</span></div>' +
+        '<div class="txt"><h3>' + t.nombre + '</h3><p class="meta">' + t.meta + '</p><p class="que">' + que + '</p></div></article>';
     }).join('');
+    var puntos = a.terapias.map(function (id, i) { return '<i' + (i === 0 ? ' class="on"' : '') + '></i>'; }).join('');
     return '<section class="sec papel"><div class="w pila pila--l">' +
       '<div class="pila"><p class="ojo">' + (cien ? T.ojoConservar : T.ojoNotarias) + '</p>' +
         '<p class="apunte">' + (cien ? C.AREAS.todo.apunte : a.apunte) + '</p></div>' +
       '<div class="pila"><p class="ojo">' + T.ojoCombinar + '</p>' +
         '<p class="texto medio">' + T.combinar.replace('{tema}', a.tema) + '</p>' +
         '<div class="terapias" tabindex="0" role="group" aria-label="Terapias">' + tarjetas + '</div>' +
-        '<p class="mini desliza" aria-hidden="true">' + T.desliza + I.lado + '</p>' +
+        '<p class="mini desliza" aria-hidden="true"><span class="puntos">' + puntos + '</span><span class="pista">' + T.desliza + I.lado + '</span></p>' +
         '<p class="texto medio cierre-nota">' + T.criterio + '</p></div>' +
     '</div></section>';
   }
@@ -287,18 +293,19 @@
     var pasos = C.PASOS.map(function (p, i) {
       return '<li><span class="num">' + (i + 1) + '</span><div class="txt"><h3>' + p[0] + '</h3><p class="texto">' + p[1] + '</p>' + (i === 1 ? ficha() : '') + '</div></li>';
     }).join('');
-    var claves = (C.MINUTOS ? [C.MINUTOS + ' minutos'] : []).concat(T.claves).map(function (c) { return '<li>' + c + '</li>'; }).join('');
+    var claves = (C.MINUTOS ? [[T.claveDuracion, T.minutos.replace('{m}', C.MINUTOS)]] : []).concat(T.claves)
+      .map(function (c) { return '<div><dt>' + c[0] + '</dt><dd>' + c[1] + '</dd></div>'; }).join('');
     var H = primera ? 'h1' : 'h2';
     return '<section class="sec alba grano' + (primera ? ' primera' : '') + '" id="invitacion">' + (primera ? cab('<button type="button" data-cambiar>' + T.preguntas + '</button>') : '') +
       '<div class="w invita-rejilla' + (primera ? ' entra' : '') + '">' +
-        '<div class="resumen-visita">' +
-          '<p class="ojo">' + T.ojoInvita + '</p>' +
+        '<div class="resumen-visita"><div class="tarjeta">' +
+          '<div class="tarjeta-cab"><img src="' + FOTO + 'revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819"><p class="ojo">' + T.ojoInvita + '</p></div>' +
           '<' + H + ' class="t2"' + (primera ? ' data-titulo' : '') + '>' + T.invita + '</' + H + '>' +
           '<p class="entrada">' + (para ? '<em class="para">' + para + '</em> ' : '') + T.oferta + '</p>' +
-          '<ul class="claves">' + claves + '</ul>' +
-          botonReservar('propuesta', 'boton--luz') +
+          '<dl class="claves">' + claves + '</dl>' +
+          botonReservar('propuesta', 'boton--tinta') +
           whatsapp(T.waAntes, 'propuesta') +
-        '</div>' +
+        '</div></div>' +
         '<div class="pila"><p class="ojo">' + (C.MINUTOS ? T.ojoPasos.replace('{m}', C.MINUTOS) : T.ojoPasosSinMinutos) + '</p><ol class="hilo">' + pasos + '</ol></div>' +
       '</div></section>';
   }
@@ -356,6 +363,65 @@
     '</div></section>';
   }
 
+  /* ---------- movimiento de la página de resultado ----------
+     · El número sube hasta su valor (con temporizador, no con requestAnimationFrame, para que siempre termine).
+     · Los bloques aparecen al entrar en pantalla. Solo se esconden si el navegador sabe avisar de cuándo entran;
+       si no, se quedan a la vista.
+     · Los puntos de las terapias siguen al dedo en el móvil. */
+  function movimiento() {
+    var cuenta = document.getElementById('cuenta');
+    if (cuenta && !CALMA) {
+      var fin = S.p, ini = Math.max(50, fin - 14), paso = 0, pasos = 14;
+      cuenta.textContent = ini;
+      var reloj = setInterval(function () {
+        paso++;
+        var k = 1 - Math.pow(1 - paso / pasos, 3);
+        cuenta.textContent = Math.round(ini + (fin - ini) * k);
+        if (paso >= pasos) { clearInterval(reloj); cuenta.textContent = fin; }
+      }, 55);
+    }
+
+    var caja = app.querySelector('.terapias'), puntos = app.querySelectorAll('.puntos i');
+    if (caja && puntos.length) {
+      caja.addEventListener('scroll', function () {
+        var t = caja.querySelector('.ter');
+        if (!t) return;
+        var ancho = t.getBoundingClientRect().width + 12;
+        var n = Math.max(0, Math.min(puntos.length - 1, Math.round(caja.scrollLeft / ancho)));
+        for (var i = 0; i < puntos.length; i++) puntos[i].className = i === n ? 'on' : '';
+      }, { passive: true });
+    }
+
+    if (CALMA || !('IntersectionObserver' in window)) return;
+    var piezas = [].slice.call(app.querySelectorAll(
+      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .apunte, .sec.papel .texto, .ter, .tarjeta, .hilo > li, ' +
+      '.mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
+    var alto = window.innerHeight;
+    var ojo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('visto');
+        ojo.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .05 });
+    piezas.forEach(function (el) {
+      if (el.getBoundingClientRect().top < alto * .92) return;   // lo que ya se ve no se esconde
+      var hermanos = el.parentNode ? [].slice.call(el.parentNode.children) : [];
+      el.style.setProperty('--d', Math.min(hermanos.indexOf(el), 4) * 70 + 'ms');
+      el.classList.add('rev');
+      ojo.observe(el);
+    });
+    // Red de seguridad: si algo quedara sin avisar, a los seis segundos de estar a la vista se enseña igual.
+    window.addEventListener('scroll', function seguro() {
+      var hay = false;
+      piezas.forEach(function (el) {
+        if (!el.classList.contains('rev') || el.classList.contains('visto')) return;
+        if (el.getBoundingClientRect().top < window.innerHeight * .9) el.classList.add('visto'); else hay = true;
+      });
+      if (!hay) window.removeEventListener('scroll', seguro);
+    }, { passive: true });
+  }
+
   function flota() { return '<div class="flota" id="flota"><div class="w">' + botonReservar('fijo', '') + '</div></div>'; }
 
   function activaResultado(tema) {
@@ -370,6 +436,7 @@
     app.querySelectorAll('[data-duda]').forEach(function (d) {
       d.addEventListener('toggle', function () { if (d.open) evento('abrio_duda', { duda: C.DUDAS[d.getAttribute('data-duda')][0] }); });
     });
+    movimiento();
     var cookies = app.querySelector('[data-cookies]');
     if (cookies) cookies.addEventListener('click', function () { if (window.revoCookies && window.revoCookies.open) window.revoCookies.open(); });
 

@@ -4,6 +4,8 @@
    se vean antes de que cargue el JavaScript: si se cambian aquí, se cambian también allí).
    Voz: la de los guiones de los vídeos (12-nov-2026) y el documento de la landing del equipo. Escenas de cada día,
    nada de explicar mecanismos del cuerpo, sin masculinos genéricos, sin precio en los titulares.
+   Tono (repaso del 16-nov-2026): sobrio y amable. Frases cortas, de tú, sin exclamaciones; se normaliza sin culpa
+   («es más habitual de lo que parece», «y no pasa nada») y nunca se promete un resultado.
    Cifras: skill revo-tono (references/datos.md) y la web. No se inventa ninguna. */
 
 window.TU_PUNTO = {
@@ -32,22 +34,22 @@ window.TU_PUNTO = {
     pregunta1: '¿A qué porcentaje te sientes hoy?',
     pista1: 'Mueve la línea hasta tu número.',
     nota1: '',
-    directo: 'O ve directamente a la invitación',
+    directo: 'Prefiero ir directamente a la invitación',
 
     /* 2 · lo que ya haces */
-    paso2: '2 de 3',
+    paso2: '02 / 03',
     pregunta2: '¿Qué haces ya <em>por cuidarte</em>?',
     pista2: 'Marca todo lo que hagas.',
     menos: 'Menos de lo que me gustaría',
 
     /* 3 · dónde lo notarías */
-    paso3: '3 de 3 · Has dicho {p}&nbsp;%',
+    paso3: '03 / 03 · Has dicho {p}&nbsp;%',
     pregunta3: '¿Dónde notarías <em class="n">ese {r}&nbsp;%</em>?',
     pregunta3cien: '¿Dónde quieres seguir así <em>dentro de veinte años</em>?',
 
     /* resultado */
     cambiar: 'Cambiar respuestas',
-    ojoResultado: 'Tu resultado',
+    ojoResultado: 'Lo que nos has contado',
     hoy: 'Hoy',
     margen: 'Margen',
     ojoNotarias: 'Dónde lo notarías',
@@ -55,18 +57,22 @@ window.TU_PUNTO = {
     ojoCombinar: 'Las terapias que pueden ayudarte',
     combinar: 'Para {tema}, solemos combinar estas tres. Cada visita dura alrededor de una hora.',
     desliza: 'Desliza para ver las tres',
+    de: 'de',
     criterio: 'Cuáles tienen sentido para ti, y con qué frecuencia, lo decidimos después de medirte, con criterio médico. Eso es tu punto de partida.',
 
     hacesMucho: 'Haces mucho. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti.',
     hacesBase: 'Es una buena base. Lo siguiente es saber dónde merece la pena poner el esfuerzo.',
-    hacesMenos: 'Dices que haces menos de lo que te gustaría. No hace falta saber por dónde empezar: primero se mide y después se hace un plan sencillo.',
+    hacesMenos: 'Haces menos de lo que te gustaría, y no pasa nada. No hace falta saber por dónde empezar: primero se mide y después se hace un plan sencillo.',
     hacesDatos: 'Ya tienes datos. Aquí alguien los mira contigo.',
 
     /* la invitación */
     ojoInvita: 'Por invitación',
     invita: 'Te invitamos a tu <em>punto de partida</em>',
     oferta: 'Conoce REVO, descubre si es para ti, mide tu punto de partida y sal con un plan.',
-    claves: ['Corre de nuestra cuenta', 'Sin compromiso', 'De lunes a sábado'],
+    /* La ficha de la invitación: qué es cada cosa y su valor. La duración sale de MINUTOS. */
+    claveDuracion: 'Duración',
+    minutos: '{m} minutos',
+    claves: [['Coste', 'Corre de nuestra cuenta'], ['Compromiso', 'Ninguno'], ['Cuándo', 'De lunes a sábado']],
     waAntes: '¿Prefieres preguntarnos antes?',
     waEnlace: 'Escríbenos por WhatsApp',
     ojoPasos: 'Así son tus {m} minutos',
@@ -77,6 +83,7 @@ window.TU_PUNTO = {
 
     /* el lugar */
     ojoLugar: 'REVO · Turó Park',
+    pieFoto: 'REVO Studios · Turó Park, Barcelona',
     lugarA: 'Para saber si es tu lugar,',
     lugarB: '<em>hay que entrar</em>.',
     lugar: 'REVO es una clínica de longevidad en Turó Park, vivida como un club: crioterapia, luz roja, cámara hiperbárica y PEMF, con un equipo médico detrás.',
@@ -102,15 +109,15 @@ window.TU_PUNTO = {
   /* Lo que dice la línea según el número (de mayor a menor: gana el primero que se cumple). */
   ECO: [
     [100, 'Entonces se trata de cuidarlo.'],
-    [90, 'Muy bien. Y aún con margen.'],
+    [90, 'Muy bien. Y todavía queda margen.'],
     [75, 'Bien. Y con margen.'],
-    [0, 'Hay margen. Es un buen punto de partida.']
+    [0, 'Es más habitual de lo que parece.']
   ],
 
   /* Titular del resultado según el número: primera frase y segunda (esta va en cursiva). */
   TITULARES: [
     [100, 'Estás al cien.', 'Ahora se trata de cuidarlo.'],
-    [90, 'Estás muy bien.', 'Y aún queda margen.'],
+    [90, 'Estás muy bien.', 'Y todavía queda margen.'],
     [75, 'Estás bien.', 'Y queda margen.'],
     [0, 'Hay margen.', 'Y es un buen punto de partida.']
   ],
@@ -121,7 +128,7 @@ window.TU_PUNTO = {
     ['comida', 'Cuido lo que como', 'cuidas lo que comes'],
     ['descanso', 'Cuido mi descanso', 'cuidas tu descanso'],
     ['suplementos', 'Tomo suplementos', 'tomas suplementos'],
-    ['reloj', 'Llevo reloj o anillo', 'llevas un reloj o un anillo que mide'],
+    ['reloj', 'Llevo reloj o anillo inteligente', 'llevas un reloj o un anillo que mide'],
     ['analiticas', 'Me hago analíticas', 'te haces analíticas'],
     ['masaje', 'Masaje o fisio', 'vas al masaje o al fisio'],
     ['yoga', 'Yoga o meditación', 'haces yoga o meditas']
@@ -176,11 +183,11 @@ window.TU_PUNTO = {
              pemf: 'Campos electromagnéticos pulsados: la magnetoterapia de los fisioterapeutas, en todo el cuerpo. Ayuda a desinflamar y a reparar.' } },
     piel:     { boton: 'En la piel', tema: 'cuidar la piel',
       para: 'Para que la piel también entre en el plan.',
-      apunte: 'Con los años la piel produce menos colágeno y pierde firmeza. Es un cambio lento, de los que no se ven de un mes para otro. Por eso se da por normal.',
+      apunte: 'La piel cambia despacio: de un año para otro, no de un mes para otro. Por eso se acaba dando por normal. Y cuidarla también merece un plan.',
       terapias: ['luzpiel', 'facial', 'respark'] },
     todo:     { boton: 'En nada concreto. Quiero seguir así muchos años', boton100: 'En todo', tema: 'cuidarse a largo plazo',
       para: 'Para saber desde dónde empiezas.',
-      apunte: 'Te encuentras bien, y precisamente por eso es fácil dejarlo para más adelante. La longevidad no empieza cuando aparece un problema. Empieza por saber cómo estás hoy y cuidarlo con constancia.',
+      apunte: 'Cuando hablamos de longevidad, pensamos en lo que queremos seguir haciendo dentro de veinte años. No empieza cuando aparece un problema. Empieza por saber cómo estás hoy, y por cuidarlo con constancia.',
       terapias: ['hbot', 'luz', 'crio'] }
   },
   ORDEN: ['energia', 'descanso', 'cabeza', 'cuerpo', 'piel', 'todo'],
@@ -217,7 +224,7 @@ window.TU_PUNTO = {
   DATOS: [
     ['1 o 2', 'visitas por semana, según tu plan.'],
     ['7 – 21&nbsp;h', 'de lunes a viernes. Los sábados, de 9 a 14&nbsp;h.'],
-    ['175', 'plazas de miembro.']
+    ['150', 'plazas de miembro.']
   ],
 
   /* Nombre, cargo, texto y foto (vacía = sin foto). El texto de la doctora es el de la portada de la web. */
@@ -237,7 +244,7 @@ window.TU_PUNTO = {
   /* Dudas plegadas: pregunta y respuesta. */
   DUDAS: [
     ['¿Tiene algún coste?', 'Tu punto de partida corre de nuestra cuenta. Solo pagas si decides probar una terapia ese día o hacerte miembro.'],
-    ['¿Me compromete a algo?', 'No. Sales con tu plan, te hagas miembro o no.'],
+    ['¿Me compromete a algo?', 'A nada. Sales con tu plan, te hagas miembro o no.'],
     ['Ya hago muchas cosas. ¿Qué me aporta?', 'Orden. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti, con constancia. Medir te dice cuáles.'],
     ['¿Puedo probar una terapia ese mismo día?', 'Sí. Puedes probar una o dos: crioterapia, luz roja, PEMF, BrainTap, Pulsetto o presoterapia. Son 40&nbsp;€ una y 60&nbsp;€ dos.'],
     ['¿Y si decido seguir?', 'La membresía REVO Core incluye todas las terapias sin límite, hasta dos masajes al mes y tu plan personalizado con seguimiento médico. Son 350&nbsp;€ al mes, con un mínimo de tres meses, o 3.500&nbsp;€ al año. <a href="membresias.html">Ver la membresía</a>'],
