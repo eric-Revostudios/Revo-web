@@ -364,7 +364,7 @@
       carril('voces', tarjetas, C.VOCES.length, '') +
       '<div class="medico-rejilla">' +
         '<div class="pila"><h3 class="t3">' + T.medicoTitulo + '</h3>' +
-          '<blockquote class="cita cita--raya"><p>«' + C.FRASE_DRA.texto + '»</p><footer>' + C.FRASE_DRA.quien + '</footer></blockquote></div>' +
+          '</div>' +
         '<ul class="equipo">' + personas + '</ul>' +
       '</div>' +
       '<div class="lugar-rejilla">' +
