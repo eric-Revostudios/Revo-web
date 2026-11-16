@@ -213,48 +213,25 @@ main{ position:relative; z-index:1; }
 .puente{ max-width:760px; gap:18px; }
 .puente .t2 em{ display:block; }
 /* 2 · el bloque de la persona: qué le pasa y qué terapias ayudan */
-/* arriba, lo que hay detrás; debajo, sus terapias: foto, dato y los tres pasos (en tu cuerpo · lo que provoca · en qué te ayuda) */
-.detras{ display:grid; gap:26px; }
-.tcard{ display:grid; align-content:start; border-radius:var(--radio); overflow:hidden; background:var(--carta); box-shadow:0 0 0 1px var(--raya) inset, 0 30px 50px -40px rgba(20,22,28,.55); }
-.tcard .marco{ position:relative; aspect-ratio:16 / 10; background:var(--velo); overflow:hidden; }
-.tcard .marco::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,7,15,.4) 0%, rgba(6,7,15,0) 40%); pointer-events:none; }
-.tcard img{ width:100%; height:100%; object-fit:cover; transition:transform 1.4s var(--ease); }
-.tcard:hover img{ transform:scale(1.035); }
-.tcard .idx{ position:absolute; z-index:1; top:14px; left:16px; font-size:10px; font-weight:600; letter-spacing:.24em; color:var(--luz); font-variant-numeric:tabular-nums; }
-.tcard .txt{ display:grid; gap:6px; padding:20px 20px 8px; }
-.tcard h3{ font-weight:500; font-size:25px; line-height:1.12; letter-spacing:-.018em; }
-.tcard .meta{ font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--azul-texto); }
-.tcard .quees{ padding-top:6px; font-size:17px; line-height:1.5; color:var(--tinta); text-wrap:pretty; }
-/* los tres pasos, unidos por un hilo: el último (en qué te ayuda) es el que se enciende */
-.como{ position:relative; margin-top:14px; padding:18px 0 12px; border-top:1px solid var(--raya); display:grid; gap:18px; }
-.como::before{ content:""; position:absolute; left:3.5px; top:26px; bottom:34px; width:1px; background:linear-gradient(180deg, rgba(20,22,28,.16), rgba(104,129,252,.7)); }
-.como li{ position:relative; display:grid; gap:3px; padding-left:24px; }
-.como li::before{ content:""; position:absolute; left:0; top:4px; width:8px; height:8px; border-radius:50%; background:var(--carta); box-shadow:0 0 0 1px rgba(20,22,28,.3) inset; }
-.como li:last-child::before{ background:var(--azul); box-shadow:0 0 0 4px rgba(104,129,252,.18), 0 0 12px 1px rgba(104,129,252,.7); }
-.como span{ font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-3); }
-.como li:last-child span{ color:var(--azul-texto); }
-.como p{ font-size:16.5px; line-height:1.5; color:var(--tinta-2); text-wrap:pretty; }
-.como li:last-child p{ font-size:18px; line-height:1.4; letter-spacing:-.006em; color:var(--tinta); }
-/* las otras terapias, plegadas */
-.mas-ter{ margin-top:16px; border-radius:var(--radio); background:var(--carta); box-shadow:0 0 0 1px var(--raya) inset; }
-.mas-ter summary{ list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 20px; }
-.mas-ter summary::-webkit-details-marker{ display:none; }
-.mas-ter summary span{ display:grid; gap:3px; font-size:15px; line-height:1.45; color:var(--tinta-2); }
-.mas-ter summary b{ font-weight:500; font-size:19px; letter-spacing:-.012em; color:var(--tinta); }
-.mas-ter summary i{ flex:none; position:relative; width:30px; height:30px; border-radius:50%; box-shadow:0 0 0 1px var(--raya) inset; transition:background-color .3s var(--ease); }
-.mas-ter summary i::before, .mas-ter summary i::after{ content:""; position:absolute; left:9.5px; right:9.5px; top:14.5px; height:1px; background:var(--tinta); transition:transform .35s var(--ease), background-color .3s var(--ease); }
-.mas-ter summary i::after{ transform:rotate(90deg); }
-.mas-ter[open] summary i{ background:var(--noche); box-shadow:none; }
-.mas-ter[open] summary i::before, .mas-ter[open] summary i::after{ background:var(--luz); }
-.mas-ter[open] summary i::after{ transform:rotate(0deg); }
-.mas-ter summary:focus-visible{ outline:2px solid var(--azul-boton); outline-offset:3px; border-radius:var(--radio); }
-.mas-ter ul{ padding:0 20px 8px; }
-.mas-ter li{ display:grid; grid-template-columns:76px minmax(0, 1fr); gap:16px; align-items:start; padding:18px 0; border-top:1px solid var(--raya); }
-.mas-ter img{ width:76px; height:96px; border-radius:12px; object-fit:cover; }
-.mas-ter h3{ font-weight:500; font-size:19px; line-height:1.2; letter-spacing:-.012em; }
-.mas-ter h3 small{ display:block; padding:4px 0 6px; font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--azul-texto); }
-.mas-ter li p{ font-size:15.5px; line-height:1.5; color:var(--tinta); }
-.mas-ter li .nota{ padding-top:4px; color:var(--tinta-2); }
+/* 02 · las terapias, en lista: foto pequeña con el nombre al lado y, debajo, el texto corrido.
+   La frase de «en qué te ayuda a ti» es la que destaca, con un filo de luz azul. */
+.tlista{ border-top:1px solid var(--raya); }
+.tfila{ display:grid; gap:16px; padding:26px 0; border-bottom:1px solid var(--raya); }
+.tfila .cabeza{ display:grid; grid-template-columns:92px minmax(0, 1fr); gap:18px; align-items:center; }
+.tfila img{ width:92px; height:112px; border-radius:16px; object-fit:cover; box-shadow:0 20px 30px -22px rgba(20,22,28,.6); }
+.tfila h3{ font-weight:500; font-size:27px; line-height:1.1; letter-spacing:-.02em; }
+.tfila .meta{ padding-top:8px; font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; line-height:1.5; color:var(--azul-texto); }
+.cuerpo-t{ display:grid; gap:12px; }
+.tfila .base{ font-size:17px; line-height:1.58; color:var(--tinta-2); text-wrap:pretty; }
+.tfila .ayuda{ padding-left:16px; border-left:2px solid var(--azul); font-size:19px; line-height:1.4; letter-spacing:-.008em; color:var(--tinta); text-wrap:pretty; }
+.tfila .mas{ font-size:14px; line-height:1.5; color:var(--tinta-3); }
+.tfila .mas span{ font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; margin-right:6px; }
+.otras-cab{ gap:12px; padding-top:20px; }
+/* las demás, un punto más discretas */
+.tlista--otras .tfila .cabeza{ grid-template-columns:72px minmax(0, 1fr); gap:16px; }
+.tlista--otras .tfila img{ width:72px; height:88px; border-radius:13px; }
+.tlista--otras .tfila h3{ font-size:22px; }
+.tlista--otras .tfila .ayuda{ font-size:17.5px; border-left-color:rgba(104,129,252,.45); }
 .cita--raya{ padding:4px 0 4px 22px; border-radius:0; background:none; border-left:2px solid var(--azul); }
 .cita--raya.grande p{ font-size:clamp(24px, 6.4vw, 34px); line-height:1.25; }
 .cuales{ display:grid; gap:14px; margin-top:26px; padding:22px 22px 20px; border-radius:var(--radio); background:var(--noche); color:var(--luz); box-shadow:0 30px 50px -34px rgba(54,80,207,.9); }
@@ -486,7 +463,15 @@ main{ position:relative; z-index:1; }
   .sub1{ font-size:17px; }
   .sec{ padding-block:140px; }
   .alba + .papel, .papel + .alba, .papel + .velado{ margin-top:-40px; border-radius:40px 40px 0 0; }
-  .detras{ grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:96px; align-items:start; }
+  .tfila{ grid-template-columns:minmax(0, 4fr) minmax(0, 7fr); gap:64px; padding:40px 0; align-items:start; }
+  .tfila .cabeza{ grid-template-columns:120px minmax(0, 1fr); gap:24px; }
+  .tfila img{ width:120px; height:148px; border-radius:18px; }
+  .tfila h3{ font-size:32px; }
+  .tlista--otras .tfila{ padding:30px 0; }
+  .tlista--otras .tfila .cabeza{ grid-template-columns:88px minmax(0, 1fr); }
+  .tlista--otras .tfila img{ width:88px; height:108px; }
+  .tlista--otras .tfila h3{ font-size:25px; }
+  .otras-cab{ padding-top:40px; }
   .carril.tuyas > *{ flex-basis:calc((100% - 40px) / 3); }
   .mas-ter ul{ display:grid; grid-template-columns:1fr 1fr; column-gap:40px; padding:0 28px 12px; }
   .mas-ter summary{ padding:24px 28px; }

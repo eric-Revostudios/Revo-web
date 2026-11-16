@@ -56,31 +56,20 @@ window.TU_PUNTO = {
     parte3: 'Tu punto de partida',
     parte4: 'Quién lo vive y quién está detrás',
     parte5: 'Antes de venir',
-    terapiasTuyas: 'Las terapias que <em>pueden ayudarte</em>',
-    deslizaTuyas: 'Desliza para verlas',
+    /* 02 · sus terapias y las demás, en el mismo formato de lista. {deseo} es lo que eligió, dicho de tú. */
+    terapiasTuyas: 'Lo que puede ayudarte a <em>{deseo}</em>',
+    terapiasEntrada: 'Tecnología que hasta hace poco solo usaban deportistas de élite, con más de 20 años de ciencia detrás.',
+    otrasTitulo: 'Otras terapias que <em>también pueden ayudarte</em>',
+    otrasEntrada: 'Unas tienen que ver con {tema}. Otras, con cosas en las que quizá también te reconoces.',
+    tambien: 'También ayuda con',
     /* el puente hacia la invitación: lo que ya hace, y lo que falta */
     puenteBase: 'Falta saber dónde poner el esfuerzo.',
     puenteMucho: 'Haces mucho. Falta saber qué tiene más sentido para ti.',
     puenteMenos: 'No hace falta saber por dónde empezar. Primero se mide.',
 
-    /* el bloque de la persona y lo que hay alrededor */
-    eco: 'Te gustaría <em>{deseo}</em>.',
-    ojoBloque: 'Lo que hay detrás',
-    ojoTusTerapias: 'Las terapias que pueden ayudarte',
-    pasosTerapia: ['En tu cuerpo', 'Lo que provoca', 'En qué te ayuda'],
-    verOtras: 'Ver las otras terapias',
-    otrasTexto: 'El resto de lo que hay en REVO, y en qué ayuda cada una.',
+    /* el puente hacia la invitación */
     cuales: '¿Cuáles son las tuyas?',
     cualesTexto: 'Depende de cómo estés, y eso se mide.',
-    cualesEnlace: 'Te lo contamos más abajo',
-    otra: '¿Buscas otra cosa?',
-
-    /* todas las terapias */
-    ojoTerapias: 'Las terapias',
-    terapiasTitulo: 'Tecnología que hasta hace poco solo usaban <em>deportistas de élite</em>',
-    terapiasTexto: 'Más de 20 años de ciencia detrás, todo en un mismo sitio y con acompañamiento médico.',
-    notas: 'Qué notas',
-    desliza: 'Desliza para ver las siete',
 
     /* lo que dicen los miembros */
     ojoVoces: 'Miembros',
@@ -166,117 +155,118 @@ window.TU_PUNTO = {
     ['yoga', 'Yoga o meditación', 'haces yoga o meditas']
   ],
 
-  /* Todas las terapias, en el orden del carrusel: nombre, duración, foto y encuadre, qué es y qué se nota.
-     Las cifras son las de la skill revo-tono (references/datos.md): el documento del equipo traía la presión de la
-     hiperbárica y los minutos de PEMF y BrainTap de antes. */
+  /* Las terapias (17-nov-2026). De cada una:
+     · `dato`: duración y la cifra que la define.
+     · `base`: qué es y qué hace en tu cuerpo, con su tecnología dicha tal cual (−130 °C, oxígeno al 98 %…) y cada
+       palabra rara explicada al lado. Es igual para todo el mundo.
+     · `usos`: en qué ayuda según lo que la persona eligió (energia · descanso · cabeza · cuerpo · piel · todo).
+       Solo se escribe donde la relación es real; nunca promete un resultado.
+     · `aparte`: la frase que sale cuando no tiene que ver con lo que eligió («Si además…»), porque casi nadie se
+       reconoce en una sola cosa.
+     La línea «También ayuda con…» sale sola de los `usos` que tenga. Cifras: revo-tono (datos.md). */
   TERAPIAS: [
-    { nombre: 'Crioterapia', dur: 'De 2 a 3 minutos', foto: 'cryo-chamber.webp', pos: '50% 45%',
-      que: 'Cabina de frío seco a −130&nbsp;°C, siempre con tu coach al lado. Si no aguantas, puedes salir antes.',
-      notas: 'Despeja la cabeza, baja el estrés y desinflama. Muchos miembros cuentan que esa noche duermen mejor.' },
-    { nombre: 'Luz roja', dur: 'De 10 a 15 minutos', foto: 'redlight-chamber.webp', pos: '38% 50%',
-      que: 'Cama de luz roja e infrarroja, de cuerpo entero.',
-      notas: 'Estimula el colágeno de la piel, da energía a las células y ayuda a regular el sueño.' },
-    { nombre: 'Cámara hiperbárica', dur: '60 minutos', foto: 'hbot-chamber.webp', pos: '46% 50%',
-      que: 'Oxígeno al 98&nbsp;% a 1,9 atmósferas.',
-      notas: 'Lleva hasta diez veces más oxígeno a los tejidos: ayuda a reparar y a bajar la inflamación.' },
-    { nombre: 'PEMF', dur: 'De 20 a 40 minutos', foto: 'pemf-hero.webp', pos: '62% 50%',
-      que: 'Campos electromagnéticos pulsados en todo el cuerpo, en reposo.',
-      notas: 'Activa el modo descanso: sueño más profundo y menos inflamación.' },
-    { nombre: 'BrainTap', dur: '15 minutos', foto: 'braintap-hero.webp', pos: '50% 30%',
-      que: 'Auriculares de sonido binaural y luces.',
-      notas: 'Relajación profunda cuando cuesta desconectar, o foco y energía.' },
-    { nombre: 'Presoterapia', dur: 'De 20 a 30 minutos', foto: 'presoterapia-hero.webp', pos: '50% 40%',
-      que: 'Botas que comprimen de los pies hacia arriba.',
-      notas: 'Piernas ligeras, menos retención, mejor circulación.' },
-    { nombre: 'Respark®', dur: 'Una hora', foto: 'therapy.webp', pos: '40% 50%',
-      que: 'Crioterapia seguida de un masaje drenante y moldeador.',
-      notas: 'Silueta y retención.' }
+    { nombre: 'Crioterapia', dato: 'De 2 a 3 minutos · −130&nbsp;°C', foto: 'cryo-chamber.webp', pos: '50% 45%',
+      base: 'Una cabina de frío seco a −130&nbsp;°C, de cuerpo entero, siempre con tu coach al lado. En dos o tres minutos, el frío baja el cortisol, la hormona del estrés, hace que el cuerpo libere dopamina y noradrenalina, y desinflama.',
+      usos: {
+        energia: 'Sales con la cabeza despejada y el cuerpo despierto: energía para el resto del día.',
+        descanso: 'Con el cortisol más bajo, el cuerpo llega a la noche en calma. Muchos miembros cuentan que ese día duermen mejor.',
+        cabeza: 'Sales con la cabeza despejada, con una mezcla de energía y calma.',
+        cuerpo: 'Suelta la musculatura y te ayuda a llegar mejor al siguiente esfuerzo.',
+        todo: 'Desinflama y activa el metabolismo: dos cosas que conviene cuidar con constancia.' },
+      aparte: 'Si acumulas estrés, ayuda a bajarlo en tres minutos.' },
+    { nombre: 'Luz roja', dato: 'De 10 a 15 minutos · 630–940&nbsp;nm', foto: 'redlight-chamber.webp', pos: '38% 50%',
+      base: 'Una cama de luz roja e infrarroja, de cuerpo entero. La infrarroja llega hasta cinco centímetros bajo la piel: activa la mitocondria, que es donde cada célula produce su energía, y estimula el colágeno y la elastina.',
+      usos: {
+        energia: 'Te ayuda a tener energía de fondo, no solo durante un rato.',
+        descanso: 'Ayuda a regular el reloj interno, el que le dice al cuerpo cuándo toca dormir.',
+        cabeza: 'Ayuda a regular el sueño, y con la cabeza descansada todo se ve más claro.',
+        cuerpo: 'Activa la energía de las células, también las del músculo.',
+        piel: 'Con constancia, ayuda a que la piel gane firmeza y mejor tono. Hay también una máscara para la cara.',
+        todo: 'Energía en las células y firmeza en la piel: dos cosas que se van perdiendo con los años.' },
+      aparte: 'Si además quieres cuidar la piel, estimula el colágeno y la elastina.' },
+    { nombre: 'Cámara hiperbárica', dato: '60 minutos · oxígeno al 98&nbsp;%', foto: 'hbot-chamber.webp', pos: '46% 50%',
+      base: 'Una cámara presurizada a 1,9 atmósferas en la que respiras oxígeno casi puro. Con la presión, llega a los tejidos hasta diez veces más oxígeno. Es la tecnología que se usa antes y después de una operación.',
+      usos: {
+        energia: 'Con el cuerpo mejor recuperado, el día pesa menos.',
+        cuerpo: 'Ayuda a que músculos y tejidos se reparen después del esfuerzo.',
+        todo: 'Ayuda a los tejidos a repararse y a bajar la inflamación: cuidar el cuerpo por dentro, antes de que lo pida.' },
+      aparte: 'Si entrenas o vienes de una lesión, ayuda a que los tejidos se reparen.' },
+    { nombre: 'PEMF', dato: 'De 20 a 40 minutos', foto: 'pemf-hero.webp', pos: '62% 50%',
+      base: 'Campos electromagnéticos pulsados que recorren todo el cuerpo mientras estás en reposo: la magnetoterapia de los fisioterapeutas. Activan el modo «descanso y reparación» del sistema nervioso, desinflaman y mejoran la circulación.',
+      usos: {
+        energia: 'Cuando el cuerpo descansa de verdad, al día siguiente hay más energía.',
+        descanso: 'Te ayuda a llegar al sueño profundo, que es cuando el cuerpo se repara.',
+        cabeza: 'Baja las revoluciones y te ayuda a terminar de verdad la jornada.',
+        cuerpo: 'Te ayuda a recuperarte del esfuerzo y a sentir el cuerpo más suelto.',
+        todo: 'Ayuda a mantener a raya la inflamación y a descansar mejor.' },
+      aparte: 'Si duermes regular, ayuda a llegar al sueño profundo.' },
+    { nombre: 'BrainTap', dato: '15 minutos', foto: 'braintap-hero.webp', pos: '50% 30%',
+      base: 'Unos auriculares con sonido binaural y unas luces sincronizadas, con los ojos cerrados. Llevan al cerebro a un estado de relajación profunda o de foco, según lo que necesites ese día.',
+      usos: {
+        energia: 'En modo foco, te ayuda a recuperar la concentración cuando el día se hace largo.',
+        descanso: 'Te ayuda a soltar el día antes de irte a dormir.',
+        cabeza: 'Te ayuda a apagar el ruido de fondo y a volver con la cabeza clara.' },
+      aparte: 'Si te cuesta desconectar, ayuda a bajar el ruido en quince minutos.' },
+    { nombre: 'Presoterapia', dato: 'De 20 a 30 minutos', foto: 'presoterapia-hero.webp', pos: '50% 40%',
+      base: 'Unas botas que se llenan de aire y comprimen de los pies a la cadera. Drenan la retención de líquidos y activan la circulación.',
+      usos: {
+        energia: 'Piernas ligeras: el cuerpo pesa menos al final del día.',
+        cuerpo: 'Descarga las piernas después de entrenar o de un día entero de pie.',
+        piel: 'Ayuda con la retención y con la sensación de pesadez.' },
+      aparte: 'Si acabas el día con las piernas cargadas, ayuda a dejarlas ligeras.' },
+    { nombre: 'Respark®', dato: 'Una hora', foto: 'therapy.webp', pos: '40% 50%',
+      base: 'Crioterapia a −130&nbsp;°C seguida de un masaje drenante y moldeador. El frío activa el cuerpo y el masaje trabaja la retención.',
+      usos: { piel: 'Trabaja la silueta, sesión a sesión.' },
+      aparte: 'Si además quieres trabajar la silueta y la retención, es la terapia.' },
+    { nombre: 'Masaje facial', dato: 'A mano', foto: 'massage-glow.webp', pos: '34% 40%', solo: 'piel',
+      base: 'Un masaje de la cara, a mano, después de la luz roja. Suelta la tensión de los músculos del rostro.',
+      usos: { piel: 'El rostro se relaja y refleja descanso.' },
+      aparte: '' }
   ],
 
-  /* Fotos de las terapias que salen en los bloques y no están en la lista de arriba. */
-  FOTOS_TERAPIA: { 'Masaje facial': ['massage-glow.webp', '34% 40%'] },
+  /* Cómo se nombra cada tema en «También ayuda con…». «todo» no sale: todo ayuda a cuidarse a largo plazo. */
+  USO_CORTO: { energia: 'la energía', descanso: 'el descanso', cabeza: 'la claridad y la calma', cuerpo: 'la fuerza y la recuperación', piel: 'el aspecto físico' },
 
-  /* Qué es cada terapia, en una línea (va bajo el nombre, antes de los tres pasos). */
-  QUE_ES: {
-    'Crioterapia': 'Una cabina de frío seco, de cuerpo entero. Siempre con tu coach al lado.',
-    'Luz roja': 'Una cama de luz roja e infrarroja, de cuerpo entero. Solo hay que tumbarse.',
-    'Cámara hiperbárica': 'Una cámara presurizada a 1,9 atmósferas, en la que respiras oxígeno casi puro.',
-    'PEMF': 'Campos electromagnéticos pulsados, en todo el cuerpo y en reposo. Es la magnetoterapia de los fisioterapeutas.',
-    'BrainTap': 'Unos auriculares con sonido binaural y unas luces sincronizadas, con los ojos cerrados.',
-    'Presoterapia': 'Unas botas que se llenan de aire y comprimen de los pies a la cadera.',
-    'Respark®': 'Crioterapia a −130&nbsp;°C y, después, un masaje drenante y moldeador.',
-    'Masaje facial': 'Un masaje de la cara, a mano, después de la luz.'
-  },
-
-  /* Cada fila de `filas`: terapia, dato, lo que hace en tu cuerpo, lo que provoca y en qué te ayuda; una sexta
-     casilla, si la hay, cambia el «qué es» para ese tema. (Eric, 16-nov-2026: «cuando les explicamos lo que hacen
-     en tu cuerpo, qué provoca eso y en qué te ayuda es cuando te dan ganas».)
-     · «En tu cuerpo» es el mecanismo, con cada palabra rara explicada al lado.
-     · «Lo que provoca» es lo que se nota, dicho con calma.
-     · «En qué te ayuda» contesta a su deseo y empieza siempre por «A…»: es una ayuda, nunca una promesa.
-     Solo lo que está en revo-tono (datos.md). */
-  /* Dónde lo notaría. De cada área: el botón de la pregunta, cómo se llama en «¿Buscas otra cosa?» (`corto`),
-     la frase que abre la invitación (`para`), y su bloque: título, lo que pasa, las terapias con su dato y lo que
-     hacen, y una cita si la hay. «Cuando la cabeza no para» y «Vivir más no es vivir mejor» son los dos bloques
-     del documento del equipo; los otros cuatro están escritos igual. */
+  /* Lo que la persona eligió. De cada tema: el botón de la pregunta, `deseo` (lo mismo dicho de tú, para el
+     título de sus terapias), `para` (la frase que abre la invitación), el título y la explicación de la parte 01,
+     `tema` (cómo se nombra en «Otras terapias…») y sus terapias principales, en orden. Las demás salen debajo. */
   AREAS: {
     energia:  { boton: 'Tener más energía en mi día a día', deseo: 'tener más energía en tu día a día', corto: 'Energía',
       para: 'Para seguir haciendo planes con energía.',
       titulo: 'Cuando la energía <em>no acompaña</em>',
       texto: 'Hay épocas en las que la energía no acompaña: cuesta arrancar, o se acaba antes que el día. La energía se produce en las células, y cuando el descanso y la recuperación no acompañan, se nota. Pasa tan poco a poco que se acaba dando por normal.',
-      filas: [
-        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío hace que el cuerpo libere dopamina y noradrenalina, y baja el cortisol, la hormona del estrés.', 'Sales con la cabeza despejada y el cuerpo despierto.', 'A tener energía para el resto del día.'],
-        ['Luz roja', 'De 10 a 15 minutos', 'La luz llega hasta cinco centímetros de profundidad y activa la mitocondria, que es donde cada célula produce su energía.', 'Un cuerpo que produce mejor su propia energía.', 'A que la energía sea de fondo, y no cosa de un rato.'],
-        ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Con la presión, llega a los tejidos hasta diez veces más oxígeno.', 'El cuerpo tiene con qué repararse.', 'A recuperarte mejor, para que el día pese menos.']
-      ] },
+      tema: 'tu energía',
+      terapias: ['Crioterapia', 'Luz roja', 'Cámara hiperbárica'] },
     descanso: { boton: 'Dormir mejor y levantarme con la sensación de haber descansado', deseo: 'dormir mejor y levantarte con la sensación de haber descansado', corto: 'Descanso',
       para: 'Para que dormir vuelva a ser descansar.',
       titulo: 'Cuando dormir <em>no es descansar</em>',
       texto: 'Duermes tus horas y te levantas igual. Si el sistema nervioso se queda en modo alerta, cuesta llegar al sueño profundo, que es cuando el cuerpo se repara.',
-      filas: [
-        ['PEMF', 'De 20 a 40 minutos', 'Activa el modo «descanso y reparación» del sistema nervioso.', 'El cuerpo baja el ritmo y suelta la tensión.', 'A llegar al sueño profundo, que es cuando el cuerpo se repara.'],
-        ['BrainTap', '15 minutos', 'El sonido y la luz llevan al cerebro a un estado de relajación profunda.', 'La cabeza deja de dar vueltas.', 'A soltar el día antes de irte a dormir.'],
-        ['Luz roja', 'De 10 a 15 minutos', 'Ayuda a regular el reloj interno, el que le dice al cuerpo cuándo toca dormir.', 'El cuerpo reconoce mejor cuándo es de noche.', 'A dormirte cuando toca y a descansar mejor.'],
-        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío baja el cortisol, la hormona del estrés.', 'El cuerpo se queda en calma después de la sesión.', 'A dormir mejor esa noche: es lo que más cuentan nuestros miembros.']
-      ] },
+      tema: 'tu descanso',
+      terapias: ['PEMF', 'BrainTap', 'Luz roja', 'Crioterapia'] },
     cabeza:   { boton: 'Tener la cabeza más clara y más tranquila', deseo: 'tener la cabeza más clara y más tranquila', corto: 'Claridad y calma',
       para: 'Para que la cabeza también termine la jornada.',
       titulo: 'Cuando la cabeza <em>no para</em>',
       texto: 'Cuando el día no termina al cerrar el portátil, el sistema nervioso se queda en modo alerta y el cortisol, la hormona del estrés, no baja. Rindes igual, pero cuesta estar del todo en la cena.',
-      filas: [
-        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío baja el cortisol, la hormona del estrés, y libera dopamina.', 'Sales con la cabeza despejada, con una mezcla de energía y calma.', 'A pensar con más claridad el resto del día.'],
-        ['BrainTap', '15 minutos', 'El sonido y la luz llevan al cerebro a un estado de relajación profunda, o de foco.', 'El ruido de fondo se apaga durante un rato.', 'A desconectar cuando la cabeza no para.'],
-        ['PEMF', 'De 20 a 40 minutos', 'Hace pasar al sistema nervioso del modo alerta al modo «descanso y reparación».', 'Bajan las revoluciones.', 'A terminar de verdad la jornada.']
-      ] },
+      tema: 'tu cabeza',
+      terapias: ['Crioterapia', 'BrainTap', 'PEMF'] },
     cuerpo:   { boton: 'Sentir mi cuerpo fuerte y ágil', deseo: 'sentir tu cuerpo fuerte y ágil', corto: 'Fuerza y agilidad',
       para: 'Para que el cuerpo responda como quieres.',
       titulo: 'Cuando el cuerpo <em>no responde igual</em>',
       texto: 'Con los años el cuerpo cambia: cuesta más mantener la fuerza y la agilidad, y tarda más en recuperarse después del esfuerzo. Rendir bien, en el deporte y en el día a día, depende tanto de lo que haces como de cómo te recuperas.',
-      filas: [
-        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío desinflama y suelta la musculatura.', 'El cuerpo se queda ligero y menos cargado.', 'A llegar mejor al siguiente entrenamiento.'],
-        ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Con la presión, llega a músculos y tejidos hasta diez veces más oxígeno.', 'Los tejidos se reparan con más facilidad. Por eso se usa antes y después de una operación.', 'A recuperarte bien del esfuerzo y a rendir más.'],
-        ['PEMF', 'De 20 a 40 minutos', 'Desinflama y mejora la circulación.', 'El cuerpo se siente más suelto.', 'A mantenerte ágil, entrenes o no.'],
-        ['Presoterapia', 'De 20 a 30 minutos', 'La compresión drena y activa la circulación.', 'Piernas ligeras.', 'A descargar después de entrenar o de un día entero de pie.']
-      ] },
+      tema: 'tu cuerpo',
+      terapias: ['Crioterapia', 'Cámara hiperbárica', 'PEMF', 'Presoterapia'] },
     piel:     { boton: 'Sentirme mejor con mi aspecto físico', deseo: 'sentirte mejor con tu aspecto físico', corto: 'Aspecto físico',
       para: 'Para verte tan bien como te sientes.',
       titulo: 'Cuando quieres <em>verte como te sientes</em>',
       texto: 'El aspecto cambia despacio: de un año para otro, no de un mes para otro. Con los años se produce menos colágeno y elastina, que dan firmeza a la piel, y al cuerpo le cuesta más drenar. Cuidarlo también merece un plan.',
-      filas: [
-        ['Luz roja', 'De 10 a 15 minutos', 'Estimula el colágeno y la elastina, que son lo que da firmeza a la piel.', 'Con constancia, una piel con más firmeza y mejor tono.', 'A verte tan bien como te sientes.', 'Luz roja e infrarroja, en la cama de cuerpo entero y en una máscara para la cara.'],
-        ['Respark®', 'Una hora', 'El frío activa el cuerpo y el masaje, drenante y moldeador, trabaja la retención.', 'Se trabaja la silueta, sesión a sesión.', 'A sentirte mejor con tu cuerpo.'],
-        ['Presoterapia', 'De 20 a 30 minutos', 'La compresión drena la retención y mejora la circulación.', 'Piernas más ligeras y menos hinchadas.', 'A quitarte la sensación de pesadez.'],
-        ['Masaje facial', 'A mano', 'Suelta la tensión de los músculos de la cara.', 'El rostro se relaja.', 'A que la cara refleje descanso.']
-      ] },
+      tema: 'tu aspecto',
+      terapias: ['Luz roja', 'Respark®', 'Presoterapia', 'Masaje facial'] },
     todo:     { boton: 'Seguir como estoy durante muchos años', deseo: 'seguir como estás durante muchos años', corto: 'Longevidad',
       para: 'Para saber desde dónde empiezas.',
       titulo: 'Vivir más no es <em>vivir mejor</em>',
       texto: 'El envejecimiento no empieza con las primeras arrugas o las canas: empieza mucho antes, cuando el cansancio dura más, cuesta concentrarse o el cuerpo no se recupera como antes. Cuidarse a tiempo es lo que permite seguir haciendo lo que te gusta.',
-      filas: [
-        ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Con la presión, llega a los tejidos hasta diez veces más oxígeno.', 'Los tejidos se reparan mejor y baja la inflamación.', 'A cuidar el cuerpo por dentro, antes de que lo pida.'],
-        ['Luz roja', 'De 10 a 15 minutos', 'Activa la mitocondria, de donde sale la energía de las células, y estimula el colágeno.', 'Energía en las células y firmeza en la piel: dos cosas que se van perdiendo con los años.', 'A conservar lo que hoy das por hecho.'],
-        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío desinflama y activa el metabolismo.', 'Un cuerpo menos inflamado y más despierto.', 'A mantenerte bien con constancia, año tras año.']
-      ] }
+      tema: 'los años que vienen',
+      terapias: ['Cámara hiperbárica', 'Luz roja', 'Crioterapia'] }
   },
   ORDEN: ['energia', 'descanso', 'cabeza', 'cuerpo', 'piel', 'todo'],
 

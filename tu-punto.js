@@ -275,11 +275,6 @@
   }
   function rotulo(n, texto) { return '<p class="ojo"><span class="nn">0' + n + '</span>' + texto + '</p>'; }
 
-  function fotoTerapia(nombre) {
-    for (var i = 0; i < C.TERAPIAS.length; i++) if (C.TERAPIAS[i].nombre === nombre) return [C.TERAPIAS[i].foto, C.TERAPIAS[i].pos];
-    return (C.FOTOS_TERAPIA && C.FOTOS_TERAPIA[nombre]) || ['', '50% 50%'];
-  }
-
   /* 01 · Por qué pasa. No se repite lo que la persona ha dicho: una línea pequeña con su respuesta y, directo,
      el título de su tema y la explicación (es normal, y tiene un porqué). */
   function htmlPorque(id, contestado) {
@@ -289,36 +284,36 @@
       '<p class="entrada suave">' + a.texto + '</p>';
   }
   function secPorque(id, contestado) {
-    return '<section class="sec alba grano primera">' + cab('<button type="button" data-cambiar>' + (contestado ? T.cambiar : T.preguntas) + '</button>') +
+    return '<section class="sec alba grano primera">' + cab(contestado ? atras() : '<button type="button" data-cambiar>' + T.preguntas + '</button>') +
       '<div class="w"><div class="pila porque entra" id="porque" data-contestado="' + (contestado ? 1 : 0) + '">' + htmlPorque(id, contestado) + '</div></div></section>';
   }
 
-  /* 02 · Qué puede ayudarte: sus terapias en carrusel (foto, qué es y los tres pasos), las demás plegadas
-     y «¿Buscas otra cosa?» para cambiar de tema sin volver a las preguntas. */
+  /* 02 · Qué puede ayudarte. Dos listas con el mismo formato (foto pequeña y texto corrido): las terapias de
+     su tema y, debajo, las demás. De cada una: qué es y qué hace en tu cuerpo, en qué te ayuda a ti, y con qué
+     más ayuda. Las demás dicen su relación con el tema si la hay; si no, con qué otra cosa ayudan. */
+  function filaTerapia(t, id) {
+    var uso = t.usos && t.usos[id];
+    var mas = Object.keys(C.USO_CORTO).filter(function (k) { return k !== id && t.usos && t.usos[k]; }).map(function (k) { return C.USO_CORTO[k]; });
+    return '<li class="tfila"><div class="cabeza"><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
+        '<div><h3>' + t.nombre + '</h3><p class="meta">' + t.dato + '</p></div></div>' +
+      '<div class="cuerpo-t"><p class="base">' + t.base + '</p>' +
+        '<p class="ayuda">' + (uso || t.aparte) + '</p>' +
+        (mas.length ? '<p class="mas"><span>' + T.tambien + '</span> ' + mas.join(' · ') + '</p>' : '') +
+      '</div></li>';
+  }
   function htmlBloque(id) {
-    var a = C.AREAS[id], total = a.filas.length, suyas = {};
-    var tarjetas = a.filas.map(function (x, i) {
-      var f = fotoTerapia(x[0]); suyas[x[0]] = 1;
-      var pasos = [x[2], x[3], x[4]].map(function (t, k) { return '<li><span>' + T.pasosTerapia[k] + '</span><p>' + t + '</p></li>'; }).join('');
-      return '<article class="tcard"><div class="marco">' + (f[0] ? '<img src="' + FOTO + f[0] + '" alt="" loading="lazy" decoding="async" style="object-position:' + f[1] + '">' : '') +
-        '<span class="idx" aria-hidden="true">0' + (i + 1) + ' / 0' + total + '</span></div>' +
-        '<div class="txt"><h3>' + x[0] + '</h3><p class="meta">' + x[1] + '</p>' +
-        '<p class="quees">' + (x[5] || (C.QUE_ES && C.QUE_ES[x[0]]) || '') + '</p><ol class="como">' + pasos + '</ol></div></article>';
-    }).join('');
-    var resto = C.TERAPIAS.filter(function (t) { return !suyas[t.nombre]; }).map(function (t) {
-      return '<li><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
-        '<div><h3>' + t.nombre + ' <small>' + t.dur + '</small></h3><p>' + t.que + '</p><p class="nota">' + t.notas + '</p></div></li>';
-    }).join('');
-    var otras = C.ORDEN.filter(function (x) { return x !== id; }).map(function (x) {
-      return '<button type="button" class="ficha-otra" data-otra="' + x + '">' + C.AREAS[x].corto + '</button>';
-    }).join('');
+    var a = C.AREAS[id];
+    function de(nombre) { for (var i = 0; i < C.TERAPIAS.length; i++) if (C.TERAPIAS[i].nombre === nombre) return C.TERAPIAS[i]; return null; }
+    var suyas = a.terapias.map(de).filter(Boolean);
+    // las demás: primero las que tienen que ver con su tema
+    var demas = C.TERAPIAS.filter(function (t) { return suyas.indexOf(t) < 0 && (!t.solo || t.solo === id); });
+    demas = demas.filter(function (t) { return t.usos[id]; }).concat(demas.filter(function (t) { return !t.usos[id]; }));
     return '<div class="pila pila--l">' +
-      '<div class="pila medio">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.terapiasTuyas + '</h2></div>' +
-      carril('tuyas', tarjetas, total, T.deslizaTuyas) +
-      '<div class="pila pila--s">' +
-        (resto ? '<details class="mas-ter"><summary><span><b>' + T.verOtras + '</b>' + T.otrasTexto + '</span><i aria-hidden="true"></i></summary><ul>' + resto + '</ul></details>' : '') +
-        '<div class="otras"><p class="rot">' + T.otra + '</p><div class="otras-fila">' + otras + '</div></div>' +
-      '</div>' +
+      '<div class="pila medio">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.terapiasTuyas.replace('{deseo}', a.deseo) + '</h2>' +
+        '<p class="texto grande">' + T.terapiasEntrada + '</p></div>' +
+      '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul>' +
+      (demas.length ? '<div class="pila medio otras-cab"><h3 class="t3">' + T.otrasTitulo + '</h3><p class="texto">' + T.otrasEntrada.replace('{tema}', a.tema) + '</p></div>' +
+        '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul>' : '') +
     '</div>';
   }
   function secBloque(id) {
@@ -460,7 +455,7 @@
 
     if (CALMA || !('IntersectionObserver' in window)) return;
     var piezas = [].slice.call(app.querySelectorAll(
-      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .puente .entrada, .tcard, .mas-ter, .otras, .voz, .tarjeta, .hilo > li, ' +
+      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .puente .entrada, .tfila, .voz, .tarjeta, .hilo > li, ' +
       '.extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
     var alto = window.innerHeight;
     var ojo = new IntersectionObserver(function (es) {
@@ -490,28 +485,15 @@
 
   function flota() { return '<div class="flota" id="flota"><div class="w">' + botonReservar('fijo', '') + '</div></div>'; }
 
-  /* «¿Buscas otra cosa?»: cambia el bloque sin volver a las preguntas, y con él la frase de la invitación. */
-  function activaBloque(rehecho) {
-    var caja = document.getElementById('bloque');
-    if (rehecho) activaCarriles(caja);
-    [].forEach.call(caja.querySelectorAll('[data-otra]'), function (b) {
-      b.addEventListener('click', function () {
-        var id = b.getAttribute('data-otra');
-        S.area = id; guarda();
-        evento('eligio_tema', { tema: id, porcentaje: S.p, haces: S.haces.join(',') });
-        var porque = document.getElementById('porque');
-        if (porque) { porque.classList.remove('entra'); porque.innerHTML = htmlPorque(id, porque.getAttribute('data-contestado') === '1'); }
-        caja.innerHTML = htmlBloque(id);
-        var para = document.getElementById('para');
-        if (para) para.textContent = C.AREAS[id].para;
-        activaBloque(true);
-        window.scrollTo({ top: 0, behavior: CALMA ? 'auto' : 'smooth' });
-      });
-    });
-  }
-
   function activaResultado(tema) {
-    app.querySelector('[data-cambiar]').addEventListener('click', function () { evento('cambio_tema', { desde: tema }); ir(''); });
+    // Arriba: quien ha contestado vuelve a la tercera pregunta para elegir otra cosa; quien no, empieza las preguntas.
+    var cambiar = app.querySelector('[data-cambiar]');
+    if (cambiar) cambiar.addEventListener('click', function () { evento('cambio_tema', { desde: tema }); ir(''); });
+    var volver = app.querySelector('[data-atras]');
+    if (volver) volver.addEventListener('click', function () {
+      evento('cambio_tema', { desde: tema });
+      if (navegado && history.length > 1) history.back(); else ir('paso-3');
+    });
     app.querySelectorAll('[data-reservar]').forEach(function (b) {
       // El evento sale por sendBeacon antes de saltar; Momence se abre en la misma pestaña.
       b.addEventListener('click', function () { evento('pulso_reservar', { tema: tema, desde: b.getAttribute('data-reservar') }); });
@@ -534,7 +516,6 @@
         if (p && p.catch) p.catch(function () {});
       });
     });
-    activaBloque();
     var mapa = app.querySelector('[data-mapa]');
     if (mapa) mapa.addEventListener('click', function () {
       // El mapa de Google solo se carga si se pide (pone sus propias cookies).
