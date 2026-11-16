@@ -220,7 +220,7 @@ window.TU_PUNTO = {
      hacen, y una cita si la hay. «Cuando la cabeza no para» y «Vivir más no es vivir mejor» son los dos bloques
      del documento del equipo; los otros cuatro están escritos igual. */
   AREAS: {
-    energia:  { boton: 'tener más energía en mi día a día', deseo: 'tener más energía en tu día a día', corto: 'Energía',
+    energia:  { boton: 'Tener más energía en mi día a día', deseo: 'tener más energía en tu día a día', corto: 'Energía',
       para: 'Para seguir haciendo planes con energía.',
       titulo: 'Cuando la energía <em>no acompaña</em>',
       texto: 'Hay épocas en las que la energía no acompaña: cuesta arrancar, o se acaba antes que el día. La energía se produce en las células, y cuando el descanso y la recuperación no acompañan, se nota. Pasa tan poco a poco que se acaba dando por normal.',
@@ -229,7 +229,7 @@ window.TU_PUNTO = {
         ['Luz roja', 'De 10 a 15 minutos', 'La luz llega hasta cinco centímetros de profundidad y activa la mitocondria, que es donde cada célula produce su energía.', 'Un cuerpo que produce mejor su propia energía.', 'A que la energía sea de fondo, y no cosa de un rato.'],
         ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Con la presión, llega a los tejidos hasta diez veces más oxígeno.', 'El cuerpo tiene con qué repararse.', 'A recuperarte mejor, para que el día pese menos.']
       ] },
-    descanso: { boton: 'dormir mejor y levantarme con la sensación de haber descansado', deseo: 'dormir mejor y levantarte con la sensación de haber descansado', corto: 'Descanso',
+    descanso: { boton: 'Dormir mejor y levantarme con la sensación de haber descansado', deseo: 'dormir mejor y levantarte con la sensación de haber descansado', corto: 'Descanso',
       para: 'Para que dormir vuelva a ser descansar.',
       titulo: 'Cuando dormir <em>no es descansar</em>',
       texto: 'Duermes tus horas y te levantas igual. Si el sistema nervioso se queda en modo alerta, cuesta llegar al sueño profundo, que es cuando el cuerpo se repara.',
@@ -239,7 +239,7 @@ window.TU_PUNTO = {
         ['Luz roja', 'De 10 a 15 minutos', 'Ayuda a regular el reloj interno, el que le dice al cuerpo cuándo toca dormir.', 'El cuerpo reconoce mejor cuándo es de noche.', 'A dormirte cuando toca y a descansar mejor.'],
         ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'El frío baja el cortisol, la hormona del estrés.', 'El cuerpo se queda en calma después de la sesión.', 'A dormir mejor esa noche: es lo que más cuentan nuestros miembros.']
       ] },
-    cabeza:   { boton: 'tener la cabeza más clara y más tranquila', deseo: 'tener la cabeza más clara y más tranquila', corto: 'Claridad y calma',
+    cabeza:   { boton: 'Tener la cabeza más clara y más tranquila', deseo: 'tener la cabeza más clara y más tranquila', corto: 'Claridad y calma',
       para: 'Para que la cabeza también termine la jornada.',
       titulo: 'Cuando la cabeza <em>no para</em>',
       texto: 'Cuando el día no termina al cerrar el portátil, el sistema nervioso se queda en modo alerta y el cortisol, la hormona del estrés, no baja. Rindes igual, pero cuesta estar del todo en la cena.',
@@ -248,7 +248,7 @@ window.TU_PUNTO = {
         ['BrainTap', '15 minutos', 'El sonido y la luz llevan al cerebro a un estado de relajación profunda, o de foco.', 'El ruido de fondo se apaga durante un rato.', 'A desconectar cuando la cabeza no para.'],
         ['PEMF', 'De 20 a 40 minutos', 'Hace pasar al sistema nervioso del modo alerta al modo «descanso y reparación».', 'Bajan las revoluciones.', 'A terminar de verdad la jornada.']
       ] },
-    cuerpo:   { boton: 'rendir más y sentir mi cuerpo fuerte y ágil', deseo: 'rendir más y sentir tu cuerpo fuerte y ágil', corto: 'Rendimiento',
+    cuerpo:   { boton: 'Sentir mi cuerpo fuerte y ágil', deseo: 'sentir tu cuerpo fuerte y ágil', corto: 'Fuerza y agilidad',
       para: 'Para que el cuerpo responda como quieres.',
       titulo: 'Cuando el cuerpo <em>no responde igual</em>',
       texto: 'Con los años el cuerpo cambia: cuesta más mantener la fuerza y la agilidad, y tarda más en recuperarse después del esfuerzo. Rendir bien, en el deporte y en el día a día, depende tanto de lo que haces como de cómo te recuperas.',
@@ -258,7 +258,7 @@ window.TU_PUNTO = {
         ['PEMF', 'De 20 a 40 minutos', 'Desinflama y mejora la circulación.', 'El cuerpo se siente más suelto.', 'A mantenerte ágil, entrenes o no.'],
         ['Presoterapia', 'De 20 a 30 minutos', 'La compresión drena y activa la circulación.', 'Piernas ligeras.', 'A descargar después de entrenar o de un día entero de pie.']
       ] },
-    piel:     { boton: 'sentirme mejor con mi aspecto físico', deseo: 'sentirte mejor con tu aspecto físico', corto: 'Aspecto físico',
+    piel:     { boton: 'Sentirme mejor con mi aspecto físico', deseo: 'sentirte mejor con tu aspecto físico', corto: 'Aspecto físico',
       para: 'Para verte tan bien como te sientes.',
       titulo: 'Cuando quieres <em>verte como te sientes</em>',
       texto: 'El aspecto cambia despacio: de un año para otro, no de un mes para otro. Con los años se produce menos colágeno y elastina, que dan firmeza a la piel, y al cuerpo le cuesta más drenar. Cuidarlo también merece un plan.',
@@ -268,7 +268,7 @@ window.TU_PUNTO = {
         ['Presoterapia', 'De 20 a 30 minutos', 'La compresión drena la retención y mejora la circulación.', 'Piernas más ligeras y menos hinchadas.', 'A quitarte la sensación de pesadez.'],
         ['Masaje facial', 'A mano', 'Suelta la tensión de los músculos de la cara.', 'El rostro se relaja.', 'A que la cara refleje descanso.']
       ] },
-    todo:     { boton: 'seguir como estoy durante muchos años', deseo: 'seguir como estás durante muchos años', corto: 'Longevidad',
+    todo:     { boton: 'Seguir como estoy durante muchos años', deseo: 'seguir como estás durante muchos años', corto: 'Longevidad',
       para: 'Para saber desde dónde empiezas.',
       titulo: 'Vivir más no es <em>vivir mejor</em>',
       texto: 'El envejecimiento no empieza con las primeras arrugas o las canas: empieza mucho antes, cuando el cansancio dura más, cuesta concentrarse o el cuerpo no se recupera como antes. Cuidarse a tiempo es lo que permite seguir haciendo lo que te gusta.',
