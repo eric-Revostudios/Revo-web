@@ -292,26 +292,24 @@
      su tema y, debajo, las demás. De cada una: qué es y qué hace en tu cuerpo, en qué te ayuda a ti, y con qué
      más ayuda. Las demás dicen su relación con el tema si la hay; si no, con qué otra cosa ayudan. */
   function filaTerapia(t, id) {
-    var u = (t.usos && t.usos[id]) || t.aparte || {};
+    // cada texto es una lista de párrafos escrita para esa terapia y ese objetivo; «» » marca la frase que destaca
+    var ps = (t.textos && t.textos[id]) || [];
     return '<li class="tfila"><div class="cabeza"><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
         '<div><h3>' + t.nombre + '</h3><p class="meta">' + t.dato + '</p></div></div>' +
-      '<div class="cuerpo-t"><p class="base">' + t.que + (u.hace ? ' ' + u.hace : '') + '</p>' +
-        '<p class="ayuda">' + u.ayuda + '</p>' +
-        (u.extra ? '<p class="mas">' + u.extra + '</p>' : '') +
-      '</div></li>';
+      '<div class="cuerpo-t">' + ps.map(function (x) {
+        return x.indexOf('» ') === 0 ? '<p class="ayuda">' + x.slice(2) + '</p>' : '<p class="base">' + x + '</p>';
+      }).join('') + '</div></li>';
   }
   function htmlBloque(id) {
     var a = C.AREAS[id];
-    function de(nombre) { for (var i = 0; i < C.TERAPIAS.length; i++) if (C.TERAPIAS[i].nombre === nombre) return C.TERAPIAS[i]; return null; }
+    function de(nombre) { for (var i = 0; i < C.TERAPIAS.length; i++) if (C.TERAPIAS[i].nombre === nombre && C.TERAPIAS[i].textos[id]) return C.TERAPIAS[i]; return null; }
     var suyas = a.terapias.map(de).filter(Boolean);
-    // las demás: primero las que tienen que ver con su tema
-    var demas = C.TERAPIAS.filter(function (t) { return suyas.indexOf(t) < 0 && (!t.solo || t.solo === id); });
-    demas = demas.filter(function (t) { return t.usos[id]; }).concat(demas.filter(function (t) { return !t.usos[id]; }));
+    var demas = (a.otras || []).map(de).filter(Boolean);
     return '<div class="pila pila--l">' +
       '<div class="pila medio">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.terapiasTuyas.replace('{deseo}', a.deseo) + '</h2>' +
         '<p class="texto grande">' + T.terapiasEntrada + '</p></div>' +
       '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul>' +
-      (demas.length ? '<div class="pila medio otras-cab"><h3 class="t3">' + T.otrasTitulo + '</h3><p class="texto">' + (demas.some(function (t) { return t.usos[id]; }) ? T.otrasEntrada.replace('{tema}', a.tema) : T.otrasEntradaSolo) + '</p></div>' +
+      (demas.length ? '<div class="pila medio otras-cab"><h3 class="t3">' + T.otrasTitulo + '</h3><p class="texto">' + T.otrasEntrada + '</p></div>' +
         '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul>' : '') +
     '</div>';
   }

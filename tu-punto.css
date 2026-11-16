@@ -214,7 +214,7 @@ main{ position:relative; z-index:1; }
 .puente .t2 em{ display:block; }
 /* 2 · el bloque de la persona: qué le pasa y qué terapias ayudan */
 /* 02 · las terapias, en lista: foto pequeña con el nombre al lado y, debajo, el texto corrido.
-   La frase de «en qué te ayuda a ti» es la que destaca, con un filo de luz azul. */
+   Cada texto tiene su forma: los párrafos van en .base y la frase que destaca (si la hay, y donde toque), en .ayuda. */
 .tlista{ border-top:1px solid var(--raya); }
 .tfila{ display:grid; gap:16px; padding:26px 0; border-bottom:1px solid var(--raya); }
 .tfila .cabeza{ display:grid; grid-template-columns:92px minmax(0, 1fr); gap:18px; align-items:center; }
@@ -224,13 +224,13 @@ main{ position:relative; z-index:1; }
 .cuerpo-t{ display:grid; gap:12px; }
 .tfila .base{ font-size:17px; line-height:1.58; color:var(--tinta-2); text-wrap:pretty; }
 .tfila .ayuda{ padding-left:16px; border-left:2px solid var(--azul); font-size:19px; line-height:1.4; letter-spacing:-.008em; color:var(--tinta); text-wrap:pretty; }
-.tfila .mas{ font-size:15.5px; line-height:1.55; color:var(--tinta-2); text-wrap:pretty; }
 .otras-cab{ gap:12px; padding-top:20px; }
 /* las demás, un punto más discretas */
 .tlista--otras .tfila .cabeza{ grid-template-columns:72px minmax(0, 1fr); gap:16px; }
 .tlista--otras .tfila img{ width:72px; height:88px; border-radius:13px; }
 .tlista--otras .tfila h3{ font-size:22px; }
 .tlista--otras .tfila .ayuda{ font-size:17.5px; border-left-color:rgba(104,129,252,.45); }
+.tlista--otras .tfila .base{ font-size:16.5px; }
 .cita--raya{ padding:4px 0 4px 22px; border-radius:0; background:none; border-left:2px solid var(--azul); }
 .cita--raya.grande p{ font-size:clamp(24px, 6.4vw, 34px); line-height:1.25; }
 .cuales{ display:grid; gap:14px; margin-top:26px; padding:22px 22px 20px; border-radius:var(--radio); background:var(--noche); color:var(--luz); box-shadow:0 30px 50px -34px rgba(54,80,207,.9); }
