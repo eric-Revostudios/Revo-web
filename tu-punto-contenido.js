@@ -33,7 +33,6 @@ window.TU_PUNTO = {
     sub1: 'Crioterapia, luz roja, cámara hiperbárica, PEMF y más, con acompañamiento médico.',
     pregunta1: 'Hoy me siento al…',
     pista1: 'Desliza hasta donde te reconozcas.',
-    directo: 'Ver las terapias directamente',
 
     /* 2 · lo que ya haces */
     paso2: '02 / 03',
@@ -130,9 +129,9 @@ window.TU_PUNTO = {
     ojoDudas: 'Antes de venir',
     dudas: 'Preguntas <em>frecuentes</em>',
     waOtra: '¿Otra duda?',
-    lemaA: 'Los atajos no funcionan.',
-    lemaB: 'Los sistemas, sí.',
-    cierre: 'Empieza por el tuyo: te invitamos a tu punto de partida.',
+    lemaA: 'Volver a sentirte al 100&nbsp;%',
+    lemaB: 'empieza por saber cómo estás hoy.',
+    cierre: 'Te invitamos a tu punto de partida. Sin coste y sin compromiso.',
     marca: 'Wellbeing. Revolved.',
     direccion: 'Carrer de Ferran Agulló 24, Turó Park · 08021 Barcelona',
     horario: 'De lunes a viernes de 7:00 a 21:00 · Sábados de 9:00 a 14:00',

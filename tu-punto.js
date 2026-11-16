@@ -193,7 +193,6 @@
       '</div>' +
       '<div class="abajo">' +
         '<button type="button" class="boton boton--luz" id="seguir"><span>' + T.continuar + '</span>' + I.ir + '</button>' +
-        '<p class="mini atajo"><button type="button" class="enlace" id="directo">' + T.directo + '</button></p>' +
       '</div>'));
 
     var input = document.getElementById('porcentaje'), marco = app.querySelector('.escena');
@@ -206,7 +205,6 @@
       guarda();
     });
     document.getElementById('seguir').addEventListener('click', function () { guarda(); ir('paso-2'); });
-    document.getElementById('directo').addEventListener('click', function () { ir('ver'); });
   }
 
   /* ---------- 2 · lo que ya haces ---------- */
