@@ -288,30 +288,44 @@
           '</div>' +
         '</div>' +
         '<div class="pila dicho">' +
-          '<h1 class="t2" data-titulo><span class="linea">' + t[1] + '</span> <em class="linea">' + t[2] + '</em></h1>' +
-          '<p class="entrada suave">' + fraseHaces() + '</p></div>' +
+          '<h1 class="t2" data-titulo>' + T.eco.replace('{deseo}', C.AREAS[S.area].deseo) + '</h1>' +
+          '<p class="entrada">' + t[1] + ' ' + t[2] + '</p>' +
+          '<p class="texto">' + fraseHaces() + '</p></div>' +
       '</div></section>';
   }
 
   /* El bloque de la persona: qué le pasa, las terapias que ayudan con su dato y lo que hacen, una cita si la
      hay, y «¿Buscas otra cosa?» para ver el de otro tema sin volver a las preguntas. */
+  function fotoTerapia(nombre) {
+    for (var i = 0; i < C.TERAPIAS.length; i++) if (C.TERAPIAS[i].nombre === nombre) return [C.TERAPIAS[i].foto, C.TERAPIAS[i].pos];
+    return (C.FOTOS_TERAPIA && C.FOTOS_TERAPIA[nombre]) || ['', '50% 50%'];
+  }
   function htmlBloque(id) {
-    var a = C.AREAS[id];
-    var filas = a.filas.map(function (x) { return '<li><h3>' + x[0] + '</h3><p class="dato">' + x[1] + '</p><p class="hace">' + x[2] + '</p></li>'; }).join('');
+    var a = C.AREAS[id], total = a.filas.length, suyas = {};
+    var tarjetas = a.filas.map(function (x, i) {
+      var f = fotoTerapia(x[0]); suyas[x[0]] = 1;
+      var pasos = [x[2], x[3], x[4]].map(function (t, k) { return '<li><span>' + T.pasosTerapia[k] + '</span><p>' + t + '</p></li>'; }).join('');
+      return '<article class="tcard"><div class="marco">' + (f[0] ? '<img src="' + FOTO + f[0] + '" alt="" loading="lazy" decoding="async" style="object-position:' + f[1] + '">' : '') +
+        '<span class="idx" aria-hidden="true">0' + (i + 1) + ' / 0' + total + '</span></div>' +
+        '<div class="txt"><h3>' + x[0] + '</h3><p class="meta">' + x[1] + '</p><ol class="como">' + pasos + '</ol></div></article>';
+    }).join('');
+    var resto = C.TERAPIAS.filter(function (t) { return !suyas[t.nombre]; }).map(function (t) {
+      return '<li><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
+        '<div><h3>' + t.nombre + ' <small>' + t.dur + '</small></h3><p>' + t.que + '</p><p class="nota">' + t.notas + '</p></div></li>';
+    }).join('');
     var otras = C.ORDEN.filter(function (x) { return x !== id; }).map(function (x) {
       return '<button type="button" class="ficha-otra" data-otra="' + x + '">' + C.AREAS[x].corto + '</button>';
     }).join('');
-    return '<div class="bloque-rejilla">' +
-        '<div class="pila bloque-a"><p class="ojo">' + T.ojoBloque + '</p>' +
-          '<h2 class="t2">' + a.titulo + '</h2>' +
-          '<p class="texto grande">' + a.texto + '</p>' +
-          (a.cita ? '<blockquote class="cita cita--raya"><p>«' + a.cita.texto + '»</p><footer>' + a.cita.quien + '</footer></blockquote>' : '') +
-        '</div>' +
-        '<div class="pila bloque-b"><ul class="filas">' + filas + '</ul>' +
-          '<div class="cuales"><p><b>' + T.cuales + '</b> ' + T.cualesTexto + '</p><a href="#invitacion" data-bajar>' + T.cualesEnlace + I.abajo + '</a></div>' +
-        '</div>' +
+    return '<div class="pila pila--l">' +
+      '<div class="detras"><div class="pila"><p class="ojo">' + T.ojoBloque + '</p><h2 class="t2">' + a.titulo + '</h2></div>' +
+        '<div class="pila"><p class="texto grande">' + a.texto + '</p>' +
+          (a.cita ? '<blockquote class="cita cita--raya"><p>«' + a.cita.texto + '»</p><footer>' + a.cita.quien + '</footer></blockquote>' : '') + '</div></div>' +
+      '<div class="pila"><p class="ojo">' + T.ojoTusTerapias + '</p><div class="tcards">' + tarjetas + '</div>' +
+        '<div class="cuales"><p><b>' + T.cuales + '</b> ' + T.cualesTexto + '</p><a href="#invitacion" data-bajar>' + T.cualesEnlace + I.abajo + '</a></div>' +
+        (resto ? '<details class="mas-ter"><summary><span><b>' + T.verOtras + '</b>' + T.otrasTexto + '</span><i aria-hidden="true"></i></summary><ul>' + resto + '</ul></details>' : '') +
       '</div>' +
-      '<div class="otras"><p class="rot">' + T.otra + '</p><div class="otras-fila">' + otras + '</div></div>';
+      '<div class="otras"><p class="rot">' + T.otra + '</p><div class="otras-fila">' + otras + '</div></div>' +
+    '</div>';
   }
   function secBloque(id) {
     return '<section class="sec papel" id="ayudarme"><div class="w" id="bloque">' + htmlBloque(id) + '</div></section>';
@@ -324,20 +338,6 @@
       '<p class="mini desliza"><span class="puntos" aria-hidden="true">' + puntos + '</span>' +
         (pista ? '<span class="pista" aria-hidden="true">' + pista + I.lado + '</span>' : '') +
         '<span class="flechas"><button type="button" data-carril="-1" aria-label="Anteriores">' + I.atras + '</button><button type="button" data-carril="1" aria-label="Siguientes">' + I.flecha + '</button></span></p></div>';
-  }
-
-  function secTerapias() {
-    var total = C.TERAPIAS.length;
-    var tarjetas = C.TERAPIAS.map(function (t, i) {
-      return '<article class="ter"><div class="marco"><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
-        '<span class="idx" aria-hidden="true">0' + (i + 1) + ' / 0' + total + '</span></div>' +
-        '<div class="txt"><h3>' + t.nombre + '</h3><p class="meta">' + t.dur + '</p><p class="que">' + t.que + '</p>' +
-        '<p class="notas"><b>' + T.notas + '</b>' + t.notas + '</p></div></article>';
-    }).join('');
-    return '<section class="sec papel velado" id="terapias"><div class="w pila pila--l">' +
-      '<div class="pila medio"><p class="ojo">' + T.ojoTerapias + '</p><h2 class="t2">' + T.terapiasTitulo + '</h2><p class="texto grande">' + T.terapiasTexto + '</p></div>' +
-      carril('terapias', tarjetas, total, T.desliza) +
-    '</div></section>';
   }
 
   function secVoces() {
@@ -488,7 +488,7 @@
 
     if (CALMA || !('IntersectionObserver' in window)) return;
     var piezas = [].slice.call(app.querySelectorAll(
-      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .filas li, .cuales, .otras, .ter, .voz, .tarjeta, .hilo > li, ' +
+      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .tcard, .cuales, .mas-ter, .otras, .voz, .tarjeta, .hilo > li, ' +
       '.extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
     var alto = window.innerHeight;
     var ojo = new IntersectionObserver(function (es) {
@@ -529,6 +529,8 @@
         caja.innerHTML = htmlBloque(id);
         var para = document.getElementById('para');
         if (para) para.textContent = C.AREAS[id].para;
+        var eco = app.querySelector('.dicho [data-titulo]');
+        if (eco) eco.innerHTML = T.eco.replace('{deseo}', C.AREAS[id].deseo);
         activaBloque();
         var y = caja.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - 28;
         window.scrollTo({ top: y, behavior: CALMA ? 'auto' : 'smooth' });
@@ -608,7 +610,7 @@
     if (!a) { ir(''); return; }
     abrePantalla('resultado');
     fondo(false);
-    pinta(secResumen() + secBloque(S.area) + secTerapias() + secVoces() + secMedico() + secInvitacion(false, a.para) + secLugar() + secDudas() + secFinal() + flota());
+    pinta(secResumen() + secBloque(S.area) + secInvitacion(false, a.para) + secMedico() + secVoces() + secLugar() + secDudas() + secFinal() + flota());
     evento('vio_resultado', { tema: S.area, porcentaje: S.p });
     activaResultado(S.area);
   }
@@ -617,7 +619,7 @@
     abrePantalla('resultado');
     fondo(false);
     S.area = null;
-    pinta(secIntro() + secBloque(areaAnuncio) + secTerapias() + secVoces() + secMedico() + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secLugar() + secDudas() + secFinal() + flota());
+    pinta(secIntro() + secBloque(areaAnuncio) + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secMedico() + secVoces() + secLugar() + secDudas() + secFinal() + flota());
     evento('eligio_tema', { tema: 'directo' });
     evento('vio_resultado', { tema: 'directo' });
     activaResultado('directo');
