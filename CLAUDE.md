@@ -43,6 +43,15 @@ Publicada el 13-nov-2026. Es la misma oferta que `/punto-de-partida` («Tu punto
 - **Medición:** los mismos eventos y la misma función que `/tu-caso` (`api/landing-evento.js`), con `pagina: 'tu-punto'`. `eligio_tema` lleva dónde lo notaría (`tema`), el porcentaje y lo que ya hace; quien salta directo a la invitación cuenta como tema `directo`. No se usa `eligio_rama`. Un evento con otro nombre se pierde sin avisar: hay que añadirlo en `tu-punto.js`, en `api/landing-evento.js` y en la Platform.
 - **Cookies y píxel:** carga `revo-cookies.js` y `revo-pixel.js` (el píxel de Meta solo arranca si la persona acepta, y marca «Lead» al pulsar un botón de reservar). En el móvil el aviso de cookies se dibuja más bajo y estrecho solo en esta página (final de `tu-punto.css`) para que no tape la pregunta.
 
+## Maqueta de la propuesta del equipo (`/tu-punto-v2`)
+
+Publicada el 16-nov-2026 solo para que Eric la compare con `/tu-punto` y `/punto-de-partida`. Es la versión 2 del documento «REVO · Landing Tu punto de partida» de María (13-nov), con su texto tal cual, sin corregir; lo que el documento deja [entre corchetes] se pinta en amarillo. Sin enlazar, fuera del sitemap y con `noindex`.
+
+- **Ficheros:** `tu-punto-v2.html` (todo el texto y un script corto dentro) y `tu-punto-v2.css`. Rewrite `/tu-punto-v2` en `vercel.json`.
+- **No lleva** medición, píxel ni aviso de cookies. El formulario «¿Prefieres que te llamemos?» no envía ni guarda nada: enseña la confirmación con un aviso de maqueta. Si Eric la elige, hay que conectarla como las otras dos (y el formulario, o quitarlo).
+- **Calendario:** «Elegir día y hora» abre Momence dentro de la página (iframe, carga en unos 5-8 s). Probado en el navegador de escritorio; en iPhone sin probar (Safari puede bloquear las cookies de Momence dentro de otra página al crear la cuenta).
+- **Perfil del anuncio:** `utm_content` con `icp2` (estrés y descanso) o `icp5` (longevidad) cambia la cabecera y el bloque que sale primero. La barra amarilla de arriba deja verlo con un toque.
+
 ## Al trabajar aquí
 
 - Es la **cara pública** del negocio: un fallo se ve. Comprueba el cambio en el navegador antes de dar nada por bueno.

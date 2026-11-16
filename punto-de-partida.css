@@ -100,7 +100,7 @@ h1 em, h2 em{ font-family:var(--serif); font-style:italic; font-weight:500; lett
   padding:calc(22px + env(safe-area-inset-top, 0px)) var(--gutter) calc(34px + var(--rc-alto) + env(safe-area-inset-bottom, 0px));
   transition:padding-bottom .35s ease;
 }
-.hero .logo{ display:block; height:26px; width:auto; }
+.hero .logo{ display:block; height:26px; width:auto; align-self:flex-start; }   /* sin align-self, la columna flex lo estira a todo el ancho */
 .hero .txt{ margin-top:auto; padding-top:48px; }
 .hero .ante{ margin:0 0 16px; font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.78); }
 .hero h1{
