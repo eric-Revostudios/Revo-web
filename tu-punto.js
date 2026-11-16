@@ -112,6 +112,7 @@
     visto: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
     lado: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>',
     abajo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>',
+    play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>',
     ir: '<svg class="ir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>'
   };
   var CALMA = false;
@@ -342,7 +343,8 @@
   function secVoces() {
     var tarjetas = C.VOCES.map(function (v) {
       return '<figure class="voz">' +
-        (v.video ? '<div class="clip"><video src="' + FOTO + v.video + '" controls playsinline preload="none"></video></div>' : '') +
+        (v.video ? '<div class="clip"><video src="' + FOTO + v.video + '.mp4" poster="' + FOTO + v.video + '.webp" playsinline preload="none"></video>' +
+          '<button type="button" class="play" data-play aria-label="' + C.verVideo + '">' + I.play + '</button></div>' : '') +
         '<blockquote><p>«' + v.texto + '»</p></blockquote><figcaption>' + v.quien + '</figcaption></figure>';
     }).join('');
     return '<section class="sec alba grano" id="miembros"><div class="w pila pila--l">' +
@@ -550,6 +552,18 @@
     });
     app.querySelectorAll('[data-duda]').forEach(function (d) {
       d.addEventListener('toggle', function () { if (d.open) evento('abrio_duda', { duda: C.DUDAS[d.getAttribute('data-duda')][0] }); });
+    });
+    // Los vídeos de los miembros: se cargan al pulsar, con sonido y con los mandos del navegador. Al poner uno, se paran los demás.
+    var clips = [].slice.call(app.querySelectorAll('.voz .clip'));
+    clips.forEach(function (c) {
+      var v = c.querySelector('video'), b = c.querySelector('[data-play]');
+      b.addEventListener('click', function () {
+        clips.forEach(function (o) { var w = o.querySelector('video'); if (w !== v) { try { w.pause(); } catch (e) {} } });
+        c.classList.add('puesto');
+        v.controls = true;
+        var p = v.play && v.play();
+        if (p && p.catch) p.catch(function () {});
+      });
     });
     activaBloque();
     var mapa = app.querySelector('[data-mapa]');

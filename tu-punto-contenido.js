@@ -296,13 +296,16 @@ window.TU_PUNTO = {
   ],
   FRASE_DRA: { texto: 'Vivir más años no necesariamente significa vivir mejor.', quien: 'Dra. Miriam Rivera' },
 
-  /* Lo que dicen los miembros (del archivo de vídeos del equipo). Cuando estén los vídeos, cada cita lleva el suyo
-     en `video` (fichero en assets/) y la tarjeta lo enseña con su botón de reproducir. */
+  /* Lo que dicen los miembros: los vídeos del archivo del equipo (16-nov-2026), con una frase suya debajo.
+     `video` es el nombre sin extensión: en assets/ están el .mp4 (720 × 1280, ya comprimido) y el .webp de la portada.
+     Los vídeos llevan los subtítulos pintados. Las frases son literales, recortadas; dos están traducidas. */
   VOCES: [
-    { texto: 'Llevo todo el día sentada en una silla… por la tarde vengo aquí y hago una terapia o dos.', quien: 'Una miembro de REVO', video: '' },
-    { texto: 'El personal es muy guay… al segundo día saben tu nombre… te sientes muy en casa.', quien: 'Miembro de REVO', video: '' },
-    { texto: 'El bienestar no es solo nutrición o deporte… REVO es lo que no tenía integrado en mi rutina: la recuperación.', quien: 'Miembro de REVO · Traducido del catalán', video: '' }
+    { video: 'testimonio-12', texto: 'Yo era uno de los escépticos. La primera vez que lo probé, noté un cambio: tuve mucha más energía de la que pensaba tener.', quien: 'Miembro de REVO desde hace un año' },
+    { video: 'testimonio-5', texto: 'Ahora que llevo meses haciéndolo, noto que duermo bien y he empezado a comer mejor. Es como una cadena.', quien: 'Miembro de REVO' },
+    { video: 'testimonio-4', texto: 'Desde que hago crioterapia y después la cama de luz roja, me siento con más energía y de mejor ánimo. No me lo esperaba cuando vine.', quien: 'Miembro de REVO · Traducido del inglés' },
+    { video: 'testimonio-3', texto: 'El bienestar no es solo nutrición o deporte… REVO es lo que no tenía integrado en mi rutina: la recuperación.', quien: 'Miembro de REVO · Traducido del catalán' }
   ],
+  verVideo: 'Ver el vídeo',
 
   FOTOS: [
     ['visita-fachada.webp', 'La entrada de REVO Studios, de noche, con la luz azul encendida', 1600, 1067, ''],
