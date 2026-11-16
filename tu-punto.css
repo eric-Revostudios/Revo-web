@@ -360,6 +360,8 @@ main{ position:relative; z-index:1; }
 .lectura li i{ font-size:32px; }
 .lectura-cab{ padding:10px 14px 9px; }
 .tarjeta .valor{ font-size:15.5px; line-height:1.4; color:var(--tinta-2); text-align:center; text-wrap:balance; }
+.tarjeta .valor + .valor{ margin-top:-8px; color:var(--tinta-3); font-size:14.5px; }
+.tarjeta{ padding-top:28px; }
 .tarjeta .bajo-boton a{ display:block; margin-top:4px; color:var(--tinta-2); text-underline-offset:4px; }
 .tarjeta .sales{ font-size:16.5px; line-height:1.45; color:var(--tinta-2); text-wrap:pretty; }
 .cuenta{ display:grid; border-top:1px solid var(--raya); }

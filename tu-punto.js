@@ -401,11 +401,11 @@
         (hace ? '<p class="entrada suave">' + hace + '</p>' : '') + '</div>' +
       '<div class="invita-rejilla">' +
         '<div class="resumen-visita"><div class="tarjeta">' +
-          '<div class="tarjeta-cab"><img src="' + FOTO + 'revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819"><p class="ojo">' + T.ojoInvita + '</p></div>' +
           '<div class="pila medio"><' + H + ' class="t2">' + T.invita + '</' + H + '>' +
           '<p class="entrada"><em class="para" id="para">' + (para || '') + '</em></p></div>' +
           ficha() +
           '<p class="valor">' + T.valor + '</p>' +
+          '<p class="valor">' + T.terapiaDia + '</p>' +
           '<div class="pila medio">' + botonReservar('propuesta', 'boton--tinta') +
           '<p class="bajo-boton">' + T.bajoBoton.replace('{m}', C.MINUTOS) + ' <a href="' + C.WHATSAPP + '" target="_blank" rel="noopener" data-wa="propuesta">' + T.waCorto + '</a></p></div>' +
         '</div></div>' +
