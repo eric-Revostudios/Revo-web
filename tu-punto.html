@@ -7,21 +7,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#06070f" />
 <meta name="robots" content="noindex, nofollow" />
-<title>Tu punto de partida · REVO Studios Barcelona</title>
-<meta name="description" content="Te invitamos a tu punto de partida en REVO, en Turó Park: medimos cómo estás y sales con un plan para ti." />
+<title>Qué terapias pueden ayudarte · REVO Studios Barcelona</title>
+<meta name="description" content="Descubre qué terapias pueden ayudarte a volver a sentirte al 100 %: crioterapia, luz roja, cámara hiperbárica y más, con acompañamiento médico, en Turó Park." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="REVO" />
 <meta property="og:locale" content="es_ES" />
-<meta property="og:title" content="Tu punto de partida · REVO Studios Barcelona" />
-<meta property="og:description" content="Te invitamos a tu punto de partida en REVO, en Turó Park: medimos cómo estás y sales con un plan para ti." />
+<meta property="og:title" content="Qué terapias pueden ayudarte · REVO Studios Barcelona" />
+<meta property="og:description" content="Descubre qué terapias pueden ayudarte a volver a sentirte al 100 %: crioterapia, luz roja, cámara hiperbárica y más, con acompañamiento médico, en Turó Park." />
 <meta property="og:image" content="https://www.revostudios.eu/assets/visita-fachada.jpg" />
 <meta property="og:url" content="https://www.revostudios.eu/tu-punto" />
 <meta name="twitter:card" content="summary_large_image" />
 <!--
-  Landing «Tu punto de partida», versión con tres preguntas (/tu-punto), nov-2026.
-  Para quien ya se cuida y se encuentra bien. Entra para saber qué terapias pueden ayudarle a estar al 100 %:
-  se pone nota (el porcentaje), dice qué hace ya y dónde notaría lo que falta, ve su resultado con las terapias
-  que solemos combinar y, al final, la invitación a su punto de partida.
+  Landing «Tu punto de partida» (/tu-punto), versión única del 16-nov-2026.
+  Junta las dos propuestas: las tres preguntas, el resultado personalizado, la tarjeta de invitación y la medición
+  de la primera, con el vídeo de fondo, el lenguaje y las secciones de la del equipo (/tu-punto-v2, María, 13-nov):
+  qué le pasa a la persona y qué terapias ayudan, todas las terapias, lo que dicen los miembros y quién está detrás.
   Convive con /punto-de-partida (la versión sin preguntas de entrada): misma oferta, otra forma de contarla.
   Contenido: tu-punto-contenido.js · lógica: tu-punto.js · estilos: tu-punto.css
   Eventos: api/landing-evento.js (los mismos nombres que /tu-caso, con pagina: 'tu-punto').
@@ -29,8 +29,7 @@
 -->
 <link rel="preload" href="fonts/NeueHaasGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/NotoSerif-Italic-500.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="assets/visita-salas.webp" as="image" type="image/webp" media="(max-width: 959px)" fetchpriority="high" />
-<link rel="preload" href="assets/metodo-diagnostico.webp" as="image" type="image/webp" media="(min-width: 960px)" fetchpriority="high" />
+<link rel="preload" href="assets/hero-poster-v3.webp" as="image" type="image/webp" fetchpriority="high" />
 <link rel="stylesheet" href="tu-punto.css" />
 <link rel="icon" type="image/png" href="assets/revo-icon.png" />
 <link rel="apple-touch-icon" href="assets/revo-icon.png" />
@@ -42,11 +41,14 @@
 <script src="tu-punto.js" defer></script>
 </head>
 <body>
+<!-- El vídeo de fondo de las tres preguntas. Va fuera de #app para que no se corte al pasar de una a otra;
+     tu-punto.js le pone el fichero (vertical en el móvil, apaisado en el ordenador) y lo esconde en el resultado. -->
+<div class="fondo" id="fondo" aria-hidden="true"><video id="video" muted loop playsinline preload="none" poster="assets/hero-poster-v3.webp"></video></div>
 <main id="app">
   <!-- Primera pantalla en HTML, para que se vea antes de que cargue el JavaScript. tu-punto.js la vuelve a pintar igual:
        si se cambia el titular o la pregunta en tu-punto-contenido.js, se cambia también aquí. -->
   <section class="escena grano" style="--f:.6">
-    <div class="foto"></div><div class="sombra"></div><div class="aurora"></div>
+    <div class="sombra"></div><div class="aurora"></div>
     <header class="cab"><div class="w"><img src="assets/revo-logo-white.webp" alt="REVO Studios" width="2253" height="819"><span class="donde">Clínica de longevidad · Turó Park</span></div></header>
     <div class="w escena-w">
       <div class="lado-izq">
@@ -54,7 +56,8 @@
         <div class="cuerpo">
           <div class="arriba">
             <p class="ojo">Tres preguntas · un minuto</p>
-            <h1 class="t1"><span class="linea">¿Qué terapias te ayudarían</span> <span class="linea">a volver a sentirte <em class="n">al 100&nbsp;%</em>?</span></h1>
+            <h1 class="t1">Descubre qué terapias pueden ayudarte a volver a sentirte <em class="n">al 100&nbsp;%</em>.</h1>
+            <p class="sub1">Crioterapia, luz roja, cámara hiperbárica, PEMF y más, con acompañamiento médico. Te contamos cuáles encajan con lo que buscas.</p>
           </div>
           <div class="medida">
             <label for="porcentaje">¿A qué porcentaje te sientes hoy?</label>
@@ -70,7 +73,6 @@
           </div>
         </div>
       </div>
-      <div class="vitrina" aria-hidden="true"><img src="assets/metodo-diagnostico.webp" alt="" width="2000" height="1334"></div>
     </div>
   </section>
 </main>

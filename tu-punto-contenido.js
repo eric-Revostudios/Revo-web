@@ -2,8 +2,8 @@
    Aquí vive TODO el texto: cambiar una frase se hace en este fichero y no obliga a tocar tu-punto.js ni tu-punto.html
    (salvo el titular y la pregunta de la primera pantalla, que además están escritos en tu-punto.html para que
    se vean antes de que cargue el JavaScript: si se cambian aquí, se cambian también allí).
-   Voz: la de los guiones de los vídeos (12-nov-2026) y el documento de la landing del equipo. Escenas de cada día,
-   nada de explicar mecanismos del cuerpo, sin masculinos genéricos, sin precio en los titulares.
+   Voz (versión única del 16-nov-2026): la del documento de la landing del equipo (María, v2 del 13-nov): se dice
+   qué le pasa a la persona, qué hace cada terapia y con qué dato. Sin masculinos genéricos, sin precio en los titulares.
    Tono (repaso del 16-nov-2026): sobrio y amable. Frases cortas, de tú, sin exclamaciones; se normaliza sin culpa
    («es más habitual de lo que parece», «y no pasa nada») y nunca se promete un resultado.
    Cifras: skill revo-tono (references/datos.md) y la web. No se inventa ninguna. */
@@ -26,15 +26,14 @@ window.TU_PUNTO = {
     reservar: 'Elegir día y hora',
 
     /* 1 · el porcentaje */
-    /* La entrada promete saber qué terapias pueden ayudarte (Eric, 13-nov-2026); la invitación al punto
-       de partida llega al final, después del resultado. */
+    /* El titular es el del documento del equipo (v2). Con «icp5» en el anuncio dice «seguir sintiéndote». */
     ojo1: 'Tres preguntas · un minuto',
-    titular1a: '¿Qué terapias te ayudarían',
-    titular1b: 'a volver a sentirte <em class="n">al 100&nbsp;%</em>?',
+    titular1: 'Descubre qué terapias pueden ayudarte a volver a sentirte <em class="n">al 100&nbsp;%</em>.',
+    titular1icp5: 'Descubre qué terapias pueden ayudarte a seguir sintiéndote <em class="n">al 100&nbsp;%</em>.',
+    sub1: 'Crioterapia, luz roja, cámara hiperbárica, PEMF y más, con acompañamiento médico. Te contamos cuáles encajan con lo que buscas.',
     pregunta1: '¿A qué porcentaje te sientes hoy?',
     pista1: 'Mueve la línea hasta tu número.',
-    nota1: '',
-    directo: 'Prefiero ir directamente a la invitación',
+    directo: 'Prefiero verlo sin contestar',
 
     /* 2 · lo que ya haces */
     paso2: '02 / 03',
@@ -52,13 +51,30 @@ window.TU_PUNTO = {
     ojoResultado: 'Lo que nos has contado',
     hoy: 'Hoy',
     margen: 'Margen',
-    ojoNotarias: 'Dónde lo notarías',
-    ojoConservar: 'Lo que quieres conservar',
-    ojoCombinar: 'Las terapias que pueden ayudarte',
-    combinar: 'Para {tema}, solemos combinar estas tres. Cada visita dura alrededor de una hora.',
-    desliza: 'Desliza para ver las tres',
-    de: 'de',
-    criterio: 'Cuáles tienen sentido para ti, y con qué frecuencia, lo decidimos después de medirte, con criterio médico. Eso es tu punto de partida.',
+    /* el bloque de la persona y lo que hay alrededor */
+    ojoBloque: 'Lo que puede ayudarte',
+    cuales: '¿Cuáles son las tuyas?',
+    cualesTexto: 'Depende de cómo estés, y eso se mide.',
+    cualesEnlace: 'Te lo contamos más abajo',
+    otra: '¿Buscas otra cosa?',
+
+    /* todas las terapias */
+    ojoTerapias: 'Las terapias',
+    terapiasTitulo: 'Tecnología que hasta hace poco solo usaban <em>deportistas de élite</em>',
+    terapiasTexto: 'Más de 20 años de ciencia detrás, todo en un mismo sitio y con acompañamiento médico.',
+    notas: 'Qué notas',
+    desliza: 'Desliza para ver las siete',
+
+    /* lo que dicen los miembros */
+    ojoVoces: 'Miembros',
+    vocesTitulo: 'Así lo viven <em>nuestros miembros</em>',
+
+    /* quién está detrás */
+    ojoMedico: 'Quién está detrás',
+    medicoTitulo: 'Con acompañamiento <em>médico</em>',
+
+    /* introducción de quien no contesta las preguntas */
+    introSub: 'Tecnología de última generación (crioterapia, luz roja, cámara hiperbárica, PEMF y más) con acompañamiento médico continuo. Te contamos qué hace cada una y cuáles encajan con lo que buscas.',
 
     hacesMucho: 'Haces mucho. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti.',
     hacesBase: 'Es una buena base. Lo siguiente es saber dónde merece la pena poner el esfuerzo.',
@@ -68,7 +84,7 @@ window.TU_PUNTO = {
     /* la invitación */
     ojoInvita: 'Por invitación',
     invita: 'Te invitamos a tu <em>punto de partida</em>',
-    oferta: 'Conoce REVO, descubre si es para ti, mide tu punto de partida y sal con un plan.',
+    oferta: 'Antes de decidir qué terapias encajan contigo, medimos cómo estás: tu edad biológica, tu composición corporal y tu índice de estrés. Sales con un plan para ti, te hagas miembro o no.',
     /* La ficha de la invitación: qué es cada cosa y su valor. La duración sale de MINUTOS. */
     claveDuracion: 'Duración',
     minutos: '{m} minutos',
@@ -81,19 +97,24 @@ window.TU_PUNTO = {
     fichaEstado: 'Por medir',
     preguntas: 'Hacer las tres preguntas',
 
+    /* después de la visita */
+    despues: [
+      ['Si quieres, prueba ese mismo día', 'Puedes añadir una o dos terapias de tu plan: crioterapia, luz roja, PEMF, BrainTap, Pulsetto o presoterapia. Son 40&nbsp;€ una y 60&nbsp;€ dos.', '', ''],
+      ['Si decides seguir', 'La membresía REVO Core incluye todas las terapias, hasta dos masajes al mes y tu plan personalizado con seguimiento médico. Son 350&nbsp;€ al mes con un mínimo de tres meses, o 3.500&nbsp;€ al año. La mayoría de miembros viene una o dos veces por semana.', 'Ver la membresía', 'membresias.html']
+    ],
+
     /* el lugar */
-    ojoLugar: 'REVO · Turó Park',
-    pieFoto: 'REVO Studios · Turó Park, Barcelona',
-    lugarA: 'Para saber si es tu lugar,',
-    lugarB: '<em>hay que entrar</em>.',
-    lugar: 'REVO es una clínica de longevidad en Turó Park, vivida como un club: crioterapia, luz roja, cámara hiperbárica y PEMF, con un equipo médico detrás.',
-    ojoEquipo: 'Un equipo que te conoce',
-    comoLlegar: 'Cómo llegar',
+    ojoLugar: 'Dónde estamos',
+    lugarTitulo: 'En <em>Turó Park</em>',
+    lugar: 'REVO es una clínica de longevidad vivida como un club, a un paso del parque. Todo en un mismo sitio.',
+    verMapa: 'Ver el mapa',
+    comoLlegar: 'Abrir en Google Maps',
     mapa: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('REVO Studios, Carrer de Ferran Agulló 24, 08021 Barcelona'),
+    mapaDentro: 'https://www.google.com/maps?q=' + encodeURIComponent('REVO Studios, Carrer de Ferran Agulló 24, 08021 Barcelona') + '&output=embed',
 
     /* dudas y cierre */
-    ojoDudas: 'Si te lo estás preguntando',
-    dudas: 'Lo que conviene saber <em>antes de venir</em>',
+    ojoDudas: 'Antes de venir',
+    dudas: 'Preguntas <em>frecuentes</em>',
     waOtra: '¿Otra duda?',
     lemaA: 'Los atajos no funcionan.',
     lemaB: 'Los sistemas, sí.',
@@ -134,61 +155,97 @@ window.TU_PUNTO = {
     ['yoga', 'Yoga o meditación', 'haces yoga o meditas']
   ],
 
-  /* Terapias: nombre, foto y encuadre, dato (duración) y qué hace, dicho en llano. */
-  TERAPIAS: {
-    crio:    { nombre: 'Crioterapia', foto: 'cryo-chamber.webp', pos: '50% 58%', meta: 'De 2 a 3 minutos · −130&nbsp;°C',
-               que: 'Tres minutos de frío que despejan la cabeza y ayudan al cuerpo a desinflamar. Siempre con tu coach al lado.' },
-    luz:     { nombre: 'Cama de luz roja', foto: 'redlight-chamber.webp', pos: '38% 50%', meta: 'De 10 a 15 minutos',
-               que: 'Luz roja e infrarroja de cuerpo entero. Ayuda a las células a producir energía y estimula el colágeno de la piel.' },
-    pemf:    { nombre: 'PEMF', foto: 'pemf-hero.webp', pos: '62% 50%', meta: 'De 20 a 40 minutos',
-               que: 'Campos electromagnéticos pulsados: la magnetoterapia de los fisioterapeutas, en todo el cuerpo. Ayuda a entrar en modo descanso.' },
-    hbot:    { nombre: 'Cámara hiperbárica', foto: 'hbot-chamber.webp', pos: '46% 50%', meta: '60 minutos · oxígeno al 98&nbsp;%',
-               que: 'Respiras oxígeno a 1,9 atmósferas. A los tejidos llega hasta diez veces más, y eso ayuda a que se reparen.' },
-    brain:   { nombre: 'BrainTap', foto: 'braintap-hero.webp', pos: '50% 34%', meta: '15 minutos',
-               que: 'Auriculares y luces sincronizadas que llevan al cerebro a una relajación profunda.' },
-    luzpiel: { nombre: 'Luz roja para la piel', foto: 'redlight-chamber.webp', pos: '38% 50%', meta: 'De 10 a 15 minutos',
-               que: 'La misma luz, en la cama y en una máscara para la cara. Estimula el colágeno y la elastina, que dan firmeza a la piel.' },
-    facial:  { nombre: 'Masaje facial', foto: 'massage-glow.webp', pos: '34% 40%', meta: 'A mano',
-               que: 'Un masaje después de la luz. Suelta la tensión de la cara.' },
-    respark: { nombre: 'Respark®', foto: 'therapy.webp', pos: '40% 50%', meta: '60 minutos',
-               que: 'Crioterapia a −130&nbsp;°C y, después, un masaje drenante y moldeador.' }
-  },
+  /* Todas las terapias, en el orden del carrusel: nombre, duración, foto y encuadre, qué es y qué se nota.
+     Las cifras son las de la skill revo-tono (references/datos.md): el documento del equipo traía la presión de la
+     hiperbárica y los minutos de PEMF y BrainTap de antes. */
+  TERAPIAS: [
+    { nombre: 'Crioterapia', dur: 'De 2 a 3 minutos', foto: 'cryo-chamber.webp', pos: '50% 45%',
+      que: 'Cabina de frío seco a −130&nbsp;°C, siempre con tu coach al lado. Si no aguantas, puedes salir antes.',
+      notas: 'Despeja la cabeza, baja el estrés y desinflama. Muchos miembros cuentan que esa noche duermen mejor.' },
+    { nombre: 'Luz roja', dur: 'De 10 a 15 minutos', foto: 'redlight-chamber.webp', pos: '38% 50%',
+      que: 'Cama de luz roja e infrarroja, de cuerpo entero.',
+      notas: 'Estimula el colágeno de la piel, da energía a las células y ayuda a regular el sueño.' },
+    { nombre: 'Cámara hiperbárica', dur: '60 minutos', foto: 'hbot-chamber.webp', pos: '46% 50%',
+      que: 'Oxígeno al 98&nbsp;% a 1,9 atmósferas.',
+      notas: 'Lleva hasta diez veces más oxígeno a los tejidos: ayuda a reparar y a bajar la inflamación.' },
+    { nombre: 'PEMF', dur: 'De 20 a 40 minutos', foto: 'pemf-hero.webp', pos: '62% 50%',
+      que: 'Campos electromagnéticos pulsados en todo el cuerpo, en reposo.',
+      notas: 'Activa el modo descanso: sueño más profundo y menos inflamación.' },
+    { nombre: 'BrainTap', dur: '15 minutos', foto: 'braintap-hero.webp', pos: '50% 30%',
+      que: 'Auriculares de sonido binaural y luces.',
+      notas: 'Relajación profunda cuando cuesta desconectar, o foco y energía.' },
+    { nombre: 'Presoterapia', dur: 'De 20 a 30 minutos', foto: 'presoterapia-hero.webp', pos: '50% 40%',
+      que: 'Botas que comprimen de los pies hacia arriba.',
+      notas: 'Piernas ligeras, menos retención, mejor circulación.' },
+    { nombre: 'Respark®', dur: 'Una hora', foto: 'therapy.webp', pos: '40% 50%',
+      que: 'Crioterapia seguida de un masaje drenante y moldeador.',
+      notas: 'Silueta y retención.' }
+  ],
 
-  /* Dónde lo notaría: botón, tema (para la frase de «lo que solemos combinar»), `para` (la frase que abre
-     la invitación, del documento de la landing del equipo), la escena y sus tres terapias.
-     Las escenas salen de los guiones: 01A, 02A, 04A y 05A. `que` cambia lo que hace una terapia para ese caso. */
+  /* Dónde lo notaría. De cada área: el botón de la pregunta, cómo se llama en «¿Buscas otra cosa?» (`corto`),
+     la frase que abre la invitación (`para`), y su bloque: título, lo que pasa, las terapias con su dato y lo que
+     hacen, y una cita si la hay. «Cuando la cabeza no para» y «Vivir más no es vivir mejor» son los dos bloques
+     del documento del equipo; los otros cuatro están escritos igual. */
   AREAS: {
-    energia:  { boton: 'En la energía con la que acabo el día', tema: 'llegar con energía al final del día',
+    energia:  { boton: 'En la energía con la que acabo el día', corto: 'Energía',
       para: 'Para seguir haciendo planes con energía.',
-      apunte: 'El día empieza bien. A media tarde pesa un poco más, y el plan de la noche se piensa dos veces. Pasa tan poco a poco que se acaba dando por normal.',
-      terapias: ['crio', 'luz', 'hbot'],
-      que: { crio: 'Tres minutos de frío. Se sale con la cabeza despejada y con energía para el resto del día. Siempre con tu coach al lado.' } },
-    descanso: { boton: 'En cómo me levanto', tema: 'descansar de verdad',
+      titulo: 'Cuando la energía <em>no llega a la noche</em>',
+      texto: 'El día empieza bien, a media tarde pesa y el plan de la noche se piensa dos veces. La energía se produce en las células, y cuando el descanso y la recuperación no acompañan, se nota. Pasa tan poco a poco que se acaba dando por normal.',
+      filas: [
+        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'Libera dopamina y noradrenalina: se sale con la cabeza despejada y con energía para el resto del día'],
+        ['Luz roja', 'De 10 a 15 minutos', 'Activa la mitocondria, de donde sale la energía de las células'],
+        ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Lleva hasta diez veces más oxígeno a los tejidos']
+      ],
+      cita: { texto: 'Duermo mejor, tengo más energía y REVO se ha convertido en parte natural de mi rutina.', quien: 'Gintare · Miembro de REVO' } },
+    descanso: { boton: 'En cómo me levanto', corto: 'Descanso',
       para: 'Para que dormir vuelva a ser descansar.',
-      apunte: 'Duermes tus horas. Pero levantarse con la batería llena es otra cosa, y hace tiempo que no pasa todos los días. Dormir no siempre es descansar.',
-      terapias: ['pemf', 'brain', 'luz'],
-      que: { pemf: 'Campos electromagnéticos pulsados, en todo el cuerpo. Ayudan a pasar al modo descanso, que es lo que lleva al sueño profundo.',
-             luz: 'Luz roja e infrarroja de cuerpo entero. Ayuda a regular el ritmo del sueño: el reloj interno que marca cuándo dormir.' } },
-    cabeza:   { boton: 'En la cabeza: claridad y calma', tema: 'bajar el ritmo',
+      titulo: 'Cuando dormir <em>no es descansar</em>',
+      texto: 'Duermes tus horas y te levantas igual. Si el sistema nervioso se queda en modo alerta, cuesta llegar al sueño profundo, que es cuando el cuerpo se repara.',
+      filas: [
+        ['PEMF', 'De 20 a 40 minutos, en reposo', 'Activa el modo «descanso y reparación» del cuerpo, para un sueño más profundo'],
+        ['BrainTap', '15 minutos', 'Sonido y luz que llevan al cerebro a la relajación profunda'],
+        ['Luz roja', 'De 10 a 15 minutos', 'Ayuda a regular el reloj interno que le dice al cuerpo cuándo dormir'],
+        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'Baja el cortisol, la hormona del estrés. Muchos miembros cuentan que esa noche duermen mejor']
+      ] },
+    cabeza:   { boton: 'En la cabeza: claridad y calma', corto: 'Estrés y calma',
       para: 'Para que la cabeza también termine la jornada.',
-      apunte: 'El trabajo termina a las siete. La cabeza, a veces, bastante más tarde. Rindes igual, pero cuesta estar del todo en la cena.',
-      terapias: ['brain', 'crio', 'pemf'],
-      que: { crio: 'Tres minutos de frío que bajan las revoluciones. Se sale con la cabeza despejada. Siempre con tu coach al lado.',
-             pemf: 'Campos electromagnéticos pulsados, en todo el cuerpo. Ayudan a pasar del modo alerta al modo descanso.' } },
-    cuerpo:   { boton: 'En cómo me recupero del deporte', tema: 'recuperarse mejor',
+      titulo: 'Cuando la cabeza <em>no para</em>',
+      texto: 'Cuando el día no termina al cerrar el portátil, el sistema nervioso se queda en modo alerta y el cortisol, la hormona del estrés, no baja. Rindes igual, pero cuesta estar del todo en la cena.',
+      filas: [
+        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'Baja el cortisol y libera dopamina: se sale con la cabeza despejada, con una mezcla de energía y calma'],
+        ['BrainTap', '15 minutos', 'Sonido y luz que llevan al cerebro a la relajación profunda'],
+        ['PEMF', 'De 20 a 40 minutos, en reposo', 'Ayuda a pasar del modo alerta al modo «descanso y reparación»']
+      ],
+      cita: { texto: 'Por la tarde vengo aquí y hago una terapia o dos. Entre dos y tres veces a la semana voy sin ningún problema.', quien: 'Una miembro de REVO' } },
+    cuerpo:   { boton: 'En cómo me recupero del deporte', corto: 'Recuperación',
       para: 'Para que la recuperación también se entrene.',
-      apunte: 'El siguiente entrenamiento también se prepara cuando termina el de hoy. Con los años el cuerpo tarda un poco más en volver, y eso se acaba dando por hecho.',
-      terapias: ['crio', 'hbot', 'pemf'],
-      que: { crio: 'Tres minutos de frío que ayudan a desinflamar y sueltan la musculatura. Siempre con tu coach al lado.',
-             pemf: 'Campos electromagnéticos pulsados: la magnetoterapia de los fisioterapeutas, en todo el cuerpo. Ayuda a desinflamar y a reparar.' } },
-    piel:     { boton: 'En la piel', tema: 'cuidar la piel',
+      titulo: 'Cuando el cuerpo <em>tarda más en volver</em>',
+      texto: 'El siguiente entrenamiento se prepara cuando termina el de hoy. Con los años, el cuerpo tarda más en recuperarse: la inflamación dura más y las molestias se quedan. Recuperar también se entrena.',
+      filas: [
+        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'Desinflama y suelta la musculatura'],
+        ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Lleva hasta diez veces más oxígeno a los tejidos, y eso ayuda a que se reparen'],
+        ['PEMF', 'De 20 a 40 minutos, en reposo', 'La magnetoterapia de los fisioterapeutas, en todo el cuerpo: desinflama y mejora la circulación'],
+        ['Presoterapia', 'De 20 a 30 minutos', 'Drena y deja las piernas ligeras']
+      ] },
+    piel:     { boton: 'En la piel', corto: 'Piel',
       para: 'Para que la piel también entre en el plan.',
-      apunte: 'La piel cambia despacio: de un año para otro, no de un mes para otro. Por eso se acaba dando por normal. Y cuidarla también merece un plan.',
-      terapias: ['luzpiel', 'facial', 'respark'] },
-    todo:     { boton: 'En nada concreto. Quiero seguir así muchos años', boton100: 'En todo', tema: 'cuidarse a largo plazo',
+      titulo: 'Cuando la piel <em>pide un plan</em>',
+      texto: 'La piel cambia despacio: de un año para otro, no de un mes para otro. Con los años se produce menos colágeno y elastina, que son lo que le da firmeza. Cuidarla también merece un plan.',
+      filas: [
+        ['Luz roja', 'De 10 a 15 minutos', 'En la cama de cuerpo entero y en una máscara para la cara. Estimula el colágeno y la elastina'],
+        ['Masaje facial', 'A mano', 'Después de la luz. Suelta la tensión de la cara'],
+        ['Respark®', 'Una hora', 'Crioterapia seguida de un masaje drenante y moldeador']
+      ] },
+    todo:     { boton: 'En nada concreto. Quiero seguir así muchos años', boton100: 'En todo', corto: 'Longevidad',
       para: 'Para saber desde dónde empiezas.',
-      apunte: 'Cuando hablamos de longevidad, pensamos en lo que queremos seguir haciendo dentro de veinte años. No empieza cuando aparece un problema. Empieza por saber cómo estás hoy, y por cuidarlo con constancia.',
-      terapias: ['hbot', 'luz', 'crio'] }
+      titulo: 'Vivir más no es <em>vivir mejor</em>',
+      texto: 'El envejecimiento no empieza con las primeras arrugas o las canas: empieza mucho antes, cuando el cansancio dura más, cuesta concentrarse o el cuerpo no se recupera como antes. Cuidarse a tiempo es lo que permite seguir haciendo lo que te gusta.',
+      filas: [
+        ['Cámara hiperbárica', '60 minutos · oxígeno al 98&nbsp;%', 'Lleva hasta diez veces más oxígeno a los tejidos: ayuda a reparar y a bajar la inflamación'],
+        ['Luz roja', 'De 10 a 15 minutos', 'Estimula el colágeno y activa la mitocondria, de donde sale la energía de las células'],
+        ['Crioterapia', 'De 2 a 3 minutos a −130&nbsp;°C', 'Desinflama y activa el metabolismo']
+      ],
+      cita: { texto: 'No se trata de llegar más lejos, sino de llegar mejor.', quien: 'Dra. Miriam Rivera' } }
   },
   ORDEN: ['energia', 'descanso', 'cabeza', 'cuerpo', 'piel', 'todo'],
 
@@ -204,6 +261,10 @@ window.TU_PUNTO = {
     icp5: 'Para saber desde dónde empiezas.',
     icp6: 'Para conocer REVO por dentro.'
   },
+  /* A quien no contesta las preguntas se le enseña primero el bloque del perfil de su anuncio. Sin perfil, el de
+     «Cuando la cabeza no para», que es el que el documento del equipo pone por delante. */
+  PERFIL_AREA: { icp1: 'energia', icp2: 'cabeza', icp3: 'cuerpo', icp4: 'cuerpo', icp5: 'todo', icp6: 'todo' },
+  AREA_SIN_PERFIL: 'cabeza',
 
   /* Los cuatro pasos de la visita. La ficha de las tres mediciones cuelga del segundo. */
   PASOS: [
@@ -227,10 +288,19 @@ window.TU_PUNTO = {
     ['150', 'plazas de miembro.']
   ],
 
-  /* Nombre, cargo, texto y foto (vacía = sin foto). El texto de la doctora es el de la portada de la web. */
+  /* Nombre, cargo, texto, foto y encuadre. */
   EQUIPO: [
-    ['Dra. Miriam Rivera', 'Directora médica', 'Especialista en medicina de la longevidad y oxigenoterapia hiperbárica. Diseña el plan de cada miembro.', 'dra-miriam-rivera.jpeg'],
-    ['Tu Wellness Coach', '', 'Te acompaña en el recorrido y en tus primeras sesiones, para que cada visita se adapte a tu plan.', '']
+    ['Dra. Miriam Rivera', 'Directora médica', 'Especialista en medicina de la longevidad y oxigenoterapia hiperbárica. Diseña tu plan y lo revisa contigo.', 'dra-miriam-rivera.jpeg', ''],
+    ['El equipo de REVO', 'Wellness Coach', 'Tu Wellness Coach te acompaña en cada visita y ajusta el plan con la doctora.', 'metodo-acompanamiento.webp', '50% 30%']
+  ],
+  FRASE_DRA: { texto: 'Vivir más años no necesariamente significa vivir mejor.', quien: 'Dra. Miriam Rivera' },
+
+  /* Lo que dicen los miembros (del archivo de vídeos del equipo). Cuando estén los vídeos, cada cita lleva el suyo
+     en `video` (fichero en assets/) y la tarjeta lo enseña con su botón de reproducir. */
+  VOCES: [
+    { texto: 'Llevo todo el día sentada en una silla… por la tarde vengo aquí y hago una terapia o dos.', quien: 'Una miembro de REVO', video: '' },
+    { texto: 'El personal es muy guay… al segundo día saben tu nombre… te sientes muy en casa.', quien: 'Miembro de REVO', video: '' },
+    { texto: 'El bienestar no es solo nutrición o deporte… REVO es lo que no tenía integrado en mi rutina: la recuperación.', quien: 'Miembro de REVO · Traducido del catalán', video: '' }
   ],
 
   FOTOS: [
@@ -244,13 +314,12 @@ window.TU_PUNTO = {
   /* Dudas plegadas: pregunta y respuesta. */
   DUDAS: [
     ['¿Tiene algún coste?', 'Tu punto de partida corre de nuestra cuenta. Solo pagas si decides probar una terapia ese día o hacerte miembro.'],
-    ['¿Me compromete a algo?', 'A nada. Sales con tu plan, te hagas miembro o no.'],
+    ['¿Me compromete a algo?', 'No. Sales con tu plan, te hagas miembro o no.'],
     ['Ya hago muchas cosas. ¿Qué me aporta?', 'Orden. Cuidarse bien no es hacer más cosas, sino las que tienen sentido para ti, con constancia. Medir te dice cuáles.'],
-    ['¿Puedo probar una terapia ese mismo día?', 'Sí. Puedes probar una o dos: crioterapia, luz roja, PEMF, BrainTap, Pulsetto o presoterapia. Son 40&nbsp;€ una y 60&nbsp;€ dos.'],
-    ['¿Y si decido seguir?', 'La membresía REVO Core incluye todas las terapias sin límite, hasta dos masajes al mes y tu plan personalizado con seguimiento médico. Son 350&nbsp;€ al mes, con un mínimo de tres meses, o 3.500&nbsp;€ al año. <a href="membresias.html">Ver la membresía</a>'],
-    ['¿Cuánto tiempo pide después?', 'La mayoría de miembros viene una o dos veces por semana, una hora cada vez, según su plan. Abrimos de lunes a viernes de 7:00 a 21:00 y los sábados de 9:00 a 14:00.'],
-    ['¿Puedo cambiar la fecha?', 'Sí. Desde el enlace de la confirmación o escribiéndonos por WhatsApp.'],
-    ['¿Y si vivo fuera de Barcelona?', 'La membresía tiene sentido viniendo cada semana. Si nos visitas de forma puntual o quieres regalarlo, tenemos experiencias de una o dos horas. <a href="experiencias.html">Ver las experiencias</a>'],
-    ['¿Es un tratamiento médico?', 'REVO no diagnostica ni trata enfermedades. Si estás embarazada, llevas un marcapasos o tienes una condición médica, cuéntanoslo al llegar: revisamos contigo qué terapias son seguras para ti.']
+    ['¿Puedo cambiar la fecha?', 'Sí, desde el enlace de la confirmación o contestándonos por WhatsApp.'],
+    ['¿Es un tratamiento médico?', 'REVO no diagnostica ni trata enfermedades. Si estás embarazada, llevas un marcapasos o tienes una condición médica, cuéntanoslo al llegar: revisamos contigo qué terapias son seguras para ti.'],
+    ['¿Cuánto tiempo necesito después?', 'La mayoría de miembros viene una o dos veces por semana, una hora cada vez, según su plan.'],
+    ['¿Cuánto cuesta la membresía?', '350&nbsp;€ al mes con un mínimo de tres meses, o 3.500&nbsp;€ al año, con todas las terapias incluidas. También hay sesiones sueltas. <a href="membresias.html">Ver la membresía</a>'],
+    ['¿Y si vivo fuera de Barcelona?', 'La membresía tiene sentido viniendo cada semana. Si nos visitas de forma puntual o quieres regalarlo, tenemos experiencias de una o dos horas. <a href="experiencias.html">Ver las experiencias</a>']
   ]
 };

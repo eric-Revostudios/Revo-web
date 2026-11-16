@@ -1,6 +1,11 @@
-/* Lógica de la landing «Tu punto de partida», versión con tres preguntas (/tu-punto). Sin dependencias.
-   - Tres preguntas (el porcentaje, lo que ya hace, dónde lo notaría), un resultado y la invitación.
-   - Navegación por hash (#paso-2 · #paso-3 · #resultado · #invitacion) para que el botón «atrás» del
+/* Lógica de la landing «Tu punto de partida» (/tu-punto). Sin dependencias.
+   Versión única del 16-nov-2026: las tres preguntas y la invitación de la primera versión, con el vídeo de fondo,
+   el lenguaje y las secciones de la propuesta del equipo (/tu-punto-v2).
+   - Tres preguntas (el porcentaje, lo que ya hace, dónde lo notaría) y una página de resultado: lo que ha
+     contado, su bloque (qué le pasa y qué terapias ayudan), todas las terapias, lo que dicen los miembros,
+     quién está detrás, la invitación, el lugar y las dudas. Quien no quiere contestar ve la misma página con
+     el bloque del perfil de su anuncio.
+   - Navegación por hash (#paso-2 · #paso-3 · #resultado · #ver) para que el botón «atrás» del
      navegador funcione siempre. Las respuestas se guardan en sessionStorage: recargar en el resultado
      vuelve a enseñar el resultado, y mueren al cerrar la pestaña.
    - Cada paso manda un evento a POST /api/landing-evento, con los MISMOS nombres que /tu-caso
@@ -21,7 +26,9 @@
   var utmSource = (params.get('utm_source') || '').slice(0, 60);
   // Perfil del anuncio: «icp1», «icp2»… en cualquier parte de utm_content (la misma norma que /punto-de-partida).
   var icp = utmContent.match(/icp(\d+)/i);
-  var paraAnuncio = (icp && C.PERFILES && C.PERFILES['icp' + parseInt(icp[1], 10)]) || '';
+  var perfil = icp ? 'icp' + parseInt(icp[1], 10) : '';
+  var paraAnuncio = (C.PERFILES && C.PERFILES[perfil]) || '';
+  var areaAnuncio = (C.PERFIL_AREA && C.PERFIL_AREA[perfil]) || C.AREA_SIN_PERFIL;
 
   /* ---------- sesión: id aleatorio que muere al cerrar la pestaña ---------- */
   function leer(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
@@ -104,11 +111,32 @@
     atras: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>',
     visto: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
     lado: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>',
+    abajo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>',
     ir: '<svg class="ir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>'
   };
   var CALMA = false;
   try { CALMA = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
   var navegado = false;   // true en cuanto ha habido un cambio de hash dentro de la página
+
+  /* ---------- el vídeo de fondo de las tres preguntas ----------
+     Vive fuera de #app (tu-punto.html) para que no se corte al pasar de una pregunta a otra. Vertical en el
+     móvil y apaisado en el ordenador. No se carga con «reducir movimiento» ni con ahorro de datos: se queda la foto. */
+  var video = document.getElementById('video'), videoListo = false;
+  function fondo(visible) {
+    document.body.classList.toggle('con-fondo', visible);
+    if (!video) return;
+    var ahorro = false;
+    try { ahorro = !!(navigator.connection && navigator.connection.saveData); } catch (e) {}
+    if (CALMA || ahorro) return;
+    if (visible) {
+      if (!videoListo) {
+        videoListo = true;
+        video.src = FOTO + (window.matchMedia('(min-width: 900px)').matches ? 'hero-video-1080.mp4' : 'hero-video-mobile.mp4');
+      }
+      var p = video.play && video.play();
+      if (p && p.catch) p.catch(function () {});
+    } else if (videoListo) { try { video.pause(); } catch (e) {} }
+  }
 
   function cab(derecha) {
     return '<header class="cab"><div class="w"><img src="' + FOTO + 'revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819">' +
@@ -131,11 +159,11 @@
   /* marco común de las tres preguntas */
   function escena(n, dentro, derecha) {
     var tramos = [1, 2, 3].map(function (i) { return '<i' + (i <= n ? ' class="on"' : '') + '></i>'; }).join('');
-    return '<section class="escena grano" style="--f:' + f() + '"><div class="foto"></div><div class="sombra"></div><div class="aurora"></div>' + cab(derecha) +
+    fondo(true);
+    return '<section class="escena grano" style="--f:' + f() + '"><div class="sombra"></div><div class="aurora"></div>' + cab(derecha) +
       '<div class="w escena-w"><div class="lado-izq">' +
         '<div class="tramos" role="img" aria-label="Pregunta ' + n + ' de 3">' + tramos + '</div>' +
         '<div class="cuerpo entra">' + dentro + '</div></div>' +
-        '<div class="vitrina" aria-hidden="true"><img src="' + FOTO + 'metodo-diagnostico.webp" alt="" width="2000" height="1334"><span class="pie-foto">' + T.pieFoto + '</span></div>' +
       '</div></section>';
   }
   function atras() { return '<button type="button" data-atras>' + I.atras + T.atras + '</button>'; }
@@ -151,7 +179,8 @@
     pinta(escena(1,
       '<div class="arriba">' +
         '<p class="ojo">' + T.ojo1 + '</p>' +
-        '<h1 class="t1" data-titulo><span class="linea">' + T.titular1a + '</span> <span class="linea">' + T.titular1b + '</span></h1>' +
+        '<h1 class="t1" data-titulo>' + (perfil === 'icp5' ? T.titular1icp5 : T.titular1) + '</h1>' +
+        '<p class="sub1">' + T.sub1 + '</p>' +
       '</div>' +
       '<div class="medida">' +
         '<label for="porcentaje">' + T.pregunta1 + '</label>' +
@@ -176,7 +205,7 @@
       guarda();
     });
     document.getElementById('seguir').addEventListener('click', function () { guarda(); ir('paso-2'); });
-    document.getElementById('directo').addEventListener('click', function () { ir('invitacion'); });
+    document.getElementById('directo').addEventListener('click', function () { ir('ver'); });
   }
 
   /* ---------- 2 · lo que ya haces ---------- */
@@ -263,24 +292,83 @@
       '</div></section>';
   }
 
-  function secCombinacion(a, cien) {
-    var total = a.terapias.length;
-    var tarjetas = a.terapias.map(function (id, i) {
-      var t = C.TERAPIAS[id], que = (a.que && a.que[id]) || t.que;
+  /* El bloque de la persona: qué le pasa, las terapias que ayudan con su dato y lo que hacen, una cita si la
+     hay, y «¿Buscas otra cosa?» para ver el de otro tema sin volver a las preguntas. */
+  function htmlBloque(id) {
+    var a = C.AREAS[id];
+    var filas = a.filas.map(function (x) { return '<li><h3>' + x[0] + '</h3><p class="dato">' + x[1] + '</p><p class="hace">' + x[2] + '</p></li>'; }).join('');
+    var otras = C.ORDEN.filter(function (x) { return x !== id; }).map(function (x) {
+      return '<button type="button" class="ficha-otra" data-otra="' + x + '">' + C.AREAS[x].corto + '</button>';
+    }).join('');
+    return '<div class="bloque-rejilla">' +
+        '<div class="pila bloque-a"><p class="ojo">' + T.ojoBloque + '</p>' +
+          '<h2 class="t2">' + a.titulo + '</h2>' +
+          '<p class="texto grande">' + a.texto + '</p>' +
+          (a.cita ? '<blockquote class="cita cita--raya"><p>«' + a.cita.texto + '»</p><footer>' + a.cita.quien + '</footer></blockquote>' : '') +
+        '</div>' +
+        '<div class="pila bloque-b"><ul class="filas">' + filas + '</ul>' +
+          '<div class="cuales"><p><b>' + T.cuales + '</b> ' + T.cualesTexto + '</p><a href="#invitacion" data-bajar>' + T.cualesEnlace + I.abajo + '</a></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="otras"><p class="rot">' + T.otra + '</p><div class="otras-fila">' + otras + '</div></div>';
+  }
+  function secBloque(id) {
+    return '<section class="sec papel" id="ayudarme"><div class="w" id="bloque">' + htmlBloque(id) + '</div></section>';
+  }
+
+  /* un carrusel: tarjetas que se deslizan, con sus rayas y, en el ordenador, dos flechas */
+  function carril(clase, tarjetas, n, pista) {
+    var puntos = ''; for (var i = 0; i < n; i++) puntos += '<i' + (i === 0 ? ' class="on"' : '') + '></i>';
+    return '<div class="carril-caja"><div class="carril ' + clase + '" tabindex="0" role="group">' + tarjetas + '</div>' +
+      '<p class="mini desliza"><span class="puntos" aria-hidden="true">' + puntos + '</span>' +
+        (pista ? '<span class="pista" aria-hidden="true">' + pista + I.lado + '</span>' : '') +
+        '<span class="flechas"><button type="button" data-carril="-1" aria-label="Anteriores">' + I.atras + '</button><button type="button" data-carril="1" aria-label="Siguientes">' + I.flecha + '</button></span></p></div>';
+  }
+
+  function secTerapias() {
+    var total = C.TERAPIAS.length;
+    var tarjetas = C.TERAPIAS.map(function (t, i) {
       return '<article class="ter"><div class="marco"><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '">' +
         '<span class="idx" aria-hidden="true">0' + (i + 1) + ' / 0' + total + '</span></div>' +
-        '<div class="txt"><h3>' + t.nombre + '</h3><p class="meta">' + t.meta + '</p><p class="que">' + que + '</p></div></article>';
+        '<div class="txt"><h3>' + t.nombre + '</h3><p class="meta">' + t.dur + '</p><p class="que">' + t.que + '</p>' +
+        '<p class="notas"><b>' + T.notas + '</b>' + t.notas + '</p></div></article>';
     }).join('');
-    var puntos = a.terapias.map(function (id, i) { return '<i' + (i === 0 ? ' class="on"' : '') + '></i>'; }).join('');
-    return '<section class="sec papel"><div class="w pila pila--l">' +
-      '<div class="pila"><p class="ojo">' + (cien ? T.ojoConservar : T.ojoNotarias) + '</p>' +
-        '<p class="apunte">' + (cien ? C.AREAS.todo.apunte : a.apunte) + '</p></div>' +
-      '<div class="pila"><p class="ojo">' + T.ojoCombinar + '</p>' +
-        '<p class="texto medio">' + T.combinar.replace('{tema}', a.tema) + '</p>' +
-        '<div class="terapias" tabindex="0" role="group" aria-label="Terapias">' + tarjetas + '</div>' +
-        '<p class="mini desliza" aria-hidden="true"><span class="puntos">' + puntos + '</span><span class="pista">' + T.desliza + I.lado + '</span></p>' +
-        '<p class="texto medio cierre-nota">' + T.criterio + '</p></div>' +
+    return '<section class="sec papel velado" id="terapias"><div class="w pila pila--l">' +
+      '<div class="pila medio"><p class="ojo">' + T.ojoTerapias + '</p><h2 class="t2">' + T.terapiasTitulo + '</h2><p class="texto grande">' + T.terapiasTexto + '</p></div>' +
+      carril('terapias', tarjetas, total, T.desliza) +
     '</div></section>';
+  }
+
+  function secVoces() {
+    var tarjetas = C.VOCES.map(function (v) {
+      return '<figure class="voz">' +
+        (v.video ? '<div class="clip"><video src="' + FOTO + v.video + '" controls playsinline preload="none"></video></div>' : '') +
+        '<blockquote><p>«' + v.texto + '»</p></blockquote><figcaption>' + v.quien + '</figcaption></figure>';
+    }).join('');
+    return '<section class="sec alba grano" id="miembros"><div class="w pila pila--l">' +
+      '<div class="pila medio"><p class="ojo">' + T.ojoVoces + '</p><h2 class="t2">' + T.vocesTitulo + '</h2></div>' +
+      carril('voces', tarjetas, C.VOCES.length, '') +
+    '</div></section>';
+  }
+
+  function secMedico() {
+    var personas = C.EQUIPO.map(function (p) {
+      return '<li><img src="' + FOTO + p[3] + '" alt="" width="200" height="200" loading="lazy" decoding="async"' + (p[4] ? ' style="object-position:' + p[4] + '"' : '') + '>' +
+        '<div><b>' + p[0] + '</b><small>' + p[1] + '</small><span>' + p[2] + '</span></div></li>';
+    }).join('');
+    return '<section class="sec papel" id="equipo"><div class="w medico-rejilla">' +
+      '<div class="pila"><p class="ojo">' + T.ojoMedico + '</p><h2 class="t2">' + T.medicoTitulo + '</h2>' +
+        '<blockquote class="cita cita--raya grande"><p>«' + C.FRASE_DRA.texto + '»</p><footer>' + C.FRASE_DRA.quien + '</footer></blockquote></div>' +
+      '<ul class="equipo">' + personas + '</ul>' +
+    '</div></section>';
+  }
+
+  /* quien no contesta las preguntas entra por aquí */
+  function secIntro() {
+    return '<section class="sec alba grano primera intro">' + cab('<button type="button" data-cambiar>' + T.preguntas + '</button>') +
+      '<div class="w pila medio entra"><p class="ojo">' + T.donde + '</p>' +
+        '<h1 class="t1" data-titulo>' + (perfil === 'icp5' ? T.titular1icp5 : T.titular1) + '</h1>' +
+        '<p class="entrada suave">' + T.introSub + '</p></div></section>';
   }
 
   function ficha() {
@@ -295,13 +383,13 @@
     }).join('');
     var claves = (C.MINUTOS ? [[T.claveDuracion, T.minutos.replace('{m}', C.MINUTOS)]] : []).concat(T.claves)
       .map(function (c) { return '<div><dt>' + c[0] + '</dt><dd>' + c[1] + '</dd></div>'; }).join('');
-    var H = primera ? 'h1' : 'h2';
-    return '<section class="sec alba grano' + (primera ? ' primera' : '') + '" id="invitacion">' + (primera ? cab('<button type="button" data-cambiar>' + T.preguntas + '</button>') : '') +
-      '<div class="w invita-rejilla' + (primera ? ' entra' : '') + '">' +
+    var H = 'h2';
+    return '<section class="sec alba grano" id="invitacion">' +
+      '<div class="w invita-rejilla">' +
         '<div class="resumen-visita"><div class="tarjeta">' +
           '<div class="tarjeta-cab"><img src="' + FOTO + 'revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819"><p class="ojo">' + T.ojoInvita + '</p></div>' +
-          '<' + H + ' class="t2"' + (primera ? ' data-titulo' : '') + '>' + T.invita + '</' + H + '>' +
-          '<p class="entrada">' + (para ? '<em class="para">' + para + '</em> ' : '') + T.oferta + '</p>' +
+          '<' + H + ' class="t2">' + T.invita + '</' + H + '>' +
+          '<p class="entrada"><em class="para" id="para">' + (para || '') + '</em> ' + T.oferta + '</p>' +
           '<dl class="claves">' + claves + '</dl>' +
           botonReservar('propuesta', 'boton--tinta') +
           whatsapp(T.waAntes, 'propuesta') +
@@ -314,27 +402,26 @@
     var fotos = C.FOTOS.map(function (x, i) {
       return '<figure class="' + (i === 0 ? 'grande' : 'alta') + '"><img src="' + FOTO + x[0] + '" alt="' + x[1] + '" width="' + x[2] + '" height="' + x[3] + '" loading="lazy" decoding="async"' + (x[4] ? ' style="object-position:' + x[4] + '"' : '') + '></figure>';
     }).join('');
-    return '<section class="sec papel"><div class="w lugar-rejilla">' +
-      '<div class="lugar-col">' +
-        '<div class="pila lugar-a">' +
-          '<p class="ojo">' + T.ojoLugar + '</p>' +
-          '<h2 class="t2"><span class="linea">' + T.lugarA + '</span> <span class="linea">' + T.lugarB + '</span></h2>' +
-          '<p class="texto medio">' + T.lugar + '</p>' +
-          '<p class="mini llegar"><span>' + T.direccion + '</span><a href="' + T.mapa + '" target="_blank" rel="noopener">' + T.comoLlegar + '</a></p>' +
+    var despues = T.despues.map(function (d) {
+      return '<div class="extra"><h3>' + d[0] + '</h3><p>' + d[1] + '</p>' + (d[2] ? '<a href="' + d[3] + '">' + d[2] + '</a>' : '') + '</div>';
+    }).join('');
+    return '<section class="sec papel" id="donde"><div class="w pila pila--l">' +
+      '<div class="extras">' + despues + '</div>' +
+      '<div class="lugar-rejilla">' +
+        '<div class="lugar-col">' +
+          '<div class="pila lugar-a">' +
+            '<p class="ojo">' + T.ojoLugar + '</p>' +
+            '<h2 class="t2">' + T.lugarTitulo + '</h2>' +
+            '<p class="texto grande">' + T.lugar + '</p>' +
+            '<p class="llegar"><span>' + T.direccion + '</span><span class="acciones"><button type="button" class="enlace-t" data-mapa>' + T.verMapa + '</button><a class="enlace-t" href="' + T.mapa + '" target="_blank" rel="noopener">' + T.comoLlegar + '</a></span></p>' +
+            '<div class="mapa" id="mapa" hidden></div>' +
+          '</div>' +
+          '<ul class="datos lugar-c">' + C.DATOS.map(function (d) { return '<li><b>' + d[0] + '</b><span>' + d[1] + '</span></li>'; }).join('') + '</ul>' +
         '</div>' +
-        '<div class="pila pila--l lugar-c">' +
-          '<ul class="datos">' + C.DATOS.map(function (d) { return '<li><b>' + d[0] + '</b><span>' + d[1] + '</span></li>'; }).join('') + '</ul>' +
-          '<div class="pila pila--s"><p class="ojo">' + T.ojoEquipo + '</p><ul class="equipo">' +
-            C.EQUIPO.map(function (p) {
-              return '<li' + (p[3] ? ' class="con-foto"' : '') + '>' + (p[3] ? '<img src="' + FOTO + p[3] + '" alt="" width="200" height="200" loading="lazy" decoding="async">' : '') +
-                '<div><b>' + p[0] + (p[1] ? ' <small>' + p[1] + '</small>' : '') + '</b><span>' + p[2] + '</span></div></li>';
-            }).join('') +
-          '</ul></div>' +
+        '<div class="lugar-col">' +
+          '<div class="mosaico lugar-b">' + fotos + '</div>' +
+          '<blockquote class="cita lugar-d"><p>«' + C.CITA.texto + '»</p><footer>' + C.CITA.quien + '</footer></blockquote>' +
         '</div>' +
-      '</div>' +
-      '<div class="lugar-col">' +
-        '<div class="mosaico lugar-b">' + fotos + '</div>' +
-        '<blockquote class="cita lugar-d"><p>«' + C.CITA.texto + '»</p><footer>' + C.CITA.quien + '</footer></blockquote>' +
       '</div>' +
     '</div></section>';
   }
@@ -342,7 +429,7 @@
   function secDudas() {
     var dudas = C.DUDAS.map(function (d, i) { return '<details data-duda="' + i + '"><summary>' + d[0] + '<i aria-hidden="true"></i></summary><p>' + d[1] + '</p></details>'; }).join('');
     return '<section class="sec papel dudas-sec" id="dudas"><div class="w"><div class="dudas-rejilla pila pila--l">' +
-      '<div class="pila"><p class="ojo">' + T.ojoDudas + '</p><h2 class="t3">' + T.dudas + '</h2></div>' +
+      '<div class="pila"><p class="ojo">' + T.ojoDudas + '</p><h2 class="t2">' + T.dudas + '</h2></div>' +
       '<div class="pila"><div class="dudas">' + dudas + '</div>' + whatsapp(T.waOtra, 'dudas') + '</div>' +
     '</div></div></section>';
   }
@@ -381,21 +468,26 @@
       }, 55);
     }
 
-    var caja = app.querySelector('.terapias'), puntos = app.querySelectorAll('.puntos i');
-    if (caja && puntos.length) {
+    [].forEach.call(app.querySelectorAll('.carril-caja'), function (marco) {
+      var caja = marco.querySelector('.carril'), puntos = marco.querySelectorAll('.puntos i');
+      function ancho() { var t = caja.firstElementChild; return t ? t.getBoundingClientRect().width + 14 : 1; }
       caja.addEventListener('scroll', function () {
-        var t = caja.querySelector('.ter');
-        if (!t) return;
-        var ancho = t.getBoundingClientRect().width + 12;
-        var n = Math.max(0, Math.min(puntos.length - 1, Math.round(caja.scrollLeft / ancho)));
+        var n = Math.round(caja.scrollLeft / ancho());
+        if (caja.scrollLeft + caja.clientWidth >= caja.scrollWidth - 4) n = puntos.length - 1;   // al llegar al final, la última
+        n = Math.max(0, Math.min(puntos.length - 1, n));
         for (var i = 0; i < puntos.length; i++) puntos[i].className = i === n ? 'on' : '';
       }, { passive: true });
-    }
+      [].forEach.call(marco.querySelectorAll('[data-carril]'), function (b) {
+        b.addEventListener('click', function () {
+          caja.scrollBy({ left: Number(b.getAttribute('data-carril')) * ancho() * 2, behavior: CALMA ? 'auto' : 'smooth' });
+        });
+      });
+    });
 
     if (CALMA || !('IntersectionObserver' in window)) return;
     var piezas = [].slice.call(app.querySelectorAll(
-      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .apunte, .sec.papel .texto, .ter, .tarjeta, .hilo > li, ' +
-      '.mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
+      '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .filas li, .cuales, .otras, .ter, .voz, .tarjeta, .hilo > li, ' +
+      '.extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
     var alto = window.innerHeight;
     var ojo = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -424,6 +516,29 @@
 
   function flota() { return '<div class="flota" id="flota"><div class="w">' + botonReservar('fijo', '') + '</div></div>'; }
 
+  /* «¿Buscas otra cosa?»: cambia el bloque sin volver a las preguntas, y con él la frase de la invitación. */
+  function activaBloque() {
+    var caja = document.getElementById('bloque');
+    [].forEach.call(caja.querySelectorAll('[data-otra]'), function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-otra');
+        S.area = id; guarda();
+        evento('eligio_tema', { tema: id, porcentaje: S.p, haces: S.haces.join(',') });
+        caja.innerHTML = htmlBloque(id);
+        var para = document.getElementById('para');
+        if (para) para.textContent = C.AREAS[id].para;
+        activaBloque();
+        var y = caja.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - 28;
+        window.scrollTo({ top: y, behavior: CALMA ? 'auto' : 'smooth' });
+      });
+    });
+    var bajar = caja.querySelector('[data-bajar]');
+    if (bajar) bajar.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('invitacion').scrollIntoView({ behavior: CALMA ? 'auto' : 'smooth', block: 'start' });
+    });
+  }
+
   function activaResultado(tema) {
     app.querySelector('[data-cambiar]').addEventListener('click', function () { evento('cambio_tema', { desde: tema }); ir(''); });
     app.querySelectorAll('[data-reservar]').forEach(function (b) {
@@ -435,6 +550,15 @@
     });
     app.querySelectorAll('[data-duda]').forEach(function (d) {
       d.addEventListener('toggle', function () { if (d.open) evento('abrio_duda', { duda: C.DUDAS[d.getAttribute('data-duda')][0] }); });
+    });
+    activaBloque();
+    var mapa = app.querySelector('[data-mapa]');
+    if (mapa) mapa.addEventListener('click', function () {
+      // El mapa de Google solo se carga si se pide (pone sus propias cookies).
+      var m = document.getElementById('mapa');
+      m.hidden = false;
+      m.innerHTML = '<iframe title="REVO Studios en Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="' + T.mapaDentro + '"></iframe>';
+      mapa.hidden = true;
     });
     movimiento();
     var cookies = app.querySelector('[data-cookies]');
@@ -469,13 +593,17 @@
     var a = C.AREAS[S.area];
     if (!a) { ir(''); return; }
     abrePantalla('resultado');
-    pinta(secResumen() + secCombinacion(a, S.p >= 100) + secInvitacion(false, a.para) + secLugar() + secDudas() + secFinal() + flota());
+    fondo(false);
+    pinta(secResumen() + secBloque(S.area) + secTerapias() + secVoces() + secMedico() + secInvitacion(false, a.para) + secLugar() + secDudas() + secFinal() + flota());
     evento('vio_resultado', { tema: S.area, porcentaje: S.p });
     activaResultado(S.area);
   }
+  /* Sin contestar: la misma página, con el bloque del perfil del anuncio (o el de la cabeza si no lo dice). */
   function invitacion() {
     abrePantalla('resultado');
-    pinta(secInvitacion(true, paraAnuncio) + secLugar() + secDudas() + secFinal() + flota());
+    fondo(false);
+    S.area = null;
+    pinta(secIntro() + secBloque(areaAnuncio) + secTerapias() + secVoces() + secMedico() + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secLugar() + secDudas() + secFinal() + flota());
     evento('eligio_tema', { tema: 'directo' });
     evento('vio_resultado', { tema: 'directo' });
     activaResultado('directo');
@@ -486,7 +614,9 @@
     if (h === 'paso-2') return paso2();
     if (h === 'paso-3') return paso3();
     if (h === 'resultado') return resultado();
-    if (h === 'invitacion') return invitacion();
+    // «ver» es la página sin contestar. «invitacion» se conserva por los enlaces antiguos: como ahora es también el
+    // id de la sección, el navegador baja solo hasta la invitación.
+    if (h === 'ver' || h === 'invitacion') return invitacion();
     paso1();
   }
   window.addEventListener('hashchange', function () { navegado = true; render(); });
