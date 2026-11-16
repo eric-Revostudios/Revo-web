@@ -35,13 +35,11 @@ window.TU_PUNTO = {
     pista1: 'Desliza hasta donde te reconozcas.',
 
     /* 2 · lo que ya haces */
-    paso2: '02 / 03',
     pregunta2: 'Así <em>me cuido hoy</em>',
     pista2: 'Elige lo que ya forma parte de tu vida.',
     menos: 'Todavía menos de lo que querría',
 
     /* 3 · dónde lo notarías */
-    paso3: '03 / 03 · Has dicho {p}&nbsp;%',
     pregunta3: 'Con <em class="n">ese {r}&nbsp;%</em>, me gustaría…',
     pregunta3cien: 'Dentro de veinte años, <em>me gustaría…</em>',
 

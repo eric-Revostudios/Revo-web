@@ -215,7 +215,6 @@
     }).join('') + '<button type="button" class="marca ancha" data-h="menos" aria-pressed="' + (S.haces.indexOf('menos') > -1) + '">' + T.menos + '<i>' + I.visto + '</i></button>';
     pinta(escena(2,
       '<div class="arriba">' +
-        '<p class="paso">' + T.paso2 + '</p>' +
         '<h1 class="t3" data-titulo>' + T.pregunta2 + '</h1>' +
         '<p class="texto">' + T.pista2 + '</p>' +
         '<div class="marcas">' + marcas + '</div>' +
@@ -247,7 +246,6 @@
     }).join('');
     pinta(escena(3,
       '<div class="arriba">' +
-        '<p class="paso">' + T.paso3.replace('{p}', S.p) + '</p>' +
         '<h1 class="t3" data-titulo>' + pregunta + '</h1>' +
         '<div class="ops">' + botones + '</div>' +
       '</div><div></div>',
