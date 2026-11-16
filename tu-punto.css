@@ -516,7 +516,10 @@ main{ position:relative; z-index:1; }
   .resumen-rejilla{ display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:96px; align-items:end; }
   .dicho{ padding-top:0; }
   .invita-rejilla{ grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:104px; align-items:start; }
-  .resumen-visita{ position:sticky; top:48px; }
+  /* la tarjeta es ahora más alta que los pasos: los que acompañan al bajar son los pasos */
+  .invita-rejilla > .pila{ position:sticky; top:96px; }
+  .otras-mas summary .t3{ font-size:26px; }
+  .otras-mas{ margin-top:-12px; }
   .tarjeta{ padding:36px 34px 32px; border-radius:30px; gap:24px; }
   .tarjeta .t2{ font-size:42px; }
   .lugar-rejilla{ display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:96px; align-items:start; }
