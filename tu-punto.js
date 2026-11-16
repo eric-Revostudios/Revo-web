@@ -288,8 +288,7 @@
      el título de su tema y la explicación (es normal, y tiene un porqué). */
   function htmlPorque(id, contestado) {
     var a = C.AREAS[id];
-    return '<p class="tuya">' + (contestado ? T.tuRespuesta + ' <b>' + S.p + '&nbsp;%</b><i></i><b>' + a.corto + '</b>' : T.donde) + '</p>' +
-      rotulo(1, T.parte1) +
+    return rotulo(1, T.parte1) +
       '<h1 class="t1" data-titulo>' + a.titulo + '</h1>' +
       '<p class="entrada suave">' + a.texto + '</p>';
   }

@@ -59,7 +59,6 @@ window.TU_PUNTO = {
     parte3: 'Tu punto de partida',
     parte4: 'Quién lo vive y quién está detrás',
     parte5: 'Antes de venir',
-    tuRespuesta: 'Tu respuesta',
     terapiasTuyas: 'Las terapias que <em>pueden ayudarte</em>',
     deslizaTuyas: 'Desliza para verlas',
     /* el puente hacia la invitación: lo que ya hace, y lo que falta */
