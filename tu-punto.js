@@ -128,14 +128,27 @@
     if (!video) return;
     var ahorro = false;
     try { ahorro = !!(navigator.connection && navigator.connection.saveData); } catch (e) {}
-    if (CALMA || ahorro) return;
+    if (ahorro) return;
+    function suena() {
+      if (!document.body.classList.contains('con-fondo') || !video.paused) return;
+      var p = video.play && video.play();
+      if (p && p.catch) p.catch(function () {});
+    }
     if (visible) {
       if (!videoListo) {
         videoListo = true;
+        // El iPhone solo deja arrancar un vídeo sin tocar si está en silencio DE VERDAD (la propiedad, no solo el
+        // atributo) y en línea. Y con el ahorro de batería no lo deja nunca: por eso se reintenta al primer toque.
+        video.muted = true; video.defaultMuted = true;
+        video.setAttribute('muted', ''); video.setAttribute('autoplay', '');
+        video.setAttribute('playsinline', ''); video.setAttribute('webkit-playsinline', '');
         video.src = FOTO + (window.matchMedia('(min-width: 900px)').matches ? 'hero-video-1080.mp4' : 'hero-video-mobile.mp4');
+        try { video.load(); } catch (e) {}
+        video.addEventListener('canplay', suena);
+        ['touchstart', 'pointerdown', 'click'].forEach(function (ev) { document.addEventListener(ev, suena, { passive: true }); });
+        document.addEventListener('visibilitychange', suena);
       }
-      var p = video.play && video.play();
-      if (p && p.catch) p.catch(function () {});
+      suena();
     } else if (videoListo) { try { video.pause(); } catch (e) {} }
   }
 
@@ -175,6 +188,9 @@
   }
 
   /* ---------- 1 · el porcentaje ---------- */
+  /* La regla de la primera pregunta: 51 rayas finas (una por punto, las de cada cinco más altas), dos veces
+     (apagadas y encendidas hasta el valor) y una aguja de luz. El control de verdad es el <input> de encima. */
+  var REGLA = '<svg class="rayas" viewBox="0 0 50 10" preserveAspectRatio="none" aria-hidden="true"><line x1="0" x2="0" y1="0" y2="10"/><line x1="1" x2="1" y1="3.4" y2="6.6"/><line x1="2" x2="2" y1="3.4" y2="6.6"/><line x1="3" x2="3" y1="3.4" y2="6.6"/><line x1="4" x2="4" y1="3.4" y2="6.6"/><line x1="5" x2="5" y1="0" y2="10"/><line x1="6" x2="6" y1="3.4" y2="6.6"/><line x1="7" x2="7" y1="3.4" y2="6.6"/><line x1="8" x2="8" y1="3.4" y2="6.6"/><line x1="9" x2="9" y1="3.4" y2="6.6"/><line x1="10" x2="10" y1="0" y2="10"/><line x1="11" x2="11" y1="3.4" y2="6.6"/><line x1="12" x2="12" y1="3.4" y2="6.6"/><line x1="13" x2="13" y1="3.4" y2="6.6"/><line x1="14" x2="14" y1="3.4" y2="6.6"/><line x1="15" x2="15" y1="0" y2="10"/><line x1="16" x2="16" y1="3.4" y2="6.6"/><line x1="17" x2="17" y1="3.4" y2="6.6"/><line x1="18" x2="18" y1="3.4" y2="6.6"/><line x1="19" x2="19" y1="3.4" y2="6.6"/><line x1="20" x2="20" y1="0" y2="10"/><line x1="21" x2="21" y1="3.4" y2="6.6"/><line x1="22" x2="22" y1="3.4" y2="6.6"/><line x1="23" x2="23" y1="3.4" y2="6.6"/><line x1="24" x2="24" y1="3.4" y2="6.6"/><line x1="25" x2="25" y1="0" y2="10"/><line x1="26" x2="26" y1="3.4" y2="6.6"/><line x1="27" x2="27" y1="3.4" y2="6.6"/><line x1="28" x2="28" y1="3.4" y2="6.6"/><line x1="29" x2="29" y1="3.4" y2="6.6"/><line x1="30" x2="30" y1="0" y2="10"/><line x1="31" x2="31" y1="3.4" y2="6.6"/><line x1="32" x2="32" y1="3.4" y2="6.6"/><line x1="33" x2="33" y1="3.4" y2="6.6"/><line x1="34" x2="34" y1="3.4" y2="6.6"/><line x1="35" x2="35" y1="0" y2="10"/><line x1="36" x2="36" y1="3.4" y2="6.6"/><line x1="37" x2="37" y1="3.4" y2="6.6"/><line x1="38" x2="38" y1="3.4" y2="6.6"/><line x1="39" x2="39" y1="3.4" y2="6.6"/><line x1="40" x2="40" y1="0" y2="10"/><line x1="41" x2="41" y1="3.4" y2="6.6"/><line x1="42" x2="42" y1="3.4" y2="6.6"/><line x1="43" x2="43" y1="3.4" y2="6.6"/><line x1="44" x2="44" y1="3.4" y2="6.6"/><line x1="45" x2="45" y1="0" y2="10"/><line x1="46" x2="46" y1="3.4" y2="6.6"/><line x1="47" x2="47" y1="3.4" y2="6.6"/><line x1="48" x2="48" y1="3.4" y2="6.6"/><line x1="49" x2="49" y1="3.4" y2="6.6"/><line x1="50" x2="50" y1="0" y2="10"/></svg><svg class="rayas rayas--luz" viewBox="0 0 50 10" preserveAspectRatio="none" aria-hidden="true"><line x1="0" x2="0" y1="0" y2="10"/><line x1="1" x2="1" y1="3.4" y2="6.6"/><line x1="2" x2="2" y1="3.4" y2="6.6"/><line x1="3" x2="3" y1="3.4" y2="6.6"/><line x1="4" x2="4" y1="3.4" y2="6.6"/><line x1="5" x2="5" y1="0" y2="10"/><line x1="6" x2="6" y1="3.4" y2="6.6"/><line x1="7" x2="7" y1="3.4" y2="6.6"/><line x1="8" x2="8" y1="3.4" y2="6.6"/><line x1="9" x2="9" y1="3.4" y2="6.6"/><line x1="10" x2="10" y1="0" y2="10"/><line x1="11" x2="11" y1="3.4" y2="6.6"/><line x1="12" x2="12" y1="3.4" y2="6.6"/><line x1="13" x2="13" y1="3.4" y2="6.6"/><line x1="14" x2="14" y1="3.4" y2="6.6"/><line x1="15" x2="15" y1="0" y2="10"/><line x1="16" x2="16" y1="3.4" y2="6.6"/><line x1="17" x2="17" y1="3.4" y2="6.6"/><line x1="18" x2="18" y1="3.4" y2="6.6"/><line x1="19" x2="19" y1="3.4" y2="6.6"/><line x1="20" x2="20" y1="0" y2="10"/><line x1="21" x2="21" y1="3.4" y2="6.6"/><line x1="22" x2="22" y1="3.4" y2="6.6"/><line x1="23" x2="23" y1="3.4" y2="6.6"/><line x1="24" x2="24" y1="3.4" y2="6.6"/><line x1="25" x2="25" y1="0" y2="10"/><line x1="26" x2="26" y1="3.4" y2="6.6"/><line x1="27" x2="27" y1="3.4" y2="6.6"/><line x1="28" x2="28" y1="3.4" y2="6.6"/><line x1="29" x2="29" y1="3.4" y2="6.6"/><line x1="30" x2="30" y1="0" y2="10"/><line x1="31" x2="31" y1="3.4" y2="6.6"/><line x1="32" x2="32" y1="3.4" y2="6.6"/><line x1="33" x2="33" y1="3.4" y2="6.6"/><line x1="34" x2="34" y1="3.4" y2="6.6"/><line x1="35" x2="35" y1="0" y2="10"/><line x1="36" x2="36" y1="3.4" y2="6.6"/><line x1="37" x2="37" y1="3.4" y2="6.6"/><line x1="38" x2="38" y1="3.4" y2="6.6"/><line x1="39" x2="39" y1="3.4" y2="6.6"/><line x1="40" x2="40" y1="0" y2="10"/><line x1="41" x2="41" y1="3.4" y2="6.6"/><line x1="42" x2="42" y1="3.4" y2="6.6"/><line x1="43" x2="43" y1="3.4" y2="6.6"/><line x1="44" x2="44" y1="3.4" y2="6.6"/><line x1="45" x2="45" y1="0" y2="10"/><line x1="46" x2="46" y1="3.4" y2="6.6"/><line x1="47" x2="47" y1="3.4" y2="6.6"/><line x1="48" x2="48" y1="3.4" y2="6.6"/><line x1="49" x2="49" y1="3.4" y2="6.6"/><line x1="50" x2="50" y1="0" y2="10"/></svg><i class="aguja" aria-hidden="true"></i>';
   function paso1() {
     abrePantalla('inicio');
     pinta(escena(1,
@@ -186,9 +202,9 @@
       '<div class="medida">' +
         '<label for="porcentaje">' + T.pregunta1 + '</label>' +
         '<div class="cifra" aria-hidden="true"><span id="cifra">' + S.p + '</span><small>%</small></div>' +
-        '<div class="regla" id="regla"><span class="hecho"></span><span class="resto"></span>' +
+        '<div class="regla" id="regla">' + REGLA +
           '<input type="range" id="porcentaje" min="50" max="100" step="5" value="' + S.p + '" aria-valuetext="' + S.p + ' por ciento"></div>' +
-        '<div class="escala" aria-hidden="true"><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span><span>100</span></div>' +
+        '<div class="escala" aria-hidden="true"><span>50</span><span>75</span><span>100</span></div>' +
         '<p class="eco" id="eco" aria-live="polite">' + (S.tocado ? porTramo(C.ECO)[1] : T.pista1) + '</p>' +
       '</div>' +
       '<div class="abajo">' +
@@ -362,9 +378,11 @@
      tarjeta de la invitación, antes del botón (17-nov-2026: es lo más deseable de la oferta y estaba escondida
      en el paso 2). */
   function ficha() {
-    return '<ul class="medir">' +
-      C.FICHA.map(function (m) { return '<li><b>' + m[0] + '</b><i>' + m[1] + '</i></li>'; }).join('') +
-    '</ul>';
+    return '<div class="lectura"><p class="lectura-cab"><span>' + T.fichaTitulo + '</span><b>' + T.fichaEstado + '</b></p><ul>' +
+      C.FICHA.map(function (m) {
+        var v = m[1].split(' ');
+        return '<li><i>' + v[0] + (v[1] ? '<small>' + v[1] + '</small>' : '') + '</i><b>' + m[0] + '</b></li>';
+      }).join('') + '</ul></div>';
   }
 
   /* 03 · La invitación. Pensada para que se reserve: poco que leer antes del botón, lo que te llevas a la vista,
@@ -385,13 +403,14 @@
           '<div class="tarjeta-cab"><img src="' + FOTO + 'revo-logo-white.webp" alt="' + T.logoAlt + '" width="2253" height="819"><p class="ojo">' + T.ojoInvita + '</p></div>' +
           '<div class="pila medio"><' + H + ' class="t2">' + T.invita + '</' + H + '>' +
           '<p class="entrada"><em class="para" id="para">' + (para || '') + '</em></p></div>' +
-          '<div class="pila medio"><p class="mini-rot">' + T.medimos + '</p>' + ficha() +
-          '<p class="sales">' + T.sales + '</p></div>' +
-          '<p class="valor">' + T.valor + '</p>' +
+          ficha() +
+          '<p class="sales">' + T.sales.replace('{m}', C.MINUTOS) + '</p>' +
+          '<dl class="cuenta"><div><dt>' + T.valorRot + '</dt><dd>' + T.valorPrecio + '</dd></div>' +
+            '<div><dt>' + T.paraTiRot + '</dt><dd><em>' + T.paraTi + '</em></dd></div></dl>' +
           '<div class="pila medio">' + botonReservar('propuesta', 'boton--tinta') +
-          '<p class="bajo-boton">' + (C.MINUTOS ? T.minutos.replace('{m}', C.MINUTOS) + ' · ' : '') + T.bajoBoton + '</p></div>' +
-          '<p class="prueba"><span aria-hidden="true">★★★★★</span> ' + T.prueba + '</p>' +
-          whatsapp(T.waAntes, 'propuesta') +
+          '<p class="bajo-boton">' + T.bajoBoton + '</p></div>' +
+          '<div class="tarjeta-pie"><p class="prueba"><span aria-hidden="true">★★★★★</span> ' + T.prueba + '</p>' +
+          whatsapp(T.waAntes, 'propuesta') + '</div>' +
         '</div></div>' +
         '<div class="pila"><p class="ojo">' + (C.MINUTOS ? T.ojoPasos.replace('{m}', C.MINUTOS) : T.ojoPasosSinMinutos) + '</p><ol class="hilo">' + pasos + '</ol>' +
           '<div class="tras-pasos">' + botonReservar('pasos', 'boton--luz') + '</div></div>' +

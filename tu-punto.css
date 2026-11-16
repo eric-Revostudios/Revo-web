@@ -100,11 +100,10 @@ body.con-fondo .fondo{ display:block; }
 main{ position:relative; z-index:1; }
 .escena{ position:relative; isolation:isolate; overflow:hidden; min-height:100vh; min-height:100svh; display:flex; flex-direction:column; color:var(--luz); --f:.6; }
 /* el velo: arriba deja ver el estudio; de la mitad hacia abajo es noche, para que la pregunta se lea */
-.escena .sombra{ position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg, rgba(5,6,13,.6) 0%, rgba(5,6,13,.36) 18%, rgba(6,7,17,.58) 44%, rgba(7,9,24,.92) 70%, #0a0f30 100%); }
+.escena .sombra{ position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg, rgba(5,6,13,.52) 0%, rgba(5,6,13,.24) 16%, rgba(6,7,17,.46) 40%, rgba(6,8,20,.88) 66%, #070a1c 100%); }
 .escena .t1, .escena .t3, .escena .sub1, .escena .ojo, .escena .paso, .escena .texto{ text-shadow:0 1px 24px rgba(5,6,13,.75); }
 /* el estriado del vidrio, apenas una textura */
-.escena .sombra::after{ content:""; position:absolute; inset:0 0 46% 0; background:repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, rgba(255,255,255,0) 1px 11px);
-  -webkit-mask-image:linear-gradient(180deg, #000 0%, transparent 100%); mask-image:linear-gradient(180deg, #000 0%, transparent 100%); }
+.escena .sombra::after{ content:none; }
 /* el amanecer: la luz del fondo sube con el número */
 .escena .aurora{ position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(125% 58% at 76% 114%, rgba(104,129,252,.95) 0%, rgba(54,80,207,.46) 34%, rgba(54,80,207,0) 72%); opacity:calc(.06 + var(--f) * .72); transition:opacity .8s var(--ease); }
 .escena-w{ flex:1; display:flex; flex-direction:column; padding-top:calc(78px + env(safe-area-inset-top, 0px)); padding-bottom:calc(24px + var(--rc-alto) + env(safe-area-inset-bottom, 0px)); }
@@ -121,24 +120,28 @@ main{ position:relative; z-index:1; }
 /* la línea de luz */
 .medida{ display:grid; gap:2px; }
 .medida label{ font-size:18.5px; line-height:1.3; letter-spacing:-.005em; color:var(--luz-2); }
-.cifra{ display:flex; align-items:baseline; gap:.07em; font-family:var(--serif); font-style:italic; font-weight:500; font-size:clamp(90px, 26vw, 132px); line-height:1; letter-spacing:-.05em; font-variant-numeric:tabular-nums; text-shadow:0 0 60px rgba(104,129,252,.35); }
-.cifra small{ font-size:.38em; letter-spacing:0; color:var(--azul-claro); }
-.regla{ position:relative; height:48px; }
-.regla .hecho, .regla .resto{ position:absolute; top:23px; height:2px; border-radius:2px; pointer-events:none; }
-.regla .hecho{ left:0; width:calc(16px + var(--f) * (100% - 32px)); background:var(--luz); }
-.regla .resto{ left:calc(16px + var(--f) * (100% - 32px)); right:0; background:var(--azul); box-shadow:0 0 12px 1px rgba(104,129,252,.95), 0 0 34px 4px rgba(104,129,252,.5); }
-.regla input{ -webkit-appearance:none; appearance:none; position:absolute; inset:0; width:100%; height:48px; margin:0; background:transparent; cursor:grab; }
+/* el número: cifras finas y altas, con un degradado de luz. Fino de sistema (Helvetica Neue en iPhone y Mac,
+   Roboto en Android): la Neue Haas de la casa solo tiene el peso medio. */
+.cifra{ display:flex; align-items:flex-start; gap:.04em; font-family:"Helvetica Neue","HelveticaNeue-Thin",Roboto,system-ui,sans-serif; font-style:normal; font-weight:200; font-size:clamp(104px, 30vw, 148px); line-height:.92; letter-spacing:-.055em; font-variant-numeric:tabular-nums; padding:6px 0 14px; }
+.cifra span{ background:linear-gradient(180deg, #ffffff 22%, #c9d0ff 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; filter:drop-shadow(0 0 34px rgba(104,129,252,.45)); padding-right:.06em; }
+.cifra small{ font-size:.24em; font-weight:300; letter-spacing:.04em; line-height:1; margin-top:.62em; color:var(--azul-claro); }
+/* la regla: rayas de precisión, encendidas hasta el valor, y una aguja de luz */
+.regla{ position:relative; height:64px; --m:22px; }
+.regla .rayas{ position:absolute; left:var(--m); right:var(--m); top:16px; width:calc(100% - var(--m) * 2); height:32px; overflow:visible; pointer-events:none; }
+.regla .rayas line{ stroke:rgba(246,244,239,.26); stroke-width:1; vector-effect:non-scaling-stroke; shape-rendering:crispEdges; }
+.regla .rayas--luz{ -webkit-clip-path:inset(-2px calc((1 - var(--f)) * 100%) -2px -2px); clip-path:inset(-2px calc((1 - var(--f)) * 100%) -2px -2px); }
+.regla .rayas--luz line{ stroke:var(--luz); }
+.regla .aguja{ position:absolute; top:2px; left:calc(var(--m) + var(--f) * (100% - var(--m) * 2) - 1px); width:2px; height:60px; border-radius:2px; background:linear-gradient(180deg, #fff, var(--azul-claro)); box-shadow:0 0 14px 2px rgba(104,129,252,.95), 0 0 40px 8px rgba(104,129,252,.5); pointer-events:none; }
+.regla .aguja::before{ content:""; position:absolute; left:-4px; top:-5px; width:10px; height:10px; border-radius:50%; background:#fff; box-shadow:0 0 0 6px rgba(104,129,252,.22), 0 0 22px 4px rgba(104,129,252,.8); }
+.regla input{ -webkit-appearance:none; appearance:none; position:absolute; inset:0; width:100%; height:64px; margin:0; background:transparent; cursor:grab; }
 .regla input:active{ cursor:grabbing; }
-.regla input::-webkit-slider-runnable-track{ height:48px; background:transparent; }
-.regla input::-moz-range-track{ height:48px; background:transparent; }
-.regla input::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:32px; height:32px; margin-top:8px; border-radius:50%; background:var(--luz); border:0; box-shadow:0 0 0 9px rgba(104,129,252,.2), 0 0 34px 8px rgba(104,129,252,.55), 0 8px 20px rgba(6,7,15,.55); transition:box-shadow .3s var(--ease); }
-.regla input::-moz-range-thumb{ width:32px; height:32px; border-radius:50%; background:var(--luz); border:0; box-shadow:0 0 0 9px rgba(104,129,252,.2), 0 0 34px 8px rgba(104,129,252,.55), 0 8px 20px rgba(6,7,15,.55); }
-.regla input:active::-webkit-slider-thumb{ box-shadow:0 0 0 13px rgba(104,129,252,.26), 0 0 44px 12px rgba(104,129,252,.7), 0 8px 20px rgba(6,7,15,.55); }
-.regla input:focus-visible{ outline:2px solid var(--azul-claro); outline-offset:2px; border-radius:24px; }
-/* la escala: una marca fina cada diez y su número debajo */
-.escala{ display:flex; justify-content:space-between; padding:0 16px; margin-top:2px; font-size:10.5px; letter-spacing:.1em; color:var(--luz-3); font-variant-numeric:tabular-nums; }
-.escala span{ position:relative; width:0; display:flex; justify-content:center; white-space:nowrap; padding-top:11px; }
-.escala span::before{ content:""; position:absolute; top:0; left:0; width:1px; height:6px; background:rgba(246,244,239,.34); }
+.regla input::-webkit-slider-runnable-track{ height:64px; background:transparent; }
+.regla input::-moz-range-track{ height:64px; background:transparent; }
+.regla input::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:44px; height:64px; background:transparent; border:0; }
+.regla input::-moz-range-thumb{ width:44px; height:64px; background:transparent; border:0; }
+.regla input:focus-visible{ outline:2px solid var(--azul-claro); outline-offset:2px; border-radius:12px; }
+.escala{ display:flex; justify-content:space-between; padding:0 22px; margin-top:4px; font-size:10px; font-weight:600; letter-spacing:.22em; color:var(--luz-3); font-variant-numeric:tabular-nums; }
+.escala span{ width:0; display:flex; justify-content:center; white-space:nowrap; }
 .eco{ min-height:1.5em; padding-top:12px; font-family:var(--serif); font-style:italic; font-size:17.5px; letter-spacing:-.02em; color:var(--luz-2); }
 .atajo{ text-align:center; }
 .atajo .enlace{ font-size:inherit; padding:8px 0; color:var(--luz-2); }
@@ -327,16 +330,28 @@ main{ position:relative; z-index:1; }
 .tarjeta-cab img{ height:17px; width:auto; filter:brightness(0); opacity:.92; }
 .tarjeta .entrada{ color:var(--tinta-2); }
 .tarjeta .entrada .para{ color:var(--tinta); }
-/* la tarjeta, pensada para reservar: las tres mediciones con su casilla vacía, el valor y el botón */
-.tarjeta .mini-rot{ font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-3); }
-.medir{ display:grid; border-top:1px solid var(--raya); }
-.medir li{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:13px 0; border-bottom:1px solid var(--raya); }
-.medir b{ font-weight:500; font-size:18px; letter-spacing:-.008em; }
-.medir i{ font-family:var(--serif); font-style:italic; font-size:21px; color:var(--azul-texto); white-space:nowrap; }
+/* la tarjeta, pensada para reservar. Dentro, una «pantalla» oscura con las tres lecturas por medir (el mismo
+   lenguaje que el número de la primera pregunta: cifras finas, luz azul), la cuenta (valor y «para ti») y el botón. */
+.lectura{ border-radius:20px; background:radial-gradient(120% 90% at 80% 120%, rgba(54,80,207,.55) 0%, rgba(54,80,207,0) 62%), #070a1c; color:var(--luz); box-shadow:0 0 0 1px rgba(188,197,255,.14) inset, 0 26px 44px -30px rgba(54,80,207,.9); overflow:hidden; }
+.lectura-cab{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:13px 16px 12px; border-bottom:1px solid rgba(246,244,239,.1); font-size:9.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--luz-3); }
+.lectura-cab b{ display:flex; align-items:center; gap:7px; font-weight:600; color:var(--azul-claro); }
+.lectura-cab b::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--azul-claro); box-shadow:0 0 10px 2px rgba(104,129,252,.9); animation:late 2.4s ease-in-out infinite; }
+@keyframes late{ 50%{ opacity:.35; } }
+.lectura ul{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); }
+.lectura li{ display:grid; gap:10px; align-content:space-between; padding:18px 12px 16px 16px; border-left:1px solid rgba(246,244,239,.1); min-height:118px; }
+.lectura li:first-child{ border-left:0; }
+.lectura li i{ display:flex; align-items:baseline; gap:5px; font-family:"Helvetica Neue","HelveticaNeue-Thin",Roboto,system-ui,sans-serif; font-style:normal; font-weight:200; font-size:40px; line-height:1; color:#fff; }
+.lectura li i small{ font-size:13px; font-weight:400; letter-spacing:.04em; color:var(--azul-claro); }
+.lectura li b{ font-weight:500; font-size:12.5px; line-height:1.25; letter-spacing:.01em; color:var(--luz-2); text-wrap:balance; }
 .tarjeta .sales{ font-size:16.5px; line-height:1.45; color:var(--tinta-2); text-wrap:pretty; }
-.tarjeta .valor{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.35; color:var(--tinta); text-wrap:balance; }
+.cuenta{ display:grid; border-top:1px solid var(--raya); }
+.cuenta > div{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:13px 0; border-bottom:1px solid var(--raya); }
+.cuenta dt{ font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-3); white-space:nowrap; }
+.cuenta dd{ font-size:17px; line-height:1.3; text-align:right; color:var(--tinta); font-variant-numeric:tabular-nums; }
+.cuenta dd em{ font-size:19px; }
 .tarjeta .bajo-boton{ text-align:center; font-size:13px; line-height:1.5; color:var(--tinta-3); text-wrap:balance; }
-.tarjeta .prueba{ text-align:center; font-size:13.5px; color:var(--tinta-2); padding-top:14px; border-top:1px solid var(--raya); }
+.tarjeta-pie{ display:grid; gap:10px; padding-top:16px; border-top:1px solid var(--raya); }
+.tarjeta .prueba{ text-align:center; font-size:13.5px; color:var(--tinta-2); }
 .tarjeta .prueba span{ letter-spacing:.14em; color:var(--tinta); margin-right:6px; }
 .tras-pasos{ padding-top:14px; }
 .claves{ display:grid; border-top:1px solid var(--raya); }
@@ -444,6 +459,7 @@ main{ position:relative; z-index:1; }
 .rev{ opacity:0; transform:translateY(20px); transition:opacity 1s var(--ease) var(--d, 0ms), transform 1s var(--ease) var(--d, 0ms); }
 .rev.visto{ opacity:1; transform:none; }
 @media (prefers-reduced-motion:reduce){
+  .lectura-cab b::before{ animation:none; }
   .entra, .trazo .hecho, .trazo .resto, .trazo .punto{ animation:none; }
   .rev{ opacity:1; transform:none; transition:none; }
   .flota, .boton, .boton .ir, .escena .aurora, .ter img, .marca, .op{ transition:none; }
@@ -458,11 +474,12 @@ main{ position:relative; z-index:1; }
   .sub1{ display:none; }
   .t2{ font-size:clamp(26px, 7vw, 30px); }
   .medida label{ font-size:17px; }
-  .cifra{ font-size:74px; }
-  .regla{ height:42px; }
-  .regla .hecho, .regla .resto{ top:20px; }
-  .regla input, .regla input::-webkit-slider-runnable-track{ height:42px; }
-  .regla input::-webkit-slider-thumb{ margin-top:5px; }
+  .cifra{ font-size:84px; padding:2px 0 6px; }
+  .regla{ height:52px; }
+  .regla .rayas{ top:12px; height:28px; }
+  .regla .aguja{ height:48px; }
+  .regla input, .regla input::-webkit-slider-runnable-track{ height:52px; }
+  .regla input::-webkit-slider-thumb{ height:52px; }
   .eco{ padding-top:6px; font-size:16px; }
   .marcas, .ops{ gap:7px; }
   .marca{ min-height:52px; padding-top:7px; padding-bottom:7px; font-size:15px; }
@@ -484,7 +501,7 @@ main{ position:relative; z-index:1; }
   .lado-izq{ max-width:560px; }
   .cuerpo{ padding-top:34px; max-width:none; gap:22px; }
   .escena .t1{ font-size:48px; }
-  .escena .cifra{ font-size:96px; }
+  .escena .cifra{ font-size:120px; }
   .sub1{ font-size:17px; }
   .sec{ padding-block:140px; }
   .alba + .papel, .papel + .alba, .papel + .velado{ margin-top:-40px; border-radius:40px 40px 0 0; }

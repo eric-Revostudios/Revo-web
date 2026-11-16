@@ -100,9 +100,9 @@ window.TU_PUNTO = {
     ojoPasosSinMinutos: 'Así es tu punto de partida',
     /* La tarjeta de la invitación (17-nov-2026, pensada para reservar). El valor se dice una vez, como un hecho y
        sin palabras de oferta: ni «gratis», ni «promoción», ni fecha límite (Eric: que no suene cutre). */
-    medimos: 'En tu visita medimos',
-    sales: 'Y sales con un plan para ti, te hagas miembro o no.',
-    valor: 'Una valoración de 100&nbsp;€. Como invitación, corre de nuestra cuenta.',
+    sales: 'Lo medimos en {m} minutos y sales con un plan para ti, te hagas miembro o no.',
+    valorRot: 'Valoración', valorPrecio: '100&nbsp;€',
+    paraTiRot: 'Para ti', paraTi: 'Corre de nuestra cuenta',
     bajoBoton: 'Sin compromiso · Puedes cambiar la fecha cuando quieras',
     prueba: '4,9 en Google · 48 reseñas',
     fichaTitulo: 'Tu punto de partida',
