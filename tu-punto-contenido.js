@@ -134,7 +134,7 @@ window.TU_PUNTO = {
        sin palabras de oferta: ni «gratis», ni «promoción», ni fecha límite (Eric: que no suene cutre). */
     /* La tarjeta, a lo mínimo (Eric, 17-nov-2026: «muchas menos cosas, solo lo importante»): título, su frase,
        las tres lecturas, una línea de valor, el botón y una línea de garantías. */
-    valor: 'Una valoración como esta cuesta 100&nbsp;€. En tu primera visita, invitamos nosotros.',
+    valor: 'Valorada en 100&nbsp;€. Al reservarla desde esta invitación, corre de nuestra cuenta.',
     terapiaDia: 'Si quieres probar una terapia ese mismo día, escríbenos y te la reservamos.',
     bajoBoton: '{m} minutos · Sin compromiso',
     waCorto: 'Pregúntanos por WhatsApp',
