@@ -19,6 +19,10 @@
   if (!C) return;
   var T = C.TEXTOS, FOTO = C.FOTO;
   var MOMENCE = window.REVO_TU_PUNTO_URL || 'https://www.revostudios.eu/visita';
+  // Este mismo fichero pinta dos landings: /tu-punto (las tres preguntas) y /punto-de-partida (solo la oferta,
+  // con window.TU_PUNTO_MODO = 'oferta'). Cada una manda sus eventos con su nombre de página.
+  var MODO = window.TU_PUNTO_MODO || '';
+  var PAGINA = MODO === 'oferta' ? 'punto-de-partida' : 'tu-punto';
 
   /* ---------- parámetros del enlace ---------- */
   var params = new URLSearchParams(location.search);
@@ -87,7 +91,7 @@
       v: 'a',
       utm_content: utmContent,
       utm_source: utmSource,
-      pagina: 'tu-punto',
+      pagina: PAGINA,
       ts: new Date().toISOString()
     });
     try {
@@ -560,7 +564,7 @@
     if (CALMA || !('IntersectionObserver' in window)) return;
     var piezas = [].slice.call(app.querySelectorAll(
       '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .puente .entrada, .tfila, .voz, .tarjeta, .hilo > li, ' +
-      '.edades, .sientes, .sabras li, .detras, .extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
+      '.sec .edades, .sientes, .sabras li, .detras, .notas li, .modos, .extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
     var alto = window.innerHeight;
     var ojo = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -682,7 +686,51 @@
     activaResultado('directo');
   }
 
+  /* ---------- /punto-de-partida: la landing solo de oferta ----------
+     Una sola página, sin preguntas: la pregunta de la edad con el vídeo detrás → seis cosas en las que
+     reconocerse → el sistema nervioso autónomo → se puede medir (la edad biológica) → la invitación → miembros,
+     equipo y dudas. Para la medición es una sola pantalla («inicio»), como la landing anterior de esta dirección. */
+  function oferta() {
+    var O = C.OFERTA, m = C.MINUTOS;
+    abrePantalla('inicio');
+    S.area = null; sinContestar = true;
+    fondo(true);
+    var hero = '<section class="escena grano primera oferta-hero" style="--f:.6"><div class="sombra"></div><div class="aurora"></div>' + cab() +
+      '<div class="w escena-w"><div class="lado-izq"><div class="cuerpo entra">' +
+        '<div class="arriba"><p class="ojo">' + O.heroOjo + '</p>' +
+          '<h1 class="t1" data-titulo>' + O.heroTitulo + '</h1>' +
+          '<p class="sub1">' + O.heroSub.replace('{m}', m) + '</p></div>' +
+        '<div class="edades" aria-hidden="true"><p class="edades-cab"><span>' + T.ejeBio + '</span><b>' + T.ejeEstado + '</b></p>' +
+          '<div class="eje"><i class="linea"></i><i class="centro"></i><i class="bio"><span>?</span></i></div>' +
+          '<p class="eje-pie"><span>' + T.ejeMenos + '</span><span>' + T.ejeTu + '</span><span>' + T.ejeMas + '</span></p></div>' +
+        '<div class="abajo">' + botonReservar('cabecera', 'boton--luz') +
+          '<p class="mini hero-pie">' + O.heroPie.replace('{m}', m) + '</p></div>' +
+      '</div></div></div></section>';
+    var notas = '<section class="sec papel" id="notas"><div class="w pila pila--l">' +
+      '<div class="pila medio">' + rotulo(1, O.notasRotulo) + '<h2 class="t2">' + O.notasTitulo + '</h2></div>' +
+      '<ul class="notas">' + O.notas.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' +
+      '<p class="texto grande nervio">' + O.notasCierre + '</p></div></section>';
+    var detras = '<section class="sec alba grano" id="detras"><div class="w"><div class="pila porque">' + rotulo(2, O.detrasRotulo) +
+      '<h2 class="t2">' + T.detrasTitulo + '</h2>' +
+      '<p class="entrada">' + T.detrasTexto + '</p>' +
+      '<div class="modos" aria-hidden="true"><span>' + T.modoA + '</span><i><b></b></i><span>' + T.modoB + '</span></div>' +
+      '<p class="texto">' + O.detrasMas + '</p></div></div></section>';
+    var medir = '<section class="sec papel velado" id="medir"><div class="w pila pila--l">' +
+      '<div class="pila medio">' + rotulo(3, T.parte3) + '<h2 class="t2">' + T.medirTitulo + '</h2>' +
+        '<p class="texto grande nervio">' + O.medirPorque + '</p>' +
+        '<p class="texto grande">' + T.medirQue + '</p>' +
+        '<p class="texto">' + T.medirCambia + '</p></div>' +
+      '<div class="pila sabras-caja"><p class="ojo">' + T.sabrasTitulo + '</p><ul class="sabras">' +
+        C.FICHA.map(function (x) { return '<li><h3>' + x[0] + '</h3><p class="texto">' + x[2] + '</p></li>'; }).join('') +
+      '</ul><p class="texto sabras-pie">' + T.sabrasPie + '</p></div></div></section>';
+    pinta(hero + notas + detras + medir + secInvitacion(false, O.para) + secConfianza() + secDudas() + secFinal() + flota());
+    evento('eligio_tema', { tema: 'directo' });
+    evento('vio_resultado', { tema: 'directo' });
+    activaResultado('directo');
+  }
+
   function render() {
+    if (MODO === 'oferta') return oferta();
     var h = location.hash.replace('#', '');
     if (h === 'paso-2') return paso2();
     if (h === 'paso-3') return paso3();

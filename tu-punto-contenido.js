@@ -167,6 +167,32 @@ window.TU_PUNTO = {
     cookies: 'Cookies'
   },
 
+  /* La landing solo de oferta (/punto-de-partida, 17-nov-2026). Es la B del test A/B con /tu-punto: sin preguntas
+     y sin terapias, una sola página que vende la valoración. Tiene que servir para cualquier anuncio: por eso
+     empieza por la pregunta de la edad, sigue con seis cosas en las que reconocerse (una por cada objetivo de la
+     otra landing), las une en el sistema nervioso autónomo, y de ahí a la medición y a la invitación. */
+  OFERTA: {
+    heroOjo: 'Tu punto de partida',
+    heroTitulo: 'La edad del calendario ya la sabes. <em>¿Y la de tu cuerpo?</em>',
+    heroSub: 'Te invitamos a conocer tu edad biológica: una valoración de {m} minutos en REVO, con acompañamiento médico, en Turó Park.',
+    heroPie: '{m} minutos · Sin compromiso · Valorada en 100&nbsp;€',
+    notasRotulo: 'Lo que notas',
+    notasTitulo: 'Puede que te suene <em>alguna de estas</em>',
+    notas: [
+      'La energía se acaba antes que el día.',
+      'Duermes tus horas y te levantas igual.',
+      'El día termina, pero la cabeza no para.',
+      'El cuerpo tarda más en recuperarse que antes.',
+      'Te cuidas, y no sabes si haces lo que toca.',
+      'Estás bien, y quieres seguir así muchos años.'
+    ],
+    notasCierre: 'Parecen cosas distintas. Casi siempre tienen algo en común.',
+    detrasRotulo: 'Lo que hay detrás',
+    detrasMas: 'Cuando pasa demasiado tiempo en activación, se nota: en cómo duermes, en la energía, en la cabeza y en cómo se recupera el cuerpo. Ocurre tan poco a poco que se acaba dando por normal.',
+    medirPorque: 'Se puede medir. Leyendo la variabilidad de tu pulso se ve cuánta carga lleva tu sistema nervioso, cómo se recupera y cuánta energía tiene disponible.',
+    para: 'Para saber desde dónde empiezas.'
+  },
+
   /* Lo que dice la línea según el número (de mayor a menor: gana el primero que se cumple). */
   ECO: [
     [100, 'Entonces se trata de cuidarlo.'],

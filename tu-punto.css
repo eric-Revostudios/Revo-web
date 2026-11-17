@@ -221,6 +221,16 @@ main{ position:relative; z-index:1; }
 /* 03 · el puente hacia la invitación */
 .puente{ max-width:760px; gap:18px; }
 .puente .t2 em{ display:block; }
+/* /punto-de-partida · la landing solo de oferta */
+.oferta-hero .cuerpo{ justify-content:flex-start; gap:30px; padding-top:22px; }
+.oferta-hero .t1{ font-size:clamp(31px, 8.6vw, 40px); }
+.oferta-hero .t1 em{ display:block; }
+.oferta-hero .edades{ background:rgba(7,10,28,.55); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+.oferta-hero .abajo{ margin-top:auto; }
+.hero-pie{ text-align:center; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--luz-2); }
+.notas{ border-top:1px solid var(--raya); }
+.notas li{ padding:20px 0; border-bottom:1px solid var(--raya); font-size:clamp(21px, 5.6vw, 27px); line-height:1.2; letter-spacing:-.018em; text-wrap:balance; }
+#detras .modos{ padding:10px 0 4px; }
 /* 01 · lo que hay detrás: el sistema nervioso autónomo y sus dos modos */
 .detras{ display:grid; gap:18px; margin-top:26px; padding-top:34px; border-top:1px solid var(--raya-luz); }
 .detras .t3 em{ display:block; }
@@ -568,6 +578,15 @@ main{ position:relative; z-index:1; }
   .sub1{ font-size:17px; }
   .sec{ padding-block:140px; }
   .medir-rejilla{ grid-template-columns:minmax(0, 6fr) minmax(0, 5fr); gap:84px; align-items:start; }
+  .oferta-hero .lado-izq{ max-width:none; justify-content:center; }
+  .oferta-hero .cuerpo{ flex:none; display:grid; grid-template-columns:minmax(0, 6fr) minmax(0, 5fr); column-gap:84px; row-gap:34px; align-items:center; max-width:none; padding-top:0; }
+  .oferta-hero .t1{ font-size:56px; }
+  .oferta-hero .arriba{ grid-column:1; grid-row:1; }
+  .oferta-hero .abajo{ grid-column:1; grid-row:2; margin-top:0; max-width:420px; }
+  .oferta-hero .edades{ grid-column:2; grid-row:1 / span 2; }
+  .oferta-hero .hero-pie{ text-align:left; }
+  .notas{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:64px; }
+  .notas li{ padding:26px 0; }
   .eje{ height:170px; }
   @keyframes duda{ 0%, 100%{ transform:translateX(-120px); } 50%{ transform:translateX(120px); } }
   .sabras{ grid-template-columns:repeat(3, minmax(0, 1fr)); border-top:0; gap:0; }
