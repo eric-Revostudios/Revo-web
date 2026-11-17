@@ -230,9 +230,10 @@ window.TU_PUNTO = {
         descanso: [
           'El sueño profundo es cuando el cuerpo se repara. La cámara hiperbárica ayuda a esa reparación por otro camino: una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas, con hasta diez veces más oxígeno en los tejidos. Una hora que puedes dedicar a leer o a dormir.' ],
         cabeza: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también al cerebro.',
-          '» La mayoría sale con calma y con la cabeza despejada.',
-          'Y es una hora dedicada solo a ti: puedes leer, cerrar los ojos o, sencillamente, no hacer nada.' ],
+          'El cerebro es de los órganos que más oxígeno consumen. Cuando lleva tiempo en modo alerta, se nota: cuesta concentrarse y la cabeza va más espesa.',
+          'En la cámara respiras oxígeno al 98&nbsp;% a 1,5 atmósferas durante una hora. A esa presión llega hasta diez veces más oxígeno a los tejidos, también al cerebro.',
+          '» Ayuda a recuperar atención, memoria y claridad mental.',
+          'La mayoría sale con calma y con la cabeza despejada.' ],
         cuerpo: [
           'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
           '» Con más oxígeno, músculos y tejidos se reparan mejor. Por eso se usa antes y después de una operación.',
