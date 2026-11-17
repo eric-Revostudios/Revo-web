@@ -180,35 +180,40 @@ window.TU_PUNTO = {
     { nombre: 'Crioterapia', specs: [['−130', '°C', 'Frío seco'], ['2–3', 'min', 'Sesión']], dato: 'De 2 a 3 minutos · −130&nbsp;°C', foto: 'cryo-chamber.webp', pos: '50% 45%',
       textos: {
         energia: [
-          '» Su efecto se percibe desde la primera sesión.',
-          'Tres minutos a −130&nbsp;°C, en una cabina de frío seco y con tu coach al lado. El cuerpo responde a ese frío liberando dopamina y noradrenalina y activando el metabolismo: sales con energía, con la cabeza despejada, y vuelves a tu día al instante.',
-          'Con regularidad, ese efecto se consolida.' ],
+          'Hay días en que cuesta arrancar, o en que la energía se acaba a media tarde.',
+          'Tres minutos a −130&nbsp;°C, en una cabina de frío seco y con tu coach al lado, hacen que el cuerpo libere dopamina y noradrenalina y active el metabolismo.',
+          '» Sales con energía y con la cabeza despejada, y vuelves a tu día al instante.',
+          'Se nota desde la primera sesión, y con regularidad el efecto se consolida.' ],
         descanso: [
           'A primera vista, tres minutos a −130&nbsp;°C en una cabina de frío seco parecen lo contrario del descanso. Sin embargo, ese frío reduce el cortisol, la hormona del estrés, que es la que mantiene al cuerpo en alerta.',
           '» Muchos miembros nos cuentan que esa noche duermen mejor.' ],
         cabeza: [
-          'Tres minutos a −130&nbsp;°C, en una cabina de frío seco y con tu coach al lado. El frío baja el cortisol y libera dopamina.',
-          '» Sales con la cabeza despejada, con una mezcla de energía y calma.',
-          'Tres minutos en los que la mente, por una vez, no está en ninguna otra parte.' ],
+          'Cuando la cabeza no para, cuesta encontrar algo que la detenga de verdad.',
+          'Tres minutos a −130&nbsp;°C lo consiguen: en ese frío la mente, por una vez, no está en ninguna otra parte. Mientras, baja el cortisol y el cuerpo libera dopamina.',
+          '» Sales con la cabeza despejada, con una mezcla de energía y calma.' ],
         cuerpo: [
-          'Tres minutos a −130&nbsp;°C, de cuerpo entero. El frío contrae los vasos y, al salir, la sangre vuelve a los músculos con más oxígeno: baja la inflamación y ayuda al cuerpo a recuperarse del esfuerzo.',
-          '» Para llegar en mejores condiciones al siguiente entrenamiento, o simplemente al día siguiente.',
+          'Con los años, las agujetas duran más y el cuerpo tarda en volver a estar a punto.',
+          'Tres minutos a −130&nbsp;°C, de cuerpo entero: el frío contrae los vasos y, al salir, la sangre vuelve a los músculos con más oxígeno. Baja la inflamación.',
+          '» Ayuda a recuperarse y a llegar en mejores condiciones al siguiente entrenamiento, o simplemente al día siguiente.',
           'En Polonia está integrada en la sanidad pública.' ],
         piel: [
           'Es el primer paso del Respark®, y también se hace sola: tres minutos a −130&nbsp;°C que bajan el cortisol, la hormona del estrés, liberan dopamina y desinflaman. En nuestras reseñas hay quien lo describe como «salir como nueva».' ],
         todo: [
-          'Tres minutos a −130&nbsp;°C, en una cabina de frío seco. El frío desinflama, activa el metabolismo y baja el cortisol, la hormona del estrés.',
-          '» Tres aspectos que conviene cuidar mucho antes de que se hagan notar.',
+          'Hay cosas que no se notan hasta que llevan tiempo, como la inflamación y el estrés sostenido.',
+          'Tres minutos a −130&nbsp;°C, en una cabina de frío seco: el frío desinflama, activa el metabolismo y baja el cortisol, la hormona del estrés.',
+          '» Es una forma de cuidarlas antes de que se hagan notar.',
           'En Polonia está integrada en la sanidad pública.' ] } },
     { nombre: 'Luz roja', specs: [['630–940', 'nm', 'Roja e infrarroja'], ['10–15', 'min', 'Sesión']], dato: 'De 10 a 15 minutos · 630–940&nbsp;nm', foto: 'redlight-chamber.webp', pos: '38% 50%',
       textos: {
         energia: [
-          'Diez o quince minutos en una cama de luz roja e infrarroja, cálida y silenciosa. La infrarroja llega hasta cinco centímetros bajo la piel y activa la mitocondria, que es donde cada célula produce su energía.',
-          '» Una energía de fondo, que se construye sesión a sesión.',
+          'La energía de fondo, la que hace que el día no pese, se produce dentro de cada célula, en la mitocondria.',
+          'La luz roja e infrarroja llega hasta cinco centímetros bajo la piel y la activa. Son diez o quince minutos en una cama cálida y silenciosa.',
+          '» Ayuda a tener una energía más estable a lo largo del día, y se construye sesión a sesión.',
           'La misma luz estimula el colágeno y la elastina, de modo que la piel también se beneficia.' ],
         descanso: [
-          '» Ayuda a regular el reloj interno, el que le dice al cuerpo cuándo toca dormir y cuándo despertar.',
-          'Son diez o quince minutos en una cama de luz roja e infrarroja, cálida y silenciosa. Un entorno tan sereno que invita a cerrar los ojos.' ],
+          'El cuerpo tiene un reloj interno que le dice cuándo toca dormir y cuándo despertar. Con el ritmo del día a día, es fácil que se desajuste.',
+          '» La luz roja ayuda a regularlo.',
+          'Son diez o quince minutos en una cama cálida y silenciosa, un entorno tan sereno que invita a cerrar los ojos.' ],
         cabeza: [
           'La claridad mental empieza por un buen descanso. La luz roja ayuda a regular el reloj interno, el que le dice al cuerpo cuándo toca dormir. Diez o quince minutos en una cama cálida y silenciosa.' ],
         cuerpo: [
@@ -218,15 +223,17 @@ window.TU_PUNTO = {
           '» Con constancia, ayuda a que la piel gane firmeza y mejor tono.',
           'Para el rostro contamos además con una máscara de la misma luz. Y aunque su aspecto lo recuerde, no es una cabina de bronceado: no emite radiación ultravioleta.' ],
         todo: [
-          'Diez o quince minutos en una cama de luz roja e infrarroja. Activa la mitocondria, de donde sale la energía de las células, y estimula el colágeno y la elastina.',
-          '» Es cuidar a tiempo dos cosas que se pierden despacio: la energía y la firmeza.',
+          'La energía y la firmeza de la piel no se pierden de golpe: se van poco a poco, y por eso cuesta darse cuenta.',
+          'La luz roja e infrarroja trabaja las dos a la vez: activa la mitocondria, de donde sale la energía de las células, y estimula el colágeno y la elastina.',
+          '» Es cuidarlas a tiempo, en diez o quince minutos.',
           'Aquí la constancia importa más que la intensidad.' ] } },
     { nombre: 'Cámara hiperbárica', specs: [['98', '%', 'Oxígeno'], ['1,5', 'atm', 'Presión'], ['60', 'min', 'Sesión']], dato: '60 minutos · oxígeno al 98&nbsp;%', foto: 'hbot-chamber.webp', pos: '46% 50%',
       textos: {
         energia: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, que es lo que las células necesitan para producir energía y para repararse.',
+          'A veces la energía falta porque el cuerpo no termina de recuperarse: del trabajo, del deporte, de dormir poco.',
+          'En la cámara respiras oxígeno al 98&nbsp;% a 1,5 atmósferas durante una hora. A esa presión llega a los tejidos hasta diez veces más oxígeno, que es lo que las células necesitan para producir energía y para repararse.',
           '» Ayuda al cuerpo a recuperarse a fondo, y eso se nota en la energía del día a día.',
-          'Una hora que puedes dedicar a leer, a trabajar o, sencillamente, a descansar.' ],
+          'Durante esa hora puedes leer, trabajar o, sencillamente, descansar.' ],
         descanso: [
           'El sueño profundo es cuando el cuerpo se repara. La cámara hiperbárica ayuda a esa reparación por otro camino: una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas, con hasta diez veces más oxígeno en los tejidos. Una hora que puedes dedicar a leer o a dormir.' ],
         cabeza: [
@@ -235,13 +242,15 @@ window.TU_PUNTO = {
           '» Ayuda a recuperar atención, memoria y claridad mental.',
           'La mayoría sale con calma y con la cabeza despejada.' ],
         cuerpo: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
+          'Hay tejidos a los que la sangre apenas llega, y por eso tardan en repararse después de un esfuerzo o de una lesión.',
+          'En la cámara respiras oxígeno al 98&nbsp;% a 1,5 atmósferas durante una hora, y llega a los tejidos hasta diez veces más oxígeno, también a esos.',
           '» Con más oxígeno, músculos y tejidos se reparan mejor. Por eso se usa antes y después de una operación.',
           'Un miembro la combinó con crioterapia y luz roja para recuperarse de una operación de rodilla.' ],
         piel: [
           'Más oxígeno para que los tejidos se regeneren: una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas. Es la tecnología que se usa antes y después de una operación, porque ayuda a los tejidos a repararse.' ],
         todo: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
+          'Con los años, el cuerpo se repara más despacio, y eso empieza mucho antes de que se note por fuera.',
+          'En la cámara respiras oxígeno al 98&nbsp;% a 1,5 atmósferas durante una hora. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
           '» Ayuda al cuerpo a regenerarse y a repararse, y baja la inflamación.',
           'Es la especialidad de la Dra. Miriam Rivera, directora médica de REVO.' ] } },
     { nombre: 'PEMF', specs: [['20–40', 'min', 'Sesión']], dato: 'De 20 a 40 minutos', foto: 'pemf-hero.webp', pos: '62% 50%',
@@ -249,14 +258,16 @@ window.TU_PUNTO = {
         energia: [
           'Muchas veces la falta de energía empieza por el descanso. El PEMF, campos electromagnéticos pulsados en todo el cuerpo, activa el modo de descanso y reparación y ayuda a llegar a un sueño más profundo. Sin ningún esfuerzo por tu parte.' ],
         descanso: [
-          '» La terapia que acompaña al cuerpo fuera del modo alerta.',
-          'Te recuestas y unos campos electromagnéticos pulsados actúan sobre todo el cuerpo: es la magnetoterapia de los fisioterapeutas. No se percibe ninguna corriente; como mucho, un calor suave. El sistema nervioso pasa al modo de descanso y reparación, y eso ayuda a llegar a un sueño más profundo.',
+          'Dormir las horas y levantarse igual suele tener que ver con un cuerpo que no llega a salir del modo alerta.',
+          'El PEMF son campos electromagnéticos pulsados en todo el cuerpo, la magnetoterapia de los fisioterapeutas. Te recuestas y no se percibe ninguna corriente; como mucho, un calor suave.',
+          '» Lleva al sistema nervioso al modo de descanso y reparación, y eso ayuda a llegar a un sueño más profundo.',
           'Su efecto es acumulativo: la constancia marca la diferencia.' ],
         cabeza: [
           'El estrés no se queda en la cabeza: el cuerpo también sigue en alerta. El PEMF, campos electromagnéticos pulsados en todo el cuerpo, activa el modo contrario, el de descanso y reparación.',
           '» Media hora de reposo que ayuda al cuerpo a entender que la jornada ha terminado.' ],
         cuerpo: [
-          'Es la magnetoterapia que usan los fisioterapeutas, aplicada a todo el cuerpo. Los campos electromagnéticos pulsados desinflaman, mejoran la circulación y activan el modo de reparación.',
+          'Notar el cuerpo rígido al levantarse, o después de muchas horas en una silla, es habitual. Tiene que ver con cómo se recupera.',
+          'El PEMF es la magnetoterapia que usan los fisioterapeutas, aplicada a todo el cuerpo: campos electromagnéticos pulsados que desinflaman, mejoran la circulación y activan el modo de reparación.',
           '» Muchos miembros salen con el cuerpo más suelto y más ligero.',
           'Su efecto es acumulativo: con constancia, ayuda a recuperarse mejor entre un esfuerzo y el siguiente.' ],
         piel: [
@@ -271,9 +282,10 @@ window.TU_PUNTO = {
           'Hay noches en las que el cuerpo está cansado y la cabeza sigue en marcha. Para eso es el BrainTap: unos auriculares con sonido binaural y unas gafas de luz que, con los ojos cerrados, llevan al cerebro a la relajación profunda.',
           '» Quince minutos, sin ningún esfuerzo. Y con el uso, al cerebro le resulta cada vez más fácil volver a ese estado.' ],
         cabeza: [
-          'Te pones unos auriculares y unas gafas de luz, cierras los ojos y una voz te guía. El sonido binaural y la luz llevan al cerebro a la relajación profunda, sin que tengas que hacer nada.',
+          'Desconectar no siempre sale solo, y no todo el mundo sabe meditar.',
+          'Aquí no hace falta: te pones unos auriculares y unas gafas de luz, cierras los ojos y una voz te guía. El sonido binaural y la luz llevan al cerebro a la relajación profunda.',
           '» Baja el ruido mental y vuelve la claridad.',
-          'Tiene también un modo de foco, para cuando lo que falta es concentración.' ],
+          'Son quince minutos, y tiene también un modo de foco para cuando lo que falta es concentración.' ],
         cuerpo: [
           'El rendimiento también empieza en la mente. Quince minutos de sonido binaural y luz, con los ojos cerrados, que llevan al cerebro a la relajación profunda o al foco, según lo que necesites ese día.' ],
         piel: [
@@ -289,8 +301,9 @@ window.TU_PUNTO = {
         cabeza: [
           'Unas botas de aire que comprimen las piernas de los pies a la cadera, drenan la retención y activan la circulación. Mientras, puedes leer o simplemente desconectar.' ],
         cuerpo: [
-          'Unas botas de aire que se inflan por tramos, de los pies a la cadera, y empujan la circulación hacia arriba.',
-          '» Descargan las piernas después de entrenar, o de un día entero de pie.',
+          'Las piernas son lo primero que se carga, después de entrenar o de un día entero de pie.',
+          'Estas botas de aire se inflan por tramos, de los pies a la cadera, y empujan la circulación hacia arriba.',
+          '» Descargan las piernas y dejan una sensación de ligereza.',
           'Es la recuperación que usan los deportistas.' ],
         piel: [
           'Con los años, al cuerpo le cuesta más drenar. Estas botas de aire le ayudan: se inflan por tramos, de los pies a la cadera, y empujan los líquidos hacia arriba, como un drenaje linfático.',
@@ -308,7 +321,8 @@ window.TU_PUNTO = {
         cuerpo: [
           'Primero el frío y después las manos: crioterapia y un masaje drenante y moldeador, el Método Lilium. Está pensada para la silueta y la retención, y suma recuperación.' ],
         piel: [
-          'Primero el frío y después las manos. Tres minutos de crioterapia a −130&nbsp;°C contraen los vasos; al salir se abren de nuevo, y sobre esa respuesta se trabaja un masaje drenante y moldeador, el Método Lilium.',
+          'Si lo que quieres cuidar es la silueta, esta es la terapia pensada para eso.',
+          'Primero el frío y después las manos: tres minutos de crioterapia a −130&nbsp;°C contraen los vasos; al salir se abren de nuevo, y sobre esa respuesta se trabaja un masaje drenante y moldeador, el Método Lilium.',
           '» Se nota en la retención y en la silueta, y mejora con la constancia.',
           'Es un método propio de REVO, y dura una hora.' ],
         todo: [
@@ -316,7 +330,8 @@ window.TU_PUNTO = {
     { nombre: 'Masaje facial', specs: [], dato: 'A mano', foto: 'massage-glow.webp', pos: '34% 40%',
       textos: {
         piel: [
-          'Un masaje a mano que trabaja los músculos de la cara, después de la luz roja. Reactiva la circulación y completa el trabajo de la luz.',
+          'En la cara se acumula más tensión de la que parece: la mandíbula, el ceño, la frente.',
+          'Este masaje, hecho a mano después de la luz roja, trabaja esos músculos, reactiva la circulación y completa el trabajo de la luz.',
           '» Suelta la tensión del rostro, y la expresión queda más descansada.' ] } }
   ],
 
