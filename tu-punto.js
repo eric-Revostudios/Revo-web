@@ -303,7 +303,32 @@
       '<div class="w"><div class="pila porque entra" id="porque" data-contestado="' + (contestado ? 1 : 0) + '">' + htmlPorque(id, contestado) + '</div></div></section>';
   }
 
-  /* 02 · Qué puede ayudarte. Dos listas con el mismo formato (foto pequeña y texto corrido): las terapias de
+  /* 02 · Lo que se puede medir (17-nov-2026). Es el centro de la página: lo que la persona ha contado se une con
+     su sistema nervioso autónomo y de ahí con la edad biológica, que es lo que se lleva de la visita. A la
+     derecha, la línea de las dos edades con la suya por medir y las tres lecturas con lo que dice cada una. */
+  function htmlMedir(id, contestado) {
+    var a = C.AREAS[id];
+    var sientes = !contestado ? '' : (S.p >= 100 ? T.medirCien : T.medirSientes.replace('{p}', S.p));
+    return '<div class="medir-rejilla">' +
+      '<div class="pila">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.medirTitulo + '</h2>' +
+        '<p class="texto grande nervio">' + a.nervio + '</p>' +
+        '<p class="texto">' + T.medirQue + '</p></div>' +
+      '<div class="pila">' +
+        '<div class="edades" aria-hidden="true"><p class="edades-cab"><span>' + T.ejeBio + '</span><b>' + T.ejeEstado + '</b></p>' +
+          '<div class="eje"><i class="linea"></i><i class="centro"></i><i class="bio"><span>?</span></i></div>' +
+          '<p class="eje-pie"><span>' + T.ejeMenos + '</span><span>' + T.ejeTu + '</span><span>' + T.ejeMas + '</span></p></div>' +
+        (sientes ? '<p class="sientes">' + sientes + '</p>' : '') +
+        '<p class="texto">' + T.medirCambia + '</p>' +
+      '</div></div>' +
+      '<div class="pila sabras-caja"><p class="ojo">' + T.sabrasTitulo + '</p><ul class="sabras">' +
+        C.FICHA.map(function (m) { return '<li><h3>' + m[0] + '</h3><p class="texto">' + m[2] + '</p></li>'; }).join('') +
+      '</ul><p class="texto sabras-pie">' + T.sabrasPie + '</p></div>';
+  }
+  function secMedir(id, contestado) {
+    return '<section class="sec papel" id="medir"><div class="w pila pila--l">' + htmlMedir(id, contestado) + '</div></section>';
+  }
+
+  /* 04 · Las terapias (antes eran la parte 02). Dos listas con el mismo formato (foto pequeña y texto corrido): las terapias de
      su tema y, debajo, las demás. De cada una: qué es y qué hace en tu cuerpo, en qué te ayuda a ti, y con qué
      más ayuda. Las demás dicen su relación con el tema si la hay; si no, con qué otra cosa ayudan. */
   function filaTerapia(t, id, ficha) {
@@ -322,17 +347,22 @@
     function de(nombre) { for (var i = 0; i < C.TERAPIAS.length; i++) if (C.TERAPIAS[i].nombre === nombre && C.TERAPIAS[i].textos[id]) return C.TERAPIAS[i]; return null; }
     var suyas = a.terapias.map(de).filter(Boolean);
     var demas = (a.otras || []).map(de).filter(Boolean);
+    // A la vista, solo la tira con las fotos y los nombres. Qué hace cada una se abre al pulsar.
     return '<div class="pila pila--l">' +
-      '<div class="pila medio">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.terapiasTuyas.replace('{deseo}', a.deseo) + '</h2>' +
-        '<p class="texto grande">' + T.terapiasEntrada + '</p></div>' +
-      '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id, true); }).join('') + '</ul>' +
-      (demas.length ? '<details class="otras-mas"><summary><span class="t3">' + T.otrasTitulo + '</span><i aria-hidden="true"></i></summary>' +
-        '<p class="texto">' + T.otrasEntrada + '</p>' +
-        '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul></details>' : '') +
+      '<div class="pila medio">' + rotulo(4, T.parte4) + '<h2 class="t2">' + T.despuesTitulo + '</h2>' +
+        '<p class="texto grande">' + T.despuesTexto.replace('{deseo}', a.deseo) + '</p></div>' +
+      '<ul class="tira">' + suyas.map(function (t) {
+        return '<li><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '"><b>' + t.nombre + '</b><small>' + t.dato + '</small></li>';
+      }).join('') + '</ul>' +
+      '<details class="otras-mas"><summary><span class="t3">' + T.queHace + '</span><i aria-hidden="true"></i></summary>' +
+        '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id, true); }).join('') + '</ul>' +
+        (demas.length ? '<div class="otras-dentro"><h3 class="t3">' + T.otrasTitulo + '</h3><p class="texto">' + T.otrasEntrada + '</p>' +
+          '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul></div>' : '') +
+      '</details>' +
     '</div>';
   }
   function secBloque(id) {
-    return '<section class="sec papel" id="ayudarme"><div class="w" id="bloque">' + htmlBloque(id) + '</div></section>';
+    return '<section class="sec papel velado" id="ayudarme"><div class="w" id="bloque">' + htmlBloque(id) + '</div></section>';
   }
 
   /* un carrusel: tarjetas que se deslizan, con sus rayas y, en el ordenador, dos flechas */
@@ -360,7 +390,7 @@
       return '<figure class="' + (i === 0 ? 'grande' : 'alta') + '"><img src="' + FOTO + x[0] + '" alt="' + x[1] + '" width="' + x[2] + '" height="' + x[3] + '" loading="lazy" decoding="async"' + (x[4] ? ' style="object-position:' + x[4] + '"' : '') + '></figure>';
     }).join('');
     return '<section class="sec papel" id="miembros"><div class="w pila pila--l">' +
-      '<div class="pila medio">' + rotulo(4, T.parte4) + '<h2 class="t2">' + T.vocesTitulo + '</h2></div>' +
+      '<div class="pila medio">' + rotulo(5, T.parte5) + '<h2 class="t2">' + T.vocesTitulo + '</h2></div>' +
       carril('voces', tarjetas, C.VOCES.length, '') +
       '<div class="medico-rejilla">' +
         '<div class="pila"><h3 class="t3">' + T.medicoTitulo + '</h3>' +
@@ -397,7 +427,7 @@
     return '<section class="sec alba grano" id="invitacion">' +
       '<div class="w pila pila--l">' +
       '<div class="pila puente">' + rotulo(3, T.parte3) +
-        '<p class="t2">' + T.cuales + ' <em>' + T.cualesTexto + '</em></p>' +
+        '<p class="t2">' + (C.MINUTOS ? T.saberlo.replace('{m}', C.MINUTOS) : T.saberloSinMinutos) + '</p>' +
         (hace ? '<p class="entrada suave">' + hace + '</p>' : '') + '</div>' +
       '<div class="invita-rejilla">' +
         '<div class="resumen-visita"><div class="tarjeta">' +
@@ -417,7 +447,7 @@
   function secDudas() {
     var dudas = C.DUDAS.map(function (d, i) { return '<details data-duda="' + i + '"><summary>' + d[0] + '<i aria-hidden="true"></i></summary><p>' + d[1] + '</p></details>'; }).join('');
     return '<section class="sec papel velado" id="dudas"><div class="w"><div class="dudas-rejilla pila pila--l">' +
-      '<div class="pila">' + rotulo(5, T.parte5) + '<h2 class="t2">' + T.dudas + '</h2></div>' +
+      '<div class="pila">' + rotulo(6, T.parte6) + '<h2 class="t2">' + T.dudas + '</h2></div>' +
       '<div class="pila"><div class="dudas">' + dudas + '</div>' + whatsapp(T.waOtra, 'dudas') + '</div>' +
     '</div></div></section>';
   }
@@ -479,7 +509,7 @@
     if (CALMA || !('IntersectionObserver' in window)) return;
     var piezas = [].slice.call(app.querySelectorAll(
       '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .puente .entrada, .tfila, .voz, .tarjeta, .hilo > li, ' +
-      '.extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
+      '.edades, .sientes, .sabras li, .tira li, .extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
     var alto = window.innerHeight;
     var ojo = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -582,7 +612,7 @@
     abrePantalla('resultado');
     fondo(false);
     sinContestar = false;
-    pinta(secPorque(S.area, true) + secBloque(S.area) + secInvitacion(false, a.para) + secConfianza() + secDudas() + secFinal() + flota());
+    pinta(secPorque(S.area, true) + secMedir(S.area, true) + secInvitacion(false, a.para) + secBloque(S.area) + secConfianza() + secDudas() + secFinal() + flota());
     evento('vio_resultado', { tema: S.area, porcentaje: S.p });
     activaResultado(S.area);
   }
@@ -591,7 +621,7 @@
     abrePantalla('resultado');
     fondo(false);
     S.area = null; sinContestar = true;
-    pinta(secPorque(areaAnuncio, false) + secBloque(areaAnuncio) + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secConfianza() + secDudas() + secFinal() + flota());
+    pinta(secPorque(areaAnuncio, false) + secMedir(areaAnuncio, false) + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secBloque(areaAnuncio) + secConfianza() + secDudas() + secFinal() + flota());
     evento('eligio_tema', { tema: 'directo' });
     evento('vio_resultado', { tema: 'directo' });
     activaResultado('directo');

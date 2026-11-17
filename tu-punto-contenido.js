@@ -52,10 +52,33 @@ window.TU_PUNTO = {
        momento y abre la siguiente: por qué pasa → qué puede ayudarte → tu punto de partida → quién lo vive y
        quién está detrás → antes de venir. */
     parte1: 'Por qué pasa',
-    parte2: 'Qué puede ayudarte',
+    parte2: 'Lo que se puede medir',
     parte3: 'Tu punto de partida',
-    parte4: 'Quién lo vive y quién está detrás',
-    parte5: 'Antes de venir',
+    parte4: 'Después de medir',
+    parte5: 'Quién lo vive y quién está detrás',
+    parte6: 'Antes de venir',
+    /* 02 · la medición (17-nov-2026, Eric con la agencia: la landing vende la oferta, no las terapias; que den
+       muchas ganas de saber la edad biológica). Lo que la persona ha contado se une con su sistema nervioso
+       autónomo (`nervio` de cada área) y de ahí con la edad biológica. Las frases de qué se mide son las del
+       informe de valoración del equipo. Nada promete un resultado. */
+    medirTitulo: 'La edad del calendario ya la sabes. <em>¿Y la de tu cuerpo?</em>',
+    medirQue: 'Se llama edad biológica: el estado real de tu organismo comparado con los años que tienes. Se calcula leyendo cómo responde tu sistema nervioso autónomo a partir de la variabilidad de tu pulso: cuánta carga lleva, cómo se recupera y cuánta energía tiene disponible.',
+    medirSientes: 'Has dicho que te sientes al {p}&nbsp;%. Es una sensación. <em>La edad biológica le pone número.</em>',
+    medirCien: 'Has dicho que te sientes al 100&nbsp;%. <em>La edad biológica es el número con el que compararte dentro de un año.</em>',
+    medirCambia: 'No es un número fijo. Cambia con cómo descansas, cómo te recuperas y cómo te cuidas, y por eso sirve de punto de partida.',
+    ejeMenos: 'Menos años',
+    ejeTu: 'Tu edad',
+    ejeMas: 'Más años',
+    ejeBio: 'Edad biológica',
+    ejeEstado: 'Por medir',
+    sabrasTitulo: 'Lo que vas a saber',
+    sabrasPie: 'Pone números a sensaciones como el cansancio, la claridad mental, la tensión o la calma.',
+    saberlo: 'Saberlo lleva <em>{m} minutos.</em>',
+    saberloSinMinutos: 'Saberlo es <em>sencillo.</em>',
+    /* 04 · las terapias, después de la invitación y plegadas: son lo que viene después de medir. */
+    despuesTitulo: 'Con tus resultados se decide <em>qué terapias encajan contigo</em>',
+    despuesTexto: 'Cuáles y con qué frecuencia te lo explicamos en tu punto de partida. Estas son las que suelen formar parte de un plan para {deseo}.',
+    queHace: 'Qué hace <em>cada una</em>',
     /* 02 · sus terapias y las demás, en el mismo formato de lista. {deseo} es lo que eligió, dicho de tú. */
     terapiasTuyas: 'Lo que puede ayudarte a <em>{deseo}</em>',
     terapiasEntrada: 'Tecnología que hasta hace poco solo usaban deportistas de élite, con más de 20 años de ciencia detrás.',
@@ -88,7 +111,7 @@ window.TU_PUNTO = {
 
     /* la invitación */
     ojoInvita: 'Por invitación',
-    invita: 'Te invitamos a tu <em>punto de partida</em>',
+    invita: 'Te invitamos a conocer tu <em>edad biológica</em>',
     oferta: 'Antes de decidir qué terapias encajan contigo, medimos cómo estás: tu edad biológica, tu composición corporal y tu índice de estrés. Sales con un plan para ti, te hagas miembro o no.',
     /* La ficha de la invitación: qué es cada cosa y su valor. La duración sale de MINUTOS. */
     claveDuracion: 'Duración',
@@ -126,7 +149,7 @@ window.TU_PUNTO = {
     waOtra: '¿Otra duda?',
     lemaA: 'Volver a sentirte al 100&nbsp;%',
     lemaB: 'empieza por saber cómo estás hoy.',
-    cierre: 'Te invitamos a tu punto de partida. Sin coste y sin compromiso.',
+    cierre: 'Te invitamos a conocer tu edad biológica. Sin coste y sin compromiso.',
     marca: 'Wellbeing. Revolved.',
     direccion: 'Carrer de Ferran Agulló 24, Turó Park · 08021 Barcelona',
     horario: 'De lunes a viernes de 7:00 a 21:00 · Sábados de 9:00 a 14:00',
@@ -344,6 +367,7 @@ window.TU_PUNTO = {
       titulo: 'Cuando la energía <em>no acompaña</em>',
       texto: 'Hay épocas en las que la energía no acompaña: cuesta arrancar, o se acaba antes que el día. La energía se produce en las células, y cuando el descanso y la recuperación no acompañan, se nota. Pasa tan poco a poco que se acaba dando por normal.',
       tema: 'tu energía',
+      nervio: 'La energía no depende solo de dormir más. La reparte tu sistema nervioso autónomo: si pasa demasiado tiempo en alerta, gasta más de lo que recupera.',
       terapias: ['Crioterapia', 'Luz roja', 'Cámara hiperbárica'],
       otras: ['PEMF', 'BrainTap', 'Presoterapia', 'Respark®'] },
     descanso: { boton: 'Dormir mejor y levantarme con la sensación de haber descansado', deseo: 'dormir mejor y levantarte con la sensación de haber descansado', corto: 'Descanso',
@@ -351,6 +375,7 @@ window.TU_PUNTO = {
       titulo: 'Cuando dormir <em>no es descansar</em>',
       texto: 'Duermes tus horas y te levantas igual. Si el sistema nervioso se queda en modo alerta, cuesta llegar al sueño profundo, que es cuando el cuerpo se repara.',
       tema: 'tu descanso',
+      nervio: 'Dormir bien no se decide. Lo regula tu sistema nervioso autónomo: si no sale del modo alerta, duermes, pero no descansas.',
       terapias: ['PEMF', 'BrainTap', 'Luz roja', 'Crioterapia'],
       otras: ['Cámara hiperbárica', 'Presoterapia', 'Respark®'] },
     cabeza:   { boton: 'Tener la cabeza más clara y más tranquila', deseo: 'tener la cabeza más clara y más tranquila', corto: 'Claridad y calma',
@@ -358,6 +383,7 @@ window.TU_PUNTO = {
       titulo: 'Cuando la cabeza <em>no para</em>',
       texto: 'Cuando el día no termina al cerrar el portátil, el sistema nervioso se queda en modo alerta y el cortisol, la hormona del estrés, no baja. Rindes igual, pero cuesta estar del todo en la cena.',
       tema: 'tu cabeza',
+      nervio: 'Esa alerta que no se apaga es tu sistema nervioso autónomo. Trabaja sin que lo decidas, y cuando no baja el ritmo, la cabeza tampoco.',
       terapias: ['Crioterapia', 'Cámara hiperbárica', 'BrainTap', 'PEMF'],
       otras: ['Luz roja', 'Presoterapia', 'Respark®'] },
     cuerpo:   { boton: 'Sentir mi cuerpo fuerte y ágil', deseo: 'sentir tu cuerpo fuerte y ágil', corto: 'Fuerza y agilidad',
@@ -365,6 +391,7 @@ window.TU_PUNTO = {
       titulo: 'Cuando el cuerpo <em>no responde igual</em>',
       texto: 'Con los años el cuerpo cambia: cuesta más mantener la fuerza y la agilidad, y tarda más en recuperarse después del esfuerzo. Rendir bien, en el deporte y en el día a día, depende tanto de lo que haces como de cómo te recuperas.',
       tema: 'tu cuerpo',
+      nervio: 'De la recuperación se encarga tu sistema nervioso autónomo. Según cómo esté, el mismo esfuerzo cuesta más o cuesta menos.',
       terapias: ['Crioterapia', 'Cámara hiperbárica', 'PEMF', 'Presoterapia'],
       otras: ['Luz roja', 'BrainTap', 'Respark®'] },
     piel:     { boton: 'Sentirme mejor con mi aspecto físico', deseo: 'sentirte mejor con tu aspecto físico', corto: 'Aspecto físico',
@@ -372,6 +399,7 @@ window.TU_PUNTO = {
       titulo: 'Cuando quieres <em>verte como te sientes</em>',
       texto: 'El aspecto cambia despacio: de un año para otro, no de un mes para otro. Con los años se produce menos colágeno y elastina, que dan firmeza a la piel, y al cuerpo le cuesta más drenar. Cuidarlo también merece un plan.',
       tema: 'tu aspecto',
+      nervio: 'El aspecto también cuenta cómo descansas y cómo te recuperas. De eso se encarga tu sistema nervioso autónomo, y se nota por fuera.',
       terapias: ['Luz roja', 'Respark®', 'Presoterapia', 'Masaje facial'],
       otras: ['Crioterapia', 'Cámara hiperbárica', 'PEMF', 'BrainTap'] },
     todo:     { boton: 'Seguir como estoy durante muchos años', deseo: 'seguir como estás durante muchos años', corto: 'Longevidad',
@@ -379,6 +407,7 @@ window.TU_PUNTO = {
       titulo: 'Vivir más no es <em>vivir mejor</em>',
       texto: 'El envejecimiento no empieza con las primeras arrugas o las canas: empieza mucho antes, cuando el cansancio dura más, cuesta concentrarse o el cuerpo no se recupera como antes. Cuidarse a tiempo es lo que permite seguir haciendo lo que te gusta.',
       tema: 'los años que vienen',
+      nervio: 'Cómo estarás dentro de veinte años depende de cómo se recupera tu cuerpo hoy. Lo regula tu sistema nervioso autónomo, y se puede medir.',
       terapias: ['Cámara hiperbárica', 'Luz roja', 'Crioterapia'],
       otras: ['PEMF', 'BrainTap', 'Presoterapia', 'Respark®'] }
   },
@@ -411,9 +440,9 @@ window.TU_PUNTO = {
 
   /* Las tres mediciones: nombre, la casilla vacía y qué dice cada una. */
   FICHA: [
-    ['Edad biológica', '— años', 'Una estimación de los años que marca tu cuerpo. No siempre coinciden con los del calendario.'],
-    ['Composición corporal', '— %', 'Cuánto es músculo y cuánto es grasa. La báscula sola no lo dice.'],
-    ['Índice de estrés', '—', 'Un indicador de la carga que lleva tu sistema nervioso. Lo leemos junto con tus hábitos.']
+    ['Edad biológica', '— años', 'Los años que marca tu cuerpo. Pueden ser menos, los mismos o más que los del calendario.'],
+    ['Índice de estrés', '—', 'La carga que lleva tu sistema nervioso en reposo: el estrés físico, emocional y mental acumulado.'],
+    ['Composición corporal', '— %', 'Cuánto es músculo y cuánto es grasa. La báscula sola no lo dice.']
   ],
 
   /* Nombre, cargo, texto, foto y encuadre. */
@@ -444,6 +473,7 @@ window.TU_PUNTO = {
 
   /* Dudas plegadas: pregunta y respuesta. */
   DUDAS: [
+    ['¿Cómo se mide la edad biológica?', 'Con una lectura de la variabilidad de tu pulso, en reposo. Analiza cómo responde tu sistema nervioso autónomo: cómo gestionas el estrés, cómo funciona tu recuperación y cuánta energía tienes disponible. No es una prueba médica ni un diagnóstico.'],
     ['¿Tiene algún coste?', 'Tu punto de partida corre de nuestra cuenta. Solo pagas si decides probar una terapia ese día o hacerte miembro.'],
     ['¿Me compromete a algo?', 'No. Sales con tu plan, te hagas miembro o no.'],
     ['¿Dónde estáis y qué horario tenéis?', 'En Carrer de Ferran Agulló 24, junto a Turó Park (08021 Barcelona). Abrimos de lunes a viernes de 7:00 a 21:00 y los sábados de 9:00 a 14:00. <a href="https://www.google.com/maps/search/?api=1&query=REVO%20Studios%2C%20Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener">Abrir en Google Maps</a>'],
