@@ -15,14 +15,77 @@
   var WA = '34613505881';
   var EN_PRUEBAS = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   var $ = function(id){ return document.getElementById(id); };
+  var SIN_MOVIMIENTO = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raiz = document.documentElement;
+  raiz.classList.add('rg-js');
+  raiz.style.scrollBehavior = 'auto';   /* el desplazamiento lo lleva esta página, más despacio que el del navegador */
+
+  /* ---------- aparecer: lo que entra en pantalla llega despacio, una vez ---------- */
+  var porVer = document.querySelectorAll('.rg-ap');
+  function visto(el){
+    el.classList.add('es-visto');
+    /* pasada la entrada, las opciones responden al cursor sin el retraso de la cascada */
+    if(el.classList.contains('rg-opcion')) setTimeout(function(){ el.classList.add('es-dentro'); }, 2600);
+  }
+  if('IntersectionObserver' in window && !SIN_MOVIMIENTO){
+    var ojo = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(en){ if(en.isIntersecting){ visto(en.target); ojo.unobserve(en.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    porVer.forEach(function(el){ ojo.observe(el); });
+    /* red de seguridad: si algo no llegara a observarse, que no se quede invisible */
+    setTimeout(function(){ porVer.forEach(function(el){ var r = el.getBoundingClientRect(); if(r.top < innerHeight && r.bottom > 0) visto(el); }); }, 3500);
+  } else { porVer.forEach(visto); }
+
+  /* ---------- desplazarse: despacio y sin tirones ---------- */
+  var viaje = 0;
+  function irSuave(destino, alFinal){
+    var y0 = window.scrollY;
+    var y1 = Math.max(0, Math.min(destino, raiz.scrollHeight - innerHeight));
+    var distancia = Math.abs(y1 - y0);
+    if(SIN_MOVIMIENTO || distancia < 4){ window.scrollTo(0, y1); if(alFinal) alFinal(); return; }
+    var dura = Math.min(2200, Math.max(900, distancia * 0.75)), t0 = null, yo = ++viaje;
+    function paso(t){
+      if(yo !== viaje) return;                       /* otro viaje ha empezado */
+      if(t0 === null) t0 = t;
+      var k = Math.min(1, (t - t0) / dura);
+      var e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;   /* acelera y frena con suavidad */
+      window.scrollTo(0, y0 + (y1 - y0) * e);
+      if(k < 1) requestAnimationFrame(paso); else if(alFinal) alFinal();
+    }
+    requestAnimationFrame(paso);
+  }
+  /* si la persona toca o gira la rueda, manda ella */
+  ['wheel', 'touchstart', 'keydown'].forEach(function(ev){ window.addEventListener(ev, function(){ viaje++; }, { passive: true }); });
+  function alturaDe(el){ return el.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0); }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var el = id ? document.getElementById(id) : null;
+    if(!el || a.closest('.mobile-nav')) return;
+    e.preventDefault();
+    irSuave(id === 'top' ? 0 : alturaDe(el));
+  });
+
+  /* ---------- una luz suave sigue al cursor sobre cada experiencia ---------- */
+  if(matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.rg-exp').forEach(function(t){
+      t.addEventListener('pointermove', function(e){
+        var r = t.getBoundingClientRect();
+        t.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        t.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      }, { passive: true });
+    });
+  }
 
   /* ---------- la pregunta: ir a la experiencia elegida ---------- */
   function abrirRecorrido(tarjeta, abrir){
     var boton = tarjeta.querySelector('[data-rg-recorrido]');
     var caja = boton && $(boton.getAttribute('aria-controls'));
     if(!boton || !caja) return;
-    var abierto = abrir === undefined ? caja.hidden : abrir;
-    caja.hidden = !abierto;
+    var abierto = abrir === undefined ? !tarjeta.classList.contains('es-abierta') : abrir;
+    tarjeta.classList.toggle('es-abierta', abierto);
+    if(abierto) caja.removeAttribute('inert'); else caja.setAttribute('inert', '');
     boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
     boton.textContent = abierto ? 'Cerrar el recorrido' : 'Ver el recorrido';
   }
@@ -31,9 +94,9 @@
       var t = $(b.getAttribute('data-rg-ir'));
       if(!t) return;
       document.querySelectorAll('.rg-exp.es-elegida').forEach(function(x){ x.classList.remove('es-elegida'); });
-      t.classList.add('es-elegida', 'in');
-      abrirRecorrido(t, true);
-      t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      visto(t);
+      /* primero se llega; después la experiencia se enciende y se abre */
+      irSuave(alturaDe(t), function(){ t.classList.add('es-elegida'); setTimeout(function(){ abrirRecorrido(t, true); }, 350); });
     });
   });
   document.querySelectorAll('[data-rg-recorrido]').forEach(function(b){
@@ -58,6 +121,7 @@
     campos.mi.disabled = regalo;
     vista.hidden = !regalo;
     hoja.querySelectorAll('[data-rg-modo]').forEach(function(b){ b.classList.toggle('es-activo', b.getAttribute('data-rg-modo') === modo); });
+    hoja.querySelector('.rg-modo').classList.toggle('es-mi', !regalo);
     $('rgTitulo').innerHTML = regalo ? 'Ponle <em>su nombre.</em>' : 'Tu experiencia, <em>a tu nombre.</em>';
     $('rgSub').textContent = regalo
       ? 'Lo que escribas aquí es lo que verá en su tarjeta.'
