@@ -294,25 +294,30 @@
      el título de su tema y la explicación (es normal, y tiene un porqué). */
   function htmlPorque(id, contestado) {
     var a = C.AREAS[id];
+    // Su tema y, enseguida, lo que hay detrás: el sistema nervioso autónomo, con sus dos modos.
     return rotulo(1, T.parte1) +
       '<h1 class="t1" data-titulo>' + a.titulo + '</h1>' +
-      '<p class="entrada suave">' + a.texto + '</p>';
+      '<p class="entrada suave">' + a.texto + '</p>' +
+      '<div class="detras"><h2 class="t3">' + T.detrasTitulo + '</h2>' +
+        '<p class="entrada">' + a.nervio + '</p>' +
+        '<div class="modos" aria-hidden="true"><span>' + T.modoA + '</span><i><b></b></i><span>' + T.modoB + '</span></div>' +
+        '<p class="texto">' + T.detrasTexto + '</p></div>';
   }
   function secPorque(id, contestado) {
     return '<section class="sec alba grano primera">' + cab(contestado ? atras() : '<button type="button" data-cambiar>' + T.preguntas + '</button>') +
       '<div class="w"><div class="pila porque entra" id="porque" data-contestado="' + (contestado ? 1 : 0) + '">' + htmlPorque(id, contestado) + '</div></div></section>';
   }
 
-  /* 02 · Lo que se puede medir (17-nov-2026). Es el centro de la página: lo que la persona ha contado se une con
+  /* 03 · Lo más importante: saber cómo está hoy (17-nov-2026). Va después de las terapias y antes de la invitación: lo que la persona ha contado se une con
      su sistema nervioso autónomo y de ahí con la edad biológica, que es lo que se lleva de la visita. A la
      derecha, la línea de las dos edades con la suya por medir y las tres lecturas con lo que dice cada una. */
   function htmlMedir(id, contestado) {
     var a = C.AREAS[id];
     var sientes = !contestado ? '' : (S.p >= 100 ? T.medirCien : T.medirSientes.replace('{p}', S.p));
     return '<div class="medir-rejilla">' +
-      '<div class="pila">' + rotulo(2, T.parte2) + '<h2 class="t2">' + T.medirTitulo + '</h2>' +
-        '<p class="texto grande nervio">' + a.nervio + '</p>' +
-        '<p class="texto">' + T.medirQue + '</p></div>' +
+      '<div class="pila">' + rotulo(3, T.parte3) + '<h2 class="t2">' + T.medirTitulo + '</h2>' +
+        '<p class="texto grande nervio">' + T.medirPorque + '</p>' +
+        '<p class="texto grande">' + T.medirQue + '</p></div>' +
       '<div class="pila">' +
         '<div class="edades" aria-hidden="true"><p class="edades-cab"><span>' + T.ejeBio + '</span><b>' + T.ejeEstado + '</b></p>' +
           '<div class="eje"><i class="linea"></i><i class="centro"></i><i class="bio"><span>?</span></i></div>' +
@@ -325,12 +330,21 @@
       '</ul><p class="texto sabras-pie">' + T.sabrasPie + '</p></div>';
   }
   function secMedir(id, contestado) {
-    return '<section class="sec papel" id="medir"><div class="w pila pila--l">' + htmlMedir(id, contestado) + '</div></section>';
+    return '<section class="sec papel velado" id="medir"><div class="w pila pila--l">' + htmlMedir(id, contestado) + '</div></section>';
   }
 
-  /* 04 · Las terapias (antes eran la parte 02). Dos listas con el mismo formato (foto pequeña y texto corrido): las terapias de
+  /* 02 · Qué puede ayudarte. Dos listas con el mismo formato (foto pequeña y texto corrido): las terapias de
      su tema y, debajo, las demás. De cada una: qué es y qué hace en tu cuerpo, en qué te ayuda a ti, y con qué
      más ayuda. Las demás dicen su relación con el tema si la hay; si no, con qué otra cosa ayudan. */
+  // En las terapias principales se ve solo la frase de para qué sirve; lo demás se abre con «Cómo funciona».
+  function resumida(ps) {
+    var clave = '', resto = [];
+    ps.forEach(function (x) { if (!clave && x.indexOf('» ') === 0) clave = x.slice(2); else resto.push(x.indexOf('» ') === 0 ? x.slice(2) : x); });
+    if (!clave) clave = resto.shift() || '';
+    return '<p class="ayuda clave">' + clave + '</p>' +
+      (resto.length ? '<details class="mas"><summary>' + T.leerMas + '<i aria-hidden="true"></i></summary>' +
+        resto.map(function (x) { return '<p class="base">' + x + '</p>'; }).join('') + '</details>' : '');
+  }
   function filaTerapia(t, id, ficha) {
     // cada texto es una lista de párrafos escrita para esa terapia y ese objetivo; «» » marca la frase que destaca
     var ps = (t.textos && t.textos[id]) || [];
@@ -338,31 +352,26 @@
         '<div><h3>' + t.nombre + '</h3>' + (ficha && t.specs && t.specs.length ? '' : '<p class="meta">' + t.dato + '</p>') + '</div></div>' +
       (ficha && t.specs && t.specs.length ? '<dl class="specs">' + t.specs.map(function (x) {
         return '<div><dd>' + x[0] + '<small>' + x[1] + '</small></dd><dt>' + x[2] + '</dt></div>'; }).join('') + '</dl>' : '') +
-      '<div class="cuerpo-t">' + ps.map(function (x) {
+      '<div class="cuerpo-t">' + (ficha ? resumida(ps) : ps.map(function (x) {
         return x.indexOf('» ') === 0 ? '<p class="ayuda">' + x.slice(2) + '</p>' : '<p class="base">' + x + '</p>';
-      }).join('') + '</div></li>';
+      }).join('')) + '</div></li>';
   }
   function htmlBloque(id) {
     var a = C.AREAS[id];
     function de(nombre) { for (var i = 0; i < C.TERAPIAS.length; i++) if (C.TERAPIAS[i].nombre === nombre && C.TERAPIAS[i].textos[id]) return C.TERAPIAS[i]; return null; }
     var suyas = a.terapias.map(de).filter(Boolean);
     var demas = (a.otras || []).map(de).filter(Boolean);
-    // A la vista, solo la tira con las fotos y los nombres. Qué hace cada una se abre al pulsar.
     return '<div class="pila pila--l">' +
-      '<div class="pila medio">' + rotulo(4, T.parte4) + '<h2 class="t2">' + T.despuesTitulo + '</h2>' +
-        '<p class="texto grande">' + T.despuesTexto.replace('{deseo}', a.deseo) + '</p></div>' +
-      '<ul class="tira">' + suyas.map(function (t) {
-        return '<li><img src="' + FOTO + t.foto + '" alt="" loading="lazy" decoding="async" style="object-position:' + t.pos + '"><b>' + t.nombre + '</b><small>' + t.dato + '</small></li>';
-      }).join('') + '</ul>' +
-      '<details class="otras-mas"><summary><span class="t3">' + T.queHace + '</span><i aria-hidden="true"></i></summary>' +
-        '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id, true); }).join('') + '</ul>' +
-        (demas.length ? '<div class="otras-dentro"><h3 class="t3">' + T.otrasTitulo + '</h3><p class="texto">' + T.otrasEntrada + '</p>' +
-          '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul></div>' : '') +
-      '</details>' +
+      '<div class="pila medio">' + rotulo(2, T.parte2) + '<h2 class="t2">' + (a.titulo2 || T.terapiasSna) + '</h2>' +
+        '<p class="texto grande">' + (a.entrada2 || T.terapiasSnaEntrada) + '</p></div>' +
+      '<ul class="tlista">' + suyas.map(function (t) { return filaTerapia(t, id, true); }).join('') + '</ul>' +
+      (demas.length ? '<details class="otras-mas"><summary><span class="t3">' + T.otrasTitulo + '</span><i aria-hidden="true"></i></summary>' +
+        '<p class="texto">' + T.otrasEntrada + '</p>' +
+        '<ul class="tlista tlista--otras">' + demas.map(function (t) { return filaTerapia(t, id); }).join('') + '</ul></details>' : '') +
     '</div>';
   }
   function secBloque(id) {
-    return '<section class="sec papel velado" id="ayudarme"><div class="w" id="bloque">' + htmlBloque(id) + '</div></section>';
+    return '<section class="sec papel" id="ayudarme"><div class="w" id="bloque">' + htmlBloque(id) + '</div></section>';
   }
 
   /* un carrusel: tarjetas que se deslizan, con sus rayas y, en el ordenador, dos flechas */
@@ -426,7 +435,7 @@
     var H = 'h2', hace = frasePuente();
     return '<section class="sec alba grano" id="invitacion">' +
       '<div class="w pila pila--l">' +
-      '<div class="pila puente">' + rotulo(3, T.parte3) +
+      '<div class="pila puente">' + rotulo(4, T.parte4) +
         '<p class="t2">' + (C.MINUTOS ? T.saberlo.replace('{m}', C.MINUTOS) : T.saberloSinMinutos) + '</p>' +
         (hace ? '<p class="entrada suave">' + hace + '</p>' : '') + '</div>' +
       '<div class="invita-rejilla">' +
@@ -509,7 +518,7 @@
     if (CALMA || !('IntersectionObserver' in window)) return;
     var piezas = [].slice.call(app.querySelectorAll(
       '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .puente .entrada, .tfila, .voz, .tarjeta, .hilo > li, ' +
-      '.edades, .sientes, .sabras li, .tira li, .extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
+      '.edades, .sientes, .sabras li, .detras, .extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
     var alto = window.innerHeight;
     var ojo = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -612,7 +621,7 @@
     abrePantalla('resultado');
     fondo(false);
     sinContestar = false;
-    pinta(secPorque(S.area, true) + secMedir(S.area, true) + secInvitacion(false, a.para) + secBloque(S.area) + secConfianza() + secDudas() + secFinal() + flota());
+    pinta(secPorque(S.area, true) + secBloque(S.area) + secMedir(S.area, true) + secInvitacion(false, a.para) + secConfianza() + secDudas() + secFinal() + flota());
     evento('vio_resultado', { tema: S.area, porcentaje: S.p });
     activaResultado(S.area);
   }
@@ -621,7 +630,7 @@
     abrePantalla('resultado');
     fondo(false);
     S.area = null; sinContestar = true;
-    pinta(secPorque(areaAnuncio, false) + secMedir(areaAnuncio, false) + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secBloque(areaAnuncio) + secConfianza() + secDudas() + secFinal() + flota());
+    pinta(secPorque(areaAnuncio, false) + secBloque(areaAnuncio) + secMedir(areaAnuncio, false) + secInvitacion(false, paraAnuncio || C.AREAS[areaAnuncio].para) + secConfianza() + secDudas() + secFinal() + flota());
     evento('eligio_tema', { tema: 'directo' });
     evento('vio_resultado', { tema: 'directo' });
     activaResultado('directo');

@@ -52,17 +52,30 @@ window.TU_PUNTO = {
        momento y abre la siguiente: por qué pasa → qué puede ayudarte → tu punto de partida → quién lo vive y
        quién está detrás → antes de venir. */
     parte1: 'Por qué pasa',
-    parte2: 'Lo que se puede medir',
-    parte3: 'Tu punto de partida',
-    parte4: 'Después de medir',
+    parte2: 'Qué puede ayudarte',
+    parte3: 'Lo más importante',
+    parte4: 'Tu punto de partida',
     parte5: 'Quién lo vive y quién está detrás',
     parte6: 'Antes de venir',
-    /* 02 · la medición (17-nov-2026, Eric con la agencia: la landing vende la oferta, no las terapias; que den
-       muchas ganas de saber la edad biológica). Lo que la persona ha contado se une con su sistema nervioso
-       autónomo (`nervio` de cada área) y de ahí con la edad biológica. Las frases de qué se mide son las del
-       informe de valoración del equipo. Nada promete un resultado. */
-    medirTitulo: 'La edad del calendario ya la sabes. <em>¿Y la de tu cuerpo?</em>',
-    medirQue: 'Se llama edad biológica: el estado real de tu organismo comparado con los años que tienes. Se calcula leyendo cómo responde tu sistema nervioso autónomo a partir de la variabilidad de tu pulso: cuánta carga lleva, cómo se recupera y cuánta energía tiene disponible.',
+    /* El hilo de la página (17-nov-2026, Eric con la agencia). La landing promete «qué terapias pueden ayudarte»
+       y lo cumple, pero el discurso es el sistema nervioso autónomo. Leyendo solo los titulares tiene que
+       quedar: esto te pasa → detrás está tu sistema nervioso autónomo → estas terapias le ayudan → lo más
+       importante es saber cómo está el tuyo hoy → te invitamos a medirlo (tu edad biológica).
+       Las frases de qué se mide son las del informe de valoración del equipo. Nada promete un resultado. */
+    /* 01 · lo que hay detrás */
+    detrasTitulo: 'Detrás está tu <em>sistema nervioso autónomo</em>',
+    detrasTexto: 'Regula, sin que lo decidas, cómo duermes, cómo te recuperas y cuánta energía tienes. Tiene dos modos, activación y recuperación, y funciona bien cuando pasa de uno a otro.',
+    modoA: 'Activación',
+    modoB: 'Recuperación',
+    /* 02 · las terapias, contadas desde el sistema nervioso. De cada una se ve la frase de para qué sirve;
+       el resto se abre con «Cómo funciona». Cada área puede traer su propio titular y entrada (`titulo2`, `entrada2`). */
+    terapiasSna: 'Terapias que ayudan a tu <em>sistema nervioso autónomo</em>',
+    terapiasSnaEntrada: 'Unas actúan directamente sobre él. Otras, sobre lo que lo mantiene en alerta: la inflamación, la tensión, el cansancio acumulado.',
+    leerMas: 'Cómo funciona',
+    /* 03 · lo más importante: saber cómo está hoy */
+    medirTitulo: 'Lo más importante es saber <em>cómo está hoy el tuyo</em>',
+    medirPorque: 'Qué terapias son para ti, y con qué frecuencia, depende de eso. Y se puede medir: leyendo la variabilidad de tu pulso se ve cuánta carga lleva tu sistema nervioso, cómo se recupera y cuánta energía tiene disponible.',
+    medirQue: 'El resultado se resume en un número, tu <em>edad biológica</em>: el estado real de tu organismo comparado con los años que tienes.',
     medirSientes: 'Has dicho que te sientes al {p}&nbsp;%. Es una sensación. <em>La edad biológica le pone número.</em>',
     medirCien: 'Has dicho que te sientes al 100&nbsp;%. <em>La edad biológica es el número con el que compararte dentro de un año.</em>',
     medirCambia: 'No es un número fijo. Cambia con cómo descansas, cómo te recuperas y cómo te cuidas, y por eso sirve de punto de partida.',
@@ -75,10 +88,6 @@ window.TU_PUNTO = {
     sabrasPie: 'Pone números a sensaciones como el cansancio, la claridad mental, la tensión o la calma.',
     saberlo: 'Saberlo lleva <em>{m} minutos.</em>',
     saberloSinMinutos: 'Saberlo es <em>sencillo.</em>',
-    /* 04 · las terapias, después de la invitación y plegadas: son lo que viene después de medir. */
-    despuesTitulo: 'Con tus resultados se decide <em>qué terapias encajan contigo</em>',
-    despuesTexto: 'Cuáles y con qué frecuencia te lo explicamos en tu punto de partida. Estas son las que suelen formar parte de un plan para {deseo}.',
-    queHace: 'Qué hace <em>cada una</em>',
     /* 02 · sus terapias y las demás, en el mismo formato de lista. {deseo} es lo que eligió, dicho de tú. */
     terapiasTuyas: 'Lo que puede ayudarte a <em>{deseo}</em>',
     terapiasEntrada: 'Tecnología que hasta hace poco solo usaban deportistas de élite, con más de 20 años de ciencia detrás.',
@@ -399,6 +408,8 @@ window.TU_PUNTO = {
       titulo: 'Cuando quieres <em>verte como te sientes</em>',
       texto: 'El aspecto cambia despacio: de un año para otro, no de un mes para otro. Con los años se produce menos colágeno y elastina, que dan firmeza a la piel, y al cuerpo le cuesta más drenar. Cuidarlo también merece un plan.',
       tema: 'tu aspecto',
+      titulo2: 'Lo que puede ayudarte a <em>sentirte mejor con tu aspecto físico</em>',
+      entrada2: 'Unas trabajan la piel y otras, la silueta. Y todas se notan más cuando el cuerpo descansa y se recupera bien.',
       nervio: 'El aspecto también cuenta cómo descansas y cómo te recuperas. De eso se encarga tu sistema nervioso autónomo, y se nota por fuera.',
       terapias: ['Luz roja', 'Respark®', 'Presoterapia', 'Masaje facial'],
       otras: ['Crioterapia', 'Cámara hiperbárica', 'PEMF', 'BrainTap'] },
