@@ -95,7 +95,11 @@ a.boton{ text-decoration:none; }
 
 /* ---------- las tres preguntas ---------- */
 .fondo{ display:none; position:fixed; inset:0; z-index:0; background:var(--noche) url("assets/hero-poster-v3.webp") center / cover no-repeat; }
-.fondo video{ display:block; width:100%; height:100%; object-fit:cover; }
+.fondo video, .fondo .anim{ position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; }
+/* En el móvil el vídeo no se enseña hasta que corre de verdad: mientras, se ve la versión animada (una imagen en
+   movimiento, que el iPhone deja arrancar también con el ahorro de batería). Así nunca sale un vídeo parado con su play. */
+.fondo.con-anim video{ opacity:0; transition:opacity .6s var(--ease); }
+.fondo.con-anim video.va{ opacity:1; }
 /* con el ahorro de batería, el iPhone pinta su botón de play sobre el vídeo: no se enseña (arranca al primer toque) */
 .fondo video::-webkit-media-controls, .fondo video::-webkit-media-controls-start-playback-button, .fondo video::-webkit-media-controls-panel, .fondo video::-webkit-media-controls-overlay-play-button{ display:none !important; -webkit-appearance:none; opacity:0 !important; }
 .fondo{ pointer-events:none; }

@@ -173,7 +173,18 @@
         video.muted = true; video.defaultMuted = true;
         video.setAttribute('muted', ''); video.setAttribute('autoplay', '');
         video.setAttribute('playsinline', ''); video.setAttribute('webkit-playsinline', '');
-        video.src = FOTO + (window.matchMedia('(min-width: 900px)').matches ? 'hero-video-1080.mp4' : 'hero-video-mobile.mp4');
+        var ancho = window.matchMedia('(min-width: 900px)').matches;
+        if (!ancho) {
+          // Móvil: debajo va la versión animada (imagen en movimiento) y el vídeo solo se enseña cuando corre.
+          // Con el ahorro de batería el iPhone no arranca ningún vídeo, pero la imagen animada sí se mueve.
+          var caja = video.parentNode, anim = new Image();
+          anim.className = 'anim'; anim.alt = ''; anim.decoding = 'async'; anim.src = FOTO + 'hero-anim-mobile.webp';
+          caja.insertBefore(anim, video); caja.classList.add('con-anim');
+          video.removeAttribute('poster');
+          video.addEventListener('playing', function () { video.classList.add('va'); });
+          video.addEventListener('pause', function () { video.classList.remove('va'); });
+        }
+        video.src = FOTO + (ancho ? 'hero-video-1080.mp4' : 'hero-video-mobile.mp4');
         try { video.load(); } catch (e) {}
         video.addEventListener('loadedmetadata', suena); video.addEventListener('canplay', suena);
         ['touchend', 'pointerup', 'click', 'keydown'].forEach(function (ev) { document.addEventListener(ev, suena, { passive: true }); });
