@@ -230,7 +230,9 @@ window.TU_PUNTO = {
         descanso: [
           'El sueño profundo es cuando el cuerpo se repara. La cámara hiperbárica ayuda a esa reparación por otro camino: una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas, con hasta diez veces más oxígeno en los tejidos. Una hora que puedes dedicar a leer o a dormir.' ],
         cabeza: [
-          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. Llega más oxígeno a todo el cuerpo, también al cerebro, y la mayoría sale con calma y con la cabeza despejada. Y es, además, una hora dedicada solo a ti.' ],
+          'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también al cerebro.',
+          '» La mayoría sale con calma y con la cabeza despejada.',
+          'Y es una hora dedicada solo a ti: puedes leer, cerrar los ojos o, sencillamente, no hacer nada.' ],
         cuerpo: [
           'Una hora respirando oxígeno al 98&nbsp;% en una cámara presurizada a 1,5 atmósferas. A esa presión llega a los tejidos hasta diez veces más oxígeno, también a donde la sangre apenas alcanza.',
           '» Con más oxígeno, músculos y tejidos se reparan mejor. Por eso se usa antes y después de una operación.',
@@ -340,8 +342,8 @@ window.TU_PUNTO = {
       titulo: 'Cuando la cabeza <em>no para</em>',
       texto: 'Cuando el día no termina al cerrar el portátil, el sistema nervioso se queda en modo alerta y el cortisol, la hormona del estrés, no baja. Rindes igual, pero cuesta estar del todo en la cena.',
       tema: 'tu cabeza',
-      terapias: ['Crioterapia', 'BrainTap', 'PEMF'],
-      otras: ['Luz roja', 'Cámara hiperbárica', 'Presoterapia', 'Respark®'] },
+      terapias: ['Crioterapia', 'Cámara hiperbárica', 'BrainTap', 'PEMF'],
+      otras: ['Luz roja', 'Presoterapia', 'Respark®'] },
     cuerpo:   { boton: 'Sentir mi cuerpo fuerte y ágil', deseo: 'sentir tu cuerpo fuerte y ágil', corto: 'Fuerza y agilidad',
       para: 'Para que el cuerpo responda como quieres.',
       titulo: 'Cuando el cuerpo <em>no responde igual</em>',
