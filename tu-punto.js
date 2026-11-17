@@ -30,6 +30,37 @@
   var paraAnuncio = (C.PERFILES && C.PERFILES[perfil]) || '';
   var areaAnuncio = (C.PERFIL_AREA && C.PERFIL_AREA[perfil]) || C.AREA_SIN_PERFIL;
 
+  /* ---------- de qué anuncio viene: solo una lista cerrada de parámetros ----------
+     Se guardan en la pestaña (sessionStorage) para que sobrevivan a recargar. Las etiquetas utm_* viajan
+     siempre al enlace de reserva; los identificadores del anuncio y el fbclid de Meta, solo si la persona
+     aceptó las cookies de marketing. El fbclid nunca se inventa: o vino en el enlace, o no hay. */
+  var ADS_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+  var ADS_ID = ['campaign_id', 'adset_id', 'ad_id', 'placement', 'fbclid'];
+  var ads = {};
+  try { ads = JSON.parse(sessionStorage.getItem('tp_ads') || '{}') || {}; } catch (e) { ads = {}; }
+  ADS_UTM.concat(ADS_ID).forEach(function (k) {
+    var x = params.get(k);
+    // Una macro de Meta sin sustituir («{{ad.id}}») no es un dato.
+    if (x && x.length <= 500 && x.indexOf('{{') === -1) ads[k] = x;
+  });
+  try { sessionStorage.setItem('tp_ads', JSON.stringify(ads)); } catch (e) {}
+  function marketingOk() {
+    try { return !!(window.revoPixel && window.revoPixel.allowed && window.revoPixel.allowed()); } catch (e) { return false; }
+  }
+  function enlaceReserva() {
+    try {
+      var u = new URL(MOMENCE);
+      var claves = marketingOk() ? ADS_UTM.concat(ADS_ID) : ADS_UTM;
+      claves.forEach(function (k) { if (ads[k] && !u.searchParams.has(k)) u.searchParams.set(k, ads[k]); });
+      return u.toString();
+    } catch (e) { return MOMENCE; }
+  }
+  function datosAnuncio(d) {
+    d.mk = marketingOk() ? 'si' : 'no';
+    ['campaign_id', 'adset_id', 'ad_id'].forEach(function (k) { if (/^\d{1,30}$/.test(ads[k] || '')) d[k] = ads[k]; });
+    return d;
+  }
+
   /* ---------- sesión: id aleatorio que muere al cerrar la pestaña ---------- */
   function leer(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
   function guardar(k, x) { try { sessionStorage.setItem(k, x); } catch (e) {} }
@@ -164,7 +195,7 @@
   }
   function ir(nombre) { if (location.hash.replace('#', '') === nombre) render(); else location.hash = nombre; }
   function botonReservar(desde, clase) {
-    return '<a class="boton' + (clase ? ' ' + clase : '') + '" href="' + MOMENCE + '" data-reservar="' + desde + '" data-title="Tu punto de partida"><span>' + T.reservar + '</span>' + I.ir + '</a>';
+    return '<a class="boton' + (clase ? ' ' + clase : '') + '" href="' + MOMENCE + '" data-reservar="' + desde + '" data-sin-lead data-title="Tu punto de partida"><span>' + T.reservar + '</span>' + I.ir + '</a>';
   }
   function whatsapp(pregunta, desde) {
     return '<p class="wa">' + pregunta + ' <a href="' + C.WHATSAPP + '" target="_blank" rel="noopener" data-wa="' + desde + '">' + T.waEnlace + '</a></p>';
@@ -558,7 +589,11 @@
     });
     app.querySelectorAll('[data-reservar]').forEach(function (b) {
       // El evento sale por sendBeacon antes de saltar; Momence se abre en la misma pestaña.
-      b.addEventListener('click', function () { evento('pulso_reservar', { tema: tema, desde: b.getAttribute('data-reservar') }); });
+      // Pulsar no es reservar: aquí solo se apunta la intención (y no se manda «Lead» a Meta: data-sin-lead).
+      b.addEventListener('click', function () {
+        b.setAttribute('href', enlaceReserva());
+        evento('pulso_reservar', datosAnuncio({ tema: tema, desde: b.getAttribute('data-reservar') }));
+      });
     });
     app.querySelectorAll('[data-wa]').forEach(function (a) {
       a.addEventListener('click', function () { evento('pulso_whatsapp', { tema: tema, desde: a.getAttribute('data-wa') }); });

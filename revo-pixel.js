@@ -54,6 +54,8 @@
       function (e) {
         var el = e.target && e.target.closest ? e.target.closest("[data-reservar]") : null;
         if (!el) return;
+        // Las landings que miden la reserva de verdad marcan sus botones: un clic ahí no es un «Lead».
+        if (el.hasAttribute("data-sin-lead")) return;
         var name = (el.getAttribute("data-title") || el.textContent || "Reservar").replace(/\s+/g, " ").trim();
         window.revoTrack("Lead", { content_name: name.slice(0, 60) });
       },
@@ -68,11 +70,19 @@
 
   window.revoTrack = function (event, params) {
     if (!window.fbq) return;
+    // El permiso se vuelve a mirar en cada envío: si lo retiran después de cargar el píxel, no sale nada más.
+    if (!marketingAllowed()) return;
     fbq("track", event, params || {});
   };
 
   // API para el gestor de consentimiento (revo-cookies.js).
   window.revoPixel = { enable: enable, id: PIXEL_ID, allowed: marketingAllowed };
+
+  // Si cambian de opinión con el píxel ya cargado, se le dice también a Meta.
+  document.addEventListener("revo:consent", function (e) {
+    if (!window.fbq) return;
+    fbq("consent", e.detail && e.detail.marketing ? "grant" : "revoke");
+  });
 
   // Si el visitante ya había aceptado antes, arranca solo.
   if (marketingAllowed()) enable();
