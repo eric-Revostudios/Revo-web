@@ -15,6 +15,15 @@ window.TU_PUNTO = {
   /* Duración de la visita, en minutos. Un solo sitio. Con 0 no se dice en ninguna parte. */
   MINUTOS: 45,
 
+  /* «Otras terapias que también pueden ayudarte», debajo de las de su tema. Apagado el 18-nov-2026. */
+  OTRAS_VISIBLES: false,
+
+  /* Las plazas que QUEDAN («Quedan 7 de 20»). Apagado (Eric, 18-nov-2026: «que no salga de momento»): la tarjeta
+     dice solo «20 plazas en noviembre · Quedan 12 días» y la página no pregunta nada a /api/plazas.
+     Para encenderlo hacen falta dos cosas: la puerta de la Platform que cuenta las reservas reales (contrato en
+     api/plazas.js) y poner esto en true. */
+  PLAZAS_CONTADAS: false,
+
   /* WhatsApp del equipo, con el mensaje ya escrito. */
   WHATSAPP: 'https://wa.me/34613505881?text=' + encodeURIComponent('Hola, quiero reservar mi punto de partida en REVO.'),
 
@@ -27,16 +36,19 @@ window.TU_PUNTO = {
 
     /* 1 · el porcentaje */
     /* El titular es el del documento del equipo (v2). Con «icp5» en el anuncio dice «seguir sintiéndote». */
-    ojo1: 'Un minuto para ti',
-    titular1: 'Descubre qué terapias pueden ayudarte a volver a sentirte <em class="n">al 100&nbsp;%</em>.',
-    titular1icp5: 'Descubre qué terapias pueden ayudarte a seguir sintiéndote <em class="n">al 100&nbsp;%</em>.',
-    sub1: 'Crioterapia, luz roja, cámara hiperbárica, PEMF y más, con acompañamiento médico.',
+    /* 18-nov-2026 (la jefa de Eric): arriba hay que decir qué se va a encontrar la persona y cuánto tarda, y que
+       se vea en qué paso está. Por eso el titular empieza por «En 2 minutos», la línea de debajo dice que son
+       tres respuestas y qué recibe a cambio, y encima va «Paso 1 de 3» con sus tres tramos. */
+    paso: 'Paso {n} de 3',
+    titular1: 'En 2 minutos, descubre qué terapias pueden ayudarte a volver a sentirte <em class="n">al 100&nbsp;%</em>.',
+    titular1icp5: 'En 2 minutos, descubre qué terapias pueden ayudarte a seguir sintiéndote <em class="n">al 100&nbsp;%</em>.',
+    sub1: 'Tres respuestas rápidas y te enseñamos cuáles encajan contigo, y por qué.',
     pregunta1: 'Hoy me siento al…',
     pista1: 'Desliza hasta donde te reconozcas.',
 
     /* 2 · lo que ya haces */
     pregunta2: 'Así <em>me cuido hoy</em>',
-    pista2: 'Elige lo que ya forma parte de tu vida.',
+    pista2: 'Marca todo lo que ya forma parte de tu vida.',
     menos: 'Menos de lo que querría',
 
     /* 3 · dónde lo notarías */
@@ -57,6 +69,20 @@ window.TU_PUNTO = {
     parte4: 'Tu punto de partida',
     parte5: 'Quién lo vive y quién está detrás',
     parte6: 'Antes de venir',
+    /* El tramo final de /tu-punto, contraído (18-nov-2026, la jefa de Eric: «demasiado largo… sacarle el so what
+       real y hacerlos venir»). Donde antes había dos secciones (medir + invitación con sus pasos largos) ahora hay
+       UNA: el «so what» en una frase (para darte un plan, primero hay que saber cómo está tu sistema nervioso),
+       dos líneas, la tarjeta de la invitación y los cuatro pasos en una palabra cada uno.
+       Lo que la persona marcó en la segunda pregunta se dice aquí, en una frase, delante de `pasoInvita`.
+       /punto-de-partida conserva su tramo largo (parte3 y parte4 de arriba). */
+    partePaso: 'Tu plan personalizado',
+    pasoTitulo: 'El primer paso es saber <em>cómo está hoy tu sistema nervioso autónomo</em>',
+    pasoTexto: 'De eso depende qué terapias son para ti y con qué frecuencia. Se mide en {m} minutos y se resume en un número: tu edad biológica.',
+    pasoTextoSinMinutos: 'De eso depende qué terapias son para ti y con qué frecuencia. Se mide y se resume en un número: tu edad biológica.',
+    pasoInvita: 'Si has llegado hasta aquí, es que te interesa de verdad. Por eso queremos invitarte a medirlo.',
+    yaHaces: 'Ya {lista}.',
+    yaHacesMenos: 'Ya {lista}, aunque menos de lo que querrías.',
+    soloMenos: 'Te cuidas menos de lo que querrías, y no pasa nada.',
     /* El hilo de la página (17-nov-2026, Eric con la agencia). La landing promete «qué terapias pueden ayudarte»
        y lo cumple, pero el discurso es el sistema nervioso autónomo. Leyendo solo los titulares tiene que
        quedar: esto te pasa → detrás está tu sistema nervioso autónomo → estas terapias le ayudan → lo más
@@ -76,8 +102,6 @@ window.TU_PUNTO = {
     medirTitulo: 'Lo más importante es saber <em>cómo está hoy el tuyo</em>',
     medirPorque: 'Qué terapias son para ti, y con qué frecuencia, depende de eso. Y se puede medir: leyendo la variabilidad de tu pulso se ve cuánta carga lleva tu sistema nervioso, cómo se recupera y cuánta energía tiene disponible.',
     medirQue: 'El resultado se resume en un número, tu <em>edad biológica</em>: el estado real de tu organismo comparado con los años que tienes.',
-    medirSientes: 'Has dicho que te sientes al {p}&nbsp;%. Es una sensación. <em>La edad biológica le pone número.</em>',
-    medirCien: 'Has dicho que te sientes al 100&nbsp;%. <em>La edad biológica es el número con el que compararte dentro de un año.</em>',
     medirCambia: 'No es un número fijo. Cambia con cómo descansas, cómo te recuperas y cómo te cuidas, y por eso sirve de punto de partida.',
     ejeMenos: 'Menos años',
     ejeTu: 'Tu edad',
@@ -91,6 +115,8 @@ window.TU_PUNTO = {
     /* 02 · sus terapias y las demás, en el mismo formato de lista. {deseo} es lo que eligió, dicho de tú. */
     terapiasTuyas: 'Lo que puede ayudarte a <em>{deseo}</em>',
     terapiasEntrada: 'Tecnología que hasta hace poco solo usaban deportistas de élite, con más de 20 años de ciencia detrás.',
+    /* «Otras terapias» ya no se enseña (18-nov-2026, la jefa de Eric: «parece que le vendemos todo»). Los textos
+       siguen escritos en TERAPIAS y en AREAS.otras; para volver a enseñarlas basta poner OTRAS_VISIBLES en true. */
     otrasTitulo: 'Otras terapias que <em>también pueden ayudarte</em>',
     otrasEntrada: 'Lo normal es reconocerse en más de una cosa.',
     /* el puente hacia la invitación: lo que ya hace, y lo que falta */
@@ -136,6 +162,18 @@ window.TU_PUNTO = {
        las tres lecturas, una línea de valor, el botón y una línea de garantías. */
     valor: 'Valorada en 100&nbsp;€. Al reservarla desde esta invitación, corre de nuestra cuenta.',
     terapiaDia: 'Si quieres probar una terapia ese mismo día, escríbenos y te la reservamos.',
+    /* Las plazas (Eric, 18-nov-2026): 20 al mes. Cuando se reservan las 20, se abren las del mes siguiente.
+       El número de las que quedan lo da /api/plazas con las reservas DE VERDAD; si no lo sabe, se dice solo
+       cuántas hay y no se inventa cuántas quedan. {mes} es el mes de esas plazas. */
+    plazasMes: 'Plazas de {mes}',
+    plazasQuedan: 'Quedan {n} de {de}',
+    plazasQueda1: 'Queda 1 de {de}',
+    plazasSinDato: '{de} plazas en {mes}',
+    plazasDias: 'Quedan {n} días',
+    plazasDia1: 'Queda 1 día',
+    plazasHoy: 'Último día',
+    plazasHasta: 'Hasta el {d} de {mes}',
+    MESES: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
     bajoBoton: '{m} minutos · Sin compromiso',
     waCorto: 'Pregúntanos por WhatsApp',
     prueba: '4,9 en Google · 48 reseñas',
@@ -369,31 +407,32 @@ window.TU_PUNTO = {
         todo: [
           '» Cuidarse a largo plazo también es cuidar la cabeza. El sonido y la luz entrenan al cerebro a entrar en calma o en foco, y cuanto más se usa, más fácil le resulta.',
           'Quince minutos con unos auriculares y unas gafas de luz, con una voz que guía.' ] } },
-    { nombre: 'Presoterapia', specs: [['20–30', 'min', 'Sesión']], dato: 'De 20 a 30 minutos', foto: 'presoterapia-hero.webp', pos: '50% 40%',
+    { nombre: 'Presoterapia', specs: [['20–45', 'min', 'Sesión']], dato: 'De 20 a 45 minutos', foto: 'presoterapia-sesion.webp', pos: '50% 50%',
       textos: {
         energia: [
           '» El cansancio también se queda en las piernas. Estas botas empujan la sangre y la linfa hacia el corazón, y las piernas quedan ligeras.',
-          'Se inflan por tramos, de los pies a la cadera, durante 20 o 30 minutos. Es una presión rítmica, sin dolor.' ],
+          'Se inflan por tramos, de los pies a la cadera, de 20 a 45 minutos. Es una presión rítmica, sin dolor.' ],
         descanso: [
           '» Una presión rítmica y envolvente que descarga las piernas y relaja el músculo. Va bien al final del día, cuando el cuerpo necesita soltar.',
-          'Unas botas de aire que se inflan por tramos, de los pies a la cadera, durante 20 o 30 minutos.' ],
+          'Unas botas de aire que se inflan por tramos, de los pies a la cadera, de 20 a 45 minutos.' ],
         cabeza: [
           '» Media hora sin hacer nada, que no es poco. Mientras, las botas activan la circulación y descargan las piernas.',
           'Se inflan por tramos, de los pies a la cadera. Puedes leer o, simplemente, desconectar.' ],
         cuerpo: [
           '» Empuja la sangre y la linfa de los pies hacia el corazón. Descarga las piernas, reduce el dolor muscular de después del ejercicio y ayuda a recuperarse antes.',
           'Son unas botas con seis cámaras de aire que se inflan por tramos, de los pies a la cadera. Empujan la sangre y la linfa hacia el corazón: mejora el retorno venoso, se activa el sistema linfático y se acumula menos líquido. El músculo recibe más oxígeno y se relaja.',
-          'Te recuestas en un sillón y te colocamos las botas, de 20 a 30 minutos. Es una presión rítmica y envolvente, sin dolor; mientras, puedes leer o desconectar.',
+          'Te recuestas en un sillón y te colocamos las botas, de 20 a 45 minutos. Es una presión rítmica y envolvente, sin dolor; mientras, puedes leer o desconectar.',
           'Va bien después de entrenar o como descarga regular. Es la recuperación que usan los deportistas.' ],
         piel: [
           '» Activa el sistema linfático, el que drena los líquidos que el cuerpo retiene. Reduce la hinchazón y la retención, y deja las piernas ligeras.',
           'Son unas botas con seis cámaras de aire que se inflan por tramos, de los pies a la cadera. Empujan la sangre y la linfa hacia el corazón: mejora el retorno venoso, se activa el sistema linfático y se acumula menos líquido.',
-          'Te recuestas en un sillón y te colocamos las botas, de 20 a 30 minutos. Es una presión rítmica y envolvente, sin dolor; mientras, puedes leer o desconectar.',
+          'Te recuestas en un sillón y te colocamos las botas, de 20 a 45 minutos. Es una presión rítmica y envolvente, sin dolor; mientras, puedes leer o desconectar.',
           'Con los años al cuerpo le cuesta más drenar; por eso funciona mejor como rutina que como sesión suelta.' ],
         todo: [
           '» Con los años, la circulación de las piernas se vuelve más lenta. Estas botas la activan y ayudan a drenar el líquido que se acumula.',
-          'Se inflan por tramos, de los pies a la cadera, durante 20 o 30 minutos.' ] } },
-    { nombre: 'Respark®', specs: [['−130', '°C', 'Crioterapia'], ['60', 'min', 'Sesión']], dato: 'Una hora', foto: 'therapy.webp', pos: '40% 50%',
+          'Se inflan por tramos, de los pies a la cadera, de 20 a 45 minutos.' ] } },
+    { nombre: 'Respark®', es: 'Crioterapia + masaje', specs: [['−130', '°C', 'Crioterapia'], ['60', 'min', 'Con el masaje']], dato: 'Crioterapia + masaje · Una hora',
+      foto: 'cryo-chamber.webp', pos: '50% 42%', foto2: 'massage-room.webp', pos2: '62% 50%',
       textos: {
         energia: [
           '» Empieza con los mismos tres minutos de crioterapia, que son los que dan energía, y sigue con un masaje drenante y moldeador.',
@@ -408,7 +447,7 @@ window.TU_PUNTO = {
           '» Primero el frío, que baja la inflamación, y después las manos, que movilizan la linfa y descargan el músculo.',
           'Es crioterapia seguida de un masaje drenante y moldeador, el Método Lilium: una hora. Está pensado para la silueta y la retención, y suma recuperación.' ],
         piel: [
-          '» Primero el frío, después las manos. La crioterapia baja la inflamación y deja el tejido receptivo, y sobre esa respuesta un masaje drenante y moldeador moviliza la linfa, reduce la retención y redefine la silueta.',
+          '» Tres minutos de crioterapia y, justo después, un masaje drenante y moldeador.<br>¿Por qué juntas? La crioterapia baja la inflamación y deja el tejido receptivo, y sobre esa respuesta el masaje moviliza la linfa, reduce la retención y redefine la silueta.',
           'Tres minutos a −130&nbsp;°C contraen los vasos; al salir, la sangre vuelve oxigenada. Sobre el tejido ya activado se trabaja el masaje drenante y moldeador con aparatología, el Método Lilium, que activa la microcirculación.',
           'Dura una hora en total: la crioterapia, siempre con tu coach al lado, y el masaje.',
           'Es un método propio de REVO. Los resultados son acumulativos: mejoran con la constancia.' ],
@@ -504,6 +543,9 @@ window.TU_PUNTO = {
     ['Hablamos de ti', 'Revisamos contigo los resultados, tu objetivo y tus hábitos: cómo descansas, cómo te recuperas, qué quieres seguir haciendo.'],
     ['Sales con un plan', 'Te explicamos qué terapias encajan contigo y con qué frecuencia. Te hagas miembro o no, el plan es tuyo.']
   ],
+
+  /* Los mismos cuatro pasos, en una línea cada uno: es lo que se ve en /tu-punto desde el 18-nov-2026. */
+  PASOS_CORTOS: ['Te recibimos y te enseñamos el estudio', 'Medimos cómo estás', 'Vemos contigo los resultados', 'Sales con tu plan'],
 
   /* Las tres mediciones: nombre, la casilla vacía y qué dice cada una. */
   FICHA: [
