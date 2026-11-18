@@ -46,7 +46,7 @@
 <main id="app">
   <!-- Primera pantalla en HTML, para que se vea antes de que cargue el JavaScript. tu-punto.js la vuelve a pintar igual:
        si se cambia el titular o la pregunta en tu-punto-contenido.js, se cambia también aquí. -->
-  <section class="escena grano" style="--f:.6">
+  <section class="escena grano" style="--f:.5">
     <div class="sombra"></div><div class="aurora"></div>
     <header class="cab"><div class="w"><img src="assets/revo-logo-white.webp" alt="REVO Studios" width="2253" height="819"><span class="donde">Clínica de longevidad · Turó Park</span></div></header>
     <div class="w escena-w">
@@ -57,11 +57,11 @@
             <h1 class="t1">En 2 minutos, descubre qué terapias pueden ayudarte a volver a sentirte <em class="n">al 100&nbsp;%</em>.</h1>
             <p class="sub1">Tres respuestas rápidas y te enseñamos cuáles encajan contigo, y por qué.</p>
           </div>
-          <div class="medida">
+          <div class="medida sin">
             <label for="porcentaje">Hoy me siento al…</label>
-            <div class="cifra" aria-hidden="true"><span id="cifra">80</span><small>%</small></div>
-            <div class="regla" id="regla"><span class="hecho"></span><span class="resto"></span>
-              <input type="range" id="porcentaje" min="50" max="100" step="5" value="80" aria-valuetext="80 por ciento"></div>
+            <div class="cifra" aria-hidden="true"><span id="cifra">—</span><small>%</small></div>
+            <div class="regla" id="regla"><span class="hecho"></span><span class="resto"></span><span class="guia" aria-hidden="true"><i></i></span>
+              <input type="range" id="porcentaje" min="50" max="100" step="5" value="75" aria-valuetext="Desliza hasta donde te reconozcas."></div>
             <div class="escala" aria-hidden="true"><span>50</span><span>100</span></div>
             <p class="eco" id="eco">Desliza hasta donde te reconozcas.</p>
           </div>

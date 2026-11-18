@@ -130,7 +130,8 @@
   });
 
   /* ---------- respuestas ---------- */
-  var S = { p: 80, tocado: false, haces: [], area: null };
+  /* p arranca en el centro de la línea (75): hasta que la persona responde no se enseña ningún número. */
+  var S = { p: 75, tocado: false, haces: [], area: null };
   try {
     var g = JSON.parse(leer('tp_estado') || 'null');
     if (g && typeof g.p === 'number' && g.p >= 50 && g.p <= 100 && Array.isArray(g.haces)) S = g;
@@ -236,35 +237,76 @@
   /* ---------- 1 · el porcentaje ---------- */
   /* La barra de la primera pregunta: una línea de un píxel (lo marcado en blanco, el resto apagado). */
   var REGLA = '<span class="hecho"></span><span class="resto"></span>';
+  /* Lo que llama a mover el círculo mientras nadie ha respondido: un anillo que late y una flecha a cada lado. */
+  var GUIA = '<span class="guia" aria-hidden="true"><i></i><b>' + I.atras + '</b><b>' + I.flecha + '</b></span>';
+  /* Eric, 18-nov-2026: «al entrar no parece que tengas que seleccionar; como ya empieza al 80 %, da la sensación de
+     que es clicar y continuar». Por eso la pregunta ARRANCA SIN RESPUESTA (clase «sin»): no hay número, el círculo
+     espera en el centro llamando a moverlo y el botón no dice «Continuar» hasta que la persona responde. Responder
+     es arrastrar el círculo, tocar cualquier punto de la línea o usar las flechas del teclado. */
   function paso1() {
     abrePantalla('inicio');
+    var sin = !S.tocado;
     pinta(escena(1,
       '<div class="arriba">' +
         '<h1 class="t1" data-titulo>' + (perfil === 'icp5' ? T.titular1icp5 : T.titular1) + '</h1>' +
         '<p class="sub1">' + T.sub1 + '</p>' +
       '</div>' +
-      '<div class="medida">' +
+      '<div class="medida' + (sin ? ' sin' : '') + '" id="medida">' +
         '<label for="porcentaje">' + T.pregunta1 + '</label>' +
-        '<div class="cifra" aria-hidden="true"><span id="cifra">' + S.p + '</span><small>%</small></div>' +
-        '<div class="regla" id="regla">' + REGLA +
-          '<input type="range" id="porcentaje" min="50" max="100" step="5" value="' + S.p + '" aria-valuetext="' + S.p + ' por ciento"></div>' +
+        '<div class="cifra" aria-hidden="true"><span id="cifra">' + (sin ? T.sinCifra : S.p) + '</span><small>%</small></div>' +
+        '<div class="regla" id="regla">' + REGLA + GUIA +
+          '<input type="range" id="porcentaje" min="50" max="100" step="5" value="' + S.p + '" aria-valuetext="' + (sin ? T.pista1 : S.p + ' por ciento') + '"></div>' +
         '<div class="escala" aria-hidden="true"><span>50</span><span>100</span></div>' +
-        '<p class="eco" id="eco" aria-live="polite">' + (S.tocado ? porTramo(C.ECO)[1] : T.pista1) + '</p>' +
+        '<p class="eco" id="eco" aria-live="polite">' + (sin ? T.pista1 : porTramo(C.ECO)[1]) + '</p>' +
       '</div>' +
       '<div class="abajo">' +
-        '<button type="button" class="boton boton--luz" id="seguir"><span>' + T.continuar + '</span>' + I.ir + '</button>' +
+        '<button type="button" class="boton ' + (sin ? 'boton--espera' : 'boton--luz') + '" id="seguir"' + (sin ? ' aria-disabled="true"' : '') + '><span>' + (sin ? T.responde1 : T.continuar) + '</span>' + I.ir + '</button>' +
       '</div>'));
 
     var input = document.getElementById('porcentaje'), marco = app.querySelector('.escena');
-    input.addEventListener('input', function () {
-      S.p = Number(input.value); S.tocado = true;
+    var medida = document.getElementById('medida'), seguir = document.getElementById('seguir');
+    function responde() {
+      S.p = Number(input.value);
+      if (!S.tocado) {
+        S.tocado = true;
+        medida.classList.remove('sin', 'llama');
+        seguir.className = 'boton boton--luz';
+        seguir.removeAttribute('aria-disabled');
+        seguir.querySelector('span').textContent = T.continuar;
+      }
       marco.style.setProperty('--f', f());
       document.getElementById('cifra').textContent = S.p;
       input.setAttribute('aria-valuetext', S.p + ' por ciento');
       document.getElementById('eco').textContent = porTramo(C.ECO)[1];
       guarda();
+    }
+    input.addEventListener('input', responde);
+    input.addEventListener('change', responde);
+    /* Tocar o arrastrar en cualquier punto de la línea responde (en el iPhone el control de serie solo deja
+       arrastrar el círculo, y quien toca la línea no vería pasar nada). 14 px es el margen del círculo (--m). */
+    var arrastra = false;
+    function aLaPosicion(e) {
+      var r = input.getBoundingClientRect(), m = 14;
+      var t = Math.min(1, Math.max(0, (e.clientX - r.left - m) / Math.max(1, r.width - m * 2)));
+      input.value = String(50 + Math.round(t * 10) * 5);
+      responde();
+    }
+    input.addEventListener('pointerdown', function (e) {
+      if (e.button) return;
+      arrastra = true;
+      try { input.setPointerCapture(e.pointerId); } catch (x) {}
+      aLaPosicion(e);
     });
-    document.getElementById('seguir').addEventListener('click', function () { guarda(); ir('paso-2'); });
+    input.addEventListener('pointermove', function (e) { if (arrastra) aLaPosicion(e); });
+    ['pointerup', 'pointercancel'].forEach(function (n) { input.addEventListener(n, function () { arrastra = false; }); });
+    seguir.addEventListener('click', function () {
+      if (!S.tocado) {
+        /* Sin respuesta no se avanza: la línea se mueve un momento para decir dónde hay que tocar. */
+        medida.classList.remove('llama'); void medida.offsetWidth; medida.classList.add('llama');
+        return;
+      }
+      guarda(); ir('paso-2');
+    });
   }
 
   /* ---------- 2 · lo que ya haces ---------- */

@@ -45,6 +45,9 @@ window.TU_PUNTO = {
     sub1: 'Tres respuestas rápidas y te enseñamos cuáles encajan contigo, y por qué.',
     pregunta1: 'Hoy me siento al…',
     pista1: 'Desliza hasta donde te reconozcas.',
+    /* Antes de responder: lo que ocupa el sitio del número y lo que dice el botón (aún no es «Continuar»). */
+    sinCifra: '\u2014',
+    responde1: 'Desliza para responder',
 
     /* 2 · lo que ya haces */
     pregunta2: 'Así <em>me cuido hoy</em>',
