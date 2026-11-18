@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<script src="revo-pixel.js" defer></script>
+<script src="revo-cookies.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#06070f" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Reserva hecha · REVO Studios Barcelona</title>
+<!--
+  Página de vuelta de Momence (/reserva-hecha), 18-nov-2026.
+  Momence manda aquí a quien termina una reserva o una compra (Settings → General Setup → «checkout purchase
+  tracking»), con ?type=appointment | session | membership. Para citas no manda ningún identificador.
+  - El texto largo es el de la cita «Tu punto de partida»; para lo demás (o sin type), el corto.
+  - Si la persona venía de /tu-punto en esta misma pestaña, se avisa a la Platform con su misma sesión
+    (evento `volvio_reserva`). ESTO NO ES UNA RESERVA: la reserva la demuestra la cita en Momence, que la
+    Platform lee aparte. Aquí no se manda ninguna conversión a Meta.
+  Diseño: revo-clinical/docs/medicion-reservas-meta.md
+-->
+<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="icon" type="image/png" href="assets/revo-icon.png" />
+<style>
+@font-face{ font-family:"Neue Haas"; src:url("fonts/NeueHaasGrotesk-Medium.woff2") format("woff2"), url("fonts/NeueHaasGrotesk-Medium.otf") format("opentype"); font-weight:400 700; font-style:normal; font-display:swap; }
+@font-face{ font-family:"Noto Serif Hi"; src:url("fonts/NotoSerif-Italic-500.woff2") format("woff2"), url("fonts/NotoSerif-Italic.ttf") format("truetype"); font-weight:100 900; font-style:italic; font-display:swap; }
+:root{ --noche:#06070f; --luz:#f6f4ef; --luz-2:rgba(246,244,239,.76); --luz-3:rgba(246,244,239,.52); --raya:rgba(246,244,239,.16); --azul-claro:#bcc5ff; }
+*{ box-sizing:border-box; }
+body{ margin:0; min-height:100vh; min-height:100svh; display:flex; flex-direction:column; background:radial-gradient(120% 70% at 80% -10%, rgba(54,80,207,.38), transparent 60%), var(--noche); color:var(--luz); font-family:"Neue Haas","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:500; font-size:17px; line-height:1.58; -webkit-font-smoothing:antialiased; }
+.w{ width:100%; max-width:620px; margin:0 auto; padding:0 max(22px, env(safe-area-inset-left, 0px)); }
+header{ padding:26px 0; }
+header img{ display:block; width:92px; height:auto; }
+main{ flex:1; display:flex; align-items:center; padding:24px 0 56px; }
+h1{ margin:0 0 18px; font-size:clamp(38px, 9vw, 58px); line-height:1.04; letter-spacing:-.022em; font-weight:500; }
+h1 em{ font-family:"Noto Serif Hi","Noto Serif",Georgia,serif; font-style:italic; color:var(--azul-claro); }
+p{ margin:0 0 14px; color:var(--luz-2); }
+.bloque{ margin-top:28px; padding-top:22px; border-top:1px solid var(--raya); }
+h2{ margin:0 0 8px; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--luz-3); font-weight:500; }
+.fuerte{ color:var(--luz); }
+.boton{ display:flex; align-items:center; justify-content:center; min-height:60px; margin-top:34px; padding:14px 28px; border-radius:999px; background:var(--luz); color:var(--noche); font-weight:600; text-decoration:none; }
+.boton:hover{ background:#fff; }
+.boton:focus-visible{ outline:2px solid var(--azul-claro); outline-offset:4px; }
+footer{ padding:22px 0 max(26px, env(safe-area-inset-bottom, 0px)); font-size:14px; color:var(--luz-3); }
+[hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+<header><div class="w"><a href="/"><img src="assets/revo-logo-white.webp" alt="REVO Studios" width="2253" height="819"></a></div></header>
+<main><div class="w">
+  <!-- Lo de siempre (sin type, clase, membresía, bono). -->
+  <section id="corta">
+    <h1>Todo <em>listo.</em></h1>
+    <p>Te hemos enviado la confirmación por correo.</p>
+    <p>Si te surge cualquier duda, escríbenos. Te contestamos nosotros, no un formulario.</p>
+  </section>
+  <!-- Una cita. -->
+  <section id="cita" hidden>
+    <h1>Ya tienes <em>tu sitio.</em></h1>
+    <p>Te hemos enviado la confirmación por correo, con el día y la hora.</p>
+    <div class="bloque">
+      <h2>Qué va a pasar ese día</h2>
+      <p>Vas a conocer el estudio con calma y a sentarte con nuestro equipo médico. Son 45 minutos. Sales sabiendo desde dónde partes y qué tendría sentido para ti.</p>
+      <p class="fuerte">No hace falta que decidas nada ese día. No es una venta, es una valoración.</p>
+    </div>
+    <div class="bloque">
+      <h2>Antes de venir</h2>
+      <p>Ven como estés. No necesitas preparar nada.</p>
+    </div>
+    <div class="bloque">
+      <h2>Si te surge algo</h2>
+      <p>Escríbenos y lo movemos a otro día. Sin problema.</p>
+    </div>
+  </section>
+  <a class="boton" href="https://wa.me/34613505881">Escríbenos por WhatsApp</a>
+</div></main>
+<footer><div class="w">REVO Studios · Turó Park, Barcelona</div></footer>
+<script>
+(function () {
+  var tipo = '';
+  try { tipo = (new URLSearchParams(location.search).get('type') || '').slice(0, 30); } catch (e) {}
+  var sesion = null, avisado = null;
+  try { sesion = sessionStorage.getItem('tp_sesion'); avisado = sessionStorage.getItem('tp_vuelta'); } catch (e) {}
+  var deLanding = !!sesion && /^[a-z0-9]{8,64}$/.test(sesion);
+
+  // El texto de «Tu punto de partida» solo si es una cita Y la persona venía de la landing en esta pestaña:
+  // Momence no dice qué cita es, y a quien reservó un masaje no se le habla de una valoración.
+  if (tipo === 'appointment' && deLanding) {
+    document.getElementById('corta').hidden = true;
+    document.getElementById('cita').hidden = false;
+  }
+
+  // Aviso a la Platform, una vez por pestaña. No es una conversión: solo dice «esta visita volvió de Momence».
+  if (!deLanding || !tipo || avisado) return;
+  var ads = {};
+  try { ads = JSON.parse(sessionStorage.getItem('tp_ads') || '{}') || {}; } catch (e) {}
+  var mk = false;
+  try { mk = JSON.parse(localStorage.getItem('revo-consent') || '{}').marketing === true; } catch (e) {}
+  var datos = { tipo: tipo, mk: mk ? 'si' : 'no' };
+  ['campaign_id', 'adset_id', 'ad_id'].forEach(function (k) { if (/^\d{1,30}$/.test(ads[k] || '')) datos[k] = ads[k]; });
+  var cuerpo = JSON.stringify({
+    sesion: sesion, evento: 'volvio_reserva', datos: datos, v: 'a',
+    utm_content: String(ads.utm_content || '').slice(0, 120), utm_source: String(ads.utm_source || '').slice(0, 60),
+    pagina: 'tu-punto', ts: new Date().toISOString()
+  });
+  try { sessionStorage.setItem('tp_vuelta', '1'); } catch (e) {}
+  try {
+    fetch('/api/landing-evento', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: cuerpo, keepalive: true }).catch(function () {});
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

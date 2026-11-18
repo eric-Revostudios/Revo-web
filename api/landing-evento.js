@@ -27,6 +27,7 @@ const EVENTOS = new Set([
   'pulso_reservar',
   'pulso_whatsapp',
   'cambio_tema',
+  'volvio_reserva',
 ]);
 
 export default async function handler(request, context) {
