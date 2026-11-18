@@ -237,12 +237,14 @@
   /* ---------- 1 · el porcentaje ---------- */
   /* La barra de la primera pregunta: una línea de un píxel (lo marcado en blanco, el resto apagado). */
   var REGLA = '<span class="hecho"></span><span class="resto"></span>';
-  /* Lo que llama a mover el círculo mientras nadie ha respondido: un anillo que late y una flecha a cada lado. */
-  var GUIA = '<span class="guia" aria-hidden="true"><i></i><b>' + I.atras + '</b><b>' + I.flecha + '</b></span>';
+  /* El círculo mientras nadie ha respondido: el mismo anillo, con un halo que respira. */
+  var GUIA = '<span class="guia" aria-hidden="true"><i></i></span>';
   /* Eric, 18-nov-2026: «al entrar no parece que tengas que seleccionar; como ya empieza al 80 %, da la sensación de
-     que es clicar y continuar». Por eso la pregunta ARRANCA SIN RESPUESTA (clase «sin»): no hay número, el círculo
-     espera en el centro llamando a moverlo y el botón no dice «Continuar» hasta que la persona responde. Responder
-     es arrastrar el círculo, tocar cualquier punto de la línea o usar las flechas del teclado. */
+     que es clicar y continuar» → y al verlo con raya, flechas y botón apagado: «más bonito y elegante».
+     La pregunta ARRANCA SIN RESPUESTA (clase «sin») y lo enseña sin decirlo: el círculo se desliza solo, muy despacio,
+     entre el 65 y el 85, y el número lo sigue en tenue, como una respuesta que aún no es de nadie. No hay botón.
+     Al tocar la línea (en cualquier punto), arrastrar el círculo o usar el teclado, el número se enciende, el círculo
+     se queda donde lo deja la persona y «Continuar» aparece. Con «reducir movimiento» el círculo espera quieto. */
   function paso1() {
     abrePantalla('inicio');
     var sin = !S.tocado;
@@ -253,29 +255,41 @@
       '</div>' +
       '<div class="medida' + (sin ? ' sin' : '') + '" id="medida">' +
         '<label for="porcentaje">' + T.pregunta1 + '</label>' +
-        '<div class="cifra" aria-hidden="true"><span id="cifra">' + (sin ? T.sinCifra : S.p) + '</span><small>%</small></div>' +
+        '<div class="cifra" aria-hidden="true"><span id="cifra">' + S.p + '</span><small>%</small></div>' +
         '<div class="regla" id="regla">' + REGLA + GUIA +
           '<input type="range" id="porcentaje" min="50" max="100" step="5" value="' + S.p + '" aria-valuetext="' + (sin ? T.pista1 : S.p + ' por ciento') + '"></div>' +
         '<div class="escala" aria-hidden="true"><span>50</span><span>100</span></div>' +
         '<p class="eco" id="eco" aria-live="polite">' + (sin ? T.pista1 : porTramo(C.ECO)[1]) + '</p>' +
       '</div>' +
       '<div class="abajo">' +
-        '<button type="button" class="boton ' + (sin ? 'boton--espera' : 'boton--luz') + '" id="seguir"' + (sin ? ' aria-disabled="true"' : '') + '><span>' + (sin ? T.responde1 : T.continuar) + '</span>' + I.ir + '</button>' +
+        '<button type="button" class="boton boton--luz' + (sin ? ' boton--espera' : '') + '" id="seguir"' + (sin ? ' aria-hidden="true" tabindex="-1"' : '') + '><span>' + T.continuar + '</span>' + I.ir + '</button>' +
       '</div>'));
 
     var input = document.getElementById('porcentaje'), marco = app.querySelector('.escena');
-    var medida = document.getElementById('medida'), seguir = document.getElementById('seguir');
+    var medida = document.getElementById('medida'), seguir = document.getElementById('seguir'), cifra = document.getElementById('cifra');
+    /* el paseo del círculo: un vaivén de 7 segundos alrededor del centro */
+    var paseo = 0, desde = 0;
+    function pasea(t) {
+      if (S.tocado || !medida.isConnected) return;
+      if (!desde) desde = t;
+      var g = .5 + .2 * Math.sin((t - desde) / 7000 * Math.PI * 2);
+      medida.style.setProperty('--g', g.toFixed(4));
+      var n = String(50 + Math.round(g * 10) * 5);
+      if (cifra.textContent !== n) cifra.textContent = n;
+      paseo = requestAnimationFrame(pasea);
+    }
+    if (sin && !CALMA) paseo = requestAnimationFrame(pasea);
     function responde() {
       S.p = Number(input.value);
       if (!S.tocado) {
         S.tocado = true;
-        medida.classList.remove('sin', 'llama');
-        seguir.className = 'boton boton--luz';
-        seguir.removeAttribute('aria-disabled');
-        seguir.querySelector('span').textContent = T.continuar;
+        cancelAnimationFrame(paseo);
+        medida.classList.remove('sin');
+        seguir.classList.remove('boton--espera');
+        seguir.removeAttribute('aria-hidden'); seguir.removeAttribute('tabindex');
       }
       marco.style.setProperty('--f', f());
-      document.getElementById('cifra').textContent = S.p;
+      cifra.textContent = S.p;
       input.setAttribute('aria-valuetext', S.p + ' por ciento');
       document.getElementById('eco').textContent = porTramo(C.ECO)[1];
       guarda();
@@ -300,11 +314,7 @@
     input.addEventListener('pointermove', function (e) { if (arrastra) aLaPosicion(e); });
     ['pointerup', 'pointercancel'].forEach(function (n) { input.addEventListener(n, function () { arrastra = false; }); });
     seguir.addEventListener('click', function () {
-      if (!S.tocado) {
-        /* Sin respuesta no se avanza: la línea se mueve un momento para decir dónde hay que tocar. */
-        medida.classList.remove('llama'); void medida.offsetWidth; medida.classList.add('llama');
-        return;
-      }
+      if (!S.tocado) return;
       guarda(); ir('paso-2');
     });
   }

@@ -153,28 +153,27 @@ main{ position:relative; z-index:1; }
 .regla input:focus-visible{ outline:2px solid var(--azul-claro); outline-offset:2px; border-radius:22px; }
 .escala{ display:flex; justify-content:space-between; font-size:10px; font-weight:600; letter-spacing:.22em; color:var(--luz-3); font-variant-numeric:tabular-nums; }
 /* La pregunta sin responder (Eric, 18-nov-2026: «no parece que tengas que seleccionar; como ya empieza al 80 %, da la
-   sensación de que es clicar y continuar»). No hay número, el círculo espera en el centro con un anillo que late y una
-   flecha a cada lado, la pista se lee en claro y el botón está apagado. Al responder todo vuelve a lo de siempre. */
+   sensación de que es clicar y continuar» → «más bonito y elegante»). Sin flechas, sin rayas y sin botón apagado: el
+   círculo se pasea solo muy despacio (--g lo mueve tu-punto.js) con un halo que respira, el número lo sigue en tenue y
+   «Continuar» no existe todavía. Al responder, el número se enciende y el botón sube. */
+.medida{ --g:.5; }
 .regla input{ touch-action:pan-y; }
-.regla .guia{ position:absolute; top:22px; left:calc(var(--m) + var(--f) * (100% - var(--m) * 2)); width:0; height:0; pointer-events:none; opacity:0; transition:opacity .35s var(--ease); }
-.medida.sin .guia{ opacity:1; }
-.guia i{ position:absolute; left:-14px; top:-14px; width:28px; height:28px; border-radius:50%; border:1px solid rgba(255,255,255,.8); animation:tp-late 2.2s cubic-bezier(.2,.6,.3,1) infinite; }
-.guia b{ position:absolute; top:-10px; width:20px; height:20px; color:#fff; }
-.guia b svg{ display:block; width:20px; height:20px; }
-.guia b:first-of-type{ left:-46px; animation:tp-izq 2.2s var(--ease) infinite; }
-.guia b:last-of-type{ left:26px; animation:tp-der 2.2s var(--ease) infinite; }
-@keyframes tp-late{ 0%{ transform:scale(1); opacity:.75; } 75%, 100%{ transform:scale(2.3); opacity:0; } }
-@keyframes tp-izq{ 0%, 100%{ transform:translateX(0); opacity:.4; } 50%{ transform:translateX(-6px); opacity:1; } }
-@keyframes tp-der{ 0%, 100%{ transform:translateX(0); opacity:.4; } 50%{ transform:translateX(6px); opacity:1; } }
+.cifra, .cifra small{ transition:color .9s var(--ease); }
+.regla .guia{ position:absolute; top:22px; left:calc(var(--m) + var(--g) * (100% - var(--m) * 2)); width:0; height:0; pointer-events:none; display:none; }
+.medida.sin .guia{ display:block; }
+.guia i, .guia::before{ content:""; position:absolute; left:-14px; top:-14px; width:28px; height:28px; border-radius:50%; }
+.guia i{ border:1px solid rgba(255,255,255,.9); background:radial-gradient(circle, #fff 0 3px, rgba(10,13,34,.72) 3.6px); box-shadow:0 6px 18px rgba(4,5,12,.5); }
+.guia::before{ border:1px solid rgba(255,255,255,.5); animation:tp-halo 3.6s cubic-bezier(.3,.5,.3,1) infinite; }
+@keyframes tp-halo{ 0%{ transform:scale(1); opacity:.6; } 70%, 100%{ transform:scale(2.5); opacity:0; } }
+.medida.sin .regla input::-webkit-slider-thumb{ opacity:0; }
+.medida.sin .regla input::-moz-range-thumb{ opacity:0; }
+.medida.sin .regla .hecho{ width:calc(var(--m) + var(--g) * (100% - var(--m) * 2)); background:rgba(246,244,239,.55); }
+.medida.sin .regla .resto{ left:calc(var(--m) + var(--g) * (100% - var(--m) * 2)); }
 .medida.sin .cifra{ color:rgba(246,244,239,.3); }
-.medida.sin .cifra small{ color:rgba(246,244,239,.3); }
-.medida.sin .regla .hecho{ background:rgba(246,244,239,.24); }
-.medida.sin .eco{ color:var(--luz); }
-.medida.llama .regla{ animation:tp-llama .6s var(--ease); }
-@keyframes tp-llama{ 0%, 100%{ transform:translateX(0); } 20%{ transform:translateX(-9px); } 50%{ transform:translateX(9px); } 80%{ transform:translateX(-4px); } }
-.boton--espera{ background:rgba(246,244,239,.07); color:var(--luz-2); box-shadow:0 0 0 1px rgba(246,244,239,.2) inset; cursor:default; }
-.boton--espera .ir{ display:none; }
-.boton--espera:active{ transform:none; }
+.medida.sin .cifra small{ color:rgba(246,244,239,.22); }
+.medida.sin .eco{ color:var(--luz-2); }
+#seguir{ transition:opacity .9s var(--ease), transform .9s var(--ease), box-shadow .35s var(--ease), background-color .35s var(--ease); }
+#seguir.boton--espera{ opacity:0; transform:translateY(12px); pointer-events:none; }
 .eco{ min-height:1.5em; padding-top:18px; font-size:14.5px; line-height:1.45; letter-spacing:0; color:var(--luz-3); }
 .atajo{ text-align:center; }
 .atajo .enlace{ font-size:inherit; padding:8px 0; color:var(--luz-2); }
@@ -587,8 +586,8 @@ main{ position:relative; z-index:1; }
   .entra, .trazo .hecho, .trazo .resto, .trazo .punto{ animation:none; }
   .rev{ opacity:1; transform:none; transition:none; }
   .flota, .boton, .boton .ir, .escena .aurora, .ter img, .marca, .op{ transition:none; }
-  .guia i, .guia b, .medida.llama .regla{ animation:none; }
-  .guia i{ opacity:.6; transform:scale(1.5); }
+  .guia::before{ animation:none; opacity:.35; transform:scale(1.6); }
+  #seguir, .cifra, .cifra small{ transition:none; }
 }
 
 /* ---------- móvil bajo (iPhone SE y parecidos): las preguntas caben sin tener que bajar ---------- */
