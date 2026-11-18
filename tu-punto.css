@@ -253,6 +253,8 @@ main{ position:relative; z-index:1; }
 .oferta-hero .t1 em{ display:block; }
 .oferta-hero .edades{ background:rgba(7,10,28,.55); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
 .oferta-hero .abajo{ margin-top:auto; }
+/* en el móvil el gráfico va más bajo, para que el botón quepa en la primera pantalla con el titular de cuatro líneas */
+@media (max-width:959px){ .oferta-hero .eje{ height:98px; } .oferta-hero .cuerpo{ gap:24px; } }
 .hero-pie{ text-align:center; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--luz-2); }
 .notas{ border-top:1px solid var(--raya); }
 .notas li{ padding:20px 0; border-bottom:1px solid var(--raya); font-size:clamp(21px, 5.6vw, 27px); line-height:1.2; letter-spacing:-.018em; text-wrap:balance; }

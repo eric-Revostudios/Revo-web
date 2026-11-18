@@ -222,8 +222,12 @@ window.TU_PUNTO = {
      tiene claro no necesita bajar. */
   OFERTA: {
     heroOjo: 'Tu punto de partida',
-    heroTitulo: 'La edad del calendario ya la sabes. <em>¿Y la de tu cuerpo?</em>',
-    heroSub: 'Te invitamos a conocer tu edad biológica: una valoración de {m} minutos en REVO, en Turó Park (Barcelona), con acompañamiento médico.',
+    /* El titular (Eric, 18-nov-2026: «La edad del calendario ya la sabes. ¿Y la de tu cuerpo?» «puedes mejorarlo»).
+       Aquel empezaba por lo que la persona ya sabe, acababa en pregunta y no decía que es una invitación. Este es
+       una afirmación que da curiosidad y, enseguida, la oferta. El nombre («edad biológica») y qué es van debajo,
+       con las palabras del informe de valoración. Si se cambia, se cambia también en punto-de-partida.html. */
+    heroTitulo: 'Tu cuerpo tiene su propia edad. <em>Te invitamos a conocerla.</em>',
+    heroSub: 'Se llama edad biológica. Te la medimos en {m} minutos en REVO, en Turó Park (Barcelona), con acompañamiento médico.',
     heroPie: '{m} minutos · Sin compromiso · Valorada en 100&nbsp;€',
 
     /* 01 · el porcentaje y lo que harías con lo que falta */
