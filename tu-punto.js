@@ -574,14 +574,17 @@
     '</div></div></section>';
   }
 
-  function secInvitacion(primera, para) {
+  /* La invitación de /punto-de-partida (la landing solo de oferta): el puente («Saberlo lleva 45 minutos» y por
+     qué invitamos), la tarjeta y los cuatro pasos de la visita con su párrafo, que aquí son el producto. */
+  function secInvitacion(n, para) {
+    var O = C.OFERTA;
     var pasos = C.PASOS.map(function (p, i) {
       return '<li><span class="num">' + (i + 1) + '</span><div class="txt"><h3>' + p[0] + '</h3><p class="texto">' + p[1] + '</p></div></li>';
     }).join('');
-    var hace = frasePuente();
+    var hace = frasePuente() || O.porque;
     return '<section class="sec alba grano" id="invitacion">' +
       '<div class="w pila pila--l">' +
-      '<div class="pila puente">' + rotulo(4, T.parte4) +
+      '<div class="pila puente">' + rotulo(n, O.invitaRotulo) +
         '<p class="t2">' + (C.MINUTOS ? T.saberlo.replace('{m}', C.MINUTOS) : T.saberloSinMinutos) + '</p>' +
         (hace ? '<p class="entrada suave">' + hace + '</p>' : '') + '</div>' +
       '<div class="invita-rejilla">' +
@@ -656,7 +659,7 @@
     if (CALMA || !('IntersectionObserver' in window)) return;
     var piezas = [].slice.call(app.querySelectorAll(
       '.sec:not(.primera) .ojo, .sec:not(.primera) .t2, .sec:not(.primera) .t3, .sec.papel .texto, .puente .entrada, .tfila, .voz, .tarjeta, .hilo > li, ' +
-      '.sec .edades, .sientes, .sabras li, .pasos-cortos li, .paso-txt .entrada, .detras, .notas li, .modos, .extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
+      '.sec .edades, .sientes, .cien, .tiras li, .cuidas, .sabras li,.pasos-cortos li, .paso-txt .entrada, .detras, .notas li, .modos, .extra, .mosaico figure, .datos li, .equipo li, .cita, .dudas details, .lema > *, .llegar'));
     var alto = window.innerHeight;
     var ojo = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -780,9 +783,12 @@
   }
 
   /* ---------- /punto-de-partida: la landing solo de oferta ----------
-     Una sola página, sin preguntas: la pregunta de la edad con el vídeo detrás → seis cosas en las que
-     reconocerse → el sistema nervioso autónomo → se puede medir (la edad biológica) → la invitación → miembros,
-     equipo y dudas. Para la medición es una sola pantalla («inicio»), como la landing anterior de esta dirección. */
+     Una sola página, sin preguntas. Da escritas, y en el mismo orden, las conclusiones a las que /tu-punto lleva
+     preguntando (el porqué de cada tramo está en la cabecera de TU_PUNTO.OFERTA):
+     la oferta con el vídeo detrás → 01 sentirse bien no es estar al 100 % (y los seis deseos) → 02 el sistema
+     nervioso autónomo (y por qué cuidarse no basta para saberlo) → 03 se puede medir → 04 con ese dato, un plan
+     (las terapias, en una sola pantalla) → 05 la invitación → miembros, equipo y dudas.
+     Para la medición es una sola pantalla («inicio»), como la landing anterior de esta dirección. */
   function oferta() {
     var O = C.OFERTA, m = C.MINUTOS;
     abrePantalla('inicio');
@@ -799,24 +805,41 @@
         '<div class="abajo">' + botonReservar('cabecera', 'boton--luz') +
           '<p class="mini hero-pie">' + O.heroPie.replace('{m}', m) + '</p></div>' +
       '</div></div></div></section>';
+    // 01 · el porcentaje (la primera pregunta de la A, dicha y no preguntada) y los seis deseos (la tercera).
     var notas = '<section class="sec papel" id="notas"><div class="w pila pila--l">' +
-      '<div class="pila medio">' + rotulo(1, O.notasRotulo) + '<h2 class="t2">' + O.notasTitulo + '</h2></div>' +
-      '<ul class="notas">' + O.notas.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' +
+      '<div class="pila medio">' + rotulo(1, O.cienRotulo) + '<h2 class="t2">' + O.cienTitulo + '</h2>' +
+        '<p class="texto grande">' + O.cienTexto + '</p></div>' +
+      '<div class="cien" aria-hidden="true"><div class="cien-linea"><i class="hecho"></i><i class="falta"></i><i class="punto"></i></div>' +
+        '<p class="cien-pie"><span class="hoy">' + O.cienHoy + '</span><b>' + O.cienFalta + '</b><span class="tope">' + O.cienTope + '</span></p></div>' +
+      '<div class="pila"><p class="texto grande nervio">' + O.notasEntrada + '</p>' +
+        '<ul class="notas">' + O.notas.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
       '<p class="texto grande nervio">' + O.notasCierre + '</p></div></section>';
+    // 02 · lo que hay detrás, y la segunda pregunta de la A (cómo te cuidas) como motivo para medir.
     var detras = '<section class="sec alba grano" id="detras"><div class="w"><div class="pila porque">' + rotulo(2, O.detrasRotulo) +
       '<h2 class="t2">' + T.detrasTitulo + '</h2>' +
       '<p class="entrada">' + T.detrasTexto + '</p>' +
       '<div class="modos" aria-hidden="true"><span>' + T.modoA + '</span><i><b></b></i><span>' + T.modoB + '</span></div>' +
-      '<p class="texto">' + O.detrasMas + '</p></div></div></section>';
-    var medir = '<section class="sec papel velado" id="medir"><div class="w pila pila--l">' +
-      '<div class="pila medio">' + rotulo(3, T.parte3) + '<h2 class="t2">' + T.medirTitulo + '</h2>' +
+      '<p class="texto">' + O.detrasMas + '</p>' +
+      '<p class="entrada cuidas">' + O.cuidas + '</p></div></div></section>';
+    // 03 · se puede medir: cómo, qué número sale y las tres lecturas.
+    var medir = '<section class="sec papel" id="medir"><div class="w pila pila--l">' +
+      '<div class="pila medio">' + rotulo(3, O.medirRotulo) + '<h2 class="t2">' + O.medirTitulo + '</h2>' +
         '<p class="texto grande nervio">' + O.medirPorque + '</p>' +
-        '<p class="texto grande">' + T.medirQue + '</p>' +
-        '<p class="texto">' + T.medirCambia + '</p></div>' +
-      '<div class="pila sabras-caja"><p class="ojo">' + T.sabrasTitulo + '</p><ul class="sabras">' +
+        '<p class="texto grande">' + T.medirQue + '</p></div>' +
+      '<div class="pila sabras-caja"><ul class="sabras">' +
         C.FICHA.map(function (x) { return '<li><h3>' + x[0] + '</h3><p class="texto">' + x[2] + '</p></li>'; }).join('') +
       '</ul><p class="texto sabras-pie">' + T.sabrasPie + '</p></div></div></section>';
-    pinta(hero + notas + detras + medir + secInvitacion(false, O.para) + secConfianza() + secDudas() + secFinal() + flota());
+    // 04 · para qué sirve el dato: el plan. Las terapias, solo con su nombre, su foto y qué son.
+    var plan = '<section class="sec papel velado" id="plan"><div class="w pila pila--l">' +
+      '<div class="pila medio">' + rotulo(4, O.planRotulo) + '<h2 class="t2">' + O.planTitulo + '</h2>' +
+        '<p class="texto grande nervio">' + O.planCambia + '</p>' +
+        '<p class="texto grande">' + O.planTexto + '</p></div>' +
+      '<ul class="tiras">' + O.terapias.map(function (x) {
+        return '<li><img src="' + FOTO + x[2] + '" alt="" width="120" height="120" loading="lazy" decoding="async" style="object-position:' + x[3] + '">' +
+          '<div><h3>' + x[0] + '</h3><p>' + x[1] + '</p></div></li>';
+      }).join('') + '</ul>' +
+      '<p class="texto grande nervio medio">' + O.planCierre + '</p></div></section>';
+    pinta(hero + notas + detras + medir + plan + secInvitacion(5, paraAnuncio || O.para) + secConfianza(6) + secDudas(7) + secFinal() + flota());
     evento('eligio_tema', { tema: 'directo' });
     evento('vio_resultado', { tema: 'directo' });
     activaResultado('directo');
