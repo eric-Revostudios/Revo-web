@@ -44,7 +44,7 @@ window.TU_PUNTO = {
     titular1icp5: 'En 2 minutos, descubre qué terapias pueden ayudarte a seguir sintiéndote <em class="n">al 100&nbsp;%</em>.',
     sub1: 'Tres respuestas rápidas y te enseñamos cuáles encajan contigo, y por qué.',
     pregunta1: 'Hoy me siento al…',
-    pista1: 'Desliza hasta donde te reconozcas.',
+    pista1: 'Mueve el círculo hasta tu número.',
 
     /* 2 · lo que ya haces */
     pregunta2: 'Así <em>me cuido hoy</em>',
@@ -205,29 +205,73 @@ window.TU_PUNTO = {
     cookies: 'Cookies'
   },
 
-  /* La landing solo de oferta (/punto-de-partida, 17-nov-2026). Es la B del test A/B con /tu-punto: sin preguntas
-     y sin terapias, una sola página que vende la valoración. Tiene que servir para cualquier anuncio: por eso
-     empieza por la pregunta de la edad, sigue con seis cosas en las que reconocerse (una por cada objetivo de la
-     otra landing), las une en el sistema nervioso autónomo, y de ahí a la medición y a la invitación. */
+  /* La landing solo de oferta (/punto-de-partida). Es la B del test A/B con /tu-punto: sin preguntas, una sola
+     página que vende la valoración (la edad biológica). Rehecha el 18-nov-2026 (Eric: «que transmita lo mismo que
+     conseguimos con /tu-punto, pero hablando solo de la oferta»).
+     La A lleva a la persona a tres conclusiones haciéndole contestar; aquí se las damos escritas, en el mismo orden,
+     y cada una es un motivo para aceptar la invitación:
+       · primera pregunta de la A (el porcentaje)  → 01 «Sentirse bien no es estar al 100 %»
+       · tercera (qué haría con lo que falta)      → 01, los seis deseos: los MISMOS seis de la A, dichos de tú
+       · segunda (cómo me cuido)                   → 02, «le pasa también a quien se cuida»: desde dentro no se nota
+       · el resultado (sistema nervioso autónomo)  → 02 y 03: lo que hay detrás, y que se puede medir
+       · las terapias                              → 04, UNA sola pantalla: no se explican, se enseñan como lo que
+                                                     compone el plan con el que sales (el «para qué» del dato)
+     Leyendo solo los titulares tiene que quedar el argumento entero: ¿y la edad de tu cuerpo? → sentirse bien no es
+     estar al 100 % → detrás está tu sistema nervioso autónomo → se puede medir → con ese dato, un plan → te invitamos.
+     La oferta completa (qué, dónde, cuánto dura, qué cuesta) está en la primera pantalla con su botón: quien ya lo
+     tiene claro no necesita bajar. */
   OFERTA: {
     heroOjo: 'Tu punto de partida',
     heroTitulo: 'La edad del calendario ya la sabes. <em>¿Y la de tu cuerpo?</em>',
-    heroSub: 'Te invitamos a conocer tu edad biológica: una valoración de {m} minutos en REVO, con acompañamiento médico, en Turó Park.',
+    heroSub: 'Te invitamos a conocer tu edad biológica: una valoración de {m} minutos en REVO, en Turó Park (Barcelona), con acompañamiento médico.',
     heroPie: '{m} minutos · Sin compromiso · Valorada en 100&nbsp;€',
-    notasRotulo: 'Lo que notas',
-    notasTitulo: 'Puede que te suene <em>alguna de estas</em>',
+
+    /* 01 · el porcentaje y lo que harías con lo que falta */
+    cienRotulo: 'Cómo estás hoy',
+    cienTitulo: 'Sentirse bien <em>no es estar al 100&nbsp;%</em>',
+    cienTexto: 'Casi nadie diría que está mal. Pero si te preguntaran a qué porcentaje estás hoy, es probable que no dijeras cien.',
+    cienHoy: 'Hoy',
+    cienFalta: 'Lo que falta',
+    cienTope: '100&nbsp;%',
+    notasEntrada: 'Con lo que falta, a cada persona le gustaría algo distinto:',
+    /* Los seis deseos de la tercera pregunta de /tu-punto (AREAS.*.boton), dichos de tú y en el mismo orden. */
     notas: [
-      'La energía se acaba antes que el día.',
-      'Duermes tus horas y te levantas igual.',
-      'El día termina, pero la cabeza no para.',
-      'El cuerpo tarda más en recuperarse que antes.',
-      'Te cuidas, y no sabes si haces lo que toca.',
-      'Estás bien, y quieres seguir así muchos años.'
+      'Tener más energía en el día a día.',
+      'Dormir mejor y levantarte con la sensación de haber descansado.',
+      'Tener la cabeza más clara y más tranquila.',
+      'Sentir el cuerpo fuerte y ágil.',
+      'Sentirte mejor con tu aspecto físico.',
+      'Seguir como estás durante muchos años.'
     ],
     notasCierre: 'Parecen cosas distintas. Casi siempre tienen algo en común.',
+
+    /* 02 · lo que hay detrás, y por qué cuidarse no basta para saberlo */
     detrasRotulo: 'Lo que hay detrás',
     detrasMas: 'Cuando pasa demasiado tiempo en activación, se nota: en cómo duermes, en la energía, en la cabeza y en cómo se recupera el cuerpo. Ocurre tan poco a poco que se acaba dando por normal.',
-    medirPorque: 'Se puede medir. Leyendo la variabilidad de tu pulso se ve cuánta carga lleva tu sistema nervioso, cómo se recupera y cuánta energía tiene disponible.',
+    cuidas: 'Y le pasa también a quien se cuida. Puedes entrenar, cuidar lo que comes y dormir tus horas, y que tu sistema nervioso siga en alerta. Desde dentro no se nota.',
+
+    /* 03 · se puede medir */
+    medirRotulo: 'Lo que vas a saber',
+    medirTitulo: 'Y se puede <em>medir</em>',
+    medirPorque: 'Con una lectura de la variabilidad de tu pulso, en reposo, se ve cuánta carga lleva tu sistema nervioso, cómo se recupera y cuánta energía tiene disponible.',
+
+    /* 04 · para qué sirve el dato: el plan, y de qué está hecho. Las terapias salen aquí y solo aquí: nombre, foto
+       y qué es, sin explicar ninguna (eso lo hace /tu-punto). Cifras de revo-tono (datos.md). */
+    planRotulo: 'Para qué sirve',
+    planTitulo: 'Con ese dato, <em>un plan para ti</em>',
+    planCambia: 'Tu edad biológica no es un número fijo. Cambia con cómo descansas, cómo te recuperas y cómo te cuidas.',
+    planTexto: 'En REVO trabajamos con terapias que ayudan a tu cuerpo a recuperarse y a tu sistema nervioso a bajar el ritmo. Es tecnología que hasta hace poco solo usaban deportistas de élite, con más de 20 años de ciencia detrás.',
+    terapias: [
+      ['Crioterapia', 'Frío seco a −130&nbsp;°C, tres minutos', 'cryo-chamber.webp', '50% 45%'],
+      ['Luz roja', 'Luz roja e infrarroja, de cuerpo entero', 'redlight-chamber.webp', '38% 50%'],
+      ['Cámara hiperbárica', 'Oxígeno al 98&nbsp;%, a presión', 'hbot-chamber.webp', '46% 50%'],
+      ['PEMF', 'Campos electromagnéticos pulsados', 'pemf-hero.webp', '62% 50%']
+    ],
+    planCierre: 'Cuáles tienen sentido para ti, y con qué frecuencia, depende de cómo estés hoy. Por eso se empieza midiendo.',
+
+    /* 05 · la invitación. `porque` contesta a «¿y por qué me invitáis?» sin palabras de oferta. */
+    invitaRotulo: 'Tu punto de partida',
+    porque: 'Preferimos que conozcas REVO midiendo algo tuyo que leyendo sobre nosotros. Por eso la valoración corre de nuestra cuenta.',
     para: 'Para saber desde dónde empiezas.'
   },
 
