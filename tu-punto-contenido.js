@@ -258,7 +258,8 @@ window.TU_PUNTO = {
           'Entras en una cabina de frío seco, de cuerpo entero, con guantes y calcetines y con tu coach al lado. Son dos o tres minutos; contando equiparte y salir, un cuarto de hora.',
           'Para recuperarse, lo habitual son dos o tres sesiones por semana, y más en épocas de carga. En Polonia forma parte de la sanidad pública.' ],
         piel: [
-          'Es el primer paso del Respark®, y también se hace sola: tres minutos a −130&nbsp;°C que bajan el cortisol, la hormona del estrés, liberan dopamina y desinflaman. En nuestras reseñas hay quien lo describe como «salir como nueva».' ],
+          '» Desinflama y activa la circulación, y la piel recibe más oxígeno. Es el primer paso del Respark®, y también se hace sola.',
+          'Son tres minutos a −130&nbsp;°C en una cabina de frío seco, con tu coach al lado. En nuestras reseñas hay quien lo describe como «salir como nueva».' ],
         todo: [
           '» La inflamación y el estrés sostenidos no se notan hasta que llevan tiempo. El frío actúa sobre los dos: desinflama, baja el cortisol y activa el metabolismo y las defensas.',
           'Tres minutos a −130&nbsp;°C son un estímulo breve e intenso. Los vasos se contraen y se dilatan, mejora la oxigenación y el cuerpo pone en marcha sus mecanismos de defensa y regeneración.',
@@ -277,9 +278,11 @@ window.TU_PUNTO = {
           'Te recuestas en una cama de cuerpo entero, cálida y silenciosa, durante diez o quince minutos. Es un entorno tan sereno que es fácil quedarse dormido.',
           'Aquí la constancia importa más que la intensidad: lo habitual son dos o tres sesiones por semana.' ],
         cabeza: [
-          'La claridad mental empieza por un buen descanso. La luz roja ayuda a regular el reloj interno, el que le dice al cuerpo cuándo toca dormir. Diez o quince minutos en una cama cálida y silenciosa.' ],
+          '» La claridad mental empieza por dormir bien. La luz roja ayuda a regular el reloj interno, el que marca cuándo toca dormir, y favorece un descanso más reparador.',
+          'Diez o quince minutos en una cama de cuerpo entero, cálida y silenciosa.' ],
         cuerpo: [
-          'La luz infrarroja llega hasta cinco centímetros bajo la piel, hasta el músculo, y activa la mitocondria, que es donde las células producen su energía. Ayuda a la recuperación muscular en diez o quince minutos, sin esfuerzo.' ],
+          '» La luz infrarroja llega hasta cinco centímetros bajo la piel, hasta el músculo. Activa la energía de las células y modula la inflamación, y eso ayuda a la recuperación muscular.',
+          'Diez o quince minutos en una cama de cuerpo entero, sin ningún esfuerzo.' ],
         piel: [
           '» Estimula el colágeno y la elastina, que dan firmeza a la piel y que el cuerpo produce menos con los años. Con constancia, la piel gana firmeza, textura y mejor tono.',
           'La luz roja e infrarroja, de 630 a 940 nanómetros, llega hasta la célula y activa su energía. Con ella la piel se repara mejor y produce más colágeno. No emite radiación ultravioleta: no es una cabina de bronceado.',
@@ -297,7 +300,8 @@ window.TU_PUNTO = {
           'En la cámara respiras oxígeno al 98&nbsp;% a 1,5 atmósferas. A esa presión el oxígeno se disuelve en el plasma de la sangre y alcanza tejidos a los que normalmente apenas llega: hasta diez veces más oxígeno. El oxígeno es lo que las células necesitan para producir energía y para repararse.',
           'Es una cámara individual y la sesión dura una hora. Puedes leer, trabajar o dormir. Al principio se nota una ligera presión en los oídos, como en un avión, y pasa enseguida.' ],
         descanso: [
-          'El sueño profundo es cuando el cuerpo se repara. La cámara hiperbárica ayuda a esa reparación por otro camino: una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas, con hasta diez veces más oxígeno en los tejidos. Una hora que puedes dedicar a leer o a dormir.' ],
+          '» El sueño profundo es cuando el cuerpo se repara. La cámara ayuda a esa reparación por otro camino: lleva a los tejidos hasta diez veces más oxígeno y baja la inflamación.',
+          'Es una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas. Puedes leer o dormir.' ],
         cabeza: [
           '» El cerebro es de los órganos que más oxígeno consumen. Con más oxígeno mejora su riego, y eso ayuda a recuperar atención, memoria y claridad mental.',
           'En la cámara respiras oxígeno al 98&nbsp;% a 1,5 atmósferas. A esa presión el oxígeno se disuelve en el plasma de la sangre y alcanza tejidos a los que normalmente apenas llega: hasta diez veces más oxígeno. También al cerebro.',
@@ -308,7 +312,8 @@ window.TU_PUNTO = {
           'Es una cámara individual y la sesión dura una hora. Puedes leer, trabajar o dormir. Al principio se nota una ligera presión en los oídos, como en un avión, y pasa enseguida.',
           'Un miembro la combinó con crioterapia y luz roja para recuperarse de una operación de rodilla.' ],
         piel: [
-          'Más oxígeno para que los tejidos se regeneren: una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas. Es la tecnología que se usa antes y después de una operación, porque ayuda a los tejidos a repararse.' ],
+          '» Con más oxígeno, los tejidos se regeneran y cicatrizan mejor. Por eso se usa antes y después de una operación.',
+          'Es una hora respirando oxígeno al 98&nbsp;% a 1,5 atmósferas, en una cámara individual.' ],
         todo: [
           '» Con los años el cuerpo se repara más despacio, mucho antes de que se note por fuera. Con hasta diez veces más oxígeno en los tejidos se estimula la regeneración celular y baja la inflamación.',
           'En la cámara respiras oxígeno al 98&nbsp;% a 1,5 atmósferas. A esa presión el oxígeno se disuelve en el plasma de la sangre y alcanza tejidos a los que normalmente apenas llega: hasta diez veces más oxígeno. Estimula la reparación de los tejidos y potencia la energía de las células.',
@@ -317,7 +322,8 @@ window.TU_PUNTO = {
     { nombre: 'PEMF', specs: [['20–40', 'min', 'Sesión']], dato: 'De 20 a 40 minutos', foto: 'pemf-hero.webp', pos: '62% 50%',
       textos: {
         energia: [
-          'Muchas veces la falta de energía empieza por el descanso. El PEMF, campos electromagnéticos pulsados en todo el cuerpo, activa el modo de descanso y reparación y ayuda a llegar a un sueño más profundo. Sin ningún esfuerzo por tu parte.' ],
+          '» Muchas veces la falta de energía empieza por un descanso que no repara. El PEMF lleva al cuerpo al modo de descanso y reparación, y mejora la forma en que las células aprovechan el oxígeno.',
+          'Son campos electromagnéticos pulsados en todo el cuerpo. Te recuestas en un sillón entre 20 y 40 minutos y no se nota ninguna corriente.' ],
         descanso: [
           '» Lleva al sistema nervioso del modo alerta al de descanso y reparación. Con el cuerpo en ese modo, cuesta menos llegar al sueño profundo.',
           'El cuerpo funciona con señales eléctricas. Los campos electromagnéticos pulsados, de baja frecuencia, llegan hasta la célula y le devuelven su voltaje: mejora la circulación más fina y la célula aprovecha mejor el oxígeno y los nutrientes. Es la magnetoterapia de los fisioterapeutas, aplicada a todo el cuerpo.',
@@ -334,13 +340,16 @@ window.TU_PUNTO = {
           'Te recuestas en un sillón, sin cambiarte, entre 20 y 40 minutos. No se nota ninguna corriente; como mucho, una vibración suave o algo de calor. Muchos miembros salen con el cuerpo más ligero y con menos dolor.',
           'Su efecto es acumulativo: la constancia marca la diferencia. No se recomienda con marcapasos ni durante el embarazo; lo vemos contigo antes.' ],
         piel: [
-          'El descanso también se ve por fuera. El PEMF, campos electromagnéticos pulsados en todo el cuerpo, activa el modo de descanso y reparación y mejora la circulación.' ],
+          '» El descanso también se ve por fuera. El PEMF activa el modo de descanso y reparación y mejora la circulación más fina, la que lleva oxígeno y nutrientes a los tejidos.',
+          'Son campos electromagnéticos pulsados en todo el cuerpo, entre 20 y 40 minutos en un sillón.' ],
         todo: [
-          'Con los años, al cuerpo le cuesta más descansar y repararse. El PEMF, campos electromagnéticos pulsados en todo el cuerpo, activa justo ese modo, y además desinflama. Es la magnetoterapia de los fisioterapeutas.' ] } },
+          '» Con los años, al cuerpo le cuesta más descansar y repararse. El PEMF activa ese modo, modula la inflamación y favorece la reparación de músculos, articulaciones y huesos.',
+          'Es la magnetoterapia de los fisioterapeutas, aplicada a todo el cuerpo. Su efecto es acumulativo.' ] } },
     { nombre: 'BrainTap', specs: [['15', 'min', 'Sesión'], ['2', 'modos', 'Calma o foco']], dato: '15 minutos', foto: 'braintap-hero.webp', pos: '50% 30%',
       textos: {
         energia: [
-          'Quince minutos con unos auriculares de sonido binaural y unas gafas de luz, con los ojos cerrados. Tiene un modo de relajación profunda y otro de foco, para cuando la cabeza se queda sin energía antes que el cuerpo.' ],
+          '» A veces la cabeza se queda sin energía antes que el cuerpo. El BrainTap tiene un modo de foco para esos momentos y otro de relajación profunda para recuperar.',
+          'Son quince minutos con unos auriculares de sonido binaural y unas gafas de luz, con los ojos cerrados y una voz que guía.' ],
         descanso: [
           '» Sonido y luz que guían al cerebro hacia las ondas de la calma y el sueño. Bajan el cortisol y el pulso, y el cuerpo entra en modo reparación: ayuda a dormirse cuando el cuerpo está cansado y la cabeza sigue en marcha.',
           'Unos auriculares con sonido binaural y unas gafas de luz pulsante marcan un ritmo, y la actividad del cerebro lo sigue hacia los estados de calma y descanso. Se activa el sistema nervioso parasimpático, el de la recuperación: bajan el cortisol y el pulso.',
@@ -352,19 +361,25 @@ window.TU_PUNTO = {
           'Te recuestas en una sala tranquila, cierras los ojos y una voz te guía. Son quince minutos y no requiere ningún esfuerzo. Tiene también un modo de foco, para cuando lo que falta es concentración.',
           'Es acumulativo: cuanto más se usa, más se entrena la mente.' ],
         cuerpo: [
-          'El rendimiento también empieza en la mente. Quince minutos de sonido binaural y luz, con los ojos cerrados, que llevan al cerebro a la relajación profunda o al foco, según lo que necesites ese día.' ],
+          '» El cuerpo se recupera cuando el sistema nervioso baja el ritmo. El sonido y la luz lo llevan a ese modo: bajan el cortisol y el pulso.',
+          'Quince minutos con los ojos cerrados. Tiene también un modo de foco, para antes de un esfuerzo.' ],
         piel: [
-          'Quince minutos de sonido binaural y luz, con los ojos cerrados, que llevan al cerebro a la relajación profunda. Para los días en que lo que necesita descanso es la mente.' ],
+          '» El estrés sostenido también se nota en la cara. Estos quince minutos llevan al cerebro a la relajación profunda y bajan el cortisol.',
+          'Unos auriculares con sonido binaural y unas gafas de luz, con los ojos cerrados. No requiere ningún esfuerzo.' ],
         todo: [
-          'Cuidarse a largo plazo también es cuidar la cabeza. Quince minutos de sonido binaural y luz que llevan al cerebro a la relajación profunda o al foco. Cuanto más se usa, más se entrena.' ] } },
+          '» Cuidarse a largo plazo también es cuidar la cabeza. El sonido y la luz entrenan al cerebro a entrar en calma o en foco, y cuanto más se usa, más fácil le resulta.',
+          'Quince minutos con unos auriculares y unas gafas de luz, con una voz que guía.' ] } },
     { nombre: 'Presoterapia', specs: [['20–30', 'min', 'Sesión']], dato: 'De 20 a 30 minutos', foto: 'presoterapia-hero.webp', pos: '50% 40%',
       textos: {
         energia: [
-          'El cansancio también se nota en las piernas. Unas botas de aire las comprimen de los pies a la cadera, drenan la retención y activan la circulación. La sensación al terminar es de piernas ligeras.' ],
+          '» El cansancio también se queda en las piernas. Estas botas empujan la sangre y la linfa hacia el corazón, y las piernas quedan ligeras.',
+          'Se inflan por tramos, de los pies a la cadera, durante 20 o 30 minutos. Es una presión rítmica, sin dolor.' ],
         descanso: [
-          'Unas botas de aire que comprimen las piernas de los pies a la cadera, con una presión rítmica y envolvente. Drenan la retención y activan la circulación, y resulta muy relajante.' ],
+          '» Una presión rítmica y envolvente que descarga las piernas y relaja el músculo. Va bien al final del día, cuando el cuerpo necesita soltar.',
+          'Unas botas de aire que se inflan por tramos, de los pies a la cadera, durante 20 o 30 minutos.' ],
         cabeza: [
-          'Unas botas de aire que comprimen las piernas de los pies a la cadera, drenan la retención y activan la circulación. Mientras, puedes leer o simplemente desconectar.' ],
+          '» Media hora sin hacer nada, que no es poco. Mientras, las botas activan la circulación y descargan las piernas.',
+          'Se inflan por tramos, de los pies a la cadera. Puedes leer o, simplemente, desconectar.' ],
         cuerpo: [
           '» Empuja la sangre y la linfa de los pies hacia el corazón. Descarga las piernas, reduce el dolor muscular de después del ejercicio y ayuda a recuperarse antes.',
           'Son unas botas con seis cámaras de aire que se inflan por tramos, de los pies a la cadera. Empujan la sangre y la linfa hacia el corazón: mejora el retorno venoso, se activa el sistema linfático y se acumula menos líquido. El músculo recibe más oxígeno y se relaja.',
@@ -376,24 +391,30 @@ window.TU_PUNTO = {
           'Te recuestas en un sillón y te colocamos las botas, de 20 a 30 minutos. Es una presión rítmica y envolvente, sin dolor; mientras, puedes leer o desconectar.',
           'Con los años al cuerpo le cuesta más drenar; por eso funciona mejor como rutina que como sesión suelta.' ],
         todo: [
-          'Unas botas de aire que comprimen las piernas de los pies a la cadera. Drenan la retención y activan la circulación, que también forma parte de cuidarse.' ] } },
+          '» Con los años, la circulación de las piernas se vuelve más lenta. Estas botas la activan y ayudan a drenar el líquido que se acumula.',
+          'Se inflan por tramos, de los pies a la cadera, durante 20 o 30 minutos.' ] } },
     { nombre: 'Respark®', specs: [['−130', '°C', 'Crioterapia'], ['60', 'min', 'Sesión']], dato: 'Una hora', foto: 'therapy.webp', pos: '40% 50%',
       textos: {
         energia: [
-          'Empieza con los mismos tres minutos de crioterapia y sigue con un masaje drenante y moldeador, el Método Lilium. Una hora pensada para la silueta y la retención, si también es algo que deseas cuidar.' ],
+          '» Empieza con los mismos tres minutos de crioterapia, que son los que dan energía, y sigue con un masaje drenante y moldeador.',
+          'Es una hora pensada sobre todo para la retención y la silueta, por si también quieres cuidarlas.' ],
         descanso: [
-          'Crioterapia seguida de un masaje drenante y moldeador, el Método Lilium. Es la terapia de la silueta y la retención, y una hora de la que se sale con una calma real.' ],
+          '» El masaje activa el sistema nervioso parasimpático, el de la calma, y se sale con una relajación real.',
+          'Es crioterapia seguida de un masaje drenante y moldeador, el Método Lilium: una hora, pensada sobre todo para la retención y la silueta.' ],
         cabeza: [
-          'Tres minutos de crioterapia y, después, un masaje drenante y moldeador, el Método Lilium. Está pensada para la silueta y la retención, y es una hora en la que alguien cuida de ti.' ],
+          '» Una hora en la que alguien cuida de ti. El frío despeja y baja el cortisol; el masaje lleva al cuerpo a la calma.',
+          'Es crioterapia seguida de un masaje drenante y moldeador, el Método Lilium, pensado sobre todo para la retención y la silueta.' ],
         cuerpo: [
-          'Primero el frío y después las manos: crioterapia y un masaje drenante y moldeador, el Método Lilium. Está pensada para la silueta y la retención, y suma recuperación.' ],
+          '» Primero el frío, que baja la inflamación, y después las manos, que movilizan la linfa y descargan el músculo.',
+          'Es crioterapia seguida de un masaje drenante y moldeador, el Método Lilium: una hora. Está pensado para la silueta y la retención, y suma recuperación.' ],
         piel: [
           '» Primero el frío, después las manos. La crioterapia baja la inflamación y deja el tejido receptivo, y sobre esa respuesta un masaje drenante y moldeador moviliza la linfa, reduce la retención y redefine la silueta.',
           'Tres minutos a −130&nbsp;°C contraen los vasos; al salir, la sangre vuelve oxigenada. Sobre el tejido ya activado se trabaja el masaje drenante y moldeador con aparatología, el Método Lilium, que activa la microcirculación.',
           'Dura una hora en total: la crioterapia, siempre con tu coach al lado, y el masaje.',
           'Es un método propio de REVO. Los resultados son acumulativos: mejoran con la constancia.' ],
         todo: [
-          'Crioterapia seguida de un masaje drenante y moldeador, el Método Lilium. Es la terapia de la silueta y la retención, si cuidar tu imagen también forma parte de tu plan.' ] } },
+          '» La terapia de la retención y la silueta: crioterapia seguida de un masaje drenante y moldeador, el Método Lilium.',
+          'Una hora, con resultados que mejoran con la constancia. Tiene sentido si cuidar tu imagen también forma parte de tu plan.' ] } },
     { nombre: 'Masaje facial', specs: [], dato: 'A mano', foto: 'massage-glow.webp', pos: '34% 40%',
       textos: {
         piel: [
