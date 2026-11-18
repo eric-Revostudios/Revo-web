@@ -96,6 +96,15 @@ footer{ padding:22px 0 max(26px, env(safe-area-inset-bottom, 0px)); font-size:14
   try { mk = JSON.parse(localStorage.getItem('revo-consent') || '{}').marketing === true; } catch (e) {}
   var datos = { tipo: tipo, mk: mk ? 'si' : 'no' };
   ['campaign_id', 'adset_id', 'ad_id'].forEach(function (k) { if (/^\d{1,30}$/.test(ads[k] || '')) datos[k] = ads[k]; });
+  // Solo con cookies de marketing aceptadas: la marca del clic de Meta, para que la Platform pueda decirle a Meta
+  // de qué anuncio vino la reserva. Son las cookies del propio píxel (_fbc, _fbp) y el fbclid del enlace; nada más.
+  if (mk) {
+    var galleta = function (n) { var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; };
+    var fbc = galleta('_fbc'), fbp = galleta('_fbp');
+    if (fbc && fbc.length <= 300) datos.fbc = fbc;
+    if (fbp && fbp.length <= 300) datos.fbp = fbp;
+    if (!fbc && ads.fbclid && ads.fbclid.length <= 300) datos.fbclid = ads.fbclid;
+  }
   var cuerpo = JSON.stringify({
     sesion: sesion, evento: 'volvio_reserva', datos: datos, v: 'a',
     utm_content: String(ads.utm_content || '').slice(0, 120), utm_source: String(ads.utm_source || '').slice(0, 60),
