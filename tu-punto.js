@@ -797,7 +797,7 @@
     var hero = '<section class="escena grano primera oferta-hero" style="--f:.6"><div class="sombra"></div><div class="aurora"></div>' + cab() +
       '<div class="w escena-w"><div class="lado-izq"><div class="cuerpo entra">' +
         '<div class="arriba"><p class="ojo">' + O.heroOjo + '</p>' +
-          '<h1 class="t1" data-titulo>' + O.heroTitulo + '</h1>' +
+          '<h1 class="t1" data-titulo>' + (perfil === 'icp5' ? O.heroTituloIcp5 : O.heroTitulo) + '</h1>' +
           '<p class="sub1">' + O.heroSub.replace('{m}', m) + '</p></div>' +
         '<div class="edades" aria-hidden="true"><p class="edades-cab"><span>' + T.ejeBio + '</span><b>' + T.ejeEstado + '</b></p>' +
           '<div class="eje"><i class="linea"></i><i class="centro"></i><i class="bio"><span>?</span></i></div>' +

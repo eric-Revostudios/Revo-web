@@ -222,12 +222,16 @@ window.TU_PUNTO = {
      tiene claro no necesita bajar. */
   OFERTA: {
     heroOjo: 'Tu punto de partida',
-    /* El titular (Eric, 18-nov-2026: «La edad del calendario ya la sabes. ¿Y la de tu cuerpo?» «puedes mejorarlo»).
-       Aquel empezaba por lo que la persona ya sabe, acababa en pregunta y no decía que es una invitación. Este es
-       una afirmación que da curiosidad y, enseguida, la oferta. El nombre («edad biológica») y qué es van debajo,
-       con las palabras del informe de valoración. Si se cambia, se cambia también en punto-de-partida.html. */
-    heroTitulo: 'Tu cuerpo tiene su propia edad. <em>Te invitamos a conocerla.</em>',
-    heroSub: 'Se llama edad biológica. Te la medimos en {m} minutos en REVO, en Turó Park (Barcelona), con acompañamiento médico.',
+    /* El titular (elegido por Eric el 18-nov-2026, entre cuatro). Los dos anteriores («La edad del calendario ya
+       la sabes. ¿Y la de tu cuerpo?» y «Tu cuerpo tiene su propia edad. Te invitamos a conocerla.») jugaban con la
+       edad como curiosidad, y nadie quiere saber la edad de su cuerpo porque sí: quiere sentirse mejor. Este empieza
+       por lo que la persona quiere y nombra la oferta. Además promete lo MISMO que /tu-punto («volver a sentirte
+       al 100 %»): así lo único que cambia entre la A y la B es preguntar o no preguntar. No volver a los de la edad.
+       Con «icp5» en el anuncio dice «Seguir sintiéndote», igual que la A.
+       Si se cambia, se cambia también en punto-de-partida.html. */
+    heroTitulo: 'Volver a sentirte al 100&nbsp;% <em>empieza por conocer tu edad biológica.</em>',
+    heroTituloIcp5: 'Seguir sintiéndote al 100&nbsp;% <em>empieza por conocer tu edad biológica.</em>',
+    heroSub: 'Te invitamos a medirla en REVO, en Turó Park (Barcelona): {m} minutos, con acompañamiento médico.',
     heroPie: '{m} minutos · Sin compromiso · Valorada en 100&nbsp;€',
 
     /* 01 · el porcentaje y lo que harías con lo que falta */
