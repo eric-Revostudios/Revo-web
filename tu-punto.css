@@ -240,7 +240,7 @@ main{ position:relative; z-index:1; }
 .modos b{ position:absolute; top:-6px; left:0; width:13px; height:13px; border-radius:50%; background:var(--luz); box-shadow:0 0 0 6px rgba(104,129,252,.22), 0 0 22px 5px rgba(104,129,252,.6); animation:vaiven 7s ease-in-out infinite; }
 @keyframes vaiven{ 0%, 100%{ left:0; } 50%{ left:calc(100% - 13px); } }
 /* 02 · de cada terapia principal se ve la frase de para qué sirve; el resto se abre */
-.tfila .ayuda.clave{ font-size:clamp(19px, 5vw, 22px); line-height:1.34; letter-spacing:-.012em; }
+.tfila .ayuda.clave{ font-size:clamp(18px, 4.8vw, 20px); line-height:1.42; letter-spacing:-.008em; }
 .tfila .mas{ margin-top:14px; }
 .tfila .mas summary{ list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:10px; min-height:44px; font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--azul-texto); }
 .tfila .mas summary::-webkit-details-marker{ display:none; }
