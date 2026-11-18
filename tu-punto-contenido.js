@@ -44,7 +44,7 @@ window.TU_PUNTO = {
     titular1icp5: 'En 2 minutos, descubre qué terapias pueden ayudarte a seguir sintiéndote <em class="n">al 100&nbsp;%</em>.',
     sub1: 'Tres respuestas rápidas y te enseñamos cuáles encajan contigo, y por qué.',
     pregunta1: 'Hoy me siento al…',
-    pista1: 'Mueve el círculo hasta tu número.',
+    pista1: 'Desliza el círculo hasta cómo te sientes hoy.',
 
     /* 2 · lo que ya haces */
     pregunta2: 'Así <em>me cuido hoy</em>',
