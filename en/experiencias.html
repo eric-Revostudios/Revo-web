@@ -658,15 +658,15 @@
           <div class="exp-field">
             <span class="exp-legend">Which format would you like? <span class="req">*</span></span>
             <div class="exp-seg">
-              <label><input type="radio" name="Formato" value="Printed · pick up at REVO within 48h" required /><span class="exp-opt"><span class="o-name">Printed</span><span class="o-meta">Pick up at REVO within 48h</span></span></label>
-              <label><input type="radio" name="Formato" value="Digital · PDF within 24h" /><span class="exp-opt"><span class="o-name">Digital</span><span class="o-meta">PDF within 24h</span></span></label>
+              <label><input type="radio" name="Formato" value="Printed · physical card, picked up at REVO" required /><span class="exp-opt"><span class="o-name">Printed</span><span class="o-meta">Physical card · pick it up at REVO</span></span></label>
+              <label><input type="radio" name="Formato" value="Digital · instantly, sent by the buyer" /><span class="exp-opt"><span class="o-name">Digital</span><span class="o-meta">Instantly · you send it by WhatsApp or email</span></span></label>
             </div>
           </div>
           <div class="exp-row">
             <div class="exp-field"><label for="gf-nombre">For <span class="req">*</span></label><input class="exp-input" id="gf-nombre" name="Para (nombre)" type="text" placeholder="Who receives it" required /></div>
             <div class="exp-field"><label for="gf-de">From <span class="req">*</span></label><input class="exp-input" id="gf-de" name="De parte de" type="text" required /></div>
           </div>
-          <div class="exp-field"><label for="gf-email">Your email <span class="req">*</span></label><input class="exp-input" id="gf-email" name="email" type="email" autocomplete="email" placeholder="To send you the gift and the receipt" required /></div>
+          <div class="exp-field"><label for="gf-email">Your email <span class="req">*</span></label><input class="exp-input" id="gf-email" name="email" type="email" autocomplete="email" placeholder="For your payment receipt" required /></div>
           <div class="exp-field"><label for="gf-ded">Message</label><textarea class="exp-input" id="gf-ded" name="Dedicatoria" placeholder="Optional — we will include it with the gift"></textarea></div>
         </fieldset>
 
@@ -849,12 +849,13 @@
       /* Además del correo, la solicitud queda apuntada en la Platform de REVO
          (pestaña Regalos): cuando llega el pago de Momence se enlaza sola con
          estos datos. No bloquea ni avisa: si fallara, el correo llega igual. */
+      var apunte = null;
       try {
         var esRegalo = f['Tipo'].value === 'Regalo';
         var prod = (String(redirectUrl||'').match(/\/(\d+)\/?(?:[?#].*)?$/) || [])[1];
         var fmt = String(fd.get('Formato') || '');
         if(prod){
-          fetch('https://revo-platform.vercel.app/api/regalo', {
+          apunte = fetch('https://revo-platform.vercel.app/api/regalo', {
             method:'POST', keepalive:true, headers:{ 'Content-Type':'application/json' },
             body: JSON.stringify(esRegalo ? {
               producto: prod, para: 'regalo',
@@ -873,10 +874,18 @@
               preferenciaFechas: String(fd.get('Preferencia de fechas') || ''),
               ref: fd.get('botcheck') ? '1' : ''
             })
+          }).then(function(r){ return r.json(); }).then(function(j){
+            /* el código del regalo: con él, al terminar el pago, la web lleva
+               a quien compra a su página para que lo recoja y lo envíe él */
+            if(j && j.ok && j.codigo){ try { localStorage.setItem('revo_regalo', JSON.stringify({ c: j.codigo, t: Date.now() })); } catch(_e){} }
           }).catch(function(){});
         }
       } catch(_e){}
-        var done = finish;
+        var done = function(){
+        /* como mucho 2,5 s esperando el código: el pago no se retrasa por esto */
+        if(!apunte || !window.Promise){ finish(); return; }
+        Promise.race([apunte, new Promise(function(res){ setTimeout(res, 2500); })]).then(finish, finish);
+      };
         if(!key || key.indexOf('TU_ACCESS_KEY') !== -1){ setTimeout(done, 650); return; }
         fetch('https://api.web3forms.com/submit', { method:'POST', body:fd })
           .then(function(r){ return r.json(); })
@@ -886,6 +895,28 @@
             if(errBox){ errBox.hidden = false; errBox.textContent = 'We couldn’t submit your request. Please check your connection and try again, or email us at hello@revostudios.eu.'; } });
       });
     })();
+  </script>
+  <script>
+  /* Quien acaba de rellenar el formulario de regalo y vuelve a esta página
+     (por ejemplo, tras pagar en Momence): un aviso para ir a recoger su regalo.
+     La clave la deja el formulario; caduca a las 3 horas. */
+  (function(){
+    var rg = null;
+    try { rg = JSON.parse(localStorage.getItem('revo_regalo') || 'null'); } catch(_e){}
+    if(!rg || !/^RV-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(rg.c || '')) return;
+    if(Date.now() - (rg.t || 0) > 3 * 3600 * 1000){ try { localStorage.removeItem('revo_regalo'); } catch(_e){} return; }
+    var bar = document.createElement('div');
+    bar.setAttribute('role', 'status');
+    bar.style.cssText = 'position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:90;display:flex;align-items:center;gap:14px;max-width:calc(100vw - 28px);padding:12px 14px 12px 20px;border-radius:999px;background:#06070f;color:#fff;font:500 14px/1.3 inherit;box-shadow:0 10px 40px rgba(0,0,0,.28)';
+    var t = document.createElement('span'); t.textContent = 'Already paid? Your gift is ready.';
+    var a = document.createElement('a'); a.href = '/regalo/' + rg.c + '?enviar=1'; a.textContent = 'Get it';
+    a.style.cssText = 'white-space:nowrap;padding:8px 16px;border-radius:999px;background:#fff;color:#06070f;text-decoration:none';
+    var x = document.createElement('button'); x.type = 'button'; x.setAttribute('aria-label', 'Cerrar'); x.textContent = '\u00d7';
+    x.style.cssText = 'background:none;border:0;color:rgba(255,255,255,.6);font-size:20px;line-height:1;cursor:pointer;padding:0 4px';
+    x.addEventListener('click', function(){ bar.remove(); try { localStorage.removeItem('revo_regalo'); } catch(_e){} });
+    bar.appendChild(t); bar.appendChild(a); bar.appendChild(x);
+    document.body.appendChild(bar);
+  })();
   </script>
 </body>
 </html>
