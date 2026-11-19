@@ -620,8 +620,7 @@ window.TU_PUNTO = {
     { video: 'testimonio-12', texto: 'Yo era uno de los escépticos. La primera vez que lo probé, noté un cambio: tuve mucha más energía de la que pensaba tener.', quien: 'Miembro de REVO desde hace un año' },
     /* Segundo vídeo de la misma miembro del testimonio 3 (Eric lo pasó el 19-nov-2026: «TESTIMONIO 3 - CAPSULA 2»).
        Habla de la doctora; va lejos del otro suyo para que no salgan seguidos.
-       ⚠️ Pesa 12,8 MB y va a 540 × 960: se comprimió con el conversor de macOS porque ese día no había ffmpeg en
-       el Mac. Pendiente rehacerlo como los demás (720 × 1280, H.264 crf 27, de 2 a 5 MB) desde el original. */
+       720 × 1280 y 3,5 MB, como los demás (recomprimido el 19-nov-2026 con el codificador de macOS). */
     { video: 'testimonio-3b', texto: 'Creo que aquí estás en muy buenas manos. Tengo plena confianza en la doctora Miriam Rivera, porque sabe perfectamente lo que necesito y cómo enfocarlo en cada momento.', quien: 'Miembro de REVO · Traducido del catalán' },
     { video: 'testimonio-5', texto: 'Ahora que llevo meses haciéndolo, noto que duermo bien y he empezado a comer mejor. Es como una cadena.', quien: 'Miembro de REVO' },
     { video: 'testimonio-4', texto: 'Desde que hago crioterapia y después la cama de luz roja, me siento con más energía y de mejor ánimo. No me lo esperaba cuando vine.', quien: 'Miembro de REVO · Traducido del inglés' },
