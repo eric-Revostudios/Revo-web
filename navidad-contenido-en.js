@@ -1,5 +1,5 @@
 /* Christmas campaign 2026 · ENGLISH version of /navidad (/en/navidad). Same keys as navidad-contenido.js (the
-   Spanish file is the reference: comments and rules live there). Written 22-nov-2026 from the Spanish copy and the
+   Spanish file is the reference: comments and rules live there). Written 20-nov-2026 from the Spanish copy and the
    English texts the site already uses (en/experiencias.html: names, taglines, steps and the «Gift» window).
    Tone: the revo-tono rules carried into English — sober, warm, second person, no exclamation marks, no «deal»,
    «discount», «offer» or «2 for 1», no promised results ("helps", "with consistency"). Gender-neutral («them»).

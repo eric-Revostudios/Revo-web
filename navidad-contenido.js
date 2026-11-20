@@ -18,7 +18,7 @@ window.NAVIDAD = {
   // los centros asociados: con su canal, la cabecera dice «Para la comunidad de {nombre}»
   PARTNERS: ['goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
   // Solo para la maqueta: si la Platform no contesta, con ?sorteo=1 se ve el bloque del sorteo para revisarlo.
-  NOMBRES_PROVISIONALES: { goodfit: 'GoodFit', barrys: "Barry's Barcelona", corehaus: 'Corehaus', casabarre: 'Casa Barré', yogaone: 'YogaOne Aragó-Eixample', vecinos: 'Turó Park' },   // los mismos que la Platform (21-nov)
+  NOMBRES_PROVISIONALES: { goodfit: 'GoodFit', barrys: "Barry's Barcelona", corehaus: 'Corehaus', casabarre: 'Casa Barré', yogaone: 'YogaOne Aragó-Eixample', vecinos: 'Turó Park' },   // los mismos que la Platform (20-nov)
 
   /* ---- cabecera ---- */
   CABECERA: {
@@ -32,7 +32,7 @@ window.NAVIDAD = {
   },
 
   /* ---- la oferta en una frase ---- */
-  /* ---- la oferta «dos y una de regalo»: la MANDA LA PLATFORM (22-nov-2026) ----
+  /* ---- la oferta «dos y una de regalo»: la MANDA LA PLATFORM (20-nov-2026) ----
      GET /api/campana/canal (con o sin ?c=) trae `oferta: { activa, modo: 'elegir' | 'lista', experiencias: [ids],
      valido_desde, valido_hasta }` y `campana: { desde, hasta }`. La oferta solo se ve si `oferta.activa` es true;
      si es false, si no viene el campo o si la Platform no contesta, no sale NI UNA palabra (ni el bloque, ni la línea
@@ -91,7 +91,7 @@ window.NAVIDAD = {
   BOTON_REGALAR: 'Regalar',
   VER_REGALO: 'Ver cómo lo recibe',
 
-  /* ---- «Encuentra su regalo» · tercera versión (21-nov-2026) ----
+  /* ---- «Encuentra su regalo» · tercera versión (20-nov-2026) ----
      Eric: «sigue siendo muy sencillo; ha de ser una experiencia el responder». Pensado desde cero:
      · Se abre a pantalla completa, una pantalla por paso, con foto y transiciones lentas (como una historia).
      · Lo primero es su nombre: desde ahí todo habla de esa persona («Un día cualquiera, Carmen…»).

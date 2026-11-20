@@ -1,4 +1,4 @@
-/* «Encuentra su regalo» (/navidad), tercera versión, 21-nov-2026.
+/* «Encuentra su regalo» (/navidad), tercera versión, 20-nov-2026.
    Una experiencia a pantalla completa, una pantalla por paso: intro → su nombre → su día a día → la sensación
    que le regalarías → cómo se lo das → «Preparando el regalo de…» → la tarjeta y su resultado.
    Textos: NAVIDAD.TEST y NAVIDAD.REGALO (navidad-contenido.js). La página (navidad.js) le pasa sus utilidades en
