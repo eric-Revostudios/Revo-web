@@ -192,4 +192,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.revostudios.eu/en/press.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.revostudios.eu/prensa.html"/>
   </url>
+  <url>
+    <loc>https://www.revostudios.eu/navidad</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.revostudios.eu/navidad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.revostudios.eu/en/navidad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.revostudios.eu/navidad"/>
+  </url>
+  <url>
+    <loc>https://www.revostudios.eu/en/navidad</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.revostudios.eu/navidad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.revostudios.eu/en/navidad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.revostudios.eu/navidad"/>
+  </url>
 </urlset>
