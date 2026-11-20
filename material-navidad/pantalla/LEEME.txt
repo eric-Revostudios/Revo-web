@@ -1,0 +1,19 @@
+Pantalla de recepción · campaña de Navidad 2026 · REVO Studios
+Hecho el 21-nov-2026.
+
+Dos imágenes, según cómo esté colgada la tele:
+  navidad-pantalla-horizontal-1920x1080.png   tele en horizontal
+  navidad-pantalla-vertical-1080x1920.png     tele en vertical
+
+El QR abre https://www.revostudios.eu/navidad?c=studio (el canal del estudio: las compras que lleguen
+por aquí se cuentan como «Estudio» en la Platform). Debajo va escrita la dirección corta para quien no
+quiera escanear: revostudios.eu/navidad.
+
+Comprobado: el QR se lee en las dos imágenes, también reducidas al 12 % (unos 85 píxeles de lado).
+En una tele de 55 pulgadas el QR mide unos 44 cm (horizontal) o 49 cm (vertical): se lee bien a 3-4 m.
+En una de 43 pulgadas, unos 34-38 cm.
+
+Si la tele abre un navegador, lo mismo a pantalla completa: https://www.revostudios.eu/navidad-pantalla
+(se coloca sola en horizontal o vertical).
+
+Sin precios y sin la oferta de la tercera experiencia (pendiente de aprobar).
