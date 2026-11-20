@@ -63,27 +63,27 @@ window.NAVIDAD = {
   EXPERIENCIAS_TITULO: 'Seis experiencias para *regalar*.',
   EXPERIENCIAS_ENTRADA: 'Varias terapias en una sola visita, encadenadas por nuestro equipo médico para un objetivo.',
   EXPERIENCIAS: [
-    { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'laugh-blonde.webp', pos: '50% 30%',
+    { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',
       lema: 'Piel luminosa, silueta definida.',
       pasos: ['Campo electromagnético', 'Máscara de luz roja', 'Crioterapia de cuerpo entero', 'Masaje drenante y moldeador'],
       url: 'https://momence.com/REVO-Studios/product/Glow-Experience/498606' },
-    { id: 'sports', nombre: 'Sports Performance', precio: 140, dur: '1 h 30 min', foto: 'jump-man.jpg', pos: '50% 40%',
+    { id: 'sports', nombre: 'Sports Performance', precio: 140, dur: '1 h 30 min', foto: 'nv-sports.webp', pos: '50% 40%',
       lema: 'Recupérate más rápido. Rinde mejor.',
       pasos: ['Cámara hiperbárica', 'Crioterapia de cuerpo entero', 'Presoterapia'],
       url: 'https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608' },
-    { id: 'sleep_stress', nombre: 'Sleep & Stress', precio: 140, dur: '1 h', foto: 'massage-glow.webp', pos: '40% 45%',
+    { id: 'sleep_stress', nombre: 'Sleep & Stress', precio: 140, dur: '1 h', foto: 'nv-sleep.webp', pos: '40% 45%',
       lema: 'Baja el ritmo. Descansa de verdad.',
       pasos: ['Crioterapia de cuerpo entero', 'Cama de luz roja', 'Campo electromagnético', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614' },
-    { id: 'longevity', nombre: 'Longevity', precio: 160, dur: '1 h 50 min', foto: 'two-women.webp', pos: '50% 35%',
+    { id: 'longevity', nombre: 'Longevity', precio: 160, dur: '1 h 50 min', foto: 'nv-longevity.webp', pos: '50% 35%',
       lema: 'Más energía. Un cuerpo que se siente más joven.',
       pasos: ['Campo electromagnético', 'Neuroestimulación', 'Cámara hiperbárica', 'Cama de luz roja'],
       url: 'https://momence.com/REVO-Studios/product/Longevity-Experience/498612' },
-    { id: 'cognitiva', nombre: 'Performance Cognitiva', precio: 140, dur: '1 h 40 min', foto: 'focus-man.webp', pos: '50% 35%',
+    { id: 'cognitiva', nombre: 'Performance Cognitiva', precio: 140, dur: '1 h 40 min', foto: 'nv-cognitiva.webp', pos: '50% 35%',
       lema: 'Piensa con claridad. Mantén el foco.',
       pasos: ['Cámara hiperbárica', 'Cama de luz roja', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616' },
-    { id: 'massage_plus', nombre: 'Massage +', precio: 110, dur: '1 h 30 min', foto: 'massage-room.webp', pos: '50% 50%',
+    { id: 'massage_plus', nombre: 'Massage +', precio: 110, dur: '1 h 30 min', foto: 'nv-massage.webp', pos: '50% 50%',
       lema: 'Su masaje, potenciado.',
       pasos: ['Masaje a elegir', 'Una terapia más, a elegir'],
       url: 'https://momence.com/REVO-Studios/product/Massage-Experience/498613' }
@@ -121,12 +121,12 @@ window.NAVIDAD = {
     dia: {
       ojo: '02 · Su día a día', titulo: 'Un día cualquiera, *{nombre}*…', sin: 'Un día cualquiera, esa persona…',
       opciones: [
-        { t: 'va a mil y le cuesta parar', foto: 'focus-man.webp', pos: '50% 30%', da: 'cognitiva', porque: 'va a mil y le cuesta parar' },
+        { t: 'va a mil y le cuesta parar', foto: 'nv-cognitiva.webp', pos: '50% 30%', da: 'cognitiva', porque: 'va a mil y le cuesta parar' },
         { t: 'entrena o hace deporte', foto: 'navidad-entrena.webp', pos: '50% 25%', da: 'sports', porque: 'entrena y le pide mucho al cuerpo' },
-        { t: 'cuida de todos, menos de sí', foto: 'two-women.webp', pos: '50% 35%', da: 'massage_plus', porque: 'cuida de todos, menos de sí' },
-        { t: 'lo mide todo: reloj, analíticas, suplementos', foto: 'peak-wearable.webp', pos: '50% 50%', da: 'longevity', porque: 'se cuida y le gusta medirlo todo' },
-        { t: 'disfruta cuidándose, también por fuera', foto: 'laugh-blonde.webp', pos: '50% 30%', da: 'glow', porque: 'disfruta cuidándose, también por fuera' },
-        { t: 'duerme menos de lo que querría', foto: 'massage-glow.webp', pos: '40% 45%', da: 'sleep_stress', porque: 'duerme menos de lo que querría' }
+        { t: 'cuida de todos, menos de sí', foto: 'nv-longevity.webp', pos: '50% 35%', da: 'massage_plus', porque: 'cuida de todos, menos de sí' },
+        { t: 'lo mide todo: reloj, analíticas, suplementos', foto: 'nv-mide.webp', pos: '50% 50%', da: 'longevity', porque: 'se cuida y le gusta medirlo todo' },
+        { t: 'disfruta cuidándose, también por fuera', foto: 'nv-glow.webp', pos: '50% 30%', da: 'glow', porque: 'disfruta cuidándose, también por fuera' },
+        { t: 'duerme menos de lo que querría', foto: 'nv-sleep.webp', pos: '40% 45%', da: 'sleep_stress', porque: 'duerme menos de lo que querría' }
       ]
     },
     deseo: {
@@ -250,7 +250,7 @@ window.NAVIDAD = {
     rotulo: 'Así lo recibe',
     titulo: 'Llega *al momento*. O en mano.',
     digital: { t: 'Digital', d: 'Al pagar te llevamos a la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', boton: 'Ver un ejemplo' },
-    impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: 'lounge.webp', boton: 'Cómo llegar' },
+    impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: 'nv-estudio.webp', boton: 'Cómo llegar' },
     // la página real de la Platform (ejemplo con la experiencia que se elija)
     demo: '/regalo/demo?e=',
     // el móvil de ejemplo (imita la página del regalo de la Platform)
