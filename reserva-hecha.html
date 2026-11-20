@@ -15,7 +15,8 @@
   - El texto largo es el de la cita «Tu punto de partida»; para lo demás (o sin type), el corto.
   - Si la persona venía de /tu-punto en esta misma pestaña, se avisa a la Platform con su misma sesión
     (evento `volvio_reserva`). ESTO NO ES UNA RESERVA: la reserva la demuestra la cita en Momence, que la
-    Platform lee aparte. Aquí no se manda ninguna conversión a Meta.
+    Platform lee aparte. Aquí no se manda ninguna conversión de citas a Meta.
+  - La compra de un regalo sí (20-nov-2026): evento Purchase con su importe, con permiso de marketing (ver abajo).
   Diseño: revo-clinical/docs/medicion-reservas-meta.md
 -->
 <link rel="preload" href="fonts/NeueHaasGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin />
@@ -82,7 +83,26 @@ footer{ padding:22px 0 max(26px, env(safe-area-inset-bottom, 0px)); font-size:14
   try {
     var rg = JSON.parse(localStorage.getItem('revo_regalo') || 'null');
     if (rg && /^RV-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(rg.c || '') && Date.now() - (rg.t || 0) < 3 * 3600 * 1000 && tipo !== 'appointment') {
-      location.replace('/regalo/' + rg.c + '?enviar=1');
+      var destino = '/regalo/' + rg.c + '?enviar=1';
+      // Compra de un regalo (20-nov-2026, campaña de Navidad): se le dice a Meta, con su importe, para que la agencia
+      // optimice los anuncios. Solo si la persona aceptó las cookies de marketing, solo si la ventana guardó el
+      // importe (hoy, revo-regalar.js; experiencias.html todavía no) y una sola vez por regalo. El código del regalo
+      // va como id del evento: si algún día la Platform avisa también a Meta desde el servidor, Meta no lo cuenta dos veces.
+      var mkOk = false;
+      try { mkOk = JSON.parse(localStorage.getItem('revo-consent') || '{}').marketing === true; } catch (e) {}
+      if (mkOk && rg.v > 0 && !rg.av) {
+        try { rg.av = 1; localStorage.setItem('revo_regalo', JSON.stringify(rg)); } catch (e) {}
+        var gal = function (n) { var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; };
+        var q = 'id=837759925366480&ev=Purchase&eid=' + encodeURIComponent(rg.c) + '&cd[value]=' + encodeURIComponent(rg.v) +
+          '&cd[currency]=EUR&cd[content_name]=' + encodeURIComponent(rg.n || '') + '&cd[content_type]=product';
+        if (gal('_fbp')) q += '&fbp=' + encodeURIComponent(gal('_fbp'));
+        if (gal('_fbc')) q += '&fbc=' + encodeURIComponent(gal('_fbc'));
+        var ido = false, ir = function () { if (!ido) { ido = true; location.replace(destino); } };
+        var im = new Image(); im.onload = ir; im.onerror = ir; im.src = 'https://www.facebook.com/tr?' + q + '&noscript=1';
+        setTimeout(ir, 900);   // como mucho, menos de un segundo de espera
+        return;
+      }
+      location.replace(destino);
       return;
     }
   } catch (e) {}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<script src="revo-pixel.js" defer></script>
+<script src="revo-cookies.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#06070f" />
+<!-- BORRADOR (20-nov-2026): sin enlazar, fuera del sitemap. Cuando Eric lo apruebe, /navidad pasa a servir esta
+     página (vercel.json) y se quita el noindex SOLO si se quiere que Google la encuentre. -->
+<meta name="robots" content="noindex, nofollow" />
+<title>Navidad en REVO · Regala una experiencia</title>
+<meta name="description" content="Esta Navidad, regala salud. Seis experiencias de REVO Studios en Turó Park, Barcelona." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="REVO" />
+<meta property="og:title" content="Esta Navidad, regala salud · REVO" />
+<meta property="og:description" content="Hay regalos que se abren. Este se siente." />
+<meta property="og:image" content="https://www.revostudios.eu/assets/gift-bag.jpg" />
+<link rel="preload" href="fonts/NeueHaasGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/NotoSerif-Italic-500.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="icon" type="image/png" href="assets/revo-icon.png" />
+<link rel="apple-touch-icon" href="assets/revo-icon.png" />
+<link rel="stylesheet" href="revo-reservar.css?v=exp3" />
+<link rel="stylesheet" href="navidad.css?v=1" />
+<script src="navidad-contenido.js?v=1" defer></script>
+<script src="revo-reservar.js?v=exp3" defer></script>
+<script src="revo-regalar.js?v=1" defer></script>
+<script src="navidad.js?v=1" defer></script>
+</head>
+<body>
+  <header class="barra">
+    <div class="w barra-in">
+      <a class="logo" href="/" aria-label="REVO"><img src="assets/revo-logo-white.webp" alt="REVO" width="2253" height="819" /></a>
+      <a class="barra-tel" href="tel:+34613505881">+34 613 505 881</a>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- La cabecera va escrita aquí para que se vea antes de que cargue el JavaScript; el texto manda el de
+         navidad-contenido.js, que la repinta al cargar. -->
+    <section class="portada" id="portada">
+      <div class="portada-foto" aria-hidden="true"><img src="assets/gift-bag.webp" alt="" fetchpriority="high" /></div>
+      <div class="w portada-in">
+        <p class="ojo" data-t="CABECERA.rotulo">Navidad en REVO</p>
+        <h1 class="t1" data-t="CABECERA.titulo">Esta Navidad, regala <em>salud</em>.</h1>
+        <p class="entrada" data-t="CABECERA.entrada">Hay regalos que se abren. Este se siente.</p>
+        <p class="portada-partner" id="partner" hidden></p>
+        <div class="portada-botones">
+          <a class="boton boton--luz" href="#experiencias" data-t="CABECERA.boton" data-ev="cabecera">Elegir una experiencia</a>
+          <a class="enlace-luz" href="#test" data-t="CABECERA.test" data-ev="test">¿No sabes cuál? Tres preguntas</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <noscript><p class="w" style="padding:40px 22px;color:#f6f4ef">Para regalar una experiencia, entra en <a href="/experiencias.html">las experiencias</a> o escríbenos por WhatsApp al +34 613 505 881.</p></noscript>
+</body>
+</html>

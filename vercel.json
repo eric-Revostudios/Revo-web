@@ -42,6 +42,8 @@
     { "source": "/punto-de-partida", "destination": "/punto-de-partida.html" },
     { "source": "/tu-punto", "destination": "/tu-punto.html" },
     { "source": "/tu-punto-v2", "destination": "/tu-punto-v2.html" },
+    { "source": "/navidad-borrador", "destination": "/navidad.html" },
+    { "source": "/navidad-bases", "destination": "/navidad-bases.html" },
     { "source": "/reserva-hecha", "destination": "/reserva-hecha.html" },
     { "source": "/reset-for-you", "destination": "/reset-for-you.html" },
     { "source": "/partners", "destination": "/partners/index.html" },
