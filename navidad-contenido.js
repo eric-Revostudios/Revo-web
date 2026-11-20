@@ -166,7 +166,7 @@ window.NAVIDAD = {
     sports: {
       sensacion: 'fuerza',
       titular: 'Para que su cuerpo se recupere antes y rinda mejor.',
-      motivo: 'Sports Performance es el circuito de quien entrena en serio: oxigena, desinflama y descarga la fatiga del músculo.',
+      motivo: 'Sports Performance es el circuito de quien entrena en serio. Oxigena, desinflama y descarga la fatiga del músculo.',
       dedicatoria: 'Para que tu cuerpo rinda y se recupere como se merece.',
       pasos: [
         ['Cámara hiperbárica', 'Oxígeno al 98 % a 1,5 atmósferas: hasta diez veces más oxígeno en los tejidos.'],
