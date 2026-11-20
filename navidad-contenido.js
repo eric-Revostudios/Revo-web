@@ -122,6 +122,8 @@ window.NAVIDAD = {
   SORTEO: {
     rotulo: 'Sorteo',
     titulo: 'Sorteamos una experiencia entre los miembros de *{nombre}*.',
+    // canales que no son un centro: su propia frase
+    titulo_canal: { vecinos: 'Sorteamos una experiencia entre los vecinos de *Turó Park*.', socios: 'Sorteamos una experiencia entre los miembros de *REVO*.' },
     entrada: 'Déjanos tu nombre y tu correo. Te escribimos solo si te toca.',
     nombre: 'Nombre', email: 'Email', telefono: 'Teléfono', opcional: 'opcional',
     novedades: 'Quiero recibir novedades de REVO. Puedes darte de baja cuando quieras.',
