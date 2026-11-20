@@ -74,15 +74,8 @@
   /* ---------- secciones ---------- */
   var h = '';
 
-  // la oferta en una frase
-  // (OFERTA_VISIBLE / OFERTA_PENDIENTE: ver el contenido; la oferta está sin aprobar)
-  var pend = N.OFERTA_PENDIENTE ? '<span class="pend-marca">' + esc(N.PENDIENTE) + '</span>' : '';
-  window.NAVIDAD_PEND = pend;
-  if (N.OFERTA_VISIBLE !== false) h += '<section class="oferta" id="oferta"><div class="w estrecho">' + pend +
-    '<p class="ojo">' + fmt(N.OFERTA.rotulo) + '</p>' +
-    '<p class="oferta-frase t2">' + fmt(N.OFERTA.frase) + '</p>' +
-    (N.OFERTA.entrada ? '<p class="texto oferta-entrada">' + fmt(N.OFERTA.entrada) + '</p>' : '') +
-    '<p class="mini">' + fmt(N.OFERTA.letra) + '</p></div></section>';
+  // la oferta: hueco vacío; solo se rellena si la Platform dice que está activa (ver «la Platform» más abajo)
+  h += '<div id="ofertaSitio"></div>';
 
   // las seis experiencias
   h += '<section class="papel" id="experiencias"><div class="w">' +
@@ -90,7 +83,7 @@
     '<p class="texto cabeza-texto">' + fmt(N.EXPERIENCIAS_ENTRADA) + '</p><div class="rejilla">';
   N.EXPERIENCIAS.forEach(function (x, k) {
     h += '<article class="exp aparece" id="exp-' + esc(x.id) + '">' +
-      '<div class="exp-foto"><img loading="lazy" decoding="async" src="assets/' + esc(x.foto) + '" alt="" style="object-position:' + esc(x.pos || '50% 50%') + '" /></div>' +
+      '<div class="exp-foto"><img loading="lazy" decoding="async" src="/assets/' + esc(x.foto) + '" alt="" style="object-position:' + esc(x.pos || '50% 50%') + '" /></div>' +
       '<div class="exp-cuerpo"><p class="exp-num">' + (k < 9 ? '0' : '') + (k + 1) + ' / ' + (N.EXPERIENCIAS.length < 10 ? '0' : '') + N.EXPERIENCIAS.length + '</p>' +
       '<h3 class="exp-nombre">' + esc(x.nombre) + '</h3><p class="exp-lema">' + fmt(x.lema) + '</p>' +
       '<ol class="exp-pasos">' + x.pasos.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ol>' +
@@ -104,8 +97,8 @@
   // el test
   var T = N.TEST;
   h += '<section class="noche test-sec" id="encuentra"><div class="w test-inv">' +
-    '<button class="test-foto" type="button" data-abrir-test aria-label="' + esc(T.empezar) + '"><img loading="lazy" decoding="async" src="assets/' + esc(T.foto) + '" alt="" />' +
-      '<span class="test-foto-tarjeta" aria-hidden="true"><img src="assets/revo-logo-white.webp" alt="" /><i>' + fmt(T.res.unRegaloPara) + '</i><b>…</b></span></button>' +
+    '<button class="test-foto" type="button" data-abrir-test aria-label="' + esc(T.empezar) + '"><img loading="lazy" decoding="async" src="/assets/' + esc(T.foto) + '" alt="" />' +
+      '<span class="test-foto-tarjeta" aria-hidden="true"><img src="/assets/revo-logo-white.webp" alt="" /><i>' + fmt(T.res.unRegaloPara) + '</i><b>…</b></span></button>' +
     '<div class="test-inv-txt"><p class="ojo">' + fmt(T.rotulo) + '</p><h2 class="t2">' + fmt(T.titulo) + '</h2>' +
     '<p class="texto cabeza-texto">' + fmt(T.entrada) + '</p>' +
     '<button class="boton boton--luz" type="button" data-abrir-test>' + fmt(T.empezar) + '</button>' +
@@ -120,7 +113,7 @@
       '<p class="movil-ded">«Para que este año descanses de verdad.»</p><span class="movil-boton">Reservar mi sesión</span></div></div>' +
       '<h3 class="t3">' + fmt(R.digital.t) + '</h3><p class="texto">' + fmt(R.digital.d) + '</p>' +
       '<a class="enlace-tinta" href="' + esc(R.demo) + 'sleep_stress" target="_blank" rel="noopener">' + fmt(R.digital.boton) + '</a></div>' +
-    '<div class="recibe-caja"><div class="recibe-foto"><img loading="lazy" decoding="async" src="assets/' + esc(R.impreso.foto) + '" alt="" /></div>' +
+    '<div class="recibe-caja"><div class="recibe-foto"><img loading="lazy" decoding="async" src="/assets/' + esc(R.impreso.foto) + '" alt="" /></div>' +
       '<h3 class="t3">' + fmt(R.impreso.t) + '</h3><p class="texto">' + fmt(R.impreso.d) + '</p>' +
       '<a class="enlace-tinta" href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener">' + fmt(R.impreso.boton) + '</a></div>' +
     '</div></div></section>';
@@ -131,16 +124,15 @@
   // dudas
   h += '<section class="papel" id="dudas"><div class="w estrecho"><h2 class="t2">' + fmt(N.DUDAS_TITULO) + '</h2><div class="dudas">';
   N.DUDAS.forEach(function (d, k) {
-    if (d[2] === 'oferta' && N.OFERTA_VISIBLE === false) return;   // la de la tercera, solo si la oferta se enseña
-    h += '<details data-n="' + k + '"><summary>' + fmt(d[0]) + (d[2] === 'oferta' ? ' ' + pend : '') + '</summary><p class="texto">' + fmt(d[1]) + '</p></details>';
+    h += '<details data-n="' + k + '"><summary>' + fmt(d[0]) + '</summary><p class="texto">' + fmt(d[1]) + '</p></details>';
   });
   h += '</div></div></section>';
 
   // cierre
   h += '<section class="noche cierre"><div class="w estrecho"><p class="t2">' + fmt(N.CIERRE.titulo) + '</p>' +
     '<a class="boton boton--luz" href="' + WA + encodeURIComponent(N.CIERRE.wa) + '" target="_blank" rel="noopener" data-wa="cierre">' + fmt(N.CIERRE.boton) + '</a></div></section>' +
-    '<footer class="pie"><div class="w"><p>REVO Studios · Carrer de Ferran Agulló, 24 · Turó Park, Barcelona</p>' +
-    '<p><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a> · <a href="cookies.html">Cookies</a></p></div></footer>';
+    '<footer class="pie"><div class="w"><p>' + fmt(N.PIE.dir) + '</p>' +
+    '<p>' + N.PIE.legal.map(function (l) { return '<a href="' + esc(l[1]) + '">' + fmt(l[0]) + '</a>'; }).join(' · ') + '</p></div></footer>';
 
   app.insertAdjacentHTML('beforeend', h);
 
@@ -158,18 +150,25 @@
     var w = e.target.closest('[data-wa]');
     if (w) evento('pulso_whatsapp', { desde: w.getAttribute('data-wa') });
   });
-  app.querySelectorAll('.dudas details').forEach(function (d) {
-    d.addEventListener('toggle', function () { if (d.open) evento('abrio_duda', { n: Number(d.getAttribute('data-n')) }); });
-  });
+  function mideDuda(d) { d.addEventListener('toggle', function () { if (d.open) evento('abrio_duda', { n: Number(d.getAttribute('data-n')) }); }); }
+  app.querySelectorAll('.dudas details').forEach(mideDuda);
 
   /* ---------- «Encuentra su regalo»: la experiencia vive en navidad-test.js ---------- */
   window.NAVIDAD_PAGINA = { regalar: regalar, evento: evento, porId: porId, fmt: fmt, esc: esc, sub: sub };
 
   /* ---------- el sorteo ---------- */
   var S = N.SORTEO, secS = document.getElementById('sorteo');
-  function pintaSorteo(nombre) {
-    secS.innerHTML = '<div class="w estrecho"><p class="ojo">' + fmt(S.rotulo) + '</p>' +
-      '<h2 class="t2">' + fmt(sub((S.titulo_canal && S.titulo_canal[canal]) || S.titulo, { nombre: nombre })) + '</h2><p class="texto cabeza-texto">' + fmt(S.entrada) + '</p>' +
+  function pintaSorteo(nombre, plazo) {
+    var cab = '<div class="w estrecho"><p class="ojo">' + fmt(S.rotulo) + '</p>' +
+      '<h2 class="t2">' + fmt(sub((S.titulo_canal && S.titulo_canal[canal]) || S.titulo, { nombre: nombre })) + '</h2>';
+    var ahora = Date.now(), forzar = qs.get('sorteo') === '1';
+    if (!forzar && ahora >= plazo.hasta) return;   // cerrado: no se enseña nada
+    if (!forzar && ahora < plazo.desde) {         // aún no: solo el aviso de cuándo abre
+      secS.innerHTML = cab + '<p class="texto cabeza-texto">' + fmt(sub(S.abre, { desde: fechaTxt(plazo.desde) })) + '</p></div>';
+      secS.hidden = false; return;
+    }
+    secS.innerHTML = cab + '<p class="texto cabeza-texto">' + fmt(S.entrada) + '</p>' +
+      '<p class="mini sorteo-premio">' + fmt(sub(S.premio, { hasta: fechaTxt(plazo.hasta - 1), dia: fechaTxt(plazo.dia) })) + '</p>' +
       '<form class="sorteo" id="sorteoForm" novalidate>' +
         '<label class="campo"><span>' + fmt(S.nombre) + '</span><input name="nombre" type="text" autocomplete="name" required maxlength="80" /></label>' +
         '<label class="campo"><span>' + fmt(S.email) + '</span><input name="email" type="email" autocomplete="email" required maxlength="120" /></label>' +
@@ -177,7 +176,7 @@
         '<input class="trampa" name="web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />' +
         '<label class="casilla"><input name="novedades" type="checkbox" /><span>' + fmt(S.novedades) + ' <i>(' + fmt(S.opcional) + ')</i></span></label>' +
         '<button class="boton boton--luz" type="submit">' + fmt(S.boton) + '</button>' +
-        '<p class="mini">Al apuntarte aceptas las <a href="navidad-bases.html" target="_blank" rel="noopener">' + fmt(S.bases).toLowerCase() + '</a> y nuestra <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</p>' +
+        '<p class="mini">' + sub(esc(S.acepto), { bases: '<a href="' + esc(S.enlaceBases) + '" target="_blank" rel="noopener">' + esc(S.bases.toLowerCase()) + '</a>', privacidad: '<a href="' + esc(S.enlacePrivacidad) + '" target="_blank" rel="noopener">' + esc(S.privacidad) + '</a>' }) + '</p>' +
         '<p class="sorteo-msg" role="status" hidden></p>' +
       '</form></div>';
     secS.hidden = false;
@@ -205,23 +204,91 @@
     var p = document.getElementById('partner');
     if (p && nombre && N.CABECERA.partner) { p.innerHTML = fmt(sub(N.CABECERA.partner, { nombre: nombre })); p.hidden = false; }
   }
-  if (canal) {
+  /* ---------- fechas ---------- */
+  // 'AAAA-MM-DD' se lee como día de Madrid (+01:00 en invierno); una fecha con hora se respeta tal cual.
+  function fecha(v, finDeDia) {
+    if (!v) return NaN;
+    var t = /^\d{4}-\d{2}-\d{2}$/.test(String(v)) ? Date.parse(v + 'T00:00:00+01:00') : Date.parse(v);
+    return isNaN(t) ? NaN : (finDeDia ? t + 864e5 : t);
+  }
+  function partes(t) {   // día y mes en Madrid, sin depender del reloj del móvil
+    try {
+      var f = new Intl.DateTimeFormat('es-ES', { timeZone: 'Europe/Madrid', day: 'numeric', month: 'numeric', year: 'numeric' }).formatToParts(new Date(t));
+      var o = {}; f.forEach(function (p) { o[p.type] = Number(p.value); }); return o;
+    } catch (e) { var d = new Date(t); return { day: d.getDate(), month: d.getMonth() + 1, year: d.getFullYear() }; }
+  }
+  function fechaTxt(t) { var p = partes(t); return sub(N.FECHA, { dia: p.day, mes: N.MESES[p.month - 1] }); }
+  function primero(lista) { for (var i = 0; i < lista.length; i++) if (lista[i] != null && lista[i] !== '') return lista[i]; return null; }
+
+  /* ---------- la oferta (solo si la Platform la tiene activa) ---------- */
+  function textoOferta(of) {
+    var O = N.OFERTA, cuando = O.cuandoDefecto;
+    var d = fecha(of.valido_desde), hh = fecha(of.valido_hasta);
+    if (!isNaN(d) && !isNaN(hh)) {
+      var pd = partes(d), ph = partes(hh);
+      cuando = sub(O.cuando, { mesDesde: N.MESES[pd.month - 1], mesHasta: N.MESES[ph.month - 1], anio: ph.year });
+    }
+    if (of.modo === 'lista') {
+      var nombres = (of.experiencias || []).map(function (id) { var x = porId(id); return x && x.nombre; }).filter(Boolean);
+      if (!nombres.length) return null;   // una lista vacía no se puede contar: mejor no decir nada
+      return sub(O.letraLista, { exp: nombres.join(O.o), cuando: cuando });
+    }
+    return sub(O.letraElegir, { cuando: cuando });
+  }
+  function pintaOferta(of, camp) {
+    var letra = textoOferta(of); if (!letra) return;
+    var O = N.OFERTA, cd = fecha(camp && camp.desde), ch = fecha(camp && camp.hasta);
+    var rot = (!isNaN(cd) && !isNaN(ch)) ? sub(O.rotulo, { desde: fechaTxt(cd), hasta: fechaTxt(ch) }) : O.rotuloDefecto;
+    document.getElementById('ofertaSitio').innerHTML = '<section class="oferta" id="oferta"><div class="w estrecho">' +
+      '<p class="ojo">' + fmt(rot) + '</p>' +
+      '<p class="oferta-frase t2">' + fmt(O.frase) + '</p>' +
+      '<p class="texto oferta-entrada">' + fmt(O.entrada) + '</p>' +
+      '<p class="mini">' + fmt(letra) + '</p></div></section>';
+    var dudas = app.querySelector('.dudas');
+    if (dudas) {
+      dudas.insertAdjacentHTML('beforeend', '<details data-n="' + N.DUDAS.length + '"><summary>' + fmt(O.duda) + '</summary><p class="texto">' + fmt(sub(O.dudaTexto, { letra: letra })) + '</p></details>');
+      mideDuda(dudas.lastElementChild);
+    }
+    window.NAVIDAD_OFERTA = O.test;   // la línea del resultado del test (navidad-test.js)
+  }
+
+  /* ---------- la Platform: canal, sorteo y oferta ----------
+     Siempre se pregunta (con ?c= si hay canal). Si no contesta en 4 s o contesta mal: sin sorteo, sin oferta, y la
+     cabecera con el nombre del centro que tenemos aquí. La compra no depende de esto. */
+  function plazoSorteo(j) {
+    var c = j && j.canal || {}, k = j && j.campana || {};
+    var desde = fecha(primero([c.sorteo_desde, j && j.sorteo_desde, k.sorteo_desde, S.DESDE]));
+    var hasta = fecha(primero([c.sorteo_hasta, j && j.sorteo_hasta, k.sorteo_hasta, S.HASTA]), true);
+    var dia = fecha(primero([c.sorteo_dia, j && j.sorteo_dia, k.sorteo_dia, S.DIA]));
+    if (isNaN(desde)) desde = fecha(S.DESDE); if (isNaN(hasta)) hasta = fecha(S.HASTA, true); if (isNaN(dia)) dia = fecha(S.DIA);
+    return { desde: desde, hasta: hasta, dia: dia };
+  }
+  var previa = qs.get('oferta');   // revisar la oferta sin encenderla: ?oferta=elegir | lista
+  function siPrevia() {
+    if (previa === 'elegir') pintaOferta({ activa: true, modo: 'elegir', valido_desde: '2027-01-01', valido_hasta: '2027-03-31' }, { desde: '2026-11-26', hasta: '2027-01-05' });
+    else if (previa === 'lista') pintaOferta({ activa: true, modo: 'lista', experiencias: ['sleep_stress'], valido_desde: '2027-01-01', valido_hasta: '2027-03-31' }, { desde: '2026-11-26', hasta: '2027-01-05' });
+  }
+  (function () {
     var ctrl = window.AbortController ? new AbortController() : null;
     if (ctrl) setTimeout(function () { ctrl.abort(); }, 4000);
-    fetch(N.PLATFORM + '/api/campana/canal?c=' + encodeURIComponent(canal), ctrl ? { signal: ctrl.signal } : {})
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    fetch(N.PLATFORM + '/api/campana/canal' + (canal ? '?c=' + encodeURIComponent(canal) : ''), ctrl ? { signal: ctrl.signal } : {})
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
       .then(function (j) {
-        if (!j || !j.ok || !j.canal) throw new Error('no');
+        j = j || {};
+        // la oferta: aunque el canal no exista, la oferta es de la campaña
+        if (j.oferta && j.oferta.activa === true) pintaOferta(j.oferta, j.campana); else siPrevia();
+        if (!j.ok || !j.canal) throw new Error('sin canal');
         if (N.PARTNERS.indexOf(canal) !== -1) ponPartner(j.canal.nombre);   // los partners: goodfit, barrys…
-        if (j.canal.sorteo) pintaSorteo(j.canal.nombre);
+        if (j.canal.sorteo) pintaSorteo(j.canal.nombre, plazoSorteo(j));
       })
       .catch(function () {
-        // Sin la puerta de la Platform: sin sorteo. Solo para revisar la maqueta, ?sorteo=1 lo enseña igualmente.
+        // Sin la Platform: sin sorteo ni oferta. Para revisar: ?sorteo=1 enseña el sorteo y ?oferta=… la oferta.
+        if (!document.getElementById('oferta')) siPrevia();
         var nom = N.NOMBRES_PROVISIONALES[canal];
-        if (N.PARTNERS.indexOf(canal) !== -1 && nom) ponPartner(nom);
-        if (qs.get('sorteo') === '1' && nom) pintaSorteo(nom);
+        if (N.PARTNERS.indexOf(canal) !== -1 && nom && document.getElementById('partner').hidden) ponPartner(nom);
+        if (qs.get('sorteo') === '1' && nom && secS.hidden) pintaSorteo(nom, plazoSorteo(null));
       });
-  }
+  })();
 
   /* ---------- aparecer al bajar ---------- */
   var ap = app.querySelectorAll('.aparece');

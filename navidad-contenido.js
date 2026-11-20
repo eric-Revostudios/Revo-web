@@ -30,22 +30,30 @@ window.NAVIDAD = {
   },
 
   /* ---- la oferta en una frase ---- */
-  // ⚠️ La oferta NO está aprobada: la decide María (la jefa) el martes 24-nov. Mientras OFERTA_PENDIENTE sea true,
-  // el borrador la enseña con una marca amarilla en los tres sitios donde sale (este bloque, el resultado del test y
-  // la pregunta frecuente). Si se aprueba: false. Si no se aprueba: OFERTA_VISIBLE false y desaparece de los tres.
-  // Plan B si se aprueba con cambios: la tercera es siempre Sleep & Stress (cambiar `letra` y la pregunta frecuente).
-  // Ojo con Massage + (110 €): con la regla «igual o menor que la más económica», quien compra una Massage + solo
-  // podría recibir otra Massage +; con el plan B recibiría algo que vale más de lo que compró. Hay que fijarlo.
-  OFERTA_VISIBLE: true,
-  OFERTA_PENDIENTE: true,
-  PENDIENTE: 'Pendiente de aprobar',
+  /* ---- la oferta «dos y una de regalo»: la MANDA LA PLATFORM (22-nov-2026) ----
+     GET /api/campana/canal (con o sin ?c=) trae `oferta: { activa, modo: 'elegir' | 'lista', experiencias: [ids],
+     valido_desde, valido_hasta }` y `campana: { desde, hasta }`. La oferta solo se ve si `oferta.activa` es true;
+     si es false, si no viene el campo o si la Platform no contesta, no sale NI UNA palabra (ni el bloque, ni la línea
+     del resultado del test, ni la pregunta frecuente). Se enciende y se apaga desde la Platform (Regalos → Canales).
+     Para revisarla sin encenderla: ?oferta=elegir o ?oferta=lista (solo en este navegador, no cambia nada para nadie).
+     {cuando} = «de enero a marzo de 2027», sacado de valido_desde / valido_hasta; {exp} = la experiencia o
+     experiencias de la lista. Nunca «3×2», «2+1», «oferta» ni «descuento». */
   OFERTA: {
-    rotulo: 'Del 26 de noviembre al 5 de enero',
-    // nombre propuesto en los textos de campaña (sin aprobar): «Regalas dos. La tercera, de nuestra parte.»
+    rotulo: 'Del {desde} al {hasta}',
+    rotuloDefecto: 'Hasta el 5 de enero',
     frase: 'Regalas dos. *La tercera, de nuestra parte.*',
     entrada: 'Al regalar dos experiencias, te regalamos una tercera, para ti o para quien quieras.',
-    letra: 'La tercera es de igual o menor precio que la más económica de las dos y se disfruta de enero a marzo de 2027. Te llega sola, en la página de tu regalo.'
+    letraElegir: 'La tercera es de igual o menor precio que la más económica de las dos y se disfruta {cuando}. Te llega sola, en la página de tu regalo.',
+    letraLista: 'La tercera es {exp} y se disfruta {cuando}. Te llega sola, en la página de tu regalo.',
+    cuandoDefecto: 'de enero a marzo de 2027',
+    cuando: 'de {mesDesde} a {mesHasta} de {anio}',
+    o: ' o ',
+    duda: '¿Cómo funciona la tercera experiencia?',
+    dudaTexto: 'Al regalar dos, el tercer vale aparece solo en la página de tu regalo. {letra}',
+    test: 'Si regalas dos experiencias, te regalamos una tercera, para ti o para quien quieras.'
   },
+  MESES: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+  FECHA: '{dia} de {mes}',
 
   /* ---- las seis experiencias ----
      Precio, enlace de Momence y textos: los mismos que experiencias.html (20-nov-2026). Si cambian allí, aquí también.
@@ -251,6 +259,12 @@ window.NAVIDAD = {
     // canales que no son un centro: su propia frase
     titulo_canal: { vecinos: 'Sorteamos una experiencia entre los vecinos de *Turó Park*.', socios: 'Sorteamos una experiencia entre los miembros de *REVO*.' },
     entrada: 'Déjanos tu nombre y tu correo. Te escribimos solo si te toca.',
+    premio: 'Una experiencia a elegir entre las seis, para disfrutar hasta el 31 de marzo de 2027. Puedes apuntarte hasta el {hasta}; el sorteo es el {dia}.',
+    abre: 'Las inscripciones abren el {desde}.',
+    // plazo (Eric puede cambiarlo hasta el 25-nov). Si la Platform manda sorteo_desde / sorteo_hasta / sorteo_dia, mandan esas.
+    DESDE: '2026-11-26', HASTA: '2026-12-18', DIA: '2026-12-19',
+    acepto: 'Al apuntarte aceptas las {bases} y nuestra {privacidad}.', privacidad: 'política de privacidad',
+    enlaceBases: '/navidad-bases', enlacePrivacidad: '/privacidad.html',
     nombre: 'Nombre', email: 'Email', telefono: 'Teléfono', opcional: 'opcional',
     novedades: 'Quiero recibir novedades de REVO. Puedes darte de baja cuando quieras.',
     boton: 'Apuntarme',
@@ -268,12 +282,14 @@ window.NAVIDAD = {
   /* ---- preguntas frecuentes (solo lo que ya dice la web o la página del regalo) ---- */
   DUDAS_TITULO: 'Antes de *regalar*',
   DUDAS: [
-    ['¿Cuánto tiempo tiene para usarla?', 'Seis meses desde la compra. La experiencia de regalo, de enero a marzo de 2027.'],
+    ['¿Cuánto tiempo tiene para usarla?', 'Seis meses desde la compra.'],
     ['¿Cómo reserva su sesión?', 'Por WhatsApp o por teléfono, cuando le vaya bien. Le ayudamos a encontrar el día.'],
     ['¿Cuándo llega el regalo?', 'Al momento. Al pagar te llevamos a la página de su regalo para que se la envíes tú.'],
-    ['¿Puedo darlo en mano?', 'Sí. Elige «Impreso» al regalar y recoge la tarjeta en el estudio, en Turó Park.'],
-    ['¿Cómo funciona la tercera experiencia?', 'Al regalar dos, el tercer vale aparece solo en la página de tu regalo. Es de igual o menor precio que la más económica de las dos y se disfruta de enero a marzo de 2027.', 'oferta']
+    ['¿Puedo darlo en mano?', 'Sí. Elige «Impreso» al regalar y recoge la tarjeta en el estudio, en Turó Park.']
   ],
+
+  /* ---- pie ---- */
+  PIE: { dir: 'REVO Studios · Carrer de Ferran Agulló, 24 · Turó Park, Barcelona', legal: [['Aviso legal', '/aviso-legal.html'], ['Privacidad', '/privacidad.html'], ['Cookies', '/cookies.html']] },
 
   /* ---- cierre ---- */
   CIERRE: { titulo: '¿Prefieres que te ayudemos a elegir?', boton: 'Escríbenos por WhatsApp', wa: 'Hola, quiero regalar una experiencia de REVO por Navidad. ¿Me ayudáis a elegir?' }

@@ -41,7 +41,7 @@
 
   function fondo(src, pos) {
     if (!src) { fondoA.classList.remove('ve'); fondoB.classList.remove('ve'); return; }
-    var url = 'assets/' + src;
+    var url = '/assets/' + src;
     var vis = fondoA.classList.contains('ve') ? fondoA : fondoB.classList.contains('ve') ? fondoB : null;
     if (vis && vis.getAttribute('src') === url) return;
     var otra = vis === fondoA ? fondoB : fondoA;
@@ -162,7 +162,7 @@
         '<h2 class="nt-t2" tabindex="-1">' + (st.nombre ? fmt(sub(Q.titulo, { nombre: st.nombre })) : fmt(Q.sin)) + '</h2>' +
         '<div class="nt-fotos">' + Q.opciones.map(function (o, k) {
           return '<button class="nt-foto' + (st.dia === k ? ' elegida' : '') + '" type="button" data-k="' + k + '" style="--d:' + (k * 60) + 'ms">' +
-            '<img src="assets/' + esc(o.foto) + '" alt="" loading="eager" decoding="async" style="object-position:' + esc(o.pos || '50% 50%') + '" />' +
+            '<img src="/assets/' + esc(o.foto) + '" alt="" loading="eager" decoding="async" style="object-position:' + esc(o.pos || '50% 50%') + '" />' +
             '<span>' + fmt(o.t) + '</span></button>';
         }).join('') + '</div></div>';
       escena.querySelectorAll('.nt-foto').forEach(function (b) {
@@ -241,7 +241,7 @@
       var porque = sub(n ? R0.frase : R0.fraseSin, { Nombre: n, porque: oDia.porque, sensacion: R.sensacion, motivo: R.motivo });
       escena.innerHTML = '<div class="nt-p nt-res">' +
         '<div class="nt-tarjeta" aria-hidden="true"><div class="nt-tarjeta-brillo"></div>' +
-          '<img class="nt-tr-logo" src="assets/revo-logo-white.webp" alt="" />' +
+          '<img class="nt-tr-logo" src="/assets/revo-logo-white.webp" alt="" />' +
           '<p class="nt-tr-ojo">' + fmt(R0.unRegaloPara) + '</p>' +
           '<p class="nt-tr-nombre">' + esc(n || R0.sinNombre) + '</p>' +
           '<p class="nt-tr-exp">' + esc(x.nombre) + '</p>' +
@@ -261,9 +261,9 @@
           '<p class="nt-ayuda">' + fmt(R0.dedicatoriaAyuda) + '</p>' +
           '<div class="nt-otra">' +
             '<h3 class="nt-h">' + fmt(R0.otra) + '</h3>' +
-            '<div class="nt-otra-fila"><img src="assets/' + esc(y.foto) + '" alt="" style="object-position:' + esc(y.pos || '50% 50%') + '" />' +
+            '<div class="nt-otra-fila"><img src="/assets/' + esc(y.foto) + '" alt="" style="object-position:' + esc(y.pos || '50% 50%') + '" />' +
               '<div><p class="nt-otra-n">' + esc(y.nombre) + '</p><p class="nt-ayuda">' + fmt(y.lema) + ' · ' + esc(y.precio) + ' €</p></div></div>' +
-            (N.OFERTA_VISIBLE !== false ? '<p class="nt-texto nt-oferta">' + fmt(R0.oferta) + ' ' + (window.NAVIDAD_PEND || '') + '</p>' : '') +
+            (window.NAVIDAD_OFERTA ? '<p class="nt-texto nt-oferta">' + fmt(window.NAVIDAD_OFERTA) + '</p>' : '') +
             '<button class="nt-enlace nt-otra-b" type="button">' + fmt(sub(R0.otraBoton, { exp: y.nombre })) + '</button>' +
           '</div>' +
           '<div class="nt-compartir"><p class="nt-texto">' + fmt(R0.compartir) + '</p>' +
