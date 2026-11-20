@@ -43,6 +43,7 @@
     { "source": "/tu-punto", "destination": "/tu-punto.html" },
     { "source": "/tu-punto-v2", "destination": "/tu-punto-v2.html" },
     { "source": "/navidad-borrador", "destination": "/navidad.html" },
+    { "source": "/en/navidad-borrador", "destination": "/en/navidad.html" },
     { "source": "/navidad-bases", "destination": "/navidad-bases.html" },
     { "source": "/navidad-pantalla", "destination": "/navidad-pantalla.html" },
     { "source": "/reserva-hecha", "destination": "/reserva-hecha.html" },

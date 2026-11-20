@@ -61,6 +61,9 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .barra{ position:absolute; top:0; left:0; right:0; z-index:5; padding:20px 0; }
 .barra-in{ display:flex; align-items:center; justify-content:space-between; }
 .logo img{ width:84px; height:auto; }
+.barra-der{ display:flex; align-items:center; gap:18px; }
+.barra-idioma{ font-size:13px; font-weight:600; letter-spacing:.12em; color:var(--luz-2); text-decoration:none; padding:8px 0; }
+.barra-idioma:hover{ color:var(--luz); }
 .barra-tel{ font-size:14px; color:var(--luz-2); text-decoration:none; }
 
 /* portada */

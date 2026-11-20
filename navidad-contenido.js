@@ -4,6 +4,8 @@
    «oferta», «promoción», «3×2» ni «2+1»; sin prometer resultados).
    Un poco de formato: *texto* → cursiva de la casa (Noto Serif). Nada más. */
 window.NAVIDAD = {
+  IDIOMA: 'es',
+  OTRO_IDIOMA: { t: 'EN', lang: 'en' },
 
   /* ---- interruptores ---- */
   // Mandar el canal (?c=) a la Platform con cada regalo. Encendido el 20-nov-2026: la Platform confirmó que
@@ -164,6 +166,7 @@ window.NAVIDAD = {
       oferta: 'Si regalas dos experiencias, te regalamos una tercera, para ti o para quien quieras.',
       otraBoton: 'Regalar también {exp}',
       compartir: '¿Lo regaláis entre varios?', compartirBoton: 'Compártelo por WhatsApp',
+      compartirSin: 'esta persona',
       compartirTexto: 'He pensado en regalarle a {nombre} la experiencia {exp} de REVO ({precio} €). ¿Te sumas? https://www.revostudios.eu/navidad#exp-{id}',
       deNuevo: 'Empezar de nuevo', verTodas: 'Ver todas las experiencias'
     }
@@ -249,7 +252,9 @@ window.NAVIDAD = {
     digital: { t: 'Digital', d: 'Al pagar te llevamos a la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', boton: 'Ver un ejemplo' },
     impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: 'lounge.webp', boton: 'Cómo llegar' },
     // la página real de la Platform (ejemplo con la experiencia que se elija)
-    demo: '/regalo/demo?e='
+    demo: '/regalo/demo?e=',
+    // el móvil de ejemplo (imita la página del regalo de la Platform)
+    movil: { ojo: 'Un regalo para ti', nombre: 'Para *Ana*', ded: 'Para que este año descanses de verdad.', boton: 'Reservar mi sesión' }
   },
 
   /* ---- sorteo (solo canales que lo tienen) ---- */

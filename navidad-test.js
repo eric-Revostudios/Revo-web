@@ -267,7 +267,7 @@
             '<button class="nt-enlace nt-otra-b" type="button">' + fmt(sub(R0.otraBoton, { exp: y.nombre })) + '</button>' +
           '</div>' +
           '<div class="nt-compartir"><p class="nt-texto">' + fmt(R0.compartir) + '</p>' +
-            '<a class="nt-enlace" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(sub(R0.compartirTexto, { nombre: n || 'esta persona', exp: x.nombre, precio: x.precio, id: id })) + '">' + fmt(R0.compartirBoton) + '</a></div>' +
+            '<a class="nt-enlace" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(sub(R0.compartirTexto, { nombre: n || R0.compartirSin, exp: x.nombre, precio: x.precio, id: id })) + '">' + fmt(R0.compartirBoton) + '</a></div>' +
           '<div class="nt-fin"><button class="nt-enlace nt-otra-vez" type="button">' + fmt(R0.deNuevo) + '</button>' +
             '<button class="nt-enlace nt-todas" type="button">' + fmt(R0.verTodas) + '</button></div>' +
         '</div>' +

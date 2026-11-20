@@ -26,18 +26,31 @@
   var modal, form, f, elName, submitBtn, errBox, actual = null, lastFocus = null;
 
   function cfg() { return window.REVO && window.REVO.regalarConfig || {}; }
+  /* Los textos que ve la persona. La página en inglés pasa los suyos en REVO.regalarConfig.textos (los mismos de
+     en/experiencias.html). Lo que viaja al equipo (nombres de campo, valor de «Formato», asunto) sigue en español. */
+  var ES = {
+    cerrar: 'Cerrar', kicker: 'Regalar', titulo: 'Regala la experiencia ', sub: 'Completa el regalo y te llevamos al pago. Te enviamos el comprobante por correo.',
+    formato: '¿En qué formato lo quieres?', impreso: 'Impreso', impresoMeta: 'Tarjeta física · recógela en REVO', digital: 'Digital', digitalMeta: 'Al momento · lo envías tú por WhatsApp o correo',
+    para: 'Para', paraPh: 'Quien lo recibe', de: 'De parte de', email: 'Tu email', emailPh: 'Para el comprobante de pago', ded: 'Dedicatoria', dedPh: 'Opcional — la incluimos en el regalo',
+    boton: 'Continuar al pago', enviando: 'Enviando…', pie: 'Pago seguro · lo gestiona REVO Studios',
+    error: 'No hemos podido enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos a hello@revostudios.eu.',
+    wa: 'Hola, quiero regalar la experiencia {exp}. ¿Me ayudáis?', waBoton: 'Escríbenos por WhatsApp'
+  };
+  function tx() { var o = {}, k, t = cfg().textos || {}; for (k in ES) o[k] = t[k] || ES[k]; return o; }
+  function e(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   function build() {
     if (modal) return;
+    var t = tx();
     modal = document.createElement('div');
     modal.className = 'exp-modal'; modal.id = 'expModal'; modal.setAttribute('aria-hidden', 'true');
     modal.innerHTML =
       '<div class="exp-scrim" data-close></div>' +
       '<div class="exp-dialog" role="dialog" aria-modal="true" aria-labelledby="expTitle">' +
-        '<button class="exp-close" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
-        '<p class="exp-kicker">Regalar</p>' +
-        '<h3 class="exp-title" id="expTitle">Regala la experiencia <span class="ser" id="expName"></span></h3>' +
-        '<p class="exp-sub">Completa el regalo y te llevamos al pago. Te enviamos el comprobante por correo.</p>' +
+        '<button class="exp-close" type="button" data-close aria-label="' + e(t.cerrar) + '"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+        '<p class="exp-kicker">' + e(t.kicker) + '</p>' +
+        '<h3 class="exp-title" id="expTitle">' + e(t.titulo) + '<span class="ser" id="expName"></span></h3>' +
+        '<p class="exp-sub">' + e(t.sub) + '</p>' +
         '<form class="exp-form" id="expForm" novalidate>' +
           '<input type="hidden" name="access_key" value="' + KEY + '" />' +
           '<input type="hidden" name="subject" value="" />' +
@@ -49,21 +62,21 @@
           '<input type="hidden" name="UTM" value="" />' +
           '<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />' +
           '<fieldset class="exp-fields">' +
-            '<div class="exp-field"><span class="exp-legend">¿En qué formato lo quieres? <span class="req">*</span></span>' +
+            '<div class="exp-field"><span class="exp-legend">' + e(t.formato) + ' <span class="req">*</span></span>' +
               '<div class="exp-seg">' +
-                '<label><input type="radio" name="Formato" value="Impreso · tarjeta física, se recoge en REVO" required /><span class="exp-opt"><span class="o-name">Impreso</span><span class="o-meta">Tarjeta física · recógela en REVO</span></span></label>' +
-                '<label><input type="radio" name="Formato" value="Digital · al momento, lo envía quien compra" /><span class="exp-opt"><span class="o-name">Digital</span><span class="o-meta">Al momento · lo envías tú por WhatsApp o correo</span></span></label>' +
+                '<label><input type="radio" name="Formato" data-f="impreso" value="Impreso · tarjeta física, se recoge en REVO" required /><span class="exp-opt"><span class="o-name">' + e(t.impreso) + '</span><span class="o-meta">' + e(t.impresoMeta) + '</span></span></label>' +
+                '<label><input type="radio" name="Formato" data-f="digital" value="Digital · al momento, lo envía quien compra" /><span class="exp-opt"><span class="o-name">' + e(t.digital) + '</span><span class="o-meta">' + e(t.digitalMeta) + '</span></span></label>' +
               '</div></div>' +
             '<div class="exp-row">' +
-              '<div class="exp-field"><label for="gf-nombre">Para <span class="req">*</span></label><input class="exp-input" id="gf-nombre" name="Para (nombre)" type="text" placeholder="Quien lo recibe" required /></div>' +
-              '<div class="exp-field"><label for="gf-de">De parte de <span class="req">*</span></label><input class="exp-input" id="gf-de" name="De parte de" type="text" required /></div>' +
+              '<div class="exp-field"><label for="gf-nombre">' + e(t.para) + ' <span class="req">*</span></label><input class="exp-input" id="gf-nombre" name="Para (nombre)" type="text" placeholder="' + e(t.paraPh) + '" required /></div>' +
+              '<div class="exp-field"><label for="gf-de">' + e(t.de) + ' <span class="req">*</span></label><input class="exp-input" id="gf-de" name="De parte de" type="text" required /></div>' +
             '</div>' +
-            '<div class="exp-field"><label for="gf-email">Tu email <span class="req">*</span></label><input class="exp-input" id="gf-email" name="email" type="email" autocomplete="email" placeholder="Para el comprobante de pago" required /></div>' +
-            '<div class="exp-field"><label for="gf-ded">Dedicatoria</label><textarea class="exp-input" id="gf-ded" name="Dedicatoria" placeholder="Opcional — la incluimos en el regalo"></textarea></div>' +
+            '<div class="exp-field"><label for="gf-email">' + e(t.email) + ' <span class="req">*</span></label><input class="exp-input" id="gf-email" name="email" type="email" autocomplete="email" placeholder="' + e(t.emailPh) + '" required /></div>' +
+            '<div class="exp-field"><label for="gf-ded">' + e(t.ded) + '</label><textarea class="exp-input" id="gf-ded" name="Dedicatoria" placeholder="' + e(t.dedPh) + '"></textarea></div>' +
           '</fieldset>' +
-          '<button class="exp-submit" id="expSubmit" type="submit">Continuar al pago</button>' +
+          '<button class="exp-submit" id="expSubmit" type="submit">' + e(t.boton) + '</button>' +
           '<p class="exp-error" id="expError" role="alert" hidden></p>' +
-          '<p class="exp-foot-note"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Pago seguro · lo gestiona REVO Studios</span></p>' +
+          '<p class="exp-foot-note"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>' + e(t.pie) + '</span></p>' +
         '</form>' +
       '</div>';
     document.body.appendChild(modal);
@@ -80,7 +93,7 @@
     lastFocus = document.activeElement;
     form.reset();
     errBox.hidden = true; errBox.textContent = '';
-    submitBtn.disabled = false; submitBtn.classList.remove('is-loading'); submitBtn.textContent = 'Continuar al pago';
+    submitBtn.disabled = false; submitBtn.classList.remove('is-loading'); submitBtn.textContent = tx().boton;
     var precio = actual.precio ? actual.precio + '€' : '';
     var c = cfg();
     elName.textContent = actual.exp || '';
@@ -88,7 +101,7 @@
     if (actual.para) f['Para (nombre)'].value = String(actual.para).slice(0, 60);
     if (actual.dedicatoria) f['Dedicatoria'].value = String(actual.dedicatoria).slice(0, 400);
     if (actual.formato === 'impreso' || actual.formato === 'digital') {
-      form.querySelectorAll('input[name="Formato"]').forEach(function (r) { r.checked = r.value.toLowerCase().indexOf(actual.formato) === 0; });
+      form.querySelectorAll('input[name="Formato"]').forEach(function (r) { r.checked = r.getAttribute('data-f') === actual.formato; });
     }
     f['Experiencia'].value = actual.exp || '';
     f['Precio'].value = precio;
@@ -110,9 +123,9 @@
 
   function aPagar() {
     var url = actual.url, title = actual.exp || 'REVO Studios';
-    var wa = 'https://wa.me/34613505881?text=' + encodeURIComponent('Hola, quiero regalar la experiencia ' + title + '. ¿Me ayudáis?');
+    var t = tx(), wa = 'https://wa.me/34613505881?text=' + encodeURIComponent(t.wa.replace('{exp}', title));
     close();
-    if (window.REVO && window.REVO.reservar) window.REVO.reservar({ url: url, title: title, whatsapp: wa, whatsappLabel: 'Escríbenos por WhatsApp' });
+    if (window.REVO && window.REVO.reservar) window.REVO.reservar({ url: url, title: title, whatsapp: wa, whatsappLabel: t.waBoton });
     else window.location.href = url;
   }
 
@@ -120,7 +133,7 @@
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
     errBox.hidden = true;
-    submitBtn.disabled = true; submitBtn.classList.add('is-loading'); submitBtn.textContent = 'Enviando…';
+    submitBtn.disabled = true; submitBtn.classList.add('is-loading'); submitBtn.textContent = tx().enviando;
     var fd = new FormData(form), c = cfg();
     var prod = (String(actual.url || '').match(/\/(\d+)\/?(?:[?#].*)?$/) || [])[1];
     var fmt = String(fd.get('Formato') || '');
@@ -159,8 +172,9 @@
       .then(function (r) { return r.json(); })
       .then(function (j) { if (j.success) done(); else throw new Error(j.message || 'err'); })
       .catch(function () {
-        submitBtn.disabled = false; submitBtn.classList.remove('is-loading'); submitBtn.textContent = 'Continuar al pago';
-        errBox.hidden = false; errBox.textContent = 'No hemos podido enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos a hello@revostudios.eu.';
+        var t = tx();
+        submitBtn.disabled = false; submitBtn.classList.remove('is-loading'); submitBtn.textContent = t.boton;
+        errBox.hidden = false; errBox.textContent = t.error;
       });
   }
 

@@ -43,7 +43,7 @@
 
   window.REVO = window.REVO || {};
   window.REVO.regalarConfig = {
-    canal: canal, utm: utmTexto, enviarCanal: !!N.ENVIAR_CANAL, origen: 'Web REVO · Navidad',
+    canal: canal, utm: utmTexto, enviarCanal: !!N.ENVIAR_CANAL, origen: 'Web REVO · Navidad' + (N.IDIOMA === 'en' ? ' (EN)' : ''), textos: N.VENTANA,
     alEnviar: function (d) {
       // a Meta: alguien empieza a pagar (solo con las cookies de marketing aceptadas; lo mira revoTrack)
       if (window.revoTrack) window.revoTrack('InitiateCheckout', { value: Number(d.precio) || 0, currency: 'EUR', content_name: String(d.exp || '').slice(0, 60) });
@@ -59,7 +59,7 @@
     sset('nv_sesion', sesion);
   }
   function evento(nombre, datos) {
-    var d = datos || {}; if (canal) d.canal = canal;
+    var d = datos || {}; if (canal) d.canal = canal; if (N.IDIOMA && N.IDIOMA !== 'es') d.idioma = N.IDIOMA;
     var cuerpo = JSON.stringify({ sesion: sesion, evento: nombre, datos: d, v: 'a', utm_content: String(utm.utm_content || '').slice(0, 120), utm_source: String(utm.utm_source || '').slice(0, 60), pagina: 'navidad', ts: new Date().toISOString() });
     try { if (navigator.sendBeacon && navigator.sendBeacon('/api/landing-evento', new Blob([cuerpo], { type: 'application/json' }))) return; } catch (e) {}
     try { fetch('/api/landing-evento', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: cuerpo, keepalive: true }).catch(function () {}); } catch (e) {}
@@ -70,6 +70,15 @@
     var p = el.getAttribute('data-t').split('.'), v = N[p[0]] && N[p[0]][p[1]];
     if (v) el.innerHTML = fmt(v);
   });
+
+  /* ---------- idioma: el enlace de arriba lleva a la otra versión, con el mismo canal ---------- */
+  (function () {
+    var a = document.getElementById('idioma'); if (!a || !N.OTRO_IDIOMA) return;
+    var ruta = location.pathname.replace(/\.html$/, '');
+    var otra = N.IDIOMA === 'en' ? ruta.replace(/^\/en(?=\/)/, '') : '/en' + ruta;
+    a.href = otra + location.search; a.textContent = N.OTRO_IDIOMA.t; a.setAttribute('hreflang', N.OTRO_IDIOMA.lang);
+    a.hidden = false;
+  })();
 
   /* ---------- secciones ---------- */
   var h = '';
@@ -109,8 +118,8 @@
   h += '<section class="papel" id="recibe"><div class="w">' +
     '<p class="ojo">' + fmt(R.rotulo) + '</p><h2 class="t2">' + fmt(R.titulo) + '</h2><div class="recibe">' +
     '<div class="recibe-caja recibe-digital"><div class="movil" aria-hidden="true"><div class="movil-pantalla">' +
-      '<p class="movil-ojo">Un regalo para ti</p><p class="movil-nombre">Para <em>Ana</em></p><p class="movil-exp">Sleep &amp; Stress</p>' +
-      '<p class="movil-ded">«Para que este año descanses de verdad.»</p><span class="movil-boton">Reservar mi sesión</span></div></div>' +
+      '<p class="movil-ojo">' + fmt(R.movil.ojo) + '</p><p class="movil-nombre">' + fmt(R.movil.nombre) + '</p><p class="movil-exp">Sleep &amp; Stress</p>' +
+      '<p class="movil-ded">«' + fmt(R.movil.ded) + '»</p><span class="movil-boton">' + fmt(R.movil.boton) + '</span></div></div>' +
       '<h3 class="t3">' + fmt(R.digital.t) + '</h3><p class="texto">' + fmt(R.digital.d) + '</p>' +
       '<a class="enlace-tinta" href="' + esc(R.demo) + 'sleep_stress" target="_blank" rel="noopener">' + fmt(R.digital.boton) + '</a></div>' +
     '<div class="recibe-caja"><div class="recibe-foto"><img loading="lazy" decoding="async" src="/assets/' + esc(R.impreso.foto) + '" alt="" /></div>' +
