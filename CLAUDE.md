@@ -69,6 +69,17 @@ Publicada el 13-nov-2026. **Desde el 16-nov-2026 es la versión única**: Eric p
 - **Medición:** los mismos eventos y la misma función que `/tu-caso` (`api/landing-evento.js`), con `pagina: 'tu-punto'`. `eligio_tema` lleva dónde lo notaría (`tema`), el porcentaje y lo que ya hace, y se vuelve a mandar si cambia de tema en «¿Buscas otra cosa?»; quien no contesta cuenta como tema `directo`. No se usa `eligio_rama`. Un evento con otro nombre se pierde sin avisar: hay que añadirlo en `tu-punto.js`, en `api/landing-evento.js` y en la Platform.
 - **Cookies y píxel:** carga `revo-cookies.js` y `revo-pixel.js` (el píxel de Meta solo arranca si la persona acepta, y marca «Lead» al pulsar un botón de reservar). En el móvil el aviso de cookies se dibuja más bajo y estrecho solo en esta página (final de `tu-punto.css`) para que no tape la pregunta.
 
+## Campaña de Navidad 2026 (`/navidad`)
+
+Del 26-nov-2026 al 5-ene-2027: vender las seis experiencias como regalo. Todo el tráfico (anuncios, QR de partners, carta a vecinos, newsletter, estudio) va a `https://www.revostudios.eu/navidad?c={canal}`. Canales fijos (impresos en QR, no se cambian): `studio socios vecinos instagram ads goodfit barrys corehaus casabarre yogaone`.
+
+- **Hoy `/navidad` es una redirección temporal a `/experiencias.html`** (conserva `?c=`), para que los QR funcionen desde el primer día. Cuando Eric apruebe la página: en `vercel.json`, quitar esa redirección y añadir el rewrite `/navidad → /navidad.html`.
+- **QR:** `material-navidad/qr/` (PNG 2993 px a 600 ppp y SVG, uno por canal, con `LEEME.txt`). Leídos de vuelta el 20-nov-2026. Se sirven con `noindex`.
+- **Borrador:** `/navidad-borrador` (= `navidad.html`, `noindex`, sin enlazar). Ficheros: `navidad-contenido.js` (TODO el texto), `navidad.js`, `navidad.css`, `navidad-bases.html` (`/navidad-bases`, bases del sorteo para la gestoría). Con `#test` se abre en el test.
+- **La ventana «Regalar» es `revo-regalar.js`, compartida.** `experiencias.html` lleva todavía su copia propia de la misma lógica: pasarla a este fichero es un cambio pendiente del sí de Eric (pinta el mismo HTML, clases `exp-*`). Guarda en `revo_regalo` también el importe (`v`) y la experiencia (`n`).
+- **Canal:** se guarda 30 días (`nv_origen` en localStorage) con los `utm_*`; va en el correo al equipo (campos Canal y UTM) y, con `ENVIAR_CANAL: true` en el contenido, a `/api/regalo` de la Platform (apagado hasta que la Platform confirme que lo admite: con el campo trampa relleno responde «ok» sin validar nada). Nombre del partner y sorteo: `GET /api/campana/canal` de la Platform (publicada el 20-nov). Sorteo: `POST /api/sorteo`.
+- **Medición:** eventos de landing con `pagina: 'navidad'` y sesión propia `nv_sesion` (no `tp_sesion`, para que `reserva-hecha.html` no la confunda con /tu-punto). Píxel: `InitiateCheckout` al enviar la ventana, y `Purchase` con importe en `reserva-hecha.html` al volver de pagar (solo con cookies de marketing aceptadas, una vez por regalo, id del evento = código del regalo).
+
 ## Maqueta de la propuesta del equipo (`/tu-punto-v2`)
 
 Publicada el 16-nov-2026 solo para que Eric la compare con `/tu-punto` y `/punto-de-partida`. Es la versión 2 del documento «REVO · Landing Tu punto de partida» de María (13-nov), con su texto tal cual, sin corregir; lo que el documento deja [entre corchetes] se pinta en amarillo. Sin enlazar, fuera del sitemap y con `noindex`.
