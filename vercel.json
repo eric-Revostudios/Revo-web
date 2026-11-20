@@ -43,6 +43,7 @@
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/navidad", "destination": "/experiencias.html", "permanent": false },
     { "source": "/invita", "destination": "https://revo-platform.vercel.app/invita", "permanent": false },
     { "source": "/regalo/:codigo", "destination": "https://revo-platform.vercel.app/regalo/:codigo", "permanent": false },
     { "source": "/luzroja-barcelona", "destination": "/luz-roja.html", "permanent": true },
