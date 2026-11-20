@@ -238,11 +238,15 @@
       fetch(N.PLATFORM + '/api/sorteo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
         canal: canal, nombre: el.nombre.value.trim(), email: el.email.value.trim(), telefono: el.telefono.value.trim() || undefined,
         acepta_novedades: !!el.novedades.checked, web: el.web.value
-      }) }).then(function (r) { return r.json(); }).then(function (j) {
-        if (!j || !j.ok) throw new Error('no');
+      }) }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
+        if (!j || !j.ok) { var er = new Error('no'); er.motivo = j && j.motivo; throw er; }
         fo.querySelectorAll('.campo, .casilla, button').forEach(function (x) { x.hidden = true; });
         msg.hidden = false; msg.textContent = S.hecho;
-      }).catch(function () { btn.disabled = false; msg.hidden = false; msg.textContent = S.error; });
+      }).catch(function (er) {
+        // motivos de la Platform: datos (400) · canal (404) · fechas (410) · demasiados (429)
+        btn.disabled = false; msg.hidden = false;
+        msg.textContent = (er && er.motivo && S.errores && S.errores[er.motivo]) || S.error;
+      });
     });
   }
   function ponPartner(nombre) {

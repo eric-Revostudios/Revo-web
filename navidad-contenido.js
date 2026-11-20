@@ -130,6 +130,12 @@ window.NAVIDAD = {
     boton: 'Apuntarme',
     hecho: 'Ya estás dentro. Te escribimos si te toca.',
     error: 'No hemos podido apuntarte. Inténtalo de nuevo en un momento.',
+    errores: {
+      datos: 'Revisa el nombre y el email: alguno no está bien escrito.',
+      canal: 'Este sorteo ya no está abierto.',
+      fechas: 'El sorteo ya ha terminado. Gracias por tu interés.',
+      demasiados: 'Demasiados intentos seguidos. Prueba de nuevo dentro de un rato.'
+    },
     bases: 'Bases del sorteo'
   },
 
