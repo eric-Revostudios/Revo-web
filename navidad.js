@@ -217,7 +217,7 @@
   var S = N.SORTEO, secS = document.getElementById('sorteo');
   function pintaSorteo(nombre) {
     secS.innerHTML = '<div class="w estrecho"><p class="ojo">' + fmt(S.rotulo) + '</p>' +
-      '<h2 class="t2">' + fmt(sub(S.titulo, { nombre: esc(nombre) })) + '</h2><p class="texto cabeza-texto">' + fmt(S.entrada) + '</p>' +
+      '<h2 class="t2">' + fmt(sub(S.titulo, { nombre: nombre })) + '</h2><p class="texto cabeza-texto">' + fmt(S.entrada) + '</p>' +
       '<form class="sorteo" id="sorteoForm" novalidate>' +
         '<label class="campo"><span>' + fmt(S.nombre) + '</span><input name="nombre" type="text" autocomplete="name" required maxlength="80" /></label>' +
         '<label class="campo"><span>' + fmt(S.email) + '</span><input name="email" type="email" autocomplete="email" required maxlength="120" /></label>' +
@@ -247,7 +247,7 @@
   }
   function ponPartner(nombre) {
     var p = document.getElementById('partner');
-    if (p && nombre && N.CABECERA.partner) { p.innerHTML = fmt(sub(N.CABECERA.partner, { nombre: esc(nombre) })); p.hidden = false; }
+    if (p && nombre && N.CABECERA.partner) { p.innerHTML = fmt(sub(N.CABECERA.partner, { nombre: nombre })); p.hidden = false; }
   }
   if (canal) {
     var ctrl = window.AbortController ? new AbortController() : null;
