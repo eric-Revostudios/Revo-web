@@ -4,7 +4,7 @@
    - Medición: los MISMOS eventos que las landings (api/landing-evento.js descarta cualquier otro), con
      pagina: 'navidad'. Sin cookies: un id aleatorio por pestaña (clave propia `nv_sesion`, no la de /tu-punto,
      para que reserva-hecha.html no confunda a quien viene de aquí con quien viene de la landing).
-     abrio {canal} · pulso_reservar {desde: tarjeta|test|resultado, exp} · eligio_tema {tema: exp, pct, cuidado}
+     abrio {canal} · pulso_reservar {desde: tarjeta|test|resultado, exp} · eligio_tema {tema: exp, para, dia, deseo}
      · vio_resultado {exp} · abrio_duda {n} · pulso_whatsapp {desde}
    - Con #test en el enlace, la página se abre en el test (anuncios «con test»). */
 (function () {
@@ -99,9 +99,9 @@
 
   // el test
   var T = N.TEST;
-  h += '<section class="noche" id="test" tabindex="-1"><div class="w estrecho">' +
-    '<p class="ojo">' + fmt(T.rotulo) + '</p><h2 class="t2">' + fmt(T.titulo) + '</h2>' +
-    '<p class="texto cabeza-texto">' + fmt(T.entrada) + '</p><div class="test" id="testCaja" aria-live="polite"></div></div></section>';
+  h += '<section class="noche test-sec" id="test" tabindex="-1"><div class="w">' +
+    '<div class="estrecho test-cabeza"><p class="ojo">' + fmt(T.rotulo) + '</p><h2 class="t2">' + fmt(T.titulo) + '</h2>' +
+    '<p class="texto cabeza-texto">' + fmt(T.entrada) + '</p></div><div class="test" id="testCaja" aria-live="polite"></div></div></section>';
 
   // así lo recibe
   var R = N.RECIBE;
@@ -134,10 +134,11 @@
   app.insertAdjacentHTML('beforeend', h);
 
   /* ---------- regalar ---------- */
-  function regalar(id, desde) {
+  function regalar(id, desde, extra) {
     var x = porId(id); if (!x) return;
     evento('pulso_reservar', { desde: desde || 'tarjeta', exp: id });
-    if (window.REVO && window.REVO.regalar) window.REVO.regalar({ exp: x.nombre, precio: x.precio, url: x.url });
+    extra = extra || {};
+    if (window.REVO && window.REVO.regalar) window.REVO.regalar({ exp: x.nombre, precio: x.precio, url: x.url, para: extra.para, dedicatoria: extra.dedicatoria });
     else location.href = x.url;
   }
   app.addEventListener('click', function (e) {
@@ -150,68 +151,109 @@
     d.addEventListener('toggle', function () { if (d.open) evento('abrio_duda', { n: Number(d.getAttribute('data-n')) }); });
   });
 
-  /* ---------- el test ---------- */
+  /* ---------- «Encuentra su regalo» ----------
+     Tres respuestas que van completando una frase; la tercera decide la experiencia y la segunda da la otra opción.
+     El resultado trae la tarjeta del regalo: el nombre y la dedicatoria que se escriban aquí pasan a la ventana
+     «Regalar» ya rellenos. No viajan en la medición. */
   var caja = document.getElementById('testCaja');
-  var resp = { pct: null, cuidado: null };
-  function paso1() {
-    var p = T.p1, mid = Math.round((p.min + p.max) / 2);
-    caja.innerHTML = '<p class="test-paso">1 / 3</p><h3 class="t3">' + fmt(p.titulo) + ' <span class="pct sin" id="pct">' + mid + '<small>%</small></span></h3>' +
-      '<p class="mini">' + fmt(p.ayuda) + '</p>' +
-      '<input class="regla sin" id="regla" type="range" min="' + p.min + '" max="' + p.max + '" step="5" value="' + mid + '" aria-label="' + esc(p.titulo) + '" />' +
-      '<div class="regla-ejes"><span>' + p.min + ' %</span><span>' + p.max + ' %</span></div>' +
-      '<button class="boton boton--luz test-sigue" id="sigue" type="button" hidden>' + fmt(p.boton) + '</button>';
-    var r = document.getElementById('regla'), out = document.getElementById('pct'), sigue = document.getElementById('sigue');
-    function toca() { out.innerHTML = r.value + '<small>%</small>'; out.classList.remove('sin'); r.classList.remove('sin'); sigue.hidden = false; resp.pct = Number(r.value); }
-    r.addEventListener('input', toca); r.addEventListener('change', toca);
-    sigue.addEventListener('click', paso2);
+  var PREG = T.preguntas;
+  var resp = [];   // índice elegido en cada pregunta
+  function frase(hasta) {
+    var trozos = [];
+    for (var i = 0; i < hasta && i < resp.length; i++) trozos.push(esc(PREG[i].frase) + ' <em>' + esc(PREG[i].opciones[resp[i]].t) + '</em>');
+    return trozos.length ? trozos.join(', ') + (hasta >= PREG.length ? '.' : '…') : '';
   }
-  function opciones(lista, cls) {
-    return '<div class="test-ops ' + (cls || '') + '">' + lista.map(function (o, k) { return '<button class="op" type="button" data-k="' + k + '">' + fmt(o.t) + '</button>'; }).join('') + '</div>';
+  function progreso(n) {
+    var h = '<ol class="t-prog" aria-label="Paso ' + (n + 1) + ' de ' + PREG.length + '">';
+    for (var i = 0; i < PREG.length; i++) h += '<li class="' + (i < n ? 'hecho' : i === n ? 'ahora' : '') + '"><span>0' + (i + 1) + '</span></li>';
+    return h + '</ol>';
   }
-  function atras() { return '<button class="test-atras" type="button">Atrás</button>'; }
-  function paso2() {
-    var p = T.p2;
-    caja.innerHTML = '<p class="test-paso">2 / 3</p><h3 class="t3">' + fmt(p.titulo) + '</h3><p class="mini">' + fmt(p.ayuda) + '</p>' + opciones(p.opciones) + atras();
-    caja.querySelector('.test-atras').addEventListener('click', paso1);
-    caja.querySelectorAll('.op').forEach(function (b) { b.addEventListener('click', function () { resp.cuidado = Number(b.getAttribute('data-k')); paso3(); }); });
-    foco();
+  function entra() { if (reduce) return; var c = caja.firstElementChild; if (c) { c.classList.add('entra'); } }
+  function pregunta(n) {
+    resp.length = n;
+    var p = PREG[n];
+    caja.innerHTML = '<div class="t-paso">' + progreso(n) +
+      '<p class="t-frase"' + (n ? '' : ' hidden') + '>' + frase(n) + '</p>' +
+      '<h3 class="t3 t-pregunta">' + fmt(p.titulo) + '</h3>' +
+      '<div class="t-ops' + (p.opciones.length > 5 ? ' t-ops--dos' : '') + '">' + p.opciones.map(function (o, k) {
+        return '<button class="op" type="button" data-k="' + k + '"><span>' + fmt(o.t) + '</span><i aria-hidden="true"></i></button>';
+      }).join('') + '</div>' +
+      (n ? '<button class="test-atras" type="button">' + fmt(T.atras) + '</button>' : '') + '</div>';
+    entra();
+    caja.querySelectorAll('.op').forEach(function (b) {
+      b.addEventListener('click', function () {
+        resp[n] = Number(b.getAttribute('data-k'));
+        b.classList.add('elegida');
+        setTimeout(function () { if (n + 1 < PREG.length) { pregunta(n + 1); foco(); } else resultado(); }, reduce ? 0 : 260);
+      });
+    });
+    var at = caja.querySelector('.test-atras'); if (at) at.addEventListener('click', function () { pregunta(n - 1); foco(); });
   }
-  function paso3() {
-    var p = T.p3;
-    caja.innerHTML = '<p class="test-paso">3 / 3</p><h3 class="t3">' + fmt(p.titulo) + '</h3>' + opciones(p.opciones, 'test-ops--deseo') + atras();
-    caja.querySelector('.test-atras').addEventListener('click', paso2);
-    caja.querySelectorAll('.op').forEach(function (b) { b.addEventListener('click', function () { resultado(Number(b.getAttribute('data-k'))); }); });
-    foco();
-  }
-  // La tercera decide. Si una respuesta de la tercera diera varias experiencias, desempata la segunda.
-  function decide(k3) {
-    var da = [].concat(T.p3.opciones[k3].da);
-    if (da.length === 1) return da[0];
-    var p2 = resp.cuidado != null ? T.p2.opciones[resp.cuidado].da : [];
-    for (var i = 0; i < da.length; i++) if (p2.indexOf(da[i]) !== -1) return da[i];
-    return da[0];
-  }
-  function resultado(k3) {
-    var id = decide(k3), x = porId(id);
-    evento('eligio_tema', { tema: id, pct: resp.pct, cuidado: resp.cuidado });
-    evento('vio_resultado', { exp: id });
-    caja.innerHTML = '<p class="test-paso">' + fmt(sub(T.resultado, { pct: resp.pct })) + '</p>' +
-      '<div class="test-res"><div class="test-res-foto"><img src="assets/' + esc(x.foto) + '" alt="" style="object-position:' + esc(x.pos || '50% 50%') + '" /></div>' +
-      '<div class="test-res-txt"><h3 class="t2">' + esc(x.nombre) + '</h3><p class="texto">' + fmt(T.porque[id]) + '</p>' +
-      '<p class="exp-meta"><span>' + esc(x.dur) + '</span><span class="exp-precio">' + esc(x.precio) + ' €</span></p>' +
-      '<button class="boton boton--luz" type="button" data-regalar="' + esc(id) + '" data-desde="test">' + fmt(N.BOTON_REGALAR + ' ' + x.nombre) + '</button>' +
-      '<a class="enlace-luz" href="' + esc(N.RECIBE.demo + id) + '" target="_blank" rel="noopener">' + fmt(N.VER_REGALO) + '</a>' +
-      '<button class="test-atras" type="button">' + fmt(T.otra) + '</button></div></div>';
-    caja.querySelector('.test-atras').addEventListener('click', function () { resp = { pct: null, cuidado: null }; paso1(); foco(); });
+  function resultado() {
+    var oPara = PREG[0].opciones[resp[0]], oDia = PREG[1].opciones[resp[1]], oDeseo = PREG[2].opciones[resp[2]];
+    var id = oDeseo.da, x = porId(id), R = N.REGALO[id];
+    var otraId = oDia.da !== id ? oDia.da : R.otra, y = porId(otraId);
+    var ded = oPara.formal ? N.DEDICATORIA_FORMAL : R.dedicatoria;
+    evento('eligio_tema', { tema: id, para: resp[0], dia: resp[1], deseo: resp[2] });
+    evento('vio_resultado', { exp: id, otra: otraId });
+    caja.innerHTML = '<div class="t-res">' +
+      '<p class="t-frase t-frase--final">' + frase(PREG.length) + '</p>' +
+      '<div class="res-grid">' +
+        '<div class="res-exp">' +
+          '<p class="ojo">' + fmt(T.rotuloResultado) + '</p>' +
+          '<h3 class="t2 res-nombre">' + esc(x.nombre) + '</h3>' +
+          '<p class="res-titular">' + fmt(R.titular) + '</p>' +
+          '<div class="res-foto"><img src="assets/' + esc(x.foto) + '" alt="" style="object-position:' + esc(x.pos || '50% 50%') + '" /></div>' +
+          '<p class="exp-meta"><span>' + esc(x.dur) + ' · ' + x.pasos.length + ' terapias</span><span class="exp-precio">' + esc(x.precio) + ' €</span></p>' +
+          '<h4 class="res-h">' + fmt(T.porQue) + '</h4><p class="texto">' + fmt(oDia.porque) + ' ' + fmt(R.porque) + '</p>' +
+          '<h4 class="res-h">' + fmt(T.vivira) + '</h4><ol class="res-pasos">' + R.pasos.map(function (p) {
+            return '<li><b>' + esc(p[0]) + '</b><span>' + esc(p[1]) + '</span></li>';
+          }).join('') + '</ol>' +
+        '</div>' +
+        '<div class="res-regalo">' +
+          '<h4 class="res-h">' + fmt(T.tarjeta) + '</h4>' +
+          '<div class="tarjeta-regalo" aria-hidden="true">' +
+            '<img class="tr-logo" src="assets/revo-logo-white.webp" alt="" />' +
+            '<p class="tr-ojo">' + fmt(T.unRegaloPara) + '</p>' +
+            '<p class="tr-nombre vacio" id="trNombre">' + fmt(T.nombre) + '</p>' +
+            '<p class="tr-exp">' + esc(x.nombre) + ' · ' + esc(x.dur) + '</p>' +
+            '<p class="tr-ded" id="trDed">«' + esc(ded) + '»</p>' +
+          '</div>' +
+          '<label class="campo campo--papel"><span>' + fmt(T.nombre) + ' <i>' + fmt(T.nombreAyuda) + '</i></span><input id="tNombre" type="text" maxlength="40" autocomplete="off" /></label>' +
+          '<label class="campo campo--papel"><span>' + fmt(T.dedicatoria) + ' <i>' + fmt(T.dedicatoriaAyuda) + '</i></span><textarea id="tDed" rows="2" maxlength="240">' + esc(ded) + '</textarea></label>' +
+          '<button class="boton boton--luz" type="button" id="tRegalar">' + fmt(sub(T.boton, { exp: x.nombre })) + '</button>' +
+          '<p class="mini res-nota">' + fmt(T.nota) + '</p>' +
+          '<div class="res-otra">' +
+            '<p class="res-h">' + fmt(T.otra) + '</p>' +
+            '<div class="res-otra-fila"><img src="assets/' + esc(y.foto) + '" alt="" style="object-position:' + esc(y.pos || '50% 50%') + '" />' +
+              '<div><p class="res-otra-nombre">' + esc(y.nombre) + '</p><p class="mini">' + fmt(y.lema) + ' · ' + esc(y.precio) + ' €</p></div></div>' +
+            '<p class="res-oferta">' + fmt(T.oferta) + '</p>' +
+            '<button class="enlace-luz" type="button" data-regalar="' + esc(otraId) + '" data-desde="test-otra">' + fmt(sub(T.otraBoton, { exp: y.nombre })) + '</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<button class="test-atras res-reinicio" type="button">' + fmt(T.deNuevo) + '</button></div>';
+    entra();
+    var inN = document.getElementById('tNombre'), inD = document.getElementById('tDed');
+    var trN = document.getElementById('trNombre'), trD = document.getElementById('trDed'), btn = document.getElementById('tRegalar');
+    var nombreBase = trN.textContent;
+    function pinta() {
+      var n = inN.value.trim();
+      trN.textContent = n || nombreBase; trN.classList.toggle('vacio', !n);
+      trD.textContent = inD.value.trim() ? '«' + inD.value.trim() + '»' : '';
+      btn.innerHTML = fmt(sub(n ? T.botonNombre : T.boton, { exp: x.nombre, nombre: n }));
+    }
+    inN.addEventListener('input', pinta); inD.addEventListener('input', pinta);
+    btn.addEventListener('click', function () { regalar(id, 'test', { para: inN.value.trim(), dedicatoria: inD.value.trim() }); });
+    caja.querySelector('.res-reinicio').addEventListener('click', function () { pregunta(0); foco(); });
     foco();
   }
   function foco() {
-    var t = caja.querySelector('.t3, .t2'); if (!t) return;
     var r = caja.getBoundingClientRect();
-    if (r.top < 0 || r.top > innerHeight * 0.5) window.scrollTo({ top: scrollY + r.top - 90, behavior: reduce ? 'auto' : 'smooth' });
+    if (r.top < 0 || r.top > innerHeight * 0.45) window.scrollTo({ top: scrollY + r.top - 80, behavior: reduce ? 'auto' : 'smooth' });
   }
-  caja.addEventListener('click', function (e) { var b = e.target.closest('[data-regalar]'); if (b) { e.stopPropagation(); regalar(b.getAttribute('data-regalar'), 'test'); } });
-  paso1();
+  caja.addEventListener('click', function (e) { var b = e.target.closest('[data-regalar]'); if (b) { e.stopPropagation(); regalar(b.getAttribute('data-regalar'), b.getAttribute('data-desde') || 'test'); } });
+  pregunta(0);
 
   /* ---------- el sorteo ---------- */
   var S = N.SORTEO, secS = document.getElementById('sorteo');

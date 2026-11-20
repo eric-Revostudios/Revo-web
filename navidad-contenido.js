@@ -24,7 +24,7 @@ window.NAVIDAD = {
     titulo: 'Esta Navidad, regala *salud*.',
     entrada: 'Hay regalos que se abren. Este se siente.',
     boton: 'Elegir una experiencia',
-    test: '¿No sabes cuál? Tres preguntas',
+    test: '¿No sabes cuál? Encuentra su regalo',
     // con canal de partner: se añade debajo del titular. {nombre} = nombre del partner
     partner: 'Para la comunidad de {nombre}.'
   },
@@ -70,43 +70,133 @@ window.NAVIDAD = {
   BOTON_REGALAR: 'Regalar',
   VER_REGALO: 'Ver cómo lo recibe',
 
-  /* ---- «¿No sabes cuál? Tres preguntas» ----
-     Se abre directo con /navidad#test (para los anuncios «con test»).
-     La tercera respuesta decide; la segunda solo desempata cuando la tercera da dos opciones. */
+  /* ---- «Encuentra su regalo» (antes «¿No sabes cuál? Tres preguntas»); rehecho el 21-nov-2026 ----
+     Eric: «demasiado cutre, rápido; debería ser muchísimo más útil». Ahora:
+     · Tres respuestas que completan UNA frase sobre quien lo recibe (como en /tu-punto, no suenan a encuesta):
+       «Es para mi madre, que va a mil y le cuesta parar, y le regalaría dormir de verdad.»
+     · La tercera decide la experiencia; la segunda da la segunda opción (para la oferta de la tercera de regalo).
+     · El resultado: por qué le encaja, qué vivirá paso a paso (cifras de revo-tono), la tarjeta del regalo con su
+       nombre y una dedicatoria sugerida que se puede cambiar, y «Regalar» abre la ventana ya rellena.
+     · Sin datos de salud. El nombre y la dedicatoria se quedan en el navegador: no viajan en la medición.
+     · Se abre directo con /navidad#test (anuncios «con test»). */
   TEST: {
     rotulo: '¿No sabes cuál?',
-    titulo: 'Tres preguntas sobre *quien lo recibe*.',
-    entrada: 'Te decimos qué experiencia le encaja y por qué.',
-    p1: { titulo: 'Hoy está al…', ayuda: 'Desliza hasta donde creas.', min: 50, max: 100, boton: 'Continuar' },
-    p2: { titulo: 'Así se cuida', ayuda: 'Elige lo que más se le parece.',
-      opciones: [
-        { t: 'Se mueve o entrena', da: ['sports'] },
-        { t: 'Se da un masaje o va al fisio', da: ['massage_plus'] },
-        { t: 'Yoga, meditación o cuida su descanso', da: ['sleep_stress'] },
-        { t: 'Lleva reloj o anillo, se hace analíticas, toma suplementos', da: ['longevity'] },
-        { t: 'Menos de lo que querría', da: ['massage_plus', 'sleep_stress'] }
-      ] },
-    p3: { titulo: 'Le vendría bien…',
-      opciones: [
-        { t: 'tener más energía', da: 'longevity' },
-        { t: 'descansar de verdad', da: 'sleep_stress' },
-        { t: 'tener la cabeza más clara', da: 'cognitiva' },
-        { t: 'sentir su cuerpo fuerte y ágil', da: 'sports' },
-        { t: 'sentirse bien con su aspecto', da: 'glow' },
-        { t: 'que alguien le cuide un rato', da: 'massage_plus' }
-      ] },
-    // el porqué de cada experiencia, en una frase (en tercera persona)
-    porque: {
-      glow: 'Cuatro terapias encadenadas para desinflamar, drenar y dar luz a la piel. Sale con otra cara.',
-      sports: 'Oxígeno, frío y presión para que el músculo se recupere antes. Pensada para quien entrena en serio.',
-      sleep_stress: 'Un circuito que baja el ritmo del sistema nervioso y prepara el cuerpo para dormir.',
-      longevity: 'La más completa: oxígeno, luz y estímulo para cuerpo y cabeza a la vez. Para quien quiere más energía.',
-      cognitiva: 'Oxígeno, luz y sonido para una mente más clara y estable.',
-      massage_plus: 'Un masaje a su medida y una terapia más. Una hora y media en la que solo tiene que dejarse cuidar.'
-    },
-    resultado: 'Para quien está al {pct} %, lo que más le encaja:',
-    otra: 'Volver a empezar'
+    titulo: 'Encuentra *su regalo*.',
+    entrada: 'Tres respuestas sobre quien lo recibe. Te decimos qué experiencia le encaja, por qué, y cómo se la regalas.',
+    atras: 'Atrás',
+    preguntas: [
+      { clave: 'para', frase: 'Es para', titulo: 'Es para…',
+        opciones: [
+          { t: 'mi pareja' },
+          { t: 'mi madre o mi padre' },
+          { t: 'una amiga o un amigo' },
+          { t: 'alguien de mi familia' },
+          { t: 'alguien del trabajo', formal: true }
+        ] },
+      { clave: 'dia', frase: 'que', titulo: 'En su día a día…',
+        opciones: [
+          { t: 'va a mil y le cuesta parar', da: 'sleep_stress', porque: 'Va a mil y le cuesta parar.' },
+          { t: 'entrena o hace deporte a menudo', da: 'sports', porque: 'Entrena a menudo y le pide mucho al cuerpo.' },
+          { t: 'pasa muchas horas pensando, delante de una pantalla', da: 'cognitiva', porque: 'Pasa muchas horas pensando, delante de una pantalla.' },
+          { t: 'cuida de todos, menos de sí', da: 'massage_plus', porque: 'Cuida de todos, menos de sí.' },
+          { t: 'ya se cuida: mide, se analiza, prueba cosas nuevas', da: 'longevity', porque: 'Ya se cuida y le gusta probar lo que funciona.' },
+          { t: 'le gusta cuidarse también por fuera', da: 'glow', porque: 'Le gusta cuidarse también por fuera.' }
+        ] },
+      { clave: 'deseo', frase: 'y le regalaría', titulo: 'Si pudieras, le regalarías…',
+        opciones: [
+          { t: 'energía para todo el día', da: 'longevity' },
+          { t: 'dormir de verdad', da: 'sleep_stress' },
+          { t: 'la cabeza clara y en calma', da: 'cognitiva' },
+          { t: 'un cuerpo fuerte que se recupere antes', da: 'sports' },
+          { t: 'verse y sentirse con luz', da: 'glow' },
+          { t: 'un rato solo para sí', da: 'massage_plus' }
+        ] }
+    ],
+    // el resultado
+    rotuloResultado: 'Su regalo',
+    porQue: 'Por qué le encaja',
+    vivira: 'Lo que vivirá',
+    tarjeta: 'Así le llega',
+    nombre: 'Su nombre',
+    nombreAyuda: 'Opcional. Lo ponemos en su regalo.',
+    dedicatoria: 'Tu dedicatoria',
+    dedicatoriaAyuda: 'Te proponemos una. Cámbiala como quieras.',
+    unRegaloPara: 'Un regalo para',
+    boton: 'Regalar {exp}',
+    botonNombre: 'Regalar {exp} a {nombre}',
+    nota: 'Al momento, por WhatsApp o correo. O en una tarjeta que recoges en el estudio.',
+    otra: 'También le encajaría',
+    oferta: 'Si regalas las dos, te regalamos una tercera, para ti o para quien quieras.',
+    otraBoton: 'Regalar {exp}',
+    deNuevo: 'Volver a empezar'
   },
+  // Para cada experiencia, lo que se cuenta en el resultado. Cifras: solo las de revo-tono (datos.md).
+  REGALO: {
+    glow: {
+      titular: 'Su piel, con luz. Su cuerpo, más ligero.',
+      porque: 'Y lo que más le regalarías es verse y sentirse con luz: Glow desinflama, drena y trabaja la piel desde dentro.',
+      dedicatoria: 'Para que se te vea la luz que tienes.',
+      pasos: [
+        ['Campos electromagnéticos', 'Activan el modo de descanso y reparación, y dejan las células más receptivas a lo que viene después.'],
+        ['Máscara de luz roja', 'Luz roja e infrarroja en la cara. Estimula el colágeno y la elastina.'],
+        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C. Desinflama y activa la microcirculación, que potencia el masaje.'],
+        ['Masaje drenante y moldeador', 'Con manos y aparatología. Reduce la retención de líquidos y define la silueta: se sale con sensación de ligereza.']
+      ],
+      otra: 'massage_plus' },
+    sports: {
+      titular: 'Para que su cuerpo se recupere antes y rinda mejor.',
+      porque: 'Y lo que más le regalarías es un cuerpo fuerte que se recupere antes: es el circuito de quien entrena en serio.',
+      dedicatoria: 'Para que tu cuerpo rinda y se recupere como se merece.',
+      pasos: [
+        ['Cámara hiperbárica', 'Oxígeno al 98 % a 1,5 atmósferas: hasta diez veces más oxígeno en los tejidos.'],
+        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C. Baja la inflamación y alivia el dolor.'],
+        ['Presoterapia', 'Botas de compresión de los pies a la cadera. Drenan y mejoran la circulación: se sale con las piernas ligeras.']
+      ],
+      otra: 'longevity' },
+    sleep_stress: {
+      titular: 'Una hora para que su cuerpo baje el ritmo.',
+      porque: 'Y lo que más le regalarías es dormir de verdad: este circuito regula el sistema nervioso y prepara el cuerpo para descansar.',
+      dedicatoria: 'Para que este invierno descanses de verdad.',
+      pasos: [
+        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C. Baja el cortisol y deja un estado de calma y buen humor.'],
+        ['Cama de luz roja', '10 minutos bajo 43.000 LEDs de luz roja e infrarroja. Ayuda a regular el ritmo del sueño.'],
+        ['Campos electromagnéticos', 'Activan el modo de descanso y reparación del cuerpo.'],
+        ['Neuroestimulación', 'Sonido binaural y luz que llevan al cerebro a la relajación profunda.']
+      ],
+      otra: 'massage_plus' },
+    longevity: {
+      titular: 'La más completa: energía para el cuerpo y la cabeza.',
+      porque: 'Y lo que más le regalarías es energía para todo el día: Longevity repara, oxigena y activa cuerpo y cabeza a la vez.',
+      dedicatoria: 'Para que te sobre energía todo el año.',
+      pasos: [
+        ['Campos electromagnéticos', 'Activan el modo de descanso y reparación, y dejan las células más receptivas a lo que viene después.'],
+        ['Neuroestimulación', 'Sonido binaural y luz que llevan al cerebro a la relajación profunda o al foco.'],
+        ['Cámara hiperbárica', 'Oxígeno al 98 % a 1,5 atmósferas: hasta diez veces más oxígeno en los tejidos.'],
+        ['Cama de luz roja', '10 minutos bajo 43.000 LEDs. Activa la mitocondria, la central de energía de cada célula.']
+      ],
+      otra: 'cognitiva' },
+    cognitiva: {
+      titular: 'Oxígeno, luz y sonido para pensar con claridad.',
+      porque: 'Y lo que más le regalarías es la cabeza clara y en calma: Performance Cognitiva está pensada para una mente más nítida y estable.',
+      dedicatoria: 'Para que la cabeza encuentre su calma y su foco.',
+      pasos: [
+        ['Cámara hiperbárica', 'Oxígeno al 98 % a 1,5 atmósferas: hasta diez veces más oxígeno en los tejidos.'],
+        ['Cama de luz roja', '10 minutos bajo 43.000 LEDs de luz roja e infrarroja. Activa la mitocondria.'],
+        ['Neuroestimulación', 'Sonido binaural y luz que llevan al cerebro al foco.']
+      ],
+      otra: 'sleep_stress' },
+    massage_plus: {
+      titular: 'Una hora y media en la que solo tiene que dejarse cuidar.',
+      porque: 'Y lo que más le regalarías es un rato solo para sí: un masaje a su medida, potenciado con una terapia más.',
+      dedicatoria: 'Un rato solo para ti. Te lo mereces.',
+      pasos: [
+        ['Un masaje a elegir', 'Deportivo, relajante, moldeador o facial.'],
+        ['Una terapia más, a elegir', 'Crioterapia, luz roja, presoterapia, campos electromagnéticos o neuroestimulación.']
+      ],
+      otra: 'sleep_stress' }
+  },
+  // la dedicatoria para alguien del trabajo, más sobria
+  DEDICATORIA_FORMAL: 'Gracias por este año. Que lo disfrutes.',
 
   /* ---- así lo recibe ---- */
   RECIBE: {
