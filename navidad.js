@@ -171,8 +171,9 @@
     var cab = '<div class="w estrecho"><p class="ojo">' + fmt(S.rotulo) + '</p>' +
       '<h2 class="t2">' + fmt(sub((S.titulo_canal && S.titulo_canal[canal]) || S.titulo, { nombre: nombre })) + '</h2>';
     var ahora = Date.now(), forzar = qs.get('sorteo') === '1';
-    if (!forzar && ahora >= plazo.hasta) return;   // cerrado: no se enseña nada
-    if (!forzar && ahora < plazo.desde) {         // aún no: solo el aviso de cuándo abre
+    var abierto = plazo.abierto !== null ? plazo.abierto : (ahora >= plazo.desde && ahora < plazo.hasta);
+    if (!forzar && !abierto && ahora >= plazo.desde) return;   // cerrado: no se enseña nada
+    if (!forzar && !abierto) {                                 // aún no: solo el aviso de cuándo abre
       secS.innerHTML = cab + '<p class="texto cabeza-texto">' + fmt(sub(S.abre, { desde: fechaTxt(plazo.desde) })) + '</p></div>';
       secS.hidden = false; return;
     }
@@ -199,13 +200,18 @@
         canal: canal, nombre: el.nombre.value.trim(), email: el.email.value.trim(), telefono: el.telefono.value.trim() || undefined,
         acepta_novedades: !!el.novedades.checked, web: el.web.value
       }) }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
-        if (!j || !j.ok) { var er = new Error('no'); er.motivo = j && j.motivo; throw er; }
+        if (!j || !j.ok) {
+          var er = new Error('no'); er.motivo = j && j.motivo;
+          // fuera de plazo: 409 = aún no abre (con su fecha), 410 = ya cerró
+          if (er.motivo === 'fechas' && j.desde && Date.now() < fecha(j.desde)) { er.texto = sub(S.abre, { desde: fechaTxt(fecha(j.desde)) }); }
+          throw er;
+        }
         fo.querySelectorAll('.campo, .casilla, button').forEach(function (x) { x.hidden = true; });
         msg.hidden = false; msg.textContent = S.hecho;
       }).catch(function (er) {
         // motivos de la Platform: datos (400) · canal (404) · fechas (410) · demasiados (429)
         btn.disabled = false; msg.hidden = false;
-        msg.textContent = (er && er.motivo && S.errores && S.errores[er.motivo]) || S.error;
+        msg.textContent = (er && er.texto) || (er && er.motivo && S.errores && S.errores[er.motivo]) || S.error;
       });
     });
   }
@@ -264,13 +270,15 @@
   /* ---------- la Platform: canal, sorteo y oferta ----------
      Siempre se pregunta (con ?c= si hay canal). Si no contesta en 4 s o contesta mal: sin sorteo, sin oferta, y la
      cabecera con el nombre del centro que tenemos aquí. La compra no depende de esto. */
+  // La Platform manda `sorteo: { desde, hasta, abierto }` (0285). Si dice abierto o cerrado, manda ella; las fechas
+  // del contenido solo sirven si no contesta o no trae el bloque. El día del sorteo no viene: es SORTEO.DIA.
   function plazoSorteo(j) {
-    var c = j && j.canal || {}, k = j && j.campana || {};
-    var desde = fecha(primero([c.sorteo_desde, j && j.sorteo_desde, k.sorteo_desde, S.DESDE]));
-    var hasta = fecha(primero([c.sorteo_hasta, j && j.sorteo_hasta, k.sorteo_hasta, S.HASTA]), true);
-    var dia = fecha(primero([c.sorteo_dia, j && j.sorteo_dia, k.sorteo_dia, S.DIA]));
+    var so = j && j.sorteo || {}, c = j && j.canal || {};
+    var desde = fecha(primero([so.desde, c.sorteo_desde, S.DESDE]));
+    var hasta = fecha(primero([so.hasta, c.sorteo_hasta, S.HASTA]), true);
+    var dia = fecha(primero([so.dia, c.sorteo_dia, S.DIA]));
     if (isNaN(desde)) desde = fecha(S.DESDE); if (isNaN(hasta)) hasta = fecha(S.HASTA, true); if (isNaN(dia)) dia = fecha(S.DIA);
-    return { desde: desde, hasta: hasta, dia: dia };
+    return { desde: desde, hasta: hasta, dia: dia, abierto: typeof so.abierto === 'boolean' ? so.abierto : null };
   }
   var previa = qs.get('oferta');   // revisar la oferta sin encenderla: ?oferta=elegir | lista
   function siPrevia() {
