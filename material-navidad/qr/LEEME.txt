@@ -1,0 +1,31 @@
+QR de la campaña de Navidad 2026 · REVO Studios
+Generados el 20-nov-2026.
+
+Cada QR abre  https://www.revostudios.eu/navidad?c=CANAL
+El canal va en el nombre del fichero:
+
+  qr-navidad-studio      material dentro del estudio
+  qr-navidad-socios      comunicación a miembros
+  qr-navidad-vecinos     carta a los vecinos
+  qr-navidad-instagram   Instagram (bio, stories)
+  qr-navidad-ads         anuncios
+  qr-navidad-goodfit     GoodFit
+  qr-navidad-barrys      Barry's
+  qr-navidad-corehaus    CoreHaus
+  qr-navidad-casabarre   Casa Barre
+  qr-navidad-yogaone     YogaOne
+
+Formatos:
+  .png  2993 × 2993 píxeles, 600 ppp. Sirve para imprimir hasta unos 12 cm de lado.
+  .svg  vectorial: se puede ampliar a cualquier tamaño sin perder calidad
+        (es el que prefiere una imprenta o quien maqueta en Illustrator/InDesign).
+
+Para imprimir:
+  · No imprimir más pequeño de 2 × 2 cm.
+  · Dejar el margen blanco que ya trae alrededor (es parte del código).
+  · Negro sobre blanco. Si se cambia el color, que sea oscuro sobre claro, nunca al revés.
+  · No poner logos encima.
+  · Probar cada QR impreso con el móvil antes de la tirada.
+
+Los diez se han leído de vuelta (PNG y SVG) y cada uno da su enlace exacto.
+El enlace no se puede cambiar una vez impreso: lo que se cambia es la página a la que lleva.
