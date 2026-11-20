@@ -9,7 +9,7 @@
    Uso:
      <script src="revo-reservar.js" defer></script>   (el cajón de pago; si falta, se va a Momence en la pestaña)
      <script src="revo-regalar.js" defer></script>
-     REVO.regalar({ exp: 'Glow', precio: 140, url: 'https://momence.com/…/498606', para: 'Ana', dedicatoria: '…' })   (para y dedicatoria, opcionales: rellenan la ventana)
+     REVO.regalar({ exp: 'Glow', precio: 140, url: 'https://momence.com/…/498606', para: 'Ana', dedicatoria: '…', formato: 'digital' })   (para, dedicatoria y formato, opcionales: rellenan la ventana)
    Opciones (antes de abrir): REVO.regalarConfig = {
      canal: 'goodfit',         // de dónde viene (?c=); va en el correo al equipo, y a la Platform solo si enviarCanal es true
      utm: 'utm_source=ig · …',  // los utm_* de la visita, en el correo al equipo
@@ -87,6 +87,9 @@
     // lo que la persona ya escribió en la página (p. ej. la tarjeta del test de /navidad)
     if (actual.para) f['Para (nombre)'].value = String(actual.para).slice(0, 60);
     if (actual.dedicatoria) f['Dedicatoria'].value = String(actual.dedicatoria).slice(0, 400);
+    if (actual.formato === 'impreso' || actual.formato === 'digital') {
+      form.querySelectorAll('input[name="Formato"]').forEach(function (r) { r.checked = r.value.toLowerCase().indexOf(actual.formato) === 0; });
+    }
     f['Experiencia'].value = actual.exp || '';
     f['Precio'].value = precio;
     f['Canal'].value = CANAL_OK.test(c.canal || '') ? c.canal : '';

@@ -99,9 +99,13 @@
 
   // el test
   var T = N.TEST;
-  h += '<section class="noche test-sec" id="test" tabindex="-1"><div class="w">' +
-    '<div class="estrecho test-cabeza"><p class="ojo">' + fmt(T.rotulo) + '</p><h2 class="t2">' + fmt(T.titulo) + '</h2>' +
-    '<p class="texto cabeza-texto">' + fmt(T.entrada) + '</p></div><div class="test" id="testCaja" aria-live="polite"></div></div></section>';
+  h += '<section class="noche test-sec" id="encuentra"><div class="w test-inv">' +
+    '<button class="test-foto" type="button" data-abrir-test aria-label="' + esc(T.empezar) + '"><img loading="lazy" decoding="async" src="assets/' + esc(T.foto) + '" alt="" />' +
+      '<span class="test-foto-tarjeta" aria-hidden="true"><img src="assets/revo-logo-white.webp" alt="" /><i>' + fmt(T.res.unRegaloPara) + '</i><b>…</b></span></button>' +
+    '<div class="test-inv-txt"><p class="ojo">' + fmt(T.rotulo) + '</p><h2 class="t2">' + fmt(T.titulo) + '</h2>' +
+    '<p class="texto cabeza-texto">' + fmt(T.entrada) + '</p>' +
+    '<button class="boton boton--luz" type="button" data-abrir-test>' + fmt(T.empezar) + '</button>' +
+    '<p class="mini test-dur">' + fmt(T.duracion) + '</p></div></div></section>';
 
   // así lo recibe
   var R = N.RECIBE;
@@ -138,7 +142,7 @@
     var x = porId(id); if (!x) return;
     evento('pulso_reservar', { desde: desde || 'tarjeta', exp: id });
     extra = extra || {};
-    if (window.REVO && window.REVO.regalar) window.REVO.regalar({ exp: x.nombre, precio: x.precio, url: x.url, para: extra.para, dedicatoria: extra.dedicatoria });
+    if (window.REVO && window.REVO.regalar) window.REVO.regalar({ exp: x.nombre, precio: x.precio, url: x.url, para: extra.para, dedicatoria: extra.dedicatoria, formato: extra.formato });
     else location.href = x.url;
   }
   app.addEventListener('click', function (e) {
@@ -151,109 +155,8 @@
     d.addEventListener('toggle', function () { if (d.open) evento('abrio_duda', { n: Number(d.getAttribute('data-n')) }); });
   });
 
-  /* ---------- «Encuentra su regalo» ----------
-     Tres respuestas que van completando una frase; la tercera decide la experiencia y la segunda da la otra opción.
-     El resultado trae la tarjeta del regalo: el nombre y la dedicatoria que se escriban aquí pasan a la ventana
-     «Regalar» ya rellenos. No viajan en la medición. */
-  var caja = document.getElementById('testCaja');
-  var PREG = T.preguntas;
-  var resp = [];   // índice elegido en cada pregunta
-  function frase(hasta) {
-    var trozos = [];
-    for (var i = 0; i < hasta && i < resp.length; i++) trozos.push(esc(PREG[i].frase) + ' <em>' + esc(PREG[i].opciones[resp[i]].t) + '</em>');
-    return trozos.length ? trozos.join(', ') + (hasta >= PREG.length ? '.' : '…') : '';
-  }
-  function progreso(n) {
-    var h = '<ol class="t-prog" aria-label="Paso ' + (n + 1) + ' de ' + PREG.length + '">';
-    for (var i = 0; i < PREG.length; i++) h += '<li class="' + (i < n ? 'hecho' : i === n ? 'ahora' : '') + '"><span>0' + (i + 1) + '</span></li>';
-    return h + '</ol>';
-  }
-  function entra() { if (reduce) return; var c = caja.firstElementChild; if (c) { c.classList.add('entra'); } }
-  function pregunta(n) {
-    resp.length = n;
-    var p = PREG[n];
-    caja.innerHTML = '<div class="t-paso">' + progreso(n) +
-      '<p class="t-frase"' + (n ? '' : ' hidden') + '>' + frase(n) + '</p>' +
-      '<h3 class="t3 t-pregunta">' + fmt(p.titulo) + '</h3>' +
-      '<div class="t-ops' + (p.opciones.length > 5 ? ' t-ops--dos' : '') + '">' + p.opciones.map(function (o, k) {
-        return '<button class="op" type="button" data-k="' + k + '"><span>' + fmt(o.t) + '</span><i aria-hidden="true"></i></button>';
-      }).join('') + '</div>' +
-      (n ? '<button class="test-atras" type="button">' + fmt(T.atras) + '</button>' : '') + '</div>';
-    entra();
-    caja.querySelectorAll('.op').forEach(function (b) {
-      b.addEventListener('click', function () {
-        resp[n] = Number(b.getAttribute('data-k'));
-        b.classList.add('elegida');
-        setTimeout(function () { if (n + 1 < PREG.length) { pregunta(n + 1); foco(); } else resultado(); }, reduce ? 0 : 260);
-      });
-    });
-    var at = caja.querySelector('.test-atras'); if (at) at.addEventListener('click', function () { pregunta(n - 1); foco(); });
-  }
-  function resultado() {
-    var oPara = PREG[0].opciones[resp[0]], oDia = PREG[1].opciones[resp[1]], oDeseo = PREG[2].opciones[resp[2]];
-    var id = oDeseo.da, x = porId(id), R = N.REGALO[id];
-    var otraId = oDia.da !== id ? oDia.da : R.otra, y = porId(otraId);
-    var ded = oPara.formal ? N.DEDICATORIA_FORMAL : R.dedicatoria;
-    evento('eligio_tema', { tema: id, para: resp[0], dia: resp[1], deseo: resp[2] });
-    evento('vio_resultado', { exp: id, otra: otraId });
-    caja.innerHTML = '<div class="t-res">' +
-      '<p class="t-frase t-frase--final">' + frase(PREG.length) + '</p>' +
-      '<div class="res-grid">' +
-        '<div class="res-exp">' +
-          '<p class="ojo">' + fmt(T.rotuloResultado) + '</p>' +
-          '<h3 class="t2 res-nombre">' + esc(x.nombre) + '</h3>' +
-          '<p class="res-titular">' + fmt(R.titular) + '</p>' +
-          '<div class="res-foto"><img src="assets/' + esc(x.foto) + '" alt="" style="object-position:' + esc(x.pos || '50% 50%') + '" /></div>' +
-          '<p class="exp-meta"><span>' + esc(x.dur) + ' · ' + x.pasos.length + ' terapias</span><span class="exp-precio">' + esc(x.precio) + ' €</span></p>' +
-          '<h4 class="res-h">' + fmt(T.porQue) + '</h4><p class="texto">' + fmt(oDia.porque) + ' ' + fmt(R.porque) + '</p>' +
-          '<h4 class="res-h">' + fmt(T.vivira) + '</h4><ol class="res-pasos">' + R.pasos.map(function (p) {
-            return '<li><b>' + esc(p[0]) + '</b><span>' + esc(p[1]) + '</span></li>';
-          }).join('') + '</ol>' +
-        '</div>' +
-        '<div class="res-regalo">' +
-          '<h4 class="res-h">' + fmt(T.tarjeta) + '</h4>' +
-          '<div class="tarjeta-regalo" aria-hidden="true">' +
-            '<img class="tr-logo" src="assets/revo-logo-white.webp" alt="" />' +
-            '<p class="tr-ojo">' + fmt(T.unRegaloPara) + '</p>' +
-            '<p class="tr-nombre vacio" id="trNombre">' + fmt(T.nombre) + '</p>' +
-            '<p class="tr-exp">' + esc(x.nombre) + ' · ' + esc(x.dur) + '</p>' +
-            '<p class="tr-ded" id="trDed">«' + esc(ded) + '»</p>' +
-          '</div>' +
-          '<label class="campo campo--papel"><span>' + fmt(T.nombre) + ' <i>' + fmt(T.nombreAyuda) + '</i></span><input id="tNombre" type="text" maxlength="40" autocomplete="off" /></label>' +
-          '<label class="campo campo--papel"><span>' + fmt(T.dedicatoria) + ' <i>' + fmt(T.dedicatoriaAyuda) + '</i></span><textarea id="tDed" rows="2" maxlength="240">' + esc(ded) + '</textarea></label>' +
-          '<button class="boton boton--luz" type="button" id="tRegalar">' + fmt(sub(T.boton, { exp: x.nombre })) + '</button>' +
-          '<p class="mini res-nota">' + fmt(T.nota) + '</p>' +
-          '<div class="res-otra">' +
-            '<p class="res-h">' + fmt(T.otra) + '</p>' +
-            '<div class="res-otra-fila"><img src="assets/' + esc(y.foto) + '" alt="" style="object-position:' + esc(y.pos || '50% 50%') + '" />' +
-              '<div><p class="res-otra-nombre">' + esc(y.nombre) + '</p><p class="mini">' + fmt(y.lema) + ' · ' + esc(y.precio) + ' €</p></div></div>' +
-            '<p class="res-oferta">' + fmt(T.oferta) + '</p>' +
-            '<button class="enlace-luz" type="button" data-regalar="' + esc(otraId) + '" data-desde="test-otra">' + fmt(sub(T.otraBoton, { exp: y.nombre })) + '</button>' +
-          '</div>' +
-        '</div>' +
-      '</div>' +
-      '<button class="test-atras res-reinicio" type="button">' + fmt(T.deNuevo) + '</button></div>';
-    entra();
-    var inN = document.getElementById('tNombre'), inD = document.getElementById('tDed');
-    var trN = document.getElementById('trNombre'), trD = document.getElementById('trDed'), btn = document.getElementById('tRegalar');
-    var nombreBase = trN.textContent;
-    function pinta() {
-      var n = inN.value.trim();
-      trN.textContent = n || nombreBase; trN.classList.toggle('vacio', !n);
-      trD.textContent = inD.value.trim() ? '«' + inD.value.trim() + '»' : '';
-      btn.innerHTML = fmt(sub(n ? T.botonNombre : T.boton, { exp: x.nombre, nombre: n }));
-    }
-    inN.addEventListener('input', pinta); inD.addEventListener('input', pinta);
-    btn.addEventListener('click', function () { regalar(id, 'test', { para: inN.value.trim(), dedicatoria: inD.value.trim() }); });
-    caja.querySelector('.res-reinicio').addEventListener('click', function () { pregunta(0); foco(); });
-    foco();
-  }
-  function foco() {
-    var r = caja.getBoundingClientRect();
-    if (r.top < 0 || r.top > innerHeight * 0.45) window.scrollTo({ top: scrollY + r.top - 80, behavior: reduce ? 'auto' : 'smooth' });
-  }
-  caja.addEventListener('click', function (e) { var b = e.target.closest('[data-regalar]'); if (b) { e.stopPropagation(); regalar(b.getAttribute('data-regalar'), b.getAttribute('data-desde') || 'test'); } });
-  pregunta(0);
+  /* ---------- «Encuentra su regalo»: la experiencia vive en navidad-test.js ---------- */
+  window.NAVIDAD_PAGINA = { regalar: regalar, evento: evento, porId: porId, fmt: fmt, esc: esc, sub: sub };
 
   /* ---------- el sorteo ---------- */
   var S = N.SORTEO, secS = document.getElementById('sorteo');
@@ -323,6 +226,5 @@
 
   /* ---------- llegada ---------- */
   evento('abrio', { test: location.hash === '#test' ? 1 : 0 });
-  if (location.hash === '#test') setTimeout(function () { var t = document.getElementById('test'); t.scrollIntoView({ behavior: 'auto' }); t.focus({ preventScroll: true }); }, 60);
-  else if (location.hash && document.querySelector(location.hash)) setTimeout(function () { document.querySelector(location.hash).scrollIntoView(); }, 60);
+  if (location.hash !== '#test' && location.hash && document.querySelector(location.hash)) setTimeout(function () { document.querySelector(location.hash).scrollIntoView(); }, 60);
 })();
