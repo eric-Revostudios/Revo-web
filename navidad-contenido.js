@@ -6,9 +6,9 @@
 window.NAVIDAD = {
 
   /* ---- interruptores ---- */
-  // Mandar el canal (?c=) a la Platform con cada regalo. APAGADO hasta que la Platform confirme que /api/regalo lo
-  // admite (con el campo trampa relleno responde «ok» sin mirar nada, así que no se puede comprobar desde fuera).
-  ENVIAR_CANAL: false,
+  // Mandar el canal (?c=) a la Platform con cada regalo. Encendido el 20-nov-2026: la Platform confirmó que
+  // /api/regalo lo admite (commit da787f7 de revo-clinical) y que uno mal formado se ignora sin romper el regalo.
+  ENVIAR_CANAL: true,
   // Pedir a la Platform el nombre del partner y si su canal tiene sorteo. Sin respuesta (o sin la puerta publicada),
   // la página sigue sin sorteo y con el texto general.
   PLATFORM: 'https://revo-platform.vercel.app',
