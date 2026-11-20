@@ -75,9 +75,13 @@
   var h = '';
 
   // la oferta en una frase
-  h += '<section class="oferta" id="oferta"><div class="w estrecho">' +
+  // (OFERTA_VISIBLE / OFERTA_PENDIENTE: ver el contenido; la oferta está sin aprobar)
+  var pend = N.OFERTA_PENDIENTE ? '<span class="pend-marca">' + esc(N.PENDIENTE) + '</span>' : '';
+  window.NAVIDAD_PEND = pend;
+  if (N.OFERTA_VISIBLE !== false) h += '<section class="oferta" id="oferta"><div class="w estrecho">' + pend +
     '<p class="ojo">' + fmt(N.OFERTA.rotulo) + '</p>' +
     '<p class="oferta-frase t2">' + fmt(N.OFERTA.frase) + '</p>' +
+    (N.OFERTA.entrada ? '<p class="texto oferta-entrada">' + fmt(N.OFERTA.entrada) + '</p>' : '') +
     '<p class="mini">' + fmt(N.OFERTA.letra) + '</p></div></section>';
 
   // las seis experiencias
@@ -126,7 +130,10 @@
 
   // dudas
   h += '<section class="papel" id="dudas"><div class="w estrecho"><h2 class="t2">' + fmt(N.DUDAS_TITULO) + '</h2><div class="dudas">';
-  N.DUDAS.forEach(function (d, k) { h += '<details data-n="' + k + '"><summary>' + fmt(d[0]) + '</summary><p class="texto">' + fmt(d[1]) + '</p></details>'; });
+  N.DUDAS.forEach(function (d, k) {
+    if (d[2] === 'oferta' && N.OFERTA_VISIBLE === false) return;   // la de la tercera, solo si la oferta se enseña
+    h += '<details data-n="' + k + '"><summary>' + fmt(d[0]) + (d[2] === 'oferta' ? ' ' + pend : '') + '</summary><p class="texto">' + fmt(d[1]) + '</p></details>';
+  });
   h += '</div></div></section>';
 
   // cierre

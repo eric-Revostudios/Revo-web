@@ -369,3 +369,7 @@ html.nt-abierto, html.nt-abierto body{ overflow:hidden; }
   .nt[data-p="resultado"] .nt-fondo img.ve{ opacity:.14; }
 }
 
+/* marca de borrador: lo que aún no está aprobado (la oferta de la tercera). Solo existe mientras OFERTA_PENDIENTE. */
+.pend-marca{ display:inline-block; vertical-align:middle; margin:0 0 14px; padding:3px 9px; border-radius:6px; background:#ffe680; color:#3d3200; font:600 11px/1.3 var(--sans); letter-spacing:.04em; }
+.dudas summary .pend-marca, .nt-oferta .pend-marca{ margin:0 0 0 6px; }
+.oferta-entrada{ margin:-8px 0 14px; color:var(--luz-2); }

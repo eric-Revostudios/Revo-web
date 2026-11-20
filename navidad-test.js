@@ -263,7 +263,7 @@
             '<h3 class="nt-h">' + fmt(R0.otra) + '</h3>' +
             '<div class="nt-otra-fila"><img src="assets/' + esc(y.foto) + '" alt="" style="object-position:' + esc(y.pos || '50% 50%') + '" />' +
               '<div><p class="nt-otra-n">' + esc(y.nombre) + '</p><p class="nt-ayuda">' + fmt(y.lema) + ' · ' + esc(y.precio) + ' €</p></div></div>' +
-            '<p class="nt-texto nt-oferta">' + fmt(R0.oferta) + '</p>' +
+            (N.OFERTA_VISIBLE !== false ? '<p class="nt-texto nt-oferta">' + fmt(R0.oferta) + ' ' + (window.NAVIDAD_PEND || '') + '</p>' : '') +
             '<button class="nt-enlace nt-otra-b" type="button">' + fmt(sub(R0.otraBoton, { exp: y.nombre })) + '</button>' +
           '</div>' +
           '<div class="nt-compartir"><p class="nt-texto">' + fmt(R0.compartir) + '</p>' +

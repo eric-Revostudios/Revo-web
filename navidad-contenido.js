@@ -16,7 +16,7 @@ window.NAVIDAD = {
   // los centros asociados: con su canal, la cabecera dice «Para la comunidad de {nombre}»
   PARTNERS: ['goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
   // Solo para la maqueta: si la Platform no contesta, con ?sorteo=1 se ve el bloque del sorteo para revisarlo.
-  NOMBRES_PROVISIONALES: { goodfit: 'GoodFit', barrys: "Barry's", corehaus: 'CoreHaus', casabarre: 'Casa Barre', yogaone: 'YogaOne', vecinos: 'Turó Park' },
+  NOMBRES_PROVISIONALES: { goodfit: 'GoodFit', barrys: "Barry's Barcelona", corehaus: 'Corehaus', casabarre: 'Casa Barré', yogaone: 'YogaOne Aragó-Eixample', vecinos: 'Turó Park' },   // los mismos que la Platform (21-nov)
 
   /* ---- cabecera ---- */
   CABECERA: {
@@ -30,9 +30,20 @@ window.NAVIDAD = {
   },
 
   /* ---- la oferta en una frase ---- */
+  // ⚠️ La oferta NO está aprobada: la decide María (la jefa) el martes 24-nov. Mientras OFERTA_PENDIENTE sea true,
+  // el borrador la enseña con una marca amarilla en los tres sitios donde sale (este bloque, el resultado del test y
+  // la pregunta frecuente). Si se aprueba: false. Si no se aprueba: OFERTA_VISIBLE false y desaparece de los tres.
+  // Plan B si se aprueba con cambios: la tercera es siempre Sleep & Stress (cambiar `letra` y la pregunta frecuente).
+  // Ojo con Massage + (110 €): con la regla «igual o menor que la más económica», quien compra una Massage + solo
+  // podría recibir otra Massage +; con el plan B recibiría algo que vale más de lo que compró. Hay que fijarlo.
+  OFERTA_VISIBLE: true,
+  OFERTA_PENDIENTE: true,
+  PENDIENTE: 'Pendiente de aprobar',
   OFERTA: {
-    rotulo: 'Hasta el 5 de enero',
-    frase: 'Regala dos experiencias y te regalamos *una tercera*, para ti o para quien quieras.',
+    rotulo: 'Del 26 de noviembre al 5 de enero',
+    // nombre propuesto en los textos de campaña (sin aprobar): «Regalas dos. La tercera, de nuestra parte.»
+    frase: 'Regalas dos. *La tercera, de nuestra parte.*',
+    entrada: 'Al regalar dos experiencias, te regalamos una tercera, para ti o para quien quieras.',
     letra: 'La tercera es de igual o menor precio que la más económica de las dos y se disfruta de enero a marzo de 2027. Te llega sola, en la página de tu regalo.'
   },
 
@@ -261,7 +272,7 @@ window.NAVIDAD = {
     ['¿Cómo reserva su sesión?', 'Por WhatsApp o por teléfono, cuando le vaya bien. Le ayudamos a encontrar el día.'],
     ['¿Cuándo llega el regalo?', 'Al momento. Al pagar te llevamos a la página de su regalo para que se la envíes tú.'],
     ['¿Puedo darlo en mano?', 'Sí. Elige «Impreso» al regalar y recoge la tarjeta en el estudio, en Turó Park.'],
-    ['¿Cómo funciona la tercera experiencia?', 'Al regalar dos, el tercer vale aparece solo en la página de tu regalo. Es de igual o menor precio que la más económica de las dos y se disfruta de enero a marzo de 2027.']
+    ['¿Cómo funciona la tercera experiencia?', 'Al regalar dos, el tercer vale aparece solo en la página de tu regalo. Es de igual o menor precio que la más económica de las dos y se disfruta de enero a marzo de 2027.', 'oferta']
   ],
 
   /* ---- cierre ---- */
