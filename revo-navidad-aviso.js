@@ -4,9 +4,8 @@
    - Con data-franja en la etiqueta <script>, además una franja discreta arriba (portada y experiencias, ES y EN).
    - CADUCA SOLO: a partir del 6 de enero de 2027 (hora de Madrid) no pinta nada. Después se puede quitar la línea
      <script src="/revo-navidad-aviso.js"> de las páginas cuando se quiera; no hace falta hacerlo ese día.
-   - Lleva a /navidad (o /en/navidad) SIN canal: ninguno de los diez canales de los QR es «la propia web». Va con
-     utm_source=web y utm_medium=franja | menu, que la página guarda y manda en el correo del regalo y en la medición.
-     Si la Platform crea un canal «web», basta con añadir &c=web en url() de abajo.
+   - Lleva a /navidad?c=web (o /en/navidad?c=web): el canal «web» («La web», sin sorteo) lo creó la Platform el
+     21-nov-2026 para lo que llega desde la propia web. Lleva además utm_source=web y utm_medium=franja | menu.
    - No menciona la oferta de la tercera ni precios.
    Se carga en <head> SIN defer: así añade «Navidad» al menú de ordenador antes de que la página construya el menú
    del móvil a partir de él (lo hace al terminar de cargar). Si el menú del móvil ya existiera, se añade también ahí.
@@ -22,7 +21,7 @@
   var T = en
     ? { menu: 'Christmas', base: '/en/navidad', ojo: 'Christmas at REVO', txt: 'Give an experience', aria: 'Christmas at REVO: give an experience' }
     : { menu: 'Navidad', base: '/navidad', ojo: 'Navidad en REVO', txt: 'Regala una experiencia', aria: 'Navidad en REVO: regala una experiencia' };
-  function url(medio) { return T.base + '?utm_source=web&utm_medium=' + medio; }
+  function url(medio) { return T.base + '?c=web&utm_source=web&utm_medium=' + medio; }
 
   function menu() {
     var nav = document.querySelector('.site-header .nav');
