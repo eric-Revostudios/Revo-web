@@ -15,7 +15,7 @@ window.NAVIDAD = {
 
   CABECERA: {
     rotulo: 'Christmas at REVO',
-    titulo: 'This Christmas, give *health*.',
+    titulo: 'This Christmas, give *wellbeing*.',
     entrada: 'Some gifts are unwrapped. This one is felt.',
     boton: 'Choose an experience',
     test: 'Not sure which? Find their gift',
@@ -87,7 +87,7 @@ window.NAVIDAD = {
       sinNombre: 'I would rather not say'
     },
     dia: {
-      ojo: '02 · Their day', titulo: 'On an ordinary day, *{nombre}*…', sin: 'On an ordinary day, that person…',
+      ojo: '02 · Their day', ayuda: 'Choose all that apply.', y: ' and ', titulo: 'On an ordinary day, *{nombre}*…', sin: 'On an ordinary day, that person…',
       opciones: [
         { t: 'is always on the go and finds it hard to stop', foto: 'nv-cognitiva.webp', pos: '50% 30%', da: 'cognitiva', porque: 'is always on the go and finds it hard to stop' },
         { t: 'trains or plays sport', foto: 'navidad-entrena.webp', pos: '50% 25%', da: 'sports', porque: 'trains and asks a lot of their body' },

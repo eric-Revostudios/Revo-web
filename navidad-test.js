@@ -14,7 +14,7 @@
   var PASOS = ['nombre', 'dia', 'deseo', 'como'];
 
   var el, escena, video, prog, btnAtras, abierto = false, empujado = false, pila = [], st = null, lastFocus = null;
-  function nuevo() { return { nombre: '', rel: null, dia: null, deseo: null, como: null, ded: null }; }
+  function nuevo() { return { nombre: '', rel: null, dia: [], deseo: null, como: null, ded: null }; }
 
   /* ---------- montaje ---------- */
   function montar() {
@@ -157,23 +157,30 @@
       inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); seguir(); } });
     },
 
+    // Selección múltiple (Eric, 23-nov-2026): se marcan todas las que encajen y «Continuar» aparece en cuanto hay
+    // una (sin botón apagado). st.dia guarda los índices en el orden en que se marcaron.
     dia: function () {
       var Q = T.dia;
       escena.innerHTML = '<div class="nt-p nt-dia">' +
         '<p class="ojo">' + fmt(Q.ojo) + '</p>' +
         '<h2 class="nt-t2" tabindex="-1">' + (st.nombre ? fmt(sub(Q.titulo, { nombre: st.nombre })) : fmt(Q.sin)) + '</h2>' +
-        '<div class="nt-sens nt-sens--dia">' + Q.opciones.map(function (o, k) {
-          return '<button class="nt-s' + (st.dia === k ? ' elegida' : '') + '" type="button" data-k="' + k + '" style="--d:' + (k * 55) + 'ms">' +
-            '<span class="nt-s-t">' + fmt(o.t) + '</span></button>';
-        }).join('') + '</div></div>';
+        '<p class="nt-ayuda nt-varias">' + fmt(Q.ayuda) + '</p>' +
+        '<div class="nt-sens nt-sens--dia" role="group">' + Q.opciones.map(function (o, k) {
+          var si = st.dia.indexOf(k) !== -1;
+          return '<button class="nt-s nt-s--marca' + (si ? ' elegida' : '') + '" type="button" aria-pressed="' + si + '" data-k="' + k + '" style="--d:' + (k * 55) + 'ms">' +
+            '<span class="nt-s-t">' + fmt(o.t) + '</span><i aria-hidden="true"></i></button>';
+        }).join('') + '</div>' +
+        '<div class="nt-pie nt-pie--dia"><button class="boton boton--luz nt-seguir" type="button"' + (st.dia.length ? '' : ' hidden') + '>' + fmt(T.seguir) + '</button></div></div>';
+      var seguir = escena.querySelector('.nt-seguir');
       escena.querySelectorAll('.nt-s').forEach(function (b) {
         b.addEventListener('click', function () {
-          if (escena.classList.contains('eligiendo')) return;
-          st.dia = Number(b.getAttribute('data-k'));
-          escena.querySelectorAll('.nt-s').forEach(function (x) { x.classList.toggle('elegida', x === b); x.classList.toggle('apagada', x !== b); });
-          luego(function () { ir('deseo'); });
+          var k = Number(b.getAttribute('data-k')), i = st.dia.indexOf(k);
+          if (i === -1) st.dia.push(k); else st.dia.splice(i, 1);
+          b.classList.toggle('elegida', i === -1); b.setAttribute('aria-pressed', String(i === -1));
+          seguir.hidden = !st.dia.length;
         });
       });
+      seguir.addEventListener('click', function () { if (st.dia.length) ir('deseo'); });
     },
 
     deseo: function () {
@@ -228,15 +235,20 @@
 
     resultado: function () {
       var R0 = T.res, id = T.deseo.opciones[st.deseo].da, x = P.porId(id), R = N.REGALO[id];
-      var oDia = T.dia.opciones[st.dia];
-      var otraId = oDia.da !== id ? oDia.da : R.otra, y = P.porId(otraId);
+      // varias respuestas: la frase las junta todas («va a mil y le cuesta parar y entrena…») y la segunda opción es
+      // la primera marcada que no sea la experiencia elegida
+      var dias = st.dia.map(function (k) { return T.dia.opciones[k]; });
+      var otraDia = dias.filter(function (o) { return o.da !== id; })[0];
+      var otraId = otraDia ? otraDia.da : R.otra, y = P.porId(otraId);
+      var porques = dias.map(function (o) { return o.porque; });
+      var porqueDia = porques.length > 1 ? porques.slice(0, -1).join(', ') + T.dia.y + porques[porques.length - 1] : porques[0];
       var rel = st.rel != null ? T.nombre.relaciones[st.rel] : null;
       if (st.ded == null) st.ded = rel && rel.formal ? N.DEDICATORIA_FORMAL : R.dedicatoria;
       var formato = T.como.opciones[st.como].formato;
       var n = st.nombre;
-      P.evento('eligio_tema', { tema: id, dia: st.dia, deseo: st.deseo, como: formato, rel: st.rel });
+      P.evento('eligio_tema', { tema: id, dia: st.dia.join(','), deseo: st.deseo, como: formato, rel: st.rel });
       P.evento('vio_resultado', { exp: id, otra: otraId, test: 1 });
-      var porque = sub(n ? R0.frase : R0.fraseSin, { Nombre: n, porque: oDia.porque, sensacion: R.sensacion, motivo: R.motivo });
+      var porque = sub(n ? R0.frase : R0.fraseSin, { Nombre: n, porque: porqueDia, sensacion: R.sensacion, motivo: R.motivo });
       escena.innerHTML = '<div class="nt-p nt-res">' +
         // Lo que recibe DE VERDAD (Eric, 23-nov: «no te inventes la tarjeta»): la página real de la Platform, la de
         // ejemplo de esta experiencia, en un móvil y tocable. Va con el ejemplo de la Platform («Ana»): su nombre y la

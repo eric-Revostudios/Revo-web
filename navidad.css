@@ -390,3 +390,13 @@ html.nt-abierto, html.nt-abierto body{ overflow:hidden; }
 .nt-movil-pantalla iframe{ position:absolute; top:0; left:0; width:390px; height:780px; border:0; transform:scale(.6); transform-origin:0 0; }
 .recibe-digital .nt-movil{ align-self:center; margin-bottom:14px; animation:none; }
 @media (prefers-reduced-motion: reduce){ .nt-movil{ animation:none; } }
+
+/* «Un día cualquiera» con selección múltiple (23-nov-2026): cada opción lleva su marca a la derecha. */
+.nt-varias{ margin-top:12px; }
+.nt-s--marca{ flex-direction:row; align-items:center; justify-content:space-between; gap:16px; }
+.nt-s--marca i{ flex:none; width:22px; height:22px; border-radius:7px; box-shadow:0 0 0 1px var(--raya-luz) inset; transition:all .3s var(--ease); position:relative; }
+.nt-s--marca.elegida i{ background:var(--azul-claro); box-shadow:0 0 14px 2px rgba(104,129,252,.7); }
+.nt-s--marca.elegida i::after{ content:""; position:absolute; left:7px; top:3px; width:6px; height:11px; border:solid var(--noche); border-width:0 2px 2px 0; transform:rotate(45deg); }
+.nt-sens--dia .nt-s.elegida .nt-s-t{ font-family:inherit; font-style:normal; text-shadow:none; }
+.nt-pie--dia{ padding-top:28px; }
+.nt-pie--dia .nt-seguir{ max-width:360px; animation:nt-entra .5s var(--ease) both; }

@@ -23,7 +23,7 @@ window.NAVIDAD = {
   /* ---- cabecera ---- */
   CABECERA: {
     rotulo: 'Navidad en REVO',
-    titulo: 'Esta Navidad, regala *salud*.',
+    titulo: 'Esta Navidad, regala *bienestar*.',
     entrada: 'Hay regalos que se abren. Este se siente.',
     boton: 'Elegir una experiencia',
     test: '¿No sabes cuál? Encuentra su regalo',
@@ -119,7 +119,7 @@ window.NAVIDAD = {
       sinNombre: 'Prefiero no ponerlo'
     },
     dia: {
-      ojo: '02 · Su día a día', titulo: 'Un día cualquiera, *{nombre}*…', sin: 'Un día cualquiera, esa persona…',
+      ojo: '02 · Su día a día', ayuda: 'Elige todas las que encajen.', y: ' y ', titulo: 'Un día cualquiera, *{nombre}*…', sin: 'Un día cualquiera, esa persona…',
       opciones: [
         { t: 'va a mil y le cuesta parar', foto: 'nv-cognitiva.webp', pos: '50% 30%', da: 'cognitiva', porque: 'va a mil y le cuesta parar' },
         { t: 'entrena o hace deporte', foto: 'navidad-entrena.webp', pos: '50% 25%', da: 'sports', porque: 'entrena y le pide mucho al cuerpo' },
