@@ -13,7 +13,7 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var PASOS = ['nombre', 'dia', 'deseo', 'como'];
 
-  var el, escena, fondoA, fondoB, prog, btnAtras, abierto = false, empujado = false, pila = [], st = null, lastFocus = null;
+  var el, escena, video, prog, btnAtras, abierto = false, empujado = false, pila = [], st = null, lastFocus = null;
   function nuevo() { return { nombre: '', rel: null, dia: null, deseo: null, como: null, ded: null }; }
 
   /* ---------- montaje ---------- */
@@ -22,7 +22,9 @@
     el = document.createElement('div');
     el.className = 'nt'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', T.intro.ojo); el.hidden = true;
     el.innerHTML =
-      '<div class="nt-fondo" aria-hidden="true"><img alt="" /><img alt="" /></div>' +
+      // de fondo, el vídeo del estudio de la portada (el de /tu-punto), velado; sin fotos sueltas (Eric, 23-nov)
+      '<div class="nt-fondo" aria-hidden="true"><img class="nt-poster" src="/assets/hero-poster-v3.webp" alt="" />' +
+        '<video muted loop playsinline webkit-playsinline disableremoteplayback preload="none"></video></div>' +
       '<div class="nt-barra">' +
         '<button class="nt-icono nt-atras" type="button" aria-label="' + esc(T.atras) + '"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>' +
         '<ol class="nt-prog" aria-hidden="true">' + PASOS.map(function () { return '<li></li>'; }).join('') + '</ol>' +
@@ -31,7 +33,7 @@
       '<div class="nt-escena"></div>';
     document.body.appendChild(el);
     escena = el.querySelector('.nt-escena');
-    var imgs = el.querySelectorAll('.nt-fondo img'); fondoA = imgs[0]; fondoB = imgs[1];
+    video = el.querySelector('.nt-fondo video');
     prog = el.querySelectorAll('.nt-prog li');
     btnAtras = el.querySelector('.nt-atras');
     btnAtras.addEventListener('click', atras);
@@ -39,17 +41,18 @@
     el.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(true); });
   }
 
-  function fondo(src, pos) {
-    if (!src) { fondoA.classList.remove('ve'); fondoB.classList.remove('ve'); return; }
-    var url = '/assets/' + src;
-    var vis = fondoA.classList.contains('ve') ? fondoA : fondoB.classList.contains('ve') ? fondoB : null;
-    if (vis && vis.getAttribute('src') === url) return;
-    var otra = vis === fondoA ? fondoB : fondoA;
-    otra.onload = function () { otra.classList.add('ve'); if (vis) vis.classList.remove('ve'); };
-    otra.style.objectPosition = pos || '50% 50%';
-    otra.setAttribute('src', url);
-    if (otra.complete && otra.naturalWidth) otra.onload();
+  // El vídeo solo se descarga al abrir el test; con ahorro de datos o «reducir movimiento», se queda la imagen fija.
+  function videoSi() {
+    if (!video || reduce) return;
+    try { if (navigator.connection && navigator.connection.saveData) return; } catch (e) {}
+    if (!video.getAttribute('src')) {
+      video.muted = true; video.defaultMuted = true;
+      video.addEventListener('playing', function () { video.classList.add('va'); });
+      video.src = '/assets/' + (innerWidth > innerHeight && innerWidth >= 900 ? 'hero-video-1080.mp4' : 'hero-video-mobile.mp4');
+    }
+    var p = video.play && video.play(); if (p && p.catch) p.catch(function () {});
   }
+  function videoNo() { if (video) { try { video.pause(); } catch (e) {} } }
 
   /* ---------- abrir / cerrar ---------- */
   function abrir() {
@@ -60,12 +63,14 @@
     el.hidden = false;
     document.documentElement.classList.add('nt-abierto');
     requestAnimationFrame(function () { el.classList.add('abierto'); });
+    videoSi();
     try { history.pushState({ nt: 1 }, ''); empujado = true; } catch (e) { empujado = false; }
     ir('intro');
   }
   function cerrar(desdeBoton) {
     if (!abierto) return;
     abierto = false;
+    videoNo();
     el.classList.remove('abierto');
     document.documentElement.classList.remove('nt-abierto');
     setTimeout(function () { if (!abierto) { el.hidden = true; escena.innerHTML = ''; } }, reduce ? 0 : 400);
@@ -115,7 +120,6 @@
   /* ---------- pantallas ---------- */
   var PANT = {
     intro: function () {
-      fondo(T.intro.foto, '50% 50%');
       escena.innerHTML = '<div class="nt-p nt-intro">' +
         '<p class="ojo">' + fmt(T.intro.ojo) + '</p>' +
         '<h2 class="nt-t1" tabindex="-1">' + fmt(T.intro.titulo) + '</h2>' +
@@ -126,7 +130,6 @@
 
     nombre: function () {
       var Q = T.nombre;
-      fondo(null);
       escena.innerHTML = '<div class="nt-p nt-nombre">' +
         '<p class="ojo">' + fmt(Q.ojo) + '</p>' +
         '<h2 class="nt-t2" tabindex="-1">' + fmt(Q.titulo) + '</h2>' +
@@ -156,20 +159,18 @@
 
     dia: function () {
       var Q = T.dia;
-      fondo(null);
       escena.innerHTML = '<div class="nt-p nt-dia">' +
         '<p class="ojo">' + fmt(Q.ojo) + '</p>' +
         '<h2 class="nt-t2" tabindex="-1">' + (st.nombre ? fmt(sub(Q.titulo, { nombre: st.nombre })) : fmt(Q.sin)) + '</h2>' +
-        '<div class="nt-fotos">' + Q.opciones.map(function (o, k) {
-          return '<button class="nt-foto' + (st.dia === k ? ' elegida' : '') + '" type="button" data-k="' + k + '" style="--d:' + (k * 60) + 'ms">' +
-            '<img src="/assets/' + esc(o.foto) + '" alt="" loading="eager" decoding="async" style="object-position:' + esc(o.pos || '50% 50%') + '" />' +
-            '<span>' + fmt(o.t) + '</span></button>';
+        '<div class="nt-sens nt-sens--dia">' + Q.opciones.map(function (o, k) {
+          return '<button class="nt-s' + (st.dia === k ? ' elegida' : '') + '" type="button" data-k="' + k + '" style="--d:' + (k * 55) + 'ms">' +
+            '<span class="nt-s-t">' + fmt(o.t) + '</span></button>';
         }).join('') + '</div></div>';
-      escena.querySelectorAll('.nt-foto').forEach(function (b) {
+      escena.querySelectorAll('.nt-s').forEach(function (b) {
         b.addEventListener('click', function () {
           if (escena.classList.contains('eligiendo')) return;
           st.dia = Number(b.getAttribute('data-k'));
-          escena.querySelectorAll('.nt-foto').forEach(function (x) { x.classList.toggle('elegida', x === b); x.classList.toggle('apagada', x !== b); });
+          escena.querySelectorAll('.nt-s').forEach(function (x) { x.classList.toggle('elegida', x === b); x.classList.toggle('apagada', x !== b); });
           luego(function () { ir('deseo'); });
         });
       });
@@ -177,8 +178,6 @@
 
     deseo: function () {
       var Q = T.deseo;
-      var o0 = T.dia.opciones[st.dia];
-      fondo(o0 && o0.foto, o0 && o0.pos);
       escena.innerHTML = '<div class="nt-p nt-deseo">' +
         '<p class="ojo">' + fmt(Q.ojo) + '</p>' +
         '<h2 class="nt-t2" tabindex="-1">' + (st.nombre ? fmt(sub(Q.titulo, { nombre: st.nombre })) : fmt(Q.sin)) + '</h2>' +
@@ -237,15 +236,15 @@
       var n = st.nombre;
       P.evento('eligio_tema', { tema: id, dia: st.dia, deseo: st.deseo, como: formato, rel: st.rel });
       P.evento('vio_resultado', { exp: id, otra: otraId, test: 1 });
-      fondo(x.foto, x.pos);
       var porque = sub(n ? R0.frase : R0.fraseSin, { Nombre: n, porque: oDia.porque, sensacion: R.sensacion, motivo: R.motivo });
       escena.innerHTML = '<div class="nt-p nt-res">' +
-        '<div class="nt-tarjeta" aria-hidden="true"><div class="nt-tarjeta-brillo"></div>' +
-          '<img class="nt-tr-logo" src="/assets/revo-logo-white.webp" alt="" />' +
-          '<p class="nt-tr-ojo">' + fmt(R0.unRegaloPara) + '</p>' +
-          '<p class="nt-tr-nombre">' + esc(n || R0.sinNombre) + '</p>' +
-          '<p class="nt-tr-exp">' + esc(x.nombre) + '</p>' +
-          '<p class="nt-tr-ded" id="ntDedVista"></p>' +
+        // Lo que recibe DE VERDAD (Eric, 23-nov: «no te inventes la tarjeta»): la página real de la Platform, la de
+        // ejemplo de esta experiencia, en un móvil y tocable. Va con el ejemplo de la Platform («Ana»): su nombre y la
+        // dedicatoria NO se mandan a ningún sitio (no salen del navegador); llegan en la página de su regalo al comprar.
+        '<div class="nt-real">' +
+          '<p class="nt-real-ojo">' + fmt(R0.recibe) + '</p>' +
+          '<div class="nt-movil"><div class="nt-movil-pantalla"><iframe src="' + esc(N.RECIBE.demo + id) + '" title="' + esc(R0.recibe) + '" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>' +
+          '<p class="nt-ayuda nt-real-nota">' + fmt(R0.recibeNota) + '</p>' +
         '</div>' +
         '<div class="nt-res-txt">' +
           '<p class="ojo">' + fmt(R0.ojo) + '</p>' +
@@ -261,8 +260,7 @@
           '<p class="nt-ayuda">' + fmt(R0.dedicatoriaAyuda) + '</p>' +
           '<div class="nt-otra">' +
             '<h3 class="nt-h">' + fmt(R0.otra) + '</h3>' +
-            '<div class="nt-otra-fila"><img src="/assets/' + esc(y.foto) + '" alt="" style="object-position:' + esc(y.pos || '50% 50%') + '" />' +
-              '<div><p class="nt-otra-n">' + esc(y.nombre) + '</p><p class="nt-ayuda">' + fmt(y.lema) + ' · ' + esc(y.precio) + ' €</p></div></div>' +
+            '<div class="nt-otra-fila"><div><p class="nt-otra-n">' + esc(y.nombre) + '</p><p class="nt-ayuda">' + fmt(y.lema) + ' · ' + esc(y.precio) + ' €</p></div></div>' +
             (window.NAVIDAD_OFERTA ? '<p class="nt-texto nt-oferta">' + fmt(window.NAVIDAD_OFERTA) + '</p>' : '') +
             '<button class="nt-enlace nt-otra-b" type="button">' + fmt(sub(R0.otraBoton, { exp: y.nombre })) + '</button>' +
           '</div>' +
@@ -273,10 +271,9 @@
         '</div>' +
         '<div class="nt-fijo"><button class="boton boton--luz nt-regalar" type="button"><span>' + fmt(n ? sub(R0.boton, { nombre: n }) : sub(R0.botonSin, { exp: x.nombre })) + '</span><span class="nt-precio">' + esc(x.precio) + ' €</span></button></div>' +
       '</div>';
-      var ta = escena.querySelector('.nt-ded'), vista = document.getElementById('ntDedVista');
+      var ta = escena.querySelector('.nt-ded');
       ta.value = st.ded;
-      function pinta() { st.ded = ta.value; vista.textContent = ta.value.trim() ? '«' + ta.value.trim() + '»' : ''; }
-      ta.addEventListener('input', pinta); pinta();
+      ta.addEventListener('input', function () { st.ded = ta.value; });
       escena.querySelector('.nt-regalar').addEventListener('click', function () {
         cerrar(true);
         P.regalar(id, 'test', { para: n, dedicatoria: ta.value.trim(), formato: formato });

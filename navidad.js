@@ -92,7 +92,6 @@
     '<p class="texto cabeza-texto">' + fmt(N.EXPERIENCIAS_ENTRADA) + '</p><div class="rejilla">';
   N.EXPERIENCIAS.forEach(function (x, k) {
     h += '<article class="exp aparece" id="exp-' + esc(x.id) + '">' +
-      '<div class="exp-foto"><img loading="lazy" decoding="async" src="/assets/' + esc(x.foto) + '" alt="" style="object-position:' + esc(x.pos || '50% 50%') + '" /></div>' +
       '<div class="exp-cuerpo"><p class="exp-num">' + (k < 9 ? '0' : '') + (k + 1) + ' / ' + (N.EXPERIENCIAS.length < 10 ? '0' : '') + N.EXPERIENCIAS.length + '</p>' +
       '<h3 class="exp-nombre">' + esc(x.nombre) + '</h3><p class="exp-lema">' + fmt(x.lema) + '</p>' +
       '<ol class="exp-pasos">' + x.pasos.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ol>' +
@@ -106,8 +105,6 @@
   // el test
   var T = N.TEST;
   h += '<section class="noche test-sec" id="encuentra"><div class="w test-inv">' +
-    '<button class="test-foto" type="button" data-abrir-test aria-label="' + esc(T.empezar) + '"><img loading="lazy" decoding="async" src="/assets/' + esc(T.foto) + '" alt="" />' +
-      '<span class="test-foto-tarjeta" aria-hidden="true"><img src="/assets/revo-logo-white.webp" alt="" /><i>' + fmt(T.res.unRegaloPara) + '</i><b>…</b></span></button>' +
     '<div class="test-inv-txt"><p class="ojo">' + fmt(T.rotulo) + '</p><h2 class="t2">' + fmt(T.titulo) + '</h2>' +
     '<p class="texto cabeza-texto">' + fmt(T.entrada) + '</p>' +
     '<button class="boton boton--luz" type="button" data-abrir-test>' + fmt(T.empezar) + '</button>' +
@@ -117,9 +114,8 @@
   var R = N.RECIBE;
   h += '<section class="papel" id="recibe"><div class="w">' +
     '<p class="ojo">' + fmt(R.rotulo) + '</p><h2 class="t2">' + fmt(R.titulo) + '</h2><div class="recibe">' +
-    '<div class="recibe-caja recibe-digital"><div class="movil" aria-hidden="true"><div class="movil-pantalla">' +
-      '<p class="movil-ojo">' + fmt(R.movil.ojo) + '</p><p class="movil-nombre">' + fmt(R.movil.nombre) + '</p><p class="movil-exp">Sleep &amp; Stress</p>' +
-      '<p class="movil-ded">«' + fmt(R.movil.ded) + '»</p><span class="movil-boton">' + fmt(R.movil.boton) + '</span></div></div>' +
+    // la página real que recibe (la de ejemplo de la Platform), no un móvil dibujado (Eric, 23-nov)
+    '<div class="recibe-caja recibe-digital"><div class="nt-movil"><div class="nt-movil-pantalla"><iframe src="' + esc(R.demo) + 'sleep_stress" title="' + esc(R.digital.t) + '" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>' +
       '<h3 class="t3">' + fmt(R.digital.t) + '</h3><p class="texto">' + fmt(R.digital.d) + '</p>' +
       '<a class="enlace-tinta" href="' + esc(R.demo) + 'sleep_stress" target="_blank" rel="noopener">' + fmt(R.digital.boton) + '</a></div>' +
     '<div class="recibe-caja"><div class="recibe-foto"><img loading="lazy" decoding="async" src="/assets/' + esc(R.impreso.foto) + '" alt="" /></div>' +

@@ -151,6 +151,8 @@ window.NAVIDAD = {
     // el resultado
     res: {
       ojo: 'Su regalo',
+      recibe: 'Así lo recibirá',
+      recibeNota: 'Es la página real que le llega, con un ejemplo. La suya llevará su nombre y tu dedicatoria.',
       unRegaloPara: 'Un regalo para',
       sinNombre: 'ti',
       porQue: 'Por qué a *{nombre}*', porQueSin: 'Por qué le encaja',
@@ -252,9 +254,7 @@ window.NAVIDAD = {
     digital: { t: 'Digital', d: 'Al pagar te llevamos a la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', boton: 'Ver un ejemplo' },
     impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: 'nv-estudio.webp', boton: 'Cómo llegar' },
     // la página real de la Platform (ejemplo con la experiencia que se elija)
-    demo: '/regalo/demo?e=',
-    // el móvil de ejemplo (imita la página del regalo de la Platform)
-    movil: { ojo: 'Un regalo para ti', nombre: 'Para *Ana*', ded: 'Para que este año descanses de verdad.', boton: 'Reservar mi sesión' }
+    demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
 
   /* ---- sorteo (solo canales que lo tienen) ---- */

@@ -118,6 +118,8 @@ window.NAVIDAD = {
     preparando: { titulo: 'Preparing *{nombre}*’s gift…', sin: 'Preparing their gift…', lineas: ['Their day', 'What you would give', 'How you give it'] },
     res: {
       ojo: 'Their gift',
+      recibe: 'This is how they will receive it',
+      recibeNota: 'This is the real page they receive, shown with an example (in Spanish). Theirs will carry their name and your message.',
       unRegaloPara: 'A gift for',
       sinNombre: 'you',
       porQue: 'Why for *{nombre}*', porQueSin: 'Why it suits them',
@@ -215,8 +217,7 @@ window.NAVIDAD = {
     titulo: 'It arrives *right away*. Or by hand.',
     digital: { t: 'Digital', d: 'After paying, we take you to their gift page, with their name and your message. You send it to them, by WhatsApp or email.', boton: 'See an example' },
     impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give by hand.', foto: 'nv-estudio.webp', boton: 'How to get there' },
-    demo: '/regalo/demo?e=',
-    movil: { ojo: 'A gift for you', nombre: 'For *Ana*', ded: 'So this year you truly rest.', boton: 'Book my session' }
+    demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
 
   SORTEO: {

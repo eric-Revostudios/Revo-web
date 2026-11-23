@@ -230,11 +230,13 @@ textarea.exp-input{ resize:vertical; min-height:74px; line-height:1.45; }
 html.nt-abierto, html.nt-abierto body{ overflow:hidden; }
 .nt{ position:fixed; inset:0; z-index:1100; background:var(--noche); color:var(--luz); opacity:0; transition:opacity .45s var(--ease); }
 .nt.abierto{ opacity:1; }
-.nt-fondo, .nt-fondo img{ position:absolute; inset:0; width:100%; height:100%; }
-.nt-fondo img{ object-fit:cover; opacity:0; transform:scale(1.04); transition:opacity 1.1s var(--ease), transform 6s var(--ease); }
-.nt-fondo img.ve{ opacity:.42; transform:none; }
+.nt-fondo, .nt-fondo img, .nt-fondo video{ position:absolute; inset:0; width:100%; height:100%; }
+/* de fondo, el vídeo del estudio de la portada (el mismo de /tu-punto), velado; la imagen fija mientras no corre */
+.nt-fondo img, .nt-fondo video{ object-fit:cover; opacity:.34; }
+.nt-fondo video{ opacity:0; transition:opacity 1.2s var(--ease); }
+.nt-fondo video.va{ opacity:.34; }
 .nt-fondo::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,7,15,.55) 0%, rgba(6,7,15,.35) 35%, rgba(6,7,15,.92) 78%, var(--noche) 100%), radial-gradient(90% 55% at 50% 105%, rgba(54,80,207,.42), transparent 70%); }
-.nt[data-p="resultado"] .nt-fondo img.ve{ opacity:.28; }
+.nt[data-p="resultado"] .nt-fondo img, .nt[data-p="resultado"] .nt-fondo video.va{ opacity:.18; }
 .nt-barra{ position:absolute; z-index:3; top:0; left:0; right:0; display:flex; align-items:center; gap:14px; padding:max(12px, env(safe-area-inset-top,0px)) 12px 10px; }
 .nt-icono{ flex:none; width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border:0; border-radius:50%; background:rgba(246,244,239,.08); color:var(--luz); cursor:pointer; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
 .nt-icono[hidden]{ display:inline-flex !important; visibility:hidden; }
@@ -354,12 +356,12 @@ html.nt-abierto, html.nt-abierto body{ overflow:hidden; }
 .nt-precio{ font-weight:500; color:rgba(6,7,15,.62); }
 
 @media (prefers-reduced-motion: reduce){
-  .nt, .nt-fondo img{ transition:none; }
+  .nt, .nt-fondo video{ transition:none; }
   .nt-entra > *, .nt-foto, .nt-s, .nt-c, .nt-tarjeta, .nt-fijo, .nt-lineas li{ animation:none; opacity:1; }
   .nt-tarjeta-brillo{ display:none; }
 }
 @media (min-width:700px){
-  .test-inv{ grid-template-columns:.9fr 1fr; align-items:center; gap:64px; }
+  .test-inv{ max-width:760px; }
   .nt-fotos{ grid-template-columns:repeat(3, 1fr); gap:12px; }
   .nt-p{ max-width:760px; padding-top:100px; }
   .nt-dos{ grid-template-columns:1fr 1fr; }
@@ -367,10 +369,24 @@ html.nt-abierto, html.nt-abierto body{ overflow:hidden; }
 }
 @media (min-width:1000px){
   .nt-res{ max-width:1080px; display:grid; grid-template-columns:420px 1fr; column-gap:72px; align-items:start; }
-  .nt-tarjeta{ position:sticky; top:100px; }
+  .nt-real{ position:sticky; top:96px; }
   .nt-res-txt{ margin-top:0; }
-  .nt[data-p="resultado"] .nt-fondo img.ve{ opacity:.14; }
+  .nt[data-p="resultado"] .nt-fondo img, .nt[data-p="resultado"] .nt-fondo video.va{ opacity:.12; }
 }
 
 .oferta-entrada{ margin:-8px 0 14px; color:var(--luz-2); }
 .sorteo-premio{ margin-top:12px; max-width:56ch; }
+
+/* ===== 23-nov-2026 (Eric: «no te inventes la tarjeta» y «las fotos no me gustan nada») =====
+   Las experiencias van sin foto; las opciones de «Su día a día», solo texto; y donde decíamos cómo lo recibe, la
+   página REAL de la Platform (/regalo/demo?e=…) dentro de un móvil: se pinta a 390 × 780 y se reduce al 60 %. */
+.exp-cuerpo{ padding-top:26px; }
+.nt-sens--dia .nt-s-t{ font-size:clamp(21px, 5.6vw, 26px); line-height:1.25; }
+.nt-real{ display:flex; flex-direction:column; align-items:center; }
+.nt-real-ojo{ align-self:stretch; margin-bottom:16px; font-size:10.5px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--luz-3); }
+.nt-real-nota{ max-width:34ch; text-align:center; margin-top:14px; }
+.nt-movil{ flex:none; width:250px; padding:8px; border-radius:36px; background:#05060d; box-shadow:0 0 0 1px rgba(188,197,255,.22), 0 40px 80px -36px rgba(54,80,207,.9); animation:nt-carta 1.1s var(--ease) both; }
+.nt-movil-pantalla{ position:relative; width:234px; height:468px; overflow:hidden; border-radius:28px; background:#0b0f2a; }
+.nt-movil-pantalla iframe{ position:absolute; top:0; left:0; width:390px; height:780px; border:0; transform:scale(.6); transform-origin:0 0; }
+.recibe-digital .nt-movil{ align-self:center; margin-bottom:14px; animation:none; }
+@media (prefers-reduced-motion: reduce){ .nt-movil{ animation:none; } }
