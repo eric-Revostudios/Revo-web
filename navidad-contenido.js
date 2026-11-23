@@ -1,7 +1,8 @@
 /* Campaña de Navidad 2026 (/navidad) · TODO el texto de la página está aquí.
    Cambiar una frase = cambiarla aquí y en ningún otro sitio. Los textos son PROVISIONALES: los definitivos los
-   escribe el equipo (María) y se pegan encima. Reglas: las de la skill revo-tono (de tú, sin exclamaciones, sin
-   «oferta», «promoción», «3×2» ni «2+1»; sin prometer resultados).
+   escribe el equipo (María) y se pegan encima. Reglas: las de la skill revo-tono (de tú, sin exclamaciones, sin prometer
+   resultados) y la lista de palabras de María (23-nov-2026): sin «regalamos», «gratis», «sorteamos», «sorteo», «gana»,
+   «premio», «descuento», «oferta», «promo», «3×2», «2+1», «la tercera» ni «salud» en lo que se ve.
    Un poco de formato: *texto* → cursiva de la casa (Noto Serif). Nada más. */
 window.NAVIDAD = {
   IDIOMA: 'es',
@@ -15,6 +16,8 @@ window.NAVIDAD = {
   // la página sigue sin sorteo y con el texto general.
   PLATFORM: 'https://revo-platform.vercel.app',
   CANALES: ['studio', 'socios', 'vecinos', 'instagram', 'ads', 'goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
+  // «estudio» (María) = «studio» (QR ya impresos); «conserjes» lo crea la Platform; «web» es la propia web
+  ALIAS_CANAL: { estudio: 'studio' },
   // los centros asociados: con su canal, la cabecera dice «Para la comunidad de {nombre}»
   PARTNERS: ['goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
   // Solo para la maqueta: si la Platform no contesta, con ?sorteo=1 se ve el bloque del sorteo para revisarlo.
@@ -40,19 +43,24 @@ window.NAVIDAD = {
      Para revisarla sin encenderla: ?oferta=elegir o ?oferta=lista (solo en este navegador, no cambia nada para nadie).
      {cuando} = «de enero a marzo de 2027», sacado de valido_desde / valido_hasta; {exp} = la experiencia o
      experiencias de la lista. Nunca «3×2», «2+1», «oferta» ni «descuento». */
+  // Nombre y frases aprobados por María el 23-nov-2026. {para} = «para ti o para quien quieras» y, con el canal
+  // `socios` (miembros), «para alguien a quien quieras». Palabras que no van en ningún texto visible: regalamos, gratis,
+  // sorteamos, sorteo, gana, premio, descuento, oferta, promo, 3×2, 2+1, la tercera, salud.
   OFERTA: {
-    rotulo: 'Del {desde} al {hasta}',
-    rotuloDefecto: 'Hasta el 5 de enero',
-    frase: 'Regalas dos. *La tercera, de nuestra parte.*',
-    entrada: 'Al regalar dos experiencias, te regalamos una tercera, para ti o para quien quieras.',
-    letraElegir: 'La tercera es de igual o menor precio que la más económica de las dos y se disfruta {cuando}. Te llega sola, en la página de tu regalo.',
-    letraLista: 'La tercera es {exp} y se disfruta {cuando}. Te llega sola, en la página de tu regalo.',
+    rotulo: 'Cortesía de la casa · Del {desde} al {hasta}',
+    rotuloDefecto: 'Cortesía de la casa',
+    frase: 'Regalas dos. *Una más, de nuestra parte.*',
+    entrada: 'Por cada dos experiencias que regales, una más de nuestra parte, {para}. Se disfruta {cuando}.',
+    para: 'para ti o para quien quieras',
+    paraSocios: 'para alguien a quien quieras',
+    letraElegir: 'Es de igual o menor precio que la más económica de las dos. Te llega sola, en la página de tu regalo.',
+    letraLista: 'La experiencia de más es {exp}. Te llega sola, en la página de tu regalo.',
     cuandoDefecto: 'de enero a marzo de 2027',
     cuando: 'de {mesDesde} a {mesHasta} de {anio}',
     o: ' o ',
-    duda: '¿Cómo funciona la tercera experiencia?',
-    dudaTexto: 'Al regalar dos, el tercer vale aparece solo en la página de tu regalo. {letra}',
-    test: 'Si regalas dos experiencias, te regalamos una tercera, para ti o para quien quieras.'
+    duda: '¿Cómo funciona la experiencia de más?',
+    dudaTexto: 'Por cada dos experiencias que regales, una más de nuestra parte, {para}. {letra} Se disfruta {cuando}.',
+    test: 'Por cada dos experiencias que regales, una más de nuestra parte, {para}.'
   },
   MESES: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
   FECHA: '{dia} de {mes}',
@@ -105,13 +113,13 @@ window.NAVIDAD = {
     // el bloque en la página
     rotulo: '¿No sabes cuál?',
     titulo: 'Encuentra *su regalo*.',
-    entrada: 'Piensa en esa persona y contesta cuatro cosas. Te decimos qué experiencia le va a sentar bien, por qué, y te dejamos su tarjeta preparada.',
+    entrada: 'Piensa en esa persona y contesta cuatro cosas. Te decimos qué experiencia encaja con esa persona, por qué, y te enseñamos cómo lo recibe.',
     empezar: 'Empezar',
     duracion: 'Unos 30 segundos',
     foto: 'gift-bag.webp',
     // dentro
     cerrar: 'Cerrar', atras: 'Atrás', seguir: 'Continuar',
-    intro: { foto: 'navidad-calma.webp', ojo: 'Encuentra su regalo', titulo: 'Piensa en *esa persona*.', texto: 'Cuatro preguntas sobre quien lo recibe. Al final te decimos qué le va a sentar bien y te dejamos su tarjeta lista.', boton: 'Empezar' },
+    intro: { foto: 'navidad-calma.webp', ojo: 'Encuentra su regalo', titulo: 'Piensa en *esa persona*.', texto: 'Cuatro preguntas sobre quien lo recibe. Al final te decimos qué experiencia encaja con esa persona y te enseñamos cómo lo recibe.', boton: 'Empezar' },
     nombre: {
       ojo: '01 · Quién es', titulo: '¿Cómo se llama?', placeholder: 'Su nombre', ayuda: 'Lo ponemos en su tarjeta. Solo lo ves tú.',
       relacion: 'Y para ti es…',
@@ -165,7 +173,6 @@ window.NAVIDAD = {
       formatoImpreso: 'Tarjeta física · la recoges en el estudio',
       formatoDigital: 'Al momento · por WhatsApp o correo',
       otra: 'Para completar el regalo',
-      oferta: 'Si regalas dos experiencias, te regalamos una tercera, para ti o para quien quieras.',
       otraBoton: 'Regalar también {exp}',
       compartir: '¿Lo regaláis entre varios?', compartirBoton: 'Compártelo por WhatsApp',
       compartirSin: 'esta persona',
@@ -258,30 +265,32 @@ window.NAVIDAD = {
   },
 
   /* ---- sorteo (solo canales que lo tienen) ---- */
+  // Fórmulas aprobadas por María (23-nov-2026): no se dice «sorteo», «premio» ni «gana» (en las bases sí).
   SORTEO: {
-    rotulo: 'Sorteo',
-    titulo: 'Sorteamos una experiencia entre los miembros de *{nombre}*.',
+    rotulo: 'Para apuntarse',
+    titulo: 'Este diciembre, una experiencia REVO espera a alguien de *{nombre}*.',
     // canales que no son un centro: su propia frase
-    titulo_canal: { vecinos: 'Sorteamos una experiencia entre los vecinos de *Turó Park*.', socios: 'Sorteamos una experiencia entre los miembros de *REVO*.' },
-    entrada: 'Déjanos tu nombre y tu correo. Te escribimos solo si te toca.',
-    premio: 'Una experiencia a elegir entre las seis, para disfrutar hasta el 31 de marzo de 2027. Puedes apuntarte hasta el {hasta}; el sorteo es el {dia}.',
+    titulo_canal: { vecinos: 'Esta Navidad, una experiencia REVO es para un vecino o vecina de *Turó Park*.', socios: 'Este diciembre, una experiencia REVO espera a alguien de *REVO*.' },
+    entrada: 'Déjanos tu nombre y tu correo. Te escribimos solo si es para ti.',
+    premio: 'Quien resulte elegido elige una de las seis experiencias, para disfrutar hasta el 31 de marzo de 2027. Puedes apuntarte hasta el {hasta}; se elige el {dia}.',
+    legal: 'Sin compra necesaria. Mayores de 18 años. Bases en revostudios.eu/navidad-bases.',
     abre: 'Las inscripciones abren el {desde}.',
-    // plazo (Eric puede cambiarlo hasta el 25-nov). Si la Platform manda sorteo_desde / sorteo_hasta / sorteo_dia, mandan esas.
+    // plazo (Eric puede cambiarlo hasta el 25-nov). Si la Platform manda sorteo.desde / hasta / abierto, manda ella.
     DESDE: '2026-11-26', HASTA: '2026-12-18', DIA: '2026-12-19',
     acepto: 'Al apuntarte aceptas las {bases} y nuestra {privacidad}.', privacidad: 'política de privacidad',
     enlaceBases: '/navidad-bases', enlacePrivacidad: '/privacidad.html',
     nombre: 'Nombre', email: 'Email', telefono: 'Teléfono', opcional: 'opcional',
     novedades: 'Quiero recibir novedades de REVO. Puedes darte de baja cuando quieras.',
     boton: 'Apuntarme',
-    hecho: 'Ya estás dentro. Te escribimos si te toca.',
+    hecho: 'Ya estás dentro. Te escribimos si es para ti.',
     error: 'No hemos podido apuntarte. Inténtalo de nuevo en un momento.',
     errores: {
       datos: 'Revisa el nombre y el email: alguno no está bien escrito.',
-      canal: 'Este sorteo ya no está abierto.',
-      fechas: 'El sorteo ya ha terminado. Gracias por tu interés.',
+      canal: 'Las inscripciones ya no están abiertas.',
+      fechas: 'Las inscripciones ya se han cerrado. Gracias por tu interés.',
       demasiados: 'Demasiados intentos seguidos. Prueba de nuevo dentro de un rato.'
     },
-    bases: 'Bases del sorteo'
+    bases: 'bases'
   },
 
   /* ---- preguntas frecuentes (solo lo que ya dice la web o la página del regalo) ---- */

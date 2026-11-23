@@ -30,13 +30,18 @@
   var origen = null;
   try { origen = JSON.parse(lget('nv_origen') || 'null'); } catch (e) {}
   if (origen && Date.now() - (origen.t || 0) > 30 * 864e5) origen = null;
-  var cNuevo = String(qs.get('c') || '').toLowerCase().trim();
+  // alias: «estudio» (como lo escribe María) es el mismo canal que «studio» (el de los QR ya impresos). Los canales que
+  // la Platform aún no conoce (conserjes, exmiembros, leads…) se guardan igual y viajan con la compra.
+  var ALIAS = N.ALIAS_CANAL || {};
+  function normaliza(c) { return ALIAS[c] || c; }
+  var cNuevo = normaliza(String(qs.get('c') || '').toLowerCase().trim());
   var utmNuevo = {};
   ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { var v = qs.get(k); if (v) utmNuevo[k] = String(v).slice(0, 120); });
   if (/^[a-z0-9-]{1,40}$/.test(cNuevo) || Object.keys(utmNuevo).length) {
     origen = { c: /^[a-z0-9-]{1,40}$/.test(cNuevo) ? cNuevo : (origen && origen.c) || '', u: Object.keys(utmNuevo).length ? utmNuevo : (origen && origen.u) || {}, t: Date.now() };
     lset('nv_origen', JSON.stringify(origen));
   }
+  if (origen && origen.c && ALIAS[origen.c]) { origen.c = ALIAS[origen.c]; lset('nv_origen', JSON.stringify(origen)); }
   var canal = (origen && origen.c) || '';
   var utm = (origen && origen.u) || {};
   var utmTexto = Object.keys(utm).map(function (k) { return k + '=' + utm[k]; }).join(' · ');
@@ -183,6 +188,7 @@
         '<label class="casilla"><input name="novedades" type="checkbox" /><span>' + fmt(S.novedades) + ' <i>(' + fmt(S.opcional) + ')</i></span></label>' +
         '<button class="boton boton--luz" type="submit">' + fmt(S.boton) + '</button>' +
         '<p class="mini">' + sub(esc(S.acepto), { bases: '<a href="' + esc(S.enlaceBases) + '" target="_blank" rel="noopener">' + esc(S.bases.toLowerCase()) + '</a>', privacidad: '<a href="' + esc(S.enlacePrivacidad) + '" target="_blank" rel="noopener">' + esc(S.privacidad) + '</a>' }) + '</p>' +
+        '<p class="mini">' + fmt(S.legal) + '</p>' +
         '<p class="sorteo-msg" role="status" hidden></p>' +
       '</form></div>';
     secS.hidden = false;
@@ -239,28 +245,30 @@
       var pd = partes(d), ph = partes(hh);
       cuando = sub(O.cuando, { mesDesde: N.MESES[pd.month - 1], mesHasta: N.MESES[ph.month - 1], anio: ph.year });
     }
+    var letra;
     if (of.modo === 'lista') {
       var nombres = (of.experiencias || []).map(function (id) { var x = porId(id); return x && x.nombre; }).filter(Boolean);
       if (!nombres.length) return null;   // una lista vacía no se puede contar: mejor no decir nada
-      return sub(O.letraLista, { exp: nombres.join(O.o), cuando: cuando });
-    }
-    return sub(O.letraElegir, { cuando: cuando });
+      letra = sub(O.letraLista, { exp: nombres.join(O.o) });
+    } else letra = O.letraElegir;
+    // miembros (canal socios): «para alguien a quien quieras»
+    return { letra: letra, cuando: cuando, para: canal === 'socios' ? O.paraSocios : O.para };
   }
   function pintaOferta(of, camp) {
-    var letra = textoOferta(of); if (!letra) return;
+    var t = textoOferta(of); if (!t) return;
     var O = N.OFERTA, cd = fecha(camp && camp.desde), ch = fecha(camp && camp.hasta);
     var rot = (!isNaN(cd) && !isNaN(ch)) ? sub(O.rotulo, { desde: fechaTxt(cd), hasta: fechaTxt(ch) }) : O.rotuloDefecto;
     document.getElementById('ofertaSitio').innerHTML = '<section class="oferta" id="oferta"><div class="w estrecho">' +
       '<p class="ojo">' + fmt(rot) + '</p>' +
       '<p class="oferta-frase t2">' + fmt(O.frase) + '</p>' +
-      '<p class="texto oferta-entrada">' + fmt(O.entrada) + '</p>' +
-      '<p class="mini">' + fmt(letra) + '</p></div></section>';
+      '<p class="texto oferta-entrada">' + fmt(sub(O.entrada, t)) + '</p>' +
+      '<p class="mini">' + fmt(t.letra) + '</p></div></section>';
     var dudas = app.querySelector('.dudas');
     if (dudas) {
-      dudas.insertAdjacentHTML('beforeend', '<details data-n="' + N.DUDAS.length + '"><summary>' + fmt(O.duda) + '</summary><p class="texto">' + fmt(sub(O.dudaTexto, { letra: letra })) + '</p></details>');
+      dudas.insertAdjacentHTML('beforeend', '<details data-n="' + N.DUDAS.length + '"><summary>' + fmt(O.duda) + '</summary><p class="texto">' + fmt(sub(O.dudaTexto, t)) + '</p></details>');
       mideDuda(dudas.lastElementChild);
     }
-    window.NAVIDAD_OFERTA = O.test;   // la línea del resultado del test (navidad-test.js)
+    window.NAVIDAD_OFERTA = sub(O.test, t);   // la línea del resultado del test (navidad-test.js)
   }
 
   /* ---------- la Platform: canal, sorteo y oferta ----------

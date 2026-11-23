@@ -10,6 +10,8 @@ window.NAVIDAD = {
   ENVIAR_CANAL: true,
   PLATFORM: 'https://revo-platform.vercel.app',
   CANALES: ['studio', 'socios', 'vecinos', 'instagram', 'ads', 'goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
+  // «estudio» (María) = «studio» (QR ya impresos); «conserjes» lo crea la Platform; «web» es la propia web
+  ALIAS_CANAL: { estudio: 'studio' },
   PARTNERS: ['goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
   NOMBRES_PROVISIONALES: { goodfit: 'GoodFit', barrys: "Barry's Barcelona", corehaus: 'Corehaus', casabarre: 'Casa Barré', yogaone: 'YogaOne Aragó-Eixample', vecinos: 'Turó Park' },
 
@@ -24,18 +26,20 @@ window.NAVIDAD = {
 
   // the «two and a third on us» offer: only shown when the Platform says it is active (see the Spanish file)
   OFERTA: {
-    rotulo: 'From {desde} to {hasta}',
-    rotuloDefecto: 'Until 5 January',
-    frase: 'You give two. *The third is on us.*',
-    entrada: 'When you give two experiences, we give you a third, for you or for whoever you like.',
-    letraElegir: 'The third is of equal or lower price than the less expensive of the two, and is enjoyed {cuando}. It appears on its own, on your gift page.',
-    letraLista: 'The third is {exp}, and is enjoyed {cuando}. It appears on its own, on your gift page.',
+    rotulo: 'Compliments of the house · From {desde} to {hasta}',
+    rotuloDefecto: 'Compliments of the house',
+    frase: 'You give two. *One more, from us.*',
+    entrada: 'For every two experiences you give, one more from us, {para}. Enjoyed {cuando}.',
+    para: 'for you or for whoever you like',
+    paraSocios: 'for someone you love',
+    letraElegir: 'It is of equal or lower price than the less expensive of the two. It appears on its own, on your gift page.',
+    letraLista: 'The extra experience is {exp}. It appears on its own, on your gift page.',
     cuandoDefecto: 'from January to March 2027',
     cuando: 'from {mesDesde} to {mesHasta} {anio}',
     o: ' or ',
-    duda: 'How does the third experience work?',
-    dudaTexto: 'When you give two, the third voucher appears on its own on your gift page. {letra}',
-    test: 'If you give two experiences, we give you a third, for you or for whoever you like.'
+    duda: 'How does the extra experience work?',
+    dudaTexto: 'For every two experiences you give, one more from us, {para}. {letra} Enjoyed {cuando}.',
+    test: 'For every two experiences you give, one more from us, {para}.'
   },
   MESES: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   FECHA: '{dia} {mes}',
@@ -74,12 +78,12 @@ window.NAVIDAD = {
   TEST: {
     rotulo: 'Not sure which?',
     titulo: 'Find *their gift*.',
-    entrada: 'Think of that person and answer four things. We tell you which experience will suit them, why, and leave their card ready.',
+    entrada: 'Think of that person and answer four things. We tell you which experience fits that person, why, and show you how they receive it.',
     empezar: 'Start',
     duracion: 'About 30 seconds',
     foto: 'gift-bag.webp',
     cerrar: 'Close', atras: 'Back', seguir: 'Continue',
-    intro: { foto: 'navidad-calma.webp', ojo: 'Find their gift', titulo: 'Think of *that person*.', texto: 'Four questions about who receives it. At the end we tell you what will suit them and leave their card ready.', boton: 'Start' },
+    intro: { foto: 'navidad-calma.webp', ojo: 'Find their gift', titulo: 'Think of *that person*.', texto: 'Four questions about who receives it. At the end we tell you which experience fits that person and show you how they receive it.', boton: 'Start' },
     nombre: {
       ojo: '01 · Who it is', titulo: 'What is their name?', placeholder: 'Their name', ayuda: 'We put it on their card. Only you see it.',
       relacion: 'And to you they are…',
@@ -131,7 +135,6 @@ window.NAVIDAD = {
       formatoImpreso: 'Physical card · pick it up at the studio',
       formatoDigital: 'Right away · by WhatsApp or email',
       otra: 'To complete the gift',
-      oferta: 'If you give two experiences, we give you a third, for you or for whoever you like.',
       otraBoton: 'Also gift {exp}',
       compartir: 'Giving it together with others?', compartirBoton: 'Share it on WhatsApp',
       compartirSin: 'this person',
@@ -221,27 +224,28 @@ window.NAVIDAD = {
   },
 
   SORTEO: {
-    rotulo: 'Prize draw',
-    titulo: 'We are giving away an experience among the members of *{nombre}*.',
-    titulo_canal: { vecinos: 'We are giving away an experience among the neighbours of *Turó Park*.', socios: 'We are giving away an experience among *REVO* members.' },
-    entrada: 'Leave your name and email. We only write if you win.',
-    premio: 'An experience of your choice among the six, to enjoy until 31 March 2027. You can enter until {hasta}; the draw is on {dia}.',
-    abre: 'Entries open on {desde}.',
+    rotulo: 'Sign up',
+    titulo: 'This December, a REVO experience awaits someone from *{nombre}*.',
+    titulo_canal: { vecinos: 'This Christmas, a REVO experience is for a neighbour of *Turó Park*.', socios: 'This December, a REVO experience awaits someone from *REVO*.' },
+    entrada: 'Leave your name and email. We only write if it is for you.',
+    premio: 'Whoever is chosen picks one of the six experiences, to enjoy until 31 March 2027. You can sign up until {hasta}; the choice is made on {dia}.',
+    legal: 'No purchase necessary. Over 18s only. Terms at revostudios.eu/navidad-bases.',
+    abre: 'Sign-ups open on {desde}.',
     DESDE: '2026-11-26', HASTA: '2026-12-18', DIA: '2026-12-19',
-    acepto: 'By entering you accept the {bases} and our {privacidad}.', privacidad: 'privacy policy',
+    acepto: 'By signing up you accept the {bases} and our {privacidad}.', privacidad: 'privacy policy',
     enlaceBases: '/navidad-bases', enlacePrivacidad: '/en/privacidad.html',
     nombre: 'Name', email: 'Email', telefono: 'Phone', opcional: 'optional',
     novedades: 'I would like to receive news from REVO. You can unsubscribe whenever you like.',
-    boton: 'Enter',
-    hecho: 'You are in. We will write if you win.',
-    error: 'We could not enter you. Please try again in a moment.',
+    boton: 'Sign me up',
+    hecho: 'You are in. We will write if it is for you.',
+    error: 'We could not sign you up. Please try again in a moment.',
     errores: {
       datos: 'Check your name and email: one of them is not written correctly.',
-      canal: 'This prize draw is no longer open.',
-      fechas: 'The prize draw has ended. Thank you for your interest.',
+      canal: 'Sign-ups are no longer open.',
+      fechas: 'Sign-ups are now closed. Thank you for your interest.',
       demasiados: 'Too many attempts in a row. Please try again in a while.'
     },
-    bases: 'prize draw rules (in Spanish)'
+    bases: 'terms (in Spanish)'
   },
 
   DUDAS_TITULO: 'Before you *give*',
