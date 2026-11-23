@@ -72,23 +72,23 @@ window.NAVIDAD = {
   EXPERIENCIAS_ENTRADA: 'Varias terapias en una sola visita, encadenadas por nuestro equipo médico para un objetivo.',
   EXPERIENCIAS: [
     { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',
-      lema: 'Piel luminosa, silueta definida.',
+      lema: 'Para cuidarse por dentro y por fuera.',
       pasos: ['Campo electromagnético', 'Máscara de luz roja', 'Crioterapia de cuerpo entero', 'Masaje drenante y moldeador'],
       url: 'https://momence.com/REVO-Studios/product/Glow-Experience/498606' },
     { id: 'sports', nombre: 'Sports Performance', precio: 140, dur: '1 h 30 min', foto: 'nv-sports.webp', pos: '50% 40%',
-      lema: 'Recupérate más rápido. Rinde mejor.',
+      lema: 'Oxígeno, frío y compresión, para quien entrena.',
       pasos: ['Cámara hiperbárica', 'Crioterapia de cuerpo entero', 'Presoterapia'],
       url: 'https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608' },
     { id: 'sleep_stress', nombre: 'Sleep & Stress', precio: 140, dur: '1 h', foto: 'nv-sleep.webp', pos: '40% 45%',
-      lema: 'Baja el ritmo. Descansa de verdad.',
+      lema: 'Baja el ritmo. Desconecta.',
       pasos: ['Crioterapia de cuerpo entero', 'Cama de luz roja', 'Campo electromagnético', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614' },
     { id: 'longevity', nombre: 'Longevity', precio: 160, dur: '1 h 50 min', foto: 'nv-longevity.webp', pos: '50% 35%',
-      lema: 'Más energía. Un cuerpo que se siente más joven.',
+      lema: 'La más completa, para el cuerpo y la cabeza.',
       pasos: ['Campo electromagnético', 'Neuroestimulación', 'Cámara hiperbárica', 'Cama de luz roja'],
       url: 'https://momence.com/REVO-Studios/product/Longevity-Experience/498612' },
     { id: 'cognitiva', nombre: 'Performance Cognitiva', precio: 140, dur: '1 h 40 min', foto: 'nv-cognitiva.webp', pos: '50% 35%',
-      lema: 'Piensa con claridad. Mantén el foco.',
+      lema: 'Oxígeno, luz y sonido, pensados para la cabeza.',
       pasos: ['Cámara hiperbárica', 'Cama de luz roja', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616' },
     { id: 'massage_plus', nombre: 'Massage +', precio: 110, dur: '1 h 30 min', foto: 'nv-massage.webp', pos: '50% 50%',
@@ -134,17 +134,17 @@ window.NAVIDAD = {
         { t: 'cuida de todos, menos de sí', foto: 'nv-longevity.webp', pos: '50% 35%', da: 'massage_plus', porque: 'cuida de todos, menos de sí' },
         { t: 'lo mide todo: reloj, analíticas, suplementos', foto: 'nv-mide.webp', pos: '50% 50%', da: 'longevity', porque: 'se cuida y le gusta medirlo todo' },
         { t: 'disfruta cuidándose, también por fuera', foto: 'nv-glow.webp', pos: '50% 30%', da: 'glow', porque: 'disfruta cuidándose, también por fuera' },
-        { t: 'duerme menos de lo que querría', foto: 'nv-sleep.webp', pos: '40% 45%', da: 'sleep_stress', porque: 'duerme menos de lo que querría' }
+        { t: 'no desconecta cuando acaba el día', foto: 'nv-sleep.webp', pos: '40% 45%', da: 'sleep_stress', porque: 'no desconecta cuando acaba el día' }
       ]
     },
     deseo: {
       ojo: '03 · Lo que le regalarías', titulo: 'Si pudieras regalarle a *{nombre}* una sensación…', sin: 'Si pudieras regalarle una sensación…',
       opciones: [
-        { t: 'Energía', d: 'levantarse con ganas y llegar a la noche con fuerzas', da: 'longevity' },
-        { t: 'Descanso', d: 'dormir del tirón y despertar con la sensación de haber descansado', da: 'sleep_stress' },
-        { t: 'Claridad', d: 'la cabeza en calma y el foco de vuelta', da: 'cognitiva' },
-        { t: 'Fuerza', d: 'un cuerpo que rinde y se recupera antes', da: 'sports' },
-        { t: 'Luz', d: 'verse bien y notarlo en la piel', da: 'glow' },
+        { t: 'Energía', d: 'un rato para recargar', da: 'longevity' },
+        { t: 'Calma', d: 'parar, bajar el ritmo y desconectar', da: 'sleep_stress' },
+        { t: 'Claridad', d: 'un rato para ordenar la cabeza', da: 'cognitiva' },
+        { t: 'Fuerza', d: 'cuidar el cuerpo con el que entrena', da: 'sports' },
+        { t: 'Luz', d: 'cuidarse por dentro y por fuera', da: 'glow' },
         { t: 'Cuidado', d: 'un rato en el que solo tiene que dejarse cuidar', da: 'massage_plus' }
       ]
     },
@@ -184,60 +184,60 @@ window.NAVIDAD = {
   REGALO: {
     glow: {
       sensacion: 'luz',
-      titular: 'Su piel, con luz. Su cuerpo, más ligero.',
-      motivo: 'Glow encadena cuatro terapias que desinflaman, drenan y trabajan la piel desde dentro.',
+      titular: 'Casi dos horas para cuidarse por dentro y por fuera.',
+      motivo: 'Glow encadena cuatro terapias, con luz roja para la piel y un masaje drenante y moldeador.',
       dedicatoria: 'Para que se te vea la luz que tienes.',
       pasos: [
-        ['Campos electromagnéticos', 'Activan el modo de descanso y reparación, y dejan las células más receptivas a lo que viene después.'],
+        ['Campos electromagnéticos', 'Dejan las células más receptivas a los estímulos que vienen después: por eso abren el circuito.'],
         ['Máscara de luz roja', 'Luz roja e infrarroja en la cara. Estimula el colágeno y la elastina.'],
-        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C. Desinflama y activa la microcirculación, que potencia el masaje.'],
-        ['Masaje drenante y moldeador', 'Con manos y aparatología. Reduce la retención de líquidos y define la silueta: se sale con sensación de ligereza.']
+        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C. Activa la microcirculación, y por eso va justo antes del masaje.'],
+        ['Masaje drenante y moldeador', 'Intenso, con manos y aparatología. Se sale con sensación de ligereza.']
       ],
       otra: 'massage_plus' },
     sports: {
       sensacion: 'fuerza',
-      titular: 'Para que su cuerpo se recupere antes y rinda mejor.',
-      motivo: 'Sports Performance es el circuito de quien entrena en serio. Oxigena, desinflama y descarga la fatiga del músculo.',
-      dedicatoria: 'Para que tu cuerpo rinda y se recupere como se merece.',
+      titular: 'El circuito de quienes entrenan en serio.',
+      motivo: 'Sports Performance encadena oxígeno, frío y compresión en una hora y media.',
+      dedicatoria: 'Para ti, que entrenas en serio.',
       pasos: [
         ['Cámara hiperbárica', 'Oxígeno al 98 % a 1,5 atmósferas: hasta diez veces más oxígeno en los tejidos.'],
-        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C. Baja la inflamación y alivia el dolor.'],
-        ['Presoterapia', 'Botas de compresión de los pies a la cadera. Drenan y mejoran la circulación: se sale con las piernas ligeras.']
+        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C: un estímulo breve al que el cuerpo responde con fuerza.'],
+        ['Presoterapia', 'Botas de compresión por aire, de los pies a la cadera. Se sale con las piernas ligeras.']
       ],
       otra: 'longevity' },
     sleep_stress: {
-      sensacion: 'descanso',
-      titular: 'Una hora para que su cuerpo baje el ritmo.',
-      motivo: 'Sleep & Stress regula el sistema nervioso y prepara el cuerpo para dormir.',
-      dedicatoria: 'Para que este invierno descanses de verdad.',
+      sensacion: 'calma',
+      titular: 'Una hora para bajar el ritmo.',
+      motivo: 'Sleep & Stress es una hora para parar y desconectar, con frío, luz, campos electromagnéticos y sonido.',
+      dedicatoria: 'Una hora para parar. Sin teléfono y sin prisa.',
       pasos: [
-        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C. Baja el cortisol y deja un estado de calma y buen humor.'],
-        ['Cama de luz roja', '10 minutos bajo 43.000 LEDs de luz roja e infrarroja. Ayuda a regular el ritmo del sueño.'],
-        ['Campos electromagnéticos', 'Activan el modo de descanso y reparación del cuerpo.'],
-        ['Neuroestimulación', 'Sonido binaural y luz que llevan al cerebro a la relajación profunda.']
+        ['Crioterapia de cuerpo entero', 'De 2 a 3 minutos a −130 °C: un estímulo breve al que el cuerpo responde con fuerza.'],
+        ['Cama de luz roja', '10 minutos bajo 43.000 LEDs de luz roja e infrarroja, sin nada que hacer.'],
+        ['Campos electromagnéticos', 'La magnetoterapia de los fisioterapeutas, en todo el cuerpo.'],
+        ['Neuroestimulación', 'Sonido binaural y luz: un rato para dejar la cabeza quieta.']
       ],
       otra: 'massage_plus' },
     longevity: {
       sensacion: 'energía',
-      titular: 'La más completa: energía para el cuerpo y la cabeza.',
-      motivo: 'Longevity repara, oxigena y activa cuerpo y cabeza a la vez.',
-      dedicatoria: 'Para que te sobre energía todo el año.',
+      titular: 'La más completa, para el cuerpo y la cabeza.',
+      motivo: 'Longevity reúne campos electromagnéticos, sonido, oxígeno y luz en casi dos horas.',
+      dedicatoria: 'Un rato para recargar, antes de empezar otro año.',
       pasos: [
-        ['Campos electromagnéticos', 'Activan el modo de descanso y reparación, y dejan las células más receptivas a lo que viene después.'],
-        ['Neuroestimulación', 'Sonido binaural y luz que llevan al cerebro a la relajación profunda o al foco.'],
+        ['Campos electromagnéticos', 'Dejan las células más receptivas a los estímulos que vienen después: por eso abren el circuito.'],
+        ['Neuroestimulación', 'Sonido binaural y luz: un rato para dejar la cabeza quieta.'],
         ['Cámara hiperbárica', 'Oxígeno al 98 % a 1,5 atmósferas: hasta diez veces más oxígeno en los tejidos.'],
         ['Cama de luz roja', '10 minutos bajo 43.000 LEDs. Activa la mitocondria, la central de energía de cada célula.']
       ],
       otra: 'cognitiva' },
     cognitiva: {
       sensacion: 'claridad',
-      titular: 'Oxígeno, luz y sonido para pensar con claridad.',
-      motivo: 'Performance Cognitiva está pensada para una mente más nítida, estable y en calma.',
-      dedicatoria: 'Para que la cabeza encuentre su calma y su foco.',
+      titular: 'Un rato para la cabeza.',
+      motivo: 'Performance Cognitiva junta oxígeno, luz y sonido, pensados para la cabeza.',
+      dedicatoria: 'Un rato para ti y para tu cabeza.',
       pasos: [
         ['Cámara hiperbárica', 'Oxígeno al 98 % a 1,5 atmósferas: hasta diez veces más oxígeno en los tejidos.'],
         ['Cama de luz roja', '10 minutos bajo 43.000 LEDs de luz roja e infrarroja. Activa la mitocondria.'],
-        ['Neuroestimulación', 'Sonido binaural y luz que llevan al cerebro al foco.']
+        ['Neuroestimulación', 'Sonido binaural y luz, en el modo de foco.']
       ],
       otra: 'sleep_stress' },
     massage_plus: {

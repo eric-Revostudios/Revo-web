@@ -48,23 +48,23 @@ window.NAVIDAD = {
   EXPERIENCIAS_ENTRADA: 'Several therapies in a single visit, sequenced by our medical team around one goal.',
   EXPERIENCIAS: [
     { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',
-      lema: 'Glowing skin, defined silhouette.',
+      lema: 'Looking after yourself, inside and out.',
       pasos: ['Electromagnetic field', 'Red light mask', 'Whole-body cryotherapy', 'Draining and sculpting massage'],
       url: 'https://momence.com/REVO-Studios/product/Glow-Experience/498606' },
     { id: 'sports', nombre: 'Sports Performance', precio: 140, dur: '1 h 30 min', foto: 'nv-sports.webp', pos: '50% 40%',
-      lema: 'Recover faster. Perform better.',
+      lema: 'Oxygen, cold and compression, for people who train.',
       pasos: ['Hyperbaric chamber', 'Whole-body cryotherapy', 'Pressotherapy'],
       url: 'https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608' },
     { id: 'sleep_stress', nombre: 'Sleep & Stress', precio: 140, dur: '1 h', foto: 'nv-sleep.webp', pos: '40% 45%',
-      lema: 'Slow down. Truly rest.',
+      lema: 'Slow down. Switch off.',
       pasos: ['Whole-body cryotherapy', 'Red light bed', 'Electromagnetic field', 'Neurostimulation'],
       url: 'https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614' },
     { id: 'longevity', nombre: 'Longevity', precio: 160, dur: '1 h 50 min', foto: 'nv-longevity.webp', pos: '50% 35%',
-      lema: 'More energy. A body that feels younger.',
+      lema: 'The most complete, for body and mind.',
       pasos: ['Electromagnetic field', 'Neurostimulation', 'Hyperbaric chamber', 'Red light bed'],
       url: 'https://momence.com/REVO-Studios/product/Longevity-Experience/498612' },
     { id: 'cognitiva', nombre: 'Cognitive Performance', precio: 140, dur: '1 h 40 min', foto: 'nv-cognitiva.webp', pos: '50% 35%',
-      lema: 'Think clearly. Stay focused.',
+      lema: 'Oxygen, light and sound, designed for the mind.',
       pasos: ['Hyperbaric chamber', 'Red light bed', 'Neurostimulation'],
       url: 'https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616' },
     { id: 'massage_plus', nombre: 'Massage +', precio: 110, dur: '1 h 30 min', foto: 'nv-massage.webp', pos: '50% 50%',
@@ -98,17 +98,17 @@ window.NAVIDAD = {
         { t: 'looks after everyone except themselves', foto: 'nv-longevity.webp', pos: '50% 35%', da: 'massage_plus', porque: 'looks after everyone except themselves' },
         { t: 'measures everything: watch, blood tests, supplements', foto: 'nv-mide.webp', pos: '50% 50%', da: 'longevity', porque: 'takes care of themselves and likes to measure everything' },
         { t: 'enjoys looking after themselves, on the outside too', foto: 'nv-glow.webp', pos: '50% 30%', da: 'glow', porque: 'enjoys looking after themselves, on the outside too' },
-        { t: 'sleeps less than they would like', foto: 'nv-sleep.webp', pos: '40% 45%', da: 'sleep_stress', porque: 'sleeps less than they would like' }
+        { t: 'finds it hard to switch off at the end of the day', foto: 'nv-sleep.webp', pos: '40% 45%', da: 'sleep_stress', porque: 'finds it hard to switch off at the end of the day' }
       ]
     },
     deseo: {
       ojo: '03 · What you would give', titulo: 'If you could give *{nombre}* a feeling…', sin: 'If you could give them a feeling…',
       opciones: [
-        { t: 'Energy', d: 'getting up with drive and reaching the evening with strength to spare', da: 'longevity' },
-        { t: 'Rest', d: 'sleeping through the night and waking up rested', da: 'sleep_stress' },
-        { t: 'Clarity', d: 'a calm mind and focus back', da: 'cognitiva' },
-        { t: 'Strength', d: 'a body that performs and recovers sooner', da: 'sports' },
-        { t: 'Glow', d: 'looking well and feeling it in their skin', da: 'glow' },
+        { t: 'Energy', d: 'a while to recharge', da: 'longevity' },
+        { t: 'Calm', d: 'stopping, slowing down and switching off', da: 'sleep_stress' },
+        { t: 'Clarity', d: 'a while to clear their head', da: 'cognitiva' },
+        { t: 'Strength', d: 'looking after the body they train with', da: 'sports' },
+        { t: 'Glow', d: 'looking after themselves, inside and out', da: 'glow' },
         { t: 'Care', d: 'a while in which they only have to let themselves be looked after', da: 'massage_plus' }
       ]
     },
@@ -146,60 +146,60 @@ window.NAVIDAD = {
   REGALO: {
     glow: {
       sensacion: 'glow',
-      titular: 'Their skin, glowing. Their body, lighter.',
-      motivo: 'Glow links four therapies that reduce inflammation, drain and work on the skin from within.',
+      titular: 'Almost two hours to look after themselves, inside and out.',
+      motivo: 'Glow links four therapies, with red light for the skin and a draining and sculpting massage.',
       dedicatoria: 'So the light you have shows.',
       pasos: [
-        ['Electromagnetic field', 'Switches on rest-and-repair mode and leaves cells more receptive to what comes next.'],
+        ['Electromagnetic field', 'Leaves cells more receptive to the stimuli that follow: that is why it opens the circuit.'],
         ['Red light mask', 'Red and infrared light on the face. Stimulates collagen and elastin.'],
-        ['Whole-body cryotherapy', '2 to 3 minutes at −130 °C. Reduces inflammation and activates microcirculation, which boosts the massage.'],
-        ['Draining and sculpting massage', 'By hand and with devices. Reduces fluid retention and defines the silhouette: you leave feeling light.']
+        ['Whole-body cryotherapy', '2 to 3 minutes at −130 °C. Activates microcirculation, which is why it comes right before the massage.'],
+        ['Draining and sculpting massage', 'Intense, by hand and with devices. You leave feeling light.']
       ],
       otra: 'massage_plus' },
     sports: {
       sensacion: 'strength',
-      titular: 'So their body recovers sooner and performs better.',
-      motivo: 'Sports Performance is the circuit for people who train seriously. It oxygenates, reduces inflammation and releases muscle fatigue.',
-      dedicatoria: 'So your body performs and recovers as it deserves.',
+      titular: 'The circuit for people who train seriously.',
+      motivo: 'Sports Performance links oxygen, cold and compression in an hour and a half.',
+      dedicatoria: 'For you, who train seriously.',
       pasos: [
         ['Hyperbaric chamber', '98 % oxygen at 1.5 atmospheres: up to ten times more oxygen in the tissues.'],
-        ['Whole-body cryotherapy', '2 to 3 minutes at −130 °C. Reduces inflammation and eases pain.'],
-        ['Pressotherapy', 'Compression boots from feet to hips. They drain and improve circulation: you leave with light legs.']
+        ['Whole-body cryotherapy', '2 to 3 minutes at −130 °C: a brief stimulus the body responds to strongly.'],
+        ['Pressotherapy', 'Air compression boots, from feet to hips. You leave with light legs.']
       ],
       otra: 'longevity' },
     sleep_stress: {
-      sensacion: 'rest',
-      titular: 'One hour for their body to slow down.',
-      motivo: 'Sleep & Stress regulates the nervous system and prepares the body for sleep.',
-      dedicatoria: 'So this winter you truly rest.',
+      sensacion: 'calm',
+      titular: 'One hour to slow down.',
+      motivo: 'Sleep & Stress is one hour to stop and switch off, with cold, light, electromagnetic fields and sound.',
+      dedicatoria: 'One hour to stop. No phone and no rush.',
       pasos: [
-        ['Whole-body cryotherapy', '2 to 3 minutes at −130 °C. Lowers cortisol and leaves a state of calm and good mood.'],
-        ['Red light bed', '10 minutes under 43,000 red and infrared LEDs. Helps regulate the sleep rhythm.'],
-        ['Electromagnetic field', 'Switches on the body’s rest-and-repair mode.'],
-        ['Neurostimulation', 'Binaural sound and light that take the brain into deep relaxation.']
+        ['Whole-body cryotherapy', '2 to 3 minutes at −130 °C: a brief stimulus the body responds to strongly.'],
+        ['Red light bed', '10 minutes under 43,000 red and infrared LEDs, with nothing to do.'],
+        ['Electromagnetic field', 'The magnetotherapy physiotherapists use, for the whole body.'],
+        ['Neurostimulation', 'Binaural sound and light: a while to keep the mind still.']
       ],
       otra: 'massage_plus' },
     longevity: {
       sensacion: 'energy',
-      titular: 'The most complete: energy for body and mind.',
-      motivo: 'Longevity repairs, oxygenates and activates body and mind at the same time.',
-      dedicatoria: 'So you have energy to spare all year.',
+      titular: 'The most complete, for body and mind.',
+      motivo: 'Longevity brings together electromagnetic fields, sound, oxygen and light in almost two hours.',
+      dedicatoria: 'A while to recharge, before another year begins.',
       pasos: [
-        ['Electromagnetic field', 'Switches on rest-and-repair mode and leaves cells more receptive to what comes next.'],
-        ['Neurostimulation', 'Binaural sound and light that take the brain into deep relaxation or focus.'],
+        ['Electromagnetic field', 'Leaves cells more receptive to the stimuli that follow: that is why it opens the circuit.'],
+        ['Neurostimulation', 'Binaural sound and light: a while to keep the mind still.'],
         ['Hyperbaric chamber', '98 % oxygen at 1.5 atmospheres: up to ten times more oxygen in the tissues.'],
         ['Red light bed', '10 minutes under 43,000 LEDs. Activates the mitochondria, the energy centre of every cell.']
       ],
       otra: 'cognitiva' },
     cognitiva: {
       sensacion: 'clarity',
-      titular: 'Oxygen, light and sound to think clearly.',
-      motivo: 'Cognitive Performance is designed for a sharper, steadier and calmer mind.',
-      dedicatoria: 'So your mind finds its calm and its focus.',
+      titular: 'A while for the mind.',
+      motivo: 'Cognitive Performance brings together oxygen, light and sound, designed for the mind.',
+      dedicatoria: 'A while for you and your mind.',
       pasos: [
         ['Hyperbaric chamber', '98 % oxygen at 1.5 atmospheres: up to ten times more oxygen in the tissues.'],
         ['Red light bed', '10 minutes under 43,000 red and infrared LEDs. Activates the mitochondria.'],
-        ['Neurostimulation', 'Binaural sound and light that take the brain into focus.']
+        ['Neurostimulation', 'Binaural sound and light, in focus mode.']
       ],
       otra: 'sleep_stress' },
     massage_plus: {
