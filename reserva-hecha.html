@@ -134,10 +134,13 @@ footer{ padding:22px 0 max(26px, env(safe-area-inset-bottom, 0px)); font-size:14
     if (fbp && fbp.length <= 300) datos.fbp = fbp;
     if (!fbc && ads.fbclid && ads.fbclid.length <= 300) datos.fbclid = ads.fbclid;
   }
+  // La landing del último «Reservar» de esta pestaña (tu-punto.js la deja en tp_pagina). Antes iba siempre 'tu-punto'.
+  var pagina = 'tu-punto';
+  try { var pg = sessionStorage.getItem('tp_pagina'); if (pg === 'tu-punto' || pg === 'punto-de-partida') pagina = pg; } catch (e) {}
   var cuerpo = JSON.stringify({
     sesion: sesion, evento: 'volvio_reserva', datos: datos, v: 'a',
     utm_content: String(ads.utm_content || '').slice(0, 120), utm_source: String(ads.utm_source || '').slice(0, 60),
-    pagina: 'tu-punto', ts: new Date().toISOString()
+    pagina: pagina, ts: new Date().toISOString()
   });
   try { sessionStorage.setItem('tp_vuelta', '1'); } catch (e) {}
   try {

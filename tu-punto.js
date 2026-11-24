@@ -38,7 +38,9 @@
      Se guardan en la pestaña (sessionStorage) para que sobrevivan a recargar. Las etiquetas utm_* viajan
      siempre al enlace de reserva; los identificadores del anuncio y el fbclid de Meta, solo si la persona
      aceptó las cookies de marketing. El fbclid nunca se inventa: o vino en el enlace, o no hay. */
-  var ADS_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+  // utm_term (24-nov-2026): la agencia marca con él la landing (landing_a / landing_b). Es un dato auxiliar:
+  // la landing de verdad es la página en la que se pulsa (PAGINA), no lo que diga el enlace.
+  var ADS_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
   var ADS_ID = ['campaign_id', 'adset_id', 'ad_id', 'placement', 'fbclid'];
   var ads = {};
   try { ads = JSON.parse(sessionStorage.getItem('tp_ads') || '{}') || {}; } catch (e) { ads = {}; }
@@ -61,7 +63,11 @@
   }
   function datosAnuncio(d) {
     d.mk = marketingOk() ? 'si' : 'no';
+    // Los ids de Meta van como TEXTO (no caben en un número de JavaScript) y solo si son dígitos.
     ['campaign_id', 'adset_id', 'ad_id'].forEach(function (k) { if (/^\d{1,30}$/.test(ads[k] || '')) d[k] = ads[k]; });
+    // 24-nov-2026: el «Reservar» fija también la campaña y la marca de landing del anuncio de ESE intento
+    // (la Platform lee el origen de la reserva de este clic). Como mucho 120 caracteres; vacío si no vino.
+    ['utm_campaign', 'utm_medium', 'utm_term'].forEach(function (k) { if (ads[k]) d[k] = String(ads[k]).slice(0, 120); });
     return d;
   }
 
@@ -702,6 +708,8 @@
       // Pulsar no es reservar: aquí solo se apunta la intención (y no se manda «Lead» a Meta: data-sin-lead).
       b.addEventListener('click', function () {
         b.setAttribute('href', enlaceReserva());
+        // La landing de ESTE intento, para que /reserva-hecha diga de cuál vuelve (A o B; antes siempre 'tu-punto').
+        guardar('tp_pagina', PAGINA);
         evento('pulso_reservar', datosAnuncio({ tema: tema, desde: b.getAttribute('data-reservar') }));
       });
     });
