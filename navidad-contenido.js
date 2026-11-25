@@ -130,7 +130,7 @@ window.NAVIDAD = {
     foto: 'gift-bag.webp',
     // dentro
     cerrar: 'Cerrar', atras: 'Atrás', seguir: 'Continuar',
-    intro: { foto: 'navidad-calma.webp', ojo: 'Encuentra su regalo', titulo: 'Piensa en *esa persona*.', texto: 'Cuatro preguntas sobre quien lo recibe. Al final te decimos qué experiencia encaja con esa persona y te enseñamos cómo lo recibe.', boton: 'Empezar' },
+    intro: { foto: 'navidad-calma.webp', ojo: 'Encuentra su regalo', titulo: 'Piensa en esa persona *que lo tiene todo*.', texto: 'Cuatro preguntas sobre quien lo recibe. Al final te decimos qué experiencia encaja con esa persona y te enseñamos cómo lo recibe.', boton: 'Empezar' },
     nombre: {
       ojo: '01 · Quién es', titulo: '¿Cómo se llama?', placeholder: 'Su nombre', ayuda: 'Lo ponemos en su tarjeta. Solo lo ves tú.',
       relacion: 'Y para ti es…',

@@ -89,7 +89,7 @@ window.NAVIDAD = {
     duracion: 'About 30 seconds',
     foto: 'gift-bag.webp',
     cerrar: 'Close', atras: 'Back', seguir: 'Continue',
-    intro: { foto: 'navidad-calma.webp', ojo: 'Find their gift', titulo: 'Think of *that person*.', texto: 'Four questions about who receives it. At the end we tell you which experience fits that person and show you how they receive it.', boton: 'Start' },
+    intro: { foto: 'navidad-calma.webp', ojo: 'Find their gift', titulo: 'Think of that person *who has everything*.', texto: 'Four questions about who receives it. At the end we tell you which experience fits that person and show you how they receive it.', boton: 'Start' },
     nombre: {
       ojo: '01 · Who it is', titulo: 'What is their name?', placeholder: 'Their name', ayuda: 'We put it on their card. Only you see it.',
       relacion: 'And to you they are…',
