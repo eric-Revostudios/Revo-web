@@ -6,7 +6,7 @@
      <script src="/revo-navidad-aviso.js"> de las páginas cuando se quiera; no hace falta hacerlo ese día.
    - Lleva a /navidad?c=web (o /en/navidad?c=web): el canal «web» («La web», sin sorteo) lo creó la Platform el
      21-nov-2026 para lo que llega desde la propia web. Lleva además utm_source=web y utm_medium=franja | menu.
-   - No menciona la oferta de la tercera ni precios.
+   - No menciona la experiencia de más ni precios. Texto: la pregunta de la campaña (María, 25-nov-2026).
    Se carga en <head> SIN defer: así añade «Navidad» al menú de ordenador antes de que la página construya el menú
    del móvil a partir de él (lo hace al terminar de cargar). Si el menú del móvil ya existiera, se añade también ahí.
    =========================================================== */
@@ -19,8 +19,8 @@
   var conFranja = !!(yo && yo.hasAttribute('data-franja'));
   var en = /^en/i.test(document.documentElement.lang || '');
   var T = en
-    ? { menu: 'Christmas', base: '/en/navidad', ojo: 'Christmas at REVO', txt: 'Give an experience', aria: 'Christmas at REVO: give an experience' }
-    : { menu: 'Navidad', base: '/navidad', ojo: 'Navidad en REVO', txt: 'Regala una experiencia', aria: 'Navidad en REVO: regala una experiencia' };
+    ? { menu: 'Christmas', base: '/en/navidad', ojo: 'Christmas at REVO', txt: 'What do you give someone who has everything?', aria: 'Christmas at REVO: what do you give someone who has everything?' }
+    : { menu: 'Navidad', base: '/navidad', ojo: 'Navidad en REVO', txt: '¿Qué le regalas a quien lo tiene todo?', aria: 'Navidad en REVO: ¿qué le regalas a quien lo tiene todo?' };
   function url(medio) { return T.base + '?c=web&utm_source=web&utm_medium=' + medio; }
 
   function menu() {
@@ -59,7 +59,7 @@
       '.nv-franja .nv-t{font-family:"Noto Serif Hi",Georgia,serif;font-style:italic;font-size:14px;letter-spacing:-.01em;}' +
       '.nv-franja .nv-i{transition:transform .35s;}.nv-franja:hover .nv-i{transform:translateX(3px);}' +
       '.nv-franja:focus-visible{outline:2px solid #bcc5ff;outline-offset:-4px;}' +
-      '@media (max-width:360px){.nv-franja .nv-o{display:none;}}';
+      '@media (max-width:640px){.nv-franja .nv-o{display:none;}}@media (max-width:374px){.nv-franja{gap:7px;padding:0 8px;}.nv-franja .nv-t{font-size:12px;}}';
     document.head.appendChild(st);
     var a = document.createElement('a');
     a.className = 'nv-franja'; a.href = url('franja'); a.setAttribute('aria-label', T.aria);
