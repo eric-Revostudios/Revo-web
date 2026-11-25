@@ -124,7 +124,8 @@ footer{ padding:22px 0 max(26px, env(safe-area-inset-bottom, 0px)); font-size:14
   var mk = false;
   try { mk = JSON.parse(localStorage.getItem('revo-consent') || '{}').marketing === true; } catch (e) {}
   var datos = { tipo: tipo, mk: mk ? 'si' : 'no' };
-  ['campaign_id', 'adset_id', 'ad_id'].forEach(function (k) { if (/^\d{1,30}$/.test(ads[k] || '')) datos[k] = ads[k]; });
+  // Los ids del anuncio, SOLO con permiso de marketing (25-nov-2026, agencia).
+  if (mk) ['campaign_id', 'adset_id', 'ad_id'].forEach(function (k) { if (/^\d{1,30}$/.test(ads[k] || '')) datos[k] = ads[k]; });
   // Solo con cookies de marketing aceptadas: la marca del clic de Meta, para que la Platform pueda decirle a Meta
   // de qué anuncio vino la reserva. Son las cookies del propio píxel (_fbc, _fbp) y el fbclid del enlace; nada más.
   if (mk) {

@@ -62,9 +62,11 @@
     } catch (e) { return MOMENCE; }
   }
   function datosAnuncio(d) {
-    d.mk = marketingOk() ? 'si' : 'no';
+    var mk = marketingOk();
+    d.mk = mk ? 'si' : 'no';
     // Los ids de Meta van como TEXTO (no caben en un número de JavaScript) y solo si son dígitos.
-    ['campaign_id', 'adset_id', 'ad_id'].forEach(function (k) { if (/^\d{1,30}$/.test(ads[k] || '')) d[k] = ads[k]; });
+    // 25-nov-2026 (agencia): y SOLO con permiso de marketing. Sin permiso la visita cuenta en su landing, sin anuncio.
+    if (mk) ['campaign_id', 'adset_id', 'ad_id'].forEach(function (k) { if (/^\d{1,30}$/.test(ads[k] || '')) d[k] = ads[k]; });
     // 24-nov-2026: el «Reservar» fija también la campaña y la marca de landing del anuncio de ESE intento
     // (la Platform lee el origen de la reserva de este clic). Como mucho 120 caracteres; vacío si no vino.
     ['utm_campaign', 'utm_medium', 'utm_term'].forEach(function (k) { if (ads[k]) d[k] = String(ads[k]).slice(0, 120); });
@@ -875,9 +877,21 @@
     document.documentElement.style.setProperty('--rc-alto', alto + 'px');
   }
   window.addEventListener('resize', ajustaAviso);
-  document.addEventListener('revo:consent', function () { document.documentElement.style.setProperty('--rc-alto', '0px'); });
+  document.addEventListener('revo:consent', function (ev) {
+    document.documentElement.style.setProperty('--rc-alto', '0px');
+    // 25-nov-2026: si acepta marketing DESPUÉS de abrir, la visita se vincula a su anuncio con un segundo
+    // «abrio» (una vez por pestaña). Sin permiso no se manda nada más.
+    var ok = false;
+    try { ok = !!(ev && ev.detail && ev.detail.marketing); } catch (e) {}
+    if (ok && !leer('tp_abrio_mk')) { guardar('tp_abrio_mk', '1'); evento('abrio', datosAnuncio({ tras: 'consentimiento' })); }
+  });
 
-  if (!leer('tp_abrio')) { guardar('tp_abrio', '1'); evento('abrio', {}); }
+  if (!leer('tp_abrio')) {
+    guardar('tp_abrio', '1');
+    var abre = datosAnuncio({});
+    if (abre.mk === 'si') guardar('tp_abrio_mk', '1');
+    evento('abrio', abre);
+  }
   render();
   ajustaAviso();
   setTimeout(ajustaAviso, 600);
