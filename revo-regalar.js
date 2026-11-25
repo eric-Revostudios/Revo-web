@@ -204,7 +204,12 @@
     var rg = guardado(), scrim = document.getElementById('bkScrim');
     if (sinPuerta || !rg || rg.t < enviadoEn || !scrim || !scrim.classList.contains('open') || Date.now() - sondeoDesde > 20 * 60000) return;
     fetch(ESTADO + encodeURIComponent(rg.c), { cache: 'no-store' })
-      .then(function (r) { if (r.status === 404) { sinPuerta = true; return null; } return r.ok ? r.json() : null; })
+      .then(function (r) {
+        // 404: la puerta no existe todavía · 429: demasiadas preguntas desde esta conexión → se deja de preguntar.
+        // 503 u otro: la base no contestó → «aún no», se vuelve a preguntar.
+        if (r.status === 404 || r.status === 429) { sinPuerta = true; return null; }
+        return r.ok ? r.json() : null;
+      })
       .then(function (j) {
         if (j && j.ok && j.pagado === true) { location.href = '/reserva-hecha?type=regalo'; return; }
         if (!sinPuerta) sondeo = setTimeout(pregunta, 4000);
