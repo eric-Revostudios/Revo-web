@@ -138,7 +138,7 @@
     if (!form.checkValidity()) { form.reportValidity(); return; }
     errBox.hidden = true;
     submitBtn.disabled = true; submitBtn.classList.add('is-loading'); submitBtn.textContent = tx().enviando;
-    enviadoEn = Date.now();
+    enviadoEn = Date.now(); sondeoDesde = 0;
     var fd = new FormData(form), c = cfg();
     var prod = (String(actual.url || '').match(/\/(\d+)\/?(?:[?#].*)?$/) || [])[1];
     var fmt = String(fd.get('Formato') || '');
@@ -192,6 +192,25 @@
      - con el pago abierto, al pie del cajón, DEBAJO del iframe (no tapa el botón de pagar) y solo si el código es el
        de esta compra; - cerrado el cajón o al volver a la página, abajo, flotando. */
   var enPago = false, enviadoEn = 0, fija = null, pie = null;
+
+  /* Llevarla sola a su página (rama claude/navidad-vuelta-pago, 26-nov-2026; necesita GET /api/regalo/estado en la
+     Platform). Mientras el cajón de pago está abierto, cada 4 s se pregunta si ese código ya está pagado; al saberlo,
+     a /reserva-hecha?type=regalo, que avisa a Meta de la compra (con permiso) y la lleva a /regalo/{código}?enviar=1.
+     Sin la puerta (404) o tras 20 minutos, se deja de preguntar y queda la barra. */
+  var ESTADO = 'https://revo-platform.vercel.app/api/regalo/estado?codigo=', sondeo = null, sondeoDesde = 0, sinPuerta = false;
+  function para() { if (sondeo) { clearTimeout(sondeo); sondeo = null; } }
+  function pregunta() {
+    para();
+    var rg = guardado(), scrim = document.getElementById('bkScrim');
+    if (sinPuerta || !rg || rg.t < enviadoEn || !scrim || !scrim.classList.contains('open') || Date.now() - sondeoDesde > 20 * 60000) return;
+    fetch(ESTADO + encodeURIComponent(rg.c), { cache: 'no-store' })
+      .then(function (r) { if (r.status === 404) { sinPuerta = true; return null; } return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (j && j.ok && j.pagado === true) { location.href = '/reserva-hecha?type=regalo'; return; }
+        if (!sinPuerta) sondeo = setTimeout(pregunta, 4000);
+      })
+      .catch(function () { sondeo = setTimeout(pregunta, 8000); });
+  }
   function guardado() {
     var rg = null;
     try { rg = JSON.parse(localStorage.getItem('revo_regalo') || 'null'); } catch (_e) {}
@@ -210,8 +229,9 @@
   function barra() {
     var rg = guardado(), scrim = document.getElementById('bkScrim'), abierto = !!(scrim && scrim.classList.contains('open'));
     if (fija) { fija.remove(); fija = null; } if (pie) { pie.remove(); pie = null; }
-    if (!abierto) enPago = false;
+    if (!abierto) { enPago = false; para(); }
     if (!rg) return;
+    if (abierto && enPago && !sondeo && rg.t >= enviadoEn) { sondeoDesde = sondeoDesde || Date.now(); sondeo = setTimeout(pregunta, 4000); }
     if (abierto) {
       var panel = document.getElementById('bkPanel');
       if (panel && enPago && rg.t >= enviadoEn) { pie = pinta('rg-pie', rg, false); panel.appendChild(pie); }

@@ -82,7 +82,7 @@ footer{ padding:22px 0 max(26px, env(safe-area-inset-bottom, 0px)); font-size:14
   // envía él mismo. La clave la deja experiencias.html (caduca a las 3 h). Una cita no es la compra de un regalo.
   try {
     var rg = JSON.parse(localStorage.getItem('revo_regalo') || 'null');
-    if (rg && /^RV-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(rg.c || '') && Date.now() - (rg.t || 0) < 3 * 3600 * 1000 && tipo !== 'appointment') {
+    if (rg && /^RV-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(rg.c || '') && Date.now() - (rg.t || 0) < 3 * 3600 * 1000 && tipo !== 'appointment') {   // type=regalo: la manda revo-regalar.js al ver el pago
       var destino = '/regalo/' + rg.c + '?enviar=1';
       // Compra de un regalo (20-nov-2026, campaña de Navidad): se le dice a Meta, con su importe, para que la agencia
       // optimice los anuncios. Solo si la persona aceptó las cookies de marketing, solo si la ventana guardó el
