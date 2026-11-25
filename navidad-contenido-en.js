@@ -27,22 +27,50 @@ window.NAVIDAD = {
   // the extra experience: only shown when the Platform says it is active (see the Spanish file)
   OFERTA: {
     franja: 'If you give two, there is one more from us. *Until {hasta}.*',
-    desdeDefecto: '26 November', hastaDefecto: '5 January',
+    hastaDefecto: '5 January',
     para: 'for you or for whoever you like',
     paraSocios: 'for someone you love',
     cuandoDefecto: 'from January to March 2027',
     cuando: 'from {mesDesde} to {mesHasta} {anio}',
     o: ' or ',
     duda: 'How does the extra experience work?',
-    dudaElegir: 'For every two experiences you pay for between {desde} and {hasta}, there is one more from us, {para}. There is nothing to do when paying: use the same email for both purchases and, after the second one, choose it on your gift page, of equal or lower value than the less expensive of the two. It is enjoyed {cuando}.',
-    dudaLista: 'For every two experiences you pay for between {desde} and {hasta}, there is one more from us, {para}: {exp}. There is nothing to do when paying: use the same email for both purchases and, after the second one, you will find it on your gift page. It is enjoyed {cuando}.',
+    dudaElegir: [
+      'Give two experiences by {hasta} and use the same email for both: that way we know they are yours. One you buy for yourself counts too.',
+      'After paying for the second you land on your gift page, and the extra one appears there. You choose which, of equal or lower value than the less expensive of the two, and who it is for.',
+      'It is enjoyed {cuando}. If you used a different email for one of them, write to us and we will sort it out.'
+    ],
+    dudaLista: [
+      'Give two experiences by {hasta} and use the same email for both: that way we know they are yours. One you buy for yourself counts too.',
+      'After paying for the second you land on your gift page, and the extra one appears there. It is {exp} or, if that costs more than the less expensive of the two, another of equal or lower value. You choose who it is for.',
+      'It is enjoyed {cuando}. If you used a different email for one of them, write to us and we will sort it out.'
+    ],
+    dudaBoton: 'Write to us on WhatsApp',
+    dudaWa: 'Hello, I have given two experiences using different emails and would like them to count together. Could you help me?',
+    bloque: {
+      titulo: 'If you give two, there is one more *from us*.',
+      pasosElegir: [
+        ['Give two experiences', 'On the same day or on different days, by {hasta}. Use the same email for both.'],
+        ['You will see one more', 'After paying for the second, we take you to your gift page. It appears there.'],
+        ['Choose which one and who for', '{Para}. Of equal or lower value than the less expensive of the two. It is enjoyed {cuando}.']
+      ],
+      pasosLista: [
+        ['Give two experiences', 'On the same day or on different days, by {hasta}. Use the same email for both.'],
+        ['You will see one more', 'After paying for the second, we take you to your gift page. It appears there.'],
+        ['Choose who for', '{Para}. It is {exp} or, if that costs more than the less expensive of the two, another of equal or lower value. It is enjoyed {cuando}.']
+      ],
+      boton: 'Choose the experiences'
+    },
     validez: 'The extra experience is enjoyed {cuando}.',
     test: 'For every two experiences you give, there is one more from us, {para}.'
   },
   MESES: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   FECHA: '{dia} {mes}',
 
-  QUE_ES: { rotulo: 'What REVO is', texto: 'REVO is a longevity club in Turó Park. A place to look after yourself calmly and sensibly: advanced therapies such as cold at −130 °C, red light or oxygen in a hyperbaric chamber, with medical direction and a team that is with you from start to finish. People who come here are not looking for a spa or a gym: they want to feel well today and still feel well twenty years from now.' },
+  QUE_ES: {
+    rotulo: 'What REVO is',
+    titulo: 'REVO is a longevity club in Turó Park.',
+    texto: 'People who come here are not looking for a spa or a gym: they want to feel well today and still feel well *twenty years from now*.'
+  },
 
   EXPERIENCIAS_TITULO: 'Six answers for *someone who has everything*.',
   EXPERIENCIAS_ENTRADA: 'Several therapies in a single visit, sequenced by our medical team around one goal.',
@@ -224,8 +252,8 @@ window.NAVIDAD = {
   RECIBE: {
     rotulo: 'How they receive it',
     titulo: 'It arrives *right away*. Or by hand.',
-    digital: { t: 'Digital', d: 'After paying, we take you to their gift page, with their name and your message. You send it to them, by WhatsApp or email.', boton: 'See an example' },
-    impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give by hand.', foto: 'nv-estudio.webp', boton: 'How to get there' },
+    digital: { t: 'Digital', d: 'After paying, we take you to their gift page, with their name and your message. You send it to them, by WhatsApp or email.', foto: 'nv-tarjeta-digital.webp', alt: 'The digital card (in Spanish): “You have a gift”, with the experience and your message.', boton: 'See an example' },
+    impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give by hand.', foto: '/material-navidad/tarjeta-impresa.webp', alt: '', boton: 'How to get there' },
     demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
 

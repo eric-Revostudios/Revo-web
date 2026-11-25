@@ -44,22 +44,48 @@ window.NAVIDAD = {
      experiencias de la lista. Nunca «3×2», «2+1», «oferta» ni «descuento». */
   // Frases de María (25-nov-2026): «hay una más de nuestra parte». «Cortesía de la casa» es solo el nombre del interruptor
   // y del vale en la Platform: no va de titular aquí. {para} = «para ti o para quien quieras» y, con el canal `socios`
-  // (miembros), «para alguien a quien quieras». {desde} y {hasta}: las fechas de la campaña que manda la Platform.
+  // (miembros), «para alguien a quien quieras». {hasta}: la fecha de la campaña que manda la Platform.
   // Cómo llega de verdad (Platform, docs/regalos.md): cuentan las compras pagadas de la misma persona (mismo email) y la
   // elige ella en su página, a la que llega al pagar. Nadie se la manda: no escribir «te llega sola».
   // Palabras que no van en ningún texto visible: regalamos, gratis, sorteamos, sorteo, gana, premio, descuento, oferta,
   // promo, 3×2, 2+1, la tercera, salud.
   OFERTA: {
     franja: 'Si regalas dos, hay una más de nuestra parte. *Hasta el {hasta}.*',
-    desdeDefecto: '26 de noviembre', hastaDefecto: '5 de enero',
+    hastaDefecto: '5 de enero',
     para: 'para ti o para quien quieras',
     paraSocios: 'para alguien a quien quieras',
     cuandoDefecto: 'de enero a marzo de 2027',
     cuando: 'de {mesDesde} a {mesHasta} de {anio}',
     o: ' o ',
     duda: '¿Cómo funciona la experiencia de más?',
-    dudaElegir: 'Por cada dos experiencias que pagues entre el {desde} y el {hasta}, hay una más de nuestra parte, {para}. Al pagar no tienes que hacer nada: usa el mismo email en las dos compras y, al terminar la segunda, la eliges en la página de tu regalo, de un valor igual o menor que la más económica de las dos. Se disfruta {cuando}.',
-    dudaLista: 'Por cada dos experiencias que pagues entre el {desde} y el {hasta}, hay una más de nuestra parte, {para}: {exp}. Al pagar no tienes que hacer nada: usa el mismo email en las dos compras y, al terminar la segunda, la encuentras en la página de tu regalo. Se disfruta {cuando}.',
+    // respuesta en párrafos cortos; al final, el enlace de WhatsApp para quien usó otro email
+    dudaElegir: [
+      'Regala dos experiencias hasta el {hasta} y usa el mismo email en las dos: así sabemos que son tuyas. Cuenta también la que compres para ti.',
+      'Al pagar la segunda llegas a la página de tu regalo, y ahí aparece la de más. Tú eliges cuál, de un valor igual o menor que la más económica de las dos, y a quién se la das.',
+      'Se disfruta {cuando}. Si en una compra pusiste otro email, escríbenos y lo resolvemos.'
+    ],
+    dudaLista: [
+      'Regala dos experiencias hasta el {hasta} y usa el mismo email en las dos: así sabemos que son tuyas. Cuenta también la que compres para ti.',
+      'Al pagar la segunda llegas a la página de tu regalo, y ahí aparece la de más. Es {exp} o, si cuesta más que la más económica de las dos, otra de un valor igual o menor. Tú eliges a quién se la das.',
+      'Se disfruta {cuando}. Si en una compra pusiste otro email, escríbenos y lo resolvemos.'
+    ],
+    dudaBoton: 'Escríbenos por WhatsApp',
+    dudaWa: 'Hola, he regalado dos experiencias con emails distintos y quería que contaran juntas. ¿Me ayudáis?',
+    // el bloque grande, después de las seis experiencias. {Para} = «Para ti o para quien quieras» (socios: su frase)
+    bloque: {
+      titulo: 'Si regalas dos, hay una más *de nuestra parte*.',
+      pasosElegir: [
+        ['Regala dos experiencias', 'El mismo día o en días distintos, hasta el {hasta}. Usa el mismo email en las dos.'],
+        ['Verás que hay una más', 'Al pagar la segunda te llevamos a la página de tu regalo. Aparece ahí.'],
+        ['Elige cuál y para quién', '{Para}. De un valor igual o menor que la más económica de las dos. Se disfruta {cuando}.']
+      ],
+      pasosLista: [
+        ['Regala dos experiencias', 'El mismo día o en días distintos, hasta el {hasta}. Usa el mismo email en las dos.'],
+        ['Verás que hay una más', 'Al pagar la segunda te llevamos a la página de tu regalo. Aparece ahí.'],
+        ['Elige para quién', '{Para}. Es {exp} o, si cuesta más que la más económica de las dos, otra de un valor igual o menor. Se disfruta {cuando}.']
+      ],
+      boton: 'Elegir las experiencias'
+    },
     // se añade a la respuesta de «¿Cuánto tiempo tiene para usarla?»
     validez: 'La experiencia de más se disfruta {cuando}.',
     test: 'Por cada dos experiencias que regales, hay una más de nuestra parte, {para}.'
@@ -67,8 +93,13 @@ window.NAVIDAD = {
   MESES: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
   FECHA: '{dia} de {mes}',
 
-  /* ---- qué es REVO (texto de María, 25-nov-2026) ---- */
-  QUE_ES: { rotulo: 'Qué es REVO', texto: 'REVO es un club de longevidad en Turó Park. Un sitio para cuidarse con calma y con cabeza: terapias avanzadas como el frío a −130 °C, la luz roja o el oxígeno en cámara hiperbárica, con dirección médica y un equipo que te acompaña de principio a fin. Quien viene no busca un spa ni un gimnasio: busca encontrarse bien hoy y seguir haciéndolo dentro de veinte años.' },
+  /* ---- qué es REVO (frases de María, recortadas el 25-nov-2026 por la noche). Cambiarlo aquí y en ningún otro sitio.
+     *texto* → cursiva de la casa. ---- */
+  QUE_ES: {
+    rotulo: 'Qué es REVO',
+    titulo: 'REVO es un club de longevidad en Turó Park.',
+    texto: 'Quien viene no busca un spa ni un gimnasio: busca encontrarse bien hoy y seguir haciéndolo *dentro de veinte años*.'
+  },
 
   /* ---- las seis experiencias ----
      Precio, enlace de Momence y textos: los mismos que experiencias.html (20-nov-2026). Si cambian allí, aquí también.
@@ -269,8 +300,10 @@ window.NAVIDAD = {
   RECIBE: {
     rotulo: 'Así lo recibe',
     titulo: 'Llega *al momento*. O en mano.',
-    digital: { t: 'Digital', d: 'Al pagar te llevamos a la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', boton: 'Ver un ejemplo' },
-    impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: 'nv-estudio.webp', boton: 'Cómo llegar' },
+    // La foto de la impresa se cambia sustituyendo material-navidad/tarjeta-impresa.webp (vertical 4:5, 1080 × 1350): esa
+    // carpeta no se guarda en caché. Hoy es la sala donde se recoge. Al poner la tarjeta, escribir su `alt`.
+    digital: { t: 'Digital', d: 'Al pagar te llevamos a la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', foto: 'nv-tarjeta-digital.webp', alt: 'La tarjeta digital: «Tienes un regalo», con la experiencia y tu dedicatoria.', boton: 'Ver un ejemplo' },
+    impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: '/material-navidad/tarjeta-impresa.webp', alt: '', boton: 'Cómo llegar' },
     // la página real de la Platform (ejemplo con la experiencia que se elija)
     demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
