@@ -34,7 +34,8 @@
     para: 'Para', paraPh: 'Quien lo recibe', de: 'De parte de', email: 'Tu email', emailPh: 'Para el comprobante de pago', ded: 'Dedicatoria', dedPh: 'Opcional — la incluimos en el regalo',
     boton: 'Continuar al pago', enviando: 'Enviando…', pie: 'Pago seguro · lo gestiona REVO Studios',
     error: 'No hemos podido enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos a hello@revostudios.eu.',
-    wa: 'Hola, quiero regalar la experiencia {exp}. ¿Me ayudáis?', waBoton: 'Escríbenos por WhatsApp'
+    wa: 'Hola, quiero regalar la experiencia {exp}. ¿Me ayudáis?', waBoton: 'Escríbenos por WhatsApp',
+    pagado: '¿Ya has pagado? Tu regalo te espera.', recoger: 'Recogerlo'
   };
   function tx() { var o = {}, k, t = cfg().textos || {}; for (k in ES) o[k] = t[k] || ES[k]; return o; }
   function e(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -129,6 +130,7 @@
     close();
     if (window.REVO && window.REVO.reservar) window.REVO.reservar({ url: url, title: title, whatsapp: wa, whatsappLabel: t.waBoton });
     else window.location.href = url;
+    enPago = true; barra();
   }
 
   function enviar(e) {
@@ -136,6 +138,7 @@
     if (!form.checkValidity()) { form.reportValidity(); return; }
     errBox.hidden = true;
     submitBtn.disabled = true; submitBtn.classList.add('is-loading'); submitBtn.textContent = tx().enviando;
+    enviadoEn = Date.now();
     var fd = new FormData(form), c = cfg();
     var prod = (String(actual.url || '').match(/\/(\d+)\/?(?:[?#].*)?$/) || [])[1];
     var fmt = String(fd.get('Formato') || '');
@@ -161,7 +164,10 @@
           .then(function (j) {
             /* el código del regalo: al volver de pagar, reserva-hecha.html lleva a su página. `v` (importe) y `n`
                (experiencia) sirven para avisar a Meta de la compra con su importe. */
-            if (j && j.ok && j.codigo) { try { localStorage.setItem('revo_regalo', JSON.stringify({ c: j.codigo, t: Date.now(), v: Number(actual.precio) || 0, n: String(actual.exp || '').slice(0, 60) })); } catch (_e) {} }
+            if (j && j.ok && j.codigo) {
+              try { localStorage.setItem('revo_regalo', JSON.stringify({ c: j.codigo, t: Date.now(), v: Number(actual.precio) || 0, n: String(actual.exp || '').slice(0, 60) })); } catch (_e) {}
+              barra();
+            }
           }).catch(function () {});
       }
     } catch (_e) {}
@@ -179,6 +185,46 @@
         errBox.hidden = false; errBox.textContent = t.error;
       });
   }
+
+  /* «¿Ya has pagado? Tu regalo te espera.» (26-nov-2026). Momence NO devuelve a nuestra web a quien compra un producto
+     (solo tras una cita, una clase o una membresía): se queda en su pantalla de gracias. Esta barra lleva a la página
+     del regalo con el código guardado (3 h), la misma que experiencias.html:
+     - con el pago abierto, al pie del cajón, DEBAJO del iframe (no tapa el botón de pagar) y solo si el código es el
+       de esta compra; - cerrado el cajón o al volver a la página, abajo, flotando. */
+  var enPago = false, enviadoEn = 0, fija = null, pie = null;
+  function guardado() {
+    var rg = null;
+    try { rg = JSON.parse(localStorage.getItem('revo_regalo') || 'null'); } catch (_e) {}
+    if (!rg || !/^RV-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(rg.c || '')) return null;
+    if (Date.now() - (rg.t || 0) > 3 * 3600 * 1000) { try { localStorage.removeItem('revo_regalo'); } catch (_e) {} return null; }
+    return rg;
+  }
+  function pinta(clase, rg, conCerrar) {
+    var t = tx(), d = document.createElement('div');
+    d.className = 'rg-barra ' + clase; d.setAttribute('role', 'status');
+    d.innerHTML = '<span>' + e(t.pagado) + '</span><a href="/regalo/' + e(rg.c) + '?enviar=1">' + e(t.recoger) + '</a>' +
+      (conCerrar ? '<button type="button" aria-label="' + e(t.cerrar) + '">\u00d7</button>' : '');
+    if (conCerrar) d.querySelector('button').addEventListener('click', function () { try { localStorage.removeItem('revo_regalo'); } catch (_e) {} barra(); });
+    return d;
+  }
+  function barra() {
+    var rg = guardado(), scrim = document.getElementById('bkScrim'), abierto = !!(scrim && scrim.classList.contains('open'));
+    if (fija) { fija.remove(); fija = null; } if (pie) { pie.remove(); pie = null; }
+    if (!abierto) enPago = false;
+    if (!rg) return;
+    if (abierto) {
+      var panel = document.getElementById('bkPanel');
+      if (panel && enPago && rg.t >= enviadoEn) { pie = pinta('rg-pie', rg, false); panel.appendChild(pie); }
+    } else { fija = pinta('rg-fija', rg, true); document.body.appendChild(fija); }
+  }
+  function vigila() {
+    barra();
+    var scrim = document.getElementById('bkScrim'), antes = false;
+    if (!scrim || !window.MutationObserver) return;
+    new MutationObserver(function () { var a = scrim.classList.contains('open'); if (a !== antes) { antes = a; barra(); } }).observe(scrim, { attributes: true, attributeFilter: ['class'] });
+  }
+  if (document.readyState === 'complete') vigila(); else window.addEventListener('load', vigila);
+  window.addEventListener('pageshow', function (ev) { if (ev.persisted) barra(); });   // al volver con «atrás»
 
   window.REVO = window.REVO || {};
   window.REVO.regalar = open;

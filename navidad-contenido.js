@@ -61,12 +61,12 @@ window.NAVIDAD = {
     // respuesta en párrafos cortos; al final, el enlace de WhatsApp para quien usó otro email
     dudaElegir: [
       'Regala dos experiencias hasta el {hasta} y usa el mismo email en las dos: así sabemos que son tuyas. Cuenta también la que compres para ti.',
-      'Al pagar la segunda llegas a la página de tu regalo, y ahí aparece la de más. Tú eliges cuál, de un valor igual o menor que la más económica de las dos, y a quién se la das.',
+      'Al pagar la segunda, pulsa «Recogerlo» y entra en la página de tu regalo: ahí aparece la de más. Tú eliges cuál, de un valor igual o menor que la más económica de las dos, y a quién se la das.',
       'Se disfruta {cuando}. Si en una compra pusiste otro email, escríbenos y lo resolvemos.'
     ],
     dudaLista: [
       'Regala dos experiencias hasta el {hasta} y usa el mismo email en las dos: así sabemos que son tuyas. Cuenta también la que compres para ti.',
-      'Al pagar la segunda llegas a la página de tu regalo, y ahí aparece la de más. Es {exp} o, si cuesta más que la más económica de las dos, otra de un valor igual o menor. Tú eliges a quién se la das.',
+      'Al pagar la segunda, pulsa «Recogerlo» y entra en la página de tu regalo: ahí aparece la de más. Es {exp} o, si cuesta más que la más económica de las dos, otra de un valor igual o menor. Tú eliges a quién se la das.',
       'Se disfruta {cuando}. Si en una compra pusiste otro email, escríbenos y lo resolvemos.'
     ],
     dudaBoton: 'Escríbenos por WhatsApp',
@@ -76,12 +76,12 @@ window.NAVIDAD = {
       titulo: 'Si regalas dos, hay una más *de nuestra parte*.',
       pasosElegir: [
         ['Regala dos experiencias', 'El mismo día o en días distintos, hasta el {hasta}. Usa el mismo email en las dos.'],
-        ['Verás que hay una más', 'Al pagar la segunda te llevamos a la página de tu regalo. Aparece ahí.'],
+        ['Verás que hay una más', 'Al pagar la segunda, pulsa «Recogerlo» y entra en la página de tu regalo. Aparece ahí.'],
         ['Elige cuál y para quién', '{Para}. De un valor igual o menor que la más económica de las dos. Se disfruta {cuando}.']
       ],
       pasosLista: [
         ['Regala dos experiencias', 'El mismo día o en días distintos, hasta el {hasta}. Usa el mismo email en las dos.'],
-        ['Verás que hay una más', 'Al pagar la segunda te llevamos a la página de tu regalo. Aparece ahí.'],
+        ['Verás que hay una más', 'Al pagar la segunda, pulsa «Recogerlo» y entra en la página de tu regalo. Aparece ahí.'],
         ['Elige para quién', '{Para}. Es {exp} o, si cuesta más que la más económica de las dos, otra de un valor igual o menor. Se disfruta {cuando}.']
       ],
       boton: 'Elegir las experiencias'
@@ -302,7 +302,7 @@ window.NAVIDAD = {
     titulo: 'Llega *al momento*. O en mano.',
     // La foto de la impresa se cambia sustituyendo material-navidad/tarjeta-impresa.webp (vertical 4:5, 1080 × 1350): esa
     // carpeta no se guarda en caché. Hoy es la sala donde se recoge. Al poner la tarjeta, escribir su `alt`.
-    digital: { t: 'Digital', d: 'Al pagar te llevamos a la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', foto: 'nv-tarjeta-digital.webp', alt: 'La tarjeta digital: «Tienes un regalo», con la experiencia y tu dedicatoria.', boton: 'Ver un ejemplo' },
+    digital: { t: 'Digital', d: 'Al pagar, pulsa «Recogerlo» y entra en la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', foto: 'nv-tarjeta-digital.webp', alt: 'La tarjeta digital: «Tienes un regalo», con la experiencia y tu dedicatoria.', boton: 'Ver un ejemplo' },
     impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: '/material-navidad/tarjeta-impresa.webp', alt: '', boton: 'Cómo llegar' },
     // la página real de la Platform (ejemplo con la experiencia que se elija)
     demo: 'https://www.revostudios.eu/regalo/demo?e='
@@ -342,7 +342,7 @@ window.NAVIDAD = {
   DUDAS: [
     ['¿Cuánto tiempo tiene para usarla?', 'Un año desde la compra.'],
     ['¿Cómo reserva su sesión?', 'Por WhatsApp o por teléfono, cuando le vaya bien. Le ayudamos a encontrar el día.'],
-    ['¿Cuándo llega el regalo?', 'Al momento. Al pagar te llevamos a la página de su regalo para que se la envíes tú.'],
+    ['¿Cuándo llega el regalo?', 'Al momento. Al pagar, pulsa «Recogerlo» y entra en la página de su regalo para enviárselo tú.'],
     ['¿Puedo darlo en mano?', 'Sí. Elige «Impreso» al regalar y recoge la tarjeta en el estudio, en Turó Park.']
   ],
 
