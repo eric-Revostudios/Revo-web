@@ -123,7 +123,9 @@
 
   function aPagar() {
     var url = actual.url, title = actual.exp || 'REVO Studios';
-    var t = tx(), wa = 'https://wa.me/34613505881?text=' + encodeURIComponent(t.wa.replace('{exp}', title));
+    var t = tx(), canal = cfg().canal || '';
+    // de qué canal viene, también en el WhatsApp
+    var wa = 'https://wa.me/34613505881?text=' + encodeURIComponent(t.wa.replace('{exp}', title) + (CANAL_OK.test(canal) ? ' (ref: ' + canal + ')' : ''));
     close();
     if (window.REVO && window.REVO.reservar) window.REVO.reservar({ url: url, title: title, whatsapp: wa, whatsappLabel: t.waBoton });
     else window.location.href = url;

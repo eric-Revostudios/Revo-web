@@ -839,6 +839,21 @@
       modal.querySelectorAll('[data-close]').forEach(function(x){ x.addEventListener('click', close); });
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) close(); });
 
+      /* De qué enlace de campaña viene la persona: el mismo dato (nv_origen, 30 días) que guarda /navidad.
+         Se lee al llegar, para que ?c= no se pierda si luego cambia de página. */
+      function canalCampana(){
+        try {
+          var o = null; try { o = JSON.parse(localStorage.getItem('nv_origen') || 'null'); } catch(_e){}
+          if(o && Date.now() - (o.t || 0) > 30 * 864e5) o = null;
+          var c = String(new URLSearchParams(location.search).get('c') || '').toLowerCase().trim();
+          if(c === 'estudio') c = 'studio';
+          if(!/^[a-z0-9-]{1,40}$/.test(c)) return o && /^[a-z0-9-]{1,40}$/.test(o.c || '') ? o.c : undefined;
+          if(!o || o.c !== c){ try { localStorage.setItem('nv_origen', JSON.stringify({ c: c, u: {}, t: Date.now() })); } catch(_e){} }
+          return c;
+        } catch(_e){ return undefined; }
+      }
+      canalCampana();
+
       form.addEventListener('submit', function(e){
         e.preventDefault();
         if(!form.checkValidity()){ form.reportValidity(); return; }
@@ -851,10 +866,12 @@
          estos datos. No bloquea ni avisa: si fallara, el correo llega igual. */
       var apunte = null;
       try {
-        var esRegalo = f['Tipo'].value === 'Regalo';
+        var esRegalo = f['Tipo'].value === 'Gift';   /* en inglés el campo dice «Gift» */
         var prod = (String(redirectUrl||'').match(/\/(\d+)\/?(?:[?#].*)?$/) || [])[1];
         var fmt = String(fd.get('Formato') || '');
         if(prod){
+          /* el canal de la campaña (?c= o el guardado por /navidad); sin canal no se manda nada */
+          var canal = canalCampana();
           apunte = fetch('https://revo-platform.vercel.app/api/regalo', {
             method:'POST', keepalive:true, headers:{ 'Content-Type':'application/json' },
             body: JSON.stringify(esRegalo ? {
@@ -864,7 +881,8 @@
               destinatario: String(fd.get('Para (nombre)') || ''),
               dedicatoria: String(fd.get('Dedicatoria') || ''),
               formato: /^digital/i.test(fmt) ? 'digital' : (fmt ? 'impreso' : ''),
-              ref: fd.get('botcheck') ? '1' : ''
+              ref: fd.get('botcheck') ? '1' : '',
+              canal: canal
             } : {
               producto: prod, para: 'mi',
               nombre: String(fd.get('Nombre') || ''),
@@ -872,7 +890,8 @@
               telefono: String(fd.get('Telefono') || ''),
               personas: String(fd.get('Personas') || '1'),
               preferenciaFechas: String(fd.get('Preferencia de fechas') || ''),
-              ref: fd.get('botcheck') ? '1' : ''
+              ref: fd.get('botcheck') ? '1' : '',
+              canal: canal
             })
           }).then(function(r){ return r.json(); }).then(function(j){
             /* el código del regalo: con él, al terminar el pago, la web lleva

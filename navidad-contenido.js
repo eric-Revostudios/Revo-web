@@ -15,7 +15,7 @@ window.NAVIDAD = {
   // Pedir a la Platform el nombre del partner y si su canal tiene sorteo. Sin respuesta (o sin la puerta publicada),
   // la página sigue sin sorteo y con el texto general.
   PLATFORM: 'https://revo-platform.vercel.app',
-  CANALES: ['studio', 'socios', 'vecinos', 'instagram', 'ads', 'goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
+  CANALES: ['studio', 'socios', 'vecinos', 'instagram', 'ads', 'exmiembros', 'leads', 'partners', 'conserjes', 'web', 'goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
   // «estudio» (María) = «studio» (QR ya impresos); «conserjes» lo crea la Platform; «web» es la propia web
   ALIAS_CANAL: { estudio: 'studio' },
   // los centros asociados: con su canal, la cabecera dice «Para la comunidad de {nombre}»
@@ -26,72 +26,83 @@ window.NAVIDAD = {
   /* ---- cabecera ---- */
   CABECERA: {
     rotulo: 'Navidad en REVO',
-    titulo: 'Esta Navidad, regala *bienestar*.',
-    entrada: 'Hay regalos que se abren. Este se siente.',
+    titulo: '¿Qué le regalas a quien *lo tiene todo*?',
+    entrada: 'Un rato para cuidarse. Seis experiencias en REVO, el club de longevidad de Turó Park.',
     boton: 'Elegir una experiencia',
     test: '¿No sabes cuál? Encuentra su regalo',
     // con canal de partner: se añade debajo del titular. {nombre} = nombre del partner
     partner: 'Para la comunidad de {nombre}.'
   },
 
-  /* ---- la oferta en una frase ---- */
   /* ---- la oferta «dos y una de regalo»: la MANDA LA PLATFORM (20-nov-2026) ----
      GET /api/campana/canal (con o sin ?c=) trae `oferta: { activa, modo: 'elegir' | 'lista', experiencias: [ids],
      valido_desde, valido_hasta }` y `campana: { desde, hasta }`. La oferta solo se ve si `oferta.activa` es true;
-     si es false, si no viene el campo o si la Platform no contesta, no sale NI UNA palabra (ni el bloque, ni la línea
-     del resultado del test, ni la pregunta frecuente). Se enciende y se apaga desde la Platform (Regalos → Canales).
+     si es false, si no viene el campo o si la Platform no contesta, no sale NI UNA palabra (ni la franja, ni la línea
+     del resultado del test, ni la pregunta frecuente, ni su frase en la de la validez). Se enciende y se apaga desde la Platform (Regalos → Canales).
      Para revisarla sin encenderla: ?oferta=elegir o ?oferta=lista (solo en este navegador, no cambia nada para nadie).
      {cuando} = «de enero a marzo de 2027», sacado de valido_desde / valido_hasta; {exp} = la experiencia o
      experiencias de la lista. Nunca «3×2», «2+1», «oferta» ni «descuento». */
-  // Nombre y frases aprobados por María el 23-nov-2026. {para} = «para ti o para quien quieras» y, con el canal
-  // `socios` (miembros), «para alguien a quien quieras». Palabras que no van en ningún texto visible: regalamos, gratis,
-  // sorteamos, sorteo, gana, premio, descuento, oferta, promo, 3×2, 2+1, la tercera, salud.
+  // Frases de María (25-nov-2026): «hay una más de nuestra parte». «Cortesía de la casa» es solo el nombre del interruptor
+  // y del vale en la Platform: no va de titular aquí. {para} = «para ti o para quien quieras» y, con el canal `socios`
+  // (miembros), «para alguien a quien quieras». {desde} y {hasta}: las fechas de la campaña que manda la Platform.
+  // Cómo llega de verdad (Platform, docs/regalos.md): cuentan las compras pagadas de la misma persona (mismo email) y la
+  // elige ella en su página, a la que llega al pagar. Nadie se la manda: no escribir «te llega sola».
+  // Palabras que no van en ningún texto visible: regalamos, gratis, sorteamos, sorteo, gana, premio, descuento, oferta,
+  // promo, 3×2, 2+1, la tercera, salud.
   OFERTA: {
-    rotulo: 'Cortesía de la casa · Del {desde} al {hasta}',
-    rotuloDefecto: 'Cortesía de la casa',
-    frase: 'Regalas dos. *Una más, de nuestra parte.*',
-    entrada: 'Por cada dos experiencias que regales, una más de nuestra parte, {para}. Se disfruta {cuando}.',
+    franja: 'Si regalas dos, hay una más de nuestra parte. *Hasta el {hasta}.*',
+    desdeDefecto: '26 de noviembre', hastaDefecto: '5 de enero',
     para: 'para ti o para quien quieras',
     paraSocios: 'para alguien a quien quieras',
-    letraElegir: 'Es de igual o menor precio que la más económica de las dos. Te llega sola, en la página de tu regalo.',
-    letraLista: 'La experiencia de más es {exp}. Te llega sola, en la página de tu regalo.',
     cuandoDefecto: 'de enero a marzo de 2027',
     cuando: 'de {mesDesde} a {mesHasta} de {anio}',
     o: ' o ',
     duda: '¿Cómo funciona la experiencia de más?',
-    dudaTexto: 'Por cada dos experiencias que regales, una más de nuestra parte, {para}. {letra} Se disfruta {cuando}.',
-    test: 'Por cada dos experiencias que regales, una más de nuestra parte, {para}.'
+    dudaElegir: 'Por cada dos experiencias que pagues entre el {desde} y el {hasta}, hay una más de nuestra parte, {para}. Al pagar no tienes que hacer nada: usa el mismo email en las dos compras y, al terminar la segunda, la eliges en la página de tu regalo, de un valor igual o menor que la más económica de las dos. Se disfruta {cuando}.',
+    dudaLista: 'Por cada dos experiencias que pagues entre el {desde} y el {hasta}, hay una más de nuestra parte, {para}: {exp}. Al pagar no tienes que hacer nada: usa el mismo email en las dos compras y, al terminar la segunda, la encuentras en la página de tu regalo. Se disfruta {cuando}.',
+    // se añade a la respuesta de «¿Cuánto tiempo tiene para usarla?»
+    validez: 'La experiencia de más se disfruta {cuando}.',
+    test: 'Por cada dos experiencias que regales, hay una más de nuestra parte, {para}.'
   },
   MESES: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
   FECHA: '{dia} de {mes}',
 
+  /* ---- qué es REVO (texto de María, 25-nov-2026) ---- */
+  QUE_ES: { rotulo: 'Qué es REVO', texto: 'REVO es un club de longevidad en Turó Park. Un sitio para cuidarse con calma y con cabeza: terapias avanzadas como el frío a −130 °C, la luz roja o el oxígeno en cámara hiperbárica, con dirección médica y un equipo que te acompaña de principio a fin. Quien viene no busca un spa ni un gimnasio: busca encontrarse bien hoy y seguir haciéndolo dentro de veinte años.' },
+
   /* ---- las seis experiencias ----
      Precio, enlace de Momence y textos: los mismos que experiencias.html (20-nov-2026). Si cambian allí, aquí también.
      `id` es el que usa la página del regalo de la Platform (/regalo/demo?e=…). */
-  EXPERIENCIAS_TITULO: 'Seis experiencias para *regalar*.',
+  EXPERIENCIAS_TITULO: 'Seis respuestas para *quien lo tiene todo*.',
   EXPERIENCIAS_ENTRADA: 'Varias terapias en una sola visita, encadenadas por nuestro equipo médico para un objetivo.',
   EXPERIENCIAS: [
     { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',
+      todo: 'Lo tiene todo, menos un rato para sí.',
       lema: 'Para cuidarse por dentro y por fuera.',
       pasos: ['Campo electromagnético', 'Máscara de luz roja', 'Crioterapia de cuerpo entero', 'Masaje drenante y moldeador'],
       url: 'https://momence.com/REVO-Studios/product/Glow-Experience/498606' },
     { id: 'sports', nombre: 'Sports Performance', precio: 140, dur: '1 h 30 min', foto: 'nv-sports.webp', pos: '50% 40%',
+      todo: 'Lo tiene todo, menos descanso entre entreno y entreno.',
       lema: 'Oxígeno, frío y compresión, para quien entrena.',
       pasos: ['Cámara hiperbárica', 'Crioterapia de cuerpo entero', 'Presoterapia'],
       url: 'https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608' },
     { id: 'sleep_stress', nombre: 'Sleep & Stress', precio: 140, dur: '1 h', foto: 'nv-sleep.webp', pos: '40% 45%',
+      todo: 'Lo tiene todo, menos tiempo para parar.',
       lema: 'Baja el ritmo. Desconecta.',
       pasos: ['Crioterapia de cuerpo entero', 'Cama de luz roja', 'Campo electromagnético', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614' },
     { id: 'longevity', nombre: 'Longevity', precio: 160, dur: '1 h 50 min', foto: 'nv-longevity.webp', pos: '50% 35%',
+      todo: 'Lo tiene todo, y quiere seguir teniéndolo dentro de veinte años.',
       lema: 'La más completa, para el cuerpo y la cabeza.',
       pasos: ['Campo electromagnético', 'Neuroestimulación', 'Cámara hiperbárica', 'Cama de luz roja'],
       url: 'https://momence.com/REVO-Studios/product/Longevity-Experience/498612' },
     { id: 'cognitiva', nombre: 'Performance Cognitiva', precio: 140, dur: '1 h 40 min', foto: 'nv-cognitiva.webp', pos: '50% 35%',
+      todo: 'Lo tiene todo, menos la cabeza en silencio.',
       lema: 'Oxígeno, luz y sonido, pensados para la cabeza.',
       pasos: ['Cámara hiperbárica', 'Cama de luz roja', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616' },
     { id: 'massage_plus', nombre: 'Massage +', precio: 110, dur: '1 h 30 min', foto: 'nv-massage.webp', pos: '50% 50%',
+      todo: 'Lo tiene todo, menos ese masaje que siempre aplaza.',
       lema: 'Su masaje, potenciado.',
       pasos: ['Masaje a elegir', 'Una terapia más, a elegir'],
       url: 'https://momence.com/REVO-Studios/product/Massage-Experience/498613' }
@@ -113,13 +124,13 @@ window.NAVIDAD = {
     // el bloque en la página
     rotulo: '¿No sabes cuál?',
     titulo: 'Encuentra *su regalo*.',
-    entrada: 'Piensa en esa persona y contesta cuatro cosas. Te decimos qué experiencia encaja con esa persona, por qué, y te enseñamos cómo lo recibe.',
+    entrada: 'Piensa en esa persona que lo tiene todo y contesta cuatro cosas. Te decimos qué experiencia encaja con esa persona, por qué, y te enseñamos cómo lo recibe.',
     empezar: 'Empezar',
     duracion: 'Unos 30 segundos',
     foto: 'gift-bag.webp',
     // dentro
     cerrar: 'Cerrar', atras: 'Atrás', seguir: 'Continuar',
-    intro: { foto: 'navidad-calma.webp', ojo: 'Encuentra su regalo', titulo: 'Piensa en *esa persona*.', texto: 'Cuatro preguntas sobre quien lo recibe. Al final te decimos qué experiencia encaja con esa persona y te enseñamos cómo lo recibe.', boton: 'Empezar' },
+    intro: { foto: 'navidad-calma.webp', ojo: 'Encuentra su regalo', titulo: 'Piensa en esa persona *que lo tiene todo*.', texto: 'Cuatro preguntas sobre quien lo recibe. Al final te decimos qué experiencia encaja con esa persona y te enseñamos cómo lo recibe.', boton: 'Empezar' },
     nombre: {
       ojo: '01 · Quién es', titulo: '¿Cómo se llama?', placeholder: 'Su nombre', ayuda: 'Lo ponemos en su tarjeta. Solo lo ves tú.',
       relacion: 'Y para ti es…',
@@ -296,7 +307,7 @@ window.NAVIDAD = {
   /* ---- preguntas frecuentes (solo lo que ya dice la web o la página del regalo) ---- */
   DUDAS_TITULO: 'Antes de *regalar*',
   DUDAS: [
-    ['¿Cuánto tiempo tiene para usarla?', 'Seis meses desde la compra.'],
+    ['¿Cuánto tiempo tiene para usarla?', 'Un año desde la compra.'],
     ['¿Cómo reserva su sesión?', 'Por WhatsApp o por teléfono, cuando le vaya bien. Le ayudamos a encontrar el día.'],
     ['¿Cuándo llega el regalo?', 'Al momento. Al pagar te llevamos a la página de su regalo para que se la envíes tú.'],
     ['¿Puedo darlo en mano?', 'Sí. Elige «Impreso» al regalar y recoge la tarjeta en el estudio, en Turó Park.']

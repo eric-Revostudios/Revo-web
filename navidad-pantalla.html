@@ -8,7 +8,7 @@
 <title>Navidad en REVO · Pantalla del estudio</title>
 <!-- Pantalla de recepción del estudio (20-nov-2026): el QR del canal `studio` a pantalla completa, por si la tele
      abre un navegador. Sin enlazar, sin indexar, sin medición ni cookies. Se coloca sola en horizontal o vertical.
-     Las mismas imágenes en PNG: material-navidad/pantalla/. Sin precios y sin la oferta de la tercera (sin aprobar). -->
+     Las mismas imágenes en PNG: material-navidad/pantalla/. Sin precios. Titular de María (25-nov-2026). -->
 <link rel="preload" href="fonts/NeueHaasGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/NotoSerif-Italic-500.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="icon" type="image/png" href="assets/revo-icon.png" />
@@ -25,7 +25,8 @@ body{ color:var(--luz); font-family:"Neue Haas","Helvetica Neue",Arial,sans-seri
 .ojo{ display:flex; align-items:center; gap:1.2vw; font-size:clamp(14px, 1.25vw, 32px); font-weight:600; letter-spacing:.3em; color:var(--luz-2); margin-bottom:3vh; }
 .ojo::before{ content:""; width:.5vw; height:.5vw; min-width:6px; min-height:6px; border-radius:50%; background:var(--azul-claro); box-shadow:0 0 1vw .3vw rgba(104,129,252,.9); }
 h1{ font-weight:500; font-size:clamp(48px, 6.2vw, 180px); line-height:1.04; letter-spacing:-.03em; }
-h1 em{ font-family:"Noto Serif Hi",Georgia,serif; font-style:italic; color:var(--azul-claro); letter-spacing:-.02em; }
+h1 em{ font-family:"Noto Serif Hi",Georgia,serif; font-style:italic; color:var(--azul-claro); letter-spacing:-.02em; white-space:nowrap; }
+.sub{ margin-top:3vh; font-size:clamp(24px, 2.6vw, 72px); color:var(--luz-2); }
 .dir{ margin-top:4vh; font-size:clamp(20px, 2.1vw, 56px); color:var(--luz); }
 .qr{ width:min(36vw, 70vh); aspect-ratio:1; background:#fff; border-radius:2.2vw; box-shadow:0 4vh 10vh -2vh rgba(104,129,252,.6); overflow:hidden; }
 .qr img{ display:block; width:100%; height:100%; image-rendering:pixelated; }
@@ -36,7 +37,7 @@ h1 em{ font-family:"Noto Serif Hi",Georgia,serif; font-style:italic; color:var(-
   .logo{ width:clamp(120px, 19vw, 280px); margin:0 auto 6vh; }
   .ojo{ justify-content:center; font-size:clamp(14px, 2.2vw, 32px); }
   .ojo::before{ width:.9vw; height:.9vw; }
-  h1{ font-size:clamp(44px, 10.4vw, 190px); }
+  h1{ font-size:clamp(40px, 8.8vw, 170px); text-wrap:balance; } .sub{ margin-top:2vh; font-size:clamp(22px, 4.4vw, 80px); }
   .qr{ width:min(72vw, 46vh); border-radius:4vw; }
   .dir{ margin-top:0; font-size:clamp(20px, 4.1vw, 60px); }
 }
@@ -47,7 +48,8 @@ h1 em{ font-family:"Noto Serif Hi",Georgia,serif; font-style:italic; color:var(-
     <div class="txt">
       <img class="logo" src="assets/revo-logo-white.webp" alt="REVO Studios" width="2253" height="819" />
       <p class="ojo">NAVIDAD EN REVO</p>
-      <h1>Escanea y elige<br /><em>su regalo.</em></h1>
+      <h1>¿Qué le regalas a quien <em>lo tiene todo?</em></h1>
+      <p class="sub">Un rato para cuidarse.</p>
       <p class="dir dir-h">revostudios.eu/navidad</p>
     </div>
     <div class="qr"><img src="material-navidad/qr/qr-navidad-studio.svg" alt="Código QR: revostudios.eu/navidad" /></div>

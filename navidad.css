@@ -35,6 +35,7 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .papel .ojo{ color:var(--tinta-2); }
 .papel .ojo::before{ background:var(--azul); box-shadow:0 0 8px 1px rgba(104,129,252,.55); }
 .t1{ font-weight:500; font-size:clamp(38px, 10.5vw, 76px); line-height:1.02; letter-spacing:-.03em; text-wrap:balance; }
+@media (min-width:360px){ .portada .t1 em{ white-space:nowrap; } }   /* «lo tiene todo» no se parte */
 .t2{ font-weight:500; font-size:clamp(30px, 7.8vw, 50px); line-height:1.06; letter-spacing:-.026em; text-wrap:balance; }
 .t3{ font-weight:500; font-size:clamp(24px, 6.4vw, 32px); line-height:1.1; letter-spacing:-.02em; text-wrap:balance; }
 .entrada{ margin-top:18px; font-size:clamp(19px, 5vw, 23px); line-height:1.4; color:var(--luz-2); text-wrap:balance; }
@@ -75,10 +76,15 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .portada-partner{ margin-top:14px; font-size:15px; color:var(--azul-claro); letter-spacing:.01em; }
 .portada-botones{ display:flex; flex-direction:column; gap:14px; margin-top:32px; max-width:420px; }
 
-/* la oferta */
-.oferta{ padding:72px 0 76px; background:radial-gradient(100% 80% at 50% 0%, rgba(54,80,207,.22), transparent 70%), var(--noche); text-align:left; border-top:1px solid var(--raya-luz); }
-.oferta-frase{ margin-bottom:22px; }
-.oferta-frase em{ color:var(--azul-claro); }
+/* la franja (solo si la Platform tiene la oferta activa): cabe con la portada en la primera pantalla */
+.portada.con-franja{ min-height:calc(100vh - 84px); min-height:calc(100svh - 84px); }
+.franja{ display:flex; align-items:center; min-height:84px; padding:14px 0; text-decoration:none; text-align:center; font-size:17px; line-height:1.4; color:var(--luz); text-wrap:balance; border-top:1px solid var(--raya-luz); border-bottom:1px solid var(--raya-luz); background:radial-gradient(70% 160% at 50% 120%, rgba(54,80,207,.55), transparent 75%), var(--noche-2); }
+.franja em{ color:var(--azul-claro); }
+.franja:focus-visible{ outline:2px solid var(--azul); outline-offset:-4px; }
+
+/* qué es REVO */
+.quees{ padding:72px 0 76px; }
+.quees-texto{ max-width:34em; font-size:clamp(20px, 5.2vw, 27px); line-height:1.46; letter-spacing:-.008em; color:var(--luz); text-wrap:pretty; }
 
 /* bandas */
 .papel{ background:var(--papel); color:var(--tinta); padding:76px 0 84px; }
@@ -95,6 +101,7 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .exp-cuerpo{ padding:22px 22px 18px; display:flex; flex-direction:column; flex:1; }
 .exp-num{ font-size:10.5px; font-weight:600; letter-spacing:.24em; color:var(--tinta-3); }
 .exp-nombre{ margin-top:10px; font-size:27px; line-height:1.08; letter-spacing:-.02em; font-weight:500; }
+.exp-todo{ margin-top:8px; font-family:var(--serif); font-style:italic; font-size:18px; line-height:1.35; letter-spacing:-.02em; color:var(--azul-texto); text-wrap:balance; }
 .exp-lema{ margin-top:6px; color:var(--tinta-2); font-size:16px; }
 .exp-pasos{ counter-reset:p; margin:18px 0 0; border-top:1px solid var(--raya); }
 .exp-pasos li{ counter-increment:p; display:flex; gap:12px; padding:8px 0; border-bottom:1px solid var(--raya); font-size:14.5px; color:var(--tinta); }
