@@ -17,7 +17,7 @@ window.NAVIDAD = {
 
   CABECERA: {
     rotulo: 'Christmas at REVO',
-    titulo: 'What do you give someone *who has everything*?',
+    titulo: 'What do you give someone who *has everything*?',
     entrada: 'Some time to look after themselves. Six experiences at REVO, the longevity club in Turó Park.',
     boton: 'Choose an experience',
     test: 'Not sure which? Find their gift',
