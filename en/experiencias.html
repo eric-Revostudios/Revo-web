@@ -866,7 +866,7 @@
          estos datos. No bloquea ni avisa: si fallara, el correo llega igual. */
       var apunte = null;
       try {
-        var esRegalo = f['Tipo'].value === 'Regalo';
+        var esRegalo = f['Tipo'].value === 'Gift';   /* en inglés el campo dice «Gift» */
         var prod = (String(redirectUrl||'').match(/\/(\d+)\/?(?:[?#].*)?$/) || [])[1];
         var fmt = String(fd.get('Formato') || '');
         if(prod){
