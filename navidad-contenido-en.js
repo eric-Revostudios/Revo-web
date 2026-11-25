@@ -9,7 +9,7 @@ window.NAVIDAD = {
   OTRO_IDIOMA: { t: 'ES', lang: 'es' },
   ENVIAR_CANAL: true,
   PLATFORM: 'https://revo-platform.vercel.app',
-  CANALES: ['studio', 'socios', 'vecinos', 'instagram', 'ads', 'goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
+  CANALES: ['studio', 'socios', 'vecinos', 'instagram', 'ads', 'exmiembros', 'leads', 'partners', 'conserjes', 'web', 'goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
   // «estudio» (María) = «studio» (QR ya impresos); «conserjes» lo crea la Platform; «web» es la propia web
   ALIAS_CANAL: { estudio: 'studio' },
   PARTNERS: ['goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
@@ -17,57 +17,63 @@ window.NAVIDAD = {
 
   CABECERA: {
     rotulo: 'Christmas at REVO',
-    titulo: 'This Christmas, give *wellbeing*.',
-    entrada: 'Some gifts are unwrapped. This one is felt.',
+    titulo: 'What do you give someone *who has everything*?',
+    entrada: 'Some time to look after themselves. Six experiences at REVO, the longevity club in Turó Park.',
     boton: 'Choose an experience',
     test: 'Not sure which? Find their gift',
     partner: 'For the {nombre} community.'
   },
 
-  // the «two and a third on us» offer: only shown when the Platform says it is active (see the Spanish file)
+  // the extra experience: only shown when the Platform says it is active (see the Spanish file)
   OFERTA: {
-    rotulo: 'Compliments of the house · From {desde} to {hasta}',
-    rotuloDefecto: 'Compliments of the house',
-    frase: 'You give two. *One more, from us.*',
-    entrada: 'For every two experiences you give, one more from us, {para}. Enjoyed {cuando}.',
+    franja: 'If you give two, there is one more from us. *Until {hasta}.*',
+    desdeDefecto: '26 November', hastaDefecto: '5 January',
     para: 'for you or for whoever you like',
     paraSocios: 'for someone you love',
-    letraElegir: 'It is of equal or lower price than the less expensive of the two. It appears on its own, on your gift page.',
-    letraLista: 'The extra experience is {exp}. It appears on its own, on your gift page.',
     cuandoDefecto: 'from January to March 2027',
     cuando: 'from {mesDesde} to {mesHasta} {anio}',
     o: ' or ',
     duda: 'How does the extra experience work?',
-    dudaTexto: 'For every two experiences you give, one more from us, {para}. {letra} Enjoyed {cuando}.',
-    test: 'For every two experiences you give, one more from us, {para}.'
+    dudaElegir: 'For every two experiences you pay for between {desde} and {hasta}, there is one more from us, {para}. There is nothing to do when paying: use the same email for both purchases and, after the second one, choose it on your gift page, of equal or lower value than the less expensive of the two. It is enjoyed {cuando}.',
+    dudaLista: 'For every two experiences you pay for between {desde} and {hasta}, there is one more from us, {para}: {exp}. There is nothing to do when paying: use the same email for both purchases and, after the second one, you will find it on your gift page. It is enjoyed {cuando}.',
+    validez: 'The extra experience is enjoyed {cuando}.',
+    test: 'For every two experiences you give, there is one more from us, {para}.'
   },
   MESES: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   FECHA: '{dia} {mes}',
 
-  EXPERIENCIAS_TITULO: 'Six experiences to *give*.',
+  QUE_ES: { rotulo: 'What REVO is', texto: 'REVO is a longevity club in Turó Park. A place to look after yourself calmly and sensibly: advanced therapies such as cold at −130 °C, red light or oxygen in a hyperbaric chamber, with medical direction and a team that is with you from start to finish. People who come here are not looking for a spa or a gym: they want to feel well today and still feel well twenty years from now.' },
+
+  EXPERIENCIAS_TITULO: 'Six answers for *someone who has everything*.',
   EXPERIENCIAS_ENTRADA: 'Several therapies in a single visit, sequenced by our medical team around one goal.',
   EXPERIENCIAS: [
     { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',
+      todo: 'They have everything, except a little time for themselves.',
       lema: 'Looking after yourself, inside and out.',
       pasos: ['Electromagnetic field', 'Red light mask', 'Whole-body cryotherapy', 'Draining and sculpting massage'],
       url: 'https://momence.com/REVO-Studios/product/Glow-Experience/498606' },
     { id: 'sports', nombre: 'Sports Performance', precio: 140, dur: '1 h 30 min', foto: 'nv-sports.webp', pos: '50% 40%',
+      todo: 'They have everything, except rest between one session and the next.',
       lema: 'Oxygen, cold and compression, for people who train.',
       pasos: ['Hyperbaric chamber', 'Whole-body cryotherapy', 'Pressotherapy'],
       url: 'https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608' },
     { id: 'sleep_stress', nombre: 'Sleep & Stress', precio: 140, dur: '1 h', foto: 'nv-sleep.webp', pos: '40% 45%',
+      todo: 'They have everything, except time to stop.',
       lema: 'Slow down. Switch off.',
       pasos: ['Whole-body cryotherapy', 'Red light bed', 'Electromagnetic field', 'Neurostimulation'],
       url: 'https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614' },
     { id: 'longevity', nombre: 'Longevity', precio: 160, dur: '1 h 50 min', foto: 'nv-longevity.webp', pos: '50% 35%',
+      todo: 'They have everything, and want to still have it twenty years from now.',
       lema: 'The most complete, for body and mind.',
       pasos: ['Electromagnetic field', 'Neurostimulation', 'Hyperbaric chamber', 'Red light bed'],
       url: 'https://momence.com/REVO-Studios/product/Longevity-Experience/498612' },
     { id: 'cognitiva', nombre: 'Cognitive Performance', precio: 140, dur: '1 h 40 min', foto: 'nv-cognitiva.webp', pos: '50% 35%',
+      todo: 'They have everything, except a quiet mind.',
       lema: 'Oxygen, light and sound, designed for the mind.',
       pasos: ['Hyperbaric chamber', 'Red light bed', 'Neurostimulation'],
       url: 'https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616' },
     { id: 'massage_plus', nombre: 'Massage +', precio: 110, dur: '1 h 30 min', foto: 'nv-massage.webp', pos: '50% 50%',
+      todo: 'They have everything, except that massage they keep putting off.',
       lema: 'Their massage, boosted.',
       pasos: ['Massage of their choice', 'One more therapy of their choice'],
       url: 'https://momence.com/REVO-Studios/product/Massage-Experience/498613' }
@@ -78,7 +84,7 @@ window.NAVIDAD = {
   TEST: {
     rotulo: 'Not sure which?',
     titulo: 'Find *their gift*.',
-    entrada: 'Think of that person and answer four things. We tell you which experience fits that person, why, and show you how they receive it.',
+    entrada: 'Think of that person who has everything and answer four things. We tell you which experience fits that person, why, and show you how they receive it.',
     empezar: 'Start',
     duracion: 'About 30 seconds',
     foto: 'gift-bag.webp',
@@ -250,7 +256,7 @@ window.NAVIDAD = {
 
   DUDAS_TITULO: 'Before you *give*',
   DUDAS: [
-    ['How long do they have to use it?', 'Six months from purchase.'],
+    ['How long do they have to use it?', 'One year from purchase.'],
     ['How do they book their session?', 'By WhatsApp or phone, whenever suits them. We help them find the day.'],
     ['When does the gift arrive?', 'Right away. After paying, we take you to their gift page so you can send it to them.'],
     ['Can I give it by hand?', 'Yes. Choose «Printed» when you gift it and pick up the card at the studio, in Turó Park.']

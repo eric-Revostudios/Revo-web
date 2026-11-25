@@ -38,12 +38,13 @@
   var utmNuevo = {};
   ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { var v = qs.get(k); if (v) utmNuevo[k] = String(v).slice(0, 120); });
   if (/^[a-z0-9-]{1,40}$/.test(cNuevo) || Object.keys(utmNuevo).length) {
-    origen = { c: /^[a-z0-9-]{1,40}$/.test(cNuevo) ? cNuevo : (origen && origen.c) || '', u: Object.keys(utmNuevo).length ? utmNuevo : (origen && origen.u) || {}, t: Date.now() };
+    origen = { c: /^[a-z0-9-]{1,40}$/.test(cNuevo) ? cNuevo : (origen && origen.c) || '', u: Object.keys(utmNuevo).length || /^[a-z0-9-]{1,40}$/.test(cNuevo) ? utmNuevo : (origen && origen.u) || {}, t: Date.now() };
     lset('nv_origen', JSON.stringify(origen));
   }
   if (origen && origen.c && ALIAS[origen.c]) { origen.c = ALIAS[origen.c]; lset('nv_origen', JSON.stringify(origen)); }
   var canal = (origen && origen.c) || '';
   var utm = (origen && origen.u) || {};
+  var REF = canal ? ' (ref: ' + canal + ')' : '';   // al final del mensaje de WhatsApp a REVO: de qué canal viene
   var utmTexto = Object.keys(utm).map(function (k) { return k + '=' + utm[k]; }).join(' · ');
 
   window.REVO = window.REVO || {};
@@ -91,6 +92,9 @@
   // la oferta: hueco vacío; solo se rellena si la Platform dice que está activa (ver «la Platform» más abajo)
   h += '<div id="ofertaSitio"></div>';
 
+  // qué es REVO
+  if (N.QUE_ES) h += '<section class="noche quees"><div class="w"><p class="ojo">' + fmt(N.QUE_ES.rotulo) + '</p><p class="quees-texto">' + fmt(N.QUE_ES.texto) + '</p></div></section>';
+
   // las seis experiencias
   h += '<section class="papel" id="experiencias"><div class="w">' +
     '<h2 class="t2">' + fmt(N.EXPERIENCIAS_TITULO) + '</h2>' +
@@ -98,7 +102,7 @@
   N.EXPERIENCIAS.forEach(function (x, k) {
     h += '<article class="exp aparece" id="exp-' + esc(x.id) + '">' +
       '<div class="exp-cuerpo"><p class="exp-num">' + (k < 9 ? '0' : '') + (k + 1) + ' / ' + (N.EXPERIENCIAS.length < 10 ? '0' : '') + N.EXPERIENCIAS.length + '</p>' +
-      '<h3 class="exp-nombre">' + esc(x.nombre) + '</h3><p class="exp-lema">' + fmt(x.lema) + '</p>' +
+      '<h3 class="exp-nombre">' + esc(x.nombre) + '</h3>' + (x.todo ? '<p class="exp-todo">' + fmt(x.todo) + '</p>' : '') + '<p class="exp-lema">' + fmt(x.lema) + '</p>' +
       '<ol class="exp-pasos">' + x.pasos.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ol>' +
       '<p class="exp-meta"><span>' + esc(x.dur) + '</span><span class="exp-precio">' + esc(x.precio) + ' €</span></p>' +
       '<button class="boton boton--tinta" type="button" data-regalar="' + esc(x.id) + '" data-desde="tarjeta">' + fmt(N.BOTON_REGALAR) + '</button>' +
@@ -140,7 +144,7 @@
 
   // cierre
   h += '<section class="noche cierre"><div class="w estrecho"><p class="t2">' + fmt(N.CIERRE.titulo) + '</p>' +
-    '<a class="boton boton--luz" href="' + WA + encodeURIComponent(N.CIERRE.wa) + '" target="_blank" rel="noopener" data-wa="cierre">' + fmt(N.CIERRE.boton) + '</a></div></section>' +
+    '<a class="boton boton--luz" href="' + WA + encodeURIComponent(N.CIERRE.wa + REF) + '" target="_blank" rel="noopener" data-wa="cierre">' + fmt(N.CIERRE.boton) + '</a></div></section>' +
     '<footer class="pie"><div class="w"><p>' + fmt(N.PIE.dir) + '</p>' +
     '<p>' + N.PIE.legal.map(function (l) { return '<a href="' + esc(l[1]) + '">' + fmt(l[0]) + '</a>'; }).join(' · ') + '</p></div></footer>';
 
@@ -238,35 +242,37 @@
   function primero(lista) { for (var i = 0; i < lista.length; i++) if (lista[i] != null && lista[i] !== '') return lista[i]; return null; }
 
   /* ---------- la oferta (solo si la Platform la tiene activa) ---------- */
-  function textoOferta(of) {
+  function textoOferta(of, camp) {
     var O = N.OFERTA, cuando = O.cuandoDefecto;
     var d = fecha(of.valido_desde), hh = fecha(of.valido_hasta);
     if (!isNaN(d) && !isNaN(hh)) {
       var pd = partes(d), ph = partes(hh);
       cuando = sub(O.cuando, { mesDesde: N.MESES[pd.month - 1], mesHasta: N.MESES[ph.month - 1], anio: ph.year });
     }
-    var letra;
+    var desde = fecha(camp && camp.desde), hasta = fecha(camp && camp.hasta);
+    var t = { cuando: cuando, desde: isNaN(desde) ? O.desdeDefecto : fechaTxt(desde), hasta: isNaN(hasta) ? O.hastaDefecto : fechaTxt(hasta),
+      para: canal === 'socios' ? O.paraSocios : O.para };   // miembros (canal socios): «para alguien a quien quieras»
     if (of.modo === 'lista') {
       var nombres = (of.experiencias || []).map(function (id) { var x = porId(id); return x && x.nombre; }).filter(Boolean);
       if (!nombres.length) return null;   // una lista vacía no se puede contar: mejor no decir nada
-      letra = sub(O.letraLista, { exp: nombres.join(O.o) });
-    } else letra = O.letraElegir;
-    // miembros (canal socios): «para alguien a quien quieras»
-    return { letra: letra, cuando: cuando, para: canal === 'socios' ? O.paraSocios : O.para };
+      t.exp = nombres.join(O.o);
+    }
+    t.duda = sub(of.modo === 'lista' ? O.dudaLista : O.dudaElegir, t);
+    return t;
   }
   function pintaOferta(of, camp) {
-    var t = textoOferta(of); if (!t) return;
-    var O = N.OFERTA, cd = fecha(camp && camp.desde), ch = fecha(camp && camp.hasta);
-    var rot = (!isNaN(cd) && !isNaN(ch)) ? sub(O.rotulo, { desde: fechaTxt(cd), hasta: fechaTxt(ch) }) : O.rotuloDefecto;
-    document.getElementById('ofertaSitio').innerHTML = '<section class="oferta" id="oferta"><div class="w estrecho">' +
-      '<p class="ojo">' + fmt(rot) + '</p>' +
-      '<p class="oferta-frase t2">' + fmt(O.frase) + '</p>' +
-      '<p class="texto oferta-entrada">' + fmt(sub(O.entrada, t)) + '</p>' +
-      '<p class="mini">' + fmt(t.letra) + '</p></div></section>';
+    var t = textoOferta(of, camp); if (!t) return;
+    var O = N.OFERTA;
+    // la franja, pegada a la portada: entera en la primera pantalla; al tocarla se abre su pregunta
+    document.getElementById('ofertaSitio').innerHTML = '<a class="franja" id="oferta" href="#dudas"><span class="w">' + fmt(sub(O.franja, t)) + '</span></a>';
+    document.getElementById('portada').classList.add('con-franja');
     var dudas = app.querySelector('.dudas');
     if (dudas) {
-      dudas.insertAdjacentHTML('beforeend', '<details data-n="' + N.DUDAS.length + '"><summary>' + fmt(O.duda) + '</summary><p class="texto">' + fmt(sub(O.dudaTexto, t)) + '</p></details>');
+      var usar = dudas.querySelector('details[data-n="0"] .texto');   // «¿Cuánto tiempo tiene para usarla?»
+      if (usar) usar.innerHTML += ' ' + fmt(sub(O.validez, t));
+      dudas.insertAdjacentHTML('beforeend', '<details id="dudaOferta" data-n="' + N.DUDAS.length + '"><summary>' + fmt(O.duda) + '</summary><p class="texto">' + fmt(t.duda) + '</p></details>');
       mideDuda(dudas.lastElementChild);
+      document.getElementById('oferta').addEventListener('click', function () { document.getElementById('dudaOferta').open = true; });
     }
     window.NAVIDAD_OFERTA = sub(O.test, t);   // la línea del resultado del test (navidad-test.js)
   }
