@@ -93,7 +93,9 @@
   h += '<div id="ofertaSitio"></div>';
 
   // qué es REVO
-  if (N.QUE_ES) h += '<section class="noche quees"><div class="w"><p class="ojo">' + fmt(N.QUE_ES.rotulo) + '</p><p class="quees-texto">' + fmt(N.QUE_ES.texto) + '</p></div></section>';
+  var Q = N.QUE_ES;
+  if (Q) h += '<section class="quees"><picture class="quees-foto" aria-hidden="true"><source media="(min-width:700px)" srcset="/assets/nv-fachada.webp" /><img loading="lazy" decoding="async" src="/assets/nv-fachada-v.webp" alt="" /></picture>' +
+    '<div class="w quees-in"><p class="ojo">' + fmt(Q.rotulo) + '</p><h2 class="quees-titulo">' + fmt(Q.titulo) + '</h2><p class="quees-texto">' + fmt(Q.texto) + '</p></div></section>';
 
   // las seis experiencias
   h += '<section class="papel" id="experiencias"><div class="w">' +
@@ -111,6 +113,9 @@
   });
   h += '</div></div></section>';
 
+  // la experiencia de más, en grande: hueco vacío, se rellena con la franja
+  h += '<div id="masSitio"></div>';
+
   // el test
   var T = N.TEST;
   h += '<section class="noche test-sec" id="encuentra"><div class="w test-inv">' +
@@ -123,11 +128,11 @@
   var R = N.RECIBE;
   h += '<section class="papel" id="recibe"><div class="w">' +
     '<p class="ojo">' + fmt(R.rotulo) + '</p><h2 class="t2">' + fmt(R.titulo) + '</h2><div class="recibe">' +
-    // la página real que recibe (la de ejemplo de la Platform), no un móvil dibujado (Eric, 23-nov)
-    '<div class="recibe-caja recibe-digital"><div class="nt-movil"><div class="nt-movil-pantalla"><iframe src="' + esc(R.demo) + 'sleep_stress" title="' + esc(R.digital.t) + '" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>' +
+    // la tarjeta de verdad (el dibujo de la Platform, lib/regalos/tarjeta.tsx, sin nombres); «Ver un ejemplo» abre su página
+    '<div class="recibe-caja"><div class="recibe-foto recibe-tarjeta"><img loading="lazy" decoding="async" src="/assets/' + esc(R.digital.foto) + '" alt="' + esc(R.digital.alt) + '" width="864" height="1080" /></div>' +
       '<h3 class="t3">' + fmt(R.digital.t) + '</h3><p class="texto">' + fmt(R.digital.d) + '</p>' +
       '<a class="enlace-tinta" href="' + esc(R.demo) + 'sleep_stress" target="_blank" rel="noopener">' + fmt(R.digital.boton) + '</a></div>' +
-    '<div class="recibe-caja"><div class="recibe-foto"><img loading="lazy" decoding="async" src="/assets/' + esc(R.impreso.foto) + '" alt="" /></div>' +
+    '<div class="recibe-caja"><div class="recibe-foto"><img loading="lazy" decoding="async" src="' + esc(R.impreso.foto) + '" alt="' + esc(R.impreso.alt) + '" width="1080" height="1350" /></div>' +
       '<h3 class="t3">' + fmt(R.impreso.t) + '</h3><p class="texto">' + fmt(R.impreso.d) + '</p>' +
       '<a class="enlace-tinta" href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener">' + fmt(R.impreso.boton) + '</a></div>' +
     '</div></div></section>';
@@ -249,30 +254,35 @@
       var pd = partes(d), ph = partes(hh);
       cuando = sub(O.cuando, { mesDesde: N.MESES[pd.month - 1], mesHasta: N.MESES[ph.month - 1], anio: ph.year });
     }
-    var desde = fecha(camp && camp.desde), hasta = fecha(camp && camp.hasta);
-    var t = { cuando: cuando, desde: isNaN(desde) ? O.desdeDefecto : fechaTxt(desde), hasta: isNaN(hasta) ? O.hastaDefecto : fechaTxt(hasta),
+    var hasta = fecha(camp && camp.hasta);
+    var t = { cuando: cuando, hasta: isNaN(hasta) ? O.hastaDefecto : fechaTxt(hasta),
       para: canal === 'socios' ? O.paraSocios : O.para };   // miembros (canal socios): «para alguien a quien quieras»
     if (of.modo === 'lista') {
       var nombres = (of.experiencias || []).map(function (id) { var x = porId(id); return x && x.nombre; }).filter(Boolean);
       if (!nombres.length) return null;   // una lista vacía no se puede contar: mejor no decir nada
       t.exp = nombres.join(O.o);
     }
-    t.duda = sub(of.modo === 'lista' ? O.dudaLista : O.dudaElegir, t);
+    t.Para = t.para.charAt(0).toUpperCase() + t.para.slice(1);
+    t.duda = (of.modo === 'lista' ? O.dudaLista : O.dudaElegir).map(function (p) { return sub(p, t); });
+    t.pasos = of.modo === 'lista' ? O.bloque.pasosLista : O.bloque.pasosElegir;
     return t;
   }
   function pintaOferta(of, camp) {
     var t = textoOferta(of, camp); if (!t) return;
     var O = N.OFERTA;
-    // la franja, pegada a la portada: entera en la primera pantalla; al tocarla se abre su pregunta
-    document.getElementById('ofertaSitio').innerHTML = '<a class="franja" id="oferta" href="#dudas"><span class="w">' + fmt(sub(O.franja, t)) + '</span></a>';
+    // la franja, pegada a la portada: entera en la primera pantalla; al tocarla se baja al bloque que lo explica
+    document.getElementById('ofertaSitio').innerHTML = '<a class="franja" id="oferta" href="#una-mas"><span class="w">' + fmt(sub(O.franja, t)) + '</span></a>';
     document.getElementById('portada').classList.add('con-franja');
+    document.getElementById('masSitio').innerHTML = '<section class="noche mas" id="una-mas"><div class="w"><h2 class="mas-titulo">' + fmt(O.bloque.titulo) + '</h2><ol class="mas-pasos">' +
+      t.pasos.map(function (p, k) { return '<li><span class="mas-num" aria-hidden="true">' + (k + 1) + '</span><div><h3 class="mas-paso">' + fmt(p[0]) + '</h3><p class="texto">' + fmt(sub(p[1], t)) + '</p></div></li>'; }).join('') +
+      '</ol><a class="boton boton--luz" href="#experiencias">' + fmt(O.bloque.boton) + '</a></div></section>';
     var dudas = app.querySelector('.dudas');
     if (dudas) {
       var usar = dudas.querySelector('details[data-n="0"] .texto');   // «¿Cuánto tiempo tiene para usarla?»
       if (usar) usar.innerHTML += ' ' + fmt(sub(O.validez, t));
-      dudas.insertAdjacentHTML('beforeend', '<details id="dudaOferta" data-n="' + N.DUDAS.length + '"><summary>' + fmt(O.duda) + '</summary><p class="texto">' + fmt(t.duda) + '</p></details>');
+      dudas.insertAdjacentHTML('beforeend', '<details id="dudaOferta" data-n="' + N.DUDAS.length + '"><summary>' + fmt(O.duda) + '</summary>' + t.duda.map(function (p) { return '<p class="texto">' + fmt(p) + '</p>'; }).join('') +
+        '<a class="enlace-tinta" href="' + WA + encodeURIComponent(O.dudaWa + REF) + '" target="_blank" rel="noopener" data-wa="duda">' + fmt(O.dudaBoton) + '</a></details>');
       mideDuda(dudas.lastElementChild);
-      document.getElementById('oferta').addEventListener('click', function () { document.getElementById('dudaOferta').open = true; });
     }
     window.NAVIDAD_OFERTA = sub(O.test, t);   // la línea del resultado del test (navidad-test.js)
   }

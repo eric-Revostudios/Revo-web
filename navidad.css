@@ -82,9 +82,25 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .franja em{ color:var(--azul-claro); }
 .franja:focus-visible{ outline:2px solid var(--azul); outline-offset:-4px; }
 
-/* qué es REVO */
-.quees{ padding:72px 0 76px; }
-.quees-texto{ max-width:34em; font-size:clamp(20px, 5.2vw, 27px); line-height:1.46; letter-spacing:-.008em; color:var(--luz); text-wrap:pretty; }
+/* qué es REVO: la fachada de noche y pocas palabras, grandes */
+.quees{ position:relative; overflow:hidden; min-height:92vh; min-height:92svh; display:flex; align-items:flex-end; padding:140px 0 84px; background:var(--noche); }
+.quees-foto, .quees-foto img{ position:absolute; inset:0; display:block; width:100%; height:100%; }
+.quees-foto img{ object-fit:cover; object-position:50% 40%; }
+.quees-foto::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, var(--noche) 0%, rgba(6,7,15,0) 20%, rgba(6,7,15,.1) 40%, rgba(6,7,15,.84) 70%, var(--noche) 100%); }
+.quees-in{ position:relative; }
+.quees-titulo{ max-width:13em; font-weight:500; font-size:clamp(36px, 9.6vw, 72px); line-height:1.04; letter-spacing:-.03em; text-wrap:balance; }
+.quees-texto{ max-width:30em; margin-top:24px; font-size:clamp(20px, 5.2vw, 26px); line-height:1.44; letter-spacing:-.006em; color:rgba(246,244,239,.86); text-wrap:pretty; }
+.quees-texto em{ color:var(--azul-claro); }
+
+/* la experiencia de más, en grande (solo con la oferta activa) */
+.noche.mas{ padding:96px 0 100px; background:radial-gradient(110% 62% at 80% 0%, rgba(54,80,207,.5), transparent 70%), var(--noche-2); border-bottom:1px solid var(--raya-luz); }
+.mas-titulo{ max-width:13em; font-weight:500; font-size:clamp(38px, 10.4vw, 76px); line-height:1.03; letter-spacing:-.03em; text-wrap:balance; }
+.mas-titulo em{ color:var(--azul-claro); }
+.mas-pasos{ display:grid; gap:0; margin:48px 0 44px; border-top:1px solid var(--raya-luz); }
+.mas-pasos li{ display:flex; gap:22px; padding:26px 0; border-bottom:1px solid var(--raya-luz); }
+.mas-num{ flex:none; width:34px; font-family:var(--serif); font-style:italic; font-size:46px; line-height:.95; color:var(--azul-claro); }
+.mas-paso{ margin:0 0 8px; font-weight:500; font-size:23px; line-height:1.18; letter-spacing:-.016em; }
+.mas .boton{ max-width:420px; }
 
 /* bandas */
 .papel{ background:var(--papel); color:var(--tinta); padding:76px 0 84px; }
@@ -117,7 +133,8 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .recibe{ display:grid; gap:44px; margin-top:40px; }
 .recibe-caja{ display:flex; flex-direction:column; gap:12px; }
 .recibe-caja .enlace-tinta{ align-self:flex-start; }
-.recibe-foto{ aspect-ratio:4/3; border-radius:20px; overflow:hidden; margin-bottom:10px; }
+.recibe-foto{ aspect-ratio:4/5; border-radius:20px; overflow:hidden; margin-bottom:10px; }
+.recibe-tarjeta{ box-shadow:0 0 0 1px rgba(20,22,28,.06), 0 36px 70px -40px rgba(20,22,28,.6); }
 .recibe-foto img{ width:100%; height:100%; object-fit:cover; }
 .movil{ align-self:center; width:220px; padding:10px; border-radius:36px; background:var(--noche); box-shadow:0 40px 80px -40px rgba(20,22,28,.55); margin-bottom:14px; }
 .movil-pantalla{ border-radius:27px; padding:44px 20px 24px; min-height:330px; display:flex; flex-direction:column; gap:10px; color:var(--luz); background:radial-gradient(110% 70% at 70% 0%, rgba(54,80,207,.55), transparent 65%), var(--noche-2); }
@@ -148,6 +165,8 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .dudas summary::after{ content:"+"; position:absolute; right:4px; top:16px; font-size:24px; font-weight:300; color:var(--azul-texto); transition:transform .3s var(--ease); }
 .dudas details[open] summary::after{ transform:rotate(45deg); }
 .dudas details .texto{ padding:0 0 22px; }
+.dudas details .texto:has(+ .texto){ padding-bottom:12px; }
+.dudas details .enlace-tinta{ margin:-8px 0 22px; }
 
 /* cierre y pie */
 .cierre{ text-align:center; padding:84px 0; background:radial-gradient(100% 90% at 50% 120%, rgba(54,80,207,.5), transparent 70%), var(--noche); }
@@ -199,9 +218,15 @@ textarea.exp-input{ resize:vertical; min-height:74px; line-height:1.45; }
 /* ===== tableta y ordenador ===== */
 @media (min-width:700px){
   .rejilla{ grid-template-columns:1fr 1fr; gap:22px; }
-  .recibe{ grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+  .recibe{ grid-template-columns:1fr 1fr; gap:40px; align-items:start; max-width:900px; }
   .exp-row, .exp-seg{ grid-template-columns:1fr 1fr; }
   .exp-dialog{ padding:38px 36px 30px; }
+}
+@media (min-width:860px){
+  .mas-pasos{ grid-template-columns:repeat(3,1fr); gap:48px; border-top:0; margin:64px 0 56px; }
+  .mas-pasos li{ flex-direction:column; gap:20px; padding:28px 0 0; border-bottom:0; border-top:1px solid var(--raya-luz); }
+  .mas-num{ font-size:64px; }
+  .quees{ padding-bottom:110px; }
 }
 @media (min-width:1000px){
   .rejilla{ grid-template-columns:repeat(3, 1fr); }
