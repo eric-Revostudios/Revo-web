@@ -32,7 +32,7 @@
     '</g>';
   }
 
-  function capa(clase, fichero) { return '<img class="sb-capa ' + clase + '" src="' + D + fichero + '-2.webp" alt="" decoding="async" draggable="false" />'; }
+  function capa(clase, fichero) { return '<img class="sb-capa ' + clase + '" src="' + D + fichero + '-3.webp" alt="" decoding="async" draggable="false" />'; }
 
   function html(alt) {
     var a = String(alt).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -44,13 +44,13 @@
         '<div class="sb-capa sb-tarjeta">' + capa('', 'tarjeta') +
           '<svg class="sb-capa sb-letra" viewBox="0 0 900 1125" aria-hidden="true" focusable="false">' +
             '<defs><linearGradient id="sbBrillo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>' +
-            palabra(1, NOMBRE, 262, 309, 60) + palabra(2, EXPERIENCIA, 486, 412, 50) +
+            palabra(1, NOMBRE, 255, 313.5, 60) + palabra(2, EXPERIENCIA, 481, 415.5, 50) +
           '</svg></div>' +
         capa('sb-bolsillo', 'bolsillo') +
         capa('sb-solapa', 'solapa') +
       '</div>' +
       // el sobre cerrado, entero: es lo que se ve mientras cargan las capas
-      '<img class="sb-capa sb-cerrado" src="' + D + 'cerrado-2.webp" alt="" decoding="async" draggable="false" />' +
+      '<img class="sb-capa sb-cerrado" src="' + D + 'cerrado-3.webp" alt="" decoding="async" draggable="false" />' +
     '</div>';
   }
 
