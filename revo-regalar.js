@@ -30,7 +30,7 @@
      en/experiencias.html). Lo que viaja al equipo (nombres de campo, valor de «Formato», asunto) sigue en español. */
   var ES = {
     cerrar: 'Cerrar', kicker: 'Regalar', titulo: 'Regala la experiencia ', sub: 'Completa el regalo y te llevamos al pago. Te enviamos el comprobante por correo.',
-    formato: '¿En qué formato lo quieres?', impreso: 'Impreso', impresoMeta: 'Tarjeta física · recógela en REVO', digital: 'Digital', digitalMeta: 'Al momento · lo envías tú por WhatsApp o correo',
+    formato: '¿En qué formato lo quieres?', impreso: 'Impreso', impresoMeta: 'Tarjeta física · recógela en REVO', digital: 'Digital', digitalMeta: 'Lo envías tú por WhatsApp o correo, cuando quieras',
     para: 'Para', paraPh: 'Quien lo recibe', de: 'De parte de', email: 'Tu email', emailPh: 'Para el comprobante de pago', ded: 'Dedicatoria', dedPh: 'Opcional — la incluimos en el regalo',
     boton: 'Continuar al pago', enviando: 'Enviando…', pie: 'Pago seguro · lo gestiona REVO Studios',
     error: 'No hemos podido enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos a hello@revostudios.eu.',

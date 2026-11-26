@@ -188,7 +188,7 @@ window.NAVIDAD = {
       ojo: '04 · Cómo se lo das', titulo: '¿Cómo quieres dárselo?',
       opciones: [
         { t: 'En sus manos', d: 'Una tarjeta física que recoges en el estudio, en Turó Park.', formato: 'impreso' },
-        { t: 'Al momento', d: 'Le llega por WhatsApp o por correo, cuando tú quieras.', formato: 'digital' }
+        { t: 'Por mensaje', d: 'Se lo envías por WhatsApp o por correo, el día que elijas.', formato: 'digital' }
       ]
     },
     preparando: { titulo: 'Preparando el regalo de *{nombre}*…', sin: 'Preparando su regalo…', lineas: ['Su día a día', 'Lo que le regalarías', 'Cómo se lo das'] },
@@ -207,7 +207,7 @@ window.NAVIDAD = {
       dedicatoria: 'Tu dedicatoria', dedicatoriaAyuda: 'Te proponemos una. Cámbiala como quieras.',
       boton: 'Regalar a {nombre}', botonSin: 'Regalar {exp}',
       formatoImpreso: 'Tarjeta física · la recoges en el estudio',
-      formatoDigital: 'Al momento · por WhatsApp o correo',
+      formatoDigital: 'Por mensaje · el día que elijas',
       otra: 'Para completar el regalo',
       otraBoton: 'Regalar también {exp}',
       compartir: '¿Lo regaláis entre varios?', compartirBoton: 'Compártelo por WhatsApp',
@@ -290,14 +290,14 @@ window.NAVIDAD = {
   // la dedicatoria para alguien del trabajo, más sobria
   DEDICATORIA_FORMAL: 'Gracias por este año. Que lo disfrutes.',
 
-  /* ---- así lo recibe ---- */
+  /* ---- cómo se entrega: REVO no le envía nada a quien lo recibe; lo hace quien compra, cuando quiere (Eric, 26-nov) ---- */
   RECIBE: {
-    rotulo: 'Así lo recibe',
-    titulo: 'Llega *al momento*. O en mano.',
+    rotulo: 'Cómo se entrega',
+    titulo: 'Elige cómo y *cuándo* se lo entregas.',
     // La foto de la impresa se cambia sustituyendo material-navidad/tarjeta-impresa.webp (vertical 4:5, 1080 × 1350): esa
     // carpeta no se guarda en caché. Desde el 26-nov es la bolsa de regalo de REVO (la de la portada, Eric). Si se cambia, se cambia también su `alt`.
-    digital: { t: 'Digital', d: 'Al pagar, pulsa «Recogerlo» y entra en la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', boton: 'Ver un ejemplo' },
-    impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'La bolsa de regalo de REVO, en el estudio.', boton: 'Cómo llegar' },
+    digital: { t: 'Digital', d: 'Al pagar tienes su regalo listo, con su nombre y tu dedicatoria. Se lo mandas tú, por WhatsApp o por correo, el día que quieras: esta tarde, en Nochebuena o en Reyes.', boton: 'Ver un ejemplo' },
+    impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para dársela en persona.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'La bolsa de regalo de REVO, en el estudio.', boton: 'Cómo llegar' },
     // la página real de la Platform (ejemplo con la experiencia que se elija)
     demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
@@ -336,7 +336,7 @@ window.NAVIDAD = {
   DUDAS: [
     ['¿Cuánto tiempo tiene para usarla?', 'Un año desde la compra.'],
     ['¿Cómo reserva su sesión?', 'Por WhatsApp o por teléfono, cuando le vaya bien. Le ayudamos a encontrar el día.'],
-    ['¿Cuándo llega el regalo?', 'Al momento. Al pagar, pulsa «Recogerlo» y entra en la página de su regalo para enviárselo tú.'],
+    ['¿Cuándo le llega?', 'Cuando tú quieras. Al pagar tienes su regalo listo y se lo envías tú, el día que elijas.'],
     ['¿Puedo darlo en mano?', 'Sí. Elige «Impreso» al regalar y recoge la tarjeta en el estudio, en Turó Park.']
   ],
 

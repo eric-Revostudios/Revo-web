@@ -144,7 +144,7 @@ window.NAVIDAD = {
       ojo: '04 · How you give it', titulo: 'How would you like to give it?',
       opciones: [
         { t: 'In their hands', d: 'A physical card you pick up at the studio, in Turó Park.', formato: 'impreso' },
-        { t: 'Right away', d: 'It reaches them by WhatsApp or email, whenever you like.', formato: 'digital' }
+        { t: 'By message', d: 'You send it by WhatsApp or email, on the day you choose.', formato: 'digital' }
       ]
     },
     preparando: { titulo: 'Preparing *{nombre}*’s gift…', sin: 'Preparing their gift…', lineas: ['Their day', 'What you would give', 'How you give it'] },
@@ -161,7 +161,7 @@ window.NAVIDAD = {
       dedicatoria: 'Your message', dedicatoriaAyuda: 'We suggest one. Change it as you like.',
       boton: 'Gift it to {nombre}', botonSin: 'Gift {exp}',
       formatoImpreso: 'Physical card · pick it up at the studio',
-      formatoDigital: 'Right away · by WhatsApp or email',
+      formatoDigital: 'By message · on the day you choose',
       otra: 'To complete the gift',
       otraBoton: 'Also gift {exp}',
       compartir: 'Giving it together with others?', compartirBoton: 'Share it on WhatsApp',
@@ -244,10 +244,10 @@ window.NAVIDAD = {
   DEDICATORIA_FORMAL: 'Thank you for this year. Enjoy it.',
 
   RECIBE: {
-    rotulo: 'How they receive it',
-    titulo: 'It arrives *right away*. Or by hand.',
-    digital: { t: 'Digital', d: 'After paying, tap «Get it» to open their gift page, with their name and your message. You send it to them, by WhatsApp or email.', boton: 'See an example' },
-    impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give by hand.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'The REVO gift bag, at the studio.', boton: 'How to get there' },
+    rotulo: 'How it is given',
+    titulo: 'Choose how and *when* you give it.',
+    digital: { t: 'Digital', d: 'After paying, their gift is ready, with their name and your message. You send it yourself, by WhatsApp or email, on the day you choose: this afternoon, on Christmas Eve or on 6 January.', boton: 'See an example' },
+    impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give in person.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'The REVO gift bag, at the studio.', boton: 'How to get there' },
     demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
 
@@ -280,7 +280,7 @@ window.NAVIDAD = {
   DUDAS: [
     ['How long do they have to use it?', 'One year from purchase.'],
     ['How do they book their session?', 'By WhatsApp or phone, whenever suits them. We help them find the day.'],
-    ['When does the gift arrive?', 'Right away. After paying, tap «Get it» to open their gift page and send it to them.'],
+    ['When does it reach them?', 'Whenever you like. After paying, their gift is ready and you send it yourself, on the day you choose.'],
     ['Can I give it by hand?', 'Yes. Choose «Printed» when you gift it and pick up the card at the studio, in Turó Park.']
   ],
 
@@ -291,7 +291,7 @@ window.NAVIDAD = {
   // the «Gift» window (revo-regalar.js), with the same words as en/experiencias.html
   VENTANA: {
     cerrar: 'Close', kicker: 'Gift', titulo: 'Gift the experience ', sub: 'Complete the gift and we will take you to payment. We will email you the receipt.',
-    formato: 'Which format would you like?', impreso: 'Printed', impresoMeta: 'Physical card · pick it up at REVO', digital: 'Digital', digitalMeta: 'Instantly · you send it by WhatsApp or email',
+    formato: 'Which format would you like?', impreso: 'Printed', impresoMeta: 'Physical card · pick it up at REVO', digital: 'Digital', digitalMeta: 'You send it by WhatsApp or email, whenever you like',
     para: 'For', paraPh: 'Who receives it', de: 'From', email: 'Your email', emailPh: 'For your payment receipt', ded: 'Message', dedPh: 'Optional — we will include it with the gift',
     boton: 'Continue to payment', enviando: 'Sending…', pie: 'Secure payment · handled by REVO Studios',
     error: 'We could not send your request. Check your connection and try again, or write to hello@revostudios.eu.',
