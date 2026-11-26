@@ -102,6 +102,16 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .mas-paso{ text-wrap:balance; margin:0 0 8px; font-weight:500; font-size:23px; line-height:1.18; letter-spacing:-.016em; }
 .mas .boton{ max-width:420px; }
 
+/* «¿No sabes cuál?» dentro de las experiencias */
+.encuentra{ display:grid; gap:22px; margin-top:22px; padding:28px 24px; border-radius:20px; color:var(--luz); background:radial-gradient(90% 120% at 100% 0%, rgba(54,80,207,.5), transparent 65%), var(--noche); }
+.encuentra .ojo{ color:var(--luz-2); margin-bottom:12px; }
+.encuentra .ojo::before{ background:var(--azul-claro); box-shadow:0 0 10px 2px rgba(104,129,252,.9); }
+.encuentra .t3 em{ color:var(--azul-claro); }
+.encuentra .texto{ margin-top:10px; color:var(--luz-2); max-width:52ch; }
+.encuentra-cta{ display:flex; flex-direction:column; gap:10px; }
+.encuentra-cta .mini{ color:var(--luz-3); text-align:center; }
+@media (min-width:860px){ .encuentra{ grid-template-columns:minmax(0,1fr) 300px; align-items:center; gap:40px; padding:36px 40px; } }
+
 /* bandas */
 .papel{ background:var(--papel); color:var(--tinta); padding:76px 0 84px; }
 .papel .t2 em, .papel .t3 em{ color:var(--azul-texto); }
@@ -122,11 +132,11 @@ em{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing
 .exp-pasos{ counter-reset:p; margin:18px 0 0; border-top:1px solid var(--raya); }
 .exp-pasos li{ counter-increment:p; display:flex; gap:12px; padding:8px 0; border-bottom:1px solid var(--raya); font-size:14.5px; color:var(--tinta); }
 .exp-pasos li::before{ content:"0" counter(p); font-family:var(--serif); font-style:italic; color:var(--azul-texto); width:22px; flex:none; }
-.exp-meta{ display:flex; justify-content:space-between; align-items:baseline; margin:16px 0 18px; font-size:14px; color:var(--tinta-3); }
+.exp-meta{ display:flex; justify-content:space-between; align-items:baseline; margin:auto 0 18px; padding-top:16px; font-size:14px; color:var(--tinta-3); }
 .exp-precio{ font-size:22px; color:var(--tinta); letter-spacing:-.01em; }
 .noche .exp-meta{ color:var(--luz-3); }
 .noche .exp-precio{ color:var(--luz); }
-.exp .boton{ margin-top:auto; }
+.exp .boton{ margin-top:0; }
 .exp .enlace-tinta{ margin-top:8px; }
 
 /* así lo recibe */

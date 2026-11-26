@@ -103,33 +103,30 @@
     '<p class="texto cabeza-texto">' + fmt(N.EXPERIENCIAS_ENTRADA) + '</p><div class="rejilla">';
   N.EXPERIENCIAS.forEach(function (x, k) {
     h += '<article class="exp aparece" id="exp-' + esc(x.id) + '">' +
-      '<div class="exp-cuerpo"><p class="exp-num">' + (k < 9 ? '0' : '') + (k + 1) + ' / ' + (N.EXPERIENCIAS.length < 10 ? '0' : '') + N.EXPERIENCIAS.length + '</p>' +
-      '<h3 class="exp-nombre">' + esc(x.nombre) + '</h3>' + (x.todo ? '<p class="exp-todo">' + fmt(x.todo) + '</p>' : '') + '<p class="exp-lema">' + fmt(x.lema) + '</p>' +
+      '<div class="exp-cuerpo"><h3 class="exp-nombre">' + esc(x.nombre) + '</h3><p class="exp-lema">' + fmt(x.lema) + '</p>' +
       '<ol class="exp-pasos">' + x.pasos.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ol>' +
       '<p class="exp-meta"><span>' + esc(x.dur) + '</span><span class="exp-precio">' + esc(x.precio) + ' €</span></p>' +
       '<button class="boton boton--tinta" type="button" data-regalar="' + esc(x.id) + '" data-desde="tarjeta">' + fmt(N.BOTON_REGALAR) + '</button>' +
       '<a class="enlace-tinta" href="' + esc(N.RECIBE.demo + x.id) + '" target="_blank" rel="noopener">' + fmt(N.VER_REGALO) + '</a>' +
       '</div></article>';
   });
-  h += '</div></div></section>';
+  h += '</div>';
+  // «¿No sabes cuál?»: una tarjeta dentro de las experiencias que abre el test (Eric, 26-nov)
+  var T = N.TEST;
+  h += '<div class="encuentra" id="encuentra"><div class="encuentra-txt"><p class="ojo">' + fmt(T.rotulo) + '</p><h3 class="t3">' + fmt(T.titulo) + '</h3>' +
+    '<p class="texto">' + fmt(T.entrada) + '</p></div>' +
+    '<div class="encuentra-cta"><button class="boton boton--luz" type="button" data-abrir-test>' + fmt(T.empezar) + '</button><p class="mini">' + fmt(T.duracion) + '</p></div></div>';
+  h += '</div></section>';
 
   // la experiencia de más, en grande: hueco vacío, se rellena con la franja
   h += '<div id="masSitio"></div>';
-
-  // el test
-  var T = N.TEST;
-  h += '<section class="noche test-sec" id="encuentra"><div class="w test-inv">' +
-    '<div class="test-inv-txt"><p class="ojo">' + fmt(T.rotulo) + '</p><h2 class="t2">' + fmt(T.titulo) + '</h2>' +
-    '<p class="texto cabeza-texto">' + fmt(T.entrada) + '</p>' +
-    '<button class="boton boton--luz" type="button" data-abrir-test>' + fmt(T.empezar) + '</button>' +
-    '<p class="mini test-dur">' + fmt(T.duracion) + '</p></div></div></section>';
 
   // así lo recibe
   var R = N.RECIBE;
   h += '<section class="papel" id="recibe"><div class="w">' +
     '<p class="ojo">' + fmt(R.rotulo) + '</p><h2 class="t2">' + fmt(R.titulo) + '</h2><div class="recibe">' +
-    // la tarjeta de verdad (el dibujo de la Platform, lib/regalos/tarjeta.tsx, sin nombres); «Ver un ejemplo» abre su página
-    '<div class="recibe-caja"><div class="recibe-foto recibe-tarjeta"><img loading="lazy" decoding="async" src="/assets/' + esc(R.digital.foto) + '" alt="' + esc(R.digital.alt) + '" width="864" height="1080" /></div>' +
+    // la página real que recibe (la de ejemplo de la Platform), dentro de un móvil: Eric la prefiere a la tarjeta (26-nov)
+    '<div class="recibe-caja recibe-digital"><div class="nt-movil"><div class="nt-movil-pantalla"><iframe src="' + esc(R.demo) + 'sleep_stress" title="' + esc(R.digital.t) + '" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>' +
       '<h3 class="t3">' + fmt(R.digital.t) + '</h3><p class="texto">' + fmt(R.digital.d) + '</p>' +
       '<a class="enlace-tinta" href="' + esc(R.demo) + 'sleep_stress" target="_blank" rel="noopener">' + fmt(R.digital.boton) + '</a></div>' +
     '<div class="recibe-caja"><div class="recibe-foto"><img loading="lazy" decoding="async" src="' + esc(R.impreso.foto) + '" alt="' + esc(R.impreso.alt) + '" width="1080" height="1350" /></div>' +
@@ -270,16 +267,14 @@
   function pintaOferta(of, camp) {
     var t = textoOferta(of, camp); if (!t) return;
     var O = N.OFERTA;
-    // la franja, pegada a la portada: entera en la primera pantalla; al tocarla se baja al bloque que lo explica
-    document.getElementById('ofertaSitio').innerHTML = '<a class="franja" id="oferta" href="#una-mas"><span class="w">' + fmt(sub(O.franja, t)) + '</span></a>';
-    document.getElementById('portada').classList.add('con-franja');
+    // (la franja de arriba se quitó el 26-nov: Eric, «esto sobra»; queda el bloque)
     document.getElementById('masSitio').innerHTML = '<section class="noche mas" id="una-mas"><div class="w"><h2 class="mas-titulo">' + fmt(O.bloque.titulo) + '</h2><ol class="mas-pasos">' +
       t.pasos.map(function (p, k) { return '<li><span class="mas-num" aria-hidden="true">' + (k + 1) + '</span><div><h3 class="mas-paso">' + fmt(p[0]) + '</h3><p class="texto">' + fmt(sub(p[1], t)) + '</p></div></li>'; }).join('') +
       '</ol><a class="boton boton--luz" href="#experiencias">' + fmt(O.bloque.boton) + '</a></div></section>';
     var dudas = app.querySelector('.dudas');
     if (dudas) {
       var usar = dudas.querySelector('details[data-n="0"] .texto');   // «¿Cuánto tiempo tiene para usarla?»
-      if (usar) usar.innerHTML += ' ' + fmt(sub(O.validez, t));
+      if (usar && O.validez) usar.innerHTML += ' ' + fmt(sub(O.validez, t));
       dudas.insertAdjacentHTML('beforeend', '<details id="dudaOferta" data-n="' + N.DUDAS.length + '"><summary>' + fmt(O.duda) + '</summary>' + t.duda.map(function (p) { return '<p class="texto">' + fmt(p) + '</p>'; }).join('') +
         '<a class="enlace-tinta" href="' + WA + encodeURIComponent(O.dudaWa + REF) + '" target="_blank" rel="noopener" data-wa="duda">' + fmt(O.dudaBoton) + '</a></details>');
       mideDuda(dudas.lastElementChild);

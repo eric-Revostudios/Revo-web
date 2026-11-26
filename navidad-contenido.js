@@ -62,12 +62,12 @@ window.NAVIDAD = {
     dudaElegir: [
       'Regala dos experiencias hasta el {hasta} y usa el mismo email en las dos: así sabemos que son tuyas. Cuenta también la que compres para ti.',
       'Al pagar la segunda, pulsa «Recogerlo» y entra en la página de tu regalo: ahí aparece la de más. Tú eliges cuál, de un valor igual o menor que la más económica de las dos, y a quién se la das.',
-      'Se disfruta {cuando}. Si en una compra pusiste otro email, escríbenos y lo resolvemos.'
+      'Si en una compra pusiste otro email, escríbenos y lo resolvemos.'
     ],
     dudaLista: [
       'Regala dos experiencias hasta el {hasta} y usa el mismo email en las dos: así sabemos que son tuyas. Cuenta también la que compres para ti.',
       'Al pagar la segunda, pulsa «Recogerlo» y entra en la página de tu regalo: ahí aparece la de más. Es {exp} o, si cuesta más que la más económica de las dos, otra de un valor igual o menor. Tú eliges a quién se la das.',
-      'Se disfruta {cuando}. Si en una compra pusiste otro email, escríbenos y lo resolvemos.'
+      'Si en una compra pusiste otro email, escríbenos y lo resolvemos.'
     ],
     dudaBoton: 'Escríbenos por WhatsApp',
     dudaWa: 'Hola, he regalado dos experiencias con emails distintos y quería que contaran juntas. ¿Me ayudáis?',
@@ -77,17 +77,17 @@ window.NAVIDAD = {
       pasosElegir: [
         ['Regala dos experiencias', 'El mismo día o en días distintos, hasta el {hasta}. Usa el mismo email en las dos.'],
         ['Verás que hay una más', 'Al pagar la segunda, pulsa «Recogerlo» y entra en la página de tu regalo. Aparece ahí.'],
-        ['Elige cuál y para quién', '{Para}. De un valor igual o menor que la más económica de las dos. Se disfruta {cuando}.']
+        ['Elige cuál y para quién', '{Para}. De un valor igual o menor que la más económica de las dos.']
       ],
       pasosLista: [
         ['Regala dos experiencias', 'El mismo día o en días distintos, hasta el {hasta}. Usa el mismo email en las dos.'],
         ['Verás que hay una más', 'Al pagar la segunda, pulsa «Recogerlo» y entra en la página de tu regalo. Aparece ahí.'],
-        ['Elige para quién', '{Para}. Es {exp} o, si cuesta más que la más económica de las dos, otra de un valor igual o menor. Se disfruta {cuando}.']
+        ['Elige para quién', '{Para}. Es {exp} o, si cuesta más que la más económica de las dos, otra de un valor igual o menor.']
       ],
       boton: 'Elegir las experiencias'
     },
     // se añade a la respuesta de «¿Cuánto tiempo tiene para usarla?»
-    validez: 'La experiencia de más se disfruta {cuando}.',
+    validez: '',   // (Eric, 26-nov: sin fechas de la de más en la web)
     test: 'Por cada dos experiencias que regales, hay una más de nuestra parte, {para}.'
   },
   MESES: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
@@ -98,42 +98,36 @@ window.NAVIDAD = {
   QUE_ES: {
     rotulo: 'Qué es REVO',
     titulo: 'REVO es un club de longevidad en Turó Park.',
-    texto: 'Quien viene no busca un spa ni un gimnasio: busca encontrarse bien hoy y seguir haciéndolo *dentro de veinte años*.'
+    texto: 'Un momento para cuidarse, con calma y con criterio: terapias avanzadas, dirección médica y un equipo pendiente de cada detalle. Para encontrarse bien hoy y seguir haciéndolo *dentro de veinte años*.'
   },
 
   /* ---- las seis experiencias ----
      Precio, enlace de Momence y textos: los mismos que experiencias.html (20-nov-2026). Si cambian allí, aquí también.
      `id` es el que usa la página del regalo de la Platform (/regalo/demo?e=…). */
-  EXPERIENCIAS_TITULO: 'Seis respuestas para *quien lo tiene todo*.',
+  EXPERIENCIAS_TITULO: 'Seis maneras de regalar *un rato para cuidarse*.',
   EXPERIENCIAS_ENTRADA: 'Varias terapias en una sola visita, encadenadas por nuestro equipo médico para un objetivo.',
   EXPERIENCIAS: [
     { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',
-      todo: 'Lo tiene todo, menos un rato para sí.',
       lema: 'Para cuidarse por dentro y por fuera.',
       pasos: ['Campo electromagnético', 'Máscara de luz roja', 'Crioterapia de cuerpo entero', 'Masaje drenante y moldeador'],
       url: 'https://momence.com/REVO-Studios/product/Glow-Experience/498606' },
     { id: 'sports', nombre: 'Sports Performance', precio: 140, dur: '1 h 30 min', foto: 'nv-sports.webp', pos: '50% 40%',
-      todo: 'Lo tiene todo, menos descanso entre entreno y entreno.',
       lema: 'Oxígeno, frío y compresión, para quien entrena.',
       pasos: ['Cámara hiperbárica', 'Crioterapia de cuerpo entero', 'Presoterapia'],
       url: 'https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608' },
     { id: 'sleep_stress', nombre: 'Sleep & Stress', precio: 140, dur: '1 h', foto: 'nv-sleep.webp', pos: '40% 45%',
-      todo: 'Lo tiene todo, menos tiempo para parar.',
       lema: 'Baja el ritmo. Desconecta.',
       pasos: ['Crioterapia de cuerpo entero', 'Cama de luz roja', 'Campo electromagnético', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614' },
     { id: 'longevity', nombre: 'Longevity', precio: 160, dur: '1 h 50 min', foto: 'nv-longevity.webp', pos: '50% 35%',
-      todo: 'Lo tiene todo, y quiere seguir teniéndolo dentro de veinte años.',
       lema: 'La más completa, para el cuerpo y la cabeza.',
       pasos: ['Campo electromagnético', 'Neuroestimulación', 'Cámara hiperbárica', 'Cama de luz roja'],
       url: 'https://momence.com/REVO-Studios/product/Longevity-Experience/498612' },
     { id: 'cognitiva', nombre: 'Performance Cognitiva', precio: 140, dur: '1 h 40 min', foto: 'nv-cognitiva.webp', pos: '50% 35%',
-      todo: 'Lo tiene todo, menos la cabeza en silencio.',
       lema: 'Oxígeno, luz y sonido, pensados para la cabeza.',
       pasos: ['Cámara hiperbárica', 'Cama de luz roja', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616' },
     { id: 'massage_plus', nombre: 'Massage +', precio: 110, dur: '1 h 30 min', foto: 'nv-massage.webp', pos: '50% 50%',
-      todo: 'Lo tiene todo, menos ese masaje que siempre aplaza.',
       lema: 'Su masaje, potenciado.',
       pasos: ['Masaje a elegir', 'Una terapia más, a elegir'],
       url: 'https://momence.com/REVO-Studios/product/Massage-Experience/498613' }
@@ -302,7 +296,7 @@ window.NAVIDAD = {
     titulo: 'Llega *al momento*. O en mano.',
     // La foto de la impresa se cambia sustituyendo material-navidad/tarjeta-impresa.webp (vertical 4:5, 1080 × 1350): esa
     // carpeta no se guarda en caché. Desde el 26-nov es la bolsa de regalo de REVO (la de la portada, Eric). Si se cambia, se cambia también su `alt`.
-    digital: { t: 'Digital', d: 'Al pagar, pulsa «Recogerlo» y entra en la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', foto: 'nv-tarjeta-digital.webp', alt: 'La tarjeta digital: «Tienes un regalo», con la experiencia y tu dedicatoria.', boton: 'Ver un ejemplo' },
+    digital: { t: 'Digital', d: 'Al pagar, pulsa «Recogerlo» y entra en la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', boton: 'Ver un ejemplo' },
     impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'La bolsa de regalo de REVO, en el estudio.', boton: 'Cómo llegar' },
     // la página real de la Platform (ejemplo con la experiencia que se elija)
     demo: 'https://www.revostudios.eu/regalo/demo?e='
