@@ -220,6 +220,7 @@
     var rg = null;
     try { rg = JSON.parse(localStorage.getItem('revo_regalo') || 'null'); } catch (_e) {}
     if (!rg || !/^RV-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(rg.c || '')) return null;
+    if (rg.r) return null;   // ya lo recogió (lo marca reserva-hecha.html al llevarla a su página)
     if (Date.now() - (rg.t || 0) > 3 * 3600 * 1000) { try { localStorage.removeItem('revo_regalo'); } catch (_e) {} return null; }
     return rg;
   }
