@@ -1,6 +1,7 @@
 /* Navidad · «Cómo se entrega» → Impreso: el sobre de REVO se abre, sale la tarjeta y se escriben el nombre y la
    experiencia. Es un híbrido con las fotos reales de Eric (26-nov): el fondo y la solapa cerrada salen de la foto del
-   sobre cerrado; el bolsillo y la tarjeta, de la foto del sobre abierto (sin la raya impresa y sin el reflejo azul).
+   sobre cerrado; el bolsillo y la tarjeta, de la foto del sobre abierto (sin la raya impresa ni el reflejo azul, con el cartón más negro y
+   limpio, y la tarjeta enderezada a la perspectiva del sobre).
    Cada pieza es una capa a todo el cuadro (assets/navidad-sobre/*.webp, 900 × 1125) y solo se mueve; lo único dibujado
    es el interior de la solapa abierta y la letra. El movimiento va en navidad.css § «el sobre».
    window.REVO_SOBRE.html(alt) devuelve la escena; window.REVO_SOBRE.vigila(raiz) la pone en marcha cuando se ve y
@@ -23,7 +24,7 @@
   // una palabra escrita sobre la tarjeta: sitio, giro (el de las líneas impresas) y cuerpo de letra
   function palabra(id, p, x, y, cuerpo) {
     var k = (cuerpo / 2048).toFixed(5);
-    return '<g transform="translate(' + x + ' ' + y + ') rotate(7.3) scale(' + k + ')">' +
+    return '<g transform="translate(' + x + ' ' + y + ') rotate(10.5) scale(' + k + ')">' +
       '<mask id="sbM' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-1800" width="' + (p.ancho + 1200) + '" height="2900"><path class="sb-pluma sb-pluma' + id + '" pathLength="1" d="' + trazo(p.ancho) + '"/></mask>' +
       '<clipPath id="sbC' + id + '"><path d="' + p.d + '"/></clipPath>' +
       '<g mask="url(#sbM' + id + ')"><path class="sb-tinta" d="' + p.d + '"/>' +
@@ -31,7 +32,7 @@
     '</g>';
   }
 
-  function capa(clase, fichero) { return '<img class="sb-capa ' + clase + '" src="' + D + fichero + '.webp" alt="" decoding="async" draggable="false" />'; }
+  function capa(clase, fichero) { return '<img class="sb-capa ' + clase + '" src="' + D + fichero + '-2.webp" alt="" decoding="async" draggable="false" />'; }
 
   function html(alt) {
     var a = String(alt).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -43,13 +44,13 @@
         '<div class="sb-capa sb-tarjeta">' + capa('', 'tarjeta') +
           '<svg class="sb-capa sb-letra" viewBox="0 0 900 1125" aria-hidden="true" focusable="false">' +
             '<defs><linearGradient id="sbBrillo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>' +
-            palabra(1, NOMBRE, 252, 318, 60) + palabra(2, EXPERIENCIA, 474, 409, 50) +
+            palabra(1, NOMBRE, 262, 309, 60) + palabra(2, EXPERIENCIA, 486, 412, 50) +
           '</svg></div>' +
         capa('sb-bolsillo', 'bolsillo') +
         capa('sb-solapa', 'solapa') +
       '</div>' +
-      // el sobre cerrado, entero: es lo que se ve mientras cargan las capas y el fundido con el que vuelve a empezar
-      '<img class="sb-capa sb-cerrado" src="' + D + 'cerrado.webp" alt="" decoding="async" draggable="false" />' +
+      // el sobre cerrado, entero: es lo que se ve mientras cargan las capas
+      '<img class="sb-capa sb-cerrado" src="' + D + 'cerrado-2.webp" alt="" decoding="async" draggable="false" />' +
     '</div>';
   }
 
