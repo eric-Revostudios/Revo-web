@@ -1,121 +1,69 @@
-/* Navidad · «Así lo recibe» → Impreso: el sobre de REVO se abre, sale la tarjeta y se escriben a mano el nombre y la
-   experiencia. Todo dibujado (SVG + CSS, navidad.css § «el sobre»): pesa poco, no es un vídeo y se ve nítido en
-   cualquier pantalla. El fondo es la foto del sobre de Eric (26-nov), sin el sobre y desenfocada.
-   window.REVO_SOBRE.html(alt) devuelve el dibujo; window.REVO_SOBRE.vigila(raiz) lo pone en marcha solo cuando se ve.
-   El nombre y la experiencia del ejemplo van en la letra «Pinyon Script» (licencia abierta OFL), recortada a esas
-   letras: si se cambia el ejemplo hay que volver a recortar la tipografía (fonts/PinyonScript-navidad.woff). */
+/* Navidad · «Cómo se entrega» → Impreso: el sobre de REVO se abre, sale la tarjeta y se escriben el nombre y la
+   experiencia. Es un híbrido con las fotos reales de Eric (26-nov): el fondo y la solapa cerrada salen de la foto del
+   sobre cerrado; el bolsillo y la tarjeta, de la foto del sobre abierto (sin la raya impresa y sin el reflejo azul).
+   Cada pieza es una capa a todo el cuadro (assets/navidad-sobre/*.webp, 900 × 1125) y solo se mueve; lo único dibujado
+   es el interior de la solapa abierta y la letra. El movimiento va en navidad.css § «el sobre».
+   window.REVO_SOBRE.html(alt) devuelve la escena; window.REVO_SOBRE.vigila(raiz) la pone en marcha cuando se ve y
+   cuando ya han cargado todas las capas.
+   La letra es «Pinyon Script» (licencia abierta OFL) pasada a trazos: para cambiar el ejemplo hay que volver a
+   sacar los trazos de la tipografía. */
 (function () {
   'use strict';
-  var NOMBRE = 'Marta', EXPERIENCIA = 'Longevity';
-
-  // un QR de mentira (no lleva a ningún sitio): tres esquinas y módulos sueltos, siempre los mismos
-  function qr(x, y, lado) {
-    var n = 25, m = lado / n, s = 20261126, d = '';
-    function azar() { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }
-    function esquina(i, j) { return (i < 8 && j < 8) || (i < 8 && j >= n - 8) || (i >= n - 8 && j < 8); }
-    function marco(i, j) {
-      var a = i < 8 ? i : i - (n - 7), b = j < 8 ? j : j - (n - 7);
-      if (a < 0 || a > 6 || b < 0 || b > 6) return false;
-      return a === 0 || a === 6 || b === 0 || b === 6 || (a >= 2 && a <= 4 && b >= 2 && b <= 4);
-    }
-    for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) {
-      var on = esquina(i, j) ? marco(i, j) : azar() > 0.52;
-      if (on) d += 'M' + (x + j * m).toFixed(2) + ' ' + (y + i * m).toFixed(2) + 'h' + m.toFixed(2) + 'v' + m.toFixed(2) + 'h-' + m.toFixed(2) + 'z';
-    }
-    return d;
-  }
+  var D = '/assets/navidad-sobre/';
+  // las dos palabras, en unidades de la tipografía (2048 por cuadratín), con la línea de base en y = 0
+  var NOMBRE = { ancho: 4738, d: 'M1488 2Q1427 2 1397 -26Q1367 -53 1367 -93Q1367 -122 1393 -185Q1419 -248 1501 -372Q1597 -515 1717 -660Q1837 -806 1962 -943Q2088 -1080 2204 -1199Q2321 -1318 2411 -1407Q2366 -1375 2311 -1329Q2256 -1283 2176 -1210Q2096 -1138 1979 -1028Q1862 -918 1694 -757Q1610 -677 1450 -512Q1291 -347 1076 -96Q1024 -35 1004 -21Q985 -7 974 -7Q967 -7 960 -17Q952 -27 952 -49Q952 -133 1010 -270Q1068 -406 1174 -578Q1281 -751 1427 -944Q1573 -1137 1748 -1335Q1692 -1284 1544 -1130Q1395 -976 1132 -687Q904 -437 722 -284Q540 -130 400 -59Q280 1 188 1Q94 1 47 -35Q0 -71 0 -127Q0 -173 31 -196Q62 -218 93 -218Q109 -218 126 -207Q144 -196 144 -172Q144 -153 127 -138Q110 -122 87 -122Q74 -122 62 -124Q49 -126 39 -133Q39 -129 38 -126Q38 -123 38 -121Q38 -78 76 -52Q114 -26 187 -26Q261 -26 358 -70Q454 -114 586 -216Q717 -319 895 -493Q1073 -667 1310 -926Q1509 -1143 1636 -1264Q1764 -1386 1828 -1435Q1893 -1484 1902 -1484Q1909 -1484 1919 -1482Q1929 -1479 1929 -1474Q1929 -1468 1914 -1455Q1904 -1446 1890 -1433Q1875 -1420 1854 -1399Q1828 -1371 1774 -1296Q1721 -1220 1650 -1114Q1580 -1007 1500 -883Q1421 -759 1343 -633Q1265 -507 1196 -394Q1128 -281 1078 -194Q1029 -108 1008 -65Q1117 -191 1206 -291Q1294 -391 1376 -478Q1457 -566 1542 -653Q1628 -740 1730 -838Q1832 -937 1962 -1060Q2135 -1221 2250 -1314Q2366 -1408 2435 -1448Q2504 -1487 2535 -1487Q2545 -1487 2545 -1479Q2545 -1472 2519 -1454Q2493 -1436 2463 -1410Q2364 -1323 2248 -1188Q2133 -1052 2012 -891Q1891 -730 1773 -564Q1655 -398 1551 -250Q1504 -181 1482 -146Q1459 -110 1453 -94Q1447 -79 1447 -67Q1447 -25 1505 -25Q1534 -25 1584 -40Q1633 -54 1687 -82Q1741 -109 1781 -148Q1786 -146 1786 -135Q1786 -120 1781 -112Q1738 -76 1682 -50Q1626 -25 1574 -12Q1522 2 1488 2ZM2018 2Q1954 2 1924 -33Q1895 -68 1895 -129Q1895 -196 1924 -272Q1952 -348 2018 -423Q2153 -580 2270 -632Q2388 -685 2491 -685Q2543 -685 2579 -663Q2615 -641 2615 -603Q2615 -574 2603 -544Q2635 -582 2658 -610Q2680 -639 2701 -665Q2727 -657 2761 -657Q2775 -657 2799 -658Q2823 -659 2836 -661L2499 -255Q2435 -179 2407 -132Q2379 -84 2379 -58Q2379 -26 2410 -26Q2464 -26 2522 -58Q2580 -89 2636 -138Q2692 -188 2741 -242Q2790 -295 2828 -340Q2865 -386 2885 -408L2905 -391Q2883 -366 2843 -319Q2803 -272 2752 -217Q2700 -162 2640 -112Q2581 -62 2518 -30Q2456 2 2395 2Q2295 2 2295 -60Q2295 -83 2304 -106Q2312 -130 2338 -168Q2364 -205 2416 -268L2406 -272Q2284 -122 2180 -60Q2077 2 2018 2ZM2022 -28Q2086 -28 2191 -102Q2296 -177 2443 -351Q2467 -380 2488 -405Q2508 -430 2527 -452Q2550 -487 2568 -525Q2587 -563 2587 -594Q2587 -625 2565 -640Q2543 -654 2517 -654Q2468 -654 2358 -584Q2249 -513 2118 -358Q2043 -268 2010 -198Q1977 -128 1977 -80Q1977 -28 2022 -28ZM3043 2Q2987 2 2952 -26Q2917 -55 2917 -101Q2917 -181 3034 -294Q3151 -407 3351 -541Q3249 -558 3176 -575Q3102 -592 3058 -612Q3038 -572 3000 -514Q2962 -456 2903 -389Q2863 -342 2843 -323Q2823 -304 2816 -300Q2808 -297 2807 -295Q2804 -294 2804 -301Q2803 -308 2804 -312Q2804 -316 2819 -331Q2834 -346 2882 -406Q2932 -469 2971 -526Q3010 -583 3031 -626Q2995 -649 2989 -677Q2981 -725 3008 -764Q3035 -803 3078 -803Q3131 -803 3131 -757Q3131 -734 3122 -718Q3113 -702 3104 -687Q3086 -666 3086 -634Q3086 -624 3120 -612Q3155 -601 3206 -590Q3256 -580 3305 -572Q3354 -565 3382 -563Q3401 -562 3406 -556Q3410 -551 3410 -548Q3410 -538 3381 -515Q3326 -473 3268 -414Q3210 -354 3160 -290Q3110 -227 3079 -171Q3048 -115 3048 -79Q3048 -32 3086 -32Q3135 -32 3193 -65Q3251 -98 3310 -148Q3370 -198 3422 -252Q3475 -305 3513 -348Q3551 -390 3566 -406L3586 -389Q3564 -368 3524 -322Q3483 -277 3429 -222Q3375 -166 3312 -115Q3248 -64 3180 -31Q3112 2 3043 2ZM3495 2Q3440 2 3412 -20Q3385 -42 3385 -76Q3385 -103 3392 -130Q3399 -156 3422 -197Q3445 -238 3492 -308Q3539 -377 3619 -490L3877 -853H3798Q3768 -853 3768 -866Q3768 -882 3806 -882H3897L4082 -1142Q4095 -1140 4116 -1138Q4138 -1137 4178 -1138Q4198 -1138 4221 -1142L4028 -882H4286Q4314 -882 4314 -868Q4314 -853 4289 -853H4006L3742 -497Q3648 -371 3591 -290Q3534 -209 3504 -162Q3475 -115 3464 -92Q3454 -69 3454 -58Q3454 -28 3504 -26Q3573 -27 3646 -72Q3720 -116 3788 -180Q3856 -245 3910 -308Q3964 -370 3994 -406L4016 -389Q3987 -355 3931 -291Q3875 -227 3802 -160Q3730 -92 3651 -45Q3572 2 3495 2ZM3985 2Q3921 2 3892 -33Q3862 -68 3862 -129Q3862 -196 3890 -272Q3919 -348 3985 -423Q4120 -580 4238 -632Q4355 -685 4458 -685Q4510 -685 4546 -663Q4582 -641 4582 -603Q4582 -574 4570 -544Q4602 -582 4624 -610Q4647 -639 4668 -665Q4694 -657 4728 -657Q4742 -657 4766 -658Q4790 -659 4803 -661L4466 -255Q4402 -179 4374 -132Q4346 -84 4346 -58Q4346 -26 4377 -26Q4431 -26 4489 -58Q4547 -89 4603 -138Q4659 -188 4708 -242Q4757 -295 4794 -340Q4832 -386 4852 -408L4872 -391Q4850 -366 4810 -319Q4770 -272 4718 -217Q4667 -162 4608 -112Q4548 -62 4486 -30Q4423 2 4362 2Q4262 2 4262 -60Q4262 -83 4270 -106Q4279 -130 4305 -168Q4331 -205 4383 -268L4373 -272Q4251 -122 4148 -60Q4044 2 3985 2ZM3989 -28Q4053 -28 4158 -102Q4263 -177 4410 -351Q4434 -380 4454 -405Q4475 -430 4494 -452Q4517 -487 4536 -525Q4554 -563 4554 -594Q4554 -625 4532 -640Q4510 -654 4484 -654Q4435 -654 4326 -584Q4216 -513 4085 -358Q4010 -268 3977 -198Q3944 -128 3944 -80Q3944 -28 3989 -28Z' };
+  var EXPERIENCIA = { ancho: 7515, d: 'M1040 25Q972 25 887 10Q802 -5 718 -26Q633 -48 566 -67Q410 2 220 2Q107 2 54 -24Q0 -50 0 -80Q0 -127 62 -154Q124 -182 224 -182Q299 -182 378 -164Q456 -146 551 -112Q628 -162 711 -252Q794 -343 899 -486Q692 -493 566 -576Q440 -660 440 -790Q440 -876 496 -958Q551 -1039 640 -1092Q730 -1145 833 -1145Q850 -1145 852 -1140Q855 -1136 855 -1133Q855 -1128 851 -1126Q847 -1123 823 -1121Q720 -1111 652 -1062Q583 -1014 549 -947Q515 -880 515 -814Q515 -660 625 -588Q735 -517 920 -515Q952 -559 986 -608Q1019 -657 1056 -712Q1223 -961 1368 -1112Q1514 -1264 1652 -1332Q1790 -1401 1933 -1401Q2007 -1401 2053 -1368Q2099 -1335 2099 -1280Q2099 -1196 2034 -1098Q1970 -1000 1860 -903Q1751 -806 1614 -721Q1477 -636 1331 -576Q1185 -517 1049 -496Q940 -350 833 -250Q726 -149 612 -89Q698 -58 804 -41Q911 -24 1047 -24Q1159 -24 1227 -46Q1295 -67 1330 -92Q1364 -117 1374 -127Q1389 -142 1394 -131Q1397 -124 1392 -114Q1386 -103 1378 -95Q1297 -22 1212 2Q1127 25 1040 25ZM1073 -528Q1205 -551 1341 -610Q1477 -669 1600 -751Q1724 -833 1822 -926Q1919 -1019 1976 -1112Q2032 -1205 2032 -1286Q2032 -1321 2002 -1350Q1972 -1378 1927 -1378Q1766 -1378 1610 -1248Q1453 -1119 1306 -880Q1245 -780 1187 -692Q1129 -604 1073 -528ZM206 -22Q292 -22 364 -35Q436 -48 506 -85Q439 -104 366 -118Q292 -131 232 -131Q28 -131 28 -81Q28 -65 76 -44Q123 -22 206 -22ZM1707 2Q1623 2 1583 -36Q1543 -75 1538 -131Q1535 -199 1566 -277Q1598 -355 1635 -408Q1684 -477 1754 -540Q1824 -604 1908 -644Q1991 -685 2079 -685Q2132 -685 2170 -658Q2209 -630 2213 -570Q2218 -485 2180 -392Q2142 -298 2077 -218Q2084 -189 2122 -189Q2159 -189 2203 -218Q2247 -248 2288 -288Q2330 -328 2360 -362Q2390 -396 2400 -406L2422 -389Q2403 -371 2368 -334Q2333 -296 2290 -256Q2248 -217 2204 -189Q2159 -161 2120 -161Q2072 -161 2055 -191Q1981 -107 1888 -52Q1796 2 1707 2ZM1733 -28Q1768 -28 1814 -48Q1860 -68 1906 -101Q1983 -156 2045 -230V-234Q2045 -296 2078 -332Q2110 -369 2141 -379Q2190 -481 2185 -562Q2182 -611 2160 -630Q2137 -649 2110 -649Q2052 -649 1968 -580Q1883 -512 1779 -383Q1705 -290 1676 -226Q1646 -162 1650 -115Q1650 -88 1668 -58Q1687 -28 1733 -28ZM2946 2Q2891 2 2850 -19Q2810 -40 2810 -75Q2810 -102 2822 -138Q2834 -175 2880 -239Q2925 -303 3023 -413Q3102 -502 3132 -551Q3162 -600 3162 -624Q3162 -638 3152 -649Q3142 -660 3114 -660Q3094 -660 3060 -647Q3027 -634 2981 -603Q2902 -549 2787 -436Q2672 -324 2523 -141L2430 -19Q2404 -24 2372 -24Q2336 -24 2312 -20Q2289 -17 2277 -14Q2389 -176 2464 -282Q2539 -389 2584 -453Q2630 -517 2652 -550Q2675 -584 2683 -598Q2691 -613 2692 -622Q2694 -651 2670 -651Q2656 -651 2626 -623Q2596 -595 2558 -553Q2521 -511 2485 -466Q2449 -422 2422 -389Q2415 -385 2404 -394Q2398 -403 2401 -406Q2430 -437 2466 -484Q2503 -530 2543 -576Q2583 -623 2625 -654Q2667 -685 2706 -685Q2735 -685 2764 -672Q2792 -660 2787 -613Q2786 -597 2777 -572Q2768 -548 2741 -510L2531 -218L2536 -207Q2692 -383 2796 -484Q2901 -584 2973 -632Q3021 -664 3058 -674Q3094 -685 3125 -685Q3190 -685 3216 -654Q3243 -622 3242 -584Q3241 -544 3216 -488Q3190 -433 3128 -350Q3067 -268 2956 -147Q2905 -93 2894 -78Q2884 -62 2884 -49Q2884 -39 2904 -32Q2925 -26 2956 -26Q3017 -26 3081 -61Q3145 -96 3206 -148Q3266 -201 3316 -256Q3366 -311 3400 -353Q3433 -395 3443 -406L3464 -389Q3452 -376 3418 -333Q3383 -290 3331 -234Q3279 -177 3216 -123Q3153 -69 3084 -34Q3015 2 2946 2ZM2860 787Q2818 787 2790 765Q2761 743 2761 720Q2760 678 2792 630Q2823 583 2902 525Q2981 467 3120 395Q3258 323 3470 233Q3552 133 3652 9Q3751 -115 3873 -268L3865 -272Q3734 -123 3630 -60Q3526 2 3463 2Q3400 2 3370 -33Q3340 -68 3338 -129Q3338 -196 3366 -272Q3393 -348 3457 -423Q3543 -528 3626 -584Q3710 -641 3786 -663Q3862 -685 3925 -685Q3990 -685 4029 -663Q4068 -641 4069 -603Q4069 -574 4057 -544Q4088 -582 4110 -610Q4132 -638 4151 -665Q4162 -662 4180 -660Q4197 -657 4214 -657Q4227 -657 4251 -658Q4275 -659 4288 -661L3966 -246Q3873 -125 3792 -22Q3712 81 3643 168Q3852 61 4029 -78Q4206 -216 4364 -406L4384 -389Q4209 -180 4019 -36Q3829 107 3605 214Q3456 398 3350 512Q3245 625 3164 684Q3084 744 3012 766Q2941 787 2860 787ZM3470 -28Q3526 -28 3636 -100Q3746 -171 3900 -351L3978 -446Q4002 -481 4022 -521Q4041 -561 4041 -594Q4040 -654 3951 -654Q3904 -654 3795 -582Q3686 -511 3562 -356Q3489 -265 3454 -196Q3420 -128 3421 -80Q3424 -28 3470 -28ZM2863 760Q2914 760 2964 740Q3015 719 3078 666Q3140 614 3226 519Q3312 424 3435 276Q3200 378 3060 456Q2919 535 2856 598Q2794 662 2794 720Q2794 731 2813 746Q2832 760 2863 760ZM4436 6Q4338 6 4296 -45Q4254 -96 4252 -170Q4251 -224 4274 -290Q4297 -356 4322 -391Q4396 -494 4482 -559Q4568 -624 4650 -654Q4733 -685 4796 -685Q4857 -685 4882 -665Q4906 -645 4907 -619Q4910 -580 4866 -528Q4821 -477 4710 -417Q4599 -357 4400 -291Q4365 -235 4353 -194Q4341 -154 4341 -122Q4341 -75 4372 -49Q4404 -23 4447 -23Q4541 -23 4624 -58Q4706 -94 4774 -148Q4843 -202 4895 -258Q4947 -313 4980 -354Q5013 -396 5024 -406L5045 -389Q5030 -376 4994 -332Q4959 -288 4904 -231Q4850 -174 4779 -120Q4708 -66 4622 -30Q4535 6 4436 6ZM4423 -326Q4617 -394 4729 -466Q4841 -539 4841 -605Q4841 -661 4789 -661Q4722 -661 4644 -589Q4566 -517 4462 -380Q4440 -352 4423 -326ZM4950 2Q4838 2 4838 -81Q4838 -117 4852 -154Q4866 -192 4908 -252Q4949 -312 5031 -415Q5075 -471 5140 -537Q5204 -603 5280 -679Q5312 -676 5327 -674Q5342 -673 5365 -673Q5410 -673 5437 -676Q5368 -614 5326 -570Q5285 -527 5251 -488Q5217 -448 5170 -398Q5145 -372 5102 -328Q5059 -284 5014 -234Q4970 -185 4939 -141Q4908 -97 4908 -70Q4908 -37 4924 -30Q4939 -24 4964 -24Q5038 -24 5124 -64Q5210 -103 5297 -166Q5384 -228 5461 -295Q5534 -360 5569 -414Q5604 -467 5615 -518Q5626 -569 5626 -625Q5626 -662 5649 -686Q5672 -709 5705 -709Q5761 -709 5761 -654Q5761 -626 5746 -586Q5732 -545 5689 -487Q5646 -429 5562 -347L5535 -322Q5501 -276 5494 -234Q5487 -193 5541 -193Q5575 -193 5618 -218Q5660 -242 5702 -278Q5744 -313 5780 -348Q5815 -384 5834 -406L5855 -389Q5822 -353 5766 -300Q5711 -248 5649 -208Q5587 -168 5533 -168Q5484 -168 5472 -197Q5459 -226 5481 -274Q5407 -212 5313 -148Q5219 -84 5124 -41Q5028 2 4950 2ZM6289 -876Q6261 -876 6244 -894Q6228 -911 6228 -938Q6228 -973 6258 -1002Q6287 -1032 6328 -1032Q6356 -1032 6372 -1014Q6389 -995 6389 -969Q6389 -932 6358 -904Q6326 -876 6289 -876ZM5778 2Q5717 2 5680 -20Q5642 -43 5642 -81Q5642 -111 5657 -150Q5672 -190 5714 -254Q5757 -318 5838 -420Q5920 -523 6053 -678Q6062 -677 6096 -676Q6130 -675 6149 -675Q6166 -675 6174 -676Q6183 -676 6191 -677Q6045 -505 5952 -394Q5860 -283 5810 -217Q5760 -151 5741 -116Q5722 -81 5722 -60Q5722 -34 5750 -30Q5778 -26 5795 -26Q5849 -26 5913 -62Q5977 -99 6040 -154Q6104 -208 6158 -264Q6213 -320 6248 -360Q6283 -401 6289 -407L6309 -389Q6298 -377 6261 -334Q6224 -291 6169 -234Q6114 -178 6048 -124Q5983 -70 5914 -34Q5844 2 5778 2ZM6218 2Q6163 2 6136 -20Q6108 -42 6108 -76Q6108 -103 6115 -130Q6122 -156 6145 -197Q6168 -238 6215 -308Q6262 -377 6342 -490L6600 -853H6521Q6491 -853 6491 -866Q6491 -882 6529 -882H6620L6805 -1142Q6818 -1140 6840 -1138Q6861 -1137 6901 -1138Q6921 -1138 6944 -1142L6751 -882H7009Q7037 -882 7037 -868Q7037 -853 7012 -853H6729L6465 -497Q6371 -371 6314 -290Q6257 -209 6228 -162Q6198 -115 6188 -92Q6177 -69 6177 -58Q6177 -28 6227 -26Q6296 -27 6370 -72Q6443 -116 6511 -180Q6579 -245 6633 -308Q6687 -370 6717 -406L6739 -389Q6710 -355 6654 -291Q6598 -227 6526 -160Q6453 -92 6374 -45Q6295 2 6218 2ZM6137 787Q6094 787 6072 765Q6050 743 6050 720Q6050 666 6112 600Q6175 535 6330 449Q6484 363 6758 248Q6841 147 6941 19Q7041 -109 7165 -268L7154 -272Q7098 -212 7014 -148Q6929 -85 6837 -42Q6745 2 6664 2Q6552 2 6552 -81Q6552 -117 6564 -154Q6577 -192 6614 -252Q6650 -312 6723 -415Q6769 -471 6834 -537Q6898 -603 6973 -679Q7005 -676 7020 -674Q7036 -673 7059 -673Q7103 -673 7130 -676Q7061 -614 7020 -570Q6978 -527 6944 -488Q6911 -448 6864 -398Q6841 -372 6801 -328Q6761 -284 6720 -234Q6678 -185 6650 -141Q6621 -97 6621 -70Q6621 -37 6639 -30Q6657 -24 6672 -24Q6762 -24 6858 -76Q6953 -127 7041 -206Q7129 -284 7196 -366Q7298 -478 7360 -552Q7421 -626 7461 -676Q7472 -674 7489 -672Q7506 -669 7523 -669Q7536 -669 7559 -670Q7582 -671 7595 -673L7247 -244Q7152 -115 7070 -7Q6989 101 6918 191Q7056 125 7150 66Q7243 8 7315 -56Q7387 -121 7459 -205Q7531 -289 7627 -406L7648 -389Q7565 -289 7500 -214Q7434 -139 7374 -80Q7314 -21 7246 30Q7178 80 7091 129Q7004 178 6883 235Q6742 413 6638 522Q6535 631 6453 688Q6371 746 6296 766Q6221 787 6137 787ZM6141 760Q6197 760 6251 740Q6305 720 6370 670Q6434 619 6520 527Q6605 435 6723 291Q6495 388 6354 464Q6212 540 6147 602Q6082 663 6082 720Q6082 731 6096 746Q6110 760 6141 760Z' };
 
   // el trazo que «escribe»: un zigzag inclinado que recorre la palabra de izquierda a derecha y la va destapando
-  function trazo(x0, x1, yArriba, yAbajo, paso) {
-    var d = 'M' + x0 + ' ' + yAbajo, x = x0, inc = (yAbajo - yArriba) * 0.42;
-    while (x < x1) {
-      d += ' L' + (x + inc).toFixed(1) + ' ' + yArriba + ' L' + (x + paso).toFixed(1) + ' ' + yAbajo;
-      x += paso;
-    }
+  function trazo(ancho) {
+    var arriba = -1500, abajo = 820, paso = 170, inc = 620, x = -260, d = 'M' + x + ' ' + abajo;
+    while (x < ancho + 200) { d += ' L' + (x + inc) + ' ' + arriba + ' L' + (x + paso) + ' ' + abajo; x += paso; }
     return d;
   }
+  // una palabra escrita sobre la tarjeta: sitio, giro (el de las líneas impresas) y cuerpo de letra
+  function palabra(id, p, x, y, cuerpo) {
+    var k = (cuerpo / 2048).toFixed(5);
+    return '<g transform="translate(' + x + ' ' + y + ') rotate(7.3) scale(' + k + ')">' +
+      '<mask id="sbM' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-1800" width="' + (p.ancho + 1200) + '" height="2900"><path class="sb-pluma sb-pluma' + id + '" pathLength="1" d="' + trazo(p.ancho) + '"/></mask>' +
+      '<clipPath id="sbC' + id + '"><path d="' + p.d + '"/></clipPath>' +
+      '<g mask="url(#sbM' + id + ')"><path class="sb-tinta" d="' + p.d + '"/>' +
+        '<g clip-path="url(#sbC' + id + ')"><rect class="sb-brillo sb-brillo' + id + '" x="-1500" y="-1800" width="1100" height="2900" fill="url(#sbBrillo)"/></g></g>' +
+    '</g>';
+  }
+
+  function capa(clase, fichero) { return '<img class="sb-capa ' + clase + '" src="' + D + fichero + '.webp" alt="" decoding="async" draggable="false" />'; }
 
   function html(alt) {
-    var E = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
-    return '<div class="sobre" role="img" aria-label="' + E(alt).replace(/"/g, '&quot;') + '">' +
-      '<img class="sobre-fondo" src="/assets/navidad-sobre-fondo.webp" alt="" loading="lazy" decoding="async" />' +
-      '<svg class="sobre-svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">' +
-      '<defs>' +
-        '<linearGradient id="sbPapel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1b21"/><stop offset=".55" stop-color="#131317"/><stop offset="1" stop-color="#0d0d12"/></linearGradient>' +
-        '<linearGradient id="sbPapel2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1d24"/><stop offset="1" stop-color="#121216"/></linearGradient>' +
-        '<linearGradient id="sbLado" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#16161b"/><stop offset="1" stop-color="#0f0f13"/></linearGradient>' +
-        '<linearGradient id="sbLadoD" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#15151c"/><stop offset="1" stop-color="#0e0e12"/></linearGradient>' +
-        '<linearGradient id="sbDentro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050507"/><stop offset="1" stop-color="#0b0b0e"/></linearGradient>' +
-        '<linearGradient id="sbSolapaDentro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101014"/><stop offset="1" stop-color="#1a1a20"/></linearGradient>' +
-        '<linearGradient id="sbTarjeta" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101014"/><stop offset=".6" stop-color="#0a0a0d"/><stop offset="1" stop-color="#0c0c12"/></linearGradient>' +
-        '<linearGradient id="sbReflejo" x1="0" y1="0" x2="1" y2="0"><stop offset=".5" stop-color="#3b4dff" stop-opacity="0"/><stop offset=".9" stop-color="#3b4dff" stop-opacity=".2"/><stop offset="1" stop-color="#2a38d8" stop-opacity=".1"/></linearGradient>' +
-        '<linearGradient id="sbFoil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7386ff"/><stop offset=".5" stop-color="#4f63f5"/><stop offset="1" stop-color="#6c80ff"/></linearGradient>' +
-        '<linearGradient id="sbBrillo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>' +
-        '<linearGradient id="sbBrilloSuave" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#cfd6ff" stop-opacity="0"/><stop offset=".5" stop-color="#cfd6ff" stop-opacity=".13"/><stop offset="1" stop-color="#cfd6ff" stop-opacity="0"/></linearGradient>' +
-        '<linearGradient id="sbTinta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c3c8d6"/></linearGradient>' +
-        '<linearGradient id="sbLuzSobre" x1="0" y1="0" x2="1" y2="1"><stop offset=".1" stop-color="#fff" stop-opacity=".07"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#4a5cff" stop-opacity="0"/><stop offset="1" stop-color="#4a5cff" stop-opacity=".2"/></linearGradient>' +
-        '<radialGradient id="sbSombra" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#05050c" stop-opacity=".5"/><stop offset=".6" stop-color="#05050c" stop-opacity=".2"/><stop offset="1" stop-color="#05050c" stop-opacity="0"/></radialGradient>' +
-        '<radialGradient id="sbHalo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#5d72ff" stop-opacity=".5"/><stop offset="1" stop-color="#5d72ff" stop-opacity="0"/></radialGradient>' +
-        '<mask id="sbLogo" maskUnits="userSpaceOnUse" x="102" y="150" width="96" height="20"><image href="/assets/revo-palabra-blanca.webp" x="102" y="150" width="96" height="18.9"/></mask>' +
-        '<mask id="sbM1" maskUnits="userSpaceOnUse" x="0" y="0" width="268" height="60"><path class="sb-pluma sb-pluma1" pathLength="1" d="' + trazo(18, 92, 8, 46, 5) + '"/></mask>' +
-        '<mask id="sbM2" maskUnits="userSpaceOnUse" x="100" y="36" width="168" height="44"><path class="sb-pluma sb-pluma2" pathLength="1" d="' + trazo(132, 222, 42, 76, 4.4) + '"/></mask>' +
-        '<clipPath id="sbRecorteTarjeta"><rect x="0" y="0" width="268" height="182" rx="2.5"/></clipPath>' +
-        '<clipPath id="sbRecorteSobre"><rect x="0" y="0" width="300" height="210" rx="3"/></clipPath>' +
-      '</defs>' +
-      '<g class="sb-camara"><g transform="rotate(-2.5 150 105)">' +
-        // sombra en la mesa y halo azul
-        '<ellipse class="sb-halo" cx="170" cy="150" rx="230" ry="170" fill="url(#sbHalo)"/>' +
-        '<ellipse cx="156" cy="214" rx="176" ry="26" fill="url(#sbSombra)"/>' +
-        '<rect x="-14" y="-8" width="328" height="236" rx="30" fill="url(#sbSombra)" opacity=".7"/>' +
-        // el interior del sobre
-        '<rect x="0" y="0" width="300" height="210" rx="3" fill="url(#sbDentro)"/>' +
-        // la solapa, ya abierta (por dentro), detrás de la tarjeta
-        '<g class="sb-solapa-atras"><path d="M1 0H299L163 111Q150 121 137 111Z" fill="url(#sbSolapaDentro)"/><path d="M1 0L137 111Q150 121 163 111L299 0" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width=".6"/></g>' +
-        // la tarjeta
-        '<g class="sb-tarjeta"><g transform="translate(16 12)">' +
-          '<rect x="1.5" y="3" width="268" height="182" rx="2.5" fill="#000" opacity=".35"/>' +
-          '<rect width="268" height="182" rx="2.5" fill="url(#sbTarjeta)"/>' +
-          '<g clip-path="url(#sbRecorteTarjeta)">' +
-            '<rect width="268" height="182" fill="url(#sbReflejo)"/>' +
-            '<text class="sb-foil sb-sans" x="20" y="64" font-size="10.6">Te regalo tu experiencia:</text>' +
-            '<text class="sb-foil sb-sans" x="20" y="84" font-size="10.6">Para que puedas vivir 1 día REVO.</text>' +
-            '<rect x="0" y="97" width="268" height=".7" fill="#6c80ff" opacity=".75"/>' +
-            '<text class="sb-foil sb-serif" x="134" y="113" font-size="9.4" text-anchor="middle">Tu viaje empieza aquí.</text>' +
-            '<text class="sb-foil sb-sans" x="134" y="124.5" font-size="8.6" text-anchor="middle">Escanea y reserva tu cita:</text>' +
-            '<rect x="113" y="132" width="42" height="42" rx="1" fill="#f4f4f6"/><path d="' + qr(115.5, 134.5, 37) + '" fill="#0a0a0d"/>' +
-            '<g mask="url(#sbM1)"><text class="sb-mano" x="20" y="38" font-size="30">' + E(NOMBRE) + '</text></g>' +
-            '<g mask="url(#sbM2)"><text class="sb-mano" x="137" y="66.5" font-size="23">' + E(EXPERIENCIA) + '</text></g>' +
-            '<rect class="sb-luz-tarjeta" x="-120" y="-20" width="90" height="230" fill="url(#sbBrilloSuave)" transform="skewX(-18)"/>' +
-          '</g>' +
-          '<rect x=".3" y=".3" width="267.4" height="181.4" rx="2.3" fill="none" stroke="#fff" stroke-opacity=".09" stroke-width=".6"/>' +
-        '</g></g>' +
-        // el bolsillo: solapas de los lados y la de abajo, con el logo
-        '<g clip-path="url(#sbRecorteSobre)">' +
-          '<path d="M0 0L141 89Q149 95 141 102L0 210Z" fill="url(#sbLado)"/>' +
-          '<path d="M300 0L159 89Q151 95 159 102L300 210Z" fill="url(#sbLadoD)"/>' +
-          '<path d="M0 0L141 89M300 0L159 89" stroke="#fff" stroke-opacity=".08" stroke-width=".6" fill="none"/>' +
-          '<path d="M-4 214L135 86Q150 73 165 86L304 214Z" fill="#000" opacity=".3" transform="translate(0 -2.4)"/>' +
-          '<path d="M0 210L136 87Q150 75 164 87L300 210Z" fill="url(#sbPapel2)"/>' +
-          '<path d="M0 210L136 87Q150 75 164 87L300 210" stroke="#fff" stroke-opacity=".1" stroke-width=".6" fill="none"/>' +
-          '<g mask="url(#sbLogo)"><rect x="102" y="150" width="96" height="20" fill="url(#sbFoil)"/><rect class="sb-destello" x="60" y="146" width="34" height="28" fill="url(#sbBrillo)" transform="skewX(-20)"/></g>' +
-          '<text class="sb-foil sb-serif sb-lema" x="150" y="180.5" font-size="8.2" text-anchor="middle">Wellbeing, revolved</text>' +
-          '<rect width="300" height="210" fill="url(#sbLuzSobre)"/>' +
-        '</g>' +
-        // la solapa, cerrada (por fuera), delante de todo
-        '<g class="sb-solapa"><path d="M-3 0H303L166 116Q150 129 134 116Z" fill="#000" opacity=".32" transform="translate(0 2.2)"/><path d="M0 0H300L164 113Q150 124 136 113Z" fill="url(#sbPapel)"/><path d="M0 0L136 113Q150 124 164 113L300 0" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width=".6"/><path d="M0 0H300" stroke="#fff" stroke-opacity=".12" stroke-width=".7"/></g>' +
-      '</g></g>' +
-      '</svg>' +
-      '<div class="sobre-grano" aria-hidden="true"></div>' +
+    var a = String(alt).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+    return '<div class="sobre" role="img" aria-label="' + a + '">' +
+      '<div class="sb-camara">' +
+        capa('sb-fondo', 'fondo') +
+        capa('sb-detras', 'detras') +
+        capa('sb-solapa-abierta', 'solapa-abierta') +
+        '<div class="sb-capa sb-tarjeta">' + capa('', 'tarjeta') +
+          '<svg class="sb-capa sb-letra" viewBox="0 0 900 1125" aria-hidden="true" focusable="false">' +
+            '<defs><linearGradient id="sbBrillo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>' +
+            palabra(1, NOMBRE, 252, 318, 60) + palabra(2, EXPERIENCIA, 474, 409, 50) +
+          '</svg></div>' +
+        capa('sb-bolsillo', 'bolsillo') +
+        capa('sb-solapa', 'solapa') +
+      '</div>' +
+      // el sobre cerrado, entero: es lo que se ve mientras cargan las capas y el fundido con el que vuelve a empezar
+      '<img class="sb-capa sb-cerrado" src="' + D + 'cerrado.webp" alt="" decoding="async" draggable="false" />' +
     '</div>';
   }
 
-  // solo se mueve mientras se ve (y nunca con «reducir movimiento»: ahí se queda en la tarjeta ya escrita, por CSS)
+  // .lista = han cargado todas las capas; .vivo = se está viendo. Solo se mueve con las dos (y nunca con «reducir
+  // movimiento»: ahí se queda en la tarjeta ya escrita, por CSS).
   function vigila(raiz) {
     var s = (raiz || document).querySelectorAll('.sobre');
-    if (!s.length) return;
-    if (!window.IntersectionObserver) { s.forEach(function (x) { x.classList.add('vivo'); }); return; }
-    var io = new IntersectionObserver(function (es) { es.forEach(function (en) { en.target.classList.toggle('vivo', en.isIntersecting); }); }, { threshold: 0.25 });
-    s.forEach(function (x) { io.observe(x); });
+    Array.prototype.forEach.call(s, function (x) {
+      var imgs = x.querySelectorAll('img'), faltan = imgs.length;
+      function una() { if (--faltan <= 0) x.classList.add('lista'); }
+      Array.prototype.forEach.call(imgs, function (i) { if (i.complete && i.naturalWidth) una(); else { i.addEventListener('load', una); i.addEventListener('error', una); } });
+      if (!window.IntersectionObserver) { x.classList.add('vivo'); return; }
+      new IntersectionObserver(function (es) { es.forEach(function (en) { x.classList.toggle('vivo', en.isIntersecting); }); }, { threshold: 0.3 }).observe(x);
+    });
   }
 
   window.REVO_SOBRE = { html: html, vigila: vigila };

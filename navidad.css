@@ -453,81 +453,79 @@ html.nt-abierto, html.nt-abierto body{ overflow:hidden; }
 .rg-fija{ position:fixed; z-index:250; left:50%; bottom:calc(18px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%); width:max-content; max-width:calc(100vw - 28px); padding:10px 10px 10px 20px; border-radius:999px; box-shadow:0 0 0 1px rgba(188,197,255,.25), 0 14px 44px rgba(0,0,0,.4); }
 
 
-/* ---------- el sobre (Impreso, «Así lo recibe»): navidad-sobre.js ----------
-   Un bucle de 14 s con todas las piezas en el mismo reloj: brilla el logo → se abre la solapa → sube la tarjeta →
-   la cámara se acerca → se escriben el nombre y la experiencia → pasa una luz → vuelve a guardarse. La solapa «gira»
-   encogiéndose en vertical (scaleY 1 → 0 → −1): dos piezas, la de fuera delante y la de dentro detrás de la tarjeta.
-   Solo corre con .vivo (cuando se ve); con «reducir movimiento» se queda quieta en la tarjeta ya escrita. */
-@font-face{ font-family:"Pinyon REVO"; src:url("fonts/PinyonScript-navidad.woff") format("woff"); font-weight:400; font-style:normal; font-display:block; }
-.sobre{ position:relative; aspect-ratio:4/5; border-radius:20px; overflow:hidden; margin-bottom:10px; background:#cfc6c4; isolation:isolate; box-shadow:0 0 0 1px rgba(20,22,28,.06), 0 36px 70px -44px rgba(20,22,28,.55); }
-.sobre-fondo{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.06); }
-.sobre-svg{ position:absolute; inset:0; width:100%; height:100%; display:block; overflow:hidden; }
-.sobre-grano{ position:absolute; inset:0; pointer-events:none; opacity:.16; mix-blend-mode:overlay; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
-.sb-sans{ font-family:var(--sans); font-weight:500; letter-spacing:-.012em; }
-.sb-serif{ font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing:-.02em; }
-.sb-lema{ font-weight:700; }
-.sb-foil{ fill:#6f83ff; }
-.sb-mano{ font-family:"Pinyon REVO","Snell Roundhand","Apple Chancery",cursive; fill:url(#sbTinta); }
-.sb-pluma{ fill:none; stroke:#fff; stroke-width:9.5; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1 1.2; stroke-dashoffset:1.03; }
-.sb-camara{ transform:translate(32px,148px) scale(1.12); }
-.sb-solapa-atras{ transform:scaleY(0); }
-.sb-camara, .sb-solapa, .sb-solapa-atras, .sb-tarjeta, .sb-pluma, .sb-destello, .sb-luz-tarjeta, .sb-halo{ animation-duration:14s; animation-iteration-count:infinite; animation-timing-function:linear; animation-play-state:paused; will-change:transform; }
-.sobre.vivo .sb-camara, .sobre.vivo .sb-solapa, .sobre.vivo .sb-solapa-atras, .sobre.vivo .sb-tarjeta, .sobre.vivo .sb-pluma, .sobre.vivo .sb-destello, .sobre.vivo .sb-luz-tarjeta, .sobre.vivo .sb-halo{ animation-play-state:running; }
-.sb-camara{ animation-name:sb-camara; }
-.sb-solapa{ animation-name:sb-solapa; }
-.sb-solapa-atras{ animation-name:sb-solapa-atras; }
-.sb-tarjeta{ animation-name:sb-tarjeta; }
-.sb-pluma1{ animation-name:sb-pluma1; }
-.sb-pluma2{ animation-name:sb-pluma2; }
-.sb-destello{ animation-name:sb-destello; }
-.sb-luz-tarjeta{ animation-name:sb-luz-tarjeta; }
-.sb-halo{ animation-name:sb-halo; }
-@keyframes sb-camara{
-  0%, 16%{ transform:translate(32px,148px) scale(1.12); animation-timing-function:cubic-bezier(.45,0,.2,1); }
-  31%{ transform:translate(32px,238px) scale(1.12); animation-timing-function:cubic-bezier(.5,0,.15,1); }
-  43%{ transform:translate(-4px,284px) scale(1.37); animation-timing-function:linear; }
-  82%{ transform:translate(-12px,293px) scale(1.42); animation-timing-function:cubic-bezier(.6,0,.2,1); }
-  93%, 100%{ transform:translate(32px,148px) scale(1.12); }
-}
+/* ---------- el sobre (Impreso, «Cómo se entrega»): navidad-sobre.js ----------
+   Fotos reales por capas (todas a cuadro completo, 900 × 1125) y un bucle de 12 s con todas las piezas en el mismo
+   reloj: se abre la solapa → sube la tarjeta → se escriben el nombre y la experiencia mientras la cámara se acerca
+   despacio → pasa un brillo por la tinta → funde con el sobre cerrado y vuelve a empezar.
+   La solapa «gira» encogiéndose hacia su pliegue (está inclinado 10,53°): la de fuera se cierra a cero y la de dentro
+   se abre desde cero. La tarjeta, dentro, va 2,9° más girada que fuera (así queda paralela a la boca del sobre).
+   Solo corre con .lista.vivo; con «reducir movimiento» se queda quieta en la tarjeta ya escrita. */
+.sobre{ position:relative; aspect-ratio:4/5; border-radius:20px; overflow:hidden; margin-bottom:10px; background:#cdc3c1; isolation:isolate; box-shadow:0 0 0 1px rgba(20,22,28,.06), 0 36px 70px -44px rgba(20,22,28,.55); }
+.sb-capa{ position:absolute; inset:0; width:100%; height:100%; max-width:none; display:block; pointer-events:none; user-select:none; }
+.sb-camara{ position:absolute; inset:0; transform-origin:54% 34%; }
+.sb-solapa, .sb-solapa-abierta{ transform-origin:53.93% 46.83%; }
+.sb-solapa-abierta{ transform:rotate(10.53deg) scaleY(0) rotate(-10.53deg); }
+.sb-tarjeta{ transform-origin:25% 21.01%; transform:translate(-5.267%,21.44%) rotate(2.9deg); }
+.sb-letra{ overflow:visible; }
+.sb-tinta{ fill:#dedfe4; stroke:#dedfe4; stroke-width:30; stroke-linejoin:round; opacity:.94; }
+.sb-pluma{ fill:none; stroke:#fff; stroke-width:420; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1 1.2; stroke-dashoffset:1.02; }
+.sb-brillo{ opacity:.9; }
+.sb-cerrado{ opacity:1; }
+.sobre.lista .sb-cerrado{ opacity:0; }
+.sb-camara, .sb-solapa, .sb-solapa-abierta, .sb-tarjeta, .sb-pluma, .sb-brillo, .sb-cerrado{ animation-duration:12s; animation-iteration-count:infinite; animation-timing-function:linear; animation-play-state:paused; }
+.sb-camara, .sb-solapa, .sb-solapa-abierta, .sb-tarjeta{ will-change:transform; backface-visibility:hidden; }
+.sobre.lista.vivo .sb-camara, .sobre.lista.vivo .sb-solapa, .sobre.lista.vivo .sb-solapa-abierta, .sobre.lista.vivo .sb-tarjeta, .sobre.lista.vivo .sb-pluma, .sobre.lista.vivo .sb-brillo, .sobre.lista.vivo .sb-cerrado{ animation-play-state:running; }
+.sobre.lista .sb-camara{ animation-name:sb-camara; }
+.sobre.lista .sb-solapa{ animation-name:sb-solapa; }
+.sobre.lista .sb-solapa-abierta{ animation-name:sb-solapa-abierta; }
+.sobre.lista .sb-tarjeta{ animation-name:sb-tarjeta; }
+.sobre.lista .sb-pluma1{ animation-name:sb-pluma1; }
+.sobre.lista .sb-pluma2{ animation-name:sb-pluma2; }
+.sobre.lista .sb-brillo1{ animation-name:sb-brillo1; }
+.sobre.lista .sb-brillo2{ animation-name:sb-brillo2; }
+.sobre.lista .sb-cerrado{ animation-name:sb-cerrado; }
 @keyframes sb-solapa{
-  0%, 9%{ transform:scaleY(1); animation-timing-function:cubic-bezier(.5,0,.9,.6); }
-  13.5%, 94%{ transform:scaleY(0); animation-timing-function:cubic-bezier(.1,.4,.4,1); }
-  98%, 100%{ transform:scaleY(1); }
+  0%, 6%{ transform:rotate(10.53deg) scaleY(1) rotate(-10.53deg); animation-timing-function:cubic-bezier(.55,0,.85,.5); }
+  12%, 100%{ transform:rotate(10.53deg) scaleY(0) rotate(-10.53deg); }
 }
-@keyframes sb-solapa-atras{
-  0%, 13.5%{ transform:scaleY(0); animation-timing-function:cubic-bezier(.1,.5,.3,1); }
-  18.5%, 90.5%{ transform:scaleY(-1); animation-timing-function:cubic-bezier(.5,0,.9,.6); }
-  94%, 100%{ transform:scaleY(0); }
+@keyframes sb-solapa-abierta{
+  0%, 12%{ transform:rotate(10.53deg) scaleY(0) rotate(-10.53deg); animation-timing-function:cubic-bezier(.15,.55,.3,1); }
+  20%, 100%{ transform:rotate(10.53deg) scaleY(1) rotate(-10.53deg); }
 }
 @keyframes sb-tarjeta{
-  0%, 17.5%{ transform:translateY(0); animation-timing-function:cubic-bezier(.4,0,.1,1); }
-  31%, 82.5%{ transform:translateY(-128px); animation-timing-function:cubic-bezier(.6,0,.3,1); }
-  91%, 100%{ transform:translateY(0); }
+  0%, 17%{ transform:translate(-5.267%,21.44%) rotate(2.9deg); animation-timing-function:cubic-bezier(.4,0,.12,1); }
+  35%, 100%{ transform:translate(0,0) rotate(0deg); }
+}
+@keyframes sb-camara{
+  0%, 27%{ transform:scale(1); animation-timing-function:cubic-bezier(.42,0,.3,1); }
+  66%{ transform:scale(1.13); animation-timing-function:linear; }
+  100%{ transform:scale(1.155); }
 }
 @keyframes sb-pluma1{
-  0%, 42%{ stroke-dashoffset:1.03; animation-timing-function:cubic-bezier(.3,0,.5,1); }
-  51%, 98.6%{ stroke-dashoffset:0; animation-timing-function:step-end; }
-  98.7%, 100%{ stroke-dashoffset:1.03; }
+  0%, 34%{ stroke-dashoffset:1.02; animation-timing-function:cubic-bezier(.35,0,.6,1); }
+  45%, 100%{ stroke-dashoffset:0; }
 }
 @keyframes sb-pluma2{
-  0%, 54%{ stroke-dashoffset:1.03; animation-timing-function:cubic-bezier(.3,0,.5,1); }
-  67%, 98.6%{ stroke-dashoffset:0; animation-timing-function:step-end; }
-  98.7%, 100%{ stroke-dashoffset:1.03; }
+  0%, 47%{ stroke-dashoffset:1.02; animation-timing-function:cubic-bezier(.35,0,.6,1); }
+  61%, 100%{ stroke-dashoffset:0; }
 }
-@keyframes sb-destello{
-  0%, 2%{ transform:skewX(-20deg) translateX(0); animation-timing-function:cubic-bezier(.4,0,.2,1); }
-  9%, 100%{ transform:skewX(-20deg) translateX(190px); }
+@keyframes sb-brillo1{
+  0%, 66%{ transform:translateX(0); animation-timing-function:cubic-bezier(.4,0,.4,1); }
+  76%, 100%{ transform:translateX(7600px); }
 }
-@keyframes sb-luz-tarjeta{
-  0%, 68%{ transform:skewX(-18deg) translateX(0); animation-timing-function:cubic-bezier(.4,0,.3,1); }
-  80%, 100%{ transform:skewX(-18deg) translateX(520px); }
+@keyframes sb-brillo2{
+  0%, 70%{ transform:translateX(0); animation-timing-function:cubic-bezier(.4,0,.4,1); }
+  82%, 100%{ transform:translateX(10800px); }
 }
-@keyframes sb-halo{ 0%, 100%{ opacity:.55; } 50%{ opacity:1; } }
+@keyframes sb-cerrado{
+  0%{ opacity:1; animation-timing-function:ease-out; }
+  3%, 92%{ opacity:0; animation-timing-function:cubic-bezier(.4,0,.6,1); }
+  98%, 100%{ opacity:1; }
+}
 @media (prefers-reduced-motion: reduce){
-  .sb-camara, .sb-solapa, .sb-solapa-atras, .sb-tarjeta, .sb-pluma, .sb-destello, .sb-luz-tarjeta, .sb-halo{ animation:none !important; }
-  .sb-camara{ transform:translate(-4px,284px) scale(1.37); }
-  .sb-solapa{ transform:scaleY(0); }
-  .sb-solapa-atras{ transform:scaleY(-1); }
-  .sb-tarjeta{ transform:translateY(-128px); }
-  .sb-pluma{ stroke-dashoffset:0; }
+  .sobre .sb-camara, .sobre .sb-solapa, .sobre .sb-solapa-abierta, .sobre .sb-tarjeta, .sobre .sb-pluma, .sobre .sb-brillo, .sobre .sb-cerrado{ animation:none !important; }
+  .sobre.lista .sb-solapa{ transform:rotate(10.53deg) scaleY(0) rotate(-10.53deg); }
+  .sobre.lista .sb-solapa-abierta{ transform:rotate(10.53deg) scaleY(1) rotate(-10.53deg); }
+  .sobre.lista .sb-tarjeta{ transform:none; }
+  .sobre.lista .sb-pluma{ stroke-dashoffset:0; }
 }
