@@ -22,19 +22,41 @@
     return d;
   }
   // una palabra escrita sobre la tarjeta: sitio, giro (el de las líneas impresas) y cuerpo de letra
-  function palabra(id, p, x, y, cuerpo) {
-    var k = (cuerpo / 2048).toFixed(5);
+  // p.d = la palabra en un solo trazo (el ejemplo) · p.g = letra a letra, cada una con su sitio (un nombre cualquiera)
+  function trazos(p, clase) {
+    var c = clase ? ' class="' + clase + '"' : '';
+    if (p.d) return '<path' + c + ' d="' + p.d + '"/>';
+    return p.g.map(function (l) { return '<path' + c + ' transform="translate(' + l[0] + ' 0)" d="' + l[1] + '"/>'; }).join('');
+  }
+  // una palabra escrita sobre la tarjeta: sitio, giro (el de las líneas impresas), cuerpo de letra y, si no cabe en
+  // su hueco (en píxeles de la escena), el cuerpo se encoge hasta que quepa
+  function palabra(id, suf, p, x, y, cuerpo, hueco) {
+    var c = Math.min(cuerpo, hueco * 2048 / p.ancho), k = (c / 2048).toFixed(5);
     return '<g transform="translate(' + x + ' ' + y + ') rotate(10.5) scale(' + k + ')">' +
-      '<mask id="sbM' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-1800" width="' + (p.ancho + 1200) + '" height="2900"><path class="sb-pluma sb-pluma' + id + '" pathLength="1" d="' + trazo(p.ancho) + '"/></mask>' +
-      '<clipPath id="sbC' + id + '"><path d="' + p.d + '"/></clipPath>' +
-      '<g mask="url(#sbM' + id + ')"><path class="sb-tinta" d="' + p.d + '"/>' +
-        '<g clip-path="url(#sbC' + id + ')"><rect class="sb-brillo sb-brillo' + id + '" x="-1500" y="-1800" width="1100" height="2900" fill="url(#sbBrillo)"/></g></g>' +
+      '<mask id="sbM' + id + suf + '" maskUnits="userSpaceOnUse" x="-400" y="-1800" width="' + (p.ancho + 1200) + '" height="2900"><path class="sb-pluma sb-pluma' + id + '" pathLength="1" d="' + trazo(p.ancho) + '"/></mask>' +
+      '<clipPath id="sbC' + id + suf + '">' + trazos(p) + '</clipPath>' +
+      '<g mask="url(#sbM' + id + suf + ')">' + trazos(p, 'sb-tinta') +
+        '<g clip-path="url(#sbC' + id + suf + ')"><rect class="sb-brillo sb-brillo' + id + '" x="-1500" y="-1800" width="1100" height="2900" fill="url(#sbBrillo' + suf + ')"/></g></g>' +
     '</g>';
+  }
+  // un texto cualquiera, letra a letra, con el abecedario de navidad-sobre-letras.js; lo que no está en él se salta
+  function componer(texto) {
+    var L = window.REVO_SOBRE_LETRAS, x = 0, g = [];
+    if (!L) return null;
+    String(texto || '').replace(/\s+/g, ' ').trim().slice(0, 26).split('').forEach(function (ch) {
+      var l = L[ch]; if (!l) return;
+      if (l[1]) g.push([x, l[1]]);
+      x += l[0];
+    });
+    return g.length ? { ancho: x, g: g } : null;
   }
 
   function capa(clase, fichero) { return '<img class="sb-capa ' + clase + '" src="' + D + fichero + '-3.webp" alt="" decoding="async" draggable="false" />'; }
 
-  function html(alt) {
+  var escenas = 0;
+  // o (opcional) = { nombre, experiencia } ya compuestos; sin él, el ejemplo («Marta», «Longevity»)
+  function html(alt, o) {
+    var n = ++escenas, id = n > 1 ? '-' + n : '';   // los id de máscaras no pueden repetirse si hay dos sobres en la página
     var a = String(alt).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
     return '<div class="sobre" role="img" aria-label="' + a + '">' +
       '<div class="sb-camara">' +
@@ -43,8 +65,8 @@
         capa('sb-solapa-abierta', 'solapa-abierta') +
         '<div class="sb-capa sb-tarjeta">' + capa('', 'tarjeta') +
           '<svg class="sb-capa sb-letra" viewBox="0 0 900 1125" aria-hidden="true" focusable="false">' +
-            '<defs><linearGradient id="sbBrillo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>' +
-            palabra(1, NOMBRE, 255, 313.5, 60) + palabra(2, EXPERIENCIA, 481, 415.5, 50) +
+            '<defs><linearGradient id="sbBrillo' + id + '" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>' +
+            palabra(1, id, (o && o.nombre) || NOMBRE, 255, 313.5, 60, 400) + palabra(2, id, (o && o.experiencia) || EXPERIENCIA, 481, 415.5, 50, 200) +
           '</svg></div>' +
         capa('sb-bolsillo', 'bolsillo') +
         capa('sb-solapa', 'solapa') +
@@ -67,5 +89,28 @@
     });
   }
 
-  window.REVO_SOBRE = { html: html, vigila: vigila };
+  // El sobre con un nombre y una experiencia cualesquiera (el resultado del test). El abecedario pesa, así que solo
+  // se pide aquí; mientras llega se ve el sobre cerrado, y si no llega se queda el ejemplo.
+  var pidiendo = null;
+  function letras(hecho) {
+    if (window.REVO_SOBRE_LETRAS) return hecho();
+    if (!pidiendo) {
+      pidiendo = [];
+      var s = document.createElement('script');
+      s.src = '/navidad-sobre-letras.js?v=1'; s.async = true;
+      s.onload = s.onerror = function () { var p = pidiendo; pidiendo = null; p.forEach(function (f) { f(); }); };
+      document.head.appendChild(s);
+    }
+    pidiendo.push(hecho);
+  }
+  function personal(el, alt, nombre, experiencia) {
+    el.innerHTML = '<div class="sobre">' + capa('sb-cerrado', 'cerrado') + '</div>';
+    letras(function () {
+      if (!el.isConnected) return;
+      el.innerHTML = html(alt, { nombre: componer(nombre), experiencia: componer(experiencia) });
+      vigila(el);
+    });
+  }
+
+  window.REVO_SOBRE = { html: html, vigila: vigila, personal: personal };
 })();

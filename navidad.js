@@ -128,7 +128,7 @@
     // Las dos se mueven (Eric, 26-nov). Digital: un vídeo de la página real del regalo (la de ejemplo de la Platform)
     // deslizándose, dentro de un móvil; se grabó de /regalo/demo?e=longevity y solo corre mientras se ve. Impreso: el
     // sobre que se abre y la tarjeta que se escribe (navidad-sobre.js); si ese fichero no cargara, queda la foto.
-    '<div class="recibe-caja recibe-digital"><div class="nt-movil"><div class="nt-movil-pantalla"><video class="recibe-video" muted loop playsinline preload="none" poster="/assets/navidad-regalo.webp" aria-label="' + esc(R.digital.alt) + '"><source src="/assets/navidad-regalo.mp4" type="video/mp4" /></video></div></div>' +
+    '<div class="recibe-caja recibe-digital"><div class="recibe-escena"><div class="nt-movil"><div class="nt-movil-pantalla"><video class="recibe-video" muted loop playsinline preload="none" poster="/assets/navidad-regalo.webp" aria-label="' + esc(R.digital.alt) + '"><source src="/assets/navidad-regalo.mp4" type="video/mp4" /></video></div></div></div>' +
       '<h3 class="t3">' + fmt(R.digital.t) + '</h3><p class="texto">' + fmt(R.digital.d) + '</p>' +
       '<a class="enlace-tinta" href="' + esc(R.demo) + 'longevity" target="_blank" rel="noopener">' + fmt(R.digital.boton) + '</a></div>' +
     '<div class="recibe-caja">' + (window.REVO_SOBRE ? window.REVO_SOBRE.html(R.impreso.alt) : '<div class="recibe-foto"><img loading="lazy" decoding="async" src="' + esc(R.impreso.foto) + '" alt="' + esc(R.impreso.alt) + '" width="1080" height="1350" /></div>') +

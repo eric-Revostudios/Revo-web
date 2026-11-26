@@ -196,6 +196,7 @@ window.NAVIDAD = {
     res: {
       ojo: 'Su regalo',
       recibe: 'Así lo recibirá',
+      recibeNotaImpreso: 'La tarjeta que recoges en el estudio, con su nombre y la experiencia escritos a mano.',
       recibeNota: 'Es la página real que le llega, con un ejemplo. La suya llevará su nombre y tu dedicatoria.',
       unRegaloPara: 'Un regalo para',
       sinNombre: 'ti',

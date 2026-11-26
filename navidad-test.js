@@ -253,11 +253,19 @@
         // Lo que recibe DE VERDAD (Eric, 23-nov: «no te inventes la tarjeta»): la página real de la Platform, la de
         // ejemplo de esta experiencia, en un móvil y tocable. Va con el ejemplo de la Platform («Ana»): su nombre y la
         // dedicatoria NO se mandan a ningún sitio (no salen del navegador); llegan en la página de su regalo al comprar.
-        '<div class="nt-real">' +
-          '<p class="nt-real-ojo">' + fmt(R0.recibe) + '</p>' +
-          '<div class="nt-movil"><div class="nt-movil-pantalla"><iframe src="' + esc(N.RECIBE.demo + id) + '" title="' + esc(R0.recibe) + '" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>' +
-          '<p class="nt-ayuda nt-real-nota">' + fmt(R0.recibeNota) + '</p>' +
-        '</div>' +
+        // Impreso (Eric, 26-nov): lo que recibe es la tarjeta en su sobre, así que se enseña el sobre abriéndose con SU
+        // nombre y SU experiencia escritos (navidad-sobre.js; el nombre tampoco sale del navegador).
+        (formato === 'impreso' && window.REVO_SOBRE
+          ? '<div class="nt-real nt-real--sobre">' +
+              '<p class="nt-real-ojo">' + fmt(R0.recibe) + '</p>' +
+              '<div class="nt-sobre"></div>' +
+              '<p class="nt-ayuda nt-real-nota">' + fmt(R0.recibeNotaImpreso) + '</p>' +
+            '</div>'
+          : '<div class="nt-real">' +
+              '<p class="nt-real-ojo">' + fmt(R0.recibe) + '</p>' +
+              '<div class="nt-movil"><div class="nt-movil-pantalla"><iframe src="' + esc(N.RECIBE.demo + id) + '" title="' + esc(R0.recibe) + '" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>' +
+              '<p class="nt-ayuda nt-real-nota">' + fmt(R0.recibeNota) + '</p>' +
+            '</div>') +
         '<div class="nt-res-txt">' +
           '<p class="ojo">' + fmt(R0.ojo) + '</p>' +
           '<h2 class="nt-t1" tabindex="-1">' + esc(x.nombre) + '</h2>' +
@@ -283,6 +291,8 @@
         '</div>' +
         '<div class="nt-fijo"><button class="boton boton--luz nt-regalar" type="button"><span>' + fmt(n ? sub(R0.boton, { nombre: n }) : sub(R0.botonSin, { exp: x.nombre })) + '</span><span class="nt-precio">' + esc(x.precio) + ' €</span></button></div>' +
       '</div>';
+      var hs = escena.querySelector('.nt-sobre');
+      if (hs) window.REVO_SOBRE.personal(hs, N.RECIBE.impreso.alt, n || '', x.nombre);
       var ta = escena.querySelector('.nt-ded');
       ta.value = st.ded;
       ta.addEventListener('input', function () { st.ded = ta.value; });

@@ -151,6 +151,7 @@ window.NAVIDAD = {
     res: {
       ojo: 'Their gift',
       recibe: 'This is how they will receive it',
+      recibeNotaImpreso: 'The card you pick up at the studio, with their name and the experience written by hand.',
       recibeNota: 'This is the real page they receive, shown with an example (in Spanish). Theirs will carry their name and your message.',
       unRegaloPara: 'A gift for',
       sinNombre: 'you',

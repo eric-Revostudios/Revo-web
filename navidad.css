@@ -430,7 +430,18 @@ html.nt-abierto, html.nt-abierto body{ overflow:hidden; }
 .nt-movil{ flex:none; width:250px; padding:8px; border-radius:36px; background:#05060d; box-shadow:0 0 0 1px rgba(188,197,255,.22), 0 40px 80px -36px rgba(54,80,207,.9); animation:nt-carta 1.1s var(--ease) both; }
 .nt-movil-pantalla{ position:relative; width:234px; height:468px; overflow:hidden; border-radius:28px; background:#0b0f2a; }
 .nt-movil-pantalla iframe{ position:absolute; top:0; left:0; width:390px; height:780px; border:0; transform:scale(.6); transform-origin:0 0; }
-.recibe-digital .nt-movil{ align-self:center; margin-bottom:14px; animation:none; }
+/* 26-nov (Eric: «la sección está descompensada»): Digital e Impreso llevan el MISMO cuadro (4:5, mismas esquinas y
+   misma sombra), así los dos textos empiezan a la misma altura. El de Digital es un escenario de noche con el móvil
+   dentro, medido en proporción al cuadro para que encoja con él. */
+.recibe-escena{ position:relative; aspect-ratio:4/5; border-radius:20px; overflow:hidden; margin-bottom:10px; display:grid; place-items:center;
+  background:radial-gradient(90% 60% at 50% 108%, rgba(54,80,207,.5), transparent 70%), radial-gradient(70% 45% at 78% -6%, rgba(104,129,252,.22), transparent 70%), #080b1c;
+  box-shadow:0 0 0 1px rgba(20,22,28,.06), 0 36px 70px -44px rgba(20,22,28,.55); }
+.recibe-escena .nt-movil{ width:auto; height:88%; aspect-ratio:250/484; padding:0; position:relative; border-radius:13.5%/7%; animation:none; box-shadow:0 0 0 1px rgba(188,197,255,.26), 0 30px 70px -30px rgba(54,80,207,.95); }
+.recibe-escena .nt-movil-pantalla{ position:absolute; inset:1.65% 3.2%; width:auto; height:auto; border-radius:11.5%/5.8%; }
+/* el sobre en el resultado del test (tarjeta física) */
+.nt-sobre{ width:100%; max-width:340px; animation:nt-carta 1.1s var(--ease) both; }
+.nt-sobre .sobre{ margin-bottom:0; box-shadow:0 0 0 1px rgba(188,197,255,.22), 0 40px 80px -36px rgba(54,80,207,.9); }
+@media (prefers-reduced-motion: reduce){ .nt-sobre{ animation:none; } }
 .recibe-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:#06070f; }
 @media (prefers-reduced-motion: reduce){ .nt-movil{ animation:none; } }
 
