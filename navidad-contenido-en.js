@@ -253,7 +253,7 @@ window.NAVIDAD = {
     rotulo: 'How they receive it',
     titulo: 'It arrives *right away*. Or by hand.',
     digital: { t: 'Digital', d: 'After paying, tap «Get it» to open their gift page, with their name and your message. You send it to them, by WhatsApp or email.', foto: 'nv-tarjeta-digital.webp', alt: 'The digital card (in Spanish): “You have a gift”, with the experience and your message.', boton: 'See an example' },
-    impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give by hand.', foto: '/material-navidad/tarjeta-impresa.webp', alt: '', boton: 'How to get there' },
+    impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give by hand.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'The REVO gift bag, at the studio.', boton: 'How to get there' },
     demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
 

@@ -301,9 +301,9 @@ window.NAVIDAD = {
     rotulo: 'Así lo recibe',
     titulo: 'Llega *al momento*. O en mano.',
     // La foto de la impresa se cambia sustituyendo material-navidad/tarjeta-impresa.webp (vertical 4:5, 1080 × 1350): esa
-    // carpeta no se guarda en caché. Hoy es la sala donde se recoge. Al poner la tarjeta, escribir su `alt`.
+    // carpeta no se guarda en caché. Desde el 26-nov es la bolsa de regalo de REVO (la de la portada, Eric). Si se cambia, se cambia también su `alt`.
     digital: { t: 'Digital', d: 'Al pagar, pulsa «Recogerlo» y entra en la página de su regalo, con su nombre y tu dedicatoria. Se la envías tú, por WhatsApp o por correo.', foto: 'nv-tarjeta-digital.webp', alt: 'La tarjeta digital: «Tienes un regalo», con la experiencia y tu dedicatoria.', boton: 'Ver un ejemplo' },
-    impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: '/material-navidad/tarjeta-impresa.webp', alt: '', boton: 'Cómo llegar' },
+    impreso: { t: 'Impreso', d: 'Una tarjeta física que recoges en el estudio, en Turó Park, para darla en mano.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'La bolsa de regalo de REVO, en el estudio.', boton: 'Cómo llegar' },
     // la página real de la Platform (ejemplo con la experiencia que se elija)
     demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
