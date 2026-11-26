@@ -246,8 +246,8 @@ window.NAVIDAD = {
   RECIBE: {
     rotulo: 'How it is given',
     titulo: 'Choose how and *when* you give it.',
-    digital: { t: 'Digital', d: 'After paying, their gift is ready, with their name and your message. You send it yourself, by WhatsApp or email, on the day you choose: this afternoon, on Christmas Eve or on 6 January.', boton: 'See an example' },
-    impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give in person.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'The REVO gift bag, at the studio.', boton: 'How to get there' },
+    digital: { alt: 'Their gift page on a phone: who it is from, the experience and its circuit.', t: 'Digital', d: 'After paying, their gift is ready, with their name and your message. You send it yourself, by WhatsApp or email, on the day you choose: this afternoon, on Christmas Eve or on 6 January.', boton: 'See an example' },
+    impreso: { t: 'Printed', d: 'A physical card you pick up at the studio, in Turó Park, to give in person.', foto: '/material-navidad/tarjeta-impresa.webp', alt: 'The black REVO envelope opens and the card comes out, with the name and the experience written by hand.', boton: 'How to get there' },
     demo: 'https://www.revostudios.eu/regalo/demo?e='
   },
 

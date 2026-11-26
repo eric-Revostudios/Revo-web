@@ -125,11 +125,13 @@
   var R = N.RECIBE;
   h += '<section class="papel" id="recibe"><div class="w">' +
     '<p class="ojo">' + fmt(R.rotulo) + '</p><h2 class="t2">' + fmt(R.titulo) + '</h2><div class="recibe">' +
-    // la página real que recibe (la de ejemplo de la Platform), dentro de un móvil: Eric la prefiere a la tarjeta (26-nov)
-    '<div class="recibe-caja recibe-digital"><div class="nt-movil"><div class="nt-movil-pantalla"><iframe src="' + esc(R.demo) + 'sleep_stress" title="' + esc(R.digital.t) + '" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>' +
+    // Las dos se mueven (Eric, 26-nov). Digital: un vídeo de la página real del regalo (la de ejemplo de la Platform)
+    // deslizándose, dentro de un móvil; se grabó de /regalo/demo?e=longevity y solo corre mientras se ve. Impreso: el
+    // sobre que se abre y la tarjeta que se escribe (navidad-sobre.js); si ese fichero no cargara, queda la foto.
+    '<div class="recibe-caja recibe-digital"><div class="nt-movil"><div class="nt-movil-pantalla"><video class="recibe-video" muted loop playsinline preload="none" poster="/assets/navidad-regalo.webp" aria-label="' + esc(R.digital.alt) + '"><source src="/assets/navidad-regalo.mp4" type="video/mp4" /></video></div></div>' +
       '<h3 class="t3">' + fmt(R.digital.t) + '</h3><p class="texto">' + fmt(R.digital.d) + '</p>' +
-      '<a class="enlace-tinta" href="' + esc(R.demo) + 'sleep_stress" target="_blank" rel="noopener">' + fmt(R.digital.boton) + '</a></div>' +
-    '<div class="recibe-caja"><div class="recibe-foto"><img loading="lazy" decoding="async" src="' + esc(R.impreso.foto) + '" alt="' + esc(R.impreso.alt) + '" width="1080" height="1350" /></div>' +
+      '<a class="enlace-tinta" href="' + esc(R.demo) + 'longevity" target="_blank" rel="noopener">' + fmt(R.digital.boton) + '</a></div>' +
+    '<div class="recibe-caja">' + (window.REVO_SOBRE ? window.REVO_SOBRE.html(R.impreso.alt) : '<div class="recibe-foto"><img loading="lazy" decoding="async" src="' + esc(R.impreso.foto) + '" alt="' + esc(R.impreso.alt) + '" width="1080" height="1350" /></div>') +
       '<h3 class="t3">' + fmt(R.impreso.t) + '</h3><p class="texto">' + fmt(R.impreso.d) + '</p>' +
       '<a class="enlace-tinta" href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20de%20Ferran%20Agull%C3%B3%2024%2C%2008021%20Barcelona" target="_blank" rel="noopener">' + fmt(R.impreso.boton) + '</a></div>' +
     '</div></div></section>';
@@ -329,6 +331,19 @@
     var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
     ap.forEach(function (x) { io.observe(x); });
   }
+
+  /* ---------- así lo recibe: el vídeo y el sobre solo se mueven mientras se ven ---------- */
+  if (window.REVO_SOBRE) window.REVO_SOBRE.vigila(app);
+  (function () {
+    var v = app.querySelector('.recibe-video');
+    var ahorro = navigator.connection && navigator.connection.saveData;
+    if (!v || reduce || ahorro || !window.IntersectionObserver) return;   // se queda la primera imagen
+    new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (en.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+      });
+    }, { threshold: 0.35 }).observe(v);
+  })();
 
   /* ---------- llegada ---------- */
   evento('abrio', { test: location.hash === '#test' ? 1 : 0 });
