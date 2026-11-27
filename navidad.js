@@ -187,11 +187,10 @@
       secS.hidden = false; return;
     }
     secS.innerHTML = cab + '<p class="texto cabeza-texto">' + fmt(S.entrada) + '</p>' +
-      '<p class="mini sorteo-premio">' + fmt(sub(S.premio, { hasta: fechaTxt(plazo.hasta - 1), dia: fechaTxt(plazo.dia) })) + '</p>' +
+      '<p class="mini sorteo-premio">' + fmt(sub(S.premio, { hasta: fechaTxt(plazo.hasta - 1), dia: fechaTxt(plazo.dia), diaNum: partes(plazo.dia).day })) + '</p>' +
       '<form class="sorteo" id="sorteoForm" novalidate>' +
         '<label class="campo"><span>' + fmt(S.nombre) + '</span><input name="nombre" type="text" autocomplete="name" required maxlength="80" /></label>' +
         '<label class="campo"><span>' + fmt(S.email) + '</span><input name="email" type="email" autocomplete="email" required maxlength="120" /></label>' +
-        '<label class="campo"><span>' + fmt(S.telefono) + ' <i>(' + fmt(S.opcional) + ')</i></span><input name="telefono" type="tel" autocomplete="tel" maxlength="30" /></label>' +
         '<input class="trampa" name="web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />' +
         '<label class="casilla"><input name="novedades" type="checkbox" /><span>' + fmt(S.novedades) + ' <i>(' + fmt(S.opcional) + ')</i></span></label>' +
         '<button class="boton boton--luz" type="submit">' + fmt(S.boton) + '</button>' +
@@ -200,6 +199,11 @@
         '<p class="sorteo-msg" role="status" hidden></p>' +
       '</form></div>';
     secS.hidden = false;
+    // María Venegas (27-nov): en los canales con sorteo, el formulario va justo después de la portada y la portada
+    // lo anuncia con su tarjeta
+    var portada = document.getElementById('portada');
+    if (portada && portada.nextSibling !== secS) portada.parentNode.insertBefore(secS, portada.nextSibling);
+    tarjetaPortada('sorteo', '<a class="ptarjeta" href="#sorteo"><b>' + fmt(sub(S.tarjeta, { quien: canal === 'vecinos' ? S.quienVecinos : ((N.NOMBRES_CORTOS || {})[canal] || nombre) })) + '</b><span>' + fmt(S.tarjetaTexto) + '</span></a>');
     var fo = document.getElementById('sorteoForm'), msg = fo.querySelector('.sorteo-msg');
     fo.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -207,7 +211,7 @@
       var btn = fo.querySelector('button'); btn.disabled = true;
       var el = fo.elements;
       fetch(N.PLATFORM + '/api/sorteo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
-        canal: canal, nombre: el.nombre.value.trim(), email: el.email.value.trim(), telefono: el.telefono.value.trim() || undefined,
+        canal: canal, nombre: el.nombre.value.trim(), email: el.email.value.trim(),
         acepta_novedades: !!el.novedades.checked, web: el.web.value
       }) }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
         if (!j || !j.ok) {
@@ -216,14 +220,40 @@
           if (er.motivo === 'fechas' && j.desde && Date.now() < fecha(j.desde)) { er.texto = sub(S.abre, { desde: fechaTxt(fecha(j.desde)) }); }
           throw er;
         }
-        fo.querySelectorAll('.campo, .casilla, button').forEach(function (x) { x.hidden = true; });
-        msg.hidden = false; msg.textContent = S.hecho;
+        trasApuntarse();
       }).catch(function (er) {
         // motivos de la Platform: datos (400) · canal (404) · fechas (410) · demasiados (429)
         btn.disabled = false; msg.hidden = false;
         msg.textContent = (er && er.texto) || (er && er.motivo && S.errores && S.errores[er.motivo]) || S.error;
       });
     });
+  }
+  // la pantalla tras apuntarse (María Venegas, 27-nov)
+  function trasApuntarse() {
+    var tres = (S.tresExp || []).map(porId).filter(Boolean);
+    secS.innerHTML = '<div class="w estrecho apuntado"><h2 class="t2">' + fmt(canal === 'vecinos' ? S.hechoVecinos : S.hechoOtros) + '</h2>' +
+      '<p class="ojo apuntado-ojo">' + fmt(S.mientras) + '</p><p class="t3">' + fmt(S.pregunta) + '</p>' +
+      (window.NAVIDAD_OFERTA ? '<p class="texto apuntado-oferta">' + fmt(N.OFERTA.bloque.titulo.replace(/\*/g, '')) + '</p>' : '') +
+      '<div class="apuntado-exp">' + tres.map(function (x) {
+        return '<a class="apuntado-x" href="#exp-' + esc(x.id) + '"><b>' + esc(x.nombre) + '</b><i>' + fmt(x.corto || x.lema) + '</i><span>' + esc(x.precio) + ' €</span></a>';
+      }).join('') + '</div>' +
+      '<a class="boton boton--luz" href="#experiencias">' + fmt(S.verTodas) + '</a>' +
+      (canal === 'vecinos' ? '<p class="mini apuntado-mano">' + fmt(S.enMano) + '</p>' : '') + '</div>';
+    secS.scrollIntoView({ block: 'start' });
+  }
+  // las tarjetas de la portada: el sorteo y, si está activa, la experiencia de más (solo en canales con sorteo)
+  function tarjetaPortada(cual, html) {
+    var p = document.getElementById('portada'); if (!p) return;
+    var caja = document.getElementById('ptarjetas');
+    if (!caja) { caja = document.createElement('div'); caja.id = 'ptarjetas'; caja.className = 'ptarjetas'; p.querySelector('.portada-in').appendChild(caja); }
+    if (caja.querySelector('[data-t="' + cual + '"]')) return;
+    var d = document.createElement('div'); d.setAttribute('data-t', cual); d.innerHTML = html;
+    if (cual === 'sorteo') caja.insertBefore(d, caja.firstChild); else caja.appendChild(d);
+    if (cual === 'sorteo' && window.NAVIDAD_OFERTA) tarjetaOferta();
+  }
+  function tarjetaOferta() {
+    var min = Math.min.apply(null, N.EXPERIENCIAS.map(function (x) { return Number(x.precio) || 1e9; }));
+    tarjetaPortada('oferta', '<a class="ptarjeta" href="#experiencias"><b>' + fmt(S.tarjetaOferta) + '</b><span>' + fmt(sub(S.tarjetaOfertaPie, { precio: min })) + '</span></a>');
   }
   function ponPartner(nombre) {
     var p = document.getElementById('partner');
@@ -282,6 +312,7 @@
       mideDuda(dudas.lastElementChild);
     }
     window.NAVIDAD_OFERTA = sub(O.test, t);   // la línea del resultado del test (navidad-test.js)
+    if (document.getElementById('ptarjetas')) tarjetaOferta();   // la tarjeta de la portada, si ya está la del sorteo
   }
 
   /* ---------- la Platform: canal, sorteo y oferta ----------

@@ -21,6 +21,8 @@ window.NAVIDAD = {
   // los centros asociados: con su canal, la cabecera dice «Para la comunidad de {nombre}»
   PARTNERS: ['goodfit', 'barrys', 'corehaus', 'casabarre', 'yogaone'],
   // Solo para la maqueta: si la Platform no contesta, con ?sorteo=1 se ve el bloque del sorteo para revisarlo.
+  // nombre corto de cada centro para «Tu regalo de…» (María Venegas: «Tu regalo de Barry's»)
+  NOMBRES_CORTOS: { barrys: "Barry's", yogaone: 'YogaOne' },
   NOMBRES_PROVISIONALES: { goodfit: 'GoodFit', barrys: "Barry's Barcelona", corehaus: 'Corehaus', casabarre: 'Casa Barré', yogaone: 'YogaOne Aragó-Eixample', vecinos: 'Turó Park' },   // los mismos que la Platform (20-nov)
 
   /* ---- cabecera ---- */
@@ -108,26 +110,32 @@ window.NAVIDAD = {
   EXPERIENCIAS_ENTRADA: 'Varias terapias en una sola visita, encadenadas por nuestro equipo médico para un objetivo.',
   EXPERIENCIAS: [
     { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',
+      corto: 'Un rato para sí.',
       lema: 'Para cuidarse por dentro y por fuera.',
       pasos: ['Campo electromagnético', 'Máscara de luz roja', 'Crioterapia de cuerpo entero', 'Masaje drenante y moldeador'],
       url: 'https://momence.com/REVO-Studios/product/Glow-Experience/498606' },
     { id: 'sports', nombre: 'Sports Performance', precio: 140, dur: '1 h 30 min', foto: 'nv-sports.webp', pos: '50% 40%',
+      corto: 'Descanso entre entreno y entreno.',
       lema: 'Oxígeno, frío y compresión, para quien entrena.',
       pasos: ['Cámara hiperbárica', 'Crioterapia de cuerpo entero', 'Presoterapia'],
       url: 'https://momence.com/REVO-Studios/product/Sports-Performance-Experience/498608' },
     { id: 'sleep_stress', nombre: 'Sleep & Stress', precio: 140, dur: '1 h', foto: 'nv-sleep.webp', pos: '40% 45%',
+      corto: 'Tiempo para parar.',
       lema: 'Baja el ritmo. Desconecta.',
       pasos: ['Crioterapia de cuerpo entero', 'Cama de luz roja', 'Campo electromagnético', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Sleep-and-Stress-Experience/498614' },
     { id: 'longevity', nombre: 'Longevity', precio: 160, dur: '1 h 50 min', foto: 'nv-longevity.webp', pos: '50% 35%',
+      corto: 'Seguir así dentro de veinte años.',
       lema: 'La más completa, para el cuerpo y la cabeza.',
       pasos: ['Campo electromagnético', 'Neuroestimulación', 'Cámara hiperbárica', 'Cama de luz roja'],
       url: 'https://momence.com/REVO-Studios/product/Longevity-Experience/498612' },
     { id: 'cognitiva', nombre: 'Performance Cognitiva', precio: 140, dur: '1 h 40 min', foto: 'nv-cognitiva.webp', pos: '50% 35%',
+      corto: 'La cabeza en silencio.',
       lema: 'Oxígeno, luz y sonido, pensados para la cabeza.',
       pasos: ['Cámara hiperbárica', 'Cama de luz roja', 'Neuroestimulación'],
       url: 'https://momence.com/REVO-Studios/product/Performance-Cognitiva-Experience/498616' },
     { id: 'massage_plus', nombre: 'Massage +', precio: 110, dur: '1 h 30 min', foto: 'nv-massage.webp', pos: '50% 50%',
+      corto: 'Ese masaje que siempre aplaza.',
       lema: 'Su masaje, potenciado.',
       pasos: ['Masaje a elegir', 'Una terapia más, a elegir'],
       url: 'https://momence.com/REVO-Studios/product/Massage-Experience/498613' }
@@ -312,8 +320,17 @@ window.NAVIDAD = {
     titulo: 'Este diciembre, una experiencia REVO espera a alguien de *{nombre}*.',
     // canales que no son un centro: su propia frase
     titulo_canal: { vecinos: 'Esta Navidad, una experiencia REVO es para un vecino o vecina de *Turó Park*.', socios: 'Este diciembre, una experiencia REVO espera a alguien de *REVO*.' },
-    entrada: 'Déjanos tu nombre y tu correo. Te escribimos solo si es para ti.',
-    premio: 'Quien resulte elegido elige una de las seis experiencias, para disfrutar hasta el 31 de marzo de 2027. Puedes apuntarte hasta el {hasta}; se elige el {dia}.',
+    // textos de María Venegas (27-nov). {hasta} = «18 de diciembre»; {diaNum} = 19
+    entrada: 'Tu participación te está esperando. Solo necesitamos tu nombre y tu correo.',
+    premio: 'La persona elegida escoge una de las seis experiencias del estudio, en Turó Park, y la disfruta durante un año. Tienes hasta el {hasta}; el {diaNum} elegimos y le escribimos.',
+    // las dos tarjetas de la portada (solo en los canales con sorteo). {quien}: «vecino» o el nombre corto del centro
+    tarjeta: 'Tu regalo de {quien}', tarjetaTexto: 'Tienes una participación en el sorteo de una experiencia REVO.', quienVecinos: 'vecino',
+    tarjetaOferta: 'Si regalas dos experiencias, hay una más de nuestra parte.', tarjetaOfertaPie: 'Desde {precio} €',
+    // tras apuntarse
+    hechoVecinos: 'Ya estás dentro. Suerte, vecino o vecina.', hechoOtros: 'Ya estás dentro. Suerte.',
+    mientras: 'Y mientras tanto…', pregunta: '¿Qué le regalas a quien *lo tiene todo*?',
+    tresExp: ['sleep_stress', 'glow', 'massage_plus'], verTodas: 'Ver las seis experiencias',
+    enMano: '¿Prefieres darlo en mano? Recoge la tarjeta en el estudio, a un paso de casa.',
     legal: 'Sin compra necesaria. Mayores de 18 años. Bases en revostudios.eu/navidad-bases.',
     abre: 'Las inscripciones abren el {desde}.',
     // plazo (Eric puede cambiarlo hasta el 25-nov). Si la Platform manda sorteo.desde / hasta / abierto, manda ella.
@@ -322,7 +339,7 @@ window.NAVIDAD = {
     enlaceBases: '/navidad-bases', enlacePrivacidad: '/privacidad.html',
     nombre: 'Nombre', email: 'Email', telefono: 'Teléfono', opcional: 'opcional',
     novedades: 'Quiero recibir novedades de REVO. Puedes darte de baja cuando quieras.',
-    boton: 'Apuntarme',
+    boton: 'Activar mi participación',
     hecho: 'Ya estás dentro. Te escribimos si es para ti.',
     error: 'No hemos podido apuntarte. Inténtalo de nuevo en un momento.',
     errores: {
