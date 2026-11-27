@@ -43,6 +43,11 @@
   }
   if (origen && origen.c && ALIAS[origen.c]) { origen.c = ALIAS[origen.c]; lset('nv_origen', JSON.stringify(origen)); }
   var canal = (origen && origen.c) || '';
+  // Lo que se VE (la línea del partner, las tarjetas y el formulario del sorteo, «vecino o vecina», la frase de socios)
+  // sale solo del ?c= del enlace con el que se entra. El canal guardado 30 días sirve solo para saber de dónde viene
+  // la compra: si no, quien entró una vez por el QR de Barry's vería «Tu regalo de Barry's» en /navidad a secas
+  // (Eric, 27-nov). El enlace ES/EN conserva el ?c=, así que el cambio de idioma no lo pierde.
+  var canalVista = /^[a-z0-9-]{1,40}$/.test(cNuevo) ? cNuevo : '';
   var utm = (origen && origen.u) || {};
   var REF = canal ? ' (ref: ' + canal + ')' : '';   // al final del mensaje de WhatsApp a REVO: de qué canal viene
   var utmTexto = Object.keys(utm).map(function (k) { return k + '=' + utm[k]; }).join(' · ');
@@ -178,7 +183,7 @@
   var S = N.SORTEO, secS = document.getElementById('sorteo');
   function pintaSorteo(nombre, plazo) {
     var cab = '<div class="w estrecho"><p class="ojo">' + fmt(S.rotulo) + '</p>' +
-      '<h2 class="t2">' + fmt(sub((S.titulo_canal && S.titulo_canal[canal]) || S.titulo, { nombre: nombre })) + '</h2>';
+      '<h2 class="t2">' + fmt(sub((S.titulo_canal && S.titulo_canal[canalVista]) || S.titulo, { nombre: nombre })) + '</h2>';
     var ahora = Date.now(), forzar = qs.get('sorteo') === '1';
     var abierto = plazo.abierto !== null ? plazo.abierto : (ahora >= plazo.desde && ahora < plazo.hasta);
     if (!forzar && !abierto && ahora >= plazo.desde) return;   // cerrado: no se enseña nada
@@ -203,7 +208,7 @@
     // lo anuncia con su tarjeta
     var portada = document.getElementById('portada');
     if (portada && portada.nextSibling !== secS) portada.parentNode.insertBefore(secS, portada.nextSibling);
-    tarjetaPortada('sorteo', '<a class="ptarjeta" href="#sorteo"><b>' + fmt(sub(S.tarjeta, { quien: canal === 'vecinos' ? S.quienVecinos : ((N.NOMBRES_CORTOS || {})[canal] || nombre) })) + '</b><span>' + fmt(S.tarjetaTexto) + '</span></a>');
+    tarjetaPortada('sorteo', '<a class="ptarjeta" href="#sorteo"><b>' + fmt(sub(S.tarjeta, { quien: canalVista === 'vecinos' ? S.quienVecinos : ((N.NOMBRES_CORTOS || {})[canalVista] || nombre) })) + '</b><span>' + fmt(S.tarjetaTexto) + '</span></a>');
     var fo = document.getElementById('sorteoForm'), msg = fo.querySelector('.sorteo-msg');
     fo.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -211,7 +216,7 @@
       var btn = fo.querySelector('button'); btn.disabled = true;
       var el = fo.elements;
       fetch(N.PLATFORM + '/api/sorteo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
-        canal: canal, nombre: el.nombre.value.trim(), email: el.email.value.trim(),
+        canal: canalVista, nombre: el.nombre.value.trim(), email: el.email.value.trim(),
         acepta_novedades: !!el.novedades.checked, web: el.web.value
       }) }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
         if (!j || !j.ok) {
@@ -231,14 +236,14 @@
   // la pantalla tras apuntarse (María Venegas, 27-nov)
   function trasApuntarse() {
     var tres = (S.tresExp || []).map(porId).filter(Boolean);
-    secS.innerHTML = '<div class="w estrecho apuntado"><h2 class="t2">' + fmt(canal === 'vecinos' ? S.hechoVecinos : S.hechoOtros) + '</h2>' +
+    secS.innerHTML = '<div class="w estrecho apuntado"><h2 class="t2">' + fmt(canalVista === 'vecinos' ? S.hechoVecinos : S.hechoOtros) + '</h2>' +
       '<p class="ojo apuntado-ojo">' + fmt(S.mientras) + '</p><p class="t3">' + fmt(S.pregunta) + '</p>' +
       (window.NAVIDAD_OFERTA ? '<p class="texto apuntado-oferta">' + fmt(N.OFERTA.bloque.titulo.replace(/\*/g, '')) + '</p>' : '') +
       '<div class="apuntado-exp">' + tres.map(function (x) {
         return '<a class="apuntado-x" href="#exp-' + esc(x.id) + '"><b>' + esc(x.nombre) + '</b><i>' + fmt(x.corto || x.lema) + '</i><span>' + esc(x.precio) + ' €</span></a>';
       }).join('') + '</div>' +
       '<a class="boton boton--luz" href="#experiencias">' + fmt(S.verTodas) + '</a>' +
-      (canal === 'vecinos' ? '<p class="mini apuntado-mano">' + fmt(S.enMano) + '</p>' : '') + '</div>';
+      (canalVista === 'vecinos' ? '<p class="mini apuntado-mano">' + fmt(S.enMano) + '</p>' : '') + '</div>';
     secS.scrollIntoView({ block: 'start' });
   }
   // las tarjetas de la portada: el sorteo y, si está activa, la experiencia de más (solo en canales con sorteo)
@@ -285,7 +290,7 @@
     }
     var hasta = fecha(camp && camp.hasta);
     var t = { cuando: cuando, hasta: isNaN(hasta) ? O.hastaDefecto : fechaTxt(hasta),
-      para: canal === 'socios' ? O.paraSocios : O.para };   // miembros (canal socios): «para alguien a quien quieras»
+      para: canalVista === 'socios' ? O.paraSocios : O.para };   // miembros (canal socios): «para alguien a quien quieras»
     if (of.modo === 'lista') {
       var nombres = (of.experiencias || []).map(function (id) { var x = porId(id); return x && x.nombre; }).filter(Boolean);
       if (!nombres.length) return null;   // una lista vacía no se puede contar: mejor no decir nada
@@ -336,21 +341,21 @@
   (function () {
     var ctrl = window.AbortController ? new AbortController() : null;
     if (ctrl) setTimeout(function () { ctrl.abort(); }, 4000);
-    fetch(N.PLATFORM + '/api/campana/canal' + (canal ? '?c=' + encodeURIComponent(canal) : ''), ctrl ? { signal: ctrl.signal } : {})
+    fetch(N.PLATFORM + '/api/campana/canal' + (canalVista ? '?c=' + encodeURIComponent(canalVista) : ''), ctrl ? { signal: ctrl.signal } : {})
       .then(function (r) { return r.json().catch(function () { return {}; }); })
       .then(function (j) {
         j = j || {};
         // la oferta: aunque el canal no exista, la oferta es de la campaña
         if (j.oferta && j.oferta.activa === true) pintaOferta(j.oferta, j.campana); else siPrevia();
         if (!j.ok || !j.canal) throw new Error('sin canal');
-        if (N.PARTNERS.indexOf(canal) !== -1) ponPartner(j.canal.nombre);   // los partners: goodfit, barrys…
+        if (N.PARTNERS.indexOf(canalVista) !== -1) ponPartner(j.canal.nombre);   // los partners: goodfit, barrys…
         if (j.canal.sorteo) pintaSorteo(j.canal.nombre, plazoSorteo(j));
       })
       .catch(function () {
         // Sin la Platform: sin sorteo ni oferta. Para revisar: ?sorteo=1 enseña el sorteo y ?oferta=… la oferta.
         if (!document.getElementById('oferta')) siPrevia();
-        var nom = N.NOMBRES_PROVISIONALES[canal];
-        if (N.PARTNERS.indexOf(canal) !== -1 && nom && document.getElementById('partner').hidden) ponPartner(nom);
+        var nom = N.NOMBRES_PROVISIONALES[canalVista];
+        if (N.PARTNERS.indexOf(canalVista) !== -1 && nom && document.getElementById('partner').hidden) ponPartner(nom);
         if (qs.get('sorteo') === '1' && nom && secS.hidden) pintaSorteo(nom, plazoSorteo(null));
       });
   })();
