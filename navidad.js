@@ -103,7 +103,7 @@
     '<p class="texto cabeza-texto">' + fmt(N.EXPERIENCIAS_ENTRADA) + '</p><div class="rejilla">';
   N.EXPERIENCIAS.forEach(function (x, k) {
     h += '<article class="exp aparece" id="exp-' + esc(x.id) + '">' +
-      '<div class="exp-cuerpo"><h3 class="exp-nombre">' + esc(x.nombre) + '</h3><p class="exp-lema">' + fmt(x.lema) + '</p>' +
+      '<div class="exp-cuerpo"><h3 class="exp-nombre">' + esc(x.nombre) + '</h3>' + (x.corto ? '<p class="exp-corto">' + fmt(x.corto) + '</p>' : '') + '<p class="exp-lema">' + fmt(x.lema) + '</p>' +
       '<ol class="exp-pasos">' + x.pasos.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ol>' +
       '<p class="exp-meta"><span>' + esc(x.dur) + '</span><span class="exp-precio">' + esc(x.precio) + ' €</span></p>' +
       '<button class="boton boton--tinta" type="button" data-regalar="' + esc(x.id) + '" data-desde="tarjeta">' + fmt(N.BOTON_REGALAR) + '</button>' +

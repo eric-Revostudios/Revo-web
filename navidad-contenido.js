@@ -106,7 +106,7 @@ window.NAVIDAD = {
   /* ---- las seis experiencias ----
      Precio, enlace de Momence y textos: los mismos que experiencias.html (20-nov-2026). Si cambian allí, aquí también.
      `id` es el que usa la página del regalo de la Platform (/regalo/demo?e=…). */
-  EXPERIENCIAS_TITULO: 'Seis experiencias con *propósito*. Elige el suyo.',
+  EXPERIENCIAS_TITULO: 'Para quien *lo tiene todo*.'   // propuesta María Venegas (27-nov), ajustada: la pregunta entera ya es el titular de la portada,
   EXPERIENCIAS_ENTRADA: 'Varias terapias en una sola visita, encadenadas por nuestro equipo médico para un objetivo.',
   EXPERIENCIAS: [
     { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',

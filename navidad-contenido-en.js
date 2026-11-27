@@ -73,7 +73,7 @@ window.NAVIDAD = {
     texto: 'A moment to look after yourself, calmly and with care: advanced therapies, medical direction and a team attentive to every detail. To feel well today and still feel well *twenty years from now*.'
   },
 
-  EXPERIENCIAS_TITULO: 'Six experiences with a *purpose*. Choose theirs.',
+  EXPERIENCIAS_TITULO: 'For someone who *has everything*.',
   EXPERIENCIAS_ENTRADA: 'Several therapies in a single visit, sequenced by our medical team around one goal.',
   EXPERIENCIAS: [
     { id: 'glow', nombre: 'Glow', precio: 140, dur: '1 h 50 min', foto: 'nv-glow.webp', pos: '50% 30%',
